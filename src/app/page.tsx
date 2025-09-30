@@ -1,7 +1,6 @@
-"use client"
+import {redirect} from 'next/navigation';
+import {defaultLocale} from 'src/i18n/navigation';
 
-import English from "src/app/ko/page";
-
-export default function Home() {
-  return <English />
+export default function Page() {
+    redirect(`/${defaultLocale}`);
 }

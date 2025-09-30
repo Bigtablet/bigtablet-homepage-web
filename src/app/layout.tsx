@@ -1,11 +1,13 @@
-import localFont from "next/font/local";
 import "./globals.css";
+import { cookies } from "next/headers";
 
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+    const store = await cookies();
+    const locale = (store.get("locale")?.value === "en" ? "en" : "ko") as "en" | "ko";
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
-        <html>
-            <body>{children}</body>
+        <html lang={locale} suppressHydrationWarning>
+        <body>{children}</body>
         </html>
-    )
+    );
 }

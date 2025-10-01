@@ -1,0 +1,21 @@
+@use "src/styles/function/flex" as *;
+@use "src/styles/typography/mixin" as *;
+
+.problem {
+  @include flex-row;
+  justify-content: center;
+  width: 100%;
+  gap: 10%;
+
+  span:nth-child(1) {
+    @include SemiBold;
+    font-size: 40px;
+    color: var(--text-dark);
+  }
+
+  span:nth-child(2) {
+    @include Medium;
+    font-size: 20px;
+    color: var(--text-dark);
+  }
+}

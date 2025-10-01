@@ -14,7 +14,7 @@
 .env.production.local
 
 # misc
-.idea
+.idea/
 .DS_Store
 *.log
 npm-debug.log*

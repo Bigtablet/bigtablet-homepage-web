@@ -2,12 +2,12 @@
   "main": {
     "banner": {
       "title": "Vision Beyond Pixels",
-      "description": "Our service goes beyond video analysis to create real value. \nWith AI-powered technology, we deliver instant solutions for \ntheft prevention, industrial safety, and marketing optimization. \nUnlike conventional services that take about two weeks to \nanalyze, our patented technology compresses video by up to \n97%, enabling real-time response.",
+      "description": "Our service goes beyond video analysis \nto create real value. \n\nWith AI-powered technology, we deliver \ninstant solutions for theft prevention, \nindustrial safety, and marketing optimization. \n\nUnlike conventional services that take about \ntwo weeks to analyze, our patented technology \ncompresses video by up to 97%, \nenabling real-time response.",
       "button": "Get Started"
     },
     "problem": {
       "title": "The Challenge \nWe Address",
-      "description": "As offline stores regain attention and experiential spaces\n expand, theft has become a growing concern. Traditional RFID\n tags and video surveillance solutions often face high costs\n and frequent malfunctions, limiting their effectiveness. To\n address this, we developed a patented real-time AI video\n analysis technology. By applying neural network–based video\n compression, we process high-resolution data efficiently and\n deliver real-time insights into customer flow, interests, and\n behavior patterns."
+      "description": "As offline stores regain attention and \nexperiential spaces expand, theft has become \na growing concern. \n\nTraditional RFID tags and video surveillance \nsolutions often face high costs and frequent \nmalfunctions, limiting their effectiveness. \n\nTo address this, we developed a patented \nreal-time AI video analysis technology. \n\nBy applying neural network–based video \ncompression, we process high-resolution data \nefficiently and deliver real-time insights into \ncustomer flow, interests, and behavior patterns."
     }
   }
 }

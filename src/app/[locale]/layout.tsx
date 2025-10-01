@@ -1,7 +1,6 @@
 import type {ReactNode} from 'react';
 import {NextIntlClientProvider} from 'next-intl';
 import {routing, type AppLocale} from 'src/i18n/routing';
-import 'src/app/globals.css';
 
 export default async function LocaleLayout({
                                                children,
@@ -19,12 +18,8 @@ export default async function LocaleLayout({
     const messages = (await import(`../../../messages/${locale}.json`)).default;
 
     return (
-        <html lang={locale} suppressHydrationWarning>
-        <body>
         <NextIntlClientProvider locale={locale} messages={messages}>
             {children}
         </NextIntlClientProvider>
-        </body>
-        </html>
     );
 }

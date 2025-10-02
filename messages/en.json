@@ -8,6 +8,31 @@
     "problem": {
       "title": "The Challenge \nWe Address",
       "description": "As offline stores regain attention and \nexperiential spaces expand, theft has become \na growing concern. \n\nTraditional RFID tags and video surveillance \nsolutions often face high costs and frequent \nmalfunctions, limiting their effectiveness. \n\nTo address this, we developed a patented \nreal-time AI video analysis technology. \n\nBy applying neural network–based video \ncompression, we process high-resolution data \nefficiently and deliver real-time insights into \ncustomer flow, interests, and behavior patterns."
+    },
+    "solution": {
+      "title": "Solution OverView",
+      "product": {
+        "1": {
+          "title": "Retail Analytics",
+          "description": "Analyze customer movement, dwell time, and product interests to optimize store operations and boost sales."
+        },
+        "2": {
+          "title": "Retail Security",
+          "description": "Prevent theft using RFID tags, CCTV, and security gates, with real-time detection of suspicious activity."
+        },
+        "3": {
+          "title": "Smart Factory Safety",
+          "description": "Detect and respond to risks in factories using sensors and AI."
+        },
+        "4": {
+          "title": "Parking Control System",
+          "description": "Smart parking management with license plate recognition and barriers."
+        },
+        "5": {
+          "title": "Marketing Optimization",
+          "description": "Utilize real-time insights to enhance customer engagement and improve marketing strategies."
+        }
+      }
     }
   }
 }

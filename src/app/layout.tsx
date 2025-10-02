@@ -22,6 +22,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
             <link rel="icon" href="/images/logo/favicon.png" />
         </head>
         <body className="font-sans antialiased">
+        <div id="modal"/>
         <Providers>{children}</Providers>
         </body>
         </html>

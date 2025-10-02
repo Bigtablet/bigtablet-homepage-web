@@ -12,13 +12,11 @@ const Banner = () => {
 
     return (
         <section className="banner">
-            {/* 배경 영상 */}
             <div className="video-wrapper">
-                <video src="/videos/main.mp4" autoPlay loop muted playsInline />
+                <video src="/videos/main/main.mp4" autoPlay loop muted playsInline />
                 <div className="overlay" />
             </div>
 
-            {/* 배너 내용 */}
             <div className="content">
                 <h1 className="title">{t("title")}</h1>
                 <p className="description">{t("description")}</p>

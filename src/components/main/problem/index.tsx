@@ -7,7 +7,7 @@ import {usePathname} from "next/navigation";
 const Problem = () => {
     const t = useTranslations("main.problem");
     const pathname = usePathname();
-    const locale = pathname.split("/")[1] || "ko";
+    const locale = pathname.split("/")[1] || "en";
 
     return (
         <div className="problem">

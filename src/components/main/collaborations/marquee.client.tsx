@@ -2,9 +2,10 @@
 
 import { useMemo } from "react";
 import Image from "next/image";
+import "./style.scss";
 
 type Props = {
-    logos: string[];      
+    logos: string[];
     speedSec?: number;
     minCards?: number;
 };
@@ -18,17 +19,21 @@ const buildPattern = (logos: string[], need: number) => {
     return out;
 };
 
-const Marquee = ({ logos, speedSec = 12, minCards = 10 }: Props) => {
+const Marquee = ({ logos, speedSec = 20, minCards = 1 }: Props) => {
     const need = Math.max(minCards, logos.length || 0);
 
     const base = useMemo(() => buildPattern(logos, need), [logos, need]);
 
-    const loop = useMemo(() => (base.length ? [...base, ...base] : []), [base]);
-
-    if (!base.length) return null;
+    const loop = useMemo(() => {
+        if (!base.length) return [];
+        return Array(4).fill(null).flatMap(() => base);
+    }, [base]);
 
     return (
-        <section className="collabs" style={{ ["--marquee-speed" as any]: `${speedSec}s` }}>
+        <section
+            className="collabs"
+            style={{ ["--marquee-speed" as any]: `${speedSec}s` }}
+        >
             <h3 className="collabs__title">Collaborations</h3>
             <div className="collabs__viewport">
                 <div className="collabs__track" aria-hidden="true">
@@ -40,7 +45,7 @@ const Marquee = ({ logos, speedSec = 12, minCards = 10 }: Props) => {
                                     alt=""
                                     unoptimized
                                     width={260}
-                                    height={92}
+                                    height={72}
                                     style={{ width: "100%", height: "100%", objectFit: "contain" }}
                                     priority={i < 2}
                                 />

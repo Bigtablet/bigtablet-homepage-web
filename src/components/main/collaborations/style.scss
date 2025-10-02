@@ -4,6 +4,7 @@
   width: 100%;
   padding: 24px 0 8px;
   color: var(--text-light);
+  --marquee-speed: 14s;
 }
 
 .collabs__title {
@@ -19,18 +20,25 @@
   width: 100%;
   overflow: hidden;
   padding: 8px 0;
+
+  mask-image: linear-gradient(to right, transparent 0, #000 6%, #000 94%, transparent 100%);
+  mask-repeat: no-repeat;
+  -webkit-mask-repeat: no-repeat;
+  mask-size: 100% 100%;
+  -webkit-mask-size: 100% 100%;
 }
 
 .collabs__track {
   display: flex;
   gap: 16px;
   width: max-content;
-  animation: collab-marquee var(--marquee-speed, 14s) linear infinite; // 더 빠르게
+  animation: collab-marquee var(--marquee-speed) linear infinite;
+  will-change: transform;
 }
 
 @keyframes collab-marquee {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-25%); }
 }
 
 .collabs__item { flex: 0 0 auto; }
@@ -44,6 +52,7 @@
   background: #fff;
   box-shadow: 0 2px 10px rgba(0,0,0,0.15);
   padding: 10px 14px;
+  overflow: hidden;
 }
 
 .collabs__card img {
@@ -52,10 +61,7 @@
   object-fit: contain;
 }
 
-/* placeholder(없는 값)용: 흰 박스 유지 */
-.collabs__card.is-ph {
-  background: #fff;
-}
+.collabs__card.is-ph { background: #fff; }
 .collabs__ph-text {
   width: 60%;
   height: 12px;
@@ -63,9 +69,7 @@
   background: rgba(0,0,0,0.08);
 }
 
-.collabs__viewport:hover .collabs__track {
-  animation-play-state: paused;
-}
+.collabs__viewport:hover .collabs__track { animation-play-state: paused; }
 
 @media (max-width: 640px) {
   .collabs__title { font-size: 24px; }
@@ -78,4 +82,12 @@
 
 @media (prefers-reduced-motion: reduce) {
   .collabs__track { animation: none; }
+}
+
+/* 옵션: 역방향, 컴팩트 변형 */
+.collabs--reverse .collabs__track { animation-direction: reverse; }
+.collabs--compact .collabs__track { gap: 8px; }
+.collabs--compact .collabs__card {
+  width: clamp(120px, 16vw, 200px);
+  height: clamp(52px, 6.5vw, 72px);
 }

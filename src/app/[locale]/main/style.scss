@@ -1,9 +1,9 @@
 @use "src/styles/function/flex" as *;
 
 .main-content {
+  flex:1;
+  min-height: 0;
   position: relative;
-  height: 100vh;
-  overflow-y: auto;
   overflow-x: hidden;
   scroll-snap-type: y proximity;
   scroll-padding-top: 80px;

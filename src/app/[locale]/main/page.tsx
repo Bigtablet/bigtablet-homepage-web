@@ -1,14 +1,13 @@
-import Header from "src/components/common/header";
 import Banner from "src/components/main/banner";
 import Problem from "src/components/main/problem";
 import Solution from "src/components/main/solution";
 import Collaborations from "src/components/main/collaborations";
 import "./style.scss";
+import Frame from "src/components/common/template";
 
 const Main = () => {
     return (
-        <>
-            <Header />
+        <Frame>
             <main className="main-content">
                 <div className="snap">
                     <Banner />
@@ -29,7 +28,7 @@ const Main = () => {
                     </div>
                 </section>
             </main>
-        </>
+        </Frame>
     );
 };
 

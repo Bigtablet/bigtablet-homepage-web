@@ -1,0 +1,11 @@
+.template {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+}
+
+.template__main {
+  flex: 1;
+  min-height: 0;
+  overflow: visible;
+}

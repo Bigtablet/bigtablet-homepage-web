@@ -41,4 +41,4 @@ jobs:
             docker pull ${{ secrets.DOCKER_USERNAME }}/bigtablet-homepage-web:${{ github.sha }} || true
             docker stop bigtablet-homepage-web || true
             docker rm bigtablet-homepage-web || true
-            docker run -d --name bigtablet-homepage-web --restart unless-stopped -p 8080:80 bigtablet/bigtablet-homepage-web:0.0.1
+            docker run -d --name bigtablet-homepage-web --restart unless-stopped -p 80:80 bigtablet/bigtablet-homepage-web:0.0.1

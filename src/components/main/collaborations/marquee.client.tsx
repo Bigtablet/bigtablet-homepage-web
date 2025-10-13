@@ -18,7 +18,7 @@ const buildPattern = (logos: string[], need: number) => {
     return out;
 };
 
-const Marquee = ({ logos, speedSec = 12, minCards = 10 }: Props) => {
+const Marquee = ({ logos, speedSec = 2, minCards = 100 }: Props) => {
     const need = Math.max(minCards, logos.length || 0);
 
     const base = useMemo(() => buildPattern(logos, need), [logos, need]);

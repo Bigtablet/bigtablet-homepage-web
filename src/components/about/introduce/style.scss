@@ -1,0 +1,32 @@
+@use "src/styles/function/flex" as *;
+@use "src/styles/typography/mixin" as *;
+
+.about {
+  @include flex-left;
+  @include flex-center;
+  width: 60%;
+  gap: 10%;
+  padding: 50px 100px;
+
+  &__text {
+    @include flex-column;
+    gap: 20px;
+
+    &--reverse {
+      text-align: right;
+    }
+
+    .title {
+      @include SemiBold;
+      font-size: 40px;
+      color: var(--text-darkblue)
+    }
+
+    .description {
+      @include Medium;
+      font-size: 20px;
+      color: var(--text-darkblue);
+    }
+  }
+
+}

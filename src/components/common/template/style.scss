@@ -1,10 +1,15 @@
+@use "src/styles/function/flex" as *;
+
 .template {
+  @include flex-column;
   min-height: 100svh;
-  display: flex;
-  flex-direction: column;
+  background-color: var(--text-light);
 }
 
 .template__main {
+  @include flex-column;
+  @include flex-center;
+  width: 100%;
   flex: 1;
   min-height: 0;
   overflow: visible;

@@ -4,7 +4,7 @@ import Marquee from "./marquee.client";
 
 const Collaborations = () => {
     const logos = getCollaborationLogos();
-    return <Marquee logos={logos} speedSec={10} />
+    return <Marquee logos={logos} speedSec={2} />;
 };
 
 export default Collaborations;

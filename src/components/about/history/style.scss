@@ -1,0 +1,105 @@
+@use "src/styles/function/flex" as *;
+@use "src/styles/typography/mixin" as *;
+
+.history {
+  --container-width: 1200px;
+  --container-max: min(var(--container-width), 95vw);
+  --left-col: 180px;
+
+  width: 100%;
+  height: 100vh;
+  background: var(--text-darkblue);
+  position: relative;
+  overflow: hidden;
+}
+
+.history::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: calc(50vw - var(--container-max) / 2 + var(--left-col) / 2);
+  width: 2px;
+  background: rgba(255, 255, 255, 0.28);
+  border-radius: 1px;
+  z-index: 0;
+}
+
+.history__scroll {
+  position: relative;
+  height: 100%;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  padding: 60px 0;
+  z-index: 1;
+}
+
+.history__year-block {
+  width: var(--container-max);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: var(--left-col) 1fr;
+  column-gap: 40px;
+  align-items: start;
+  padding: 36px 0;
+}
+
+.history__left,
+.history__year-wrap {
+  @include flex-center;
+  position: relative;
+  width: var(--left-col);
+  min-height: 28px;
+}
+
+.history__dot {
+  position: absolute;
+  left: calc(var(--left-col) / 2);
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--text-light);
+  box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.12);
+  z-index: 2;
+}
+
+.history__year {
+  @include SemiBold;
+  font-size: 24px;
+  color: var(--text-light);
+  padding-left: calc(var(--left-col) / 2 + 16px);
+}
+
+.history__right,
+.history__items {
+  @include flex-column;
+  gap: 16px;
+}
+
+.history__card {
+  background: #fff;
+  color: var(--text-dark);
+  border-radius: 10px;
+  padding: 16px 20px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.25);
+  }
+}
+
+.history__card-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.history__title { @include SemiBold; font-size: 16px; color: var(--text-dark); }
+.history__date  { @include Medium; font-size: 13px; color: var(--text-mediumdarkblue); }
+.history__desc  { @include Medium; font-size: 14px; color: var(--text-mediumdarkblue); line-height: 1.6; }

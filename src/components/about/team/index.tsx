@@ -1,7 +1,8 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import MemberCard, { MemberKey } from "src/components/about/team/card";
+import MemberCard from "src/components/about/team/card";
+import type { MemberKey } from "src/types/member/member.type";
 import "./style.scss";
 
 const DEFAULT_ORDER: MemberKey[] = ["CEO", "CTO", "PM", "BE", "FE"];
@@ -15,11 +16,6 @@ const Team = ({ order = DEFAULT_ORDER }: TeamProps) => {
 
     return (
         <section className="team">
-            <header className="team__head">
-                <h2 className="team__title">{t("title")}</h2>
-                {t.has("description") && <p className="team__desc">{t("description")}</p>}
-            </header>
-
             <div className="team__grid">
                 {order.map((key) => (
                     <MemberCard key={key} memberKey={key} />

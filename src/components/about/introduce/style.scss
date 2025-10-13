@@ -6,6 +6,7 @@
   @include flex-center;
   width: 60%;
   gap: 10%;
+  padding: 50px 100px;
 
   &__text {
     @include flex-column;

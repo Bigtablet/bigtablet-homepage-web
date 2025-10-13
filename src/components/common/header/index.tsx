@@ -46,7 +46,7 @@ const Header = () => {
         router.push(switchedPath);
     };
 
-    const base = `/${locale}`;
+    const base = `/${locale}/main`;
 
     return (
         <header className={scrolled ? "scrolled" : ""}>

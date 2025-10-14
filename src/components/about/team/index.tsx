@@ -5,7 +5,7 @@ import MemberCard from "src/components/about/team/card";
 import type { MemberKey } from "src/types/member/member.type";
 import "./style.scss";
 
-const DEFAULT_ORDER: MemberKey[] = ["CEO", "CTO", "PM", "BE", "FE"];
+const DEFAULT_ORDER: MemberKey[] = ["CEO", "CTO", "Manage", "PM", "BE", "FE"];
 
 interface TeamProps {
     order?: MemberKey[];

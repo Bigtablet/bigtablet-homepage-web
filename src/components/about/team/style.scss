@@ -24,11 +24,10 @@
     color: rgba(255, 255, 255, 0.8);
   }
 
-  /* 가로 최대 3개 */
   &__grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    max-width: 900px; /* 3개 카드 기준(220px * 3 + gap 고려) */
+    max-width: 900px;
     margin: 0 auto;
     gap: 32px;
     justify-items: center;
@@ -45,6 +44,7 @@
   text-align: center;
   color: #e7ebf5;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
 
   &:hover {
     transform: translateY(-4px);

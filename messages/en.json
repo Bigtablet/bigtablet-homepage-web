@@ -284,6 +284,20 @@
             "a": "Our vision is captured in the phrase ‘Vision Beyond Pixels.’ We aim to go beyond mere image recognition — to interpret context and meaning beyond pixels, creating new value through technology."
           }
         },
+        "Manage": {
+          "position": "Managing Director",
+          "name": "Chaehyung Lee",
+          "description": "With balance",
+          "image": "/images/member/chaehyung.png",
+          "qa1": {
+            "q": "Hello Chaehyung! Could you please introduce yourself briefly?",
+            "a": "Hello, I’m Chaehyung Lee, and I’m in charge of administrative affairs at Bigtablet Inc."
+          },
+          "qa2": {
+            "q": "Could you briefly introduce your role?",
+            "a": "At Bigtablet, I’m mainly responsible for operational tasks related to our ongoing projects, as well as sales and customer service support.\nSince we don’t yet have a dedicated department for areas like accounting, my work often involves handling a variety of administrative tasks as needed.\n\nIn the future, I expect to focus more on customer service operations as our services continue to expand and evolve."
+          }
+        },
         "PM": {
           "position": "PM",
           "name": "Yerim Kwon",

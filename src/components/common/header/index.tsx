@@ -46,12 +46,12 @@ const Header = () => {
         router.push(switchedPath);
     };
 
-    const base = `/${locale}/main`;
+    const base = `/${locale}`;
 
     return (
         <header className={scrolled ? "scrolled" : ""}>
             <div className="inner">
-                <Link href={base}>
+                <Link href={`${base}/main`}>
                     <Image src="/images/logo/logo.png" alt="Logo" width={120} height={40} priority />
                 </Link>
 

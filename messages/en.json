@@ -1,4 +1,182 @@
 {
+  "policies": {
+    "accessibility": {
+      "title": "Accessibility Statement",
+      "effectiveDate": "Effective Date: August 19, 2025",
+      "intro": "Bigtablet, Inc. is committed to ensuring digital accessibility for all users.",
+      "sections": {
+        "1": {
+          "title": "1. Our Commitment",
+          "content": "We aim to conform to WCAG 2.1 Level AA standards."
+        },
+        "2": {
+          "title": "2. Measures We Take",
+          "content": "We test regularly, provide alt text, maintain contrast, and ensure keyboard access."
+        },
+        "3": {
+          "title": "3. Ongoing Efforts",
+          "content": "Accessibility improvements are continuous and ongoing."
+        },
+        "4": {
+          "title": "4. Third-Party Content",
+          "content": "We cannot control third-party content but encourage partners to support accessibility."
+        },
+        "5": {
+          "title": "5. Feedback",
+          "content": "We welcome feedback about accessibility barriers."
+        },
+        "6": {
+          "title": "6. Alternative Access",
+          "content": "If you experience difficulties, we will provide information via alternative means."
+        }
+      }
+    },
+    "cookies": {
+      "title": "Cookie Policy",
+      "effectiveDate": "Effective Date: August 19, 2025",
+      "intro": "This Cookie Policy explains how Bigtablet, Inc. uses cookies and tracking technologies.",
+      "sections": {
+        "1": {
+          "title": "1. What Are Cookies?",
+          "content": "Cookies are small text files stored on your device by a website."
+        },
+        "2": {
+          "title": "2. Types of Cookies We Use",
+          "content": "We use Strictly Necessary, Performance, Functional, and Targeting/Advertising cookies."
+        },
+        "3": {
+          "title": "3. How We Use Cookies",
+          "content": "We use cookies to operate and secure the site, analyze traffic, remember preferences, and provide personalized content."
+        },
+        "4": {
+          "title": "4. Third-Party Cookies",
+          "content": "Third parties may place cookies and collect browsing information."
+        },
+        "5": {
+          "title": "5. Your Choices",
+          "content": "You can manage cookies via browser settings or opt-out tools. CCPA residents may use our opt-out page."
+        },
+        "6": {
+          "title": "6. Updates to This Policy",
+          "content": "We may update this Cookie Policy. Changes will be posted with an updated Effective Date."
+        }
+      }
+    },
+    "privacy": {
+      "title": "Privacy Policy",
+      "effectiveDate": "Effective Date: August 19, 2025",
+      "intro": "Bigtablet, Inc. (“Company,” “we,” “our,” or “us”) is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our website and services. By using our website, you agree to the terms of this Privacy Policy.",
+      "sections": {
+        "1": {
+          "title": "1. Introduction",
+          "content": "We explain the scope of this policy and the services it covers, including our website and related offerings."
+        },
+        "2": {
+          "title": "2. Information We Collect",
+          "content": "Personal Information You Provide, Automatically Collected Information, and Information from Third Parties."
+        },
+        "3": {
+          "title": "3. How We Use Your Information",
+          "content": "We use your information to provide, operate, and improve services; communicate with you; personalize experiences; conduct analytics; comply with legal obligations; and offer marketing."
+        },
+        "4": {
+          "title": "4. How We Share Your Information",
+          "content": "We do not sell personal information. We may share with service providers, for legal compliance, and in business transfers."
+        },
+        "5": {
+          "title": "5. Cookies and Tracking",
+          "content": "We use cookies and similar technologies for sessions, analytics, personalization, and advertising. You may disable cookies, but some features may not function properly."
+        },
+        "6": {
+          "title": "6. Data Retention",
+          "content": "We retain personal information as long as necessary for business or legal obligations."
+        },
+        "7": {
+          "title": "7. Your Rights Under CCPA",
+          "content": "You have the Right to Know, Right to Delete, Right to Opt-Out, and Right to Non-Discrimination. Contact mailmaster@bigtablet.kr or +1 (408) 393-1827."
+        },
+        "8": {
+          "title": "8. Data Security",
+          "content": "We implement reasonable measures such as encryption and access controls, though no system is 100% secure."
+        },
+        "9": {
+          "title": "9. Children’s Privacy",
+          "content": "We do not knowingly collect data from children under 13. If discovered, we will delete it."
+        },
+        "10": {
+          "title": "10. International Users",
+          "content": "Data may be transferred to and stored in the United States, where data protection laws may differ from those of your country."
+        },
+        "11": {
+          "title": "11. Changes to This Policy",
+          "content": "We may update this Privacy Policy. Material changes will be posted with an updated Effective Date."
+        },
+        "12": {
+          "title": "12. Unauthorized Email Collection Prohibited",
+          "content": "The email addresses published on this website are for the exclusive use of our customers and business partners. Unauthorized collection of email addresses by any means (including email harvesting software or other automatic tools) is strictly prohibited. Violators may be subject to legal action under applicable laws."
+        }
+      }
+    },
+    "terms": {
+      "title": "Terms of Service",
+      "effectiveDate": "Effective Date: August 19, 2025",
+      "intro": "Welcome to Bigtablet, Inc. These Terms of Service govern your access to and use of our website, products, and services.",
+      "sections": {
+        "1": {
+          "title": "1. Eligibility",
+          "content": "You must be at least 13 years old to use our services."
+        },
+        "2": {
+          "title": "2. Use of Services",
+          "content": "Use our services only for lawful purposes. Do not attempt unauthorized access, interfere with, or harm the Services."
+        },
+        "3": {
+          "title": "3. Accounts",
+          "content": "Provide accurate and complete information. Keep your credentials secure, and you are responsible for all activities under your account."
+        },
+        "4": {
+          "title": "4. Intellectual Property",
+          "content": "All content, trademarks, and intellectual property on this site are owned by or licensed to Bigtablet, Inc."
+        },
+        "5": {
+          "title": "5. User Content",
+          "content": "You retain ownership of the content you submit, but grant Bigtablet, Inc. a license to use it as needed to provide services."
+        },
+        "6": {
+          "title": "6. Prohibited Conduct",
+          "content": "Do not violate any laws, infringe intellectual property rights, distribute malware, or harass other users."
+        },
+        "7": {
+          "title": "7. Third-Party Services",
+          "content": "Our services may include links or access to third-party websites or tools. We are not responsible for their content or policies."
+        },
+        "8": {
+          "title": "8. Disclaimers",
+          "content": "The services are provided 'as is' without any warranties, express or implied, including merchantability or fitness for a particular purpose."
+        },
+        "9": {
+          "title": "9. Limitation of Liability",
+          "content": "Bigtablet, Inc. shall not be liable for indirect, incidental, or consequential damages arising from your use of the services."
+        },
+        "10": {
+          "title": "10. Indemnification",
+          "content": "You agree to indemnify and hold harmless Bigtablet, Inc. from any claims, damages, or expenses arising from your violation of these Terms."
+        },
+        "11": {
+          "title": "11. Termination",
+          "content": "We may suspend or terminate your access if you violate these Terms or engage in prohibited behavior."
+        },
+        "12": {
+          "title": "12. Governing Law",
+          "content": "These Terms are governed by and construed under the laws of the State of California, without regard to conflict of law principles."
+        },
+        "13": {
+          "title": "13. Changes to These Terms",
+          "content": "We may modify or update these Terms of Service at any time. Continued use of our services constitutes acceptance of the updated Terms."
+        }
+      }
+    }
+  },
   "main": {
     "banner": {
       "title": "Vision Beyond Pixels",
@@ -197,6 +375,43 @@
           }
         }
       }
+    }
+  },
+  "news": {
+    "news1": {
+      "image": "/images/news/news1.png",
+      "title": "BigTablet Joins Silicon Valley’s Plug and Play, Establishes U.S. Subsidiary to Launch Global Expansion",
+      "date": "2025.10.13",
+      "business": "PATRON TIMES",
+      "link": "https://www.patrontimes.co.kr/news/433066"
+    },
+    "news2": {
+      "image": "/images/news/news2.png",
+      "title": "BigTablet Selected for Google Cloud Startup Acceleration Program",
+      "date": "2025.10.13",
+      "business": "PATRON TIMES",
+      "link": "https://www.patrontimes.co.kr/news/433067"
+    },
+    "news3": {
+      "image": "/images/news/news3.png",
+      "title": "Intelligent video surveillance specialist Big Tablet has been selected for the CES 2026 participation support program by the Small and Medium Business Administration and the Startup Promotion Agency.",
+      "date": "2025.10.13",
+      "business": "PATRON TIMES",
+      "link": "https://www.patrontimes.co.kr/news/433068"
+    },
+    "news4": {
+      "image": "/images/news/news4.png",
+      "title": "BigTablet Selected as a Member of NVIDIA Inception, NVIDIA's Startup Acceleration Program",
+      "date": "2025.10.13",
+      "business": "PATRON TIMES",
+      "link": "https://www.patrontimes.co.kr/news/433467"
+    },
+    "news5": {
+      "image": "/images/news/news5.png",
+      "title": "Big Tablet Selected for Korea Airports Corporation's 2025 Win-Win Startup and Venture Business Support Program",
+      "date": "2025.10.13",
+      "business": "PATRON TIMES",
+      "link": "https://www.patrontimes.co.kr/news/433468"
     }
   }
 }

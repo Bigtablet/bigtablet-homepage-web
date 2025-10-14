@@ -1,7 +1,7 @@
 @use "src/styles/function/flex" as *;
 
 .main-content {
-  flex:1;
+  width: 100%;
   min-height: 0;
   position: relative;
   overflow-x: hidden;
@@ -19,7 +19,7 @@
 
 %ground-base {
   @include flex-column;
-  gap: 400px;
+  gap: 300px;
   padding: 100px;
   width: 100%;
 }

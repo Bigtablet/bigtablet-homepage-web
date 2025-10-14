@@ -1,0 +1,42 @@
+@use "src/styles/function/flex" as *;
+@use "src/styles/typography/mixin" as *;
+
+.TermsOfUse {
+  padding: 50px 0;
+  @include flex-column;
+  @include Regular;
+  color: var(--text-dark);
+  max-width: 1200px;
+  width: 100%;
+  gap: 32px;
+
+  section {
+    @include flex-column;
+    gap: 20px;
+  }
+
+  h1 {
+    @include Bold;
+    font-size: 2.5rem;
+    color: var(--text-dark);
+  }
+
+  h2 {
+    @include SemiBold;
+    font-size: 1.5rem;
+    color: var(--text-darkblue);
+  }
+
+  h4 {
+    @include Medium;
+    font-size: 1rem;
+    color: var(--text-mediumdarkblue);
+  }
+
+  p {
+    @include Regular;
+    font-size: 1rem;
+    color: var(--text-dark);
+  }
+}
+

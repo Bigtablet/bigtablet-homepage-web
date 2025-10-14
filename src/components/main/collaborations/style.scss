@@ -21,20 +21,6 @@
   padding: 8px 0;
 }
 
-.collabs__track {
-  display: flex;
-  gap: 16px;
-  width: max-content;
-  animation: collab-marquee var(--marquee-speed, 14s) linear infinite; // 더 빠르게
-}
-
-@keyframes collab-marquee {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
-
-.collabs__item { flex: 0 0 auto; }
-
 .collabs__card {
   display: grid;
   place-items: center;
@@ -44,38 +30,23 @@
   background: #fff;
   box-shadow: 0 2px 10px rgba(0,0,0,0.15);
   padding: 10px 14px;
+  overflow: hidden;
+  margin-right: 20px;
 }
 
 .collabs__card img {
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
-}
-
-/* placeholder(없는 값)용: 흰 박스 유지 */
-.collabs__card.is-ph {
-  background: #fff;
-}
-.collabs__ph-text {
-  width: 60%;
-  height: 12px;
-  border-radius: 6px;
-  background: rgba(0,0,0,0.08);
-}
-
-.collabs__viewport:hover .collabs__track {
-  animation-play-state: paused;
+  object-position: center;
+  display: block;
 }
 
 @media (max-width: 640px) {
   .collabs__title { font-size: 24px; }
-  .collabs__track { gap: 12px; }
   .collabs__card {
     width: clamp(130px, 42vw, 200px);
     height: clamp(56px, 14vw, 78px);
+    margin-right: 20px;
   }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .collabs__track { animation: none; }
 }

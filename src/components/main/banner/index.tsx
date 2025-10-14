@@ -1,14 +1,11 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { usePathname } from "next/navigation";
 import "./style.scss";
 import Button from "src/components/ui/button";
 
 const Banner = () => {
     const t = useTranslations("main.banner");
-    const pathname = usePathname();
-    const locale = pathname.split("/")[1] || "ko";
 
     return (
         <section className="banner">

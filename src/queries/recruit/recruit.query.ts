@@ -1,26 +1,19 @@
-import { useQuery } from "@tanstack/react-query";
-import {getRecruitListApi} from "src/apis/recruit/recruit.apis";
+import { useQuery, UseQueryOptions } from "@tanstack/react-query";
+import { getRecruitListApi, getRecruitDetailApi } from "src/api/recruit/recruit.api";
+import { QueryKey } from "src/queries/queryKey";
 import type { RecruitResponse, RecruitCard } from "src/types/recruit/recruit.type";
 
-const toCard = (item: RecruitResponse): RecruitCard => {
-    let dday: string;
-
-    if (!item.endDate) {
-        dday = "상시";
-    } else {
+const toRecruitCard = (item: RecruitResponse): RecruitCard => {
+    let dday = "상시";
+    if (item.endDate) {
         const end = new Date(item.endDate);
-        const today = new Date();
-        const diff = Math.ceil((end.getTime() - today.getTime()) / (1000 * 60 * 60 * 24));
+        const diff = Math.ceil((end.getTime() - Date.now()) / (1000 * 60 * 60 * 24));
         dday = diff > 0 ? `D-${diff}` : "마감";
     }
 
     const tags = [
         item.department === "IT" ? "개발팀" : item.department,
-        item.recruitType === "FULL_TIME"
-            ? "정규직"
-            : item.recruitType === "CONTRACT"
-                ? "계약직"
-                : "인턴",
+        item.recruitType === "FULL_TIME" ? "정규직" : item.recruitType === "CONTRACT" ? "계약직" : "인턴",
         item.location === "SEOUL" ? "서울" : item.location === "DAEGU" ? "대구" : item.location,
         item.education === "BACHELOR"
             ? "대졸"
@@ -35,10 +28,26 @@ const toCard = (item: RecruitResponse): RecruitCard => {
     return { ...item, dday, tags };
 };
 
-export const useRecruitListQuery = () =>
+export const useRecruitListQuery = (
+    options?: Omit<UseQueryOptions<RecruitResponse[], Error, RecruitCard[]>, "queryKey" | "queryFn" | "select">
+) =>
     useQuery({
-        queryKey: ["recruit-list"],
-        queryFn: () => getRecruitListApi(),
-        select: (data) => data.map(toCard),
+        queryKey: [QueryKey.recruit.list],
+        queryFn: ({ signal }) => getRecruitListApi(signal),
+        select: (data) => data.map(toRecruitCard),
         staleTime: 60_000,
+        ...options,
+    });
+
+export const useRecruitDetailQuery = (
+    idx: number,
+    options?: Omit<UseQueryOptions<RecruitResponse, Error, RecruitCard>, "queryKey" | "queryFn" | "select">
+) =>
+    useQuery({
+        queryKey: [QueryKey.recruit.detail, idx],
+        queryFn: ({ signal }) => getRecruitDetailApi(idx, signal),
+        select: toRecruitCard,
+        enabled: !!idx,
+        staleTime: 60_000,
+        ...options,
     });

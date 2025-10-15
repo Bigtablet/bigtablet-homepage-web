@@ -17,7 +17,6 @@ const RequestList = () => {
     const params = useParams<{ locale?: string }>();
     const pathname = usePathname();
 
-    // locale 안정적으로 파싱
     const locale = useMemo(() => {
         const fromParam = params?.locale;
         const fromPath = pathname.split("/")[1];

@@ -1,7 +1,7 @@
 @use "src/styles/function/flex" as *;
 @use "src/styles/typography/mixin" as *;
 
-header {
+.header {
   position: sticky;
   top: 0;
   z-index: 1000;

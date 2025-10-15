@@ -284,6 +284,37 @@
             "a": "Our vision is captured in the phrase ‘Vision Beyond Pixels.’ We aim to go beyond mere image recognition — to interpret context and meaning beyond pixels, creating new value through technology."
           }
         },
+        "Manage": {
+          "position": "Managing Director",
+          "name": "Chaehyung Lee",
+          "description": "With balance",
+          "image": "/images/member/chaehyung.png",
+          "qa1": {
+            "q": "Hello Chaehyung! Could you please introduce yourself briefly?",
+            "a": "Hello, I’m Chaehyung Lee, and I’m in charge of administrative affairs at Bigtablet Inc."
+          },
+          "qa2": {
+            "q": "Could you briefly introduce your role?",
+            "a": "At Bigtablet, I’m mainly responsible for operational tasks related to our ongoing projects, as well as sales and customer service support.\nSince we don’t yet have a dedicated department for areas like accounting, my work often involves handling a variety of administrative tasks as needed.\n\nIn the future, I expect to focus more on customer service operations as our services continue to expand and evolve."
+          },
+          "qa3": {
+            "q": "Was there a particular reason or moment that led you to join Bigtablet?",
+            "a": "There wasn’t really a grand reason or turning point. Before graduation, I was looking for companies to do my field training at, and Bigtablet happened to be close by. But what really drew me was that the CEO was young — I thought other places might feel too hierarchical or rigid. So I joined for my field training, and that connection eventually led me to stay on as an intern, and then as a full-time employee."
+          },
+          "qa4": {
+            "q": "Have there been any moments when you felt, 'Ah, I’m really doing well at my job'?",
+            "a": "Rather than feeling like I’m doing particularly well, I tend to feel proud whenever the company achieves progress — like when we secure new support projects or take meaningful steps forward as a team. It’s less of a self-congratulatory feeling and more of a reminder that there’s still a lot more I want to do, a kind of mixed emotion between satisfaction and motivation."
+          },
+          "qa5": {
+            "q": "How would you like to grow or what kind of role do you hope to take on in the company moving forward?",
+            "a": "Most people imagine climbing to the top of a company as their goal, but that’s not really me. My motto is ‘steady and long.’ I once thought about how I’d like to be like a fan — not as powerful as an air conditioner, but still something that quietly helps others. It’s a bit of a metaphor, but I want to be someone who’s helpful and reliable, even if not always in the spotlight. (Of course, that doesn’t mean I plan to stop working hard after one season!)"
+          },
+          "qa6": {
+            "q": "What does Bigtablet mean to you personally?",
+            "a": "At first, I thought it was a slow train, but it turned out to be an express one. Still, if I had to describe Bigtablet, I’d say it’s a lot like the moon. Sometimes it feels so big and distant, yet it radiates this quiet beauty, like a soft halo in the night sky. It’s ever-changing and full of life. Like watching the moon through a high-speed camera — even when it’s momentarily hidden, it remains the brightest, most noticeable thing in the sky. Maybe ‘the North Star’ would be a more fitting comparison, but somehow, ‘the moon’ feels closer to my heart — because it’s something I hope will keep growing and shining brighter."
+          }
+        }
+      },
         "PM": {
           "position": "PM",
           "name": "Yerim Kwon",

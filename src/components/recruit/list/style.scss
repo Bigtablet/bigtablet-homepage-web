@@ -1,0 +1,51 @@
+@use "src/styles/function/flex" as *;
+@use "src/styles/typography/mixin" as *;
+
+.request-list {
+  @include flex-column;
+  gap: 20px;
+  width: 100%;
+}
+
+.request-item {
+  @include flex-row;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--line-normal);
+  cursor: pointer;
+
+  &__left {
+    @include flex-column;
+    gap: 8px;
+  }
+
+  &__title {
+    @include Bold;
+    font-size: 20px;
+    color: var(--text-dark);
+  }
+
+  &__tags {
+    @include flex-row;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  &__tag {
+    @include Medium;
+    font-size: 14px;
+    color: var(--text-darkblue);
+    background-color: var(--background-light);
+    border-radius: 6px;
+    padding: 6px 10px;
+  }
+
+  &__dday {
+    @include SemiBold;
+    text-align: center;
+    font-size: 14px;
+    color: var(--text-darkblue);
+    white-space: nowrap;
+  }
+}

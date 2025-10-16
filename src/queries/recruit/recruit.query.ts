@@ -1,13 +1,19 @@
-import { useQuery, UseQueryOptions } from "@tanstack/react-query";
-import { getRecruitListApi, getRecruitDetailApi } from "src/api/recruit/recruit.api";
+import { useQuery, UseQueryOptions, useMutation, UseMutationOptions } from "@tanstack/react-query";
+import { getRecruitListApi, getRecruitDetailApi, postRecruitApplyApi } from "src/api/recruit/recruit.api";
 import { QueryKey } from "src/queries/queryKey";
-import type { RecruitResponse, RecruitCard } from "src/types/recruit/recruit.type";
+import type {
+    RecruitResponse,
+    RecruitCard,
+    RecruitRequest,
+    RecruitApplyResponse,
+} from "src/types/recruit/recruit.type";
 
+/* 카드 가공 */
 const toRecruitCard = (item: RecruitResponse): RecruitCard => {
     let dday = "상시";
     if (item.endDate) {
         const end = new Date(item.endDate);
-        const diff = Math.ceil((end.getTime() - Date.now()) / (1000 * 60 * 60 * 24));
+        const diff = Math.ceil((end.getTime() - Date.now()) / 86400000);
         dday = diff > 0 ? `D-${diff}` : "마감";
     }
 
@@ -49,5 +55,14 @@ export const useRecruitDetailQuery = (
         select: toRecruitCard,
         enabled: !!idx,
         staleTime: 60_000,
+        ...options,
+    });
+
+export const useRecruitApplyMutation = (
+    options?: UseMutationOptions<RecruitApplyResponse, Error, RecruitRequest>
+) =>
+    useMutation({
+        mutationKey: [QueryKey.recruit.apply],
+        mutationFn: (body) => postRecruitApplyApi(body),
         ...options,
     });

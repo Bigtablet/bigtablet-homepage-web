@@ -3,14 +3,14 @@
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useParams, usePathname } from "next/navigation";
-import { useRecruitListQuery } from "src/queries/recruit/recruit.query";
+import { useRecruitList } from "src/hooks/recruit/useRecruit";
 import type { RecruitCard } from "src/types/recruit/recruit.type";
 import "./style.scss";
 
 const SLICE_SIZE = 5;
 
 const RequestList = () => {
-    const { data, status, error } = useRecruitListQuery();
+    const { list, status, error, isEmpty } = useRecruitList();
     const [visibleCount, setVisibleCount] = useState(SLICE_SIZE);
     const bottomRef = useRef<HTMLDivElement | null>(null);
 
@@ -24,20 +24,17 @@ const RequestList = () => {
     }, [params, pathname]);
 
     const items: RecruitCard[] = useMemo(
-        () => (data ?? []).slice(0, visibleCount),
-        [data, visibleCount]
+        () => list.slice(0, visibleCount),
+        [list, visibleCount]
     );
 
     useEffect(() => {
-        if (!bottomRef.current) return;
-        if (!data?.length) return;
+        if (!bottomRef.current || !list.length) return;
 
         const io = new IntersectionObserver(
             (entries) => {
                 if (entries.some((e) => e.isIntersecting)) {
-                    setVisibleCount((prev) =>
-                        prev < data.length ? prev + SLICE_SIZE : prev
-                    );
+                    setVisibleCount((prev) => (prev < list.length ? prev + SLICE_SIZE : prev));
                 }
             },
             { rootMargin: "200px 0px" }
@@ -45,7 +42,7 @@ const RequestList = () => {
 
         io.observe(bottomRef.current);
         return () => io.disconnect();
-    }, [data]);
+    }, [list]);
 
     if (status === "pending") {
         return <div className="request-list__loading">불러오는 중…</div>;
@@ -59,7 +56,7 @@ const RequestList = () => {
         );
     }
 
-    if (status === "success" && (!data || data.length === 0)) {
+    if (status === "success" && isEmpty) {
         return <div className="request-list__empty">등록된 공고가 없습니다.</div>;
     }
 
@@ -88,7 +85,7 @@ const RequestList = () => {
                 </Link>
             ))}
 
-            {data && visibleCount < data.length && (
+            {visibleCount < list.length && (
                 <div className="request-list__loading">더 불러오는 중…</div>
             )}
 

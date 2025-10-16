@@ -1,41 +1,47 @@
-import axios, { AxiosError, InternalAxiosRequestConfig, AxiosResponse } from "axios";
+import axios, { AxiosError, AxiosHeaders, AxiosResponse, InternalAxiosRequestConfig } from "axios";
+import { ACCESS_TOKEN, REQUEST_TOKEN } from "src/constants/token/token.constants";
+import Token from "src/libs/token/cookie";
+
+declare module "axios" {
+    interface InternalAxiosRequestConfig { skipAuth?: boolean }
+    interface AxiosRequestConfig { skipAuth?: boolean }
+}
+
+const SERVER_URL = process.env.NEXT_PUBLIC_SERVER_URL;
 
 const BigtabletAxios = axios.create({
-    baseURL: process.env.NEXT_PUBLIC_SERVER_URL,
-    withCredentials: false,
+    baseURL: SERVER_URL,
+    withCredentials: true,
     timeout: 10000,
 });
 
-// 요청 인터셉터
+(BigtabletAxios.defaults as any).skipAuth = false;
+delete (BigtabletAxios.defaults.headers as any).common?.["Content-Type"];
+delete (BigtabletAxios.defaults.headers as any).post?.["Content-Type"];
+
 BigtabletAxios.interceptors.request.use((config: InternalAxiosRequestConfig) => {
-    const isFormData = config.data instanceof FormData;
-
-    if (config.headers) {
-        config.headers.set("Content-Type", isFormData ? "multipart/form-data" : "application/json");
-        config.headers.set("Accept", "*/*");
+    if (!config.skipAuth) {
+        const token = Token.getToken(ACCESS_TOKEN);
+        if (token) (config.headers as any)[REQUEST_TOKEN] = `Bearer ${token}`;
+        else {
+            if (config.headers instanceof AxiosHeaders) config.headers.delete(REQUEST_TOKEN);
+            else delete (config.headers as any)[REQUEST_TOKEN];
+        }
+    } else {
+        if (config.headers instanceof AxiosHeaders) config.headers.delete(REQUEST_TOKEN);
+        else delete (config.headers as any)[REQUEST_TOKEN];
     }
-
     return config;
 });
 
-// 응답 인터셉터
 BigtabletAxios.interceptors.response.use(
-    (response: AxiosResponse) => response,
-    (error: AxiosError) => {
-        const status = error.response?.status ?? 0;
-        const message =
-            (error.response?.data as any)?.message ??
-            error.message ??
-            "network_error";
-
-        return Promise.reject(
-            Object.assign(new Error(message), {
-                name: "HttpError",
-                status,
-                data: error.response?.data,
-            })
-        );
+    (res: AxiosResponse) => res,
+    (err: AxiosError) => {
+        const status = err.response?.status ?? 0;
+        const message = (err.response?.data as any)?.message ?? err.message ?? "network_error";
+        return Promise.reject(Object.assign(new Error(message), { name: "HttpError", status, data: err.response?.data }));
     }
 );
 
 export default BigtabletAxios;
+export { BigtabletAxios };

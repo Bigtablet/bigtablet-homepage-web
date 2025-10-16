@@ -2,9 +2,11 @@
 
 import "./style.scss";
 import { useTranslations } from "next-intl";
-import { useMemo } from "react";
+import { useMemo, useRef } from "react";
 import Portal from "src/libs/portal/portal";
 import type { ModalProps, ModalItem } from "src/types/main/modal/modal.type";
+
+const CLOSE_INTENT_DELAY = 180;
 
 const Modal = ({
                    current,
@@ -18,6 +20,7 @@ const Modal = ({
                    close,
                }: ModalProps) => {
     const t = useTranslations("main.solution");
+    const intentTimerRef = useRef<number | null>(null);
 
     const styleVars = useMemo(() => {
         if (!animVars) return {};
@@ -37,7 +40,6 @@ const Modal = ({
             </div>
             <div className="solution-hovermodal__right">
                 <video
-                    key={item.src}
                     className="solution-hovermodal__video"
                     src={item.src}
                     autoPlay
@@ -51,28 +53,40 @@ const Modal = ({
         </div>
     );
 
+    const armCloseIntent = () => {
+        if (blockBackdropClose) return;
+        if (intentTimerRef.current) window.clearTimeout(intentTimerRef.current);
+        intentTimerRef.current = window.setTimeout(() => {
+            intentTimerRef.current = null;
+            close();
+        }, CLOSE_INTENT_DELAY);
+    };
+
+    const cancelCloseIntent = () => {
+        if (intentTimerRef.current) {
+            window.clearTimeout(intentTimerRef.current);
+            intentTimerRef.current = null;
+        }
+    };
+
     return (
         <Portal>
             <div
                 className={`solution-hovermodal__backdrop${blockBackdropClose ? " lock" : ""}`}
-                onMouseMove={(e) => {
-                    if (blockBackdropClose) return;
-                    if (e.target === e.currentTarget) close();
-                }}
-                onClick={close}
+                onClick={blockBackdropClose ? undefined : close}
             >
                 <div
                     className={`solution-hovermodal ${isEntering ? "enter" : ""}`}
                     style={styleVars}
                     onClick={(e) => e.stopPropagation()}
+                    onMouseLeave={armCloseIntent}
+                    onMouseEnter={cancelCloseIntent}
                 >
                     <button className="nav prev" onClick={prev} aria-label="previous">‹</button>
 
                     <div className="solution-hovermodal__content">
                         <div
-                            className={`solution-hovermodal__track ${
-                                sliding ? (sliding.dir === "next" ? "slide-next" : "slide-prev") : ""
-                            }`}
+                            className={`solution-hovermodal__track ${sliding ? (sliding.dir === "next" ? "slide-next" : "slide-prev") : ""}`}
                         >
                             {sliding?.dir === "prev" && ghost && renderPanel(ghost)}
                             {renderPanel(current)}

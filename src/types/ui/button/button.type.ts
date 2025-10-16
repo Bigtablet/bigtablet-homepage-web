@@ -1,5 +1,5 @@
 export interface ButtonType {
-    children: string;
+    children: React.ReactNode;
     disabled?: boolean;
     onClick?: () => void;
     type?: "button" | "submit" | "reset";

@@ -1,7 +1,13 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import "./style.scss";
 
 const Footer = () => {
+    const pathname = usePathname();
+    const currentLocale = pathname.split("/")[1] || "en";
+
     return (
         <footer className="footer">
             <div className="footer__inner">
@@ -9,10 +15,10 @@ const Footer = () => {
                     <strong className="footer__brand">Bigtablet Inc.</strong>
                     <address className="footer__addr">440 N. Wolfe Rd, Sunnyvale, CA 94085</address>
                     <nav className="footer__links" aria-label="policies">
-                        <Link href="/privacy">Privacy Policy</Link>
-                        <Link href="/terms">Terms of Service</Link>
-                        <Link href="/cookies">Cookie Policy</Link>
-                        <Link href="/accessibility">Accessibility</Link>
+                        <Link href={`/${currentLocale}/policies/privacy`}>Privacy Policy</Link>
+                        <Link href={`/${currentLocale}/policies/terms`}>Terms of Service</Link>
+                        <Link href={`/${currentLocale}/policies/cookies`}>Cookie Policy</Link>
+                        <Link href={`/${currentLocale}/policies/accessibility`}>Accessibility</Link>
                     </nav>
                 </div>
 

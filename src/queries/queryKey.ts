@@ -5,9 +5,12 @@ export const QueryKey = {
         apply: "/recruit/apply",
     },
     gcp: {
-        upload: "/gcp"
+        upload: "/gcp",
     },
     news: {
-        list: "/news/list"
-    }
-}
+        list: "/news/list",
+    },
+    blog: {
+        list: "/blog/list",
+    },
+};

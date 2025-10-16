@@ -1,0 +1,75 @@
+@use "src/styles/function/flex" as *;
+@use "src/styles/typography/mixin" as *;
+
+.NewsCard {
+  @include flex-column;
+  background: var(--background-light);
+  border: 1px solid var(--line-normal);
+  border-radius: 12px;
+  padding: 12px;
+  text-decoration: none;
+  color: var(--text-normal);
+  transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+  height: 100%;
+}
+
+.NewsCard:hover {
+  transform: translateY(-2px);
+  background: var(--background-input);
+  border-color: var(--primary-hover);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+}
+
+.NewsCard__thumb {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: 8px;
+  overflow: hidden;
+  @include flex-left;
+  justify-content: flex-start;
+  background: linear-gradient(
+                  180deg,
+                  rgba(90, 141, 203, 0.15),
+                  rgba(71, 85, 94, 0.08)
+  );
+  border: 1px solid var(--line-normal);
+}
+
+.NewsCard__thumbLabel {
+  @include SemiBold;
+  @include typography(11px);
+  padding: 6px 10px;
+  background: var(--primary);
+  color: var(--background-input);
+  border-top-right-radius: 6px;
+}
+
+.NewsCard__meta {
+  @include flex-row;
+  align-items: center;
+  gap: 6px;
+  margin-top: 8px;
+  color: var(--text-sub);
+  @include typography(12px);
+}
+
+.NewsCard__time {
+  @include Regular;
+}
+
+.NewsCard__dot {
+  opacity: 0.6;
+}
+
+.NewsCard__source {
+  @include Medium;
+}
+
+.NewsCard__title {
+  @include SemiBold;
+  @include typography(14px);
+  margin-top: 6px;
+  color: var(--text-darkblue);
+  word-break: keep-all;
+}

@@ -1,0 +1,63 @@
+@use "src/styles/function/flex" as *;
+@use "src/styles/typography/mixin" as *;
+
+.BlogDetail {
+  width: 100%;
+  padding: 24px 0 60px;
+}
+
+.BlogDetail__loading,
+.BlogDetail__empty {
+  @include Regular;
+  @include typography(14px);
+  color: var(--text-sub);
+  text-align: center;
+  margin-top: 32px;
+}
+
+.BlogDetail {
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  color: var(--text-normal);
+}
+
+.BlogDetail__title {
+  @include Bold;
+  @include typography(28px);
+  color: var(--text-dark);
+  margin-bottom: 12px;
+}
+
+.BlogDetail__meta {
+  @include flex-row;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-sub);
+  @include typography(13px);
+  margin-bottom: 16px;
+}
+
+.BlogDetail__time { @include Regular; }
+.BlogDetail__dot { opacity: .6; }
+.BlogDetail__views { @include Medium; }
+
+.BlogDetail__hero {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--background-light);
+  border: 1px solid var(--line-normal);
+  margin: 16px 0 20px;
+}
+
+.BlogDetail__hero img { object-fit: cover; }
+
+.BlogDetail__content {
+  @include Regular;
+  @include typography(16px);
+  color: var(--text-darkblue);
+  white-space: pre-wrap;
+}

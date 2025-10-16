@@ -393,5 +393,8 @@
   },
   "news": {
     "title": "Recent News"
+  },
+  "blog": {
+    "title": "Recent Blog"
   }
 }

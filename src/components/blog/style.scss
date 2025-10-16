@@ -1,0 +1,80 @@
+@use "src/styles/function/flex" as *;
+@use "src/styles/typography/mixin" as *;
+
+.BlogCard {
+  @include flex-column;
+  background: var(--background-light);
+  border: 1px solid var(--line-normal);
+  border-radius: 12px;
+  padding: 12px;
+  text-decoration: none;
+  color: var(--text-normal);
+  transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+  height: 100%;
+  cursor: pointer;
+}
+
+.BlogCard:hover {
+  transform: translateY(-2px);
+  background: var(--background-input);
+  border-color: var(--primary-hover);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+}
+
+.BlogCard__thumb {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--background-light);
+  border: 1px solid var(--line-normal);
+}
+
+.BlogCard__thumb img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.BlogCard__thumbFallback {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, rgba(90, 141, 203, 0.15), rgba(71, 85, 94, 0.08));
+}
+
+.BlogCard__meta {
+  @include flex-row;
+  align-items: center;
+  gap: 6px;
+  margin-top: 10px;
+  color: var(--text-sub);
+  @include typography(12px);
+}
+
+.BlogCard__time {
+  @include Regular;
+}
+
+.BlogCard__dot {
+  opacity: 0.6;
+}
+
+.BlogCard__views {
+  @include Medium;
+}
+
+.BlogCard__title {
+  @include SemiBold;
+  @include typography(15px);
+  margin-top: 8px;
+  color: var(--text-darkblue);
+  word-break: keep-all;
+}
+
+.BlogCard__excerpt {
+  @include Regular;
+  @include typography(13px);
+  margin-top: 6px;
+  color: var(--text-mediumdarkblue);
+}

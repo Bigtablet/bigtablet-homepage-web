@@ -392,40 +392,6 @@
     }
   },
   "news": {
-    "news1": {
-      "image": "/images/news/news1.png",
-      "title": "빅태블릿, 실리콘밸리 Plug and Play 입주…미국 현지법인 설립과 함께 글로벌 진출 개시",
-      "date": "2025.10.13",
-      "business": "패트론타임스",
-      "link": "https://www.patrontimes.co.kr/news/433066"
-    },
-    "news2": {
-      "image": "/images/news/news2.png",
-      "title": "빅태블릿 구글 클라우드 스타트업 액셀러레이팅 프로그램 선정",
-      "date": "2025.10.13",
-      "business": "패트론타임스",
-      "link": "https://www.patrontimes.co.kr/news/433067"
-    },
-    "news3": {
-      "image": "/images/news/news3.png",
-      "title": "지능형 영상관제 전문기업 빅태블릿 중소벤처기업진흥공단 창업진흥원 CES 2026 참가지원 프로그램 선정",
-      "date": "2025.10.13",
-      "business": "패트론타임스",
-      "link": "https://www.patrontimes.co.kr/news/433068"
-    },
-    "news4": {
-      "image": "/images/news/news4.png",
-      "title": "빅태블릿, 엔비디아 스타트업 액셀러레이팅 프로그램 ‘NVIDIA Inception’ 회원사 선정",
-      "date": "2025.10.13",
-      "business": "패트론타임스",
-      "link": "https://www.patrontimes.co.kr/news/433467"
-    },
-    "news5": {
-      "image": "/images/news/news5.png",
-      "title": "빅태블릿, ‘2025년 한국공항공사 상생형 창업·벤처 기업지원 프로그램’ 최종 선정",
-      "date": "2025.10.13",
-      "business": "패트론타임스",
-      "link": "https://www.patrontimes.co.kr/news/433468"
-    }
+    "title": "최근 등록된 뉴스들"
   }
 }

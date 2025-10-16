@@ -6,5 +6,8 @@ export const QueryKey = {
     },
     gcp: {
         upload: "/gcp"
+    },
+    news: {
+        list: "/news/list"
     }
 }

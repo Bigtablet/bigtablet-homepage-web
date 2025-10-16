@@ -392,40 +392,6 @@
     }
   },
   "news": {
-    "news1": {
-      "image": "/images/news/news1.png",
-      "title": "BigTablet Joins Silicon Valley’s Plug and Play, Establishes U.S. Subsidiary to Launch Global Expansion",
-      "date": "2025.10.13",
-      "business": "PATRON TIMES",
-      "link": "https://www.patrontimes.co.kr/news/433066"
-    },
-    "news2": {
-      "image": "/images/news/news2.png",
-      "title": "BigTablet Selected for Google Cloud Startup Acceleration Program",
-      "date": "2025.10.13",
-      "business": "PATRON TIMES",
-      "link": "https://www.patrontimes.co.kr/news/433067"
-    },
-    "news3": {
-      "image": "/images/news/news3.png",
-      "title": "Intelligent video surveillance specialist Big Tablet has been selected for the CES 2026 participation support program by the Small and Medium Business Administration and the Startup Promotion Agency.",
-      "date": "2025.10.13",
-      "business": "PATRON TIMES",
-      "link": "https://www.patrontimes.co.kr/news/433068"
-    },
-    "news4": {
-      "image": "/images/news/news4.png",
-      "title": "BigTablet Selected as a Member of NVIDIA Inception, NVIDIA's Startup Acceleration Program",
-      "date": "2025.10.13",
-      "business": "PATRON TIMES",
-      "link": "https://www.patrontimes.co.kr/news/433467"
-    },
-    "news5": {
-      "image": "/images/news/news5.png",
-      "title": "Big Tablet Selected for Korea Airports Corporation's 2025 Win-Win Startup and Venture Business Support Program",
-      "date": "2025.10.13",
-      "business": "PATRON TIMES",
-      "link": "https://www.patrontimes.co.kr/news/433468"
-    }
+    "title": "Recent News"
   }
 }

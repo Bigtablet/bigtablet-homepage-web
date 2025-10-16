@@ -47,3 +47,42 @@ export interface RecruitCard extends RecruitResponse {
     dday: string;
     tags: string[];
 }
+
+export enum ApplyEducationLevel {
+    GED = "GED",
+    HIGH_SCHOOL = "HIGH_SCHOOL",
+    ASSOCIATE = "ASSOCIATE",
+    BACHELOR = "BACHELOR",
+}
+
+export enum ApplyMilitaryStatus {
+    NOT_COMPLETED = "NOT_COMPLETED",
+    COMPLETED = "COMPLETED",
+    NOT_APPLICABLE = "NOT_APPLICABLE",
+}
+
+export interface RecruitRequest {
+    jobId: string;
+    name: string;
+    phoneNumber: string;
+    email: string;
+    address: string;
+    addressDetail: string;
+    portfolio: string;
+    coverLetter?: string;
+    profileImage: string;
+    educationLevel: ApplyEducationLevel;
+    schoolName?: string;
+    admissionYear?: string;
+    graduationYear?: string;
+    department?: string;
+    military: ApplyMilitaryStatus;
+    attachment1?: string;
+    attachment2?: string;
+    attachment3?: string;
+}
+
+export interface RecruitApplyResponse {
+    ok: boolean;
+    id?: number;
+}

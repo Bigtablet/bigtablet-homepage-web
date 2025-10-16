@@ -4,7 +4,7 @@ import "./style.scss";
 import Template from "src/components/common/template";
 import BlogCard from "src/components/blog";
 import { useEffect, useMemo, useRef } from "react";
-import useBlog from "src/hooks/blog/useBlog";
+import { useBlogInfiniteQuery } from "src/queries/blog/blog.query";
 import { useLocale, useTranslations } from "next-intl";
 
 const PAGE_SIZE = 9;
@@ -12,7 +12,7 @@ const PAGE_SIZE = 9;
 const BlogPage = () => {
     const t = useTranslations("blog");
     const locale = useLocale();
-    const { data, fetchNextPage, hasNextPage, isFetchingNextPage } = useBlog(PAGE_SIZE);
+    const { data, fetchNextPage, hasNextPage, isFetchingNextPage } = useBlogInfiniteQuery(PAGE_SIZE);
     const sentinelRef = useRef<HTMLDivElement | null>(null);
 
     const items = useMemo(() => (data?.pages ?? []).flat(), [data]);

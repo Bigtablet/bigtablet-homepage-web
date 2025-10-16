@@ -10,8 +10,14 @@ export type BlogItem = {
     modifiedAt: string;
 };
 
-export type BlogListResponse = {
+export type BlogResponse = {
     status: number;
     message: string;
     data: BlogItem[];
+};
+
+export type BlogDetailResponse = {
+    status: number;
+    message: string;
+    data: BlogItem
 };

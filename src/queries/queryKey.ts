@@ -12,5 +12,6 @@ export const QueryKey = {
     },
     blog: {
         list: "/blog/list",
+        detail: "/blog/detail",
     },
 };

@@ -2,14 +2,13 @@
 
 import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 import { QueryKey } from "src/queries/queryKey";
-import { getBlogApi } from "src/api/blog/blog.api";
+import { getBlogApi, getBlogDetailApi } from "src/api/blog/blog.api";
 import type { BlogItem } from "src/types/blog/blog.type";
 
-export const blogKey = (params: unknown) => [QueryKey.blog.list, params] as const;
-
+// 무한 스크롤용 쿼리
 export const useBlogInfiniteQuery = (size: number) =>
     useInfiniteQuery<BlogItem[]>({
-        queryKey: blogKey({ type: "infinite", size }),
+        queryKey: [QueryKey.blog.list, { type: "infinite", size }],
         queryFn: ({ pageParam }) => getBlogApi((pageParam as number) ?? 1, size),
         initialPageParam: 1,
         getNextPageParam: (lastPage, allPages) =>
@@ -17,9 +16,19 @@ export const useBlogInfiniteQuery = (size: number) =>
         staleTime: 60_000,
     });
 
+// 페이지 단위 쿼리
 export const useBlogPageQuery = (page: number, size: number) =>
     useQuery({
-        queryKey: blogKey({ type: "page", page, size }),
+        queryKey: [QueryKey.blog.list, { type: "page", page, size }],
         queryFn: () => getBlogApi(page, size),
+        staleTime: 60_000,
+    });
+
+// 단일 상세 쿼리
+export const useBlogDetailQuery = (idx: number) =>
+    useQuery<BlogItem>({
+        queryKey: [QueryKey.blog.detail, idx],
+        queryFn: () => getBlogDetailApi(idx),
+        enabled: Number.isFinite(idx),
         staleTime: 60_000,
     });

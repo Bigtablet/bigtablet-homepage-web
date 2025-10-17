@@ -1,15 +1,23 @@
 FROM node:20-alpine AS builder
 WORKDIR /app
 
+RUN apk add --no-cache libc6-compat python3 make g++
+
 ARG NEXT_PUBLIC_SERVER_URL
 ENV NEXT_PUBLIC_SERVER_URL=${NEXT_PUBLIC_SERVER_URL}
 
 COPY package.json package-lock.json* ./
-RUN npm ci
-COPY . .
 
+RUN if [ -f package-lock.json ]; then \
+      npm ci --no-audit --no-fund; \
+    else \
+      npm i --no-audit --no-fund; \
+    fi
+
+COPY . .
 RUN npm run build
 
+# --- runner ---
 FROM node:20-alpine AS runner
 WORKDIR /app
 ENV NODE_ENV=production

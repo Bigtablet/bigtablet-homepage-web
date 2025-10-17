@@ -224,6 +224,86 @@
         "description": "At Bigtablet, our team constantly reflects, \nquestions, and refines. Through this process, we \nstrive to provide clients and users with more \nconvenient and tailored analytics services. We go \nbeyond simple data collection and analysis, \nmoving forward each day in pursuit of the deeper \nvalue that lies beyond"
       }
     },
+    "history": {
+      "2025": [
+        {
+          "id": "2025-01",
+          "title": "Partnership with Dell, HP, and DELL EMC",
+          "description": "Signed partnership agreements with global IT leaders"
+        },
+        {
+          "id": "2025-02",
+          "title": "Joined DSW Meister Talent Program",
+          "description": "Collaborated with Daegu City to foster Meister talents"
+        },
+        {
+          "id": "2025-03",
+          "title": "MOU with Hanwha Vision",
+          "description": "Joint research on AI-based vision solutions"
+        },
+        {
+          "id": "2025-04",
+          "title": "Selected for Daegu Youth Startup Hub",
+          "description": "Joined the global startup incubation center"
+        }
+      ],
+      "2024": [
+        {
+          "id": "2024-12",
+          "title": "Selected as 2024 D.U.N.S Family Company",
+          "description": "Registered under global certification agency D&B"
+        },
+        {
+          "id": "2024-10",
+          "title": "ISO Certification (9001, 14001, 45001)",
+          "description": "Achieved major international certifications"
+        },
+        {
+          "id": "2024-08",
+          "title": "Selected for SME R&D Project",
+          "description": "Advanced AI video analysis technology project"
+        },
+        {
+          "id": "2024-06",
+          "title": "Chosen for Daegu Techno Park Pre-TIPS Program",
+          "description": "Recognized for AI technology commercialization potential"
+        },
+        {
+          "id": "2024-04",
+          "title": "Capital Increase (KRW 600M → KRW 1B)",
+          "description": "Expanded capital for corporate growth and investment"
+        }
+      ],
+      "2023": [
+        {
+          "id": "2023-09",
+          "title": "Technology Transfer from KIMM",
+          "description": "Adopted smart camera vision technology"
+        },
+        {
+          "id": "2023-07",
+          "title": "Established Industry-Academia Research Center",
+          "description": "Opened dedicated AI vision analysis lab"
+        },
+        {
+          "id": "2023-04",
+          "title": "Graduated from Youth Startup Academy",
+          "description": "Completed 3rd cohort and selected as excellent company"
+        }
+      ],
+      "2022": [
+        {
+          "id": "2022-09",
+          "title": "Selected for Youth Startup Academy",
+          "description": "Recognized for AI-powered video analysis innovation"
+        },
+        {
+          "id": "2022-01",
+          "title": "Founded Bigtablet Inc.",
+          "description": "Headquarters established in Daegu Scale-up Hub"
+        }
+      ]
+    },
     "team": {
       "title": "The People of Bigtablet",
       "description": "Introducing the team shaping the future of bigtablet together.",

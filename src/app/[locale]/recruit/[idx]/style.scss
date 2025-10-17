@@ -1,0 +1,134 @@
+@use "src/styles/function/flex" as *;
+@use "src/styles/typography/mixin" as *;
+
+.recruit-detail {
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 64px 24px;
+  color: var(--text-normal);
+
+  &__loading,
+  &__error {
+    text-align: center;
+    font-size: 16px;
+    color: var(--text-sub);
+    padding: 100px 0;
+  }
+
+  &__header {
+    border-bottom: 1px solid var(--line-normal);
+    margin-bottom: 40px;
+  }
+
+  &__title {
+    @include SemiBold;
+    font-size: 32px;
+    color: var(--text-dark);
+    margin-bottom: 16px;
+  }
+
+  &__meta {
+    @include flex-between;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  &__chips {
+    @include flex-row;
+    gap: 8px;
+  }
+
+  &__list {
+    margin: 0;
+    padding-left: 20px;
+
+    li {
+      font-size: 16px;
+      line-height: 1.9;
+      color: var(--text-normal);
+    }
+  }
+
+  &__process {
+    font-size: 16px;
+    color: var(--text-normal);
+    letter-spacing: 0.1px;
+    word-spacing: 2px;
+    white-space: pre-line;
+  }
+
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    height: 28px;
+    padding: 0 12px;
+    border-radius: 999px;
+    background: var(--background-input);
+    border: 1px solid var(--line-normal);
+    color: var(--text-darkblue);
+    font-size: 13px;
+    white-space: nowrap;
+  }
+
+  &__datebar {
+    display: inline-flex;
+    align-items: center;
+    color: var(--text-sub);
+    font-size: 14px;
+    white-space: nowrap;
+    height: 28px;
+  }
+
+  &__section {
+    margin-bottom: 48px;
+
+    h2 {
+      font-size: 20px;
+      @include Medium;
+      color: var(--text-darkblue);
+      margin-bottom: 12px;
+    }
+
+    .recruit-detail__text {
+      font-size: 16px;
+      color: var(--text-normal);
+      white-space: pre-line;
+    }
+  }
+
+  @media (max-width: 768px) {
+    padding: 48px 16px;
+
+    &__title {
+      font-size: 26px;
+    }
+
+    &__meta {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    &__datebar {
+      justify-content: flex-end;
+      width: 100%;
+    }
+
+    &__section h2 {
+      font-size: 18px;
+    }
+  }
+}
+
+.recruit-detail-request {
+  @include flex-column;
+  @include flex-center;
+  gap: 24px;
+  p {
+    @include Regular;
+    font-size: 16px;
+    color: var(--text-darkblue);
+  }
+}

@@ -16,7 +16,7 @@ const Collaborations = ({ speed = 40 }: { speed?: number }) => {
         <section className="collabs">
             <h3 className="collabs__title">Collaborations</h3>
             <div className="collabs__viewport">
-                <Marquee gradient={false} speed={speed} pauseOnHover autoFill>
+                <Marquee gradient={false} speed={speed} autoFill>
                     {logos.map((src, i) => (
                         <div className="collabs__card" key={`${src}-${i}`}>
                             <Image

@@ -224,6 +224,86 @@
         "description": "빅태블릿은 끊임없이 고민하고, 질문하며, 개선합니다. \n이 과정을 통해 고객과 사용자에게 더욱 편리하고 맞춤화된 \n분석 서비스를 제공합니다. \n단순한 데이터 수집과 분석을 넘어, 더 깊은 가치를 향해 나아갑니다."
       }
     },
+    "history": {
+      "2025": [
+        {
+          "id": "2025-01",
+          "title": "Dell, HP, DELL EMC와의 파트너십 체결",
+          "description": "글로벌 메이저 IT 기업들과 협업 협정 체결"
+        },
+        {
+          "id": "2025-02",
+          "title": "DSW Meister 인재 육성 프로그램 협약",
+          "description": "대구시 주관 마이스터 인재 양성 협약 체결"
+        },
+        {
+          "id": "2025-03",
+          "title": "Hanwha Vision과의 협력 MOU 체결",
+          "description": "AI 기반 비전 솔루션 공동 연구"
+        },
+        {
+          "id": "2025-04",
+          "title": "대구청년창업허브 입주 기업 선정",
+          "description": "글로벌 스타트업 성장 지원센터 입주"
+        }
+      ],
+      "2024": [
+        {
+          "id": "2024-12",
+          "title": "2024 D.U.N.S Family Company 선정",
+          "description": "국제 인증 기관 D&B 등록"
+        },
+        {
+          "id": "2024-10",
+          "title": "대구시 비전창업센터 입주 및 ISO 인증 획득",
+          "description": "ISO 9001, 14001, 45001 인증 취득"
+        },
+        {
+          "id": "2024-08",
+          "title": "중소벤처기업부 R&D 과제 선정",
+          "description": "AI 영상 분석 기술 고도화 과제 수행"
+        },
+        {
+          "id": "2024-06",
+          "title": "대구테크노파크 Pre-TIPS 선정",
+          "description": "TIPS 연계형 AI 기술 스타트업 육성 프로그램 선정"
+        },
+        {
+          "id": "2024-04",
+          "title": "자본금 증액 (6억 원 → 10억 원)",
+          "description": "기업 성장 및 투자 유치를 위한 자본금 확충"
+        }
+      ],
+      "2023": [
+        {
+          "id": "2023-09",
+          "title": "KIMM 기술이전 계약 체결",
+          "description": "AI 영상 기반 스마트카메라 기술 이전"
+        },
+        {
+          "id": "2023-07",
+          "title": "산학협력연구소 설립",
+          "description": "AI 비전 분석 전문 연구소 개소"
+        },
+        {
+          "id": "2023-04",
+          "title": "청년창업사관학교 졸업",
+          "description": "3기 졸업 및 우수기업 선정"
+        }
+      ],
+      "2022": [
+        {
+          "id": "2022-09",
+          "title": "중소벤처기업진흥공단 청년창업사관학교 선정",
+          "description": "AI 기반 영상 분석 기술 스타트업 선정"
+        },
+        {
+          "id": "2022-01",
+          "title": "빅태블릿 주식회사 설립",
+          "description": "대구광역시 동구 스케일업허브 본사 설립"
+        }
+      ]
+    },
     "team": {
       "title": "빅태블릿의 사람들",
       "description": "함께 빅태블릿의 미래를 만들어가는 팀을 소개합니다.",
@@ -408,40 +488,9 @@
     }
   },
   "news": {
-    "news1": {
-      "image": "/images/news/news1.png",
-      "title": "빅태블릿, 실리콘밸리 Plug and Play 입주…미국 현지법인 설립과 함께 글로벌 진출 개시",
-      "date": "2025.10.13",
-      "business": "패트론타임스",
-      "link": "https://www.patrontimes.co.kr/news/433066"
-    },
-    "news2": {
-      "image": "/images/news/news2.png",
-      "title": "빅태블릿 구글 클라우드 스타트업 액셀러레이팅 프로그램 선정",
-      "date": "2025.10.13",
-      "business": "패트론타임스",
-      "link": "https://www.patrontimes.co.kr/news/433067"
-    },
-    "news3": {
-      "image": "/images/news/news3.png",
-      "title": "지능형 영상관제 전문기업 빅태블릿 중소벤처기업진흥공단 창업진흥원 CES 2026 참가지원 프로그램 선정",
-      "date": "2025.10.13",
-      "business": "패트론타임스",
-      "link": "https://www.patrontimes.co.kr/news/433068"
-    },
-    "news4": {
-      "image": "/images/news/news4.png",
-      "title": "빅태블릿, 엔비디아 스타트업 액셀러레이팅 프로그램 ‘NVIDIA Inception’ 회원사 선정",
-      "date": "2025.10.13",
-      "business": "패트론타임스",
-      "link": "https://www.patrontimes.co.kr/news/433467"
-    },
-    "news5": {
-      "image": "/images/news/news5.png",
-      "title": "빅태블릿, ‘2025년 한국공항공사 상생형 창업·벤처 기업지원 프로그램’ 최종 선정",
-      "date": "2025.10.13",
-      "business": "패트론타임스",
-      "link": "https://www.patrontimes.co.kr/news/433468"
-    }
+    "title": "최근 등록된 뉴스들"
+  },
+  "blog": {
+    "title": "최근에 게시된 블로그"
   }
 }

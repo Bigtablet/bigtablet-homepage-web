@@ -4,6 +4,15 @@ import Token from "src/libs/token/cookie";
 
 const BASE = process.env.NEXT_PUBLIC_SERVER_URL ?? "";
 
+declare module "axios" {
+    interface AxiosRequestConfig {
+        skipAuth?: boolean;
+    }
+    interface InternalAxiosRequestConfig {
+        skipAuth?: boolean;
+    }
+}
+
 if (process.env.NODE_ENV === "production" && !BASE) {
     throw new Error("[API] NEXT_PUBLIC_SERVER_URL is empty at build time");
 }

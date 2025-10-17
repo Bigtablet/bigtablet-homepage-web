@@ -1,0 +1,28 @@
+@use "src/styles/function/flex" as *;
+
+.signup-progress__bar {
+  position: relative;
+  height: 8px;
+  background: var(--gray-light);
+  border-radius: 999px;
+}
+
+.signup-progress__bar-fill {
+  height: 100%;
+  width: var(--progress, 0%);
+  background: var(--primary-black);
+  border-radius: 999px;
+  transition: width 200ms ease;
+}
+
+.button-container {
+  @include flex-center;
+  width: 100%;
+  gap: 10px;
+}
+
+.email-certification {
+  @include flex-center;
+  width: 100%;
+  gap: 12px;
+}

@@ -1,8 +1,7 @@
 "use client";
 
 import { useCallback, useState } from "react";
-import { useRouter } from "next/navigation";
-import Cookies from "js-cookie";
+import { useRouter, useSearchParams } from "next/navigation";
 import { Toast } from "src/libs/toast/toast";
 import Token from "src/libs/token/cookie";
 import { ACCESS_TOKEN, REFRESH_TOKEN } from "src/constants/token/token.constants";
@@ -11,13 +10,15 @@ import type { SigninType } from "src/types/auth/signin.type";
 
 const useSignin = () => {
     const router = useRouter();
-    const signinMutation = useSigninMutation();
+    const searchParams = useSearchParams();
+    const next = searchParams.get("next") || "/admin/main";
 
+    const signinMutation = useSigninMutation();
     const [signinData, setSigninData] = useState<SigninType>({ email: "", password: "" });
 
     const handleSigninData = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
-        setSigninData((prev) => ({ ...prev, [name]: value }));
+        setSigninData(prev => ({ ...prev, [name]: value }));
     }, []);
 
     const submitSigninData = useCallback(() => {
@@ -27,23 +28,23 @@ const useSignin = () => {
         signinMutation.mutate(signinData, {
             onSuccess: (res) => {
                 const { accessToken, refreshToken } = res.data || {};
-
                 if (!accessToken || !refreshToken) {
                     Toast("error", "Token missing in response.");
                     return;
                 }
 
-                // 토큰 저장
                 Token.setToken(ACCESS_TOKEN, accessToken);
                 Token.setToken(REFRESH_TOKEN, refreshToken);
 
                 Toast("success", "Signin successful.");
+
+                router.replace(next);
             },
             onError: () => {
                 Toast("error", "Invalid email or password. Please try again.");
             },
         });
-    }, [signinData, signinMutation]);
+    }, [signinData, signinMutation, router, next]);
 
     const handleKeyDown = useCallback((e: React.KeyboardEvent<HTMLInputElement>) => {
         if (e.key === "Enter") {

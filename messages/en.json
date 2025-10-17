@@ -226,82 +226,48 @@
     },
     "history": {
       "2025": [
-        {
-          "id": "2025-01",
-          "title": "Partnership with Dell, HP, and DELL EMC",
-          "description": "Signed partnership agreements with global IT leaders"
-        },
-        {
-          "id": "2025-02",
-          "title": "Joined DSW Meister Talent Program",
-          "description": "Collaborated with Daegu City to foster Meister talents"
-        },
-        {
-          "id": "2025-03",
-          "title": "MOU with Hanwha Vision",
-          "description": "Joint research on AI-based vision solutions"
-        },
-        {
-          "id": "2025-04",
-          "title": "Selected for Daegu Youth Startup Hub",
-          "description": "Joined the global startup incubation center"
-        }
+        "Official partnership agreements with Dell, HPE, and TP-LINK",
+        "MOU with DGSW for SW Meister talent development",
+        "Partnership agreement with Hanwha Vision",
+        "Selected for the 6th class of the Global Youth Startup Academy"
       ],
       "2024": [
-        {
-          "id": "2024-12",
-          "title": "Selected as 2024 D.U.N.S Family Company",
-          "description": "Registered under global certification agency D&B"
-        },
-        {
-          "id": "2024-10",
-          "title": "ISO Certification (9001, 14001, 45001)",
-          "description": "Achieved major international certifications"
-        },
-        {
-          "id": "2024-08",
-          "title": "Selected for SME R&D Project",
-          "description": "Advanced AI video analysis technology project"
-        },
-        {
-          "id": "2024-06",
-          "title": "Chosen for Daegu Techno Park Pre-TIPS Program",
-          "description": "Recognized for AI technology commercialization potential"
-        },
-        {
-          "id": "2024-04",
-          "title": "Capital Increase (KRW 600M → KRW 1B)",
-          "description": "Expanded capital for corporate growth and investment"
-        }
+        "Selected for 2024 KNU LINC Family Company ICC-linked All-SET Program",
+        "Acquired certification as a Management Innovation SME (Main-Biz)",
+        "Signed patent transfer agreement with Prof. Sanghyo Park, Kyungpook National University",
+        "Confirmed transfer of registered patent from Prof. Sanghyo Park, Kyungpook National University",
+        "Designated as a Daegu Metropolitan City Dalgu-beol STAR-Bridge company",
+        "Acquired ISO 9001, ISO 14001, ISO 45001 certifications",
+        "Capital increase (from KRW 512.5M → KRW 1,012.5M)",
+        "Selected for joint project with KNU, Chonnam Univ., KNU Hospital, and Chonnam Univ. Hospital by Ministry of Science and ICT",
+        "Relocated headquarters to Suseong Univ. BI Center, Daegu",
+        "Selected for Daekyung Tech Holdings High J-Cuve Accelerating Program",
+        "Recognized as an Excellent Corporate Invention Compensation company",
+        "Selected for Pre-TIPS program",
+        "Acquired Venture Business Certification",
+        "Started joint industry-academia technology development project with Prof. Sanghyo Park, KNU Computer Science",
+        "Secured Seed investment (valuation of KRW 20B)",
+        "Transferred patent technology “Video Encoding using Neural Networks” from Prof. Sanghyo Park’s Video Intelligence Lab",
+        "Capital increase (from KRW 10M → KRW 50M)"
       ],
       "2023": [
-        {
-          "id": "2023-09",
-          "title": "Technology Transfer from KIMM",
-          "description": "Adopted smart camera vision technology"
-        },
-        {
-          "id": "2023-07",
-          "title": "Established Industry-Academia Research Center",
-          "description": "Opened dedicated AI vision analysis lab"
-        },
-        {
-          "id": "2023-04",
-          "title": "Graduated from Youth Startup Academy",
-          "description": "Completed 3rd cohort and selected as excellent company"
-        }
+        "Secured KRW 200M funding from Korea Technology Finance Corporation",
+        "Began development of digital signage camera-based foot traffic analysis service",
+        "Established company-affiliated research institute",
+        "Registered as a specialized industrial design company",
+        "Registered domestic patent “Method and device for controlling digital signage based on cloud”"
       ],
       "2022": [
-        {
-          "id": "2022-09",
-          "title": "Selected for Youth Startup Academy",
-          "description": "Recognized for AI-powered video analysis innovation"
-        },
-        {
-          "id": "2022-01",
-          "title": "Founded Bigtablet Inc.",
-          "description": "Headquarters established in Daegu Scale-up Hub"
-        }
+        "Graduated from Youth Startup Academy",
+        "Developed prototype of digital signage advertising monitor",
+        "Filed 4 patent applications for digital ad transmission software and digital signage foot traffic analysis services",
+        "Selected for Social Venture Youth Startup Support Program",
+        "Moved into Daegu Buk-gu Youth Startup Support Center (Youth Playground)",
+        "Selected for Social Economy Startup Support Program",
+        "Selected for Daegu Buk-gu Office Early Startup Support Program for Young Entrepreneurs",
+        "Converted into a corporation (Bigtablet Inc., capital KRW 10M)",
+        "Joined 12th class of Youth Startup Academy",
+        "Awarded at National Youth Startup Competition, Daegu Buk-gu"
       ]
     },
     "team": {

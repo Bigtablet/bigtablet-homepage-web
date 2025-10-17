@@ -22,7 +22,7 @@ const History = ({ items }: Props) => {
             .sort((a, b) => b - a)
             .map((y) => ({
                 year: y,
-                list: g[y].sort((a, b) => (a.id > b.id ? 1 : -1)),
+                list: g[y].slice().sort((a, b) => (a.id > b.id ? 1 : -1))
             }));
     }, [items]);
 

@@ -10,7 +10,7 @@ declare module "axios" {
 const SERVER_URL = process.env.NEXT_PUBLIC_SERVER_URL;
 
 const BigtabletAxios = axios.create({
-    baseURL: SERVER_URL,
+    baseURL: SERVER_URL || "/",
     withCredentials: true,
     timeout: 10000,
 });
@@ -20,6 +20,10 @@ delete (BigtabletAxios.defaults.headers as any).common?.["Content-Type"];
 delete (BigtabletAxios.defaults.headers as any).post?.["Content-Type"];
 
 BigtabletAxios.interceptors.request.use((config: InternalAxiosRequestConfig) => {
+    if (config.url && !/^https?:\/\//i.test(config.url) && !config.url.startsWith("/")) {
+        config.url = `/${config.url}`;
+    }
+
     if (!config.skipAuth) {
         const token = Token.getToken(ACCESS_TOKEN);
         if (token) (config.headers as any)[REQUEST_TOKEN] = `Bearer ${token}`;
@@ -31,6 +35,7 @@ BigtabletAxios.interceptors.request.use((config: InternalAxiosRequestConfig) => 
         if (config.headers instanceof AxiosHeaders) config.headers.delete(REQUEST_TOKEN);
         else delete (config.headers as any)[REQUEST_TOKEN];
     }
+
     return config;
 });
 
@@ -44,4 +49,3 @@ BigtabletAxios.interceptors.response.use(
 );
 
 export default BigtabletAxios;
-export { BigtabletAxios };

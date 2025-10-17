@@ -1,4 +1,8 @@
 export const QueryKey = {
+    auth: {
+        signin: "/auth/signin",
+        signup: "/auth/signup"
+    },
     recruit: {
         list: "/recruit",
         detail: "/recruit/detail",

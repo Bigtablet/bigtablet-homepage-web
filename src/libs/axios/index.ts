@@ -8,7 +8,7 @@ declare module "axios" {
 }
 
 const RAW_BASE = typeof process !== "undefined" ? process.env.NEXT_PUBLIC_SERVER_URL ?? "" : "";
-const BASE_URL = RAW_BASE && RAW_BASE !== "undefined" ? RAW_BASE : "/api";
+const BASE_URL = RAW_BASE && RAW_BASE !== "undefined" ? RAW_BASE : "";
 
 const BigtabletAxios = axios.create({
     baseURL: BASE_URL,

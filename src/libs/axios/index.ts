@@ -1,51 +1,40 @@
-import axios, { AxiosError, AxiosHeaders, AxiosResponse, InternalAxiosRequestConfig } from "axios";
+import axios, { AxiosHeaders, InternalAxiosRequestConfig } from "axios";
 import { ACCESS_TOKEN, REQUEST_TOKEN } from "src/constants/token/token.constants";
 import Token from "src/libs/token/cookie";
 
-declare module "axios" {
-    interface InternalAxiosRequestConfig { skipAuth?: boolean }
-    interface AxiosRequestConfig { skipAuth?: boolean }
+const BASE = process.env.NEXT_PUBLIC_SERVER_URL ?? "";
+
+if (process.env.NODE_ENV === "production" && !BASE) {
+    throw new Error("[API] NEXT_PUBLIC_SERVER_URL is empty at build time");
 }
 
-const SERVER_URL = process.env.NEXT_PUBLIC_SERVER_URL;
-
 const BigtabletAxios = axios.create({
-    baseURL: SERVER_URL || "/",
+    baseURL: BASE || "/",
     withCredentials: true,
     timeout: 10000,
 });
 
-(BigtabletAxios.defaults as any).skipAuth = false;
-delete (BigtabletAxios.defaults.headers as any).common?.["Content-Type"];
-delete (BigtabletAxios.defaults.headers as any).post?.["Content-Type"];
-
 BigtabletAxios.interceptors.request.use((config: InternalAxiosRequestConfig) => {
+    // 상대 경로 보정: "blog/list" → "/blog/list"
     if (config.url && !/^https?:\/\//i.test(config.url) && !config.url.startsWith("/")) {
         config.url = `/${config.url}`;
     }
 
-    if (!config.skipAuth) {
-        const token = Token.getToken(ACCESS_TOKEN);
-        if (token) (config.headers as any)[REQUEST_TOKEN] = `Bearer ${token}`;
-        else {
-            if (config.headers instanceof AxiosHeaders) config.headers.delete(REQUEST_TOKEN);
-            else delete (config.headers as any)[REQUEST_TOKEN];
-        }
-    } else {
-        if (config.headers instanceof AxiosHeaders) config.headers.delete(REQUEST_TOKEN);
-        else delete (config.headers as any)[REQUEST_TOKEN];
+    // 디버그 헤더(네트워크 탭에서 확인)
+    (config.headers as any)["X-Debug-BaseURL"] = BigtabletAxios.defaults.baseURL || "(empty)";
+    (config.headers as any)["X-Debug-Final-URL"] = config.url || "(no-url)";
+    if (typeof window !== "undefined") {
+        // eslint-disable-next-line no-console
+        console.log("[API]", { baseURL: BigtabletAxios.defaults.baseURL, url: config.url });
     }
+
+    const token = Token.getToken(ACCESS_TOKEN);
+    if (token) (config.headers as any)[REQUEST_TOKEN] = `Bearer ${token}`;
+    else if (config.headers instanceof AxiosHeaders) config.headers.delete(REQUEST_TOKEN);
+    else delete (config.headers as any)[REQUEST_TOKEN];
 
     return config;
 });
 
-BigtabletAxios.interceptors.response.use(
-    (res: AxiosResponse) => res,
-    (err: AxiosError) => {
-        const status = err.response?.status ?? 0;
-        const message = (err.response?.data as any)?.message ?? err.message ?? "network_error";
-        return Promise.reject(Object.assign(new Error(message), { name: "HttpError", status, data: err.response?.data }));
-    }
-);
-
 export default BigtabletAxios;
+export { BigtabletAxios };

@@ -8,27 +8,27 @@ import Team from "src/components/about/team";
 import type { HistoryItemType } from "src/types/about/history.type";
 import { useMessages } from "next-intl";
 
-type HistoryRaw = {
-    id: string;
-    title: string;
-    description?: string;
-    dateLabel?: string;
-};
+type HistoryRawItem =
+    | string
+    | { title: string; id?: string; description?: string; dateLabel?: string };
 
 const About = () => {
     const messages = useMessages() as any;
-
-    const historyByYear = (messages?.about?.history ?? {}) as Record<string, HistoryRaw[]>;
+    const historyByYear = (messages?.about?.history ?? {}) as Record<string, HistoryRawItem[]>;
 
     const items: HistoryItemType[] = Object.entries(historyByYear).flatMap(
         ([year, list]) =>
-            (Array.isArray(list) ? list : []).map((it) => ({
-                id: it.id,
-                year: Number(year),
-                title: it.title,
-                description: it.description,
-                dateLabel: it.dateLabel,
-            }))
+            (Array.isArray(list) ? list : []).map((it, idx) => {
+                const obj = typeof it === "string" ? { title: it } : it;
+                const id = obj.id ?? `${year}-${String(idx + 1).padStart(2, "0")}`;
+                return {
+                    id,
+                    year: Number(year),
+                    title: obj.title,
+                    description: obj.description,
+                    dateLabel: obj.dateLabel
+                };
+            })
     );
 
     return (

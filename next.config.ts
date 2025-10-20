@@ -1,10 +1,8 @@
-import createNextIntlPlugin from 'next-intl/plugin';
-const withNextIntl = createNextIntlPlugin();
+const withNextIntl = require('next-intl/plugin')();
 
 const nextConfig = {
-    images: {
-        domains: ['storage.googleapis.com'],
-    },
+    images: { domains: ['storage.googleapis.com'] },
+    // i18n: { locales: ['en','ko'], defaultLocale: 'en', localeDetection: false },
 };
 
-export default withNextIntl(nextConfig);
+module.exports = withNextIntl(nextConfig);

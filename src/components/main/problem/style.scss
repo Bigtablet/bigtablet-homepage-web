@@ -6,6 +6,7 @@
   justify-content: center;
   width: 100%;
   gap: 10%;
+  white-space: pre-line;
 
   span:nth-child(1) {
     @include SemiBold;

@@ -3,6 +3,9 @@ export const QueryKey = {
         signin: "/auth/signin",
         signup: "/auth/signup",
     },
+    profile: {
+        get: "/profile",
+    },
     recruit: {
         list: "/recruit",
         detail: "/recruit/detail",

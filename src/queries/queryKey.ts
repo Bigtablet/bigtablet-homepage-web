@@ -3,10 +3,17 @@ export const QueryKey = {
         signin: "/auth/signin",
         signup: "/auth/signup",
     },
+    profile: {
+        get: "/profile",
+    },
     recruit: {
         list: "/recruit",
         detail: "/recruit/detail",
         apply: "/recruit/apply",
+        applicantList: "/recruit/list",
+        applicantDetail: "/recruit/detail",
+        applicantAccept: "/recruit/accept",
+        applicantReject: "/recruit/reject",
         delete: "recruit/delete",
     },
     gcp: {

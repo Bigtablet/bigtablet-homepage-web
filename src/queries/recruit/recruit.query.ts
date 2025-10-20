@@ -3,19 +3,17 @@ import {
     getRecruitListApi,
     getRecruitDetailApi,
     postRecruitApplyApi,
-    deleteRecruitApi
+    deleteRecruitApi, getRecruitApplicantListApi, getRecruitApplicantDetailApi, patchRecruitApplicantAcceptApi,
+    patchRecruitApplicantRejectApi
 } from "src/api/recruit/recruit.api";
 import { QueryKey } from "src/queries/queryKey";
 import type {
     RecruitResponse,
     RecruitCard,
     RecruitRequest,
-    RecruitApplyResponse,
-    DepartmentType,
-    LocationType,
-    RecruitType,
-    EducationType,
+    RecruitApplyResponse, RecruitApplicant,
 } from "src/types/recruit/recruit.type";
+import {useEffect} from "react";
 
 /* 카드 가공 */
 const toRecruitCard = (item: RecruitResponse): RecruitCard => {
@@ -56,7 +54,6 @@ const toRecruitCard = (item: RecruitResponse): RecruitCard => {
     return { ...item, dday, tags };
 };
 
-/** 공고 리스트 */
 export const useRecruitListQuery = (
     options?: Omit<UseQueryOptions<RecruitResponse[], Error, RecruitCard[]>, "queryKey" | "queryFn" | "select">
 ) =>
@@ -68,7 +65,6 @@ export const useRecruitListQuery = (
         ...options,
     });
 
-/** 공고 단일 */
 export const useRecruitDetailQuery = (
     idx: number,
     options?: Omit<UseQueryOptions<RecruitResponse, Error, RecruitCard>, "queryKey" | "queryFn" | "select">
@@ -82,7 +78,6 @@ export const useRecruitDetailQuery = (
         ...options,
     });
 
-/** 공고 지원 */
 export const useRecruitApplyMutation = (
     options?: UseMutationOptions<RecruitApplyResponse, Error, RecruitRequest>
 ) =>
@@ -99,10 +94,87 @@ export const useRecruitDeleteMutation = (
     return useMutation({
         mutationKey: [QueryKey.recruit.delete],
         mutationFn: (idx) => deleteRecruitApi(idx),
-        onSuccess: (...args) => {
-            qc.invalidateQueries({ queryKey: [QueryKey.recruit.list] });
-            options?.onSuccess?.(...args);
-        },
         ...options,
+        onSuccess: (data, variables, context, mutation) => {
+            qc.invalidateQueries({ queryKey: [QueryKey.recruit.list] });
+            options?.onSuccess?.(data, variables, context, mutation);
+        },
+        onError: (error, variables, context, mutation) => {
+            options?.onError?.(error, variables, context, mutation);
+        },
+    });
+};
+
+export const useRecruitApplicantListQuery = (options?: {
+    enabled?: boolean;
+    staleTime?: number;
+    onSuccess?: (data: RecruitApplicant[]) => void;
+    onError?: (error: Error) => void;
+}) => {
+    const query = useQuery<RecruitApplicant[], Error>({
+        queryKey: [QueryKey.recruit.applicantList],
+        queryFn: ({ signal }) => getRecruitApplicantListApi(signal),
+        enabled: options?.enabled ?? true,
+        staleTime: options?.staleTime ?? 60_000,
+    });
+
+    useEffect(() => {
+        if (query.isSuccess && options?.onSuccess) options.onSuccess(query.data!);
+    }, [query.isSuccess, query.data, options]);
+
+    useEffect(() => {
+        if (query.isError && options?.onError) options.onError(query.error as Error);
+    }, [query.isError, query.error, options]);
+
+    return query;
+};
+
+export const useRecruitApplicantDetailQuery = (idx: number, options?: {
+    enabled?: boolean;
+    staleTime?: number;
+}) => {
+    return useQuery<RecruitApplicant, Error>({
+        queryKey: [QueryKey.recruit.applicantDetail, idx],
+        queryFn: ({ signal }) => getRecruitApplicantDetailApi(idx, signal),
+        enabled: options?.enabled ?? !!idx,
+        staleTime: options?.staleTime ?? 60_000,
+    });
+};
+
+export const useRecruitApplicantAcceptMutation = (
+    options?: UseMutationOptions<{ ok: boolean }, Error, number>
+) => {
+    const qc = useQueryClient();
+    return useMutation({
+        mutationKey: [QueryKey.recruit.applicantAccept],
+        mutationFn: (idx) => patchRecruitApplicantAcceptApi(idx),
+        ...options,
+        onSuccess: (data, variables, context, mutation) => {
+            qc.invalidateQueries({ queryKey: [QueryKey.recruit.applicantDetail, variables] });
+            qc.invalidateQueries({ queryKey: [QueryKey.recruit.applicantList] });
+            options?.onSuccess?.(data, variables, context, mutation);
+        },
+        onError: (error, variables, context, mutation) => {
+            options?.onError?.(error, variables, context, mutation);
+        },
+    });
+};
+
+export const useRecruitApplicantRejectMutation = (
+    options?: UseMutationOptions<{ ok: boolean }, Error, number>
+) => {
+    const qc = useQueryClient();
+    return useMutation({
+        mutationKey: [QueryKey.recruit.applicantReject],
+        mutationFn: (idx) => patchRecruitApplicantRejectApi(idx),
+        ...options,
+        onSuccess: (data, variables, context, mutation) => {
+            qc.invalidateQueries({ queryKey: [QueryKey.recruit.applicantDetail, variables] });
+            qc.invalidateQueries({ queryKey: [QueryKey.recruit.applicantList] });
+            options?.onSuccess?.(data, variables, context, mutation);
+        },
+        onError: (error, variables, context, mutation) => {
+            options?.onError?.(error, variables, context, mutation);
+        },
     });
 };

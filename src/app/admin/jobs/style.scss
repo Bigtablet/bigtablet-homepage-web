@@ -6,6 +6,7 @@
   &__header {
     @include flex-between;
     margin-bottom: 16px;
+
   }
 
   &__title {
@@ -63,12 +64,35 @@
         @include typography(14px);
       }
 
-      .link {
-        color: var(--primary);
-        text-decoration: none;
+      /* ───────────── 클릭 가능한 행 ───────────── */
+      tbody tr.clickable-row {
+        cursor: pointer;
+        transition: background 0.15s ease;
 
         &:hover {
-          text-decoration: underline;
+          background: #fafafa;
+        }
+
+        &:focus-visible {
+          outline: 2px solid var(--primary);
+          outline-offset: -2px;
+        }
+      }
+
+      /* 혹시 상위 요소가 이벤트를 가로막는 경우 대비 */
+      tbody td {
+        position: relative;
+
+        .link {
+          position: relative;
+          z-index: 1;
+          pointer-events: auto;
+          color: var(--primary);
+          text-decoration: none;
+
+          &:hover {
+            text-decoration: underline;
+          }
         }
       }
 
@@ -87,10 +111,6 @@
         }
       }
 
-      .actions {
-        @include flex-row;
-        gap: 8px;
-      }
     }
 
     .empty {
@@ -103,6 +123,55 @@
       }
     }
   }
+
+  /* ───────────── 지원자 리스트 섹션 추가 ───────────── */
+  &__applicants {
+    margin-top: 32px;
+  }
+
+  &__thumb {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid var(--line-normal);
+    vertical-align: middle;
+  }
+
+  &__subtitle {
+    color: var(--text-dark);
+    @include SemiBold;
+    @include typography(18px);
+    margin-bottom: 12px;
+  }
+
+  &__applicants-filters {
+    @include flex-row;
+    gap: 8px;
+    margin-bottom: 12px;
+
+    .select,
+    .input {
+      border: 1px solid var(--line-normal);
+      border-radius: 12px;
+      background: var(--background-input);
+      color: var(--text-normal);
+      padding: 8px 12px;
+      min-width: 220px;
+
+      &:focus {
+        outline: none;
+        border-color: var(--primary);
+        box-shadow: 0 0 0 3px rgba(90, 141, 203, .15);
+      }
+    }
+
+    .input {
+      min-width: 280px;
+      flex: 1;
+    }
+  }
+
 }
 
 /* 버튼 */
@@ -132,6 +201,16 @@
     &:hover {
       background: var(--primary-hover);
       border-color: var(--primary-hover);
+    }
+  }
+
+  &--danger {
+    background: #fee2e2;
+    color: #991b1b;
+    border-color: #fecaca;
+
+    &:hover {
+      background: #fecaca;
     }
   }
 }
@@ -164,11 +243,41 @@
     color: #991b1b;
     border-color: #fecaca;
   }
+
+  &--document {
+    background: #e6f0fb;
+    color: #1e3a8a;
+  }
+
+  &--interview {
+    background: #fef9c3;
+    color: #92400e;
+  }
+
+  &--passed {
+    background: #dcfce7;
+    color: #166534;
+  }
+
+  &--rejected {
+    background: #fee2e2;
+    color: #991b1b;
+  }
 }
 
 @media (max-width: 1024px) {
   .jobs-page {
     margin-left: 0;
     padding: 16px;
+
+    &__applicants-filters {
+      flex-wrap: wrap;
+
+      .select,
+      .input {
+        flex: 1;
+        min-width: 180px;
+      }
+    }
   }
 }

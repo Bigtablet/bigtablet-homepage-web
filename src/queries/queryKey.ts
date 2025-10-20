@@ -10,6 +10,11 @@ export const QueryKey = {
         list: "/recruit",
         detail: "/recruit/detail",
         apply: "/recruit/apply",
+        applicantList: "/recruit/list",
+        applicantDetail: "/recruit/detail",
+        applicantAccept: "/recruit/accept",
+        applicantReject: "/recruit/reject",
+        delete: "recruit/delete",
     },
     gcp: {
         upload: "/gcp",

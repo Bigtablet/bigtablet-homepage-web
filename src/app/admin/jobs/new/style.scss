@@ -2,10 +2,6 @@
 @use "src/styles/typography/mixin" as *;
 
 .job-form {
-  margin-left: 260px; // 사이드바 폭과 동일 (AdminLayout 기준)
-  padding: 24px;
-  min-height: 100dvh;
-  background: var(--background-light);
 
   &__title {
     color: var(--text-dark);

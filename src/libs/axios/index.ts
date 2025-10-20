@@ -7,52 +7,39 @@ declare module "axios" {
     interface AxiosRequestConfig { skipAuth?: boolean }
 }
 
-const isServer = typeof window === "undefined";
-const rawBase = isServer ? process.env.API_BASE_URL : process.env.NEXT_PUBLIC_API_BASE_URL;
-
 const normalize = (s?: string) => (s ?? "").trim().replace(/\/+$/, "");
-const BASE_URL = normalize(rawBase);
-
+const BASE_URL = normalize(process.env.NEXT_PUBLIC_SERVER_URL);
 if (!BASE_URL) {
-    throw new Error(
-        "Missing API base URL. Set API_BASE_URL (server) and NEXT_PUBLIC_API_BASE_URL (client)."
-    );
+    throw new Error("NEXT_PUBLIC_API_BASE_URL is missing. Set it in .env files or hosting env.");
 }
 
-const BigtabletAxios = axios.create({
+const api = axios.create({
     baseURL: BASE_URL,
     withCredentials: true,
     timeout: 10000,
 });
 
-(BigtabletAxios.defaults as any).skipAuth = false;
-delete (BigtabletAxios.defaults.headers as any).common?.["Content-Type"];
-delete (BigtabletAxios.defaults.headers as any).post?.["Content-Type"];
+(api.defaults as any).skipAuth = false;
+delete (api.defaults.headers as any).common?.["Content-Type"];
+delete (api.defaults.headers as any).post?.["Content-Type"];
 
-BigtabletAxios.interceptors.request.use((config: InternalAxiosRequestConfig) => {
+api.interceptors.request.use((config: InternalAxiosRequestConfig) => {
     if (config.url && !/^https?:\/\//i.test(config.url) && !config.url.startsWith("/")) {
         config.url = `/${config.url}`;
     }
 
     const headers = (config.headers ??= new AxiosHeaders());
-
     if (!config.skipAuth) {
         const token = Token.getToken(ACCESS_TOKEN);
-        if (token) {
-            headers.set(REQUEST_TOKEN, `Bearer ${token}`);
-        } else {
-            if (headers instanceof AxiosHeaders) headers.delete(REQUEST_TOKEN);
-            else delete (headers as any)[REQUEST_TOKEN];
-        }
+        if (token) headers.set(REQUEST_TOKEN, `Bearer ${token}`);
+        else headers instanceof AxiosHeaders ? headers.delete(REQUEST_TOKEN) : delete (headers as any)[REQUEST_TOKEN];
     } else {
-        if (headers instanceof AxiosHeaders) headers.delete(REQUEST_TOKEN);
-        else delete (headers as any)[REQUEST_TOKEN];
+        headers instanceof AxiosHeaders ? headers.delete(REQUEST_TOKEN) : delete (headers as any)[REQUEST_TOKEN];
     }
-
     return config;
 });
 
-BigtabletAxios.interceptors.response.use(
+api.interceptors.response.use(
     (res: AxiosResponse) => res,
     (err: AxiosError) => {
         const status = err.response?.status ?? 0;
@@ -61,4 +48,4 @@ BigtabletAxios.interceptors.response.use(
     }
 );
 
-export default BigtabletAxios;
+export default api;

@@ -2,12 +2,13 @@
 
 import "./style.scss";
 import usePostJob from "src/hooks/job/useJob";
+import AdminLayout from "src/components/common/admin/layout";
 
 const Page = () => {
     const { value, onChange, canSubmit, submit, isSubmitting, enums } = usePostJob();
 
     return (
-        <div className="job-form">
+        <AdminLayout>
             <h1 className="job-form__title">채용공고 등록</h1>
 
             <form
@@ -172,7 +173,7 @@ const Page = () => {
                     </button>
                 </div>
             </form>
-        </div>
+        </AdminLayout>
     );
 };
 

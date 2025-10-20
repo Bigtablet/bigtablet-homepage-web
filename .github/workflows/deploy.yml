@@ -1,15 +1,29 @@
-name: CI/CD
+name: Release CI/CD using GitHub Actions & Docker
 
 on:
   push:
-    branches: ["main"]
+    tags:
+      - '*'
 
 jobs:
-  deploy:
+  release:
     runs-on: ubuntu-latest
+    env:
+      IMAGE: ${{ secrets.DOCKER_USERNAME }}/bigtablet-homepage-web
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Extract tag version
+        id: version
+        run: |
+          RAW_TAG="${GITHUB_REF_NAME}"
+          CLEAN_TAG="${RAW_TAG#v}"
+          echo "tag=$CLEAN_TAG" >> $GITHUB_OUTPUT
+
+      - name: Print version
+        run: echo "Using release tag: ${{ steps.version.outputs.tag }}"
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
@@ -21,34 +35,39 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Build & Push image
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v6
         with:
           context: .
           file: ./Dockerfile
           push: true
+          platforms: linux/amd64
           tags: |
-            ${{ secrets.DOCKER_USERNAME }}/bigtablet-homepage-web:0.0.1
-            ${{ secrets.DOCKER_USERNAME }}/bigtablet-homepage-web:${{ github.sha }}
+            ${{ env.IMAGE }}:${{ steps.version.outputs.tag }}
           build-args: |
             NEXT_PUBLIC_SERVER_URL=${{ secrets.NEXT_PUBLIC_SERVER_URL }}
-          cache-from: type=registry,ref=${{ secrets.DOCKER_USERNAME }}/bigtablet-homepage-web:buildcache
-          cache-to: type=registry,ref=${{ secrets.DOCKER_USERNAME }}/bigtablet-homepage-web:buildcache,mode=max
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+          provenance: false
+          sbom: false
 
-      - name: Deploy to GCP via SSH
+      - name: Deploy to prod (SSH)
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.HOST_PROD }}
-          username: bigtablet-homepage-web
+          username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.PRIVATE_KEY }}
-          port: 22
+          port: ${{ secrets.PORT }}
+          envs: IMAGE,DOCKER_USERNAME,DOCKER_PASSWORD
           script: |
-            set -e
-            docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-            docker pull ${{ secrets.DOCKER_USERNAME }}/bigtablet-homepage-web:0.0.1 || true
-            docker pull ${{ secrets.DOCKER_USERNAME }}/bigtablet-homepage-web:${{ github.sha }} || true
-            docker stop bigtablet-homepage-web || true
-            docker rm bigtablet-homepage-web || true
-            docker run -d --name bigtablet-homepage-web \
+            set -euo pipefail
+            VERSION='${{ steps.version.outputs.tag }}'
+            echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+            docker pull "$IMAGE:$VERSION"
+            docker rm -f bigtablet-homepage-web 2>/dev/null || true
+            docker run -d \
+              --name bigtablet-homepage-web \
               --restart unless-stopped \
+              --network=host \
               -p 127.0.0.1:8080:80 \
-              ${{ secrets.DOCKER_USERNAME }}/bigtablet-homepage-web:${{ github.sha }}
+              "$IMAGE:$VERSION"
+            docker image prune -af || true

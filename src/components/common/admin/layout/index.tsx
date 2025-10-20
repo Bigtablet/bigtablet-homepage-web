@@ -5,9 +5,8 @@ import { usePathname } from "next/navigation";
 import "./style.scss";
 
 const NAV = [
-    { href: "/admin/dashboard",  label: "Dashboard",  icon: "🏠" },
+    { href: "/admin/main",  label: "Main",  icon: "🏠" },
     { href: "/admin/jobs",       label: "Jobs",       icon: "💼" },
-    { href: "/admin/applicants", label: "Applicants", icon: "👥" },
     { href: "/admin/blog",       label: "Blog",       icon: "✍️" },
     { href: "/admin/news",       label: "News",       icon: "📰" },
     { href: "/admin/profile",    label: "Profile",    icon: "👤" },
@@ -30,7 +29,7 @@ const AdminLayout = ({ children }: { children: React.ReactNode }) => {
         <div className="admin">
             <aside className="sidebar" role="navigation" aria-label="Admin sidebar">
                 <div className="sidebar__brand">
-                    <Link href="/admin/dashboard">Bigtablet Admin</Link>
+                    <Link href="/admin/main">Bigtablet Admin</Link>
                 </div>
 
                 <nav className="sidebar__nav">

@@ -7,6 +7,7 @@ updates:
       time: "08:00"
       timezone: "Asia/Seoul"
     open-pull-requests-limit: 5
+    target-branch: "develop"
     commit-message:
       prefix: "config"
       include: "scope"
@@ -15,7 +16,7 @@ updates:
       - qtaghdi
     assignees:
       - qtaghdi
-      
+
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
@@ -24,6 +25,7 @@ updates:
       time: "08:00"
       timezone: "Asia/Seoul"
     open-pull-requests-limit: 5
+    target-branch: "develop"
     commit-message:
       prefix: "deploy"
       include: "scope"

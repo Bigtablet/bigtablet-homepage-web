@@ -1,0 +1,174 @@
+@use "src/styles/function/flex" as *;
+@use "src/styles/typography/mixin" as *;
+
+.blog-list {
+  padding: 24px;
+
+  &__header {
+    @include flex-between;
+    margin-bottom: 16px;
+  }
+
+  &__title {
+    @include Bold;
+    @include typography(22px);
+    color: var(--text-dark);
+  }
+
+  &__empty {
+    color: var(--text-sub);
+    border: 1px solid var(--line-normal);
+    background: var(--background-input);
+    border-radius: 16px;
+    padding: 24px;
+    text-align: center;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+    list-style: none;
+    padding: 0;
+    margin: 0 0 12px;
+  }
+
+  &__more {
+    @include flex-center;
+    margin-top: 8px;
+  }
+
+  &__end {
+    color: var(--text-disabled);
+    @include typography(14px);
+  }
+}
+
+/* 카드 */
+.blog-card {
+  border: 1px solid var(--line-normal);
+  border-radius: 16px;
+  background: var(--background-input);
+  overflow: hidden;
+  transition: box-shadow .15s ease, transform .05s ease;
+
+  &:hover {
+    box-shadow: 0 4px 16px rgba(0,0,0,.06);
+    transform: translateY(-1px);
+  }
+
+  &__link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    height: 100%;
+  }
+
+  &__thumb-wrap {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #f3f4f6;
+    border-bottom: 1px solid var(--line-normal);
+    overflow: hidden;
+  }
+
+  &__thumb {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+    &.--placeholder {
+      @include flex-center;
+      width: 100%;
+      height: 100%;
+      color: var(--text-disabled);
+      @include typography(14px);
+    }
+  }
+
+  &__body {
+    padding: 14px;
+  }
+
+  &__title {
+    @include SemiBold;
+    @include typography(16px);
+    color: var(--text-dark);
+    margin-bottom: 6px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* 두 줄 말줄임 */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  &__excerpt {
+    @include typography(14px);
+    color: var(--text-normal);
+    margin: 0 0 10px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* 세 줄 말줄임 */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  &__meta {
+    @include flex-between;
+    color: var(--text-sub);
+    @include typography(12px);
+  }
+}
+
+/* 버튼 공통 (기존 토큰 재사용) */
+.btn {
+  @include flex-center;
+  height: 36px;
+  padding: 0 12px;
+  border-radius: 12px;
+  border: 1px solid var(--line-normal);
+  background: var(--background-input);
+  color: var(--text-normal);
+  cursor: pointer;
+  text-decoration: none;
+  transition: background .15s ease, border-color .15s ease;
+  @include Medium;
+  @include typography(14px);
+
+  &:hover {
+    background: #f5f7fb;
+  }
+
+  &:disabled {
+    opacity: .6;
+    cursor: not-allowed;
+  }
+
+  &--primary {
+    background: var(--primary);
+    border-color: var(--primary);
+    color: var(--text-light);
+
+    &:hover {
+      background: var(--primary-hover);
+      border-color: var(--primary-hover);
+    }
+  }
+}
+
+/* 반응형 */
+@media (max-width: 1024px) {
+  .blog-list {
+    padding: 16px;
+
+    &__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+}
+
+@media (max-width: 640px) {
+  .blog-list {
+    &__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+}

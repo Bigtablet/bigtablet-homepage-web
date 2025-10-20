@@ -8,7 +8,7 @@
 
 .template__main {
   @include flex-column;
-  @include flex-center;
+  align-items: center;
   width: 100%;
   flex: 1;
   min-height: 0;

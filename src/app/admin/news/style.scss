@@ -1,0 +1,124 @@
+@use "src/styles/function/flex" as *;
+@use "src/styles/typography/mixin.scss" as *;
+
+.news-list-page {
+  padding: 24px;
+  color: var(--text-dark);
+  background: var(--background-light);
+
+  .top {
+    @include flex-between;
+    margin-bottom: 20px;
+
+    h1 {
+      @include Bold;
+      @include typography(20px);
+      color: var(--text-darkblue);
+    }
+
+    .btn-primary {
+      @include Medium;
+      @include typography(14px);
+      color: var(--text-light);
+      background: var(--primary);
+      border-radius: 8px;
+      padding: 8px 16px;
+      transition: background 0.2s ease;
+
+      &:hover {
+        background: var(--primary-hover);
+      }
+    }
+  }
+
+  .list {
+    border: 1px solid var(--line-normal);
+    border-radius: 12px;
+    overflow: hidden;
+
+    li {
+      @include flex-between;
+      padding: 16px;
+      border-bottom: 1px solid var(--line-normal);
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      .info {
+        @include flex-column;
+        gap: 6px;
+
+        .title-kr {
+          @include SemiBold;
+          @include typography(15px);
+          color: var(--text-dark);
+        }
+
+        .title-en {
+          @include Regular;
+          @include typography(13px);
+          color: var(--text-sub);
+        }
+
+        a {
+          @include Regular;
+          @include typography(12px);
+          color: var(--primary);
+          text-decoration: underline;
+        }
+
+        .date {
+          @include Regular;
+          @include typography(12px);
+          color: var(--text-disabled);
+        }
+      }
+
+      .btn-detail {
+        @include Regular;
+        @include typography(13px);
+        border: 1px solid var(--line-normal);
+        border-radius: 8px;
+        padding: 6px 12px;
+        color: var(--text-darkblue);
+      }
+    }
+  }
+
+  .pagination {
+    @include flex-between;
+    margin-top: 20px;
+
+    button {
+      @include Regular;
+      @include typography(13px);
+      border: 1px solid var(--line-normal);
+      border-radius: 8px;
+      padding: 6px 12px;
+      background: var(--background-input);
+      color: var(--text-darkblue);
+
+      &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+    }
+
+    span {
+      @include Regular;
+      @include typography(13px);
+      color: var(--text-sub);
+    }
+  }
+
+  .state {
+    text-align: center;
+    margin-top: 20px;
+    color: var(--text-sub);
+
+    &.error {
+      color: var(--danger);
+    }
+  }
+}

@@ -7,8 +7,17 @@ declare module "axios" {
     interface AxiosRequestConfig { skipAuth?: boolean }
 }
 
-const RAW_BASE = typeof process !== "undefined" ? process.env.NEXT_PUBLIC_SERVER_URL ?? "" : "";
-const BASE_URL = RAW_BASE && RAW_BASE !== "undefined" ? RAW_BASE : "";
+const isServer = typeof window === "undefined";
+const rawBase = isServer ? process.env.API_BASE_URL : process.env.NEXT_PUBLIC_API_BASE_URL;
+
+const normalize = (s?: string) => (s ?? "").trim().replace(/\/+$/, "");
+const BASE_URL = normalize(rawBase);
+
+if (!BASE_URL) {
+    throw new Error(
+        "Missing API base URL. Set API_BASE_URL (server) and NEXT_PUBLIC_API_BASE_URL (client)."
+    );
+}
 
 const BigtabletAxios = axios.create({
     baseURL: BASE_URL,

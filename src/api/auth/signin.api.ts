@@ -1,4 +1,4 @@
-import { BigtabletAxios } from "src/libs/axios";
+import BigtabletAxios from "src/libs/axios";
 import { SigninType } from "src/types/auth/signin.type";
 import { NewAccessTokenResponse } from "src/types/auth/response.type";
 

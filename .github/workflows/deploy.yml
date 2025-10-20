@@ -2,14 +2,14 @@ name: CI/CD
 
 on:
   push:
-    branches: ["main"]
+    branches: [ "main" ]
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v4
+
       - uses: docker/setup-buildx-action@v3
 
       - uses: docker/login-action@v3
@@ -22,22 +22,13 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/bigtablet-homepage-web:0.0.1
-          build-args: |
+          tags: |
+            ${{ secrets.DOCKER_USERNAME }}/bigtablet-homepage-web:0.0.1
+            ${{ secrets.DOCKER_USERNAME }}/bigtablet-homepage-web:${{ github.sha }}
+          build-args: | 
             NEXT_PUBLIC_SERVER_URL=${{ secrets.NEXT_PUBLIC_SERVER_URL }}
           cache-from: type=registry,ref=${{ secrets.DOCKER_USERNAME }}/bigtablet-homepage-web:buildcache
           cache-to: type=registry,ref=${{ secrets.DOCKER_USERNAME }}/bigtablet-homepage-web:buildcache,mode=max
-
-      - name: Clean up old Docker data on remote server
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.HOST_PROD }}
-          username: bigtablet-homepage-web
-          key: ${{ secrets.PRIVATE_KEY }}
-          port: 22
-          script: |
-            docker system prune -af
-            docker volume prune -f
 
       - name: Deploy to GCP via SSH
         uses: appleboy/ssh-action@master
@@ -48,12 +39,12 @@ jobs:
           port: 22
           script: |
             set -e
-            IMAGE="${{ secrets.DOCKER_USERNAME }}/bigtablet-homepage-web:0.0.1"
-            CONTAINER="bigtablet-homepage-web"
             docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-            docker pull "$IMAGE"
-            docker stop "$CONTAINER" || true
-            docker rm "$CONTAINER" || true
-            docker run -d --name "$CONTAINER" --restart unless-stopped \
+            docker pull ${{ secrets.DOCKER_USERNAME }}/bigtablet-homepage-web:0.0.1 || true
+            docker pull ${{ secrets.DOCKER_USERNAME }}/bigtablet-homepage-web:${{ github.sha }} || true
+            docker stop bigtablet-homepage-web || true
+            docker rm bigtablet-homepage-web || true
+            docker run -d --name bigtablet-homepage-web \
+              --restart unless-stopped \
               -p 127.0.0.1:8080:80 \
-              "$IMAGE"
+              ${{ secrets.DOCKER_USERNAME }}/bigtablet-homepage-web:${{ github.sha }}

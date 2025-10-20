@@ -25,6 +25,9 @@ export const QueryKey = {
     blog: {
         list: "/blog/list",
         detail: "/blog/detail",
+        create: "/blog",
+        update: "/blog",
+        delete: "/blog/delete",
     },
     job: {
         post: "/job",

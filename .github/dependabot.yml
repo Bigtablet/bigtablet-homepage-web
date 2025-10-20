@@ -1,0 +1,17 @@
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "daily"
+      time: "08:00"
+      timezone: "Asia/Seoul"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "config"
+      include: "scope"
+    labels: ["dependencies", "dependabot"]
+    reviewers:
+      - qtaghdi
+    assignees:
+      - qtaghdi

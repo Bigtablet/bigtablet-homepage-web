@@ -7,6 +7,7 @@ export const QueryKey = {
         list: "/recruit",
         detail: "/recruit/detail",
         apply: "/recruit/apply",
+        delete: "recruit/delete",
     },
     gcp: {
         upload: "/gcp",

@@ -15,3 +15,8 @@ export const postRecruitApplyApi = async (body: RecruitRequest, signal?: AbortSi
     const res = await BigtabletAxios.post("/recruit", body, { signal });
     return (res.data ?? { ok: true }) as RecruitApplyResponse;
 };
+
+export const deleteRecruitApi = async (idx: number): Promise<{ ok: boolean }> => {
+    const res = await BigtabletAxios.delete("/job", { params: { idx } });
+    return (res.data ?? { ok: true }) as { ok: boolean };
+};

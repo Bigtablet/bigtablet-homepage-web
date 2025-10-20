@@ -1,0 +1,60 @@
+@use "src/styles/function/flex" as *;
+@use "src/styles/typography/mixin" as *;
+
+/* 사이드바가 fixed라 페이지 여백 필요 */
+.profile-page {
+
+  &__title {
+    color: var(--text-dark);
+    margin-bottom: 16px;
+    @include Bold;
+    @include typography(22px);
+  }
+}
+
+.profile-card {
+  background: var(--background-input);
+  border: 1px solid var(--line-normal);
+  border-radius: 16px;
+  padding: 20px;
+  max-width: 680px;
+
+  &--loading,
+  &--error {
+    color: var(--text-sub);
+    @include typography(14px);
+  }
+
+  .row {
+    @include flex-between;
+    padding: 10px 0;
+
+    .label {
+      color: var(--text-sub);
+      @include Medium;
+      @include typography(14px);
+      min-width: 90px;
+    }
+
+    .value {
+      color: var(--text-normal);
+      @include typography(14px);
+    }
+  }
+
+  .divider {
+    height: 1px;
+    background: var(--line-normal);
+    margin: 8px 0;
+  }
+}
+
+@media (max-width: 1024px) {
+  .profile-page {
+    margin-left: 0;
+    padding: 16px;
+  }
+  .profile-card {
+    border-radius: 12px;
+  }
+}

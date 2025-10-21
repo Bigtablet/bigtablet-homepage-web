@@ -1,0 +1,147 @@
+@use "src/styles/function/flex" as *;
+@use "src/styles/typography/mixin" as *;
+
+.job-form {
+
+  &__title {
+    color: var(--text-dark);
+    margin-bottom: 20px;
+    @include Bold;
+    @include typography(22px);
+  }
+
+  &__grid {
+    @include flex-column;
+    gap: 24px;
+  }
+
+  &__card {
+    background: var(--background-input);
+    border: 1px solid var(--line-normal);
+    border-radius: 16px;
+    padding: 20px;
+    @include flex-column;
+    gap: 16px;
+  }
+
+  &__section-title {
+    color: var(--text-darkblue);
+    @include SemiBold;
+    @include typography(16px);
+    margin-bottom: 8px;
+  }
+
+  &__actions {
+    @include flex-right;
+    margin-top: 16px;
+    gap: 8px;
+  }
+}
+
+/* ─────────────── 공통 필드 스타일 ─────────────── */
+.field {
+  @include flex-column;
+  gap: 6px;
+  margin-bottom: 12px;
+
+  &__label {
+    color: var(--text-sub);
+    @include Medium;
+    @include typography(13px);
+  }
+
+  &__control {
+    width: 100%;
+    border: 1px solid var(--line-normal);
+    border-radius: 12px;
+    padding: 10px 12px;
+    background: var(--background-input);
+    color: var(--text-normal);
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+
+    &:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(90, 141, 203, 0.15);
+    }
+
+    &:disabled {
+      background: #f3f4f6;
+      color: var(--text-disabled);
+      cursor: not-allowed;
+    }
+  }
+
+  &__textarea {
+    min-height: 120px;
+    resize: vertical;
+  }
+}
+
+/* 가로 정렬 행 */
+.field-row {
+  @include flex-row;
+  gap: 12px;
+  > .field {
+    flex: 1;
+  }
+}
+
+/* ─────────────── 버튼 스타일 ─────────────── */
+.btn {
+  @include flex-center;
+  height: 40px;
+  padding: 0 16px;
+  border-radius: 12px;
+  border: 1px solid var(--line-normal);
+  background: var(--background-input);
+  color: var(--text-normal);
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease;
+  @include Medium;
+  @include typography(14px);
+
+  &:hover {
+    background: #f9fafb;
+  }
+
+  &:disabled {
+    background: #f3f4f6;
+    color: var(--text-disabled);
+    border-color: var(--line-normal);
+    cursor: not-allowed;
+  }
+
+  &--primary {
+    background: var(--primary);
+    border-color: var(--primary);
+    color: var(--text-light);
+
+    &:hover {
+      background: var(--primary-hover);
+      border-color: var(--primary-hover);
+    }
+
+    &:disabled {
+      background: #c9d9ee;
+      border-color: #c9d9ee;
+      color: #f1f5f9;
+    }
+  }
+}
+
+/* ─────────────── 반응형 ─────────────── */
+@media (max-width: 1024px) {
+  .job-form {
+    margin-left: 0;
+    padding: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .field-row {
+    @include flex-column;
+    gap: 10px;
+  }
+}

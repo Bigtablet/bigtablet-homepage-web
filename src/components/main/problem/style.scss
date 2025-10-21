@@ -3,20 +3,25 @@
 
 .problem {
   @include flex-row;
-  justify-content: center;
-  width: 100%;
-  gap: 10%;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 80%;
+  max-width: 1200px;
+  margin: 0 auto;
   white-space: pre-line;
 
   span:nth-child(1) {
     @include SemiBold;
     font-size: 40px;
     color: var(--text-dark);
+    flex: 0 0 35%;
   }
 
   span:nth-child(2) {
     @include Medium;
     font-size: 20px;
     color: var(--text-dark);
+    flex: 0 0 55%;
+    line-height: 1.6;
   }
 }

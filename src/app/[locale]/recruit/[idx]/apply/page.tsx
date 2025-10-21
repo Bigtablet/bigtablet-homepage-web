@@ -121,7 +121,7 @@ const ApplyPage = () => {
         (key: keyof UIState) =>
             (e: React.ChangeEvent<HTMLInputElement>) => {
                 const file = e.target.files?.[0];
-                setPartial({ [key]: (file?.name ?? "") } as Partial<UIState>);
+                setPartial({ [key]: file?.name ?? "" } as Partial<UIState>);
             };
 
     const handleLink =
@@ -139,6 +139,12 @@ const ApplyPage = () => {
 
     const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+
+        if (!Number.isFinite(jobIdNum) || jobIdNum <= 0) {
+            alert("유효하지 않은 공고입니다.");
+            return;
+        }
+
         const fd = new FormData(e.currentTarget);
 
         const educationLevel = ui.eduLevel;
@@ -165,7 +171,7 @@ const ApplyPage = () => {
             const isGed = educationLevel === ApplyEducationLevel.GED;
 
             const payload: RecruitRequest = {
-                jobId: String(jobIdNum),
+                jobId: jobIdNum,
                 name: String(fd.get("name") || ""),
                 phoneNumber: String(fd.get("phone") || ""),
                 email: String(fd.get("email") || ""),
@@ -402,8 +408,8 @@ const ApplyPage = () => {
                                                 />
                                                 <label htmlFor="disabilityFile" className="file__trigger">파일 선택</label>
                                                 <span className="file__name">
-                                                    {ui.disabilityFileName || "선택된 파일 없음"}
-                                                </span>
+                          {ui.disabilityFileName || "선택된 파일 없음"}
+                        </span>
                                             </div>
                                         </div>
                                     </>

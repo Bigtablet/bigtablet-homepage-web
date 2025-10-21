@@ -2,7 +2,7 @@
 @use "src/styles/typography/mixin" as *;
 
 .footer {
-  background: #46545d;
+  background: var(--text-darkblue);
   color: #e9eef1;
   width: 100%;
 }

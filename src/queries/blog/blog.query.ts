@@ -1,9 +1,9 @@
 "use client";
 
-import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
+import {useInfiniteQuery, useMutation, UseMutationOptions, useQuery} from "@tanstack/react-query";
 import { QueryKey } from "src/queries/queryKey";
-import { getBlogApi, getBlogDetailApi } from "src/api/blog/blog.api";
-import type { BlogItem } from "src/types/blog/blog.type";
+import {deleteBlogApi, getBlogApi, getBlogDetailApi, postBlogApi, putBlogApi} from "src/api/blog/blog.api";
+import type {BlogCreateRequest, BlogItem, BlogUpdateRequest} from "src/types/blog/blog.type";
 
 // 무한 스크롤용 쿼리
 export const useBlogInfiniteQuery = (size: number) =>
@@ -16,14 +16,6 @@ export const useBlogInfiniteQuery = (size: number) =>
         staleTime: 60_000,
     });
 
-// 페이지 단위 쿼리
-export const useBlogPageQuery = (page: number, size: number) =>
-    useQuery({
-        queryKey: [QueryKey.blog.list, { type: "page", page, size }],
-        queryFn: () => getBlogApi(page, size),
-        staleTime: 60_000,
-    });
-
 // 단일 상세 쿼리
 export const useBlogDetailQuery = (idx: number) =>
     useQuery<BlogItem>({
@@ -31,4 +23,31 @@ export const useBlogDetailQuery = (idx: number) =>
         queryFn: () => getBlogDetailApi(idx),
         enabled: Number.isFinite(idx),
         staleTime: 60_000,
+    });
+
+export const useBlogCreateMutation = (
+    options?: UseMutationOptions<{ ok: true }, Error, BlogCreateRequest>
+) =>
+    useMutation({
+        mutationKey: [QueryKey.blog.create],
+        mutationFn: (body) => postBlogApi(body),
+        ...options,
+    });
+
+export const useBlogUpdateMutation = (
+    options?: UseMutationOptions<{ ok: true }, Error, BlogUpdateRequest>
+) =>
+    useMutation({
+        mutationKey: [QueryKey.blog.update],
+        mutationFn: (body) => putBlogApi(body),
+        ...options,
+    });
+
+export const useBlogDeleteMutation = (
+    options?: UseMutationOptions<{ ok: true }, Error, number>
+) =>
+    useMutation({
+        mutationKey: [QueryKey.blog.delete],
+        mutationFn: (idx) => deleteBlogApi(idx),
+        ...options,
     });

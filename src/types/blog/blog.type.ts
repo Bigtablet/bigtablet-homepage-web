@@ -21,3 +21,9 @@ export type BlogDetailResponse = {
     message: string;
     data: BlogItem
 };
+
+export type BlogCreateRequest = Pick<
+    BlogItem,
+    "titleKr" | "titleEn" | "contentKr" | "contentEn" | "imageUrl"
+>;
+export type BlogUpdateRequest = BlogCreateRequest & { idx: number };

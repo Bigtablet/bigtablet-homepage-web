@@ -62,7 +62,7 @@ export enum ApplyMilitaryStatus {
 }
 
 export interface RecruitRequest {
-    jobId: string;
+    jobId: number;
     name: string;
     phoneNumber: string;
     email: string;
@@ -85,4 +85,12 @@ export interface RecruitRequest {
 export interface RecruitApplyResponse {
     ok: boolean;
     id?: number;
+}
+
+export interface RecruitApplicant extends RecruitRequest {
+    idx: number;
+    jobId: number;
+    status: string;
+    createdAt: string;
+    modifiedAt: string;
 }

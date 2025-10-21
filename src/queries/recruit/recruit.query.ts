@@ -1,3 +1,5 @@
+"use client"
+
 import {useQuery, UseQueryOptions, useMutation, UseMutationOptions, useQueryClient} from "@tanstack/react-query";
 import {
     getRecruitListApi,

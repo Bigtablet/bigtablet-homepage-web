@@ -50,6 +50,7 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.PRIVATE_KEY }}
           port: ${{ secrets.PORT }}
+          envs: IMAGE
           script: |
             set -euo pipefail
             VERSION='${{ steps.version.outputs.tag }}'

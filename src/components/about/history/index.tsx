@@ -100,6 +100,7 @@ const History = ({ items }: Props) => {
         }
     }, []);
 
+    // 클릭 시: 먼저 스크롤 → 스크롤 이벤트가 activeYear를 갱신
     const scrollToYear = useCallback((year: number) => {
         const container = scrollRef.current;
         if (!container) return;
@@ -107,9 +108,10 @@ const History = ({ items }: Props) => {
             `.history__year-block[data-year="${year}"]`
         );
         if (!target) return;
-        setCurrentYear(year);
+
         const targetTop = target.offsetTop - STICKY_TOP - 6;
         const maxTop = container.scrollHeight - container.clientHeight;
+
         container.scrollTo({
             top: Math.max(0, Math.min(targetTop, maxTop)),
             behavior: "smooth",
@@ -156,7 +158,9 @@ const History = ({ items }: Props) => {
                             <div className="history__left" aria-hidden>
                                 <span className="history__year history__year--inline">{year}</span>
                             </div>
-                            <div className="history__right">
+
+                            {/* 비활성도 DOM에는 두되, 시각적으로만 숨김 */}
+                            <div className={"history__right" + (isActive ? " is-visible" : " is-hidden")} aria-hidden={!isActive}>
                                 {list.map((it) => (
                                     <div className="history__row" key={it.id}>
                                         <span className="history__row-dot" aria-hidden />

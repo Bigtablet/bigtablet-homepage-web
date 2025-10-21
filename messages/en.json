@@ -184,8 +184,8 @@
       "button": "Get Started"
     },
     "problem": {
-      "title": "The Challenge \nWe Address",
-      "description": "As offline stores regain attention and \nexperiential spaces expand, theft has become \na growing concern. \n\nTraditional RFID tags and video surveillance \nsolutions often face high costs and frequent \nmalfunctions, limiting their effectiveness. \n\nTo address this, we developed a patented \nreal-time AI video analysis technology. \n\nBy applying neural network–based video \ncompression, we process high-resolution data \nefficiently and deliver real-time insights into \ncustomer flow, interests, and behavior patterns."
+      "title": "The Challenge\n We Address",
+      "description": "As offline stores regain attention and experiential spaces expand, theft has become a growing concern.\n\nTraditional RFID tags and video surveillance solutions often face high costs and frequent malfunctions, limiting their effectiveness.\n\nTo address this, we developed a patented real-time AI video analysis technology.\n\nBy applying neural network–based video compression, we process high-resolution data efficiently and deliver real-time insights into customer flow, interests, and behavior patterns."
     },
     "solution": {
       "title": "Solution OverView",

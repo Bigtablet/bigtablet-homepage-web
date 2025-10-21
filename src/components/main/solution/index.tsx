@@ -144,9 +144,19 @@ const Solution = () => {
                     <div
                         key={id}
                         className="card"
-                        onMouseEnter={e => {
+                        role="button"
+                        tabIndex={0}
+                        aria-label={t(`product.${id}.title`)}
+                        onClick={(e) => {
                             const rect = (e.currentTarget as HTMLDivElement).getBoundingClientRect();
                             openFromRect(id, rect);
+                        }}
+                        onKeyDown={(e) => {
+                            if (e.key === "Enter" || e.key === " ") {
+                                e.preventDefault();
+                                const rect = (e.currentTarget as HTMLDivElement).getBoundingClientRect();
+                                openFromRect(id, rect);
+                            }
                         }}
                     >
                         <video className="video" src={src} autoPlay muted playsInline loop preload="auto" />

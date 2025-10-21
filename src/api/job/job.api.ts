@@ -1,4 +1,4 @@
-import { BigtabletAxios } from "src/libs/axios";
+import BigtabletAxios from "src/libs/axios";
 import type { PostJobPayload } from "src/types/job/job.type";
 
 export const postJobApi = async (payload: PostJobPayload) => {

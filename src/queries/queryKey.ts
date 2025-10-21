@@ -21,6 +21,10 @@ export const QueryKey = {
     },
     news: {
         list: "/news/list",
+        detail: "/news/detail",
+        create: "/news",
+        update: "/news",
+        delete: "/news/delete",
     },
     blog: {
         list: "/blog/list",

@@ -38,7 +38,7 @@ const labelEducation = (v: "HIGH_SCHOOL" | "ASSOCIATE" | "BACHELOR" | "NO_REQUIR
             v === "ASSOCIATE" ? "전문학사" : "학력무관";
 
 const BENEFITS: string[] = ["Benefit 1", "Benefit 2", "Benefit 3", "Benefit 4", "Benefit 5", "Benefit 6"];
-const HIRING_PROCESS: string[] = ["서류 전형", "1차 면접", "2차 면접", "최종합격"];
+const HIRING_PROCESS: string[] = ["서류 전형", "1차 면접", "2차 면접 (필요시)", "처우 협의", "합류"];
 
 const RecruitDetail = () => {
     const { locale, idx } = useParams<{ locale: string; idx: string }>();

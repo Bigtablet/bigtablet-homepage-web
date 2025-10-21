@@ -73,7 +73,7 @@ const Jobs = () => {
                 {/* ───────────── 채용공고 섹션 */}
                 <header className="jobs-page__header">
                     <h1 className="jobs-page__title">채용공고 관리</h1>
-                    <Link href="/admin/jobs/new" className="btn btn--primary">
+                    <Link href="/admin/jobs/create" className="btn btn--primary">
                         + 새 공고 등록
                     </Link>
                 </header>
@@ -92,7 +92,7 @@ const Jobs = () => {
                         <div className="empty">불러오는 중...</div>
                     ) : !jobRows.length ? (
                         <div className="empty">
-                            등록된 공고가 없습니다. <Link href="/admin/jobs/new">첫 공고를 등록하세요.</Link>
+                            등록된 공고가 없습니다. <Link href="/admin/jobs/create">첫 공고를 등록하세요.</Link>
                         </div>
                     ) : (
                         <table>
@@ -136,7 +136,10 @@ const Jobs = () => {
                                         ))}
                                     </td>
                                     <td className="actions">
-                                        <Link href={`/admin/jobs/${job.idx ?? ""}/edit`} className="btn">
+                                        <Link
+                                            href={`/admin/jobs/edit?idx=${job.idx ?? ""}`}
+                                            className="btn"
+                                        >
                                             수정
                                         </Link>
                                         <button

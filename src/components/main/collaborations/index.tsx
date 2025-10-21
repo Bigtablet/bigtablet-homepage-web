@@ -7,8 +7,8 @@ import "./style.scss";
 // 로고 이미지 추가는 여기서 해주세요
 const logos = [
     "/images/collaborations/aws.png",
-    "/images/collaborations/bigtablet.png",
-
+    "/images/collaborations/google.png",
+    "/images/collaborations/nvdia.png",
 ];
 
 const Collaborations = ({ speed = 40 }: { speed?: number }) => {

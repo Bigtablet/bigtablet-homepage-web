@@ -6,7 +6,7 @@ import {
     getRecruitDetailApi,
     postRecruitApplyApi,
     deleteRecruitApi, getRecruitApplicantListApi, getRecruitApplicantDetailApi, patchRecruitApplicantAcceptApi,
-    patchRecruitApplicantRejectApi
+    patchRecruitApplicantRejectApi, putRecruitUpdateApi
 } from "src/api/recruit/recruit.api";
 import { QueryKey } from "src/queries/queryKey";
 import type {
@@ -103,6 +103,24 @@ export const useRecruitDeleteMutation = (
         },
         onError: (error, variables, context, mutation) => {
             options?.onError?.(error, variables, context, mutation);
+        },
+    });
+};
+
+export const useRecruitUpdateMutation = (
+    options?: UseMutationOptions<{ ok: boolean }, Error, RecruitResponse & { idx: number }>
+) => {
+    const qc = useQueryClient();
+    return useMutation({
+        mutationKey: [QueryKey.recruit.update],
+        mutationFn: (body) => putRecruitUpdateApi(body),
+        ...options,
+        onSuccess: (data, variables, context, mutation) => {
+            qc.invalidateQueries({ queryKey: [QueryKey.recruit.list] });
+            if (variables?.idx) {
+                qc.invalidateQueries({ queryKey: [QueryKey.recruit.detail, variables.idx] });
+            }
+            options?.onSuccess?.(data, variables, context, mutation);
         },
     });
 };

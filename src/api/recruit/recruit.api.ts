@@ -21,6 +21,14 @@ export const postRecruitApplyApi = async (body: RecruitRequest, signal?: AbortSi
     return (res.data ?? { ok: true }) as RecruitApplyResponse;
 };
 
+export const putRecruitUpdateApi = async (
+    body: RecruitResponse & { idx: number },
+    signal?: AbortSignal
+): Promise<{ ok: boolean }> => {
+    const res = await BigtabletAxios.put("/job", body, { signal });
+    return (res.data ?? { ok: true }) as { ok: boolean };
+};
+
 export const deleteRecruitApi = async (idx: number): Promise<{ ok: boolean }> => {
     const res = await BigtabletAxios.delete("/job", { params: { idx } });
     return (res.data ?? { ok: true }) as { ok: boolean };

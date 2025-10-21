@@ -94,3 +94,10 @@ export interface RecruitApplicant extends RecruitRequest {
     createdAt: string;
     modifiedAt: string;
 }
+
+export type JobUpsertRequest = Omit<
+    RecruitResponse,
+    "idx" | "createdAt" | "modifiedAt" | "dday" | "tags"
+>;
+
+export type JobUpdateRequest = JobUpsertRequest & { idx: number };

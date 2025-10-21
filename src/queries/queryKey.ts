@@ -15,6 +15,7 @@ export const QueryKey = {
         applicantAccept: "/recruit/accept",
         applicantReject: "/recruit/reject",
         delete: "recruit/delete",
+        update: "recruit/update",
     },
     gcp: {
         upload: "/gcp",

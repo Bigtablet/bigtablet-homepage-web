@@ -1,0 +1,65 @@
+@use "src/styles/function/flex" as *;
+@use "src/styles/typography/mixin" as *;
+
+.jobs-edit {
+  padding: 16px;
+
+  form {
+    width: 100%;
+  }
+
+  .form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .form-item {
+    @include flex-column;
+    gap: 6px;
+
+    &--full {
+      grid-column: 1 / -1;
+    }
+  }
+
+  .form-label {
+    @include Medium;
+    @include typography(13px);
+    color: var(--text-darkblue);
+  }
+
+  .input,
+  .select,
+  .textarea {
+    border: 1px solid var(--line-normal);
+    background: var(--background-input);
+    color: var(--text-normal);
+    border-radius: 12px;
+    padding: 10px 12px;
+
+    &:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(90, 141, 203, 0.15);
+    }
+  }
+
+  .textarea {
+    resize: vertical;
+  }
+
+  .form-actions {
+    @include flex-right;
+    gap: 8px;
+    margin-top: 16px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .jobs-edit {
+    .form-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+}

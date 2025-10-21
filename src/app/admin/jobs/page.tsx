@@ -226,9 +226,9 @@ const Jobs = () => {
                                         </td>
                                         <td>
                                             <Link
-                                                href={`/admin/applicants/${a.idx}`}
+                                                href={`/admin/jobs/${a.idx}`}
                                                 className="link"
-                                                onClick={(e) => e.stopPropagation()} // ✅ 행 클릭과 충돌 방지
+                                                onClick={(e) => e.stopPropagation()}
                                             >
                                                 {a.name}
                                             </Link>

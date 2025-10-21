@@ -1,26 +1,36 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import Template from "src/components/common/template";
 import { useRecruitApply } from "src/hooks/recruit/useRecruit";
 import { useGcpUpload } from "src/hooks/gcp/useGcp";
-import "./style.scss";
 import {
     ApplyEducationLevel,
     ApplyMilitaryStatus,
     RecruitRequest,
 } from "src/types/recruit/recruit.type";
 import { sendEmailApi, checkEmailApi } from "src/api/email/email.api";
+import "./style.scss";
 
+/* ---------------------------------------
+ * Constants
+ * ------------------------------------- */
+const EMAIL_RESEND_COOLDOWN = 60; // 이메일 재전송 대기(초)
+
+/* ---------------------------------------
+ * Type Guards / Mappers
+ * ------------------------------------- */
 const isEdu = (v: string): v is ApplyEducationLevel =>
     v === ApplyEducationLevel.GED ||
     v === ApplyEducationLevel.HIGH_SCHOOL ||
     v === ApplyEducationLevel.ASSOCIATE ||
     v === ApplyEducationLevel.BACHELOR;
 
-const mapEdu = (v: string): ApplyEducationLevel => (isEdu(v) ? v : ApplyEducationLevel.BACHELOR);
+const mapEdu = (v: string): ApplyEducationLevel =>
+    isEdu(v) ? v : ApplyEducationLevel.BACHELOR;
 
+// 서버 enum과 UI 값 매핑
 const mapMil = (v: string): ApplyMilitaryStatus => {
     if (v === "DONE") return ApplyMilitaryStatus.COMPLETED;
     if (v === "PENDING") return ApplyMilitaryStatus.NOT_COMPLETED;
@@ -34,16 +44,31 @@ const mapMil = (v: string): ApplyMilitaryStatus => {
     return ApplyMilitaryStatus.NOT_APPLICABLE;
 };
 
+// YYYY-MM (기본값: 현재년-월)
+const currentYearMonth = () => {
+    const d = new Date();
+    const m = `${d.getMonth() + 1}`.padStart(2, "0");
+    return `${d.getFullYear()}-${m}`;
+};
+
+/* ---------------------------------------
+ * UI State
+ * ------------------------------------- */
 type UIState = {
     isVeteranTarget: boolean;
     isDisabilityTarget: boolean;
-    eduLevel: ApplyEducationLevel;
+
+    // 이메일/인증
     email: string;
     authCode: string;
     emailSent: boolean;
     emailVerified: boolean;
     sendLoading: boolean;
     checkLoading: boolean;
+    resendSec: number;
+
+    // 학력/링크/파일
+    eduLevel: ApplyEducationLevel;
     photoPreview: string;
     portfolioName: string;
     coverLetterName: string;
@@ -56,18 +81,21 @@ type UIState = {
 const ApplyPage = () => {
     const { locale, idx } = useParams<{ locale: string; idx: string }>();
     const router = useRouter();
-    const jobIdNum = Number(idx) || -1;
+    const jobId = useMemo(() => Number(idx) || -1, [idx]);
 
     const [ui, setUi] = useState<UIState>({
         isVeteranTarget: false,
         isDisabilityTarget: false,
-        eduLevel: ApplyEducationLevel.BACHELOR,
+
         email: "",
         authCode: "",
         emailSent: false,
         emailVerified: false,
         sendLoading: false,
         checkLoading: false,
+        resendSec: 0,
+
+        eduLevel: ApplyEducationLevel.BACHELOR,
         photoPreview: "",
         portfolioName: "",
         coverLetterName: "",
@@ -77,8 +105,9 @@ const ApplyPage = () => {
         link3: "",
     });
 
-    const { upload, isPending: isUploading } = useGcpUpload();
+    const setPartial = (patch: Partial<UIState>) => setUi((s) => ({ ...s, ...patch }));
 
+    const { upload, isPending: isUploading } = useGcpUpload();
     const { submit, isPending: isSubmitting } = useRecruitApply({
         onSuccess: () => {
             alert("지원서가 성공적으로 제출되었습니다.");
@@ -89,8 +118,9 @@ const ApplyPage = () => {
         },
     });
 
-    const setPartial = (patch: Partial<UIState>) => setUi((s) => ({ ...s, ...patch }));
-
+    /* ---------------------------------------
+     * Helpers
+     * ------------------------------------- */
     const uploadIfPresent = async (fileLike: FormDataEntryValue | null): Promise<string> => {
         const f = fileLike as File | null;
         if (!f || !f.size) return "";
@@ -98,13 +128,22 @@ const ApplyPage = () => {
         return url ?? "";
     };
 
+    const safeGet = (fd: FormData, name: string) => String(fd.get(name) || "").trim();
+
+    /* ---------------------------------------
+     * Handlers
+     * ------------------------------------- */
     const handlePhotoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
+
+        // 파일 제거
         if (!file) {
             if (ui.photoPreview) URL.revokeObjectURL(ui.photoPreview);
             setPartial({ photoPreview: "" });
             return;
         }
+
+        // PNG만 허용
         if (file.type !== "image/png") {
             alert("PNG 파일만 가능합니다.");
             e.currentTarget.value = "";
@@ -112,11 +151,14 @@ const ApplyPage = () => {
             setPartial({ photoPreview: "" });
             return;
         }
+
+        // 미리보기 갱신
         const url = URL.createObjectURL(file);
         if (ui.photoPreview) URL.revokeObjectURL(ui.photoPreview);
         setPartial({ photoPreview: url });
     };
 
+    // 파일명 표시 업데이트
     const handleDocName =
         (key: keyof UIState) =>
             (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -124,88 +166,22 @@ const ApplyPage = () => {
                 setPartial({ [key]: file?.name ?? "" } as Partial<UIState>);
             };
 
+    // 링크 입력 업데이트
     const handleLink =
         (key: "link1" | "link2" | "link3") =>
             (e: React.ChangeEvent<HTMLInputElement>) => {
-                setPartial({ [key]: e.target.value } as Partial<UIState>);
+                setPartial({ [key]: e.target.value });
             };
 
-    useEffect(() => {
-        return () => {
-            if (ui.photoPreview) URL.revokeObjectURL(ui.photoPreview);
-        };
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
-
-    const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-
-        if (!Number.isFinite(jobIdNum) || jobIdNum <= 0) {
-            alert("유효하지 않은 공고입니다.");
-            return;
-        }
-
-        const fd = new FormData(e.currentTarget);
-
-        const educationLevel = ui.eduLevel;
-        const military = mapMil(String(fd.get("military") || ""));
-
-        try {
-            const photoUrl = await uploadIfPresent(fd.get("photo"));
-            const portfolioUrl = await uploadIfPresent(fd.get("portfolio"));
-            const coverLetterUrl = await uploadIfPresent(fd.get("coverletter"));
-            const disabilityFileUrl = await uploadIfPresent(fd.get("disabilityFile"));
-
-            const rawLinks = [
-                String(fd.get("attachmentLink1") || "").trim(),
-                String(fd.get("attachmentLink2") || "").trim(),
-                String(fd.get("attachmentLink3") || "").trim(),
-            ].filter(Boolean);
-
-            const ordered: string[] = [];
-            if (disabilityFileUrl) ordered.push(disabilityFileUrl);
-            for (const link of rawLinks) ordered.push(link);
-
-            const [attachment1 = "", attachment2 = "", attachment3 = ""] = ordered;
-
-            const isGed = educationLevel === ApplyEducationLevel.GED;
-
-            const payload: RecruitRequest = {
-                jobId: jobIdNum,
-                name: String(fd.get("name") || ""),
-                phoneNumber: String(fd.get("phone") || ""),
-                email: String(fd.get("email") || ""),
-                address: String(fd.get("address1") || ""),
-                addressDetail: String(fd.get("address2") || ""),
-                portfolio: portfolioUrl,
-                coverLetter: coverLetterUrl,
-                profileImage: photoUrl,
-                educationLevel,
-                schoolName: isGed ? "" : String(fd.get("eduSchool") || ""),
-                admissionYear: isGed ? "2025-10" : String(fd.get("eduStart") || ""),
-                graduationYear: isGed ? "2025-10" : String(fd.get("eduEnd") || ""),
-                department: isGed ? "" : String(fd.get("eduMajor") || ""),
-                military,
-                attachment1,
-                attachment2,
-                attachment3,
-            };
-
-            submit(payload);
-        } catch {
-            alert("파일 업로드 중 오류가 발생했습니다. 다시 시도해주세요.");
-        }
-    };
-
+    // 이메일 전송
     const handleSendEmail = async () => {
-        if (!ui.email) {
-            alert("이메일을 입력해주세요.");
-            return;
-        }
+        if (!ui.email) return alert("이메일을 입력해주세요.");
+        if (ui.resendSec > 0) return alert(`${ui.resendSec}초 후 재전송 가능합니다.`);
+
         setPartial({ sendLoading: true, emailSent: false, emailVerified: false });
         try {
             await sendEmailApi(ui.email);
-            setPartial({ emailSent: true });
+            setPartial({ emailSent: true, resendSec: EMAIL_RESEND_COOLDOWN });
             alert("인증 코드가 전송되었습니다. 메일함을 확인해주세요.");
         } catch (error: any) {
             alert(error?.response?.data?.message || "이메일 전송 중 오류가 발생했습니다.");
@@ -214,11 +190,10 @@ const ApplyPage = () => {
         }
     };
 
+    // 이메일 인증 확인
     const handleCheckEmail = async () => {
-        if (!ui.email || !ui.authCode) {
-            alert("이메일과 인증 코드를 모두 입력해주세요.");
-            return;
-        }
+        if (!ui.email || !ui.authCode) return alert("이메일과 인증 코드를 모두 입력해주세요.");
+
         setPartial({ checkLoading: true });
         try {
             await checkEmailApi(ui.email, ui.authCode);
@@ -232,10 +207,96 @@ const ApplyPage = () => {
         }
     };
 
+    // 폼 제출
+    const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+
+        if (!Number.isFinite(jobId) || jobId <= 0) {
+            alert("유효하지 않은 공고입니다.");
+            return;
+        }
+
+        const fd = new FormData(e.currentTarget);
+        const educationLevel = ui.eduLevel;
+        const military = mapMil(safeGet(fd, "military"));
+
+        try {
+            // 업로드(있으면)
+            const photoUrl = await uploadIfPresent(fd.get("photo"));
+            const portfolioUrl = await uploadIfPresent(fd.get("portfolio"));
+            const coverLetterUrl = await uploadIfPresent(fd.get("coverletter"));
+            const disabilityFileUrl = await uploadIfPresent(fd.get("disabilityFile"));
+
+            // 첨부 링크(최대 3) + 장애 서류를 우선순위로 섞어 3개까지만 배치
+            const rawLinks = [
+                safeGet(fd, "attachmentLink1"),
+                safeGet(fd, "attachmentLink2"),
+                safeGet(fd, "attachmentLink3"),
+            ].filter(Boolean);
+
+            const ordered: string[] = [];
+            if (disabilityFileUrl) ordered.push(disabilityFileUrl);
+            for (const link of rawLinks) ordered.push(link);
+            const [attachment1 = "", attachment2 = "", attachment3 = ""] = ordered;
+
+            // GED일 경우 학교/기간/학과는 공란, 기간 기본값은 현재년-월
+            const isGed = educationLevel === ApplyEducationLevel.GED;
+
+            const payload: RecruitRequest = {
+                jobId,
+                name: safeGet(fd, "name"),
+                phoneNumber: safeGet(fd, "phone"),
+                email: safeGet(fd, "email"),
+                address: safeGet(fd, "address1"),
+                addressDetail: safeGet(fd, "address2"),
+                portfolio: portfolioUrl,
+                coverLetter: coverLetterUrl,
+                profileImage: photoUrl,
+                educationLevel,
+                schoolName: isGed ? "" : safeGet(fd, "eduSchool"),
+                admissionYear: isGed ? currentYearMonth() : safeGet(fd, "eduStart"),
+                graduationYear: isGed ? currentYearMonth() : safeGet(fd, "eduEnd"),
+                department: isGed ? "" : safeGet(fd, "eduMajor"),
+                military,
+                attachment1,
+                attachment2,
+                attachment3,
+            };
+
+            submit(payload);
+        } catch {
+            alert("파일 업로드 중 오류가 발생했습니다. 다시 시도해주세요.");
+        }
+    };
+
+    /* ---------------------------------------
+     * Effects
+     * ------------------------------------- */
+    // 컴포넌트 언마운트 시 미리보기 URL 해제
     useEffect(() => {
-        setPartial({ isVeteranTarget: false, isDisabilityTarget: false });
+        return () => {
+            if (ui.photoPreview) URL.revokeObjectURL(ui.photoPreview);
+        };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
+    // 이메일 변경 시 쿨다운/보냄상태 초기화
+    useEffect(() => {
+        setUi((s) => ({ ...s, resendSec: 0, emailSent: false }));
+    }, [ui.email]);
+
+    // 1초 카운트다운
+    useEffect(() => {
+        if (ui.resendSec <= 0) return;
+        const id = setInterval(() => {
+            setUi((s) => ({ ...s, resendSec: Math.max(0, s.resendSec - 1) }));
+        }, 1000);
+        return () => clearInterval(id);
+    }, [ui.resendSec]);
+
+    /* ---------------------------------------
+     * Render
+     * ------------------------------------- */
     return (
         <Template>
             <div className="apply">
@@ -243,15 +304,16 @@ const ApplyPage = () => {
 
                 <form className="apply__form" noValidate onSubmit={onSubmit}>
                     <div className="apply__grid">
+                        {/* 좌측 폼 */}
                         <div className="apply__left">
                             <div className="field">
                                 <label>이름*</label>
-                                <input name="name" placeholder="홍길동" />
+                                <input name="name" placeholder="홍길동" required />
                             </div>
 
                             <div className="field">
                                 <label>전화번호*</label>
-                                <input name="phone" placeholder="010-1234-1234" />
+                                <input name="phone" placeholder="010-1234-1234" required />
                                 <label className="checkbox">
                                     <input type="checkbox" name="isForeignResident" /> 현재 외국 거주 중
                                 </label>
@@ -266,6 +328,7 @@ const ApplyPage = () => {
                                         placeholder="example@email.com"
                                         value={ui.email}
                                         onChange={(e) => setPartial({ email: e.target.value })}
+                                        required
                                     />
                                     <input
                                         name="authCode"
@@ -273,28 +336,40 @@ const ApplyPage = () => {
                                         value={ui.authCode}
                                         onChange={(e) => setPartial({ authCode: e.target.value })}
                                     />
+
+                                    {/* 전송 버튼 (쿨다운/로딩 반영) */}
                                     <button
                                         type="button"
                                         className="btn ghost"
                                         onClick={handleSendEmail}
-                                        disabled={ui.sendLoading || !ui.email}
+                                        disabled={ui.sendLoading || !ui.email || ui.resendSec > 0}
                                     >
-                                        {ui.sendLoading ? "전송 중…" : "전송"}
+                                        {ui.sendLoading
+                                            ? "전송 중..."
+                                            : ui.resendSec > 0
+                                                ? `재전송 ${ui.resendSec}s`
+                                                : "전송"}
                                     </button>
+
+                                    {/* 확인 버튼 */}
                                     <button
                                         type="button"
                                         className="btn ghost"
                                         onClick={handleCheckEmail}
                                         disabled={ui.checkLoading || !ui.email || !ui.authCode}
                                     >
-                                        {ui.checkLoading ? "확인 중…" : "확인"}
+                                        {ui.checkLoading ? "확인 중..." : "확인"}
                                     </button>
                                 </div>
-                                <small className="help">
+
+                                {/* 라이브 영역(스크린리더용) */}
+                                <small className="help" aria-live="polite">
                                     {ui.emailVerified
                                         ? "이메일 인증이 완료되었습니다."
                                         : ui.emailSent
-                                            ? "이메일로 전송된 인증 코드를 입력 후 확인을 눌러주세요."
+                                            ? ui.resendSec > 0
+                                                ? `이메일로 전송된 인증 코드를 입력 후 확인을 눌러주세요. (재전송 ${ui.resendSec}s)`
+                                                : "이메일로 전송된 인증 코드를 입력 후 확인을 눌러주세요."
                                             : "이메일 인증 부탁드립니다"}
                                 </small>
                             </div>
@@ -317,8 +392,11 @@ const ApplyPage = () => {
                                         accept="application/pdf"
                                         className="visually-hidden"
                                         onChange={handleDocName("portfolioName")}
+                                        required
                                     />
-                                    <label htmlFor="portfolio" className="file__trigger">파일 선택</label>
+                                    <label htmlFor="portfolio" className="file__trigger">
+                                        파일 선택
+                                    </label>
                                     <span className="file__name">{ui.portfolioName || "선택된 파일 없음"}</span>
                                 </div>
                             </div>
@@ -336,7 +414,9 @@ const ApplyPage = () => {
                                         className="visually-hidden"
                                         onChange={handleDocName("coverLetterName")}
                                     />
-                                    <label htmlFor="coverletter" className="file__trigger">파일 선택</label>
+                                    <label htmlFor="coverletter" className="file__trigger">
+                                        파일 선택
+                                    </label>
                                     <span className="file__name">{ui.coverLetterName || "선택된 파일 없음"}</span>
                                 </div>
                             </div>
@@ -348,6 +428,7 @@ const ApplyPage = () => {
                                         name="eduLevel"
                                         value={ui.eduLevel}
                                         onChange={(e) => setPartial({ eduLevel: mapEdu(e.target.value) })}
+                                        required
                                     >
                                         <option value={ApplyEducationLevel.GED}>검정고시</option>
                                         <option value={ApplyEducationLevel.HIGH_SCHOOL}>고등학교 졸업</option>
@@ -406,7 +487,9 @@ const ApplyPage = () => {
                                                     className="visually-hidden"
                                                     onChange={handleDocName("disabilityFileName")}
                                                 />
-                                                <label htmlFor="disabilityFile" className="file__trigger">파일 선택</label>
+                                                <label htmlFor="disabilityFile" className="file__trigger">
+                                                    파일 선택
+                                                </label>
                                                 <span className="file__name">
                           {ui.disabilityFileName || "선택된 파일 없음"}
                         </span>
@@ -462,11 +545,12 @@ const ApplyPage = () => {
                             </div>
 
                             <button className="apply__submit" type="submit" disabled={isSubmitting || isUploading}>
-                                {isSubmitting || isUploading ? "제출 중…" : "제출하기"}
+                                {isSubmitting || isUploading ? "제출 중..." : "제출하기"}
                             </button>
                             <p className="apply__footer">기타 채용 관련 문의사항은 recruit@bigtablet.com 으로 연락 바랍니다</p>
                         </div>
 
+                        {/* 우측 프로필 사진 */}
                         <div className="apply__right">
                             <label>프로필 사진*</label>
                             <div className="photo">
@@ -484,6 +568,7 @@ const ApplyPage = () => {
                                         <span>+</span>
                                     )}
                                 </label>
+
                                 {ui.photoPreview && (
                                     <button
                                         type="button"
@@ -498,6 +583,7 @@ const ApplyPage = () => {
                                         제거
                                     </button>
                                 )}
+
                                 <p>PNG 파일만 업로드 가능합니다.</p>
                             </div>
                         </div>

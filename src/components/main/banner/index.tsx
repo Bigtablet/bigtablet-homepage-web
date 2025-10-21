@@ -10,7 +10,7 @@ const Banner = () => {
     return (
         <section className="banner">
             <div className="video-wrapper">
-                <video src="/videos/main/main.mp4" autoPlay loop muted playsInline />
+                <video src="https://storage.googleapis.com/bigtablet-homepage/6122c823-e40e-4d29-8855-4a64f0c7d881" autoPlay loop muted playsInline />
                 <div className="overlay" />
             </div>
 

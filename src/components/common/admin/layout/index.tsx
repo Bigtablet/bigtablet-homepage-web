@@ -39,9 +39,9 @@ const AdminLayout = ({ children }: { children: React.ReactNode }) => {
                 <div className="sidebar__quick">
                     <div className="sidebar__section-title">Quick actions</div>
                     <div className="sidebar__actions">
-                        <Link href="/admin/jobs/new" className="btn btn--primary">+ New Job</Link>
-                        <Link href="/admin/blog/new" className="btn btn--outline">+ New Blog</Link>
-                        <Link href="/admin/news/new" className="btn btn--outline">+ New News</Link>
+                        <Link href="/admin/jobs/create" className="btn btn--primary">+ New Job</Link>
+                        <Link href="/admin/blog/create" className="btn btn--outline">+ New Blog</Link>
+                        <Link href="/admin/news/create" className="btn btn--outline">+ New News</Link>
                     </div>
                 </div>
             </aside>

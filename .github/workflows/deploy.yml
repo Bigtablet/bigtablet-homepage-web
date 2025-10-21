@@ -58,9 +58,8 @@ jobs:
             docker pull "$IMAGE:$VERSION"
             docker rm -f bigtablet-homepage-web 2>/dev/null || true
             docker run -d \
-              --name bigtablet-homepage-web \
-              --restart unless-stopped \
-              --network=host \
-              -p 127.0.0.1:8080:80 \
-              "$IMAGE:$VERSION"
-            docker image prune -af || true
+            --name bigtablet-homepage-web \
+            --restart unless-stopped \
+            -p 127.0.0.1:8080:80 \
+            "$IMAGE:$VERSION"
+

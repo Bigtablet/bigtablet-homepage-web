@@ -7,15 +7,29 @@ import Modal from "src/components/main/modal";
 
 type Product = { id: number; src: string };
 
-const getRandomSrc = (id: number, count: number) => {
-    const rand = Math.floor(Math.random() * count) + 1;
-    return `/videos/solution/${id}/solution${id}-${rand}.mp4`;
+const SOURCES: Record<number, string[]> = {
+    1: ["https://storage.googleapis.com/bigtablet-homepage/e54c4886-77f5-4df2-b2e7-c721921845b9"],
+    2: ["https://storage.googleapis.com/bigtablet-homepage/4125700b-ccda-42c8-9acb-705a3f93826b"],
+    3: [
+        "https://storage.googleapis.com/bigtablet-homepage/312d580d-7de2-457c-8194-a05cd527f469",
+        "https://storage.googleapis.com/bigtablet-homepage/4c261808-87d4-4031-b3c5-9851a4f0c540",
+        "https://storage.googleapis.com/bigtablet-homepage/8a827489-8161-4269-9d09-737b2ac8ff20",
+        "https://storage.googleapis.com/bigtablet-homepage/d9779906-9811-46d8-9149-56e01e7e5368",
+    ],
+    4: [
+        "https://storage.googleapis.com/bigtablet-homepage/8fc089a3-eff8-4e5f-b1e1-c73ba56594ca",
+        "https://storage.googleapis.com/bigtablet-homepage/a6d95be7-5ad5-4a70-b609-4ecbd40766b3",
+        "https://storage.googleapis.com/bigtablet-homepage/f20d9b1f-b553-4797-8427-5f789191a761",
+    ],
+    5: ["https://storage.googleapis.com/bigtablet-homepage/e5498153-4ebe-46de-aba3-b53ed5ddba7b"],
 };
+
+const pickOne = (arr: string[]) => arr[Math.floor(Math.random() * arr.length)];
 
 const Solution = () => {
     const t = useTranslations("main.solution");
 
-    const [randomSrc, setRandomSrc] = useState<{ [key: number]: string }>({});
+    const [selected, setSelected] = useState<Record<number, string>>({});
     const [activeId, setActiveId] = useState<number | null>(null);
     const [animVars, setAnimVars] = useState<{ dx: number; dy: number; sx: number; sy: number } | null>(null);
     const [isEntering, setIsEntering] = useState(false);
@@ -24,21 +38,21 @@ const Solution = () => {
     const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
     useEffect(() => {
-        setRandomSrc({
-            3: getRandomSrc(3, 4),
-            4: getRandomSrc(4, 3),
+        const next: Record<number, string> = {};
+        Object.entries(SOURCES).forEach(([k, urls]) => {
+            const id = Number(k);
+            next[id] = urls.length > 1 ? pickOne(urls) : urls[0];
         });
+        setSelected(next);
     }, []);
 
     const products: Product[] = useMemo(
-        () => [
-            { id: 1, src: `/videos/solution/1/solution1.mp4` },
-            { id: 2, src: `/videos/solution/2/solution2.mp4` },
-            { id: 3, src: randomSrc[3] ?? `/videos/solution/3/solution3-1.mp4` },
-            { id: 4, src: randomSrc[4] ?? `/videos/solution/4/solution4-1.mp4` },
-            { id: 5, src: `/videos/solution/5/solution5.mp4` },
-        ],
-        [randomSrc]
+        () =>
+            Object.keys(SOURCES)
+                .map(n => Number(n))
+                .sort((a, b) => a - b)
+                .map(id => ({ id, src: selected[id] ?? SOURCES[id][0] })),
+        [selected]
     );
 
     const scheduleClose = (delay = 120) => {

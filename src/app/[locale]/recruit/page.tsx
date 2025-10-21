@@ -4,6 +4,14 @@ import { useState } from "react";
 import Template from "src/components/common/template";
 import RequestList from "src/components/recruit/list";
 import "./style.scss";
+import {
+    departmentLabel,
+    DEPARTMENTS,
+    educationLabel,
+    EDUCATIONS,
+    experienceLabel,
+    EXPERIENCES
+} from "src/utils/job/label";
 
 const Recruit = () => {
     const [filters, setFilters] = useState({
@@ -33,36 +41,46 @@ const Recruit = () => {
                         onChange={(e) => handleChange({ keyword: e.target.value })}
                     />
 
+                    {/* 직무(부서) */}
                     <select
                         className="recruit-search__select"
                         value={filters.job}
                         onChange={(e) => handleChange({ job: e.target.value })}
                     >
                         <option value="">직무</option>
-                        <option value="dev">개발</option>
-                        <option value="design">디자인</option>
-                        <option value="pm">기획</option>
+                        {DEPARTMENTS.map((code) => (
+                            <option key={code} value={code}>
+                                {departmentLabel(code)}
+                            </option>
+                        ))}
                     </select>
 
+                    {/* 학력 */}
                     <select
                         className="recruit-search__select"
                         value={filters.education}
                         onChange={(e) => handleChange({ education: e.target.value })}
                     >
                         <option value="">학력</option>
-                        <option value="high">고졸</option>
-                        <option value="bachelor">대졸</option>
-                        <option value="master">석사 이상</option>
+                        {EDUCATIONS.map((code) => (
+                            <option key={code} value={code}>
+                                {educationLabel(code)}
+                            </option>
+                        ))}
                     </select>
 
+                    {/* 경력 */}
                     <select
                         className="recruit-search__select"
                         value={filters.career}
                         onChange={(e) => handleChange({ career: e.target.value })}
                     >
                         <option value="">경력</option>
-                        <option value="junior">신입</option>
-                        <option value="senior">경력</option>
+                        {EXPERIENCES.map((code) => (
+                            <option key={code} value={code}>
+                                {experienceLabel(code)}
+                            </option>
+                        ))}
                     </select>
                 </div>
                 <div id="divider" />

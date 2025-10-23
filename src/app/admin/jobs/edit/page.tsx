@@ -1,10 +1,11 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import {useEffect, useMemo, useState} from "react";
+import {useRouter, useSearchParams} from "next/navigation";
 import Link from "next/link";
 import AdminLayout from "src/components/common/admin/layout";
-import { Toast } from "src/libs/toast/toast";
+import {Toast} from "src/libs/toast/toast";
+import "./style.scss";
 
 import {
     useRecruitDetailQuery,
@@ -30,8 +31,6 @@ import {
     RECRUIT_TYPES,
 } from "src/utils/job/label";
 
-import "./style.scss";
-
 type FormState = {
     title: string;
     department: DepartmentType | "";
@@ -52,7 +51,7 @@ const EditJobPage = () => {
     const params = useSearchParams();
     const idx = useMemo(() => Number(params.get("idx") ?? 0), [params]);
 
-    const { data: detail, isLoading } = useRecruitDetailQuery(idx, { enabled: !!idx });
+    const {data: detail, isLoading} = useRecruitDetailQuery(idx, {enabled: !!idx});
 
     const [form, setForm] = useState<FormState>({
         title: "",
@@ -89,7 +88,7 @@ const EditJobPage = () => {
     }, [detail]);
 
     const onChange = <K extends keyof FormState>(k: K, v: FormState[K]) =>
-        setForm((s) => ({ ...s, [k]: v }));
+        setForm((s) => ({...s, [k]: v}));
 
     const update = useRecruitUpdateMutation({
         onSuccess: () => {
@@ -138,16 +137,11 @@ const EditJobPage = () => {
         <AdminLayout>
             <main className="jobs-page">
                 <header className="jobs-page__header">
-                    <h1 className="jobs-page__title">채용공고 수정</h1>
-                    <div className="jobs-page__header-actions">
-                        <Link href="/admin/jobs" className="btn">목록</Link>
-                        <button
-                            className="btn btn--primary"
-                            onClick={onSubmit}
-                            disabled={update.isPending}
-                        >
-                            {update.isPending ? "저장 중…" : "저장"}
-                        </button>
+                    <div className="jobs-page__inner">
+                        <h1 className="jobs-page__title">채용공고 수정</h1>
+                        <div className="jobs-page__actions">
+                            <Link href="/admin/jobs" className="btn">목록으로</Link>
+                        </div>
                     </div>
                 </header>
 

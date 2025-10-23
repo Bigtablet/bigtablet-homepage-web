@@ -1,6 +1,13 @@
 @use "src/styles/function/flex" as *;
 @use "src/styles/typography/mixin" as *;
 
+.jobs-page {
+  &__inner {
+    width: 100%;
+    @include flex-between;
+  }
+}
+
 .jobs-edit {
   padding: 16px;
 

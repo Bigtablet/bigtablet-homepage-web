@@ -3,7 +3,7 @@
 
 .request-list {
   @include flex-column;
-  gap: 20px;
+  gap: 12px;
   width: 100%;
 }
 
@@ -17,7 +17,7 @@
 
   &__left {
     @include flex-column;
-    gap: 8px;
+    gap: 12px;
   }
 
   &__title {

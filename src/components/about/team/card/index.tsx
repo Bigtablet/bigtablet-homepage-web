@@ -15,7 +15,7 @@ const MemberCard = ({ memberKey }: MemberCardProps) => {
     const slug = MEMBER_SLUG_MAP[memberKey];
 
     return (
-        <div className="member-card" onClick={() => router.push(`/${locale}/about/${slug}`)}>
+        <div className="member-card" onClick={() => router.push(`/about/${slug}`)}>
             <div className="member-card__image">
                 <img src={`/images/member/${slug}.png`} alt={t(`${memberKey}.name`)} />
             </div>

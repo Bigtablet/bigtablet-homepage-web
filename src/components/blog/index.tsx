@@ -82,7 +82,7 @@ const BlogCard = ({
 
     return (
         <Link
-            href={`/${locale}/blog/${idx}`}
+            href={`/blog/${idx}`}
             className="BlogCard"
             aria-label={title ? `${title} 상세보기` : "블로그 상세보기"}
             prefetch

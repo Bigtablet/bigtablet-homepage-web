@@ -111,7 +111,7 @@ const ApplyPage = () => {
     const { submit, isPending: isSubmitting } = useRecruitApply({
         onSuccess: () => {
             alert("지원서가 성공적으로 제출되었습니다.");
-            router.push(`/${locale}/recruit/${idx}`);
+            router.push(`/recruit/${idx}`);
         },
         onError: (err) => {
             alert(`제출 실패: ${err.message}`);

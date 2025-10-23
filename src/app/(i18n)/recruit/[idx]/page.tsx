@@ -111,7 +111,7 @@ const RecruitDetail = () => {
 
                         <section className="recruit-detail-request">
                             <Button>
-                                <Link href={`/${locale}/recruit/${idx}/apply`}>지원하기</Link>
+                                <Link href={`/recruit/${idx}/apply`}>지원하기</Link>
                             </Button>
                             <p>궁금하신 부분이나 기타 채용 관련 문의사항은 recruit@bigtablet.com 으로 연락 바랍니다</p>
                         </section>

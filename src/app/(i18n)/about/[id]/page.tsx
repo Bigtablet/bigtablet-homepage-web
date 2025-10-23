@@ -62,7 +62,7 @@ const MemberDetailPage = () => {
                     </main>
                 </div>
 
-                <Link href={`/${locale}/about`} className="member-detail__back">
+                <Link href={`/about`} className="member-detail__back">
                     Back to Team
                 </Link>
             </section>

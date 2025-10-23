@@ -1,6 +1,7 @@
 "use client";
 
 import "./style.scss";
+import { useState, useMemo } from "react";
 
 type Props = {
     title: string;
@@ -25,23 +26,43 @@ const formatRelative = (dateStr: string, locale: string) => {
     return rtf.format(Math.round(diff / (24 * 60 * 60 * 1000)), "day");
 };
 
-const getSource = (url: string) => {
+const getSource = (raw: string) => {
     try {
-        const u = new URL(url);
+        const u = new URL(raw);
         return u.hostname.replace(/^www\./, "");
     } catch {
         return "";
     }
 };
 
+const getPreviewSrc = (raw: string) => `/api/news/preview?u=${encodeURIComponent(raw)}`;
+
 const NewsCard = ({ title, url, createdAt, locale }: Props) => {
     const source = getSource(url);
     const time = formatRelative(createdAt, locale);
+    const [imgOk, setImgOk] = useState(true);
+    const preview = useMemo(() => getPreviewSrc(url), [url]);
 
     return (
         <a className="NewsCard" href={url} target="_blank" rel="noreferrer">
-            <div className="NewsCard__thumb" aria-hidden>
-                <div className="NewsCard__thumbLabel">{source || "news"}</div>
+            <div className={`NewsCard__thumb ${imgOk ? "hasimg" : ""}`} aria-hidden>
+                <img
+                    className="NewsCard__img"
+                    src={`/api/news/preview?u=${encodeURIComponent(url)}`}
+                    alt=""
+                    loading="lazy"
+                    onError={(e) => {
+                        const img = e.target as HTMLImageElement;
+                        const u = new URL(img.src, location.origin);
+                        if (!u.searchParams.get("f")) {
+                            u.searchParams.set("f", "1"); // 강제 파비콘
+                            img.src = u.toString();
+                            return;
+                        }
+                        img.style.display = "none";
+                        img.closest(".NewsCard__thumb")?.classList.add("no-image");
+                    }}
+                />
             </div>
 
             <div className="NewsCard__meta">

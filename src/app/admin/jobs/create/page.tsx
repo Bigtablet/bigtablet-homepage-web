@@ -13,7 +13,11 @@ const CreateJob = () => {
 
             <form
                 className="job-form__grid"
-                onSubmit={(e) => { e.preventDefault(); submit(); }}
+                onSubmit={(e) => {
+                    e.preventDefault();
+                    submit();
+                }}
+                noValidate
             >
                 {/* 기본정보 */}
                 <div className="job-form__card">
@@ -27,6 +31,8 @@ const CreateJob = () => {
                             value={value.title}
                             onChange={onChange}
                             placeholder="예) 백엔드 개발자"
+                            required
+                            autoComplete="off"
                         />
                     </label>
 
@@ -38,8 +44,13 @@ const CreateJob = () => {
                                 name="department"
                                 value={value.department}
                                 onChange={onChange}
+                                required
                             >
-                                {enums.DEPARTMENTS.map(v => <option key={v} value={v}>{v}</option>)}
+                                {enums.DEPARTMENTS.map(({ value, label }) => (
+                                    <option key={value} value={value}>
+                                        {label}
+                                    </option>
+                                ))}
                             </select>
                         </label>
 
@@ -50,8 +61,13 @@ const CreateJob = () => {
                                 name="location"
                                 value={value.location}
                                 onChange={onChange}
+                                required
                             >
-                                {enums.LOCATIONS.map(v => <option key={v} value={v}>{v}</option>)}
+                                {enums.LOCATIONS.map(({ value, label }) => (
+                                    <option key={value} value={value}>
+                                        {label}
+                                    </option>
+                                ))}
                             </select>
                         </label>
 
@@ -62,8 +78,13 @@ const CreateJob = () => {
                                 name="recruitType"
                                 value={value.recruitType}
                                 onChange={onChange}
+                                required
                             >
-                                {enums.RECRUIT_TYPES.map(v => <option key={v} value={v}>{v}</option>)}
+                                {enums.RECRUIT_TYPES.map(({ value, label }) => (
+                                    <option key={value} value={value}>
+                                        {label}
+                                    </option>
+                                ))}
                             </select>
                         </label>
                     </div>
@@ -77,6 +98,8 @@ const CreateJob = () => {
                                 value={value.experiment}
                                 onChange={onChange}
                                 placeholder="예) 3년 이상"
+                                required
+                                autoComplete="off"
                             />
                         </label>
 
@@ -87,8 +110,13 @@ const CreateJob = () => {
                                 name="education"
                                 value={value.education}
                                 onChange={onChange}
+                                required
                             >
-                                {enums.EDUCATIONS.map(v => <option key={v} value={v}>{v}</option>)}
+                                {enums.EDUCATIONS.map(({ value, label }) => (
+                                    <option key={value} value={value}>
+                                        {label}
+                                    </option>
+                                ))}
                             </select>
                         </label>
                     </div>
@@ -102,6 +130,7 @@ const CreateJob = () => {
                                 name="startDate"
                                 value={value.startDate}
                                 onChange={onChange}
+                                required
                             />
                         </label>
 
@@ -113,6 +142,7 @@ const CreateJob = () => {
                                 name="endDate"
                                 value={value.endDate}
                                 onChange={onChange}
+                                required
                             />
                         </label>
                     </div>
@@ -129,6 +159,7 @@ const CreateJob = () => {
                             name="companyIntroduction"
                             value={value.companyIntroduction}
                             onChange={onChange}
+                            required
                         />
                     </label>
 
@@ -139,6 +170,7 @@ const CreateJob = () => {
                             name="mainResponsibility"
                             value={value.mainResponsibility}
                             onChange={onChange}
+                            required
                         />
                     </label>
 
@@ -149,6 +181,7 @@ const CreateJob = () => {
                             name="qualification"
                             value={value.qualification}
                             onChange={onChange}
+                            required
                         />
                     </label>
 

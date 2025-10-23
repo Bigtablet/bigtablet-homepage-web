@@ -12,6 +12,19 @@ import type {
     Education,
 } from "src/types/job/job.type";
 
+import {
+    DEPARTMENTS,
+    LOCATIONS,
+    RECRUIT_TYPES,
+    EDUCATIONS,
+    departmentLabel,
+    locationLabel,
+    recruitTypeLabel,
+    educationLabel,
+} from "src/utils/job/label";
+
+type Option<T extends string> = { value: T; label: string };
+
 const DEFAULT: PostJobPayload = {
     title: "",
     department: "IT",
@@ -27,38 +40,47 @@ const DEFAULT: PostJobPayload = {
     endDate: "",
 };
 
-const DEPARTMENTS: Department[] = [
-    "BUSINESS_ADMINISTRATION",
-    "SALE",
-    "MARKETING",
-    "IT",
-    "DESIGN",
-    "RESEARCH_AND_DEVELOPMENT",
-];
+const DEPARTMENT_OPTIONS: Option<Department>[] = DEPARTMENTS.map((v) => ({
+    value: v,
+    label: departmentLabel(v),
+}));
 
-const LOCATIONS: Location[] = ["SEOUL", "DAEGU"];
-const RECRUIT_TYPES: RecruitType[] = ["FULL_TIME", "CONTRACT", "INTERN"];
-const EDUCATIONS: Education[] = [
-    "HIGH_SCHOOL",
-    "ASSOCIATE",
-    "BACHELOR",
-    "NO_REQUIREMENT",
-];
+const LOCATION_OPTIONS: Option<Location>[] = LOCATIONS.map((v) => ({
+    value: v,
+    label: locationLabel(v),
+}));
+
+const RECRUIT_TYPE_OPTIONS: Option<RecruitType>[] = RECRUIT_TYPES.map((v) => ({
+    value: v,
+    label: recruitTypeLabel(v),
+}));
+
+const EDUCATION_OPTIONS: Option<Education>[] = EDUCATIONS.map((v) => ({
+    value: v,
+    label: educationLabel(v),
+}));
 
 const usePostJob = () => {
     const router = useRouter();
     const postJobQuery = usePostJobQuery();
     const [value, setValue] = useState<PostJobPayload>(DEFAULT);
 
-    const setField = useCallback(<K extends keyof PostJobPayload>(k: K, v: PostJobPayload[K]) => {
-        setValue(prev => ({ ...prev, [k]: v }));
-    }, []);
+    const setField = useCallback(
+        <K extends keyof PostJobPayload>(k: K, v: PostJobPayload[K]) => {
+            setValue((prev) => ({ ...prev, [k]: v }));
+        },
+        []
+    );
 
-    const onChange: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement> =
-        useCallback((e) => {
+    const onChange: React.ChangeEventHandler<
+        HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    > = useCallback(
+        (e) => {
             const { name, value } = e.target;
             setField(name as keyof PostJobPayload, value as any);
-        }, [setField]);
+        },
+        [setField]
+    );
 
     const canSubmit = useMemo(() => {
         return (
@@ -94,7 +116,12 @@ const usePostJob = () => {
         canSubmit,
         submit,
         isSubmitting: postJobQuery.isPending,
-        enums: { DEPARTMENTS, LOCATIONS, RECRUIT_TYPES, EDUCATIONS },
+        enums: {
+            DEPARTMENTS: DEPARTMENT_OPTIONS,
+            LOCATIONS: LOCATION_OPTIONS,
+            RECRUIT_TYPES: RECRUIT_TYPE_OPTIONS,
+            EDUCATIONS: EDUCATION_OPTIONS,
+        },
     };
 };
 

@@ -17,8 +17,8 @@
   }
 
   &__header {
-    border-bottom: 1px solid var(--line-normal);
     margin-bottom: 40px;
+    border-bottom: 1px solid var(--line-normal);
   }
 
   &__title {
@@ -33,6 +33,7 @@
     align-items: center;
     gap: 12px;
     flex-wrap: wrap;
+    margin-bottom: 16px;
   }
 
   &__chips {

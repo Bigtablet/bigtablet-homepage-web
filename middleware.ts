@@ -1,19 +1,9 @@
-import {NextRequest} from 'next/server';
-import createMiddleware from 'next-intl/middleware';
-import {routing} from 'src/i18n/routing';
+import { NextResponse } from 'next/server';
 
-const intl = createMiddleware({
-    locales: routing.locales as readonly string[],
-    defaultLocale: routing.defaultLocale,
-    localePrefix: 'never'
-});
+export const config = { matcher: '/:path*' };
 
-export default function middleware(req: NextRequest) {
-    return intl(req);
+export default function middleware() {
+    const res = NextResponse.next();
+    res.headers.set('X-MW', 'on'); // 디버그 마킹
+    return res;
 }
-
-export const config = {
-    matcher: [
-        '/((?!_next|api|images|fonts|videos|favicon\\.ico|robots\\.txt|sitemap\\.xml|.*\\..*|admin).*)'
-    ]
-};

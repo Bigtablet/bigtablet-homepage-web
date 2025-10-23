@@ -3,13 +3,14 @@ import { cookies } from "next/headers";
 import Providers from "src/components/common/provider";
 import "src/styles/color/_sementic.scss";
 import "src/styles/typography/_mixin.scss";
-import {Metadata} from "next";
-
+import { Metadata } from "next";
 
 export const metadata: Metadata = {
     title: "Bigtablet",
     description: "Bigtablet's Product",
 };
+
+export const dynamic = "force-dynamic";
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
     const store = await cookies();
@@ -22,7 +23,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
             <link rel="icon" href="/images/logo/favicon.png" />
         </head>
         <body className="font-sans antialiased">
-        <div id="modal"/>
+        <div id="modal" />
         <Providers>{children}</Providers>
         </body>
         </html>

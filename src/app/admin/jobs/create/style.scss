@@ -2,7 +2,6 @@
 @use "src/styles/typography/mixin" as *;
 
 .job-form {
-
   &__title {
     color: var(--text-dark);
     margin-bottom: 20px;
@@ -84,6 +83,34 @@
   gap: 12px;
   > .field {
     flex: 1;
+  }
+}
+
+/* 날짜 아래 한 줄 표시용 */
+.field-row--inline {
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+}
+
+/* 체크박스 */
+.checkbox {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    accent-color: var(--primary);
+    cursor: pointer;
+  }
+
+  span {
+    color: var(--text-sub);
+    @include Medium;
+    @include typography(13px);
+    user-select: none;
   }
 }
 

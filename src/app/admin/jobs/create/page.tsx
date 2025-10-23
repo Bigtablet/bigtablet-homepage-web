@@ -1,19 +1,19 @@
 "use client";
 
 import "./style.scss";
-import usePostJob from "src/hooks/job/useJob";
 import AdminLayout from "src/components/common/admin/layout";
+import usePostJob from "src/hooks/job/useJob";
 
 const CreateJob = () => {
-    const { value, onChange, canSubmit, submit, isSubmitting, enums } = usePostJob();
+    const { value, onChange, canSubmit, submit, isSubmitting, enums, isEvergreen, onToggleEvergreen } = usePostJob();
 
     return (
         <AdminLayout>
             <h1 className="job-form__title">채용공고 등록</h1>
-
             <form
                 className="job-form__grid"
                 onSubmit={(e) => { e.preventDefault(); submit(); }}
+                noValidate
             >
                 {/* 기본정보 */}
                 <div className="job-form__card">
@@ -27,6 +27,8 @@ const CreateJob = () => {
                             value={value.title}
                             onChange={onChange}
                             placeholder="예) 백엔드 개발자"
+                            required
+                            autoComplete="off"
                         />
                     </label>
 
@@ -38,8 +40,11 @@ const CreateJob = () => {
                                 name="department"
                                 value={value.department}
                                 onChange={onChange}
+                                required
                             >
-                                {enums.DEPARTMENTS.map(v => <option key={v} value={v}>{v}</option>)}
+                                {enums.DEPARTMENTS.map(({ value, label }) => (
+                                    <option key={value} value={value}>{label}</option>
+                                ))}
                             </select>
                         </label>
 
@@ -50,8 +55,11 @@ const CreateJob = () => {
                                 name="location"
                                 value={value.location}
                                 onChange={onChange}
+                                required
                             >
-                                {enums.LOCATIONS.map(v => <option key={v} value={v}>{v}</option>)}
+                                {enums.LOCATIONS.map(({ value, label }) => (
+                                    <option key={value} value={value}>{label}</option>
+                                ))}
                             </select>
                         </label>
 
@@ -62,8 +70,11 @@ const CreateJob = () => {
                                 name="recruitType"
                                 value={value.recruitType}
                                 onChange={onChange}
+                                required
                             >
-                                {enums.RECRUIT_TYPES.map(v => <option key={v} value={v}>{v}</option>)}
+                                {enums.RECRUIT_TYPES.map(({ value, label }) => (
+                                    <option key={value} value={value}>{label}</option>
+                                ))}
                             </select>
                         </label>
                     </div>
@@ -77,6 +88,8 @@ const CreateJob = () => {
                                 value={value.experiment}
                                 onChange={onChange}
                                 placeholder="예) 3년 이상"
+                                required
+                                autoComplete="off"
                             />
                         </label>
 
@@ -87,12 +100,16 @@ const CreateJob = () => {
                                 name="education"
                                 value={value.education}
                                 onChange={onChange}
+                                required
                             >
-                                {enums.EDUCATIONS.map(v => <option key={v} value={v}>{v}</option>)}
+                                {enums.EDUCATIONS.map(({ value, label }) => (
+                                    <option key={value} value={value}>{label}</option>
+                                ))}
                             </select>
                         </label>
                     </div>
 
+                    {/* 날짜 */}
                     <div className="field-row">
                         <label className="field">
                             <span className="field__label">시작일*</span>
@@ -102,18 +119,34 @@ const CreateJob = () => {
                                 name="startDate"
                                 value={value.startDate}
                                 onChange={onChange}
+                                required
                             />
                         </label>
 
-                        <label className="field">
-                            <span className="field__label">마감일*</span>
+                        {!isEvergreen && (
+                            <label className="field">
+                                <span className="field__label">마감일*</span>
+                                <input
+                                    className="field__control"
+                                    type="date"
+                                    name="endDate"
+                                    value={value.endDate}
+                                    onChange={onChange}
+                                    required
+                                />
+                            </label>
+                        )}
+                    </div>
+
+                    {/* 상시 체크박스 */}
+                    <div className="field-row field-row--inline">
+                        <label className="checkbox">
                             <input
-                                className="field__control"
-                                type="date"
-                                name="endDate"
-                                value={value.endDate}
-                                onChange={onChange}
+                                type="checkbox"
+                                checked={isEvergreen}
+                                onChange={(e) => onToggleEvergreen(e.target.checked)}
                             />
+                            <span>상시 채용</span>
                         </label>
                     </div>
                 </div>
@@ -129,6 +162,7 @@ const CreateJob = () => {
                             name="companyIntroduction"
                             value={value.companyIntroduction}
                             onChange={onChange}
+                            required
                         />
                     </label>
 
@@ -139,6 +173,7 @@ const CreateJob = () => {
                             name="mainResponsibility"
                             value={value.mainResponsibility}
                             onChange={onChange}
+                            required
                         />
                     </label>
 
@@ -149,11 +184,12 @@ const CreateJob = () => {
                             name="qualification"
                             value={value.qualification}
                             onChange={onChange}
+                            required
                         />
                     </label>
 
                     <label className="field">
-                        <span className="field__label">우대 사항</span>
+                        <span className="field__label">우대 사항*</span>
                         <textarea
                             className="field__control field__textarea"
                             name="preferredQualification"
@@ -175,6 +211,6 @@ const CreateJob = () => {
             </form>
         </AdminLayout>
     );
-};
+}
 
 export default CreateJob;

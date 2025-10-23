@@ -9,7 +9,7 @@ const NAV = [
     { href: "/admin/jobs",       label: "Jobs",       icon: "💼" },
     { href: "/admin/blog",       label: "Blog",       icon: "✍️" },
     { href: "/admin/news",       label: "News",       icon: "📰" },
-    { href: "/admin/profile",    label: "Profile",    icon: "👤" },
+    // { href: "/admin/profile",    label: "Profile",    icon: "👤" },
 ];
 
 const AdminLayout = ({ children }: { children: React.ReactNode }) => {

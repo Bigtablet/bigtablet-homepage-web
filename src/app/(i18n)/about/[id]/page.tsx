@@ -1,23 +1,23 @@
 "use client";
 
-import {useParams, notFound} from "next/navigation";
-import {useTranslations, useLocale} from "next-intl";
+import { useParams, notFound } from "next/navigation";
+import { useTranslations, useLocale } from "next-intl";
 import Link from "next/link";
-import {SLUG_TO_MEMBER, type MemberSlug} from "src/types/member/member.type";
+import { SLUG_TO_MEMBER, type MemberSlug } from "src/types/member/member.type";
 import "./style.scss";
 import Template from "src/components/common/template";
 
 const MemberDetailPage = () => {
-    const {id} = useParams<{ id: string }>();
+    const { id } = useParams<{ id: string }>();
     const t = useTranslations("about.team.members");
     const locale = useLocale();
 
     const key = SLUG_TO_MEMBER[id as MemberSlug];
     if (!key) return notFound();
 
-    const qaList = Array.from({length: 20}, (_, i) => i + 1)
-        .map((n) => ({q: `qa${n}.q`, a: `qa${n}.a`}))
-        .filter(({q, a}) => t.has(`${key}.${q}`) && t.has(`${key}.${a}`));
+    const qaList = Array.from({ length: 20 }, (_, i) => i + 1)
+        .map((n) => ({ q: `qa${n}.q`, a: `qa${n}.a` }))
+        .filter(({ q, a }) => t.has(`${key}.${q}`) && t.has(`${key}.${a}`));
 
     return (
         <Template>
@@ -25,7 +25,7 @@ const MemberDetailPage = () => {
                 <div className="member-detail__inner">
                     <aside className="profile" aria-label="Profile">
                         <div className="profile__image">
-                            <img src={`/images/member/${id}.png`} alt={t(`${key}.name`)}/>
+                            <img src={`/images/member/${id}.png`} alt={t(`${key}.name`)} />
                         </div>
                         <div className="profile__content">
                             <div className="profile__info">
@@ -35,12 +35,22 @@ const MemberDetailPage = () => {
                             <p className="profile__description">{t(`${key}.description`)}</p>
                             <div className="profile__links">
                                 {t.has(`${key}.links.linkedin`) && (
-                                    <Link href={t(`${key}.links.linkedin`)} className="profile__link"
-                                          target="_blank">in</Link>
+                                    <Link
+                                        href={t(`${key}.links.linkedin`)}
+                                        className="profile__link"
+                                        target="_blank"
+                                    >
+                                        in
+                                    </Link>
                                 )}
                                 {t.has(`${key}.links.github`) && (
-                                    <Link href={t(`${key}.links.github`)} className="profile__link"
-                                          target="_blank">gh</Link>
+                                    <Link
+                                        href={t(`${key}.links.github`)}
+                                        className="profile__link"
+                                        target="_blank"
+                                    >
+                                        gh
+                                    </Link>
                                 )}
                             </div>
                         </div>
@@ -49,7 +59,7 @@ const MemberDetailPage = () => {
                     <main className="interview" aria-label="Interview">
                         <div className="interview__scroll">
                             {qaList.length > 0 ? (
-                                qaList.map(({q, a}, i) => (
+                                qaList.map(({ q, a }, i) => (
                                     <article className="qa" key={i}>
                                         <h3 className="qa__q">{t(`${key}.${q}`)}</h3>
                                         <p className="qa__a">{t(`${key}.${a}`)}</p>
@@ -62,7 +72,7 @@ const MemberDetailPage = () => {
                     </main>
                 </div>
 
-                <Link href={`/about`} className="member-detail__back">
+                <Link href={`/about#team`} className="member-detail__back">
                     Back to Team
                 </Link>
             </section>

@@ -15,7 +15,7 @@ const Team = ({ order = DEFAULT_ORDER }: TeamProps) => {
     const t = useTranslations("about.team");
 
     return (
-        <section className="team">
+        <section id="team" className="team">
             <div className="team__grid">
                 {order.map((key) => (
                     <MemberCard key={key} memberKey={key} />

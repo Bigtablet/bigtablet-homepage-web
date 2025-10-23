@@ -5,7 +5,7 @@ import {useLocale} from "next-intl";
 import "./style.scss";
 
 const Footer = () => {
-    const locale = useLocale(); // 필요하면 접근성/aria 용도로만 사용
+    const locale = useLocale();
 
     return (
         <footer className="footer">

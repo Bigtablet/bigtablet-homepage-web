@@ -14,7 +14,7 @@ const Introduce = ({ sectionKey, reverse = false }: AboutType) => {
                 <p className="about__desc">{t(`${sectionKey}.description`)}</p>
             </div>
             <div className="about__image" aria-hidden="true">
-                <img src="/images/logo/logo.png" alt="logo" />
+                <img src="/images/logo/img.png" alt="logo" />
             </div>
         </section>
     );

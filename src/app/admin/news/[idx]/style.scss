@@ -13,7 +13,6 @@
     color: var(--text-darkblue);
   }
 
-  /* ===== 상세 보기 (읽기 모드) ===== */
   .detail-view {
     .card {
       background: var(--background-input);
@@ -29,128 +28,51 @@
       padding: 10px 0;
       border-bottom: 1px dashed var(--line-normal);
 
-      &:first-child {
-        padding-top: 0;
-      }
-
-      &:last-child {
-        padding-bottom: 0;
-        border-bottom: 0;
-      }
+      &:first-child { padding-top: 0; }
+      &:last-child { padding-bottom: 0; border-bottom: 0; }
 
       .label {
-        @include Medium;
-        @include typography(13px);
-        color: var(--text-sub);
-        align-self: center;
+        @include Medium; @include typography(13px);
+        color: var(--text-sub); align-self: center;
       }
-
       .value {
-        @include Regular;
-        @include typography(14px);
-        color: var(--text-dark);
-        word-break: break-word;
+        @include Regular; @include typography(14px);
+        color: var(--text-dark); word-break: break-word;
       }
-
       .link {
-        text-decoration: none;
-        border-bottom: 1px dashed transparent;
-        color: var(--text-dark);
-        transition: border-color .15s ease, opacity .15s ease;
-
-        &:hover {
-          border-color: var(--primary);
-          opacity: .95;
-        }
+        text-decoration: none; border-bottom: 1px dashed transparent;
+        color: var(--text-dark); transition: border-color .15s ease, opacity .15s ease;
+        &:hover { border-color: var(--primary); opacity: .95; }
       }
     }
 
-    .buttons {
-      margin-top: 16px;
-    }
+    .buttons { margin-top: 16px; }
   }
 
-  /* ===== 수정 폼 ===== */
-  .form {
-    @include flex-column;
-    gap: 16px;
-    margin-bottom: 24px;
-
-    label {
-      @include flex-column;
-      gap: 6px;
-
-      span {
-        @include Medium;
-        @include typography(13px);
-        color: var(--text-sub);
-      }
-
-      input {
-        border: 1px solid var(--line-normal);
-        border-radius: 10px;
-        padding: 10px 12px;
-        color: var(--text-dark);
-        background: var(--background-input);
-        outline: none;
-        transition: border-color .15s ease;
-
-        &:focus {
-          border-color: var(--primary);
-        }
-
-        &:disabled {
-          color: var(--text-disabled);
-          border-color: var(--line-strong);
-        }
-      }
-    }
-  }
-
-  /* ===== 버튼 공통 ===== */
   .buttons {
-    @include flex-row;
-    gap: 12px;
+    @include flex-row; gap: 12px;
 
     .btn-primary {
-      @include Medium;
-      @include typography(14px);
-      background: var(--primary);
-      color: var(--text-light);
-      border: none;
-      border-radius: 10px;
-      padding: 10px 16px;
+      @include Medium; @include typography(14px);
+      background: var(--primary); color: var(--text-light);
+      border: none; border-radius: 10px; padding: 10px 16px;
       transition: background .15s ease, transform .06s ease;
-
-      &:hover {
-        background: var(--primary-hover);
-        transform: translateY(-1px);
-      }
-
-      &:disabled {
-        opacity: 0.5;
-        transform: none;
-      }
+      &:hover { background: var(--primary-hover); transform: translateY(-1px); }
+      &:disabled { opacity: 0.5; transform: none; }
     }
 
     .btn-danger {
-      @include Medium;
-      @include typography(14px);
+      @include Medium; @include typography(14px);
       border: 1px solid var(--danger, var(--line-strong));
       color: var(--danger, var(--text-mediumdarkblue));
-      border-radius: 10px;
-      padding: 10px 16px;
-      background: transparent;
+      border-radius: 10px; padding: 10px 16px; background: transparent;
     }
 
     .btn-cancel {
-      @include Regular;
-      @include typography(14px);
+      @include Regular; @include typography(14px);
       border: 1px solid var(--line-normal);
-      border-radius: 10px;
-      padding: 10px 16px;
-      color: var(--text-darkblue);
-      background: var(--background-input);
+      border-radius: 10px; padding: 10px 16px;
+      color: var(--text-darkblue); background: var(--background-input);
     }
   }
 }

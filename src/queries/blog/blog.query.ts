@@ -1,11 +1,17 @@
 "use client";
 
-import {useInfiniteQuery, useMutation, UseMutationOptions, useQuery} from "@tanstack/react-query";
+import { useInfiniteQuery, useMutation, UseMutationOptions, useQuery } from "@tanstack/react-query";
 import { QueryKey } from "src/queries/queryKey";
-import {deleteBlogApi, getBlogApi, getBlogDetailApi, postBlogApi, putBlogApi} from "src/api/blog/blog.api";
-import type {BlogCreateRequest, BlogItem, BlogUpdateRequest} from "src/types/blog/blog.type";
+import {
+    deleteBlogApi,
+    getBlogApi,
+    getBlogDetailApi,
+    postBlogApi,
+    putBlogApi,
+    patchBlogViewApi, // ✅ 추가
+} from "src/api/blog/blog.api";
+import type { BlogCreateRequest, BlogItem, BlogUpdateRequest } from "src/types/blog/blog.type";
 
-// 무한 스크롤용 쿼리
 export const useBlogInfiniteQuery = (size: number) =>
     useInfiniteQuery<BlogItem[]>({
         queryKey: [QueryKey.blog.list, { type: "infinite", size }],
@@ -16,7 +22,6 @@ export const useBlogInfiniteQuery = (size: number) =>
         staleTime: 60_000,
     });
 
-// 단일 상세 쿼리
 export const useBlogDetailQuery = (idx: number) =>
     useQuery<BlogItem>({
         queryKey: [QueryKey.blog.detail, idx],
@@ -49,5 +54,14 @@ export const useBlogDeleteMutation = (
     useMutation({
         mutationKey: [QueryKey.blog.delete],
         mutationFn: (idx) => deleteBlogApi(idx),
+        ...options,
+    });
+
+export const useBlogViewMutation = (
+    options?: UseMutationOptions<{ ok: true }, Error, number>
+) =>
+    useMutation({
+        mutationKey: [QueryKey.blog.view],
+        mutationFn: (idx) => patchBlogViewApi(idx),
         ...options,
     });

@@ -2,7 +2,7 @@
 
 import "./style.scss";
 import { useTranslations } from "next-intl";
-import { useMemo, useRef } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import Portal from "src/libs/portal/portal";
 import type { ModalProps, ModalItem } from "src/types/main/modal/modal.type";
 
@@ -49,7 +49,6 @@ const Modal = ({
                     preload="auto"
                 />
             </div>
-            <div className="solution-hovermodal__seam" />
         </div>
     );
 
@@ -69,24 +68,38 @@ const Modal = ({
         }
     };
 
+    useEffect(() => {
+        const onKey = (e: KeyboardEvent) => {
+            if (e.key === "Escape" && !blockBackdropClose) close();
+        };
+        document.addEventListener("keydown", onKey);
+        return () => document.removeEventListener("keydown", onKey);
+    }, [blockBackdropClose, close]);
+
     return (
         <Portal>
             <div
                 className={`solution-hovermodal__backdrop${blockBackdropClose ? " lock" : ""}`}
                 onClick={blockBackdropClose ? undefined : close}
+                onMouseLeave={(e) => {
+                    const related = (e as React.MouseEvent).relatedTarget as Node | null;
+                    if (!related) armCloseIntent();
+                }}
+                onMouseEnter={cancelCloseIntent}
+                role="presentation"
             >
                 <div
                     className={`solution-hovermodal ${isEntering ? "enter" : ""}`}
                     style={styleVars}
                     onClick={(e) => e.stopPropagation()}
-                    onMouseLeave={armCloseIntent}
-                    onMouseEnter={cancelCloseIntent}
                 >
                     <button className="nav prev" onClick={prev} aria-label="previous">‹</button>
 
-                    <div className="solution-hovermodal__content">
+                    <div className="solution-hovermodal__content" role="dialog" aria-modal="true">
                         <div
-                            className={`solution-hovermodal__track ${sliding ? (sliding.dir === "next" ? "slide-next" : "slide-prev") : ""}`}
+                            className={`solution-hovermodal__track ${
+                                sliding ? (sliding.dir === "next" ? "slide-next" : "slide-prev") : ""
+                            }`}
                         >
                             {sliding?.dir === "prev" && ghost && renderPanel(ghost)}
                             {renderPanel(current)}

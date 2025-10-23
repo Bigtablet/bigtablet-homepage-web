@@ -65,7 +65,7 @@ const RequestList = () => {
             {items.map((item, idx) => (
                 <Link
                     key={String(item.idx ?? `${item.title}-${idx}`)}
-                    href={`/${locale}/recruit/${String(item.idx)}`}
+                    href={`/recruit/${String(item.idx)}`}
                     className="request-item"
                     prefetch
                 >

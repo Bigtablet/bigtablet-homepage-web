@@ -33,6 +33,7 @@ export const QueryKey = {
         create: "/blog",
         update: "/blog",
         delete: "/blog/delete",
+        view: "/blog/view"
     },
     job: {
         post: "/job",

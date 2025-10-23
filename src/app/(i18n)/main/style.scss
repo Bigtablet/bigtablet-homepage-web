@@ -19,8 +19,8 @@
 
 %ground-base {
   @include flex-column;
-  gap: 300px;
-  padding: 100px;
+  gap: clamp(80px, 10vw, 160px);
+  padding: clamp(60px, 8vw, 120px) 5vw;
   width: 100%;
 }
 

@@ -17,7 +17,7 @@ const Banner = () => {
             <div className="content">
                 <h1 className="title">{t("title")}</h1>
                 <p className="description">{t("description")}</p>
-                <Button>{t("button")}</Button>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSd0on7yADoLSWYFN0it0LtCii7ov1yLwIpM91lR66vtHtaEuQ/viewform"><Button>{t("button")}</Button></a>
             </div>
         </section>
     );

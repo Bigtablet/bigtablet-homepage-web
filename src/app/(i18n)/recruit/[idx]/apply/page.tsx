@@ -13,14 +13,8 @@ import {
 import { sendEmailApi, checkEmailApi } from "src/api/email/email.api";
 import "./style.scss";
 
-/* ---------------------------------------
- * Constants
- * ------------------------------------- */
-const EMAIL_RESEND_COOLDOWN = 60; // 이메일 재전송 대기(초)
+const EMAIL_RESEND_COOLDOWN = 60;
 
-/* ---------------------------------------
- * Type Guards / Mappers
- * ------------------------------------- */
 const isEdu = (v: string): v is ApplyEducationLevel =>
     v === ApplyEducationLevel.GED ||
     v === ApplyEducationLevel.HIGH_SCHOOL ||
@@ -30,7 +24,6 @@ const isEdu = (v: string): v is ApplyEducationLevel =>
 const mapEdu = (v: string): ApplyEducationLevel =>
     isEdu(v) ? v : ApplyEducationLevel.BACHELOR;
 
-// 서버 enum과 UI 값 매핑
 const mapMil = (v: string): ApplyMilitaryStatus => {
     if (v === "DONE") return ApplyMilitaryStatus.COMPLETED;
     if (v === "PENDING") return ApplyMilitaryStatus.NOT_COMPLETED;
@@ -44,21 +37,16 @@ const mapMil = (v: string): ApplyMilitaryStatus => {
     return ApplyMilitaryStatus.NOT_APPLICABLE;
 };
 
-// YYYY-MM (기본값: 현재년-월)
 const currentYearMonth = () => {
     const d = new Date();
     const m = `${d.getMonth() + 1}`.padStart(2, "0");
     return `${d.getFullYear()}-${m}`;
 };
 
-/* ---------------------------------------
- * UI State
- * ------------------------------------- */
 type UIState = {
     isVeteranTarget: boolean;
     isDisabilityTarget: boolean;
 
-    // 이메일/인증
     email: string;
     authCode: string;
     emailSent: boolean;
@@ -67,7 +55,6 @@ type UIState = {
     checkLoading: boolean;
     resendSec: number;
 
-    // 학력/링크/파일
     eduLevel: ApplyEducationLevel;
     photoPreview: string;
     portfolioName: string;
@@ -76,6 +63,8 @@ type UIState = {
     link1: string;
     link2: string;
     link3: string;
+
+    phone: string;
 };
 
 const ApplyPage = () => {
@@ -103,47 +92,65 @@ const ApplyPage = () => {
         link1: "",
         link2: "",
         link3: "",
+
+        phone: "",
     });
 
-    const setPartial = (patch: Partial<UIState>) => setUi((s) => ({ ...s, ...patch }));
+    const setPartial = (patch: Partial<UIState>) =>
+        setUi((s) => ({ ...s, ...patch }));
 
     const { upload, isPending: isUploading } = useGcpUpload();
     const { submit, isPending: isSubmitting } = useRecruitApply({
         onSuccess: () => {
             alert("지원서가 성공적으로 제출되었습니다.");
-            router.push(`/${locale}/recruit/${idx}`);
+            router.push(`/recruit/${idx}`);
         },
         onError: (err) => {
             alert(`제출 실패: ${err.message}`);
         },
     });
 
-    /* ---------------------------------------
-     * Helpers
-     * ------------------------------------- */
-    const uploadIfPresent = async (fileLike: FormDataEntryValue | null): Promise<string> => {
+    const uploadIfPresent = async (
+        fileLike: FormDataEntryValue | null
+    ): Promise<string> => {
         const f = fileLike as File | null;
         if (!f || !f.size) return "";
         const url = await upload(f);
         return url ?? "";
     };
 
-    const safeGet = (fd: FormData, name: string) => String(fd.get(name) || "").trim();
+    const safeGet = (fd: FormData, name: string) =>
+        String(fd.get(name) || "").trim();
 
-    /* ---------------------------------------
-     * Handlers
-     * ------------------------------------- */
+    const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        let digits = e.target.value.replace(/\D/g, "");
+        if (!digits.startsWith("010")) {
+            // 010 강제 유지
+            if (digits.length >= 3) {
+                digits = "010" + digits.slice(3);
+            } else {
+                digits = "010";
+            }
+        }
+        digits = digits.slice(0, 11);
+        let formatted = digits;
+        if (digits.length > 3 && digits.length <= 7) {
+            formatted = `${digits.slice(0, 3)}-${digits.slice(3)}`;
+        } else if (digits.length > 7) {
+            formatted = `${digits.slice(0, 3)}-${digits.slice(3, 7)}-${digits.slice(
+                7
+            )}`;
+        }
+        setPartial({ phone: formatted });
+    };
+
     const handlePhotoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
-
-        // 파일 제거
         if (!file) {
             if (ui.photoPreview) URL.revokeObjectURL(ui.photoPreview);
             setPartial({ photoPreview: "" });
             return;
         }
-
-        // PNG만 허용
         if (file.type !== "image/png") {
             alert("PNG 파일만 가능합니다.");
             e.currentTarget.value = "";
@@ -151,29 +158,23 @@ const ApplyPage = () => {
             setPartial({ photoPreview: "" });
             return;
         }
-
-        // 미리보기 갱신
         const url = URL.createObjectURL(file);
         if (ui.photoPreview) URL.revokeObjectURL(ui.photoPreview);
         setPartial({ photoPreview: url });
     };
 
-    // 파일명 표시 업데이트
     const handleDocName =
-        (key: keyof UIState) =>
-            (e: React.ChangeEvent<HTMLInputElement>) => {
-                const file = e.target.files?.[0];
-                setPartial({ [key]: file?.name ?? "" } as Partial<UIState>);
-            };
+        (key: keyof UIState) => (e: React.ChangeEvent<HTMLInputElement>) => {
+            const file = e.target.files?.[0];
+            setPartial({ [key]: file?.name ?? "" } as Partial<UIState>);
+        };
 
-    // 링크 입력 업데이트
     const handleLink =
         (key: "link1" | "link2" | "link3") =>
             (e: React.ChangeEvent<HTMLInputElement>) => {
                 setPartial({ [key]: e.target.value });
             };
 
-    // 이메일 전송
     const handleSendEmail = async () => {
         if (!ui.email) return alert("이메일을 입력해주세요.");
         if (ui.resendSec > 0) return alert(`${ui.resendSec}초 후 재전송 가능합니다.`);
@@ -190,9 +191,9 @@ const ApplyPage = () => {
         }
     };
 
-    // 이메일 인증 확인
     const handleCheckEmail = async () => {
-        if (!ui.email || !ui.authCode) return alert("이메일과 인증 코드를 모두 입력해주세요.");
+        if (!ui.email || !ui.authCode)
+            return alert("이메일과 인증 코드를 모두 입력해주세요.");
 
         setPartial({ checkLoading: true });
         try {
@@ -207,27 +208,36 @@ const ApplyPage = () => {
         }
     };
 
-    // 폼 제출
     const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+
+        if (!ui.emailVerified) {
+            alert("이메일 인증 완료 후 제출 가능합니다.");
+            return;
+        }
+
+        const fd = new FormData(e.currentTarget);
+        const phoneValue = safeGet(fd, "phone") || ui.phone;
+        const phoneOk = /^010-\d{4}-\d{4}$/.test(phoneValue);
+        if (!phoneOk) {
+            alert("전화번호 형식이 올바르지 않습니다. 010-1234-5678 형식으로 입력해주세요.");
+            return;
+        }
 
         if (!Number.isFinite(jobId) || jobId <= 0) {
             alert("유효하지 않은 공고입니다.");
             return;
         }
 
-        const fd = new FormData(e.currentTarget);
         const educationLevel = ui.eduLevel;
         const military = mapMil(safeGet(fd, "military"));
 
         try {
-            // 업로드(있으면)
             const photoUrl = await uploadIfPresent(fd.get("photo"));
             const portfolioUrl = await uploadIfPresent(fd.get("portfolio"));
             const coverLetterUrl = await uploadIfPresent(fd.get("coverletter"));
             const disabilityFileUrl = await uploadIfPresent(fd.get("disabilityFile"));
 
-            // 첨부 링크(최대 3) + 장애 서류를 우선순위로 섞어 3개까지만 배치
             const rawLinks = [
                 safeGet(fd, "attachmentLink1"),
                 safeGet(fd, "attachmentLink2"),
@@ -239,13 +249,12 @@ const ApplyPage = () => {
             for (const link of rawLinks) ordered.push(link);
             const [attachment1 = "", attachment2 = "", attachment3 = ""] = ordered;
 
-            // GED일 경우 학교/기간/학과는 공란, 기간 기본값은 현재년-월
             const isGed = educationLevel === ApplyEducationLevel.GED;
 
             const payload: RecruitRequest = {
                 jobId,
                 name: safeGet(fd, "name"),
-                phoneNumber: safeGet(fd, "phone"),
+                phoneNumber: phoneValue,
                 email: safeGet(fd, "email"),
                 address: safeGet(fd, "address1"),
                 addressDetail: safeGet(fd, "address2"),
@@ -269,10 +278,6 @@ const ApplyPage = () => {
         }
     };
 
-    /* ---------------------------------------
-     * Effects
-     * ------------------------------------- */
-    // 컴포넌트 언마운트 시 미리보기 URL 해제
     useEffect(() => {
         return () => {
             if (ui.photoPreview) URL.revokeObjectURL(ui.photoPreview);
@@ -280,12 +285,10 @@ const ApplyPage = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    // 이메일 변경 시 쿨다운/보냄상태 초기화
     useEffect(() => {
-        setUi((s) => ({ ...s, resendSec: 0, emailSent: false }));
+        setUi((s) => ({ ...s, resendSec: 0, emailSent: false, emailVerified: false, authCode: "" }));
     }, [ui.email]);
 
-    // 1초 카운트다운
     useEffect(() => {
         if (ui.resendSec <= 0) return;
         const id = setInterval(() => {
@@ -294,9 +297,8 @@ const ApplyPage = () => {
         return () => clearInterval(id);
     }, [ui.resendSec]);
 
-    /* ---------------------------------------
-     * Render
-     * ------------------------------------- */
+    const canSubmit = !isSubmitting && !isUploading && ui.emailVerified;
+
     return (
         <Template>
             <div className="apply">
@@ -304,7 +306,6 @@ const ApplyPage = () => {
 
                 <form className="apply__form" noValidate onSubmit={onSubmit}>
                     <div className="apply__grid">
-                        {/* 좌측 폼 */}
                         <div className="apply__left">
                             <div className="field">
                                 <label>이름*</label>
@@ -313,7 +314,16 @@ const ApplyPage = () => {
 
                             <div className="field">
                                 <label>전화번호*</label>
-                                <input name="phone" placeholder="010-1234-1234" required />
+                                <input
+                                    name="phone"
+                                    placeholder="010-1234-5678"
+                                    required
+                                    value={ui.phone}
+                                    onChange={handlePhoneChange}
+                                    inputMode="numeric"
+                                    pattern="^010-\d{4}-\d{4}$"
+                                    maxLength={13}
+                                />
                                 <label className="checkbox">
                                     <input type="checkbox" name="isForeignResident" /> 현재 외국 거주 중
                                 </label>
@@ -336,8 +346,6 @@ const ApplyPage = () => {
                                         value={ui.authCode}
                                         onChange={(e) => setPartial({ authCode: e.target.value })}
                                     />
-
-                                    {/* 전송 버튼 (쿨다운/로딩 반영) */}
                                     <button
                                         type="button"
                                         className="btn ghost"
@@ -350,8 +358,6 @@ const ApplyPage = () => {
                                                 ? `재전송 ${ui.resendSec}s`
                                                 : "전송"}
                                     </button>
-
-                                    {/* 확인 버튼 */}
                                     <button
                                         type="button"
                                         className="btn ghost"
@@ -361,8 +367,6 @@ const ApplyPage = () => {
                                         {ui.checkLoading ? "확인 중..." : "확인"}
                                     </button>
                                 </div>
-
-                                {/* 라이브 영역(스크린리더용) */}
                                 <small className="help" aria-live="polite">
                                     {ui.emailVerified
                                         ? "이메일 인증이 완료되었습니다."
@@ -544,13 +548,12 @@ const ApplyPage = () => {
                                 </ul>
                             </div>
 
-                            <button className="apply__submit" type="submit" disabled={isSubmitting || isUploading}>
-                                {isSubmitting || isUploading ? "제출 중..." : "제출하기"}
+                            <button className="apply__submit" type="submit" disabled={!canSubmit}>
+                                {isSubmitting || isUploading ? "제출 중..." : ui.emailVerified ? "제출하기" : "이메일 인증 필요"}
                             </button>
                             <p className="apply__footer">기타 채용 관련 문의사항은 recruit@bigtablet.com 으로 연락 바랍니다</p>
                         </div>
 
-                        {/* 우측 프로필 사진 */}
                         <div className="apply__right">
                             <label>프로필 사진*</label>
                             <div className="photo">
@@ -576,7 +579,8 @@ const ApplyPage = () => {
                                         onClick={() => {
                                             if (ui.photoPreview) URL.revokeObjectURL(ui.photoPreview);
                                             setPartial({ photoPreview: "" });
-                                            const input = document.querySelector<HTMLInputElement>('input[name="photo"]');
+                                            const input =
+                                                document.querySelector<HTMLInputElement>('input[name="photo"]');
                                             if (input) input.value = "";
                                         }}
                                     >

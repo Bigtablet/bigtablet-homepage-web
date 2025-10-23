@@ -1,17 +1,14 @@
-import { NextRequest, NextResponse } from 'next/server';
-import createMiddleware from 'next-intl/middleware';
-import {routing} from 'src/i18n/routing';
-
-const intlMiddleware = createMiddleware(routing);
-
-export default function middleware(req: NextRequest) {
-    const { pathname } = req.nextUrl;
-    if (pathname === '/') return NextResponse.next();
-    return intlMiddleware(req);
-}
+import { NextResponse } from 'next/server';
 
 export const config = {
     matcher: [
-        '/((?!_next|api|images|fonts|videos|favicon\\.ico|robots\\.txt|sitemap\\.xml|.*\\..*|admin).*)',
+        '/((?!api|_next/static|_next/image|favicon.ico|robots.txt|sitemap.xml|assets|images|video|fonts).*)',
     ],
 };
+
+
+export default function middleware() {
+    const res = NextResponse.next();
+    res.headers.set('X-MW', 'on');
+    return res;
+}

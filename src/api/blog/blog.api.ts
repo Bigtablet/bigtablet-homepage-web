@@ -33,3 +33,8 @@ export const deleteBlogApi = async (idx: number, signal?: AbortSignal): Promise<
     await BigtabletAxios.delete("/blog", { params: { idx }, signal });
     return { ok: true };
 };
+
+export const patchBlogViewApi = async (idx: number, signal?: AbortSignal): Promise<{ ok: true }> => {
+    await BigtabletAxios.patch("/blog", null, { params: { idx }, signal });
+    return { ok: true };
+};

@@ -2,10 +2,11 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useMemo } from "react";
+import { useMemo, useCallback } from "react";
 import { useParams, usePathname } from "next/navigation";
 import "./style.scss";
 import type { BlogItem } from "src/types/blog/blog.type";
+import { useBlogViewMutation } from "src/queries/blog/blog.query";
 
 interface BlogCardProps extends Partial<BlogItem> {
     locale?: string;
@@ -47,6 +48,7 @@ const BlogCard = ({
                   }: BlogCardProps) => {
     const params = useParams<{ locale?: string }>();
     const pathname = usePathname();
+    const { mutate: incView } = useBlogViewMutation();
 
     const locale = useMemo(() => {
         if (localeProp) return localeProp;
@@ -58,6 +60,12 @@ const BlogCard = ({
     const title = (locale.startsWith("ko") ? titleKr : titleEn) ?? "";
     const content = (locale.startsWith("ko") ? contentKr : contentEn) ?? "";
     const time = formatRelative(createdAt, locale);
+
+    const handleClick = useCallback(() => {
+        if (typeof idx === "number") {
+            incView(idx);
+        }
+    }, [incView, idx]);
 
     if (typeof idx !== "number") {
         return (
@@ -86,6 +94,7 @@ const BlogCard = ({
             className="BlogCard"
             aria-label={title ? `${title} 상세보기` : "블로그 상세보기"}
             prefetch
+            onClick={handleClick}
         >
             <div className="BlogCard__thumb">
                 {imageUrl ? (

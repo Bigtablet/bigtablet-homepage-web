@@ -76,7 +76,7 @@ const JobDetail = () => {
                             {accept.isPending ? "합격 처리 중…" : "합격"}
                         </button>
 
-                        <Link href="/admin/applicants" className="btn">목록으로</Link>
+                        <Link href="/admin/jobs" className="btn">목록으로</Link>
                     </div>
                 </header>
 

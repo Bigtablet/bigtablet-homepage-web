@@ -13,13 +13,19 @@ export const config = {
 export default function middleware(req: NextRequest) {
     const res = NextResponse.next();
 
-    const cur = req.cookies.get('NEXT_LOCALE')?.value as typeof LOCALES[number] | undefined;
+    const cur = req.cookies.get('NEXT_LOCALE')?.value as (typeof LOCALES)[number] | undefined;
     if (!cur || !LOCALES.includes(cur)) {
         const al = (req.headers.get('accept-language') || '').toLowerCase();
         const detected = al.includes('ko') ? 'ko' : al.includes('en') ? 'en' : DEFAULT_LOCALE;
-        res.cookies.set('NEXT_LOCALE', detected, {path: '/', maxAge: 60 * 60 * 24 * 365});
+        res.cookies.set('NEXT_LOCALE', detected, {
+            path: '/',
+            maxAge: 60 * 60 * 24 * 365,
+            sameSite: 'lax'
+        });
     }
 
-    res.headers.set('X-MW', 'on');
+    const vary = res.headers.get('Vary');
+    res.headers.set('Vary', vary ? `${vary}, Cookie, Accept-Language` : 'Cookie, Accept-Language');
+
     return res;
 }

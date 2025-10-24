@@ -2,17 +2,17 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useLocale } from "next-intl";
+import { useRouter } from "next/navigation";
 import "./style.scss";
 
 const SUPPORTED = ["ko", "en"] as const;
 type Locale = (typeof SUPPORTED)[number];
 
 const Header = () => {
-    const pathname = usePathname() || "/";
     const locale = useLocale() as Locale;
+    const router = useRouter();
     const [scrolled, setScrolled] = useState(false);
 
     useEffect(() => {
@@ -23,11 +23,11 @@ const Header = () => {
     }, []);
 
     const switchLocale = () => {
-        const nextLocale = (locale === 'en' ? 'ko' : 'en') as 'ko' | 'en';
+        const nextLocale = (locale === "en" ? "ko" : "en") as "ko" | "en";
         document.cookie =
             `NEXT_LOCALE=${nextLocale}; Path=/; Max-Age=31536000; SameSite=Lax` +
-            (process.env.NODE_ENV === 'production' ? '; Secure' : '');
-        window.location.reload();
+            (process.env.NODE_ENV === "production" ? "; Secure" : "");
+        router.refresh(); // 경로 유지, 프리픽스 안 붙음
     };
 
     return (

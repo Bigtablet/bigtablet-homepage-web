@@ -7,8 +7,11 @@ import { useRecruitApply } from "src/hooks/recruit/useRecruit";
 import { useGcpUpload } from "src/hooks/gcp/useGcp";
 import {
     ApplyEducationLevel,
-    ApplyMilitaryStatus,
-    RecruitRequest,
+    type RecruitRequest,
+    type RecruitFormData,
+    type ApplyDegreeDetail,
+    type Gender,
+    toRecruitRequestPayload,
 } from "src/types/recruit/recruit.type";
 import { sendEmailApi, checkEmailApi } from "src/api/email/email.api";
 
@@ -18,25 +21,19 @@ import MilitarySelect from "src/components/recruit/military";
 import PhotoUploader from "src/components/recruit/photo";
 import FilePicker from "src/components/recruit/file";
 import {
-    ALLOWED_EDU_OPTIONS,
-    EMAIL_RESEND_COOLDOWN,
-    MIN_EDU_LEVEL,
-    NAME_KO_REGEX,
     handlePhoneMask010,
-    isEduAllowed,
     mapMil,
     parseYM,
     safeGet,
-    currentYearMonth,
-    mapEdu,
+    isEduAllowed,
+    NAME_KO_REGEX,
+    MIN_EDU_LEVEL,
+    normalizeMilitaryByGender,
 } from "src/components/recruit/validators";
 
 import "./style.scss";
 
 type UIState = {
-    isVeteranTarget: boolean;
-    isDisabilityTarget: boolean;
-
     email: string;
     authCode: string;
     emailSent: boolean;
@@ -45,7 +42,10 @@ type UIState = {
     checkLoading: boolean;
     resendSec: number;
 
-    eduLevel: ApplyEducationLevel;
+    eduLevel: ApplyEducationLevel;     // 서버용(계약 유지) — BACHELOR 고정 운용
+    degreeDetail: ApplyDegreeDetail;   // UI 표기용(학사/석사/박사)
+    gender: Gender;                    // 병역 로직 보조(서버 미전송)
+
     photoPreview: string;
     portfolioName: string;
     coverLetterName: string;
@@ -55,17 +55,17 @@ type UIState = {
     link3: string;
 
     phone: string;
+
+    isVeteranTarget: boolean;
+    isDisabilityTarget: boolean;
 };
 
-const ApplyPage = () => {
-    const { locale, idx } = useParams<{ locale: string; idx: string }>();
+const RecruitApply = () => {
+    const { idx } = useParams<{ locale: string; idx: string }>();
     const router = useRouter();
     const jobId = useMemo(() => Number(idx) || -1, [idx]);
 
     const [ui, setUi] = useState<UIState>({
-        isVeteranTarget: false,
-        isDisabilityTarget: false,
-
         email: "",
         authCode: "",
         emailSent: false,
@@ -75,6 +75,9 @@ const ApplyPage = () => {
         resendSec: 0,
 
         eduLevel: ApplyEducationLevel.BACHELOR,
+        degreeDetail: "BACHELOR",
+        gender: "MALE",
+
         photoPreview: "",
         portfolioName: "",
         coverLetterName: "",
@@ -84,6 +87,9 @@ const ApplyPage = () => {
         link3: "",
 
         phone: "",
+
+        isVeteranTarget: false,
+        isDisabilityTarget: false,
     });
 
     const setPartial = (patch: Partial<UIState>) => setUi((s) => ({ ...s, ...patch }));
@@ -143,6 +149,27 @@ const ApplyPage = () => {
         check: async (email: string, code: string) => checkEmailApi(email, code),
     };
 
+    useEffect(() => {
+        setUi((s) => ({ ...s, resendSec: 0, emailSent: false, emailVerified: false, authCode: "" }));
+    }, [ui.email]);
+
+    useEffect(() => {
+        if (ui.resendSec <= 0) return;
+        const id = setInterval(() => {
+            setUi((s) => ({ ...s, resendSec: Math.max(0, s.resendSec - 1) }));
+        }, 1000);
+        return () => clearInterval(id);
+    }, [ui.resendSec]);
+
+    useEffect(() => {
+        return () => {
+            if (ui.photoPreview) URL.revokeObjectURL(ui.photoPreview);
+        };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
+    const canSubmit = !isSubmitting && !isUploading && ui.emailVerified;
+
     const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
@@ -167,45 +194,43 @@ const ApplyPage = () => {
             return;
         }
 
+        // 공고 유효성
         if (!Number.isFinite(jobId) || jobId <= 0) {
             alert("유효하지 않은 공고입니다.");
             return;
         }
 
-        // 학력(대졸 이상)
-        const educationLevel = ui.eduLevel;
-        if (!isEduAllowed(educationLevel, MIN_EDU_LEVEL)) {
+        // 학력(대졸 이상) — UI detail 기준 검사
+        if (!isEduAllowed(ui.degreeDetail, MIN_EDU_LEVEL)) {
             alert("해당 공고는 대졸 이상 지원 가능합니다. 학력을 다시 선택해주세요.");
             return;
         }
 
-        // 병역(필수)
+        // 성별 & 병역
         const militaryRaw = safeGet(fd, "military");
         if (!militaryRaw) {
             alert("병역 사항을 선택해주세요 (여성의 경우 '해당사항 없음').");
             return;
         }
-        const military = mapMil(militaryRaw);
+        const selected = mapMil(militaryRaw);
+        const military = normalizeMilitaryByGender(ui.gender, selected);
 
-        // 입학/졸업 연월 검증(입학 > 졸업 금지)
-        const isGed = educationLevel === ApplyEducationLevel.GED; // 현재는 GED 노출 X지만 안전망
-        if (!isGed) {
-            const start = safeGet(fd, "eduStart");
-            const end = safeGet(fd, "eduEnd");
-            if (!start || !end) {
-                alert("입학/졸업 연월을 모두 입력해주세요.");
-                return;
-            }
-            const ps = parseYM(start);
-            const pe = parseYM(end);
-            if (!Number.isFinite(ps) || !Number.isFinite(pe)) {
-                alert("입학/졸업 연월 형식이 올바르지 않습니다.");
-                return;
-            }
-            if (ps > pe) {
-                alert("입학일이 졸업일보다 늦을 수 없습니다. 날짜를 다시 확인해주세요.");
-                return;
-            }
+        // 입학/졸업 연월 검증
+        const start = safeGet(fd, "eduStart");
+        const end = safeGet(fd, "eduEnd");
+        if (!start || !end) {
+            alert("입학/졸업 연월을 모두 입력해주세요.");
+            return;
+        }
+        const ps = parseYM(start);
+        const pe = parseYM(end);
+        if (!Number.isFinite(ps) || !Number.isFinite(pe)) {
+            alert("입학/졸업 연월 형식이 올바르지 않습니다.");
+            return;
+        }
+        if (ps > pe) {
+            alert("입학일이 졸업일보다 늦을 수 없습니다. 날짜를 다시 확인해주세요.");
+            return;
         }
 
         try {
@@ -225,7 +250,8 @@ const ApplyPage = () => {
             for (const link of rawLinks) ordered.push(link);
             const [attachment1 = "", attachment2 = "", attachment3 = ""] = ordered;
 
-            const payload: RecruitRequest = {
+            // === 폼 객체 구성 (Client 전용) ===
+            const form: RecruitFormData = {
                 jobId,
                 name: nameValue,
                 phoneNumber: phoneValue,
@@ -235,46 +261,27 @@ const ApplyPage = () => {
                 portfolio: portfolioUrl,
                 coverLetter: coverLetterUrl,
                 profileImage: photoUrl,
-                educationLevel,
-                schoolName: isGed ? "" : safeGet(fd, "eduSchool"),
-                admissionYear: isGed ? currentYearMonth() : safeGet(fd, "eduStart"),
-                graduationYear: isGed ? currentYearMonth() : safeGet(fd, "eduEnd"),
-                department: isGed ? "" : safeGet(fd, "eduMajor"),
+                educationLevel: ApplyEducationLevel.BACHELOR, // 서버 계약 준수
+                degreeDetail: ui.degreeDetail,                 // UI 표기
+                schoolName: safeGet(fd, "eduSchool"),
+                admissionYear: start,
+                graduationYear: end,
+                department: safeGet(fd, "eduMajor"),
+                gender: ui.gender,                             // 서버 미전송(로직용)
                 military,
                 attachment1,
                 attachment2,
                 attachment3,
             };
 
+            // === 서버 페이로드 변환 ===
+            const payload: RecruitRequest = toRecruitRequestPayload(form);
+
             submit(payload);
         } catch {
             alert("파일 업로드 중 오류가 발생했습니다. 다시 시도해주세요.");
         }
     };
-
-    // 이메일 변경 시 인증 상태 초기화
-    useEffect(() => {
-        setUi((s) => ({ ...s, resendSec: 0, emailSent: false, emailVerified: false, authCode: "" }));
-    }, [ui.email]);
-
-    // 재전송 타이머
-    useEffect(() => {
-        if (ui.resendSec <= 0) return;
-        const id = setInterval(() => {
-            setUi((s) => ({ ...s, resendSec: Math.max(0, s.resendSec - 1) }));
-        }, 1000);
-        return () => clearInterval(id);
-    }, [ui.resendSec]);
-
-    // 언마운트 시 미리보기 revoke
-    useEffect(() => {
-        return () => {
-            if (ui.photoPreview) URL.revokeObjectURL(ui.photoPreview);
-        };
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
-
-    const canSubmit = !isSubmitting && !isUploading && ui.emailVerified;
 
     return (
         <Template>
@@ -294,6 +301,23 @@ const ApplyPage = () => {
                                     pattern="^[가-힣]{2,5}$"
                                     title="이름은 한글 2~5자로 입력해주세요."
                                 />
+                            </div>
+
+                            {/* 성별 (서버 미전송, 병역 보정용) */}
+                            <div className="field">
+                                <label>성별*</label>
+                                <div className="row gap8">
+                                    <select
+                                        name="gender"
+                                        value={ui.gender}
+                                        onChange={(e) => setPartial({ gender: e.target.value as Gender })}
+                                        required
+                                    >
+                                        <option value="MALE">남성</option>
+                                        <option value="FEMALE">여성</option>
+                                        <option value="OTHER">기타/응답하지 않음</option>
+                                    </select>
+                                </div>
                             </div>
 
                             {/* 전화번호 */}
@@ -355,17 +379,17 @@ const ApplyPage = () => {
                                 onChange={handleDocName("coverLetterName")}
                             />
 
-                            {/* 학력 */}
+                            {/* 학력 (UI: 석/박 표기 + 서버: BACHELOR 전송) */}
                             <EducationFields
                                 value={ui.eduLevel}
-                                options={ALLOWED_EDU_OPTIONS}
-                                onChange={(lvl) => setPartial({ eduLevel: lvl })}
+                                degreeDetail={ui.degreeDetail}
+                                onDegreeChange={(v) => setPartial({ degreeDetail: v })}
                             />
 
-                            {/* 병역 */}
+                            {/* 병역(필수) */}
                             <MilitarySelect required />
 
-                            {/* 장애 대상자 입력 (조건부) */}
+                            {/* 장애 대상 추가 입력 (옵션) */}
                             {ui.isDisabilityTarget && (
                                 <div className="field">
                                     <div className="row gap8">
@@ -446,7 +470,7 @@ const ApplyPage = () => {
                             <p className="apply__footer">기타 채용 관련 문의사항은 recruit@bigtablet.com 으로 연락 바랍니다</p>
                         </div>
 
-                        {/* 우측 사진 업로더 */}
+                        {/* 사진 업로더 */}
                         <div className="apply__right">
                             <PhotoUploader
                                 previewUrl={ui.photoPreview}
@@ -466,4 +490,4 @@ const ApplyPage = () => {
     );
 };
 
-export default ApplyPage;
+export default RecruitApply;

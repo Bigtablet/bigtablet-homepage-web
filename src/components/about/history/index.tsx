@@ -13,16 +13,16 @@ const groupByYear = (items: HistoryItemType[]) =>
         return acc;
     }, {});
 
-const pad2 = (n: number) => (n < 10 ? `0${n}` : `${n}`);
-const formatYearMonthFromId = (id: string | number) => {
-    const s = String(id).replace(/[^0-9]/g, "");
-    if (s.length >= 6) {
-        const y = s.slice(0, 4);
-        const m = pad2(Number(s.slice(4, 6)) || 1);
-        return `${y}.${m}`;
-    }
-    return s;
-};
+// const pad2 = (n: number) => (n < 10 ? `0${n}` : `${n}`);
+// const formatYearMonthFromId = (id: string | number) => {
+//     const s = String(id).replace(/[^0-9]/g, "");
+//     if (s.length >= 6) {
+//         const y = s.slice(0, 4);
+//         const m = pad2(Number(s.slice(4, 6)) || 1);
+//         return `${y}.${m}`;
+//     }
+//     return s;
+// };
 
 const STICKY_TOP = 96;
 
@@ -36,7 +36,8 @@ const History = ({ items }: Props) => {
         const years = Object.keys(g).map(Number).sort((a, b) => b - a);
         const mapped: YearGroup[] = years.map((y) => ({
             year: y,
-            list: [...g[y]].sort((a, b) => (a.id > b.id ? 1 : -1)),
+            // list: [...g[y]].sort((a, b) => (a.id > b.id ? 1 : -1)), // id 기준 정렬 제거
+            list: [...g[y]],
         }));
         setGroups(mapped);
         if (mapped.length) setCurrentYear((prev) => prev ?? mapped[0].year);
@@ -100,7 +101,6 @@ const History = ({ items }: Props) => {
         }
     }, []);
 
-    // 클릭 시: 먼저 스크롤 → 스크롤 이벤트가 activeYear를 갱신
     const scrollToYear = useCallback((year: number) => {
         const container = scrollRef.current;
         if (!container) return;
@@ -159,18 +159,26 @@ const History = ({ items }: Props) => {
                                 <span className="history__year history__year--inline">{year}</span>
                             </div>
 
-                            {/* 비활성도 DOM에는 두되, 시각적으로만 숨김 */}
-                            <div className={"history__right" + (isActive ? " is-visible" : " is-hidden")} aria-hidden={!isActive}>
-                                {list.map((it) => (
-                                    <div className="history__row" key={it.id}>
+                            <div
+                                className={"history__right" + (isActive ? " is-visible" : " is-hidden")}
+                                aria-hidden={!isActive}
+                            >
+                                {list.map((it, idx) => (
+                                    <div className="history__row" key={idx}>
                                         <span className="history__row-dot" aria-hidden />
                                         <div className="history__row-body">
                                             <div className="history__row-meta">
-                                                <span className="history__badge">{formatYearMonthFromId(it.id)}</span>
-                                                {it.dateLabel && <span className="history__date">{it.dateLabel}</span>}
+                                                {/* <span className="history__badge">
+                                                    {formatYearMonthFromId(it.id)}
+                                                </span> */}
+                                                {it.dateLabel && (
+                                                    <span className="history__date">{it.dateLabel}</span>
+                                                )}
                                             </div>
                                             <div className="history__row-title">{it.title}</div>
-                                            {it.description && <div className="history__row-desc">{it.description}</div>}
+                                            {it.description && (
+                                                <div className="history__row-desc">{it.description}</div>
+                                            )}
                                         </div>
                                     </div>
                                 ))}

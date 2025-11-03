@@ -1,5 +1,4 @@
-@use "src/styles/typography/mixin.scss" as *;
-@use "src/styles/function/flex.scss" as *;
+@use "src/shared/styles/typography/mixin" as *;
 
 .member-detail {
   color: var(--text-light);
@@ -18,12 +17,6 @@
     align-items: start;
   }
 
-  &__nav {
-    inline-size: min(1100px, 92vw);
-    display: grid;
-    justify-items: start;
-  }
-
   &__back {
     @include Medium;
     font-size: 14px;
@@ -35,107 +28,9 @@
   }
 }
 
-.profile {
-  @include flex-column;
-  color: var(--text-dark);
-  gap: 10px;
-  padding: 16px;
-
-  &__image {
-    inline-size: 100%;
-    aspect-ratio: 1 / 1.25;
-    border-radius: 8px;
-    overflow: hidden;
-    background: #f2f4f7;
-
-    img {
-      inline-size: 100%;
-      block-size: 100%;
-      object-fit: cover;
-      display: block;
-    }
-  }
-
-  &__content {
-    @include flex-column;
-    gap: 10px;
-    color: var(--text-darkblue);
-
-    &__info {
-      gap: 5px;
-      &__position {
-        @include Medium;
-        font-size: 14px;
-      }
-
-      &__name {
-        @include SemiBold;
-        font-size: 28px;
-      }
-    }
-
-    &__description {
-      @include Regular;
-      font-size: 20px;
-    }
-  }
-
-  &__links {
-    display: grid;
-    grid-auto-flow: column;
-    gap: 8px;
-    justify-content: start;
-  }
-
-  &__link {
-    inline-size: 28px;
-    block-size: 28px;
-    border-radius: 6px;
-    background: var(--text-dark);
-    color: var(--text-light);
-    display: grid;
-    place-items: center;
-    text-decoration: none;
-    @include Medium;
-    font-size: 12px;
-  }
-}
-
-.interview {
-  &__scroll {
-    max-block-size: calc(100vh - 32px - 40px);
-    overflow-y: auto;
-    display: grid;
-    row-gap: 16px;
-    padding-inline-end: 6px;
-  }
-
-  &__empty {
-    @include Regular;
-    font-size: 14px;
-    color: var(--text-light);
-  }
-}
-
-.qa {
-  background: var(--text-light);
-  color: var(--text-dark);
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  border-radius: 12px;
-  padding: 16px;
-  display: grid;
-  row-gap: 8px;
-
-  &__q {
-    @include SemiBold;
-    font-size: 20px;
-    color: var(--text-dark);
-  }
-
-  &__a {
-    @include Regular;
-    font-size: 16px;
-    color: var(--text-darkblue);
-    white-space: pre-line;
+@media (max-width: 960px) {
+  .member-detail__inner {
+    grid-template-columns: 1fr;
+    row-gap: 20px;
   }
 }

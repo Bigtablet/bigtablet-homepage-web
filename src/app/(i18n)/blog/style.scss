@@ -1,20 +1,22 @@
-@use "src/styles/function/flex" as *;
-@use "src/styles/typography/mixin" as *;
+@use "src/shared/styles/function/flex" as *;
+@use "src/shared/styles/typography/mixin" as *;
 
-.BlogPage {
+/* 섹션 */
+.blog-page {
   width: 100%;
   padding: 40px 0 80px;
 }
 
-.BlogPage__title {
+.blog-page__title {
   @include Bold;
-  @include typography(28px);
+  font-size: 28px;
   margin-bottom: 32px;
   color: var(--text-dark);
   text-align: center;
 }
 
-.BlogPage__grid {
+/* 그리드 */
+.blog-page__grid {
   display: grid;
   grid-template-columns: repeat(1, minmax(0, 1fr));
   gap: 24px;
@@ -24,11 +26,19 @@
 }
 
 @media (min-width: 768px) {
-  .BlogPage__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .blog-page__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
 @media (min-width: 1024px) {
-  .BlogPage__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .blog-page__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
 
-.BlogPage__sentinel { height: 1px; }
+.blog-page__sentinel { height: 1px; }
+
+.blog-page__empty {
+  @include Regular;
+  font-size: 20px;
+  margin-top: 40px;
+  color: var(--text-sub);
+  text-align: center;
+}

@@ -1,0 +1,50 @@
+@use "src/shared/styles/function/flex" as *;
+@use "src/shared/styles/typography/mixin" as *;
+
+.team {
+  @include flex-column;
+  width: 100%;
+  background: var(--text-darkblue);
+  color: #ffffff;
+  padding: 80px 0;
+  gap: 30px;
+
+  &__head {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+
+  &__title {
+    @include SemiBold;
+    text-align: center;
+    font-size: 32px;
+    padding: 20px 0;
+  }
+
+  &__desc {
+    @include Regular;
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    max-width: 900px;
+    margin: 0 auto;
+    gap: 32px;
+    justify-items: center;
+  }
+
+  @media (max-width: 1024px) {
+    &__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr)); // 태블릿에서 2열
+    }
+  }
+
+  @media (max-width: 640px) {
+    &__grid {
+      grid-template-columns: repeat(1, minmax(0, 1fr)); // 모바일에서 1열
+    }
+  }
+}

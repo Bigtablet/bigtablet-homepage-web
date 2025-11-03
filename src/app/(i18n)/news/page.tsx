@@ -1,54 +1,50 @@
 "use client";
 
+/** @description 뉴스 목록 페이지(페이지네이션 + 섹션 위젯 분리) */
 import "./style.scss";
-import Template from "src/components/common/template";
-import NewsCard from "src/components/news";
-import { useEffect, useMemo, useRef } from "react";
-import useNews from "src/hooks/news/useNews";
+import { useMemo } from "react";
 import { useLocale, useTranslations } from "next-intl";
+import { usePathname, useSearchParams } from "next/navigation";
+import Frame from "src/widgets/layout/frame";
+import Pagination from "src/shared/ui/pagenation/ui";
+import NewsListSection from "src/widgets/news/list";
+import { useNewsPageQuery } from "src/features/news/model/news.query";
 
-const PAGE_SIZE = 9;
+const DEFAULT_SIZE = 9;
 
 const NewsPage = () => {
     const t = useTranslations("news");
     const locale = useLocale();
-    const { data, fetchNextPage, hasNextPage, isFetchingNextPage } = useNews(PAGE_SIZE);
-    const sentinelRef = useRef<HTMLDivElement | null>(null);
+    const pathname = usePathname();
+    const sp = useSearchParams();
 
-    const items = useMemo(() => (data?.pages ?? []).flat(), [data]);
+    const page = Math.max(1, Number(sp.get("page") ?? 1));
+    const size = Math.max(1, Number(sp.get("size") ?? DEFAULT_SIZE));
 
-    useEffect(() => {
-        if (!sentinelRef.current || !hasNextPage) return;
-        const io = new IntersectionObserver(entries => {
-            if (entries.some(e => e.isIntersecting) && hasNextPage && !isFetchingNextPage) {
-                fetchNextPage();
-            }
-        }, { rootMargin: "800px 0px" });
-
-        io.observe(sentinelRef.current);
-        return () => io.disconnect();
-    }, [fetchNextPage, hasNextPage, isFetchingNextPage]);
+    const { data, isLoading } = useNewsPageQuery({ page, size });
+    const items = useMemo(() => data?.items ?? [], [data]);
+    const hasNext = Boolean(data?.hasNext);
 
     return (
-        <Template>
-            <section className="NewsPage">
-                <h2 className="NewsPage__title">{t("title")}</h2>
+        <Frame>
+            <section className="news-page">
+                <h2 className="news-page__title">{t("title")}</h2>
 
-                <div className="NewsPage__grid">
-                    {items.map(item => (
-                        <NewsCard
-                            key={item.idx}
-                            title={locale === "ko" ? item.titleKr : item.titleEn}
-                            url={item.newsUrl}
-                            createdAt={item.createdAt}
-                            locale={locale}
-                        />
-                    ))}
-                </div>
+                <NewsListSection
+                    items={items}
+                    locale={locale}
+                    isLoading={isLoading}
+                    pageSize={size}
+                />
 
-                <div ref={sentinelRef} className="NewsPage__sentinel" />
+                <Pagination
+                    page={page}
+                    size={size}
+                    hasNext={hasNext}
+                    basePath={pathname}
+                />
             </section>
-        </Template>
+        </Frame>
     );
 };
 

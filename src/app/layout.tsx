@@ -1,8 +1,8 @@
-import "src/styles/global.scss";
+import "src/shared/styles/global.scss";
 import { cookies } from "next/headers";
-import Providers from "src/components/common/provider";
-import "src/styles/color/_sementic.scss";
-import "src/styles/typography/_mixin.scss";
+import Providers from "src/widgets/layout/provider";
+import "src/shared/styles/color/_sementic.scss";
+import "src/shared/styles/typography/_mixin.scss";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {

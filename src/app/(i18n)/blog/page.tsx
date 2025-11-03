@@ -1,50 +1,48 @@
 "use client";
 
-import "./style.scss";
-import Template from "src/components/common/template";
-import BlogCard from "src/components/blog";
-import { useEffect, useMemo, useRef } from "react";
-import { useBlogInfiniteQuery } from "src/queries/blog/blog.query";
-import { useLocale, useTranslations } from "next-intl";
-
-const PAGE_SIZE = 9;
+import {useMemo} from "react";
+import {useLocale} from "next-intl";
+import {usePathname, useSearchParams} from "next/navigation";
+import Frame from "src/widgets/layout/frame";
+import {useBlogPageQuery} from "src/features/blog/model/queries/blog.query";
+import BlogListSection from "src/widgets/blog/list";
+import Pagination from "src/shared/ui/pagenation/ui";
 
 const BlogPage = () => {
-    const t = useTranslations("blog");
     const locale = useLocale();
-    const { data, fetchNextPage, hasNextPage, isFetchingNextPage } = useBlogInfiniteQuery(PAGE_SIZE);
-    const sentinelRef = useRef<HTMLDivElement | null>(null);
+    const pathname = usePathname();
+    const sp = useSearchParams();
 
-    const items = useMemo(() => (data?.pages ?? []).flat(), [data]);
+    const page = Math.max(1, Number(sp.get("page") ?? 1));
+    const size = Math.max(1, Number(sp.get("size") ?? 9));
 
-    useEffect(() => {
-        if (!sentinelRef.current || !hasNextPage) return;
-        const io = new IntersectionObserver(
-            (entries) => {
-                if (entries.some((e) => e.isIntersecting) && hasNextPage && !isFetchingNextPage) {
-                    fetchNextPage();
-                }
-            },
-            { rootMargin: "800px 0px" }
-        );
-        io.observe(sentinelRef.current);
-        return () => io.disconnect();
-    }, [fetchNextPage, hasNextPage, isFetchingNextPage]);
+    const {data, isLoading} = useBlogPageQuery({page, size});
+    const items = useMemo(() => data?.items ?? [], [data]);
 
     return (
-        <Template>
-            <section className="BlogPage">
-                <h2 className="BlogPage__title">{t("title")}</h2>
+        <Frame>
+            <section style={{width: "100%"}}>
 
-                <div className="BlogPage__grid">
-                    {items.map((item) => (
-                        <BlogCard key={item.idx} {...item} locale={locale} />
-                    ))}
-                </div>
+                <BlogListSection
+                    items={items}
+                    locale={locale}
+                    isLoading={isLoading}
+                    hasNextPage={false}
+                    isFetchingNextPage={false}
+                    fetchNextPage={() => {
+                    }}
+                    pageSize={size}
+                    hrefBuilder={(item) => `${pathname}/${item.idx}`}
+                />
 
-                <div ref={sentinelRef} className="BlogPage__sentinel" />
+                <Pagination
+                    page={page}
+                    size={size}
+                    hasNext={Boolean(data?.hasNext)}
+                    // totalPages 미제공 환경 → 생략 가능
+                />
             </section>
-        </Template>
+        </Frame>
     );
 };
 

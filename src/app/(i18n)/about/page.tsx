@@ -1,12 +1,13 @@
 "use client";
 
 import "./style.scss";
-import Template from "src/components/common/template";
-import Introduce from "src/components/about/introduce";
-import History from "src/components/about/history";
-import Team from "src/components/about/team";
-import type { HistoryItemType } from "src/types/about/history.type";
+import Frame from "src/widgets/layout/frame";
+
+import History from "src/widgets/about/history/ui";
+import Team from "src/widgets/about/team/ui";
+import type { HistoryItemType } from "src/widgets/about/history/type";
 import { useMessages } from "next-intl";
+import Introduce from "src/widgets/about/introduce/ui";
 
 type HistoryRawItem =
     | string
@@ -32,12 +33,12 @@ const About = () => {
     );
 
     return (
-        <Template>
+        <Frame>
             <Introduce sectionKey="section1" />
             <Introduce sectionKey="section2" reverse />
             <History items={items} />
             <Team />
-        </Template>
+        </Frame>
     );
 };
 

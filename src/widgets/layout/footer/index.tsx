@@ -36,30 +36,30 @@ const Footer = () => {
                             </svg>
                         </a>
                     </li>
-                    <li>
-                        <a
-                            target="_blank"
-                            rel="noreferrer"
-                            aria-label="X"
-                            className="footer__social-btn"
-                        >
-                            <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
-                                <path fill="currentColor" d="M18.9 2H22l-6.9 7.9L23 22h-6.8l-5.3-6.8L4.8 22H2l7.4-8.5L1 2h6.9l4.9 6.2L18.9 2zm-2.4 18h2.2L8.6 4H6.3l10.2 16z"/>
-                            </svg>
-                        </a>
-                    </li>
-                    <li>
-                        <a
-                            target="_blank"
-                            rel="noreferrer"
-                            aria-label="Facebook"
-                            className="footer__social-btn"
-                        >
-                            <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
-                                <path fill="currentColor" d="M13.5 22v-8.5H16l.4-3H13.5V8.1c0-.9.3-1.5 1.6-1.5H16V4.1C15.6 4 14.7 4 13.7 4 11.4 4 9.8 5.4 9.8 7.8V10.5H7v3h2.8V22h3.7z"/>
-                            </svg>
-                        </a>
-                    </li>
+                    {/*<li>*/}
+                    {/*    <a*/}
+                    {/*        target="_blank"*/}
+                    {/*        rel="noreferrer"*/}
+                    {/*        aria-label="X"*/}
+                    {/*        className="footer__social-btn"*/}
+                    {/*    >*/}
+                    {/*        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">*/}
+                    {/*            <path fill="currentColor" d="M18.9 2H22l-6.9 7.9L23 22h-6.8l-5.3-6.8L4.8 22H2l7.4-8.5L1 2h6.9l4.9 6.2L18.9 2zm-2.4 18h2.2L8.6 4H6.3l10.2 16z"/>*/}
+                    {/*        </svg>*/}
+                    {/*    </a>*/}
+                    {/*</li>*/}
+                    {/*<li>*/}
+                    {/*    <a*/}
+                    {/*        target="_blank"*/}
+                    {/*        rel="noreferrer"*/}
+                    {/*        aria-label="Facebook"*/}
+                    {/*        className="footer__social-btn"*/}
+                    {/*    >*/}
+                    {/*        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">*/}
+                    {/*            <path fill="currentColor" d="M13.5 22v-8.5H16l.4-3H13.5V8.1c0-.9.3-1.5 1.6-1.5H16V4.1C15.6 4 14.7 4 13.7 4 11.4 4 9.8 5.4 9.8 7.8V10.5H7v3h2.8V22h3.7z"/>*/}
+                    {/*        </svg>*/}
+                    {/*    </a>*/}
+                    {/*</li>*/}
                 </ul>
             </div>
         </footer>

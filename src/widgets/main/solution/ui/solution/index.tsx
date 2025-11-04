@@ -110,7 +110,7 @@ const Solution = () => {
                         key={id}
                         id={id}
                         src={src}
-                        label={t(`product.${id}.title`)}
+                        label={t(`product.${id}.cardTitle`)}
                         onOpen={openFromRect}
                     />
                 ))}

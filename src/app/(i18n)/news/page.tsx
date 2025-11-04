@@ -13,7 +13,6 @@ import { useNewsPageQuery } from "src/features/news/model/news.query";
 const DEFAULT_SIZE = 9;
 
 const NewsPage = () => {
-    const t = useTranslations("news");
     const locale = useLocale();
     const pathname = usePathname();
     const sp = useSearchParams();
@@ -28,7 +27,6 @@ const NewsPage = () => {
     return (
         <Frame>
             <section className="news-page">
-                <h2 className="news-page__title">{t("title")}</h2>
 
                 <NewsListSection
                     items={items}

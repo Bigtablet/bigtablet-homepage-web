@@ -18,12 +18,10 @@ const Modal = ({
                    prev,
                    next,
                    close,
-                   scheduleClose
                }: ModalProps) => {
     const t = useTranslations("main.solution");
     const intentTimerRef = useRef<number | null>(null);
 
-    // opening transform variables
     const styleVars = useMemo(() => {
         if (!animVars) return {};
         return {
@@ -70,7 +68,6 @@ const Modal = ({
         }
     };
 
-    // esc to close
     useEffect(() => {
         const onKey = (e: KeyboardEvent) => {
             if (e.key === "Escape" && !blockBackdropClose) close();
@@ -96,7 +93,11 @@ const Modal = ({
                     style={styleVars}
                     onClick={(e) => e.stopPropagation()}
                 >
-                    <button className="solution-modal__nav solution-modal__nav--prev" onClick={prev} aria-label="previous">
+                    <button
+                        className="solution-modal__nav solution-modal__nav--prev"
+                        onClick={prev}
+                        aria-label="previous"
+                    >
                         ‹
                     </button>
 
@@ -112,7 +113,11 @@ const Modal = ({
                         </div>
                     </div>
 
-                    <button className="solution-modal__nav solution-modal__nav--next" onClick={next} aria-label="next">
+                    <button
+                        className="solution-modal__nav solution-modal__nav--next"
+                        onClick={next}
+                        aria-label="next"
+                    >
                         ›
                     </button>
                 </div>

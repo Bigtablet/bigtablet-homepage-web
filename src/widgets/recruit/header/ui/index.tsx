@@ -29,7 +29,7 @@ const RecruitHeader = ({ filters, onChange }: Props) => {
         <header className="recruit-header">
             <div className="recruit-header__text">
                 <h2>픽셀 너머의 세상을 향해</h2>
-                <p>빅태블릿의 여정헤 함께하실 파트너 분들을 모집합니다.</p>
+                <p>빅태블릿의 여정을 함께하실 파트너 분들을 모집합니다.</p>
             </div>
 
             <div className="recruit-search">

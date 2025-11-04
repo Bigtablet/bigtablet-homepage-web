@@ -1,5 +1,5 @@
-@use "src/styles/function/flex" as *;
-@use "src/styles/typography/mixin" as *;
+@use "src/shared/styles/function/flex" as *;
+@use "src/shared/styles/typography/mixin" as *;
 
 .TermsOfUse {
   padding: 50px 0;

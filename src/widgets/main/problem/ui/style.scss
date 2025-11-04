@@ -1,0 +1,45 @@
+@use "src/shared/styles/function/flex" as *;
+@use "src/shared/styles/typography/mixin" as *;
+
+.problem {
+  @include flex-row;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 80%;
+  max-width: 1200px;
+  margin: 0 auto;
+  white-space: pre-line;
+  gap: 24px;
+}
+
+.problem__title {
+  @include SemiBold;
+  font-size: 40px;
+  color: var(--text-dark);
+  flex: 0 0 35%;
+  line-height: 1.25;
+}
+
+.problem__description {
+  @include Medium;
+  font-size: 20px;
+  color: var(--text-dark);
+  flex: 0 0 55%;
+  line-height: 1.6;
+}
+
+/* 반응형 */
+@media (max-width: 900px) {
+  .problem {
+    @include flex-column;
+    width: 88%;
+  }
+  .problem__title {
+    font-size: 32px;
+    flex: 0 0 auto;
+  }
+  .problem__description {
+    font-size: 18px;
+    flex: 0 0 auto;
+  }
+}

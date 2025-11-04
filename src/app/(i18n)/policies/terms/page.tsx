@@ -1,7 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import Template from "src/components/common/template";
+import Template from "src/widgets/layout/frame";
 import "../style.scss";
 
 const Terms = () => {

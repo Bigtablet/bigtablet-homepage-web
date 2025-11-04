@@ -1,0 +1,40 @@
+@use "src/shared/styles/typography/mixin" as *;
+
+.interview {
+  &__scroll {
+    max-block-size: calc(100vh - 32px - 40px);
+    overflow-y: auto;
+    display: grid;
+    row-gap: 16px;
+    padding-inline-end: 6px;
+  }
+
+  &__empty {
+    @include Regular;
+    font-size: 14px;
+    color: var(--text-light);
+  }
+}
+
+.qa {
+  background: var(--text-light);
+  color: var(--text-dark);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 12px;
+  padding: 16px;
+  display: grid;
+  row-gap: 8px;
+
+  &__q {
+    @include SemiBold;
+    font-size: 20px;
+    color: var(--text-dark);
+  }
+
+  &__a {
+    @include Regular;
+    font-size: 16px;
+    color: var(--text-darkblue);
+    white-space: pre-line;
+  }
+}

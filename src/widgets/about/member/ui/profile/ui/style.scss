@@ -1,0 +1,74 @@
+@use "src/shared/styles/function/flex" as *;
+@use "src/shared/styles/typography/mixin" as *;
+
+.profile {
+  @include flex-column;
+  color: var(--text-dark);
+  gap: 10px;
+  padding: 16px;
+
+  &__image {
+    position: relative;
+    inline-size: 100%;
+    aspect-ratio: 1 / 1.25;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #f2f4f7;
+
+    img {
+      object-fit: cover;
+    }
+
+    &-fallback {
+      inline-size: 100%;
+      block-size: 100%;
+      background: #eaecef;
+    }
+  }
+
+  &__content {
+    @include flex-column;
+    gap: 10px;
+    color: var(--text-darkblue);
+  }
+
+  &__info {
+    display: grid;
+    row-gap: 5px;
+  }
+
+  &__position {
+    @include Medium;
+    font-size: 14px;
+  }
+
+  &__name {
+    @include SemiBold;
+    font-size: 28px;
+  }
+
+  &__description {
+    @include Regular;
+    font-size: 20px;
+  }
+
+  &__links {
+    display: grid;
+    grid-auto-flow: column;
+    gap: 8px;
+    justify-content: start;
+  }
+
+  &__link {
+    inline-size: 28px;
+    block-size: 28px;
+    border-radius: 6px;
+    background: var(--text-dark);
+    color: var(--text-light);
+    display: grid;
+    place-items: center;
+    text-decoration: none;
+    @include Medium;
+    font-size: 12px;
+  }
+}

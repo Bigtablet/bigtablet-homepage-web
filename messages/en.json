@@ -454,9 +454,11 @@
     }
   },
   "news": {
-    "title": "Recent News"
+    "title": "News",
+    "empty": "No news yet."
   },
   "blog": {
-    "title": "Recent Blog"
+    "title": "Blog",
+    "empty": "No blog posts yet."
   }
 }

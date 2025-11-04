@@ -1,0 +1,12 @@
+@use "src/shared/styles/typography/mixin" as *;
+
+.component__button {
+  @include SemiBold;
+  cursor: pointer;
+  font-size: 20px;
+  padding: 16px 48px;
+  background-color: var(--text-mediumdarkblue);
+  color: var(--text-light);
+  border-radius: 12px;
+  border: none
+}

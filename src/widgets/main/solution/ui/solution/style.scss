@@ -1,0 +1,42 @@
+@use "src/shared/styles/typography/mixin" as *;
+@use "src/shared/styles/function/flex" as *;
+
+/* 섹션 루트 */
+.solution {
+  @include flex-column;
+  @include flex-center;
+  gap: 80px;
+}
+
+/* 섹션 제목 */
+.solution__title {
+  @include SemiBold;
+  font-size: 40px;
+  color: var(--text-light);
+  text-align: center;
+  white-space: pre-line;
+}
+
+/* 카드 그리드 */
+.solution__grid {
+  @include flex-row;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+/* 반응형 */
+@media (max-width: 900px) {
+  .solution { gap: 56px; }
+
+  .solution__title {
+    font-size: 32px;
+  }
+
+  .solution-card {
+    width: 46vw;
+    max-width: 320px;
+    height: 40vw;
+    max-height: 360px;
+  }
+}

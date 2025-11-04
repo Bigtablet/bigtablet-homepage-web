@@ -1,35 +1,33 @@
-import Banner from "src/components/main/banner";
-import Problem from "src/components/main/problem";
-import Solution from "src/components/main/solution";
-import Collaborations from "src/components/main/collaborations";
 import "./style.scss";
-import Frame from "src/components/common/template";
+import Frame from "src/widgets/layout/frame";
+import Banner from "src/widgets/main/banner/ui";
+import Problem from "src/widgets/main/problem/ui";
+import Solution from "src/widgets/main/solution/ui/solution";
+import Collaborations from "src/widgets/main/collaborations/ui";
 
-const Main = () => {
+const MainPage = () => {
     return (
         <Frame>
-            <main className="main-content">
+            <div className="snap">
+                <Banner />
+            </div>
+
+            <section className="gradient">
                 <div className="snap">
-                    <Banner />
+                    <Problem />
                 </div>
+                <div className="snap">
+                    <Solution />
+                </div>
+            </section>
 
-                <section className="gradient">
-                    <div className="snap">
-                        <Problem />
-                    </div>
-                    <div className="snap">
-                        <Solution />
-                    </div>
-                </section>
-
-                <section className="collab-bg">
-                    <div className="snap">
-                        <Collaborations />
-                    </div>
-                </section>
-            </main>
+            <section className="collab-bg">
+                <div className="snap">
+                    <Collaborations />
+                </div>
+            </section>
         </Frame>
     );
 };
 
-export default Main;
+export default MainPage;

@@ -1,272 +1,112 @@
-@use "src/styles/function/flex" as *;
-@use "src/styles/typography/mixin" as *;
+@use "src/shared/styles/function/flex" as *;
+@use "src/shared/styles/typography/mixin" as *;
 
+/* 컨테이너 */
 .apply {
-  max-width: 960px;
-  margin: 0 auto;
-  padding: 64px 24px;
-  color: var(--text-normal);
+  width: 100%;
+  padding: 24px 0 64px;
+  border-top: 1px solid var(--line-normal);
 
   &__title {
     @include SemiBold;
     font-size: 28px;
     color: var(--text-dark);
-    margin-bottom: 24px;
-    border-bottom: 1px solid var(--line-normal);
-    padding-bottom: 12px;
-  }
-
-  &__form {
-    width: 100%;
+    margin: 0 0 20px;
   }
 
   &__grid {
-    display: flex;
-    align-items: flex-start;
-    gap: 40px;
+    display: grid;
+    gap: 24px;
   }
 
-  &__left {
-    @include flex-column;
-    gap: 18px;
-    flex: 1;
+  &.is-split .apply__grid {
+    grid-template-columns: 1fr 320px; /* 좌: 가변 / 우: 고정 */
+    align-items: start;
   }
 
+  @media (max-width: 1024px) {
+    &.is-split .apply__grid { grid-template-columns: 1fr; }
+  }
+
+  &__left { display: flex; flex-direction: column; gap: 16px; }
   &__right {
-    width: 220px;
+    position: sticky; top: 88px; /* 상단 고정 느낌 */
+    display: flex; flex-direction: column; gap: 10px;
+    min-width: 280px;
+
+    .apply__hint { @include Regular; font-size: 12px; color: var(--text-sub); }
   }
+}
 
-  .field {
-    @include flex-column;
-    gap: 10px;
+/* 필드 공통 */
+.field {
+  display: flex; flex-direction: column; gap: 8px;
 
-    label {
-      @include Medium;
-      font-size: 14px;
-      color: var(--text-darkblue);
-    }
+  label { @include Medium; font-size: 14px; color: var(--text-dark); }
+  .sub { font-size: 12px; color: var(--text-sub); margin-left: 6px; }
 
-    .sub {
-      @include Regular;
-      color: var(--text-sub);
-      margin-left: 6px;
-      font-size: 12px;
-    }
-
-    input, select, textarea {
-      border: 1px solid var(--line-normal);
-      background: var(--background-input);
-      border-radius: 6px;
-      padding: 10px 12px;
-      font-size: 15px;
-      color: var(--text-normal);
-
-      &:focus {
-        outline: 1px solid var(--primary);
-      }
-    }
-
-    input[type="file"] {
-      padding: 8px;
-    }
+  input, select {
+    width: 100%; padding: 10px 12px;
+    border: 1px solid var(--line-normal);
+    border-radius: 10px;
+    background: var(--background-light);
+    color: var(--text-dark); font-size: 14px;
+    &:focus { border-color: var(--line-strong); outline: none; }
+    &::placeholder { color: var(--text-disabled); }
   }
 
   .row {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 150px auto auto;
     gap: 8px;
 
-    > * {
-      flex: 1;
-    }
-  }
-
-  .gap8 {
-    gap: 8px;
-  }
-
-  .checkbox {
-    @include Medium;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 13px;
-    color: var(--text-sub);
-  }
-
-  .btn {
-    height: 40px;
-    padding: 0 14px;
-    border-radius: 6px;
-    border: 1px solid var(--line-normal);
-    background: var(--background-light);
-    color: var(--text-darkblue);
-    font-size: 14px;
-    cursor: pointer;
-    white-space: nowrap;
-
-    &.ghost:hover {
-      background: #f3f6fb;
-    }
-
-    &.seg {
-      flex: 1;
-      background: var(--background-light);
-      border-color: var(--line-normal);
-
-      &.on {
-        background: var(--primary);
-        color: var(--text-light);
-        border-color: var(--primary);
-      }
-    }
-  }
-
-  .help {
-    font-size: 12px;
-    color: var(--primary);
-    margin-top: -6px;
-  }
-
-  .photo {
-    text-align: center;
-
-    &__box {
-      width: 180px;
-      height: 230px;
-      border: 1px dashed var(--line-strong);
-      border-radius: 8px;
-      display: grid;
-      place-items: center;
-      margin: 6px auto 8px;
-      cursor: pointer;
-      color: var(--text-disabled);
-      font-size: 42px;
-      background: var(--background-light);
-    }
-
-    p {
-      font-size: 12px;
-      color: var(--text-sub);
-    }
-  }
-
-  .notice {
-    margin-top: 8px;
-    padding-top: 8px;
-    color: var(--text-sub);
-    font-size: 13px;
-
-    ul {
-      list-style: disc;
-      padding-left: 18px;
-      line-height: 1.7;
-    }
-  }
-
-  &__submit {
-    width: 100%;
-    height: 52px;
-    border: none;
-    border-radius: 8px;
-    background: var(--primary);
-    color: var(--text-light);
-    font-weight: 700;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color .15s ease;
-    margin-top: 12px;
-
-    &:hover {
-      background: var(--primary-hover);
-    }
-  }
-
-  &__footer {
-    text-align: center;
-    margin-top: 10px;
-    color: var(--text-sub);
-    font-size: 13px;
-  }
-
-  .photo__img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 8px;
-    display: block;
-  }
-
-  .file {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-
-    .file__trigger {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      height: 40px;
-      padding: 0 16px;
-      border-radius: 8px;
+    .code { min-width: 150px; }
+    .btn.ghost.sm {
+      padding: 8px 10px;
       border: 1px solid var(--line-normal);
-      background: var(--background-light);
-      color: var(--text-darkblue);
-      font-size: 14px;
-      cursor: pointer;
-      transition: transform .06s ease, box-shadow .12s ease, background-color .12s ease;
-
-      &:hover {
-        background: #f4f7fb;
-      }
-
-      &:active {
-        transform: translateY(1px);
-      }
-    }
-
-    .file__name {
-      flex: 1;
-      min-height: 40px;
-      display: inline-flex;
-      align-items: center;
-      padding: 0 12px;
-      border: 1px dashed var(--line-normal);
       border-radius: 8px;
-      background: var(--background-input);
-      color: var(--text-sub);
-      font-size: 14px;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      background: var(--background-light);
+      font-size: 13px; color: var(--text-dark);
       white-space: nowrap;
     }
-  }
 
-  .stack {
-    display: grid;
-    gap: 8px;
-  }
-
-  .visually-hidden {
-    position: absolute !important;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0 0 0 0);
-    border: 0;
-    white-space: nowrap;
-  }
-
-  @media (max-width: 860px) {
-    &__grid {
-      flex-direction: column;
-    }
-    &__right {
-      width: 100%;
-    }
-    .photo__box {
-      margin-left: 0;
+    @media (max-width: 680px) {
+      grid-template-columns: 1fr 1fr;
+      .btn.ghost.sm { width: 100%; }
     }
   }
+
+  .stack { display: grid; grid-template-columns: 1fr; gap: 8px; }
+  .help { font-size: 12px; color: var(--text-sub); }
 }
+
+/* 제출/푸터 */
+.apply__submit {
+  margin-top: 8px; padding: 12px 16px;
+  border-radius: 10px; border: 1px solid var(--line-strong);
+  background: var(--background-light);
+  color: var(--text-dark); font-weight: 600;
+}
+.apply__footer { @include Regular; font-size: 12px; color: var(--text-sub); margin-top: 8px; }
+
+/* 업로드 컴포넌트 기본(UploadInput 클래스 훅) */
+.file {
+  display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+
+  &__trigger {
+    padding: 8px 12px; border: 1px solid var(--line-normal); border-radius: 10px;
+    background: var(--background-light); color: var(--text-dark);
+    cursor: pointer; font-size: 13px; white-space: nowrap;
+  }
+  &__name { font-size: 13px; color: var(--text-sub); }
+}
+
+.photo { display: flex; flex-direction: column; gap: 8px; width: 100%; }
+.photo__box {
+  width: 100%; aspect-ratio: 3/4; min-height: 220px;
+  border: 1px dashed var(--line-normal);
+  border-radius: 12px; background: #f6f7f8;
+  overflow: hidden; display: grid; place-items: center;
+}
+.photo__img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.btn.ghost { padding: 8px 12px; border: 1px solid var(--line-normal); border-radius: 10px; background: var(--background-light); color: var(--text-dark); }

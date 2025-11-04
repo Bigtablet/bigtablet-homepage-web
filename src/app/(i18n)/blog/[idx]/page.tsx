@@ -1,58 +1,62 @@
 "use client";
 
 import "./style.scss";
-import Template from "src/components/common/template";
+import Frame from "src/widgets/layout/frame";
 import Image from "next/image";
-import { useParams } from "next/navigation";
-import { useLocale } from "next-intl";
-import { useBlogDetailQuery } from "src/queries/blog/blog.query";
+import {useEffect, useRef} from "react";
+import {useParams} from "next/navigation";
+import {useLocale} from "next-intl";
+import {useBlogDetailQuery, useBlogViewMutation} from "src/features/blog/model/queries/blog.query";
+import {formatRelative} from "src/shared/libs/ui/date";
 
-const formatRelative = (dateStr: string, locale: string) => {
-    const d = new Date(dateStr);
-    const now = new Date();
-    const diffMs = d.getTime() - now.getTime();
-    const absSec = Math.round(Math.abs(diffMs) / 1000);
-    const rtf = new Intl.RelativeTimeFormat(locale.startsWith("ko") ? "ko" : "en", { numeric: "auto" });
-    if (absSec < 60) return rtf.format(Math.round(diffMs / 1000), "second");
-    const absMin = Math.round(absSec / 60);
-    if (absMin < 60) return rtf.format(Math.round(diffMs / (60 * 1000)), "minute");
-    const absHr = Math.round(absMin / 60);
-    if (absHr < 24) return rtf.format(Math.round(diffMs / (60 * 60 * 1000)), "hour");
-    const absDay = Math.round(absHr / 24);
-    return rtf.format(Math.round(diffMs / (24 * 60 * 60 * 1000)), "day");
-};
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
-const BlogDetail = () => {
-    const { idx } = useParams<{ idx: string }>();
+const BlogDetailPage = () => {
+    const {idx} = useParams<{ idx: string }>();
     const idNum = Number(idx);
     const locale = useLocale();
 
-    const { data, isLoading, isError } = useBlogDetailQuery(idNum);
+    const {data, isLoading, isError} = useBlogDetailQuery(idNum);
+
+    // 조회수 증가
+    const {mutate: incView} = useBlogViewMutation();
+    const firedRef = useRef(false);
+    useEffect(() => {
+        if (!firedRef.current && Number.isFinite(idNum) && idNum > 0) {
+            firedRef.current = true;
+            incView(idNum);
+        }
+    }, [idNum, incView]);
 
     const title = data ? (locale.startsWith("ko") ? data.titleKr : data.titleEn) : "";
     const content = data ? (locale.startsWith("ko") ? data.contentKr : data.contentEn) : "";
     const time = data ? formatRelative(data.createdAt, locale) : "";
 
     return (
-        <Template>
-            <section className="BlogDetail">
-                {!Number.isFinite(idNum) && <p className="BlogDetail__empty">잘못된 요청입니다. (idx 누락)</p>}
+        <Frame>
+            <section className="blog-detail">
+                {!Number.isFinite(idNum) && <p className="blog-detail__empty">잘못된 요청입니다. (idx 누락)</p>}
+
                 {Number.isFinite(idNum) && (
                     <>
-                        {isLoading && <p className="BlogDetail__loading">불러오는 중...</p>}
-                        {isError && <p className="BlogDetail__empty">게시글을 불러오지 못했습니다.</p>}
-                        {data && (
-                            <article className="BlogDetail">
-                                <h1 className="BlogDetail__title">{title}</h1>
+                        {isLoading && <p className="blog-detail__loading">불러오는 중...</p>}
+                        {isError && <p className="blog-detail__empty">게시글을 불러오지 못했습니다.</p>}
 
-                                <div className="BlogDetail__meta">
-                                    <span className="BlogDetail__time">{time}</span>
-                                    <span className="BlogDetail__dot">·</span>
-                                    <span className="BlogDetail__views">{data.views.toLocaleString()} views</span>
+                        {data && (
+                            <article className="blog-detail__body">
+                                <h1 className="blog-detail__title">{title}</h1>
+
+                                <div className="blog-detail__meta">
+                                    <span className="blog-detail__time">{time}</span>
+                                    <span className="blog-detail__dot">·</span>
+                                    <span className="blog-detail__views">
+                    {(data.views ?? 0).toLocaleString()} views
+                  </span>
                                 </div>
 
                                 {data.imageUrl && (
-                                    <div className="BlogDetail__hero">
+                                    <div className="blog-detail__hero">
                                         <Image
                                             src={data.imageUrl}
                                             alt={title || "blog thumbnail"}
@@ -63,14 +67,18 @@ const BlogDetail = () => {
                                     </div>
                                 )}
 
-                                <div className="BlogDetail__content">{content}</div>
+                                <div className="blog-detail__content">
+                                    <ReactMarkdown rehypePlugins={[remarkGfm]}>
+                                        {content}
+                                    </ReactMarkdown>
+                                </div>
                             </article>
                         )}
                     </>
                 )}
             </section>
-        </Template>
+        </Frame>
     );
 };
 
-export default BlogDetail;
+export default BlogDetailPage;

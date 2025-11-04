@@ -39,7 +39,6 @@ const BlogPage = () => {
                     page={page}
                     size={size}
                     hasNext={Boolean(data?.hasNext)}
-                    // totalPages 미제공 환경 → 생략 가능
                 />
             </div>
         </Frame>

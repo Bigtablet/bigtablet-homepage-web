@@ -65,7 +65,7 @@ const RequestList = ({ filters }: Props) => {
             )}
 
             {!isLoading && isError && (
-                <div className="request-list__empty">오류가 발생했습니다: {error?.message}</div>
+                <div className="request-list__empty">{error?.message}</div>
             )}
 
             {!isLoading && !isError && data.length === 0 && (

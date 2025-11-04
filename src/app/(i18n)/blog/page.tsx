@@ -21,7 +21,7 @@ const BlogPage = () => {
 
     return (
         <Frame>
-            <section style={{width: "100%"}}>
+            <div className="blog-page">
 
                 <BlogListSection
                     items={items}
@@ -39,9 +39,8 @@ const BlogPage = () => {
                     page={page}
                     size={size}
                     hasNext={Boolean(data?.hasNext)}
-                    // totalPages 미제공 환경 → 생략 가능
                 />
-            </section>
+            </div>
         </Frame>
     );
 };

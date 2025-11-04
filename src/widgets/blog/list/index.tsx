@@ -37,9 +37,6 @@ const BlogListSection = ({
 
     return (
         <section className="blog-page">
-            <div className="blog-page__header">
-                <h2>{t("title")}</h2>
-            </div>
 
             <div className="blog-page__grid">
                 {isLoading
@@ -56,7 +53,7 @@ const BlogListSection = ({
             </div>
 
             {!isLoading && flatItems.length === 0 && (
-                <p className="blog-page__empty">게시물이 없습니다.</p>
+                <p className="blog-page__empty">(t{"empty"})</p>
             )}
 
             <div ref={sentinelRef} className="blog-page__sentinel" />

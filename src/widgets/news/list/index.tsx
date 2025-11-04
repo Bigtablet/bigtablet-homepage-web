@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 /** @description 뉴스 리스트 섹션(UI 전용) */
 import "./style.scss";
 import NewsCard from "src/widgets/news/card/ui";
@@ -7,6 +8,7 @@ import SkeletonCard from "src/shared/ui/skeleton/card";
 import {NewsListProps} from "./type";
 
 const NewsListSection = ({ items, locale, isLoading, pageSize }: NewsListProps) => {
+    const t = useTranslations("news");
     return (
         <section className="news-page">
             <div className="news-page__grid">
@@ -24,7 +26,7 @@ const NewsListSection = ({ items, locale, isLoading, pageSize }: NewsListProps) 
             </div>
 
             {!isLoading && items.length === 0 && (
-                <p className="news-page__empty">No news.</p>
+                <p className="news-page__empty">(t{"empty"})</p>
             )}
         </section>
     );

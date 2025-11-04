@@ -6,14 +6,6 @@
   padding: 40px 0 80px;
 }
 
-.news-page__title {
-  @include Bold;
-  font-size: 28px;
-  margin-bottom: 32px;
-  color: var(--text-dark);
-  text-align: center;
-}
-
 .news-page__grid {
   display: grid;
   grid-template-columns: repeat(1, minmax(0, 1fr));

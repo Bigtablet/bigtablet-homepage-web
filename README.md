@@ -1,36 +1,81 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# BIGTABLET Frontend Template (Next.js) — User Guide
 
-## Getting Started
+This project is a frontend template based on Next.js 16 + React 19 + TypeScript. It uses pnpm as the package manager. This guide is written with WebStorm as the IDE and macOS as the OS environment in mind.
 
-First, run the development server:
+[📘 Read this in English](./README.md)
+
+**Key Dependencies:** `next 16.0.1`, `react 19.2.0`, `@tanstack/react-query`, `axios`, `zod`, `react-toastify`
+**Development Tools:** `TypeScript`, `Biome` (lint/format)
+
+---
+
+## Quick Start
+
+### 1) Requirements
+-   **Recommended Node.js:** v20 LTS or higher (latest LTS recommended for Next.js 16 compatibility)
+-   **Package Manager:** pnpm
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+# Install pnpm (if not already installed)
+npm i -g pnpm
+
+# Install dependencies
+pnpm install
+
+# Run development server
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Once the development server is running, open http://localhost:3000 in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 2) Key Scripts
+- `pnpm dev` — Run development server
+- `pnpm build` — Create production build
+- `pnpm start` — Run built app
+- `pnpm lint` — Static code analysis with Biome
+- `pnpm format` — Auto-format with Biome
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## Directory Structure (Summary)
 
-To learn more about Next.js, take a look at the following resources:
+Root Essential Files:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- `next.config.ts`, `tsconfig.json`, `biome.json`, `pnpm-lock.yaml`
+- `src/` — App Source
+- `public/` — Static Assets
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## Biome
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Biome configuration is located in `biome.json`.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Check: `pnpm lint`
+- Format: `pnpm format`
+For WebStorm, one of the following integrations is recommended:
+
+1) Register `pnpm lint` / `pnpm format` as a **Run Configuration** to execute regularly.
+2) Use **File Watchers** to automatically run ``biome format --write`` on save.
+
+Additionally, ensure type safety with TypeScript (Strict mode recommended).
+
+---
+
+## WebStorm (macOS) Recommended Settings
+1. **Node Version Selection**: In *Preferences → Node.js*, specify Node 20 LTS.
+2. **pnpm Usage Setup**: In *Preferences* → Languages & Frameworks → Node.js*, set the package manager to pnpm.
+3. **Path Aliases (Optional)**: If using `paths` in tsconfig.json, confirm WebStorm's automatic recognition by checking *Preferences → TypeScript* for project tsconfig indexing.
+4. **SCSS Support**: *In Preferences → Languages & Frameworks → Stylesheets*, verify SCSS recognition.
+5. **Run/Debug**: Register pnpm dev as an npm run configuration for debugging.
+
+---
+
+## Build & Run
+```bash
+# Production build
+pnpm build
+
+# Run the built result
+pnpm start
+```

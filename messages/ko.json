@@ -281,178 +281,178 @@
       "members": {
         "CEO": {
           "position": "CEO",
-          "name": "Jiho Moon",
-          "description": "An explorer in search of optimal efficiency",
+          "name": "문지호",
+          "description": "최적의 효율을 찾아 떠나는 모험가",
           "image": "/images/member/jiho.png",
           "qa1": {
-            "q": "Hello, Jiho! Could you briefly introduce yourself?",
-            "a": "I’m Jiho Moon, the CEO of Bigtablet. I started my career a bit earlier than most, largely because I’m curious about many different fields and tend to keep learning until I’ve solved whatever puzzles me. In a way, that early start and curiosity—never giving up until a problem is resolved—have shaped the past three years of building Bigtablet."
+            "q": "안녕하세요 문지호님! 간단한 자기소개 부탁드립니다.",
+            "a": "안녕하세요. 빅태블릿의 CEO 문지호입니다. 저는 남들보다 조금 일찍 사회생활을 시작했는데요, 다양한 분야에 대한 호기심이 많고, 관심이 생기면 끝까지 파고드는 성격입니다. 이런 성향과 빠른 사회 경험이 지금의 저를 만들었고, 빅태블릿과 함께 지난 3년간 끈기 있게 성장할 수 있었던 원동력이라고 생각합니다."
           },
           "qa2": {
-            "q": "Please tell us a bit about what you do.",
-            "a": "I’m essentially involved in everything from zero to one hundred at Bigtablet, with a particular focus on how we’ll grow and the directions we should take to achieve meaningful outcomes."
+            "q": "현재 맡고 계신 업무를 간단히 소개해 주실 수 있을까요?",
+            "a": "저는 빅태블릿의 전반적인 방향과 성장 전략을 총괄하고 있습니다. 회사가 앞으로 어떤 길로 나아갈지 고민하며, 지속 가능한 성장을 위한 비전을 제시하는 역할을 맡고 있습니다."
           },
           "qa3": {
-            "q": "What motivated you to start a company?",
-            "a": "Many people think entrepreneurship is only for domain experts or those with brilliant ideas, but I found joy and fulfillment in spotting problems and solving them. The company I started in college, Bigtablet, is no longer just a company—it’s a partner that tackles real-world challenges together."
+            "q": "창업을 결심하게 된 계기가 있으신가요?",
+            "a": "많은 분들이 창업은 특정 분야의 전문가나 혁신적인 아이디어가 있는 사람만이 하는 일이라고 생각하지만, 저는 문제를 발견하고 해결하는 과정에서 즐거움과 성취감을 느꼈습니다. 대학 시절 창업한 빅태블릿은 이제 단순한 회사가 아니라, 함께 세상의 문제를 해결해 나가는 파트너라고 생각합니다."
           },
           "qa4": {
-            "q": "What kind of company do you want Bigtablet to become?",
-            "a": "We began as a startup, and our goal is to grow into a global AI solutions company. Together with our current team and the culture we’ve built, we aim to become a specialized company with real impact in global markets."
+            "q": "앞으로 빅태블릿을 어떤 회사로 성장시키고 싶으신가요?",
+            "a": "스타트업으로 시작한 빅태블릿을 글로벌 AI 솔루션 기업으로 성장시키는 것이 목표입니다. 함께하는 팀원들과 좋은 문화를 기반으로, 글로벌 시장에서도 영향력 있는 전문 기업으로 자리 잡고 싶습니다."
           },
           "qa5": {
-            "q": "What do you think is the biggest benefit of working at Bigtablet?",
-            "a": "Growing together within a fast-moving organization. It’s not just about the work—people from different backgrounds come together, create synergy, and learn from one another. And yes, our benefits are pretty good too!"
+            "q": "빅태블릿에서 일하면서 느낀 가장 큰 장점은 무엇인가요?",
+            "a": "빠르게 성장하는 조직에서 함께 성장할 수 있다는 점이 가장 큰 장점이라고 생각합니다. 단순히 일적인 성장뿐만 아니라, 서로 다른 배경의 사람들이 모여 시너지를 만들어가는 과정이 매우 인상 깊습니다. 물론 복지도 아주 좋습니다!"
           },
           "qa6": {
-            "q": "Lastly, do you have a message for current and future team members?",
-            "a": "Bigtablet is hitting its stride and growing quickly. Rapid growth in a short time means we’ll find areas to improve, and that’s okay. Thank you to everyone who’s with us now, and to those considering joining—we’re excited to write a new chapter in AI together. Thank you!"
+            "q": "마지막으로 현재 팀원분들, 그리고 앞으로 함께할 분들에게 한 말씀 부탁드립니다.",
+            "a": "지금 빅태블릿은 빠른 성장의 길을 걷고 있습니다. 그만큼 도전과 개선이 필요한 부분도 많지만, 지금까지 함께해준 팀원분들께 감사드립니다. 앞으로 함께할 분들도 AI 시장에서 새로운 역사를 만들어 갈 멋진 여정을 함께하길 기대합니다."
           }
         },
         "CTO": {
           "position": "CTO",
-          "name": "Minho Park",
-          "description": "An engineer eager to change the world with technology",
+          "name": "박민호",
+          "description": "기술로 세상을 바꾸고 싶은 공돌이",
           "image": "/images/member/minho.png",
           "qa1": {
-            "q": "Hello, Minho! Please introduce yourself.",
-            "a": "Hello, I’m Minho Park, leading R&D at Bigtablet."
+            "q": "안녕하세요 민호님! 간단한 자기소개 부탁드립니다.",
+            "a": "안녕하세요. 빅태블릿에서 연구개발을 맡고 있는 박민호입니다."
           },
           "qa2": {
-            "q": "What does a CTO do at Bigtablet?",
-            "a": "As Chief Technology Officer, I oversee our technology strategy and execution. I lead development of our AI CCTV solutions and broader research initiatives, set technical direction for external collaborations, and handle R&D proposals and IP management."
+            "q": "CTO라는 직책이 다소 낯설기도 한데요, 어떤 역할을 맡고 계신지 소개해 주실 수 있나요?",
+            "a": "CTO는 Chief Technology Officer, 즉 최고기술책임자로서 회사의 기술 전략과 실행을 총괄하는 직책입니다. 저는 빅태블릿에서 AI CCTV 솔루션 개발과 기술 연구를 이끌고 있으며, 외부 협력 프로젝트의 기술적 방향도 담당하고 있습니다. 또한 R&D 제안서 작성, 지식재산권 관리 등 기술 관련 행정 업무도 맡고 있습니다."
           },
           "qa3": {
-            "q": "Could you briefly introduce what you’re building now?",
-            "a": "We’re developing a platform that uses Video Coding for Machines (VCM) to optimize video for AI consumption. Instead of compressing video for human viewing, we compress it for machine perception—preserving high resolution for regions of interest while reducing background, redundant frames, and excess color information. This can cut storage by up to 70% versus standard codecs while maintaining detection and tracking accuracy. We’re applying this to solutions for smart retail, smart cities, and more."
+            "q": "현재 빅태블릿에서 개발 중인 기술을 간단히 소개해 주실 수 있나요?",
+            "a": "저희는 VCM(Video Coding for Machines) 기반의 영상 AI 분석 플랫폼을 개발하고 있습니다. 기존의 영상 압축이 ‘사람이 보기 좋은 영상’에 초점을 맞췄다면, 우리는 ‘AI가 읽기 좋은 영상’에 초점을 맞추고 있습니다. 불필요한 배경 정보나 중복된 프레임, 과도한 색상 정보를 줄여 영상 용량을 최대 70%까지 줄이면서도 객체 탐지와 추적 정확도를 유지합니다. 이 기술을 기반으로 스마트 리테일, 스마트시티 등 다양한 산업 분야로 확장하고 있습니다."
           },
           "qa4": {
-            "q": "What was challenging in the early product stage?",
-            "a": "My background was research-focused, so building real products—designing UI/UX and making things intuitive—was new and challenging. With limited resources early on, we had to develop, operate, and validate simultaneously, which required clear prioritization. Through this, I learned to balance technical excellence with productization and market fit."
+            "q": "초기 프로덕트 개발 단계에서 어려웠던 점이 있었나요?",
+            "a": "저는 원래 연구 중심의 일을 해왔기 때문에 실제 프로덕트 개발은 처음이었습니다. 단순히 알고리즘 성능을 높이는 것이 아니라, 사용자 경험(UX)과 인터페이스(UI)까지 고려해야 했던 점이 쉽지 않았습니다. 또한 초기에는 리소스가 부족해 개발, 운영, 검증을 동시에 진행해야 했기 때문에 우선순위를 명확히 정하고 효율적으로 일하는 것이 가장 큰 도전이었습니다."
           },
           "qa5": {
-            "q": "What is Bigtablet’s technical vision?",
-            "a": "Our vision is captured by the phrase “Vision Beyond Pixels.” We aim to go beyond mere recognition—toward interpreting context and meaning to create new value."
+            "q": "앞으로 빅태블릿이 만들어가고자 하는 기술적 비전은 무엇인가요?",
+            "a": "우리의 비전은 ‘Vision Beyond Pixels’이라는 문구에 담겨 있습니다. 단순히 영상을 인식하는 것을 넘어, 그 안의 맥락과 의미를 해석해 새로운 가치를 창출하는 기술을 지향합니다."
           }
         },
         "Manage": {
-          "position": "Operations",
-          "name": "Chaehyung Lee",
-          "description": "Keeping things balanced, just right",
+          "position": "전무이사",
+          "name": "이채형",
+          "description": "적당하게",
           "image": "/images/member/chaehyung.png",
           "qa1": {
-            "q": "Hello, Chaehyung! Please introduce yourself.",
-            "a": "Hello, I’m Chaehyung Lee, handling administrative operations at Bigtablet."
+            "q": "안녕하세요 채형님! 간단한 자기소개 부탁드립니다!",
+            "a": "안녕하십니까. 주식회사 빅태블릿에서 행정 업무를 담당하고 있는 이채형입니다."
           },
           "qa2": {
-            "q": "What do you do at Bigtablet?",
-            "a": "I manage operational tasks related to our projects and customer support. Since we don’t yet have fully separate teams for areas like accounting, I take on a range of administrative work as needs arise. Going forward, I’ll focus more on customer support as our services expand."
+            "q": "맡으신 업무에 대해서 간단하게 소개 부탁드릴게요!",
+            "a": "우선 제가 하고 있는 업무는 빅태블릿에서 진행 사업 관련 실무 담당 및 영업 CS 담당을 하고 있습니다. 아직 회계 등의 부분에서 당장에는 자체적인 과나 팀이 없는 상황이라, 실질적인 업무 내용이 무엇이다 라고 정확하게 정해져있기 보다, 그때그때 행정상 필요한 일에 대한 업무를 수행하고 있는 편입니다.\n\n추후에는 그래도 서비스를 구축하고, 제공하는 과정에 있어서 CS 관련 업무를 주로 담당하게 될 것 같습니다."
           },
           "qa3": {
-            "q": "What led you to join Bigtablet?",
-            "a": "It wasn’t anything dramatic. While looking for an internship before graduation, I found Bigtablet nearby—and I liked the idea of working in a less hierarchical, more agile environment. After an initial internship, I joined as a full-time team member."
+            "q": "빅태블릿에 합류하게 된 배경이나, 결정적인 계기가 있었을까요?",
+            "a": "사실 되게 거창한 배경이나 계기가 있는 것은 아니었고, 졸업하기에 앞서 현장실습을 하기 위해 여러 기업을 살펴보던 중 거리도 가까웠고, 무엇보다 대표님이 젊으셔서,.,. 다른 곳에 가면 괜히 위계적이고 무거운 분위기일 거라고 생각해서 오게 되었는데, 현장실습때의 연이 닿아서 인턴으로 근무하다가 지금까지 오게 되었습니다."
           },
           "qa4": {
-            "q": "When do you feel most proud of your work?",
-            "a": "Whenever the company moves forward—winning grants, progressing in programs—I feel proud. More than thinking “I’m doing great,” I feel motivated to keep improving."
+            "q": "업무를 진행하면서 ‘아, 내가 잘하고 있구나’라고 느낀 순간이 있었나요?",
+            "a": "아직까지 제가 잘하고 있구나. 라는 느낌보다는 지원사업이나, 회사 차원에서 뭔가 진일보하는 일들이 있을 경우에는 덩달아 뿌듯해지는 기분을 느끼곤 합니다. 사실 아직까지 잘하고 있구나 라는 감정보다는 더 열심히 해야 할 때가 아닌가 하는 양가적인 감정이네요."
           },
           "qa5": {
-            "q": "How do you hope to grow within the company?",
-            "a": "My motto is “steady and sustainable.” I don’t need to be the star of the show; I want to be consistently helpful—like a steady breeze that keeps people comfortable, even if it isn’t always noticed."
+            "q": "앞으로 회사 안에서 어떤 역할이나 방향으로 성장하고 싶으신가요?",
+            "a": "보통 회사라고 하면 엄청 고고하게, 마땅히 그런 꼭대기에 올라서는 기분을 느끼고 싶다 라는 감정이 생길거라고 생각했는데, 저는 그런 쪽은 아니더라구요. ‘가늘고 길게’가 모토입니다,.. 그냥 에어컨은 못되더라도 선풍기가 되고 싶다는 생각을 해본 적이 있어요. 너무 비유적이긴 한데 에어컨처럼 필요할 때 존재를 인식은 못하더라도, 엄청나게 도움되다가, 어느 순간 한 걸음 물러 나 있는 것처럼 그냥 있는데 적당하게 도움이 되는 사람이 되고 싶어요. ( 그렇다고 막 한 철만 열심히 하겠다는 뜻은 아닙니다,; )"
           },
           "qa6": {
-            "q": "What does Bigtablet mean to you?",
-            "a": "It felt like a local train, but turned out to be an express. Sometimes it seems vast and out of reach, other times beautifully radiant—ever-changing, yet always the brightest point in the night sky. Maybe it’s more like the North Star—something I hope becomes even more significant over time."
+            "q": "채형님께 빅태블릿은 어떤 의미의 공간인가요?",
+            "a": "완행열차인줄 알았는데 급행열차인 곳. 이라는 인식이 3할 나머지 중에 좀 큰 건 ‘달 같다’에요. 어떨 때 보면 진짜 너무 커서 가닿을 수 없어 보이는데, 한편으로는 그게 은은하게 달무리가 퍼지는 것처럼 멋지네 하는 생각도 들고, 달처럼 참 변화무쌍한 모습이 퍽 인상적이라고 생각합니다. 초고속 카메라로 밤하늘을 보는 것처럼, 때로는 가려지더라도 결국은 밤하늘에서 가장 밝고, 눈에 띄고 찾게 되는 그런 거 같아요. 아 그럼 북극성이라고 하는 말이 더 맞는 거 같은데,.,. 더 거창해졌으면 하는 바램?바람?이 있어서 달 같다고 생각해요."
           }
         },
         "PM": {
           "position": "PM",
-          "name": "Yerim Kwon",
-          "description": "A PM who knows the beauty of dreams",
+          "name": "권예림",
+          "description": "꿈의 아름다움을 아는 PM",
           "image": "/images/member/yerim.png",
           "qa1": {
-            "q": "Hello, Yerim! Please introduce yourself.",
-            "a": "Hi! I’m Yerim Kwon, a Product Manager at Bigtablet."
+            "q": "안녕하세요 예림님! 간단한 자기소개 부탁드립니다.",
+            "a": "안녕하세요 :) 저는 현재 빅태블릿에서 PM 직무를 맡고 있는 권예림입니다!"
           },
           "qa2": {
-            "q": "What do you do at Bigtablet?",
-            "a": "I manage performance and support the engineering team so our developers can focus on development."
+            "q": "맡고 계신 업무에 대해 간단히 소개해 주세요.",
+            "a": "저는 PM 직책을 맡아 성과 관리와 개발팀 서포트를 담당하고 있습니다. 개발자분들이 개발에만 집중할 수 있도록 옆에서 적극적으로 지원하고 있어요."
           },
           "qa3": {
-            "q": "What does a Product Manager do?",
-            "a": "For me, PM means Product Manager. We drive the “why”—supporting the process of building better products, communicating across teams, and aligning customer needs with what’s feasible for design and engineering."
+            "q": "PM이라는 직책이 생소한데요, 구체적으로 어떤 일을 하시나요?",
+            "a": "PM은 여러 의미를 담고 있지만, 저는 그중 Product Manager로서 일하고 있습니다. 프로덕트 매니저는 ‘왜?’라는 질문을 통해 고객이 원하는 제품, 더 나은 제품을 만들어 나가는 과정에서 여러 팀과 소통하는 역할을 합니다. 기획, 개발, 디자인 등 다양한 부서와 협업하며 고객의 니즈와 개발 가능성을 조율합니다."
           },
           "qa4": {
-            "q": "What led you to choose the IT/PM path?",
-            "a": "I always wanted to take a different path and start working early. I studied web development, but realized I love interacting with people and understanding many areas broadly—so I chose PM."
+            "q": "마이스터고 출신이신데, IT 혹은 PM 직무를 선택하게 된 계기가 있으신가요?",
+            "a": "어릴 때부터 사회에 일찍 진출하고 싶다는 꿈이 있었습니다. ‘남들과 다른 길을 걷자’라는 좌우명 아래, 대학 진학 대신 현장에서 경험을 쌓고 싶었어요. 마이스터고에 입학해 2년간 웹 개발을 공부하면서, 다양한 사람들과 소통하며 프로젝트를 지원하는 역할이 즐겁다는 것을 깨달았고, 그때부터 PM이 제 길이라고 생각하게 되었습니다."
           },
           "qa5": {
-            "q": "What’s been the most challenging part of your work?",
-            "a": "Automation. It can be incredibly efficient—but also occasionally more work than it’s worth. Before automating, I think carefully about the long-term workflow so teams can work more effectively."
+            "q": "업무 중 가장 어려운 점은 무엇인가요?",
+            "a": "모든 업무가 어렵지만, 그중에서도 자동화 업무가 가장 어렵다고 생각해요. 효율을 높이기 위해 자동화를 하지만, 때로는 그 과정이 오히려 비효율적일 때도 있습니다. 하지만 한 번 잘 구축해두면 이후의 업무가 훨씬 수월해지고 효율적으로 변하기 때문에 늘 고민하며 최적의 방법을 찾고 있습니다."
           },
           "qa6": {
-            "q": "Why did you choose Bigtablet, and what are your goals?",
-            "a": "Breaking into PM as a newcomer is tough, and I wanted the breadth of experience a startup offers. When my school shared the opening for a PM at a startup, it felt like fate. Here, I want to grow alongside the team and embody the startup value of learning through building."
+            "q": "마지막으로, 빅태블릿을 선택한 이유와 앞으로의 목표는 무엇인가요?",
+            "a": "빅태블릿 입사 전 여러 회사에 지원했지만 학력과 경험의 한계로 어려움을 겪었습니다. PM 직무는 보통 개발자 출신이 많지만, 저는 스타트업처럼 자유롭고 A부터 Z까지 직접 경험할 수 있는 환경을 원했어요. 학교로 빅태블릿의 채용 공고가 왔을 때 정말 기뻤고, 운명처럼 느껴졌습니다. 앞으로는 스타트업의 가장 큰 가치인 ‘함께 성장’을 실현하며, 팀과 함께 성장하고 싶습니다."
           }
         },
         "BE": {
-          "position": "Backend Engineer",
-          "name": "Gunwoo Kim",
-          "description": "A developer who always strives to grow",
+          "position": "백엔드 개발자",
+          "name": "김건우",
+          "description": "항상 성장을 지향하는 개발자",
           "image": "/images/member/gunwoo.png",
           "qa1": {
-            "q": "Please introduce what you do.",
-            "a": "Hi, I’m Gunwoo Kim, a backend engineer. I joined in 2025 and develop on the engineering team."
+            "q": "안녕하세요 김건우님! 간단한 자기소개 부탁드립니다.",
+            "a": "안녕하세요, 백엔드 개발을 맡고 있는 김건우입니다. 2025년에 입사해 개발팀에서 열심히 일하고 있습니다. 😁"
           },
           "qa2": {
-            "q": "What are your main responsibilities?",
-            "a": "Server development and infrastructure management—essentially everything except frontend."
+            "q": "맡고 계신 업무에 대해 간단히 소개해 주세요.",
+            "a": "서버 개발과 관련 인프라 관리를 주로 담당하고 있습니다. 프론트엔드를 제외한 전반적인 서버 관련 업무를 맡고 있다고 생각하시면 됩니다."
           },
           "qa3": {
-            "q": "What does backend development involve?",
-            "a": "We work behind the scenes on data and logic—building servers, managing databases and deployment, and handling security. From sign-up and login to all subsequent interactions, we design, develop, and maintain the systems."
+            "q": "백엔드 개발이 정확히 어떤 일을 하는 건가요?",
+            "a": "백엔드는 일반 사용자에게 보이지 않는 데이터와 로직을 다루는 영역입니다. 회원가입, 로그인, 데이터 통신, 보안 등 사용자가 서비스를 이용하는 동안 발생하는 모든 데이터를 처리하고 관리합니다. 서버, 데이터베이스, 배포 플로우 등을 설계하고 개발하며 유지 보수하는 역할을 맡고 있습니다."
           },
           "qa4": {
-            "q": "What led you to become a backend developer?",
-            "a": "I was always interested in IT and had developers around me. I initially studied Android development, but discovered server development, loved it, and switched paths. I prepared through a meister high school and now work at Bigtablet."
+            "q": "마이스터고 출신으로 알고 있는데, 개발자를 선택한 계기가 있으신가요?",
+            "a": "어렸을 때부터 IT에 관심이 많았고, 주변에 개발자 분들도 많아서 자연스럽게 흥미를 가지게 되었습니다. 처음엔 안드로이드 앱 개발을 공부했지만, 우연히 접한 서버 개발이 훨씬 흥미롭고 적성에도 맞아 진로를 바꾸게 되었습니다. 마이스터고에 입학해 개발자가 되기 위해 준비했고, 지금은 빅태블릿에서 개발자로 일하고 있습니다."
           },
           "qa5": {
-            "q": "What are the pros and cons of your work so far?",
-            "a": "Early on, we lacked some foundational infrastructure, so I had to build a lot from scratch while learning new tech—it was tough. Documentation was also challenging at first. But discussing and debating with teammates has helped me grow every day, and it’s rewarding to put the puzzle together piece by piece."
+            "q": "업무를 하시면서 느낀 장점과 단점이 있을까요?",
+            "a": "초기 개발 단계에서 합류하다 보니 기본적인 인프라가 부족한 점이 있었습니다. 이를 직접 구축하면서 새로운 기술을 배우는 일이 쉽지 않았지만, 팀원들과 협업하며 빠르게 성장할 수 있었습니다. 특히 문서 작업은 처음엔 어렵게 느껴졌지만, 개발과 문서를 병행하면서 점차 익숙해졌습니다. 지금은 하나씩 완성해가는 과정에서 큰 성취감을 느끼고 있습니다."
           },
           "qa6": {
-            "q": "What’s your goal at Bigtablet?",
-            "a": "I want the team and organization to grow together with me. By adopting and experimenting with new technologies, I hope to one day be part of a big tech–caliber team."
+            "q": "마지막으로, 앞으로의 목표가 있으신가요?",
+            "a": "저 개인의 성장도 중요하지만, 팀과 조직이 함께 성장하는 것이 더 중요하다고 생각합니다. 새로운 기술을 적극적으로 도입하고 도전하면서, 언젠가는 빅테크 기업의 일원으로 성장하고 싶습니다."
           }
         },
         "FE": {
-          "position": "Frontend Engineer",
-          "name": "Sangmin Park",
-          "description": "A developer who keeps on learning",
+          "position": "프론트엔드 개발자",
+          "name": "박상민",
+          "description": "계속하여 배우는 개발자",
           "image": "/images/member/sangmin.png",
           "qa1": {
-            "q": "Please introduce what you do.",
-            "a": "Hello, I’m Sangmin Park, responsible for frontend at Bigtablet."
+            "q": "안녕하세요 박상민님! 간단한 자기소개 부탁드립니다.",
+            "a": "안녕하세요. 빅태블릿에서 프론트엔드를 담당하고 있는 개발자 박상민입니다."
           },
           "qa2": {
-            "q": "What are your main responsibilities?",
-            "a": "I build the apps and web services we need—most notably, the UI for visualizing analytics derived from CCTV video."
+            "q": "맡고 계신 업무에 대해 간단히 소개해 주세요.",
+            "a": "현재 빅태블릿의 주요 기능인 CCTV 영상 분석 데이터를 사용자에게 시각적으로 제공하는 일을 맡고 있습니다."
           },
           "qa3": {
-            "q": "What does a frontend developer do at Bigtablet?",
-            "a": "I handle all web and app needs across the company. Right now, I’m focused on delivering a service that visualizes insights from video analytics."
+            "q": "프론트엔드 개발이란 정확히 어떤 일을 하나요?",
+            "a": "회사 내 웹 관련 개발을 전담하고 있습니다. 대표적으로 CCTV 분석 데이터를 시각적으로 표현해 사용자가 쉽게 이해할 수 있는 서비스를 개발하고 있습니다."
           },
           "qa4": {
-            "q": "What inspired you to become a developer?",
-            "a": "In middle school, I first coded with Scratch in an IT class. Solving problems and seeing the result felt amazing—that’s when I decided to become a developer."
+            "q": "마이스터고 출신으로 알고 있는데, 개발자를 꿈꾸게 된 계기가 있으신가요?",
+            "a": "중학교 정보 시간에 스크래치를 통해 처음 코딩을 접했습니다. 문제를 고민하고 해결하며 결과물이 나올 때의 성취감이 너무 커서, 그때부터 개발자가 되고 싶다는 꿈을 가지게 되었습니다."
           },
           "qa5": {
-            "q": "What’s been hardest and best about the job?",
-            "a": "Being the only frontend engineer for now can feel like a lot. But the company provides strong support, and the team culture of trust and respect makes it a great place to work."
+            "q": "업무 중 가장 어려웠던 점과 가장 좋았던 점은 무엇인가요?",
+            "a": "현재 프론트엔드 담당이 저 혼자이다 보니 해야 할 일이 많아 부담스러울 때도 있습니다. 하지만 회사의 적극적인 지원과 서로를 신뢰하는 팀 문화 덕분에 즐겁게 일하고 있습니다."
           },
           "qa6": {
-            "q": "What do you hope to achieve, and what kind of developer do you want to be?",
-            "a": "I want to deliver what Bigtablet needs—reliably and without issues. My goal is to become a developer who can turn ideas into reality, end to end."
+            "q": "마지막으로, 앞으로의 목표와 되고 싶은 개발자상은 무엇인가요?",
+            "a": "빅태블릿에서 원하는 서비스와 결과물을 문제없이 완성하는 것이 현재의 목표입니다. 지금 진행 중인 프로젝트들이 흥미롭고 도전적이기 때문에, 이를 완벽하게 구현해내는 것이 저에게 큰 의미가 있습니다. 앞으로는 ‘생각한 것을 실제로 구현해내는 개발자’가 되고 싶습니다. 누구나 머릿속으로는 멋진 결과를 그릴 수 있지만, 그것을 현실로 만들어내는 일은 쉽지 않다고 생각합니다. 그래서 저는 아이디어를 실제 결과물로 완성해내는 개발자가 되는 것을 목표로 하고 있습니다."
           }
         }
       }

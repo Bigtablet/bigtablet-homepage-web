@@ -216,6 +216,9 @@
           "description": "실시간 인사이트를 활용해 고객 참여도를 높이고\n마케팅 전략을 개선합니다."
         }
       }
+    },
+    "collaboration": {
+      "title": "협력사"
     }
   },
   "about": {

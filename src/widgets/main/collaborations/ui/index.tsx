@@ -3,6 +3,7 @@
 import Marquee from "react-fast-marquee";
 import Image from "next/image";
 import "./style.scss";
+import {useTranslations} from "next-intl";
 
 // 로고 이미지 추가는 여기서 해주세요
 const logos = [
@@ -11,9 +12,10 @@ const logos = [
 ];
 
 const Collaborations = ({speed = 40}: { speed?: number }) => {
+    const t = useTranslations("main.collaboration");
     return (
         <section className="collabs">
-            <h3 className="collabs__title">Collaborations</h3>
+            <h3 className="collabs__title">{t("title")}</h3>
             <div className="collabs__viewport">
                 <Marquee gradient={false} speed={speed} autoFill>
                     {logos.map((src, i) => (

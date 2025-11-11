@@ -1,9 +1,9 @@
 import "./style.scss";
-import Frame from "src/widgets/layout/frame";
+import Frame from "src/widgets/layout/template";
 import Banner from "src/widgets/main/banner/ui";
-import Problem from "src/widgets/main/problem/ui";
+import Problem from "src/widgets/main/problem";
 import Solution from "src/widgets/main/solution/ui/solution";
-import Collaborations from "src/widgets/main/collaborations/ui";
+import Collaborations from "src/widgets/main/collaborations";
 
 const MainPage = () => {
     return (

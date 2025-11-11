@@ -1,0 +1,57 @@
+// color
+$color-primary: #5A8DCB;
+$color-primary-hover: #4C7CB6;
+
+$color-background: #ffffff;
+$color-background-secondary: #f8fafc;
+$color-background-dark: #7AA5D2;
+
+$text-strong: #1F2937;
+$text-normal: #3B3B3B;
+$text-subtle: #6B7280;
+$text-disabled: #9CA3AF;
+$text-inverse: #FFFFFF;
+
+$color-border: #E5E7EB;
+$color-border-strong: #9CA3AF;
+$color-border-light: rgba(0, 0, 0, 0.08);
+
+$color-success: #10b981;
+$color-error: #ef4444;
+$color-warning: #f59e0b;
+$color-info: #3b82f6;
+
+$color-overlay: rgba(0, 0, 0, 0.5);
+
+// shadow
+$shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.04);
+$shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);
+$shadow-lg: 0 8px 20px rgba(0, 0, 0, 0.12), 0 4px 8px rgba(0, 0, 0, 0.06);
+$shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+
+// spacing
+$spacing-xs: 0.25rem; // 4px
+$spacing-sm: 0.5rem;  // 8px
+$spacing-md: 0.75rem; // 12px
+$spacing-lg: 1rem;    // 16px
+$spacing-xl: 1.25rem; // 20px
+$spacing-2xl: 1.5rem; // 24px
+$spacing-3xl: 2rem;   // 32px
+
+// radius
+$radius-sm: 6px;
+$radius-md: 8px;
+$radius-lg: 12px;
+$radius-xl: 16px;
+$radius-full: 9999px;
+
+// z-index
+$z-modal: 10000;
+$z-toast: 10001;
+$z-loading: 9999;
+
+// transition
+$transition-fast: 0.1s ease-out;
+$transition-base: 0.2s ease-out;
+$transition-slow: 0.3s ease-out;
+$transition-bounce: 0.3s cubic-bezier(0.16, 1, 0.3, 1);

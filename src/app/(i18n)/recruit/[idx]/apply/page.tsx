@@ -2,7 +2,7 @@
 
 import { useMemo } from "react";
 import { useParams } from "next/navigation";
-import Template from "src/widgets/layout/frame";
+import Template from "src/widgets/layout/template";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import Frame from "src/widgets/layout/frame";
+import Frame from "src/widgets/layout/template";
 import RecruitHeader from "src/widgets/recruit/header/ui";
 import RequestList from "src/features/recruit/list/ui";
 import type { RecruitSearchFilters } from "src/features/recruit/model/query/search/recruit.search.query";

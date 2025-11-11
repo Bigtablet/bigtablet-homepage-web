@@ -5,7 +5,7 @@ import "./style.scss";
 import { useMemo } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { usePathname, useSearchParams } from "next/navigation";
-import Frame from "src/widgets/layout/frame";
+import Frame from "src/widgets/layout/template";
 import Pagination from "src/shared/ui/pagenation/ui";
 import NewsListSection from "src/widgets/news/list";
 import { useNewsPageQuery } from "src/features/news/model/news.query";

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useParams } from "next/navigation";
-import Template from "src/widgets/layout/frame";
+import Template from "src/widgets/layout/template";
 import Button from "src/shared/ui/button";
 
 import {useRecruitDetailQuery} from "src/features/recruit/model/query/recruit.query";

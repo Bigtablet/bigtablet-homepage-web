@@ -10,6 +10,10 @@ const nextConfig = {
             { source: '/', destination: '/main', permanent: true },
         ];
     },
+
+    sassOptions: {
+        includePaths: ["./src/shared/styles"],
+    },
 };
 
 export default withNextIntl(nextConfig);

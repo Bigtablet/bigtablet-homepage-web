@@ -6,7 +6,7 @@ import "./style.scss";
 
 type Props = { children: React.ReactNode };
 
-const Frame = ({ children }: Props) => {
+const Template = ({ children }: Props) => {
     return (
         <div className="template">
             <Header />
@@ -18,4 +18,4 @@ const Frame = ({ children }: Props) => {
     );
 };
 
-export default Frame;
+export default Template;

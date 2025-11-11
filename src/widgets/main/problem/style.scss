@@ -1,0 +1,48 @@
+@use "src/shared/styles/token" as *;
+
+.problem {
+  @include flex-between;
+  align-items: flex-start;
+  width: 80%;
+  max-width: 1200px;
+  margin: 0 auto;
+  white-space: pre-line;
+  gap: $spacing-2xl;
+  color: $text-normal;
+}
+
+.problem__title {
+  @include heading-2;
+  flex: 0 0 35%;
+  font-size: clamp($font-size-2xl, 4vw, $font-size-4xl);
+  color: $text-strong;
+  line-height: 1.25;
+}
+
+.problem__description {
+  @include body-medium;
+  flex: 0 0 55%;
+  font-size: clamp($font-size-md, 2vw, $font-size-xl);
+  color: $text-normal;
+  line-height: 1.6;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .problem {
+    @include flex-column;
+    width: 88%;
+    text-align: left;
+    gap: $spacing-xl;
+  }
+
+  .problem__title {
+    font-size: clamp($font-size-xl, 5vw, $font-size-2xl);
+    flex: 0 0 auto;
+  }
+
+  .problem__description {
+    font-size: clamp($font-size-base, 4vw, $font-size-lg);
+    flex: 0 0 auto;
+  }
+}

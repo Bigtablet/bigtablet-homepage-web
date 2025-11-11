@@ -3,8 +3,8 @@
 import "./style.scss";
 import { useTranslations } from "next-intl";
 import { useEffect, useMemo, useRef, useState } from "react";
-import { SOURCES, Product } from "../../model/sources";
-import { buildInitialSelected } from "../../util/select";
+import { SOURCES, Product } from "../model/sources";
+import { buildInitialSelected } from "../util/select";
 import Card from "../card";
 import Modal from "../modal";
 

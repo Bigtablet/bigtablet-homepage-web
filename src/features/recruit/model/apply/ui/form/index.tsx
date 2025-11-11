@@ -5,6 +5,7 @@ import {ApplyEducationLevel} from "src/entities/recruit/model/schema/recruit.sch
 import {ApplyFormProps} from "src/features/recruit/model/apply/ui/form/type";
 import {formatPhone010} from "src/features/recruit/model/apply/utils";
 import UploadInput from "src/features/recruit/model/apply/ui/upload";
+import "./style.scss"
 
 const ApplyForm = ({form, email, onSubmit}: ApplyFormProps) => {
     const {register, control, watch, formState: {isSubmitting}} = form;

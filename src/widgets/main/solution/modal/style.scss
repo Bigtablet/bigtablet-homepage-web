@@ -1,50 +1,45 @@
-@use "src/shared/styles/function/flex" as *;
-@use "src/shared/styles/typography/mixin" as *;
+@use "src/shared/styles/token" as *;
 
 .solution-modal__backdrop {
   position: fixed;
   inset: 0;
-  z-index: 9999;
+  z-index: $z-modal;
   display: grid;
   place-items: center;
-  padding: 28px;
+  padding: $spacing-2xl;
   background: rgba(0, 0, 0, 0.35);
 
   @media (min-width: 1024px) {
-    padding: 40px;
+    padding: $spacing-3xl;
   }
 
   &.is-locked {
     pointer-events: none;
-    .solution-modal {
-      pointer-events: auto;
-    }
+    .solution-modal { pointer-events: auto; }
   }
 }
 
-/* 단일 레이어 컨테이너: 오버레이 버튼을 위에 띄우기 위함 */
 .solution-modal {
   position: relative;
   width: min(1120px, 94vw);
   height: min(660px, 78vh);
-  border-radius: 16px;
+  border-radius: $radius-xl;
   overflow: hidden;
   background: #0c0c0c;
-  display: block; /* 기존 그리드 제거 */
+  display: block;
   transform-origin: center center;
-  transform: translate(var(--from-dx, 0), var(--from-dy, 0))
-  scale(var(--from-sx, 1), var(--from-sy, 1));
+  transform: translate(var(--from-dx, 0), var(--from-dy, 0)) scale(var(--from-sx, 1), var(--from-sy, 1));
   opacity: 0;
 
   &.is-enter {
     transform: translate(0, 0) scale(1);
     opacity: 1;
-    transition: transform 320ms cubic-bezier(0.2, 0.8, 0.2, 1),
-    opacity 200ms ease-out;
+    transition:
+            transform 320ms cubic-bezier(0.2, 0.8, 0.2, 1),
+            opacity 200ms ease-out;
   }
 }
 
-/* 오버레이 네비게이션 버튼 */
 .solution-modal__nav {
   position: absolute;
   top: 50%;
@@ -55,35 +50,23 @@
   border: none;
   border-radius: 50%;
   background: rgba(0, 0, 0, 0.35);
-  color: #fff;
+  color: $text-inverse;
   font-size: 28px;
   cursor: pointer;
-  transition: background 0.2s, transform 0.12s;
+  transition: background $transition-base, transform $transition-fast;
 
-  &:hover {
-    background: rgba(0, 0, 0, 0.5);
-  }
-  &:active {
-    transform: translateY(-50%) scale(0.96);
-  }
+  &:hover { background: rgba(0, 0, 0, 0.5); }
+  &:active { transform: translateY(-50%) scale(0.96); }
 
-  &.solution-modal__nav--prev {
-    left: 12px;
-  }
-  &.solution-modal__nav--next {
-    right: 12px;
-  }
+  &.solution-modal__nav--prev { left: 12px; }
+  &.solution-modal__nav--next { right: 12px; }
 
   @media (min-width: 1024px) {
     width: 56px;
     height: 56px;
     font-size: 32px;
-    &.solution-modal__nav--prev {
-      left: 16px;
-    }
-    &.solution-modal__nav--next {
-      right: 16px;
-    }
+    &.solution-modal__nav--prev { left: 16px; }
+    &.solution-modal__nav--next { right: 16px; }
   }
 
   @media (max-width: 640px) {
@@ -124,20 +107,22 @@
   min-height: 100%;
   display: grid;
   grid-template-columns: 1fr 1.35fr;
+
+  @media (max-width: 860px) {
+    grid-template-columns: 1fr;
+  }
 }
 
 .solution-modal__left,
-.solution-modal__right {
-  height: 100%;
-}
+.solution-modal__right { height: 100%; }
 
 .solution-modal__left {
   @include flex-column;
   position: relative;
   z-index: 2;
-  padding: 32px;
-  gap: 16px;
-  color: #f5f5f5;
+  padding: $spacing-2xl;
+  gap: $spacing-lg;
+  color: $text-inverse;
   background:
           linear-gradient(to right, rgba(12, 12, 12, 1) 85%, rgba(12, 12, 12, 0.6) 100%),
           radial-gradient(1200px 60% at 100% 50%, rgba(0, 0, 0, 0) 0%, rgba(12, 12, 12, 1) 80%),
@@ -146,16 +131,14 @@
 }
 
 .solution-modal__title {
-  @include SemiBold;
-  font-size: 28px;
+  @include heading-3;
   text-align: center;
   white-space: pre-line;
 }
 
 .solution-modal__desc {
-  @include Regular;
-  font-size: 16px;
-  color: rgba(245, 245, 245, 0.9);
+  @include body-regular;
+  color: rgba($text-inverse, 0.9);
   white-space: pre-line;
 }
 
@@ -167,10 +150,8 @@
   &::before {
     content: "";
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 160px;
-    height: 100%;
+    top: 0; left: 0;
+    width: 160px; height: 100%;
     background: linear-gradient(
                     to left,
                     rgba(12, 12, 12, 0) 0%,
@@ -189,6 +170,4 @@
   height: 100%;
   object-fit: cover;
   z-index: 0;
-  /* 필요 시 비디오가 클릭 이벤트를 가로채지 않도록 아래 줄 활성화 */
-  /* pointer-events: none; */
 }

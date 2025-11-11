@@ -1,7 +1,13 @@
 "use client";
 
 import "./style.scss";
-import {CardProps} from "./type";
+
+interface CardProps {
+    id: number;
+    src: string;
+    label: string;
+    onOpen: (id: number, rect: DOMRect) => void;
+};
 
 const Card = ({ id, src, label, onOpen }: CardProps) => {
     const openFromTarget = (el: HTMLDivElement) => onOpen(id, el.getBoundingClientRect());

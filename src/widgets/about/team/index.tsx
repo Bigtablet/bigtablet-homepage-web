@@ -3,8 +3,13 @@
 import {useTranslations} from "next-intl";
 import MemberCard from "src/widgets/about/member/ui/card";
 import "./style.scss";
-import {TeamProps} from "src/widgets/about/team/type";
+import type {MemberKey} from "src/entities/about/member/model/member.model";
 import {MEMBER_DEFAULT_ORDER} from "src/entities/about/member/model/member.model";
+
+
+interface TeamProps {
+    order?: MemberKey[];
+}
 
 const Team = ({order = MEMBER_DEFAULT_ORDER}: TeamProps) => {
     const t = useTranslations("about.team");

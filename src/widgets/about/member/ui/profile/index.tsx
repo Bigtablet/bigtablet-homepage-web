@@ -3,7 +3,14 @@
 import Image from "next/image";
 import Link from "next/link";
 import "./style.scss";
-import {MemberProfileProps} from "../type";
+
+interface MemberProfileProps {
+    name: string;
+    position: string;
+    description: string;
+    imageSrc: string;
+    links?: { linkedin?: string; github?: string };
+};
 
 const Profile = ({ name, position, description, imageSrc, links }: MemberProfileProps) => {
     return (

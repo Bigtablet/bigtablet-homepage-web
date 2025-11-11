@@ -2,8 +2,11 @@
 
 import "./style.scss";
 import { useTranslations } from "next-intl";
-import {AboutType} from "../type";
 
+interface AboutType {
+    sectionKey: string;
+    reverse?: boolean;
+};
 
 const Introduce = ({ sectionKey, reverse = false }: AboutType) => {
     const t = useTranslations("about.top");

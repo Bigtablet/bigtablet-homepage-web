@@ -1,7 +1,6 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import type { HistoryItemType } from "src/widgets/about/history/type";
 import {
     buildYearGroups,
     yearsFromGroups,
@@ -9,6 +8,14 @@ import {
     type YearGroup,
 } from "src/widgets/about/history/lib/calcs";
 import "./style.scss";
+
+export interface HistoryItemType {
+    id: string;
+    year: number;
+    title: string;
+    description?: string;
+    dateLabel?: string;
+};
 
 type Props = { items: HistoryItemType[] };
 

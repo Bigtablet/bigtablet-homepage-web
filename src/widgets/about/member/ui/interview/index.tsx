@@ -1,7 +1,12 @@
 "use client";
 
 import "./style.scss";
-import {QAItem} from "../type";
+
+interface QAItem {
+    q: string;
+    a: string
+};
+
 
 const Interview = ({ items }: { items: QAItem[] }) => {
     return (

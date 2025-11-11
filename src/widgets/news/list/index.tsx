@@ -1,11 +1,17 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-/** @description 뉴스 리스트 섹션(UI 전용) */
 import "./style.scss";
-import NewsCard from "src/widgets/news/card/ui";
+import NewsCard from "src/widgets/news/card";
 import SkeletonCard from "src/shared/ui/skeleton/card";
-import {NewsListProps} from "./type";
+import {NewsItem} from "src/entities/news/model/schema/news.schema";
+
+interface NewsListProps {
+    items: NewsItem[];
+    locale: string;
+    isLoading: boolean;
+    pageSize: number;
+};
 
 const NewsListSection = ({ items, locale, isLoading, pageSize }: NewsListProps) => {
     const t = useTranslations("news");

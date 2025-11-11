@@ -2,7 +2,6 @@
 
 import "./style.scss";
 import {useMemo, useState} from "react";
-import {NewsCardProps} from "src/widgets/news/card/type";
 import {formatRelative} from "src/shared/libs/ui/date";
 
 const getSource = (raw: string) => {
@@ -15,6 +14,13 @@ const getSource = (raw: string) => {
 };
 
 const getPreviewSrc = (raw: string) => `/api/news/preview?u=${encodeURIComponent(raw)}`;
+
+interface NewsCardProps {
+    title: string;
+    url: string;
+    createdAt: string;
+    locale: string;
+};
 
 const NewsCard = ({title, url, createdAt, locale}: NewsCardProps) => {
     const [loaded, setLoaded] = useState(false);

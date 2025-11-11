@@ -1,15 +1,15 @@
-@use "src/shared/styles/function/flex" as *;
-@use "src/shared/styles/typography/mixin" as *;
+@use "src/shared/styles/token" as *;
 
 .news-page {
   width: 100%;
-  padding: 40px 0 80px;
+  padding: $spacing-3xl 0 $spacing-4xl;
+  background: $color-background;
 }
 
 .news-page__grid {
   display: grid;
   grid-template-columns: repeat(1, minmax(0, 1fr));
-  gap: 24px;
+  gap: $spacing-xl;
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
@@ -32,9 +32,9 @@
 }
 
 .news-page__empty {
-  @include Regular;
-  font-size: 20px;
-  margin-top: 40px;
-  color: var(--text-sub);
+  @include body-regular;
+  font-size: $font-size-xl;
+  margin-top: $spacing-3xl;
+  color: $text-subtle;
   text-align: center;
 }

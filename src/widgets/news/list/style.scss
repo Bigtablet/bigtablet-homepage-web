@@ -1,40 +1,35 @@
 @use "src/shared/styles/token" as *;
 
-.news-page {
+.news-list {
   width: 100%;
-  padding: $spacing-3xl 0 $spacing-4xl;
-  background: $color-background;
+  height: 100%;
 }
 
-.news-page__grid {
+.news-list__grid {
   display: grid;
   grid-template-columns: repeat(1, minmax(0, 1fr));
   gap: $spacing-xl;
-  width: 100%;
   max-width: 1200px;
   margin: 0 auto;
+  width: 100%;
 }
 
 @media (min-width: 768px) {
-  .news-page__grid {
+  .news-list__grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
 @media (min-width: 1024px) {
-  .news-page__grid {
+  .news-list__grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
-.news-page__sentinel {
-  height: 1px;
-}
-
-.news-page__empty {
+.news-list__empty {
   @include body-regular;
-  font-size: $font-size-xl;
-  margin-top: $spacing-3xl;
+  font-size: $font-size-lg;
+  margin-top: $spacing-2xl;
   color: $text-subtle;
   text-align: center;
 }

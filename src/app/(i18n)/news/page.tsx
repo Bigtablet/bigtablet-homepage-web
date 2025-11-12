@@ -1,48 +1,35 @@
 "use client";
 
-/** @description 뉴스 목록 페이지(페이지네이션 + 섹션 위젯 분리) */
 import "./style.scss";
 import { useMemo } from "react";
-import { useLocale, useTranslations } from "next-intl";
-import { usePathname, useSearchParams } from "next/navigation";
-import Frame from "src/widgets/layout/template";
-import Pagination from "src/shared/ui/pagenation/ui";
+import { useLocale } from "next-intl";
+import Template from "src/widgets/layout/template";
 import NewsListSection from "src/widgets/news/list";
 import { useNewsPageQuery } from "src/features/news/model/news.query";
+import { Pagination } from "src/shared/ui/navigation/pagination";
 
-const DEFAULT_SIZE = 9;
+const DEFAULT_SIZE = 6;
 
 const NewsPage = () => {
     const locale = useLocale();
-    const pathname = usePathname();
-    const sp = useSearchParams();
-
-    const page = Math.max(1, Number(sp.get("page") ?? 1));
-    const size = Math.max(1, Number(sp.get("size") ?? DEFAULT_SIZE));
-
-    const { data, isLoading } = useNewsPageQuery({ page, size });
+    const { data, isLoading } = useNewsPageQuery({ page: 1, size: 9999 });
     const items = useMemo(() => data?.items ?? [], [data]);
-    const hasNext = Boolean(data?.hasNext);
 
     return (
-        <Frame>
+        <Template>
             <section className="news-page">
-
-                <NewsListSection
-                    items={items}
-                    locale={locale}
-                    isLoading={isLoading}
-                    pageSize={size}
-                />
-
-                <Pagination
-                    page={page}
-                    size={size}
-                    hasNext={hasNext}
-                    basePath={pathname}
-                />
+                <Pagination items={items} pageSize={DEFAULT_SIZE} maxPageButtons={7}>
+                    {(pageItems) => (
+                        <NewsListSection
+                            items={pageItems}
+                            locale={locale}
+                            isLoading={isLoading}
+                            pageSize={DEFAULT_SIZE}
+                        />
+                    )}
+                </Pagination>
             </section>
-        </Frame>
+        </Template>
     );
 };
 

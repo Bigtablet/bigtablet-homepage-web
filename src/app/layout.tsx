@@ -1,7 +1,6 @@
 import "src/shared/styles/global.css";
 import { cookies } from "next/headers";
 import Providers from "src/widgets/layout/provider";
-import "src/shared/styles/typography/_mixin.scss";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {

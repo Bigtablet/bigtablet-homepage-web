@@ -1,7 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import Button from "src/shared/ui/button";
+import { Button } from "src/shared/ui/general/button";
 import "./style.scss";
 
 const Banner = () => {
@@ -9,7 +9,6 @@ const Banner = () => {
 
     return (
         <section className="banner" role="region" aria-labelledby="banner__title">
-            {/* 배경 영상 */}
             <div className="banner__video">
                 <video
                     className="banner__video-tag"
@@ -36,7 +35,9 @@ const Banner = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                 >
-                    <Button>{t("button")}</Button>
+                    <Button variant="primary" size="md">
+                        {t("button")}
+                    </Button>
                 </a>
             </div>
         </section>

@@ -1,215 +1,44 @@
-@use "src/shared/styles/token" as *;
-
-.history {
-  --container-width: 1200px;
-  --container-max: min(var(--container-width), 95vw);
-  --left-col: 172px;
-  --year-min-h: clamp(28px, 4vh, 48px);
-
-  width: 100%;
-  height: clamp(420px, 60vh, 720px);
-  background: $color-background-dark;
-  position: relative;
-  overflow: hidden;
-}
-
-.history::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: calc(50vw - var(--container-max) / 2 + var(--left-col) / 2);
-  width: 2px;
-  background: $text-inverse;
-  border-radius: 1px;
-  z-index: 0;
-}
-
-.history__scroll {
-  position: relative;
-  height: 100%;
-  overflow-y: auto;
-  scroll-behavior: smooth;
-  padding: clamp(24px, 4vh, 32px) 0;
-  z-index: 1;
-  scroll-snap-type: y proximity;
-}
-
-.history__sticky {
-  position: sticky;
-  top: 96px;
-  width: var(--container-max);
-  margin: 0 auto 4px auto;
-  display: grid;
-  grid-template-columns: var(--left-col) 1fr;
-  column-gap: 32px;
-  align-items: start;
-  z-index: 2;
-}
-
-.history__years {
-  @include flex-column;
-  gap: 4px;
-  width: var(--left-col);
-}
-
-.history__year-item {
-  @include body-medium;
-  background: transparent;
-  border: none;
-  padding: 0;
-  margin: 0;
-  text-align: left;
-  color: rgba($text-inverse, 0.56);
-  opacity: 0.95;
-  line-height: 1.25;
-  cursor: pointer;
-  transition: color 0.16s ease, opacity 0.16s ease;
-}
-
-.history__year-item:hover {
-  opacity: 1;
-}
-
-.history__year-item.is-active {
-  @include heading-3;
-  color: $text-inverse;
-  opacity: 1;
-}
-
-.history__year-block {
-  width: var(--container-max);
-  margin: 0 auto;
-  display: grid;
-  height: 100%;
-  grid-template-columns: var(--left-col) 1fr;
-  column-gap: 32px;
-  align-items: start;
-  padding: clamp(8px, 1.5vh, 16px) 0;
-  scroll-snap-align: start;
-  min-height: var(--year-min-h);
-}
-
-.history__year-block.is-active {
+@mixin flex-center {
+  display: flex;
   align-items: center;
+  justify-content: center;
 }
 
-.history__right {
-  @include flex-column;
-  gap: 8px;
+@mixin flex-row { display: flex; flex-direction: row; }
+
+@mixin flex-left {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
 }
 
-.history__row {
-  display: grid;
-  grid-template-columns: 18px 1fr;
-  column-gap: 10px;
+@mixin flex-right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 }
 
-.history__row-dot {
-  width: 6px;
-  height: 6px;
-  margin-top: 7px;
-  border-radius: 50%;
-  background: $text-inverse;
-  box-shadow: 0 0 0 3px rgba($text-inverse, 0.08);
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.history__row-body {
-  @include flex-column;
-  gap: 2px;
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
 }
 
-.history__row-meta {
-  @include flex-left;
-  gap: 6px;
+@mixin flex-column-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
-.history__badge {
-  @include body-medium;
-  font-size: 11px;
-  line-height: 1;
-  padding: 3px 6px;
-  border-radius: 999px;
-  background: $color-background-dark;
-  color: $text-inverse;
-  border: 1px solid rgba($text-inverse, 0.16);
-}
-
-.history__date {
-  @include caption;
-  color: $text-subtle;
-}
-
-.history__row-title {
-  @include heading-3;
-  font-size: 15px;
-  color: $text-inverse;
-}
-
-.history__row-desc {
-  @include body-regular;
-  font-size: 13.5px;
-  color: rgba($text-inverse, 0.85);
-  line-height: 1.6;
-}
-
-/* responsive */
-@media (max-width: 960px) {
-  .history {
-    --left-col: 140px;
-    height: auto;
-    min-height: 420px;
-  }
-
-  .history__sticky,
-  .history__year-block {
-    column-gap: 20px;
-  }
-
-  .history__year-item {
-    font-size: $font-size-sm;
-  }
-
-  .history__row-title {
-    font-size: $font-size-base;
-  }
-
-  .history__row-desc {
-    font-size: $font-size-sm;
-  }
-}
-
-@media (max-width: 640px) {
-  .history {
-    --left-col: 100px;
-  }
-
-  .history__sticky,
-  .history__year-block {
-    grid-template-columns: 1fr;
-    row-gap: 12px;
-  }
-
-  .history__years {
-    @include flex-left;
-    flex-direction: row;
-    gap: 10px;
-    overflow-x: auto;
-    padding: 0 16px;
-  }
-
-  .history__right {
-    padding: 0 16px;
-  }
-
-  .history__row {
-    grid-template-columns: 14px 1fr;
-    column-gap: 8px;
-  }
-
-  .history__row-dot {
-    margin-top: 6px;
-    width: 5px;
-    height: 5px;
-  }
+@mixin flex-column-start {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
 }

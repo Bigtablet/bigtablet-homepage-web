@@ -3,7 +3,7 @@
 .team {
   @include flex-column;
   width: 100%;
-  background: $color-primary;
+  background: $color-background-darkblue;
   color: $text-inverse;
   padding-block: clamp(3rem, 8vw, 5rem);
   gap: $spacing-2xl;

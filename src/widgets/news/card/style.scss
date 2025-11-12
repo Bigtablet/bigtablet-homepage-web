@@ -5,13 +5,14 @@
 }
 
 .news-card {
+  box-sizing: border-box;
   @include flex-column;
   gap: $spacing-sm;
   height: 100%;
   padding: $spacing-md;
   border: 1px solid $color-border;
   border-radius: $radius-lg;
-  background: $color-background-secondary;
+  background: $color-background;
   color: $text-normal;
   text-decoration: none;
   transition: transform $transition-fast, box-shadow $transition-fast, border-color $transition-fast, background $transition-fast;

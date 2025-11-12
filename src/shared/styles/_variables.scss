@@ -1,31 +1,31 @@
 // color
-$color-primary: #4C7CB6;            // darker than #5A8DCB
-$color-primary-hover: #3E6EA1;      // deeper hover
+$color-primary: #4C7CB6;
+$color-primary-hover: #3E6EA1;
 
-$color-background: #F5F7FA;         // was #ffffff
-$color-background-secondary: #EEF2F6; // was #f8fafc
-$color-background-dark: #4C545D;    // was #7AA5D2
+$color-background: #F5F7FA;
+$color-background-secondary: #EEF2F6;
+$color-background-dark: #4C545D;
 $color-background-darkblue: #47555E;
 
 $color-text-primary: #1a1a1a;
 $color-text-secondary: #666666;
 $color-text-tertiary: #999999;
-$text-strong: #2A3138;              // was #1F2937
-$text-normal: #2E2E2E;              // was #3B3B3B
-$text-subtle: #565D6B;              // was #6B7280
-$text-disabled: #7F8794;            // was #9CA3AF
+$text-strong: #2A3138;
+$text-normal: #2E2E2E;
+$text-subtle: #565D6B;
+$text-disabled: #7F8794;
 $text-inverse: #FFFFFF;
 
-$color-border: #D1D5DB;             // was #E5E7EB
-$color-border-strong: #7E8692;      // was #9CA3AF
-$color-border-light: rgba(0, 0, 0, 0.12); // was 0.08
+$color-border: #D1D5DB;
+$color-border-strong: #7E8692;
+$color-border-light: rgba(0, 0, 0, 0.12);
 
-$color-success: #059669;            // darker green
-$color-error: #DC2626;              // deeper red
-$color-warning: #D97706;            // deeper amber
-$color-info: #2563EB;               // deeper blue
+$color-success: #059669;
+$color-error: #DC2626;
+$color-warning: #D97706;
+$color-info: #2563EB;
 
-$color-overlay: rgba(0, 0, 0, 0.6); // stronger overlay
+$color-overlay: rgba(0, 0, 0, 0.6);
 
 // shadow
 $shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.06);

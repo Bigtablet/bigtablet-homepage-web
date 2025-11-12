@@ -4,14 +4,12 @@
   width: 100%;
   padding: $spacing-xl 0 $spacing-md;
   color: $text-inverse;
-  background: $color-background-secondary;
 }
 
 .collabs__title {
-  @include heading-2;
   text-align: center;
-  margin-bottom: $spacing-lg;
-  color: $text-strong;
+  font-size: clamp($font-size-2xl, 4vw, $font-size-4xl);
+  color: $text-inverse;
 }
 
 .collabs__viewport {

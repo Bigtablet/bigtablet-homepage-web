@@ -31,10 +31,7 @@ const Collaborations = ({ speed = 40 }: { speed?: number }) => {
         return () => window.removeEventListener("resize", calc);
     }, []);
 
-    const items = useMemo(
-        () => Array.from({ length: repeat }).flatMap(() => logos),
-        [repeat]
-    );
+    const items = useMemo(() => Array.from({ length: repeat }).flatMap(() => logos), [repeat]);
 
     return (
         <section className={styles.collabs}>
@@ -46,7 +43,6 @@ const Collaborations = ({ speed = 40 }: { speed?: number }) => {
                             <div className={styles.collabs_card}>
                                 <Image src={src} alt="" width={260} height={60} priority={i < 4} draggable={false} />
                             </div>
-                            <span className={styles.collabs_gap} aria-hidden="true" />
                         </div>
                     ))}
                 </Marquee>

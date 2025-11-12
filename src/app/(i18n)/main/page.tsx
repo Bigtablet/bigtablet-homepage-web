@@ -1,5 +1,5 @@
 import "./style.scss";
-import Frame from "src/widgets/layout/template";
+import Template from "src/widgets/layout/template";
 import Banner from "src/widgets/main/banner";
 import Problem from "src/widgets/main/problem";
 import Solution from "src/widgets/main/solution/solution";
@@ -7,7 +7,7 @@ import Collaborations from "src/widgets/main/collaborations";
 
 const MainPage = () => {
     return (
-        <Frame>
+        <Template>
             <div className="snap">
                 <Banner />
             </div>
@@ -26,7 +26,7 @@ const MainPage = () => {
                     <Collaborations />
                 </div>
             </section>
-        </Frame>
+        </Template>
     );
 };
 

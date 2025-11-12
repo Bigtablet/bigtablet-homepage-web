@@ -1,8 +1,6 @@
 "use client";
 
-import "./style.scss";
-import Frame from "src/widgets/layout/template";
-
+import Template from "src/widgets/layout/template";
 import History from "src/widgets/about/history/ui";
 import Team from "src/widgets/about/team";
 import type { HistoryItemType } from "src/widgets/about/history/type";
@@ -33,12 +31,12 @@ const About = () => {
     );
 
     return (
-        <Frame>
+        <Template>
             <Introduce sectionKey="section1" />
             <Introduce sectionKey="section2" reverse />
             <History items={items} />
             <Team />
-        </Frame>
+        </Template>
     );
 };
 

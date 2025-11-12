@@ -1,0 +1,31 @@
+@use "mixin" as *;
+
+.btn {
+  @include button-base;
+}
+
+/* Colors */
+.btn--primary {
+  @include button-primary;
+}
+
+.btn--secondary {
+  @include button-secondary;
+}
+
+.btn--ghost {
+  @include button-ghost;
+}
+
+/* Sizes */
+.btn--sm {
+  @include button-sm;
+}
+
+.btn--md {
+  @include button-md;
+}
+
+.btn--lg {
+  @include button-lg;
+}

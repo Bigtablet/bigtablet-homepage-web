@@ -1,0 +1,42 @@
+@use "src/shared/styles/token" as *;
+
+.solution {
+  @include flex-column;
+  @include flex-center;
+  gap: clamp($spacing-3xl, 6vw, 80px);
+  background: $color-background;
+  color: $text-inverse;
+}
+
+.solution__title {
+  @include heading-2;
+  font-size: clamp($font-size-2xl, 4vw, $font-size-4xl);
+  color: $text-inverse;
+  text-align: center;
+  white-space: pre-line;
+}
+
+.solution__grid {
+  @include flex-between;
+  flex-wrap: wrap;
+  gap: $spacing-xl;
+  justify-content: center;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .solution {
+    gap: clamp($spacing-2xl, 5vw, 56px);
+  }
+
+  .solution__title {
+    font-size: clamp($font-size-xl, 5vw, $font-size-2xl);
+  }
+
+  .solution-card {
+    width: 46vw;
+    max-width: 320px;
+    height: 40vw;
+    max-height: 360px;
+  }
+}

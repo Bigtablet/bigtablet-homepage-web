@@ -1,0 +1,67 @@
+@use "src/shared/styles/token" as *;
+
+.request-list {
+  @include flex-column;
+  width: 100%;
+  margin: 0 auto;
+  gap: $spacing-sm;
+
+  &__loading,
+  &__empty {
+    text-align: center;
+    font-size: $font-size-sm;
+    color: $text-normal;
+    padding: $spacing-xl 0;
+  }
+}
+
+.request-item {
+  @include flex-between;
+  align-items: flex-start;
+  text-decoration: none;
+  color: $text-normal;
+  border: 1px solid $color-border;
+  border-radius: $radius-lg;
+  background: $color-background;
+  padding: $spacing-lg $spacing-xl;
+  transition: transform $transition-base, border-color $transition-base, box-shadow $transition-base;
+
+  &:hover {
+    transform: translateY(-2px);
+    border-color: $color-primary-hover;
+    box-shadow: $shadow-sm;
+  }
+
+  &__left {
+    @include flex-column;
+    gap: $spacing-md;
+  }
+
+  &__title {
+    @include heading-3;
+    font-size: $font-size-lg;
+    color: $text-strong;
+  }
+
+  &__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $spacing-xs;
+  }
+
+  &__tag {
+    @include body-medium;
+    font-size: $font-size-xs;
+    color: $text-normal;
+    background: $color-background-secondary;
+    border-radius: $radius-sm;
+    padding: $spacing-xs $spacing-sm;
+  }
+
+  &__dday {
+    @include body-medium;
+    font-size: $font-size-sm;
+    color: $color-primary;
+    white-space: nowrap;
+  }
+}

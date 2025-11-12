@@ -1,0 +1,63 @@
+// color
+$color-primary: #4C7CB6;            // darker than #5A8DCB
+$color-primary-hover: #3E6EA1;      // deeper hover
+
+$color-background: #F5F7FA;         // was #ffffff
+$color-background-secondary: #EEF2F6; // was #f8fafc
+$color-background-dark: #4C545D;    // was #7AA5D2
+$color-background-darkblue: #47555E;
+
+$color-text-primary: #1a1a1a;
+$color-text-secondary: #666666;
+$color-text-tertiary: #999999;
+$text-strong: #2A3138;              // was #1F2937
+$text-normal: #2E2E2E;              // was #3B3B3B
+$text-subtle: #565D6B;              // was #6B7280
+$text-disabled: #7F8794;            // was #9CA3AF
+$text-inverse: #FFFFFF;
+
+$color-border: #D1D5DB;             // was #E5E7EB
+$color-border-strong: #7E8692;      // was #9CA3AF
+$color-border-light: rgba(0, 0, 0, 0.12); // was 0.08
+
+$color-success: #059669;            // darker green
+$color-error: #DC2626;              // deeper red
+$color-warning: #D97706;            // deeper amber
+$color-info: #2563EB;               // deeper blue
+
+$color-overlay: rgba(0, 0, 0, 0.6); // stronger overlay
+
+// shadow
+$shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.06);
+$shadow-md: 0 6px 14px rgba(0, 0, 0, 0.12), 0 2px 6px rgba(0, 0, 0, 0.06);
+$shadow-lg: 0 10px 24px rgba(0, 0, 0, 0.16), 0 6px 12px rgba(0, 0, 0, 0.08);
+$shadow-xl: 0 22px 30px -6px rgba(0, 0, 0, 0.16), 0 12px 12px -6px rgba(0, 0, 0, 0.08);
+
+// spacing
+$spacing-xs: 0.25rem;   // 4px
+$spacing-sm: 0.5rem;    // 8px
+$spacing-md: 0.75rem;   // 12px
+$spacing-lg: 1rem;      // 16px
+$spacing-xl: 1.25rem;   // 20px
+$spacing-2xl: 1.5rem;   // 24px
+$spacing-3xl: 2rem;     // 32px
+$spacing-4xl: 2.5rem;   // 40px
+$spacing-5xl: 3rem;     // 48px
+
+// radius
+$radius-sm: 6px;
+$radius-md: 8px;
+$radius-lg: 12px;
+$radius-xl: 16px;
+$radius-full: 9999px;
+
+// z-index
+$z-modal: 10000;
+$z-toast: 10001;
+$z-loading: 9999;
+
+// transition
+$transition-fast: 0.1s ease-out;
+$transition-base: 0.2s ease-out;
+$transition-slow: 0.3s ease-out;
+$transition-bounce: 0.3s cubic-bezier(0.16, 1, 0.3, 1);

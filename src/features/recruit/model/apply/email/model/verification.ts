@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { sendEmailApi, checkEmailApi } from "src/shared/email/api/email.api";
 import {EmailApplyProps} from "./type";
-import {Toast} from "src/shared/libs/ui/toast/toast";
+import {useToast} from "src/shared/ui/feedback/toast/useToast";
 
 const useEmailVerification = ({ getEmail, cooldownSec = 60 }: EmailApplyProps) => {
     const [authCode, setAuthCode] = useState("");
@@ -10,6 +10,7 @@ const useEmailVerification = ({ getEmail, cooldownSec = 60 }: EmailApplyProps) =
     const [checkLoading, setCheckLoading] = useState(false);
     const [emailSent, setEmailSent] = useState(false);
     const [emailVerified, setEmailVerified] = useState(false);
+    const Toast = useToast();
 
     // 이메일 변경 시 초기화
     useEffect(() => {

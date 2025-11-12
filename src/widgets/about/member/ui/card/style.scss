@@ -1,27 +1,26 @@
-@use "src/shared/styles/function/flex" as *;
-@use "src/shared/styles/typography/mixin" as *;
+@use "src/shared/styles/token" as *;
 
 .member-card {
-  background: #11131a;
-  border: 1px solid #1b1f28;
-  border-radius: 12px;
+  background: $color-background-secondary;
+  border: 1px solid $color-border;
+  border-radius: $radius-lg;
   width: 220px;
   padding: 24px;
   text-align: center;
-  color: #e7ebf5;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  color: $text-normal;
+  transition: transform $transition-base, box-shadow $transition-base;
   cursor: pointer;
 
   &:hover {
     transform: translateY(-4px);
-    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
+    box-shadow: $shadow-md;
   }
 
   &__image {
     width: 100%;
     aspect-ratio: 1 / 1;
-    border-radius: 8px;
-    background: #3a3c40;
+    border-radius: $radius-md;
+    background: $color-background;
     margin-bottom: 14px;
     overflow: hidden;
 
@@ -34,28 +33,44 @@
   }
 
   &__position {
-    @include Medium;
-    font-size: 14px;
-    color: #aeb6c8;
+    @include body-medium;
+    font-size: $font-size-sm;
+    color: $text-subtle;
   }
 
   &__name {
-    @include SemiBold;
-    font-size: 18px;
+    @include heading-3;
+    font-size: $font-size-lg;
     margin: 6px 0 8px;
-    color: #ffffff;
+    color: $text-strong;
   }
 
   &__desc {
-    @include Regular;
-    font-size: 14px;
-    color: #c2c7cc;
-    line-height: 1.5;
+    @include body-regular;
+    font-size: $font-size-sm;
+    color: $text-subtle;
+    line-height: $line-height-normal;
     word-break: keep-all;
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
+  }
+}
+
+/* responsive */
+@media (max-width: 640px) {
+  .member-card {
+    width: 180px;
+    padding: 16px;
+
+    &__name {
+      font-size: $font-size-md;
+    }
+
+    &__desc {
+      font-size: $font-size-xs;
+    }
   }
 }

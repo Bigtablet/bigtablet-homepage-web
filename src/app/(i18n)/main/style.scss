@@ -1,4 +1,4 @@
-@use "src/shared/styles/function/flex" as *;
+@use "src/shared/styles/token" as *;
 
 .main-content {
   width: 100%;
@@ -19,23 +19,28 @@
 
 %ground-base {
   @include flex-column;
-  gap: clamp(80px, 10vw, 160px);
-  padding: clamp(60px, 8vw, 120px) 5vw;
+  gap: clamp($spacing-5xl, 10vw, 160px);
+  padding: clamp($spacing-4xl, 8vw, 120px) 5vw;
   width: 100%;
 }
 
 .gradient {
   @extend %ground-base;
-  background: linear-gradient(180deg, #eeeeee 0%, #b0b7bb 48%, #47555e 100%);
+  background: linear-gradient(
+                  180deg,
+                  $color-background-secondary 0%,
+                  lighten($text-subtle, 15%) 48%,
+                  $text-subtle 100%
+  );
 }
 
 .collab-bg {
   @extend %ground-base;
   background: linear-gradient(
                   180deg,
-                  #47555e 0%,
-                  #47555e 15%,
-                  #303841 35%,
-                  var(--text-darkblue) 100%
+                  $text-subtle 0%,
+                  $text-subtle 15%,
+                  $text-normal 35%,
+                  $text-strong 100%
   );
 }

@@ -1,61 +1,60 @@
-@use "src/shared/styles/function/flex" as *;
-@use "src/shared/styles/typography/mixin" as *;
+@use "src/shared/styles/token" as *;
 
 .recruit-detail {
   width: 100%;
   max-width: 960px;
   margin: 0 auto;
-  padding: 64px 24px;
-  color: var(--text-normal);
+  padding: $spacing-5xl $spacing-xl;
+  color: $text-normal;
 
   &__loading,
   &__error {
     text-align: center;
-    font-size: 16px;
-    color: var(--text-sub);
-    padding: 100px 0;
+    font-size: $font-size-md;
+    color: $text-subtle;
+    padding: $spacing-5xl 0;
   }
 
   &__header {
-    margin-bottom: 40px;
-    border-bottom: 1px solid var(--line-normal);
+    margin-bottom: $spacing-3xl;
+    border-bottom: 1px solid $color-border;
   }
 
   &__title {
-    @include SemiBold;
-    font-size: 32px;
-    color: var(--text-dark);
-    margin-bottom: 16px;
+    @include heading-2;
+    font-size: $font-size-3xl;
+    color: $text-strong;
+    margin-bottom: $spacing-lg;
   }
 
   &__meta {
     @include flex-between;
     align-items: center;
-    gap: 12px;
+    gap: $spacing-md;
     flex-wrap: wrap;
-    margin-bottom: 16px;
+    margin-bottom: $spacing-lg;
   }
 
   &__chips {
     @include flex-row;
-    gap: 8px;
+    gap: $spacing-sm;
   }
 
   &__list {
     margin: 0;
-    padding-left: 20px;
+    padding-left: $spacing-xl;
 
     li {
-      font-size: 16px;
-      line-height: 1.9;
-      color: var(--text-normal);
+      font-size: $font-size-md;
+      line-height: $line-height-relaxed;
+      color: $text-normal;
     }
   }
 
   &__process {
-    font-size: 16px;
-    color: var(--text-normal);
-    letter-spacing: 0.1px;
+    font-size: $font-size-md;
+    color: $text-normal;
+    letter-spacing: 0.02em;
     word-spacing: 2px;
     white-space: pre-line;
   }
@@ -64,52 +63,53 @@
     display: inline-flex;
     align-items: center;
     height: 28px;
-    padding: 0 12px;
-    border-radius: 999px;
-    background: var(--background-input);
-    border: 1px solid var(--line-normal);
-    color: var(--text-darkblue);
-    font-size: 13px;
+    padding: 0 $spacing-md;
+    border-radius: $radius-full;
+    background: $color-background;
+    border: 1px solid $color-border;
+    color: $text-normal;
+    font-size: $font-size-sm;
     white-space: nowrap;
   }
 
   &__datebar {
     display: inline-flex;
     align-items: center;
-    color: var(--text-sub);
-    font-size: 14px;
+    color: $text-subtle;
+    font-size: $font-size-sm;
     white-space: nowrap;
     height: 28px;
   }
 
   &__section {
-    margin-bottom: 48px;
+    margin-bottom: $spacing-4xl;
 
     h2 {
-      font-size: 20px;
-      @include Medium;
-      color: var(--text-darkblue);
-      margin-bottom: 12px;
+      @include heading-3;
+      font-size: $font-size-xl;
+      color: $text-normal;
+      margin-bottom: $spacing-md;
     }
 
     .recruit-detail__text {
-      font-size: 16px;
-      color: var(--text-normal);
+      font-size: $font-size-md;
+      color: $text-normal;
       white-space: pre-line;
+      line-height: $line-height-relaxed;
     }
   }
 
   @media (max-width: 768px) {
-    padding: 48px 16px;
+    padding: $spacing-4xl $spacing-md;
 
     &__title {
-      font-size: 26px;
+      font-size: $font-size-2xl;
     }
 
     &__meta {
       flex-direction: column;
       align-items: flex-start;
-      gap: 8px;
+      gap: $spacing-sm;
     }
 
     &__datebar {
@@ -118,7 +118,7 @@
     }
 
     &__section h2 {
-      font-size: 18px;
+      font-size: $font-size-lg;
     }
   }
 }
@@ -126,10 +126,11 @@
 .recruit-detail-request {
   @include flex-column;
   @include flex-center;
-  gap: 24px;
+  gap: $spacing-2xl;
+
   p {
-    @include Regular;
-    font-size: 16px;
-    color: var(--text-darkblue);
+    @include body-regular;
+    font-size: $font-size-md;
+    color: $text-normal;
   }
 }

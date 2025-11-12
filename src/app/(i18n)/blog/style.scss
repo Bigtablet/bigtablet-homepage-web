@@ -1,44 +1,47 @@
-@use "src/shared/styles/function/flex" as *;
-@use "src/shared/styles/typography/mixin" as *;
+@use "src/shared/styles/token" as *;
 
-/* 섹션 */
 .blog-page {
   width: 100%;
-  padding: 40px 0 80px;
+  padding: $spacing-3xl 0 $spacing-5xl;
 }
 
 .blog-page__title {
-  @include Bold;
-  font-size: 28px;
-  margin-bottom: 32px;
-  color: var(--text-dark);
+  @include heading-2;
+  font-size: $font-size-2xl;
+  margin-bottom: $spacing-2xl;
+  color: $text-strong;
   text-align: center;
 }
 
-/* 그리드 */
 .blog-page__grid {
   display: grid;
   grid-template-columns: repeat(1, minmax(0, 1fr));
-  gap: 24px;
+  gap: $spacing-xl;
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
 }
 
 @media (min-width: 768px) {
-  .blog-page__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .blog-page__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 @media (min-width: 1024px) {
-  .blog-page__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .blog-page__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
 }
 
-.blog-page__sentinel { height: 1px; }
+.blog-page__sentinel {
+  height: 1px;
+}
 
 .blog-page__empty {
-  @include Regular;
-  font-size: 20px;
-  margin-top: 40px;
-  color: var(--text-sub);
+  @include body-regular;
+  font-size: $font-size-lg;
+  margin-top: $spacing-2xl;
+  color: $text-subtle;
   text-align: center;
 }

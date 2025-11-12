@@ -1,7 +1,6 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import type { HistoryItemType } from "src/widgets/about/history/type";
 import {
     buildYearGroups,
     yearsFromGroups,
@@ -9,6 +8,14 @@ import {
     type YearGroup,
 } from "src/widgets/about/history/lib/calcs";
 import "./style.scss";
+
+export interface HistoryItemType {
+    id: string;
+    year: number;
+    title: string;
+    description?: string;
+    dateLabel?: string;
+};
 
 type Props = { items: HistoryItemType[] };
 
@@ -138,9 +145,7 @@ const History = ({ items }: Props) => {
                             data-year={year}
                             aria-label={`${year} timeline`}
                         >
-                            <div className="history__left" aria-hidden>
-                                <span className="history__year history__year--inline">{year}</span>
-                            </div>
+                            <div className="history__left" aria-hidden />
 
                             <div className={"history__right" + (isActive ? " is-visible" : " is-hidden")} aria-hidden={!isActive}>
                                 {list.map((it, i) => (

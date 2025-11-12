@@ -1,11 +1,22 @@
 "use client";
 
 import { useEffect, useMemo, useRef } from "react";
-import BlogCard from "src/entities/blog/ui/card";
+import BlogCard from "src/widgets/blog/card";
 import SkeletonCard from "src/shared/ui/skeleton/card";
 import "./style.scss";
-import { BlogListProps } from "src/widgets/blog/list/type";
 import {useTranslations} from "next-intl";
+import type {BlogItem} from "src/entities/blog/model/schema/blog.schema";
+
+interface BlogListProps {
+    items: BlogItem[];
+    locale: string;
+    isLoading: boolean;
+    hasNextPage: boolean;
+    isFetchingNextPage: boolean;
+    fetchNextPage: () => void;
+    pageSize: number;
+    hrefBuilder?: (item: BlogItem, locale: string) => string;
+};
 
 const BlogListSection = ({
                              items,

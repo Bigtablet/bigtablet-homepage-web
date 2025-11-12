@@ -1,1 +1,0 @@
-export const EMAIL_RESEND_COOLDOWN = 60;

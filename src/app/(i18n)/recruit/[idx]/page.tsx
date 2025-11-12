@@ -2,12 +2,11 @@
 
 import Link from "next/link";
 import { useParams } from "next/navigation";
-import Template from "src/widgets/layout/frame";
-import Button from "src/shared/ui/button";
-
+import Template from "src/widgets/layout/template";
 import {useRecruitDetailQuery} from "src/features/recruit/model/query/recruit.query";
 import type { RecruitCard } from "src/entities/recruit/model/schema/recruit.schema";
 import "./style.scss";
+import {Button} from "src/shared/ui/general/button";
 
 const toIdx = (v: unknown) => {
     const n = Number(v);

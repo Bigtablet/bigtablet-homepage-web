@@ -14,12 +14,12 @@ import {
 import {
     type RecruitResponse,
     type RecruitCard,
-    type RecruitRequest,
     type RecruitApplyResponse,
 } from "src/entities/recruit/model/schema/recruit.schema";
 
 import {recruitKeys} from "./keys"
-import {toRecruitCard} from "src/entities/recruit/lib/adapter";
+import {toRecruitCard} from "src/entities/recruit/util/adapter";
+import {ApplyFormValues} from "src/features/recruit/model/apply/schema/apply.schema";
 
 /* 목록 */
 export const useRecruitListQuery = (
@@ -51,12 +51,11 @@ export const useRecruitDetailQuery = (
         ...options,
     });
 
-/* 지원 */
 export const useRecruitApplyMutation = (
-    options?: UseMutationOptions<RecruitApplyResponse, Error, RecruitRequest>
+    options?: UseMutationOptions<RecruitApplyResponse, Error, ApplyFormValues, unknown>
 ) =>
-    useMutation({
-        mutationKey: [...recruitKeys.recruit.list, "apply"],
+    useMutation<RecruitApplyResponse, Error, ApplyFormValues, unknown>({
+        mutationKey: ["recruit", "apply"],
         mutationFn: (body) => postRecruitApplyApi(body),
         ...options,
     });

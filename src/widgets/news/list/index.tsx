@@ -1,17 +1,24 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-/** @description 뉴스 리스트 섹션(UI 전용) */
 import "./style.scss";
-import NewsCard from "src/widgets/news/card/ui";
+import NewsCard from "src/widgets/news/card";
 import SkeletonCard from "src/shared/ui/skeleton/card";
-import {NewsListProps} from "./type";
+import type { NewsItem } from "src/entities/news/model/schema/news.schema";
 
-const NewsListSection = ({ items, locale, isLoading, pageSize }: NewsListProps) => {
+interface NewsListProps {
+    items: NewsItem[];
+    locale: string;
+    isLoading: boolean;
+    pageSize: number;
+}
+
+const NewsListSection = ({ items, locale, isLoading, pageSize = 6 }: NewsListProps) => {
     const t = useTranslations("news");
+
     return (
-        <section className="news-page">
-            <div className="news-page__grid">
+        <section className="news-list">
+            <div className="news-list__grid">
                 {isLoading
                     ? Array.from({ length: pageSize }).map((_, i) => <SkeletonCard key={i} />)
                     : items.map((item) => (
@@ -26,7 +33,7 @@ const NewsListSection = ({ items, locale, isLoading, pageSize }: NewsListProps) 
             </div>
 
             {!isLoading && items.length === 0 && (
-                <p className="news-page__empty">(t{"empty"})</p>
+                <p className="news-list__empty">{t("empty")}</p>
             )}
         </section>
     );

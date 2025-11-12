@@ -1,14 +1,14 @@
-@use "src/shared/styles/function/flex" as *;
-@use "src/shared/styles/typography/mixin" as *;
+@use "src/shared/styles/token" as *;
 
 .recruit-page {
   @include flex-column;
-  width: 70%;
   align-items: center;
-  padding: 60px 0 100px;
+  width: 70%;
+  padding: $spacing-4xl 0 $spacing-5xl;
+  margin: 0 auto;
 
   &__list {
     width: 100%;
-    margin-top: 40px;
+    margin-top: $spacing-3xl;
   }
 }

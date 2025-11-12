@@ -1,0 +1,17 @@
+@use "src/shared/styles/token" as *;
+
+.template {
+  @include flex-column;
+  min-height: 100svh;
+  background-color: $color-background-secondary;
+  color: $text-normal;
+}
+
+.template__main {
+  @include flex-column;
+  align-items: center;
+  width: 100%;
+  flex: 1;
+  min-height: 0;
+  overflow: visible;
+}

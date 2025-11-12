@@ -1,0 +1,48 @@
+@use "src/shared/styles/token" as *;
+
+.file {
+  display: flex;
+  gap: $spacing-sm;
+  align-items: center;
+  position: relative;
+
+  &__input {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    cursor: pointer;
+  }
+
+  &__label {
+    border: 1px solid $color-border;
+    border-radius: $radius-md;
+    background: $color-background;
+    padding: $spacing-sm $spacing-lg;
+    color: $text-normal;
+    font-size: $font-size-sm;
+    transition: border-color $transition-base, background $transition-base;
+    cursor: pointer;
+
+    &:hover {
+      border-color: $color-border-light;
+    }
+  }
+
+  &__name {
+    font-size: $font-size-sm;
+    color: $text-subtle;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &--row {
+    @include flex-row;
+    justify-content: flex-start;
+  }
+
+  &--column {
+    @include flex-column;
+    align-items: flex-start;
+  }
+}

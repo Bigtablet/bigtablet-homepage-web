@@ -4,7 +4,6 @@
   @include flex-column;
   @include flex-center;
   gap: clamp($spacing-3xl, 6vw, 80px);
-  background: $color-background;
   color: $text-inverse;
 }
 

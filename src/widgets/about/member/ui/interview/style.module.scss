@@ -1,0 +1,58 @@
+@use "src/shared/styles/token" as *;
+
+.interview {
+}
+
+.interview_scroll {
+  max-block-size: calc(100vh - 32px - 40px);
+  overflow-y: auto;
+  display: grid;
+  row-gap: $spacing-md;
+  padding-inline-end: $spacing-xs;
+}
+
+.interview_empty {
+  @include body-regular;
+  font-size: $font-size-sm;
+  color: $text-subtle;
+}
+
+.qa {
+  background: $color-background;
+  color: $text-normal;
+  border: 1px solid $color-border;
+  border-radius: $radius-lg;
+  padding: $spacing-lg;
+  display: grid;
+  row-gap: $spacing-sm;
+}
+
+.qa_q {
+  @include heading-3;
+  font-size: $font-size-xl;
+  color: $text-strong;
+  margin: 0 0 $spacing-xs 0;
+}
+
+.qa_a {
+  @include body-regular;
+  font-size: $font-size-md;
+  color: $text-normal;
+  white-space: pre-line;
+  line-height: $line-height-relaxed;
+}
+
+@media (max-width: 640px) {
+  .qa {
+    border-radius: $radius-md;
+    padding: $spacing-md;
+  }
+
+  .qa_q {
+    font-size: $font-size-lg;
+  }
+
+  .qa_a {
+    font-size: $font-size-base;
+  }
+}

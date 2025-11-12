@@ -2,8 +2,8 @@
 
 .about {
   @include flex-between;
-  gap: $spacing-4xl;
-  padding: $spacing-5xl 0;
+  gap: clamp($spacing-xl, 4vw, $spacing-3xl);
+  padding: clamp($spacing-5xl, 6vw, $spacing-4xl) 8vw;
 
   &.about_reverse {
     flex-direction: row-reverse;
@@ -13,19 +13,23 @@
 .about_text {
   flex: 1;
   @include flex-column;
-  gap: $spacing-lg;
+  gap: clamp($spacing-sm, 1.5vw, $spacing-lg);
   font-family: $font-family-primary;
 }
 
 .about_title {
-  @include heading-2;         // 1.5rem / semibold / snug
+  @include heading-2;
+  font-size: clamp($font-size-2xl, 3vw, $font-size-3xl);
   color: $text-strong;
   letter-spacing: $letter-spacing-tight;
+  line-height: 1.3;
 }
 
 .about_desc {
-  @include body-regular;      // base / regular / normal
+  @include body-medium;
+  font-size: clamp($font-size-md, 1.6vw, $font-size-lg);
   color: $text-subtle;
+  line-height: 1.6;
 }
 
 .about_image {
@@ -34,8 +38,29 @@
 
   img {
     max-width: 100%;
+    max-height: 420px;
     height: auto;
     object-fit: contain;
     display: block;
+  }
+}
+
+@media (max-width: 900px) {
+  .about {
+    @include flex-column;
+    text-align: center;
+    gap: $spacing-xl;
+  }
+
+  .about_image {
+    margin-top: $spacing-lg;
+  }
+
+  .about_title {
+    font-size: clamp($font-size-xl, 5vw, $font-size-2xl);
+  }
+
+  .about_desc {
+    font-size: clamp($font-size-base, 3.5vw, $font-size-lg);
   }
 }

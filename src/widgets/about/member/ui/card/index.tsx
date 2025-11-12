@@ -1,13 +1,13 @@
 "use client";
 
-import "./style.scss";
 import Image from "next/image";
 import Link from "next/link";
-import { useTranslations, useLocale } from "next-intl";
+import { useTranslations } from "next-intl";
 import {
     MEMBER_TO_SLUG,
     type MemberKey,
 } from "src/entities/about/member/model/member.model";
+import styles from "./style.module.scss";
 
 type MemberCardProps = { memberKey: MemberKey };
 
@@ -19,12 +19,11 @@ const MemberCard = ({ memberKey }: MemberCardProps) => {
     const position = t(`${memberKey}.position`);
     const description = t(`${memberKey}.description`);
     const imageSrc = `/images/member/${slug}.png`;
-
     const href = `/about/${slug}`;
 
     return (
-        <Link href={href} className="member-card" aria-label={`${name} 상세보기`}>
-            <div className="member-card__image" aria-hidden>
+        <Link href={href} className={styles.member_card} aria-label={`${name} 상세보기`}>
+            <div className={styles.member_card_image} aria-hidden>
                 <Image
                     src={imageSrc}
                     alt={name}
@@ -34,9 +33,9 @@ const MemberCard = ({ memberKey }: MemberCardProps) => {
                 />
             </div>
 
-            <p className="member-card__position">{position}</p>
-            <h3 className="member-card__name">{name}</h3>
-            <p className="member-card__desc">{description}</p>
+            <p className={styles.member_card_position}>{position}</p>
+            <h3 className={styles.member_card_name}>{name}</h3>
+            <p className={styles.member_card_desc}>{description}</p>
         </Link>
     );
 };

@@ -54,22 +54,6 @@
   color: rgba($text-inverse, 0.9);
 }
 
-.banner__cta {
-  display: inline-flex;
-  text-decoration: none;
-  background: $color-primary;
-  color: $text-inverse;
-  padding: $spacing-md $spacing-xl;
-  border-radius: $radius-md;
-  font-weight: $font-weight-semibold;
-  transition: background $transition-base, transform $transition-fast;
-
-  &:hover {
-    background: $color-primary-hover;
-    transform: translateY(-2px);
-  }
-}
-
 /* Responsive */
 @media (max-width: 768px) {
   .banner {

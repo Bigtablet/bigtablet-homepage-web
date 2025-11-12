@@ -35,7 +35,7 @@ const Banner = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                 >
-                    <Button variant="primary" size="md">
+                    <Button variant="primary" size="lg">
                         {t("button")}
                     </Button>
                 </a>

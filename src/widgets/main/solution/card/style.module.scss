@@ -1,6 +1,6 @@
 @use "src/shared/styles/token" as *;
 
-.solution-card {
+.solution_card {
   cursor: pointer;
   position: relative;
   width: 300px;
@@ -26,20 +26,20 @@
   }
 }
 
-.solution-card__video,
-.solution-card__overlay {
+.solution_card_video,
+.solution_card_overlay {
   position: absolute;
   inset: 0;
   pointer-events: none;
 }
 
-.solution-card__video {
+.solution_card_video {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.solution-card__overlay {
+.solution_card_overlay {
   background: linear-gradient(
                   180deg,
                   rgba(0, 0, 0, 0.18) 0%,
@@ -49,8 +49,7 @@
   z-index: 1;
 }
 
-/* Centered title */
-.solution-card__title {
+.solution_card_title {
   position: absolute;
   inset: 0;
   display: grid;
@@ -66,9 +65,8 @@
   pointer-events: none;
 }
 
-/* Responsive */
 @media (max-width: 900px) {
-  .solution-card {
+  .solution_card {
     width: 46vw;
     max-width: 320px;
     height: 40vw;

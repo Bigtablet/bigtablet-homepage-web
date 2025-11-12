@@ -1,17 +1,17 @@
 "use client";
 
-import "./style.scss";
 import { useTranslations } from "next-intl";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { SOURCES, Product } from "../model/sources";
 import { buildInitialSelected } from "../util/select";
 import Card from "../card";
 import Modal from "../modal";
+import styles from "./style.module.scss";
 
 type SlideState = { dir: "next" | "prev"; nextId: number } | null;
 type AnimVars = { dx: number; dy: number; sx: number; sy: number } | null;
 
-const Solution = () => {
+const SolutionSection = () => {
     const t = useTranslations("main.solution");
 
     const [selected, setSelected] = useState<Record<number, string>>({});
@@ -22,7 +22,6 @@ const Solution = () => {
     const [blockBackdropClose, setBlockBackdropClose] = useState(false);
     const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-    // 비디오 초기 선택
     useEffect(() => setSelected(buildInitialSelected()), []);
 
     const products: Product[] = useMemo(
@@ -90,7 +89,6 @@ const Solution = () => {
         }, 360);
     };
 
-    // Esc 키로 닫기
     useEffect(() => {
         if (!activeId) return;
         const onKey = (e: KeyboardEvent) => e.key === "Escape" && closeNow();
@@ -99,12 +97,12 @@ const Solution = () => {
     }, [activeId]);
 
     return (
-        <section className="solution" role="region" aria-labelledby="solution__title">
-            <p id="solution__title" className="solution__title">
+        <section className={styles.solution} role="region" aria-labelledby="solution_title">
+            <p id="solution_title" className={styles.solution_title}>
                 {t("title")}
             </p>
 
-            <div className="solution__grid">
+            <div className={styles.solution_grid}>
                 {products.map(({ id, src }) => (
                     <Card
                         key={id}
@@ -134,4 +132,4 @@ const Solution = () => {
     );
 };
 
-export default Solution;
+export default SolutionSection;

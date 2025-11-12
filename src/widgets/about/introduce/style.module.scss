@@ -1,0 +1,41 @@
+@use "src/shared/styles/token" as *;
+
+.about {
+  @include flex-between;
+  gap: $spacing-4xl;
+  padding: $spacing-5xl 0;
+
+  &.about_reverse {
+    flex-direction: row-reverse;
+  }
+}
+
+.about_text {
+  flex: 1;
+  @include flex-column;
+  gap: $spacing-lg;
+  font-family: $font-family-primary;
+}
+
+.about_title {
+  @include heading-2;         // 1.5rem / semibold / snug
+  color: $text-strong;
+  letter-spacing: $letter-spacing-tight;
+}
+
+.about_desc {
+  @include body-regular;      // base / regular / normal
+  color: $text-subtle;
+}
+
+.about_image {
+  flex: 1;
+  @include flex-center;
+
+  img {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+    display: block;
+  }
+}

@@ -1,41 +1,46 @@
 @use "src/shared/styles/token" as *;
 
 .collabs {
-  width: 100%;
   padding: $spacing-xl 0 $spacing-md;
   color: $text-inverse;
 }
 
-.collabs__title {
+.collabs_title {
   text-align: center;
   font-size: clamp($font-size-2xl, 4vw, $font-size-4xl);
   color: $text-inverse;
 }
 
-.collabs__viewport {
+.collabs_viewport {
   position: relative;
-  width: 100%;
   overflow: hidden;
   padding-block: $spacing-md;
 }
 
-.collabs__card {
+.collabs_item {
+  display: inline-flex;
+  align-items: center;
+  flex: 0 0 auto;
+}
+
+.collabs_gap {
+  display: inline-block;
+  width: var(--gap, 24px);
+  height: 1px;
+  flex: 0 0 auto;
+}
+
+.collabs_card {
   display: grid;
   place-items: center;
-  width: clamp(160px, 18vw, 260px);
-  height: clamp(64px, 7.5vw, 92px);
+  width: 260px;
+  height: 80px;
   border-radius: $radius-lg;
   background: $color-background;
   box-shadow: $shadow-sm;
   padding: $spacing-md $spacing-lg;
   overflow: hidden;
-  margin-right: $spacing-xl;
   transition: transform $transition-fast, box-shadow $transition-base;
-
-  &:hover {
-    transform: translateY(-2px);
-    box-shadow: $shadow-md;
-  }
 
   img {
     max-width: 100%;
@@ -47,13 +52,7 @@
 }
 
 @media (max-width: 640px) {
-  .collabs__title {
-    font-size: $font-size-xl;
-  }
-
-  .collabs__card {
-    width: clamp(130px, 42vw, 200px);
-    height: clamp(56px, 14vw, 78px);
-    margin-right: $spacing-lg;
-  }
+  .collabs_title { font-size: $font-size-xl; }
+  .collabs_card { width: 200px; height: 64px; }
+  .collabs_viewport { --gap: #{$spacing-lg}; }
 }

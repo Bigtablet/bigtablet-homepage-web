@@ -1,6 +1,6 @@
 @use "src/shared/styles/token" as *;
 
-.main-content {
+.main_content {
   width: 100%;
   min-height: 0;
   position: relative;
@@ -9,15 +9,24 @@
   scroll-padding-top: 80px;
   -webkit-overflow-scrolling: touch;
   overscroll-behavior: contain;
+
+  * {
+    box-sizing: border-box;
+  }
 }
 
 .snap {
   @include flex-center;
   width: 100%;
-  scroll-snap-align: start;
+  max-width: 100%;
+  overflow-x: hidden;
+
+  > * {
+    max-width: 100%;
+  }
 }
 
-%ground-base {
+%ground_base {
   @include flex-column;
   gap: clamp(80px, 10vw, 160px);
   padding: clamp(60px, 8vw, 120px) 5vw;
@@ -25,12 +34,12 @@
 }
 
 .gradient {
-  @extend %ground-base;
+  @extend %ground_base;
   background: linear-gradient(180deg, #eeeeee 0%, #b0b7bb 48%, #47555e 100%);
 }
 
-.collab-bg {
-  @extend %ground-base;
+.collab_bg {
+  @extend %ground_base;
   background: linear-gradient(
                   180deg,
                   #47555e 0%,

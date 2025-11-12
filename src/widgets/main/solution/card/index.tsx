@@ -1,20 +1,20 @@
 "use client";
 
-import "./style.scss";
+import styles from "./style.module.scss";
 
 interface CardProps {
     id: number;
     src: string;
     label: string;
     onOpen: (id: number, rect: DOMRect) => void;
-};
+}
 
 const Card = ({ id, src, label, onOpen }: CardProps) => {
     const openFromTarget = (el: HTMLDivElement) => onOpen(id, el.getBoundingClientRect());
 
     return (
         <div
-            className="solution-card"
+            className={styles.solution_card}
             role="button"
             tabIndex={0}
             aria-label={label}
@@ -27,7 +27,7 @@ const Card = ({ id, src, label, onOpen }: CardProps) => {
             }}
         >
             <video
-                className="solution-card__video"
+                className={styles.solution_card_video}
                 src={src}
                 autoPlay
                 muted
@@ -35,8 +35,8 @@ const Card = ({ id, src, label, onOpen }: CardProps) => {
                 loop
                 preload="auto"
             />
-            <div className="solution-card__overlay" />
-            <p className="solution-card__title">{label}</p>
+            <div className={styles.solution_card_overlay} />
+            <p className={styles.solution_card_title}>{label}</p>
         </div>
     );
 };

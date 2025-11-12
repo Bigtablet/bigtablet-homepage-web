@@ -11,7 +11,7 @@
   color: $text-normal;
 }
 
-.problem__title {
+.problem_title {
   @include heading-2;
   flex: 0 0 35%;
   font-size: clamp($font-size-2xl, 4vw, $font-size-4xl);
@@ -19,7 +19,7 @@
   line-height: 1.25;
 }
 
-.problem__description {
+.problem_description {
   @include body-medium;
   flex: 0 0 55%;
   font-size: clamp($font-size-md, 2vw, $font-size-xl);
@@ -27,7 +27,6 @@
   line-height: 1.6;
 }
 
-/* Responsive */
 @media (max-width: 900px) {
   .problem {
     @include flex-column;
@@ -36,12 +35,12 @@
     gap: $spacing-xl;
   }
 
-  .problem__title {
+  .problem_title {
     font-size: clamp($font-size-xl, 5vw, $font-size-2xl);
     flex: 0 0 auto;
   }
 
-  .problem__description {
+  .problem_description {
     font-size: clamp($font-size-base, 4vw, $font-size-lg);
     flex: 0 0 auto;
   }

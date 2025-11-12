@@ -1,0 +1,14 @@
+@use "src/shared/styles/token" as *;
+
+.card {
+  border-radius: $radius-lg; background: $color-background;
+  &--bordered { border: 1px solid $color-border; }
+  &--shadow-none { box-shadow: none; }
+  &--shadow-sm { box-shadow: $shadow-sm; }
+  &--shadow-md { box-shadow: $shadow-md; }
+  &--shadow-lg { box-shadow: $shadow-lg; }
+  &--p-none { padding: 0; }
+  &--p-sm { padding: $spacing-sm; }
+  &--p-md { padding: $spacing-lg; }
+  &--p-lg { padding: $spacing-2xl; }
+}

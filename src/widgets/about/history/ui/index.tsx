@@ -145,9 +145,7 @@ const History = ({ items }: Props) => {
                             data-year={year}
                             aria-label={`${year} timeline`}
                         >
-                            <div className="history__left" aria-hidden>
-                                <span className="history__year history__year--inline">{year}</span>
-                            </div>
+                            <div className="history__left" aria-hidden />
 
                             <div className={"history__right" + (isActive ? " is-visible" : " is-hidden")} aria-hidden={!isActive}>
                                 {list.map((it, i) => (

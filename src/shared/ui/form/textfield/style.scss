@@ -1,0 +1,36 @@
+@use "src/shared/styles/token" as *;
+@use 'mixin' as *;
+
+.tf {
+  @include flex-column;
+  &__label   { @include tf-label; }
+  &__wrapper { @include tf-wrapper; }
+
+  &__input {
+    &--outline { @include tf-input-outline; }
+    &--filled  { @include tf-input-filled;  }
+    &--ghost   { @include tf-input-ghost;   }
+
+    &--sm { @include tf-sm; }
+    &--md { @include tf-md; }
+    &--lg { @include tf-lg; }
+
+    &--with-left  { @include tf-with-left;  }
+    &--with-right { @include tf-with-right; }
+
+    &--error   { @include tf-error;   }
+    &--success { @include tf-success; }
+  }
+
+  &__icon {
+    position: absolute; display: inline-flex; align-items: center; justify-content: center;
+    width: 1.25rem; height: 1.25rem;
+    color: $color-text-secondary;
+    &--left  { left:  $spacing-md; }
+    &--right { right: $spacing-md; }
+  }
+
+  &__helper { @include tf-helper;
+    &--error { @include tf-helper-error; }
+  }
+}

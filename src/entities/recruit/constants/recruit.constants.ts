@@ -1,9 +1,5 @@
-import {
-    DepartmentType,
-    EducationType,
-    RecruitType,
-    LocationType,
-} from "src/entities/recruit/model/schema/recruit.schema";
+import {DepartmentType, EducationType, LocationType, RecruitType} from "src/entities/recruit/enum/recruit.enum";
+
 
 /** @description 셀렉트 옵션(배열) */
 export const DEPARTMENTS   = DepartmentType.options;

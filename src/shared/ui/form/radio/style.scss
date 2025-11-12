@@ -1,0 +1,14 @@
+@use "src/shared/styles/token" as *;
+
+.radio {
+  display: inline-flex; align-items: center; gap: $spacing-sm; cursor: pointer;
+  &__input { position: absolute; opacity: 0; pointer-events: none; }
+  &__dot { width: 1.125rem; height: 1.125rem; border: 1px solid $color-border; border-radius: 9999px; background: $color-background; transition: background $transition-base, border-color $transition-base, box-shadow $transition-base; }
+  &__label { @include text-base; color: $color-text-primary; }
+  &--sm { .radio__dot { width: 1rem; height: 1rem; } .radio__label { @include text-sm; } }
+  &--lg { .radio__dot { width: 1.25rem; height: 1.25rem; } .radio__label { @include text-md; } }
+  &:has(.radio__input:focus-visible) .radio__dot { box-shadow: 0 0 0 3px rgba($color-primary, .15); border-color: $color-primary; }
+  &:has(.radio__input:checked) .radio__dot { border-color: $color-primary; }
+  &:has(.radio__input:checked) .radio__dot::after { content: ""; display: block; width: 60%; height: 60%; margin: 20%; background: $color-primary; border-radius: 9999px; }
+  &:has(.radio__input:disabled) { opacity: .6; cursor: not-allowed; }
+}

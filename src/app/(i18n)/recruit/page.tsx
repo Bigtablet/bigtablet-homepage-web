@@ -1,9 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import Frame from "src/widgets/layout/template";
-import RecruitHeader from "src/widgets/recruit/header";
-import RequestList from "src/features/recruit/list/ui";
+import Template from "src/widgets/layout/template";
+import RecruitHeader from "src/widgets/recruit/main/header";
+import RequestList from "src/widgets/recruit/main/list";
 import type { RecruitSearchFilters } from "src/features/recruit/model/query/search/recruit.search.query";
 import "./style.scss";
 
@@ -16,7 +16,7 @@ const RecruitPage = () => {
     });
 
     return (
-        <Frame>
+        <Template>
             <section className="recruit-page">
                 <RecruitHeader filters={filters} onChange={setFilters} />
 
@@ -24,7 +24,7 @@ const RecruitPage = () => {
                     <RequestList filters={filters} />
                 </div>
             </section>
-        </Frame>
+        </Template>
     );
 };
 

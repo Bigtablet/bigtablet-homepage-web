@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useLocale } from "next-intl";
 import { useRouter } from "next/navigation";
-import "./style.scss";
+import styles from "./style.module.scss";
 
 const SUPPORTED = ["ko", "en"] as const;
 type Locale = (typeof SUPPORTED)[number];
@@ -27,22 +27,29 @@ const Header = () => {
         document.cookie =
             `NEXT_LOCALE=${nextLocale}; Path=/; Max-Age=31536000; SameSite=Lax` +
             (process.env.NODE_ENV === "production" ? "; Secure" : "");
-        router.refresh(); // 경로 유지, 프리픽스 안 붙음
+        router.refresh();
     };
 
     return (
-        <header className={scrolled ? "scrolled header" : "header"}>
-            <div className="inner">
+        <header className={`${styles.header} ${scrolled ? styles.scrolled : ""}`}>
+            <div className={styles.inner}>
                 <Link href="/main">
-                    <Image src="/images/logo/logo.png" alt="Logo" width={120} height={40} priority />
+                    <Image
+                        src="/images/logo/logo.png"
+                        alt="Logo"
+                        width={120}
+                        height={40}
+                        priority
+                        className={styles.logo}
+                    />
                 </Link>
 
-                <nav>
+                <nav className={styles.nav}>
                     <Link href="/about">About Us</Link>
                     <Link href="/news">News</Link>
                     <Link href="/blog">Blog</Link>
                     <Link href="/recruit">Recruit</Link>
-                    <button type="button" onClick={switchLocale} className="locale-switch">
+                    <button type="button" onClick={switchLocale} className={styles.locale_switch}>
                         {locale === "en" ? "한국어" : "English"}
                     </button>
                 </nav>

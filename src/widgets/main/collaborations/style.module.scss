@@ -1,8 +1,10 @@
 @use "src/shared/styles/token" as *;
 
 .collabs {
+  @include flex-column;
   padding: $spacing-xl 0 $spacing-md;
   color: $text-inverse;
+  gap: clamp(2rem, 6vw, 80px);
 }
 
 .collabs_title {

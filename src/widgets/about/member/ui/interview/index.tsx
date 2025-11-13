@@ -1,26 +1,25 @@
 "use client";
 
-import "./style.scss";
+import styles from "./style.module.scss";
 
 interface QAItem {
     q: string;
-    a: string
-};
-
+    a: string;
+}
 
 const Interview = ({ items }: { items: QAItem[] }) => {
     return (
-        <main className="interview" aria-label="Interview">
-            <div className="interview__scroll">
+        <main className={styles.interview} aria-label="Interview">
+            <div className={styles.interview_scroll}>
                 {items.length > 0 ? (
                     items.map((it, i) => (
-                        <article className="qa" key={i}>
-                            <h3 className="qa__q">{it.q}</h3>
-                            <p className="qa__a">{it.a}</p>
+                        <article className={styles.qa} key={i}>
+                            <h3 className={styles.qa_q}>{it.q}</h3>
+                            <p className={styles.qa_a}>{it.a}</p>
                         </article>
                     ))
                 ) : (
-                    <p className="interview__empty">No interview data available.</p>
+                    <p className={styles.interview_empty}>No interview data available.</p>
                 )}
             </div>
         </main>

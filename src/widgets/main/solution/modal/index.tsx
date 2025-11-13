@@ -1,6 +1,6 @@
 "use client";
 
-import "./style.scss";
+import styles from "./style.module.scss";
 import { useTranslations } from "next-intl";
 import { useEffect, useMemo, useRef } from "react";
 import Portal from "src/shared/libs/ui/portal/portal";
@@ -28,19 +28,19 @@ const Modal = ({
             "--from-dx": `${animVars.dx}px`,
             "--from-dy": `${animVars.dy}px`,
             "--from-sx": animVars.sx,
-            "--from-sy": animVars.sy,
+            "--from-sy": `${animVars.sy}`,
         } as React.CSSProperties & Record<string, string | number>;
     }, [animVars]);
 
     const renderPanel = (item: ModalItem) => (
-        <div className="solution-modal__panel">
-            <div className="solution-modal__left">
-                <h3 className="solution-modal__title">{t(`product.${item.id}.title`)}</h3>
-                <p className="solution-modal__desc">{t(`product.${item.id}.description`)}</p>
+        <div className={styles.solution_modal_panel}>
+            <div className={styles.solution_modal_left}>
+                <h3 className={styles.solution_modal_title}>{t(`product.${item.id}.title`)}</h3>
+                <p className={styles.solution_modal_desc}>{t(`product.${item.id}.description`)}</p>
             </div>
-            <div className="solution-modal__right">
+            <div className={styles.solution_modal_right}>
                 <video
-                    className="solution-modal__video"
+                    className={styles.solution_modal_video}
                     src={item.src}
                     autoPlay
                     muted
@@ -79,7 +79,7 @@ const Modal = ({
     return (
         <Portal>
             <div
-                className={`solution-modal__backdrop${blockBackdropClose ? " is-locked" : ""}`}
+                className={`${styles.solution_modal_backdrop} ${blockBackdropClose ? styles.is_locked : ""}`}
                 onClick={blockBackdropClose ? undefined : close}
                 onMouseLeave={(e) => {
                     const related = (e as React.MouseEvent).relatedTarget as Node | null;
@@ -89,22 +89,22 @@ const Modal = ({
                 role="presentation"
             >
                 <div
-                    className={`solution-modal${isEntering ? " is-enter" : ""}`}
+                    className={`${styles.solution_modal} ${isEntering ? styles.is_enter : ""}`}
                     style={styleVars}
                     onClick={(e) => e.stopPropagation()}
                 >
                     <button
-                        className="solution-modal__nav solution-modal__nav--prev"
+                        className={`${styles.solution_modal_nav} ${styles.solution_modal_nav_prev}`}
                         onClick={prev}
                         aria-label="previous"
                     >
                         ‹
                     </button>
 
-                    <div className="solution-modal__content" role="dialog" aria-modal="true">
+                    <div className={styles.solution_modal_content} role="dialog" aria-modal="true">
                         <div
-                            className={`solution-modal__track${
-                                sliding ? (sliding.dir === "next" ? " is-slide-next" : " is-slide-prev") : ""
+                            className={`${styles.solution_modal_track} ${
+                                sliding ? (sliding.dir === "next" ? styles.is_slide_next : styles.is_slide_prev) : ""
                             }`}
                         >
                             {sliding?.dir === "prev" && ghost && renderPanel(ghost)}
@@ -114,7 +114,7 @@ const Modal = ({
                     </div>
 
                     <button
-                        className="solution-modal__nav solution-modal__nav--next"
+                        className={`${styles.solution_modal_nav} ${styles.solution_modal_nav_next}`}
                         onClick={next}
                         aria-label="next"
                     >

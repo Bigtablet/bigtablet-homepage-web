@@ -1,39 +1,60 @@
 // color
-$color-primary: #4C7CB6;            // darker than #5A8DCB
-$color-primary-hover: #3E6EA1;      // deeper hover
+$color-primary: #4C7CB6;
+$color-primary-hover: #3E6EA1;
+$color-primary-light: #5A8DCB;
+$color-primary-subtle: #E6EEF7;
 
-$color-background: #F5F7FA;         // was #ffffff
-$color-background-secondary: #EEF2F6; // was #f8fafc
-$color-background-dark: #4C545D;    // was #7AA5D2
+$color-background: #F5F7FA;
+$color-background-secondary: #EEF2F6;
+$color-background-tertiary: #E3E7EB;
+$color-background-dark: #4C545D;
 $color-background-darkblue: #47555E;
+$color-background-overlay: rgba(0, 0, 0, 0.35);
+$color-background-inverse: #1A1A1A;
 
 $color-text-primary: #1a1a1a;
 $color-text-secondary: #666666;
 $color-text-tertiary: #999999;
-$text-strong: #2A3138;              // was #1F2937
-$text-normal: #2E2E2E;              // was #3B3B3B
-$text-subtle: #565D6B;              // was #6B7280
-$text-disabled: #7F8794;            // was #9CA3AF
+$text-strong: #2A3138;
+$text-normal: #2E2E2E;
+$text-subtle: #565D6B;
+$text-disabled: #7F8794;
+$text-placeholder: #9AA1AB;
 $text-inverse: #FFFFFF;
 
-$color-border: #D1D5DB;             // was #E5E7EB
-$color-border-strong: #7E8692;      // was #9CA3AF
-$color-border-light: rgba(0, 0, 0, 0.12); // was 0.08
+$color-border: #D1D5DB;
+$color-border-strong: #7E8692;
+$color-border-medium: #B7BDC4;
+$color-border-light: rgba(0, 0, 0, 0.12);
 
-$color-success: #059669;            // darker green
-$color-error: #DC2626;              // deeper red
-$color-warning: #D97706;            // deeper amber
-$color-info: #2563EB;               // deeper blue
+$color-success: #059669;
+$color-success-bg: #E6F6EF;
+$color-error: #DC2626;
+$color-error-bg: #FDECEC;
+$color-warning: #D97706;
+$color-warning-bg: #FFF5E5;
+$color-info: #2563EB;
+$color-info-bg: #E8F0FF;
 
-$color-overlay: rgba(0, 0, 0, 0.6); // stronger overlay
+$color-overlay: rgba(0, 0, 0, 0.6);
+$color-overlay-strong: rgba(0, 0, 0, 0.75);
+$color-overlay-light: rgba(0, 0, 0, 0.25);
+
+$color-focus-ring: rgba($color-primary, 0.45);
+$color-selection: rgba($color-primary, 0.25);
 
 // shadow
+$shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.04);
 $shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.06);
 $shadow-md: 0 6px 14px rgba(0, 0, 0, 0.12), 0 2px 6px rgba(0, 0, 0, 0.06);
 $shadow-lg: 0 10px 24px rgba(0, 0, 0, 0.16), 0 6px 12px rgba(0, 0, 0, 0.08);
 $shadow-xl: 0 22px 30px -6px rgba(0, 0, 0, 0.16), 0 12px 12px -6px rgba(0, 0, 0, 0.08);
+$shadow-focus: 0 0 0 3px rgba($color-primary, 0.3);
 
 // spacing
+$spacing-6xl: 3.5rem;   // 56px
+$spacing-7xl: 4rem;     // 64px
+$spacing-8xl: 5rem;     // 80px
 $spacing-xs: 0.25rem;   // 4px
 $spacing-sm: 0.5rem;    // 8px
 $spacing-md: 0.75rem;   // 12px
@@ -45,13 +66,18 @@ $spacing-4xl: 2.5rem;   // 40px
 $spacing-5xl: 3rem;     // 48px
 
 // radius
+$radius-xs: 4px;
 $radius-sm: 6px;
 $radius-md: 8px;
 $radius-lg: 12px;
 $radius-xl: 16px;
+$radius-2xl: 20px;
 $radius-full: 9999px;
 
 // z-index
+$z-base: 1;
+$z-header: 100;
+$z-dropdown: 500;
 $z-modal: 10000;
 $z-toast: 10001;
 $z-loading: 9999;
@@ -61,3 +87,5 @@ $transition-fast: 0.1s ease-out;
 $transition-base: 0.2s ease-out;
 $transition-slow: 0.3s ease-out;
 $transition-bounce: 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+$transition-fade: opacity 0.25s ease-in-out;
+$transition-scale: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);

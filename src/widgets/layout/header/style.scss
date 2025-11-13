@@ -28,7 +28,8 @@
     @include text-lg;
 
     a {
-      @include body-medium;
+      @include text-lg;
+      font-weight: $font-weight-semibold;
       position: relative;
       padding: 6px 2px;
       color: $text-normal;

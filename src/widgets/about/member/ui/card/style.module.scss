@@ -1,0 +1,87 @@
+@use "src/shared/styles/token" as *;
+
+.member_card {
+  background: $color-background-secondary;
+  border: 1px solid $color-border;
+  border-radius: $radius-lg;
+  width: 240px;
+  height: 355px;
+  padding: $spacing-lg;
+  text-align: center;
+  color: $text-normal;
+  transition: transform $transition-base, box-shadow $transition-base;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: $shadow-md;
+  }
+}
+
+.member_card_image {
+  width: 100%;
+  height: 220px;
+  border-radius: $radius-md;
+  background: $color-background;
+  margin-bottom: $spacing-sm;
+  overflow: hidden;
+  flex-shrink: 0;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+}
+
+.member_card_position {
+  @include body-medium;
+  font-size: $font-size-sm;
+  color: $text-subtle;
+  margin-bottom: 2px;
+}
+
+.member_card_name {
+  @include heading-3;
+  font-size: $font-size-lg;
+  margin: 0 0 4px;
+  color: $text-strong;
+}
+
+.member_card_desc {
+  @include body-regular;
+  font-size: $font-size-sm;
+  color: $text-subtle;
+  line-height: $line-height-normal;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+@media (max-width: 640px) {
+  .member_card {
+    width: 200px;
+    height: 300px;
+    padding: $spacing-md;
+  }
+
+  .member_card_image {
+    height: 180px;
+  }
+
+  .member_card_name {
+    font-size: $font-size-md;
+  }
+
+  .member_card_desc {
+    font-size: $font-size-xs;
+  }
+}

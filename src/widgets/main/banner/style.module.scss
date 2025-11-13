@@ -10,26 +10,26 @@
   background: $color-background;
 }
 
-.banner__video {
+.banner_video {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
 }
 
-.banner__video-tag {
+.banner_video_tag {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.banner__overlay {
+.banner_overlay {
   position: absolute;
   inset: 0;
   background: rgba(0, 0, 0, 0.5);
 }
 
-.banner__content {
+.banner_content {
   @include flex-column;
   @include flex-center;
   position: relative;
@@ -40,34 +40,22 @@
   padding-inline: $spacing-xl;
 }
 
-.banner__title {
+.banner_title {
   @include heading-1;
   font-size: clamp($font-size-2xl, 5vw, $font-size-4xl);
   line-height: 1.1;
   color: $text-inverse;
 }
 
-.banner__description {
+.banner_description {
   @include body-medium;
   font-size: clamp($font-size-md, 2vw, $font-size-xl);
   opacity: 0.9;
   color: rgba($text-inverse, 0.9);
 }
 
-.banner__cta {
-  display: inline-flex;
-  text-decoration: none;
-  background: $color-primary;
-  color: $text-inverse;
-  padding: $spacing-md $spacing-xl;
-  border-radius: $radius-md;
-  font-weight: $font-weight-semibold;
-  transition: background $transition-base, transform $transition-fast;
-
-  &:hover {
-    background: $color-primary-hover;
-    transform: translateY(-2px);
-  }
+.banner_cta {
+  display: inline-block;
 }
 
 /* Responsive */
@@ -76,11 +64,11 @@
     height: 80vh;
   }
 
-  .banner__title {
+  .banner_title {
     font-size: clamp($font-size-xl, 6vw, $font-size-3xl);
   }
 
-  .banner__description {
+  .banner_description {
     font-size: clamp($font-size-sm, 2.5vw, $font-size-md);
   }
 }

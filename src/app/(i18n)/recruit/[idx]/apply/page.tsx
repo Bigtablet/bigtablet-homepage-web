@@ -5,7 +5,8 @@ import { useParams } from "next/navigation";
 import Template from "src/widgets/layout/template";
 import { useForm, type Resolver } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import "./style.scss";
+
+import styles from "./style.module.scss";
 
 import {
     applySchema,
@@ -46,9 +47,10 @@ const ApplyPage = () => {
 
     useEffect(() => {
         const current = form.getValues("jobId");
-        if (current !== jobId) form.setValue("jobId", jobId, { shouldDirty: true });
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [jobId]);
+        if (current !== jobId) {
+            form.setValue("jobId", jobId, { shouldDirty: true });
+        }
+    }, [jobId, form]);
 
     const rawEmail = useEmailVerification({
         getEmail: () => form.getValues("email"),
@@ -65,7 +67,7 @@ const ApplyPage = () => {
         },
     };
 
-    const { onSubmit, isSubmitting } = useApplySubmit({
+    const { onSubmit } = useApplySubmit({
         form,
         jobId,
         emailVerified: email.emailVerified,
@@ -73,8 +75,8 @@ const ApplyPage = () => {
 
     return (
         <Template>
-            <div className="apply">
-                <h1 className="apply__title">지원서 작성</h1>
+            <div className={styles.apply}>
+                <h1 className={styles.apply_title}>지원서 작성</h1>
                 <ApplyForm form={form} email={email} onSubmit={onSubmit} />
             </div>
         </Template>

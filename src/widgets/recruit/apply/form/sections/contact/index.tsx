@@ -5,7 +5,7 @@ import { formatPhone010 } from "src/features/recruit/model/apply/util/apply.util
 import { TextField } from "src/shared/ui/form/textfield";
 import { Button } from "src/shared/ui/general/button";
 import styles from "./style.module.scss";
-import {ApplyFormProps} from "src/widgets/recruit/apply/form/type";
+import { ApplyFormProps } from "src/widgets/recruit/apply/form/type";
 
 type Form = ApplyFormProps["form"];
 type EmailCtx = ApplyFormProps["email"];
@@ -24,22 +24,19 @@ export const ContactSection = ({ form, email }: Props) => {
 
     return (
         <>
+            {/* 이름 */}
             <div className={styles.field}>
                 <label>이름*</label>
                 <TextField
                     size="sm"
+                    placeholder="홍길동"
                     error={!!errors.name}
                     helperText={errors.name?.message as string}
-                    placeholder="홍길동"
                     {...register("name")}
                 />
-                {errors.name && (
-                    <small className={styles.error}>
-                        {errors.name.message as string}
-                    </small>
-                )}
             </div>
 
+            {/* 전화번호 */}
             <div className={styles.field}>
                 <label>전화번호*</label>
                 <Controller
@@ -48,8 +45,6 @@ export const ContactSection = ({ form, email }: Props) => {
                     render={({ field }) => (
                         <TextField
                             size="sm"
-                            error={!!errors.name}
-                            helperText={errors.name?.message as string}
                             placeholder="010-1234-5678"
                             inputMode="numeric"
                             maxLength={13}
@@ -57,30 +52,26 @@ export const ContactSection = ({ form, email }: Props) => {
                                 field.onChange(formatPhone010(e.target.value))
                             }
                             value={field.value ?? ""}
+                            error={!!errors.phoneNumber}
+                            helperText={errors.phoneNumber?.message as string}
                         />
                     )}
                 />
-                {errors.phoneNumber && (
-                    <small className={styles.error}>
-                        {errors.phoneNumber.message as string}
-                    </small>
-                )}
             </div>
 
+            {/* 이메일 + 인증 */}
             <div className={styles.field}>
                 <label>이메일*</label>
                 <div className={`${styles.row} ${styles.row_email}`}>
                     <TextField
-                        error={!!errors.name}
-                        helperText={errors.name?.message as string}
                         size="sm"
                         type="email"
                         placeholder="example@email.com"
+                        error={!!errors.email}
+                        helperText={errors.email?.message as string}
                         {...register("email")}
                     />
                     <TextField
-                        error={!!errors.name}
-                        helperText={errors.name?.message as string}
                         size="sm"
                         placeholder="인증코드"
                         value={email.authCode}
@@ -109,11 +100,7 @@ export const ContactSection = ({ form, email }: Props) => {
                         {email.checkLoading ? "확인 중..." : "확인"}
                     </Button>
                 </div>
-                {errors.email && (
-                    <small className={styles.error}>
-                        {errors.email.message as string}
-                    </small>
-                )}
+
                 <small className={styles.help} aria-live="polite">
                     {email.emailVerified
                         ? "이메일 인증이 완료되었습니다."
@@ -125,24 +112,18 @@ export const ContactSection = ({ form, email }: Props) => {
                 </small>
             </div>
 
+            {/* 주소 */}
             <div className={styles.field}>
                 <label>거주지*</label>
                 <TextField
                     size="sm"
-                    error={!!errors.name}
-                    helperText={errors.name?.message as string}
                     placeholder="서울특별시 중구 세종대로 110"
+                    error={!!errors.address}
+                    helperText={errors.address?.message as string}
                     {...register("address")}
                 />
-                {errors.address && (
-                    <small className={styles.error}>
-                        {errors.address.message as string}
-                    </small>
-                )}
                 <TextField
                     size="sm"
-                    error={!!errors.name}
-                    helperText={errors.name?.message as string}
                     placeholder="상세주소 (없으면 비워두셔도 됩니다)"
                     {...register("addressDetail")}
                 />

@@ -1,8 +1,8 @@
 "use client";
 
-import "./style.scss";
-import {useMemo, useState} from "react";
-import {formatRelative} from "src/shared/libs/ui/date";
+import { useMemo, useState } from "react";
+import { formatRelative } from "src/shared/libs/ui/date";
+import styles from "./style.module.scss";
 
 const getSource = (raw: string) => {
     try {
@@ -20,9 +20,9 @@ interface NewsCardProps {
     url: string;
     createdAt: string;
     locale: string;
-};
+}
 
-const NewsCard = ({title, url, createdAt, locale}: NewsCardProps) => {
+const NewsCard = ({ title, url, createdAt, locale }: NewsCardProps) => {
     const [loaded, setLoaded] = useState(false);
     const [errored, setErrored] = useState(false);
 
@@ -40,24 +40,24 @@ const NewsCard = ({title, url, createdAt, locale}: NewsCardProps) => {
                 return;
             }
         } catch {
-            /* noop */
         }
         setErrored(true);
     };
 
+    const thumbClass = [
+        styles.news_card_thumb,
+        loaded && styles.is_loaded,
+        errored && styles.is_error,
+    ]
+        .filter(Boolean)
+        .join(" ");
+
     return (
-        <a className="news-card" href={url} target="_blank" rel="noreferrer">
-            <div
-                className={[
-                    "news-card__thumb",
-                    loaded ? "is-loaded" : "",
-                    errored ? "is-error" : "",
-                ].join(" ").trim()}
-                aria-hidden
-            >
+        <a className={styles.news_card} href={url} target="_blank" rel="noreferrer">
+            <div className={thumbClass} aria-hidden>
                 {!errored && (
                     <img
-                        className="news-card__img"
+                        className={styles.news_card_img}
                         src={preview}
                         alt=""
                         loading="lazy"
@@ -67,13 +67,13 @@ const NewsCard = ({title, url, createdAt, locale}: NewsCardProps) => {
                 )}
             </div>
 
-            <div className="news-card__meta">
-                <div className="news-card__time">{time}</div>
-                {source && <div className="news-card__dot">·</div>}
-                {source && <div className="news-card__source">{source}</div>}
+            <div className={styles.news_card_meta}>
+                <div className={styles.news_card_time}>{time}</div>
+                {source && <div className={styles.news_card_dot}>·</div>}
+                {source && <div className={styles.news_card_source}>{source}</div>}
             </div>
 
-            <h3 className="news-card__title">{title}</h3>
+            <h3 className={styles.news_card_title}>{title}</h3>
         </a>
     );
 };

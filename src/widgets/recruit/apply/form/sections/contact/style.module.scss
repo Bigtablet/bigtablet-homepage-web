@@ -1,0 +1,40 @@
+@use "src/shared/styles/token" as *;
+
+.field {
+  @include flex-column;
+  gap: $spacing-sm;
+
+  label {
+    @include body-medium;
+    font-size: $font-size-sm;
+    color: $text-strong;
+  }
+}
+
+.row {
+  width: 100%;
+  display: grid;
+  gap: $spacing-sm;
+
+  > * {
+    min-width: 0;
+  }
+}
+
+.row_email {
+  grid-template-columns: minmax(0, 2fr) minmax(120px, 1fr) auto auto;
+
+  @media (max-width: 720px) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.help {
+  font-size: $font-size-xs;
+  color: $text-subtle;
+}
+
+.error {
+  font-size: $font-size-xs;
+  color: $color-error;
+}

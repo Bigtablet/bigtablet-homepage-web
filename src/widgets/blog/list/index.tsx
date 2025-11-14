@@ -3,9 +3,9 @@
 import { useEffect, useMemo, useRef } from "react";
 import BlogCard from "src/widgets/blog/card";
 import SkeletonCard from "src/shared/ui/skeleton/card";
-import "./style.scss";
-import {useTranslations} from "next-intl";
-import type {BlogItem} from "src/entities/blog/model/schema/blog.schema";
+import styles from "./style.module.scss";
+import { useTranslations } from "next-intl";
+import type { BlogItem } from "src/entities/blog/model/schema/blog.schema";
 
 interface BlogListProps {
     items: BlogItem[];
@@ -16,7 +16,7 @@ interface BlogListProps {
     fetchNextPage: () => void;
     pageSize: number;
     hrefBuilder?: (item: BlogItem, locale: string) => string;
-};
+}
 
 const BlogListSection = ({
                              items,
@@ -34,6 +34,7 @@ const BlogListSection = ({
 
     useEffect(() => {
         if (!sentinelRef.current || !hasNextPage) return;
+
         const io = new IntersectionObserver(
             (entries) => {
                 if (entries.some((e) => e.isIntersecting) && hasNextPage && !isFetchingNextPage) {
@@ -42,14 +43,14 @@ const BlogListSection = ({
             },
             { rootMargin: "800px 0px" }
         );
+
         io.observe(sentinelRef.current);
         return () => io.disconnect();
     }, [fetchNextPage, hasNextPage, isFetchingNextPage]);
 
     return (
-        <section className="blog-page">
-
-            <div className="blog-page__grid">
+        <section className={styles["blog-list"]}>
+            <div className={styles["blog-list__grid"]}>
                 {isLoading
                     ? Array.from({ length: pageSize }).map((_, i) => <SkeletonCard key={i} />)
                     : flatItems.map((item, i) => (
@@ -64,10 +65,10 @@ const BlogListSection = ({
             </div>
 
             {!isLoading && flatItems.length === 0 && (
-                <p className="blog-page__empty">(t{"empty"})</p>
+                <p className={styles["blog-list__empty"]}>{t("empty")}</p>
             )}
 
-            <div ref={sentinelRef} className="blog-page__sentinel" />
+            <div ref={sentinelRef} className={styles["blog-list__sentinel"]} />
         </section>
     );
 };

@@ -1,6 +1,6 @@
 @use "src/shared/styles/token" as *;
 
-.blog-page {
+.blog-list {
   width: 100%;
   padding-block: $spacing-3xl $spacing-4xl;
 
@@ -47,13 +47,13 @@
 }
 
 @media (min-width: 768px) {
-  .blog-page__grid {
+  .blog-list__grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
 @media (min-width: 1024px) {
-  .blog-page__grid {
+  .blog-list__grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }

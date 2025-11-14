@@ -1,0 +1,24 @@
+@use "src/shared/styles/token" as *;
+
+.profile {
+  @include flex-column;
+  gap: $spacing-sm;
+  width: 100%;
+}
+
+.profile_label {
+  @include body-medium;
+  font-size: $font-size-sm;
+  color: $text-strong;
+}
+
+.profile_help {
+  font-size: $font-size-xs;
+  color: $text-subtle;
+  margin-top: $spacing-xs;
+}
+
+.error {
+  font-size: $font-size-xs;
+  color: $color-error;
+}

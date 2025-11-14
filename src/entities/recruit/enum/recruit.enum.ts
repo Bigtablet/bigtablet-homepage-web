@@ -10,7 +10,7 @@ export const DepartmentType = z.enum([
 ]);
 export type DepartmentType = z.infer<typeof DepartmentType>;
 
-export const LocationType = z.enum(["SEOUL", "DAEGU"]);
+export const LocationType = z.enum(["DAEGU", "GASAN", "ILSAN", "PANGYO", "USA" ]);
 export type LocationType = z.infer<typeof LocationType>;
 
 export const RecruitType = z.enum(["FULL_TIME", "CONTRACT", "INTERN"]);

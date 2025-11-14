@@ -31,8 +31,11 @@ export const RECRUIT_TYPE_LABEL: Record<typeof RecruitType._type, string> = {
 };
 
 export const LOCATION_LABEL: Record<typeof LocationType._type, string> = {
-    SEOUL: "서울",
     DAEGU: "대구",
+    GASAN: "가산",
+    USA: "미국",
+    PANGYO: "판교",
+    ILSAN: "일산",
 };
 
 /** @description 라벨 헬퍼 */

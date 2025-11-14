@@ -6,25 +6,27 @@ import { useRecruitSearch } from "src/features/recruit/model/query/search/recrui
 import type { RecruitResponse, RecruitCard } from "src/entities/recruit/model/schema/recruit.schema";
 import { useRecruitListQuery } from "src/features/recruit/model/query/recruit.query";
 import { SkeletonList } from "src/shared/ui/skeleton/list";
-import {toRecruitCards} from "src/entities/recruit/util/date";
-import "./style.scss";
+import { toRecruitCards } from "src/entities/recruit/util/date";
+import styles from "./style.module.scss";
 
-interface Props { filters: RecruitSearchFilters };
+interface Props { filters: RecruitSearchFilters }
 
 const isEmpty = (v?: string) => v === "" || v === undefined;
 
 const RequestCard = memo(({ item }: { item: RecruitCard }) => {
     return (
-        <a className="request-item" href={`/recruit/${item.idx}`}>
-            <div className="request-item__left">
-                <div className="request-item__title">{item.title}</div>
-                <div className="request-item__tags">
+        <a className={styles.request_item} href={`/recruit/${item.idx}`}>
+            <div className={styles.request_item_left}>
+                <div className={styles.request_item_title}>{item.title}</div>
+                <div className={styles.request_item_tags}>
                     {item.tags.map((t, i) => (
-                        <span key={i} className="request-item__tag">{t}</span>
+                        <span key={i} className={styles.request_item_tag}>
+                            {t}
+                        </span>
                     ))}
                 </div>
             </div>
-            {item.dday && <div className="request-item__dday">{item.dday}</div>}
+            {item.dday && <div className={styles.request_item_dday}>{item.dday}</div>}
         </a>
     );
 });
@@ -37,16 +39,14 @@ const RequestList = ({ filters }: Props) => {
         isEmpty(filters.education) &&
         isEmpty(filters.career);
 
-    // 초기엔 전체 리스트, 검색 시엔 검색 결과
     const listQ = useRecruitListQuery({ enabled: allEmpty });
     const searchQ = useRecruitSearch(filters);
 
     const isSearching = !allEmpty;
     const isLoading = isSearching ? searchQ.isLoading : listQ.isLoading;
-    const isError   = isSearching ? searchQ.isError   : listQ.isError;
-    const error     = isSearching ? searchQ.error     : listQ.error;
+    const isError = isSearching ? searchQ.isError : listQ.isError;
+    const error = isSearching ? searchQ.error : listQ.error;
 
-    // 여기서 카드로 변환
     const data = useMemo<RecruitCard[]>(
         () => {
             const base: RecruitResponse[] = (isSearching ? searchQ.data : listQ.data) ?? [];
@@ -56,19 +56,21 @@ const RequestList = ({ filters }: Props) => {
     );
 
     return (
-        <div className="request-list">
+        <div className={styles.request_list}>
             {isLoading && (
                 <>
-                    {[...Array(5)].map((_, i) => <SkeletonList key={i} />)}
+                    {[...Array(5)].map((_, i) => (
+                        <SkeletonList key={i} />
+                    ))}
                 </>
             )}
 
             {!isLoading && isError && (
-                <div className="request-list__empty">{error?.message}</div>
+                <div className={styles.request_list_empty}>{error?.message}</div>
             )}
 
             {!isLoading && !isError && data.length === 0 && (
-                <div className="request-list__empty">공고가 없습니다.</div>
+                <div className={styles.request_list_empty}>공고가 없습니다.</div>
             )}
 
             {!isLoading && !isError && data.map((item) => (

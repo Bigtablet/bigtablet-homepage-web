@@ -30,6 +30,7 @@
   font-size: clamp($font-size-md, 1.6vw, $font-size-lg);
   color: $text-subtle;
   line-height: 1.6;
+  white-space: pre-line;
 }
 
 .about_image {

@@ -1,0 +1,185 @@
+@use "src/shared/styles/token" as *;
+
+.recruit_detail {
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: $spacing-5xl $spacing-xl;
+  color: $text-normal;
+}
+
+.recruit_detail_loading,
+.recruit_detail_error {
+  text-align: center;
+  font-size: $font-size-md;
+  color: $text-subtle;
+  padding: $spacing-5xl 0;
+}
+
+.recruit_detail_header {
+  margin-bottom: $spacing-3xl;
+  border-bottom: 1px solid $color-border-light;
+  padding-bottom: $spacing-lg;
+}
+
+.recruit_detail_title {
+  @include heading-2;
+  font-size: $font-size-3xl;
+  color: $text-strong;
+  margin: 0 0 $spacing-lg;
+}
+
+.recruit_detail_meta {
+  @include flex-between;
+  align-items: center;
+  gap: $spacing-md;
+  flex-wrap: wrap;
+}
+
+.recruit_detail_chips {
+  @include flex-row;
+  flex-wrap: wrap;
+  gap: $spacing-sm;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  height: 28px;
+  padding: 0 $spacing-md;
+  border-radius: $radius-full;
+  background: $color-background;
+  border: 1px solid $color-border;
+  color: $text-normal;
+  font-size: $font-size-sm;
+  white-space: nowrap;
+}
+
+.recruit_detail_datebar {
+  display: inline-flex;
+  align-items: center;
+  color: $text-subtle;
+  font-size: $font-size-sm;
+  white-space: nowrap;
+  height: 28px;
+}
+
+.recruit_detail_section {
+  margin-bottom: $spacing-4xl;
+}
+
+.recruit_detail_section h2 {
+  @include heading-3;
+  font-size: $font-size-xl;
+  color: $text-normal;
+  margin: 0 0 $spacing-md;
+}
+
+.recruit_detail_text {
+  font-size: $font-size-md;
+  color: $text-normal;
+  white-space: pre-line;
+  line-height: $line-height-relaxed;
+}
+
+.recruit_detail_list {
+  margin: 0;
+  padding-left: $spacing-xl;
+}
+
+.recruit_detail_list li {
+  font-size: $font-size-md;
+  line-height: $line-height-relaxed;
+  color: $text-normal;
+}
+
+.recruit_detail_process {
+  font-size: $font-size-md;
+  color: $text-normal;
+  letter-spacing: 0.02em;
+  word-spacing: 2px;
+  white-space: pre-line;
+}
+
+.recruit_detail_notice {
+  margin-bottom: $spacing-4xl;
+  padding: $spacing-xl;
+  border-radius: $radius-lg;
+  background: $color-background-secondary;
+  border: 1px solid $color-border-light;
+}
+
+.recruit_detail_notice_title {
+  @include heading-3;
+  font-size: $font-size-lg;
+  color: $text-strong;
+  margin: 0 0 $spacing-sm;
+}
+
+.recruit_detail_notice_text {
+  @include body-regular;
+  font-size: $font-size-sm;
+  color: $text-normal;
+  line-height: $line-height-relaxed;
+  margin: 0 0 $spacing-sm;
+}
+
+.recruit_detail_notice_list {
+  margin: 0 0 $spacing-sm;
+  padding-left: $spacing-xl;
+}
+
+.recruit_detail_notice_list li {
+  @include body-regular;
+  font-size: $font-size-sm;
+  color: $text-normal;
+  line-height: $line-height-relaxed;
+}
+
+.recruit_detail_request {
+  @include flex-column;
+  @include flex-center;
+  gap: $spacing-2xl;
+  padding-top: $spacing-2xl;
+  border-top: 1px solid $color-border-light;
+}
+
+.recruit_detail_request p {
+  @include body-regular;
+  font-size: $font-size-md;
+  color: $text-normal;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .recruit_detail {
+    padding: $spacing-4xl $spacing-md;
+  }
+
+  .recruit_detail_title {
+    font-size: $font-size-2xl;
+  }
+
+  .recruit_detail_meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: $spacing-sm;
+  }
+
+  .recruit_detail_datebar {
+    justify-content: flex-end;
+    width: 100%;
+  }
+
+  .recruit_detail_section h2 {
+    font-size: $font-size-lg;
+  }
+
+  .recruit_detail_notice {
+    padding: $spacing-lg;
+  }
+
+  .recruit_detail_request p {
+    font-size: $font-size-base;
+  }
+}

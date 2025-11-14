@@ -39,7 +39,7 @@ const baseSchema = z.object({
         .string()
         .min(1, "거주지를 입력해 주세요."),
 
-    addressDetail: z.string().optional().default(""),
+    addressDetail: z.string().default(""),
 
     portfolio: z
         .string()

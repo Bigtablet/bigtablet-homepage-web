@@ -125,7 +125,6 @@ export const ContactSection = ({ form, email }: Props) => {
                 <TextField
                     size="sm"
                     placeholder="상세주소 (없으면 비워두셔도 됩니다)"
-                    // addressDetail은 선택값이라 에러 없음
                     {...register("addressDetail")}
                 />
             </div>

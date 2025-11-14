@@ -1,0 +1,105 @@
+@use "src/shared/styles/token" as *;
+
+.profile {
+  @include flex-column;
+  color: $text-normal;
+  gap: $spacing-sm;
+  padding: $spacing-lg;
+}
+
+.profile_image {
+  position: relative;
+  inline-size: 100%;
+  aspect-ratio: 1 / 1.25;
+  border-radius: $radius-md;
+  overflow: hidden;
+  background: $color-background-secondary;
+
+  img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+}
+
+.profile_image_fallback {
+  inline-size: 100%;
+  block-size: 100%;
+  background: $color-border-light;
+}
+
+.profile_content {
+  @include flex-column;
+  gap: $spacing-sm;
+  color: $text-strong;
+}
+
+.profile_info {
+  display: grid;
+  row-gap: 4px;
+}
+
+.profile_position {
+  @include body-medium;
+  font-size: $font-size-sm;
+  color: $text-subtle;
+}
+
+.profile_name {
+  @include heading-2;
+  font-size: $font-size-2xl;
+  color: $text-strong;
+}
+
+.profile_description {
+  @include body-regular;
+  font-size: $font-size-md;
+  color: $text-normal;
+  line-height: $line-height-relaxed;
+}
+
+.profile_links {
+  display: grid;
+  grid-auto-flow: column;
+  gap: $spacing-sm;
+  justify-content: start;
+}
+
+.profile_link {
+  inline-size: 28px;
+  block-size: 28px;
+  border-radius: $radius-sm;
+  background: $text-strong;
+  color: $text-inverse;
+  display: grid;
+  place-items: center;
+  text-decoration: none;
+  @include body-medium;
+  font-size: $font-size-xs;
+  transition: background $transition-base;
+
+  &:hover {
+    background: $color-primary;
+  }
+}
+
+@media (max-width: 768px) {
+  .profile {
+    padding: $spacing-md;
+  }
+
+  .profile_name {
+    font-size: $font-size-xl;
+  }
+
+  .profile_description {
+    font-size: $font-size-base;
+  }
+
+  .profile_link {
+    inline-size: 24px;
+    block-size: 24px;
+    font-size: $font-size-xs;
+  }
+}

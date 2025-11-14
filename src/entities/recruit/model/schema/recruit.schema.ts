@@ -1,25 +1,6 @@
 import { z } from "zod";
 import { baseResponseSchema, okResponseSchema } from "src/shared/types/response";
-
-/* ---------------- Enums ---------------- */
-export const DepartmentType = z.enum([
-    "BUSINESS_ADMINISTRATION",
-    "SALE",
-    "MARKETING",
-    "IT",
-    "DESIGN",
-    "RESEARCH_AND_DEVELOPMENT",
-]);
-export type DepartmentType = z.infer<typeof DepartmentType>;
-
-export const LocationType = z.enum(["SEOUL", "DAEGU"]);
-export type LocationType = z.infer<typeof LocationType>;
-
-export const RecruitType = z.enum(["FULL_TIME", "CONTRACT", "INTERN"]);
-export type RecruitType = z.infer<typeof RecruitType>;
-
-export const EducationType = z.enum(["HIGH_SCHOOL", "ASSOCIATE", "BACHELOR", "NO_REQUIREMENT"]);
-export type EducationType = z.infer<typeof EducationType>;
+import {DepartmentType, EducationType, LocationType, RecruitType} from "src/entities/recruit/enum/recruit.enum";
 
 /* ---------------- DTOs ---------------- */
 export const recruitResponseSchema = z.object({
@@ -78,10 +59,7 @@ export const recruitRequestSchema = z.object({
 }).strict();
 export type RecruitRequest = z.infer<typeof recruitRequestSchema>;
 
-export const recruitApplyResponseSchema = z.object({
-    ok: z.boolean(),
-    id: z.number().optional(),
-});
+export const recruitApplyResponseSchema = baseResponseSchema(z.number().nullable().optional());
 export type RecruitApplyResponse = z.infer<typeof recruitApplyResponseSchema>;
 
 export const recruitApplicantSchema = recruitRequestSchema.extend({
@@ -96,9 +74,3 @@ export const recruitListResponseSchema   = baseResponseSchema(recruitResponseSch
 export const recruitDetailResponseSchema = baseResponseSchema(recruitResponseSchema);
 export type RecruitListResponse = z.infer<typeof recruitListResponseSchema>;
 export type RecruitDetailResponse = z.infer<typeof recruitDetailResponseSchema>;
-
-/* 입력/OK */
-export const jobUpsertRequestSchema = recruitResponseSchema.omit({ idx: true, createdAt: true, modifiedAt: true });
-export type JobUpsertRequest = z.infer<typeof jobUpsertRequestSchema>;
-
-export const jobOkResponseSchema = okResponseSchema;

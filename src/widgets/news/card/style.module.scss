@@ -1,0 +1,114 @@
+@use "src/shared/styles/token" as *;
+
+.news_card {
+  @include flex-column;
+  box-sizing: border-box;
+  height: 100%;
+  padding: $spacing-md;
+  background: $color-background;
+  border: 1px solid $color-border;
+  border-radius: $radius-lg;
+  color: $text-normal;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+          transform $transition-base,
+          background $transition-base,
+          border-color $transition-base,
+          box-shadow $transition-base;
+
+  &:hover {
+    transform: translateY(-2px);
+    background: $color-background-secondary;
+    border-color: $color-primary-hover;
+    box-shadow: $shadow-sm;
+  }
+
+  &:focus-visible {
+    box-shadow: 0 0 0 3px rgba($color-primary, 0.35);
+    border-color: $color-primary;
+    outline: none;
+  }
+
+  @media (max-width: 768px) {
+    padding: $spacing-sm;
+  }
+}
+
+.news_card_thumb {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: $radius-md;
+  overflow: hidden;
+  background: $color-background-secondary;
+  border: 1px solid $color-border;
+
+  img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    object-position: center;
+  }
+}
+
+.is_loaded {
+  border: none;
+  background: none;
+}
+
+.is_error {
+  display: grid;
+  place-items: center;
+  border: 1px dashed rgba($color-border, 0.8);
+  background: linear-gradient(180deg, #eef2f6, #d8dee4);
+
+  &::after {
+    content: "no image";
+    @include text-xs;
+    color: $text-subtle;
+    opacity: 0.65;
+  }
+}
+
+.news_card_img {
+  position: absolute;
+  inset: 0;
+}
+
+.news_card_meta {
+  display: flex;
+  align-items: center;
+  gap: $spacing-xs;
+  margin-top: $spacing-sm;
+  color: $text-subtle;
+  font-size: $font-size-xs;
+  flex-wrap: wrap;
+}
+
+.news_card_time {
+  @include body-regular;
+}
+
+.news_card_dot {
+  opacity: 0.6;
+}
+
+.news_card_source {
+  font-size: $font-size-xs;
+  font-weight: $font-weight-medium;
+}
+
+.news_card_title {
+  @include heading-3;
+  font-size: $font-size-md;
+  margin-top: $spacing-sm;
+  color: $text-strong;
+  word-break: keep-all;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

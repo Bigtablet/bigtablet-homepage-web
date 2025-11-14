@@ -1,9 +1,5 @@
-import {
-    DepartmentType,
-    EducationType,
-    RecruitType,
-    LocationType,
-} from "src/entities/recruit/model/schema/recruit.schema";
+import {DepartmentType, EducationType, LocationType, RecruitType} from "src/entities/recruit/enum/recruit.enum";
+
 
 /** @description 셀렉트 옵션(배열) */
 export const DEPARTMENTS   = DepartmentType.options;
@@ -35,8 +31,11 @@ export const RECRUIT_TYPE_LABEL: Record<typeof RecruitType._type, string> = {
 };
 
 export const LOCATION_LABEL: Record<typeof LocationType._type, string> = {
-    SEOUL: "서울",
     DAEGU: "대구",
+    GASAN: "가산",
+    USA: "미국",
+    PANGYO: "판교",
+    ILSAN: "일산",
 };
 
 /** @description 라벨 헬퍼 */

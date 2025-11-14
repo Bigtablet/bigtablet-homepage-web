@@ -1,0 +1,74 @@
+@use "src/shared/styles/token" as *;
+
+.banner {
+  position: relative;
+  width: 100%;
+  height: 95vh;
+  overflow: hidden;
+  white-space: pre-line;
+  color: $text-inverse;
+  background: $color-background;
+}
+
+.banner_video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.banner_video_tag {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.banner_overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.banner_content {
+  @include flex-column;
+  @include flex-center;
+  position: relative;
+  height: 100%;
+  gap: $spacing-3xl;
+  color: $text-inverse;
+  text-align: center;
+  padding-inline: $spacing-xl;
+}
+
+.banner_title {
+  @include heading-1;
+  font-size: clamp($font-size-2xl, 5vw, $font-size-4xl);
+  line-height: 1.1;
+  color: $text-inverse;
+}
+
+.banner_description {
+  @include body-medium;
+  font-size: clamp($font-size-md, 2vw, $font-size-xl);
+  opacity: 0.9;
+  color: rgba($text-inverse, 0.9);
+}
+
+.banner_cta {
+  display: inline-block;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .banner {
+    height: 80vh;
+  }
+
+  .banner_title {
+    font-size: clamp($font-size-xl, 6vw, $font-size-3xl);
+  }
+
+  .banner_description {
+    font-size: clamp($font-size-sm, 2.5vw, $font-size-md);
+  }
+}

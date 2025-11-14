@@ -1,0 +1,20 @@
+@use "src/shared/styles/token" as *;
+
+.apply {
+  width: 100%;
+  padding: $spacing-xl 0 $spacing-5xl;
+  border-top: 1px solid $color-border;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.apply_title {
+  @include heading-2;
+  font-size: $font-size-2xl;
+  color: $text-strong;
+  width: 100%;
+  max-width: 880px;
+  margin: 0 auto $spacing-lg auto;
+  text-align: left;
+}

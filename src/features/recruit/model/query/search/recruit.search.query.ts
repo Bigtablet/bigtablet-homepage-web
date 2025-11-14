@@ -9,7 +9,7 @@ import {
     searchJobByTitle,
 } from "src/entities/recruit/search/api/recruit.search.api";
 import type { RecruitResponse } from "src/entities/recruit/model/schema/recruit.schema";
-import { intersectByIdx } from "src/entities/recruit/search/lib/merge";
+import { intersectByIdx } from "src/entities/recruit/util/merge";
 import { recruitKeys } from "./keys";
 
 export interface RecruitSearchFilters {

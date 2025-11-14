@@ -1,0 +1,50 @@
+@use "src/shared/styles/token" as *;
+
+.main_content {
+  width: 100%;
+  min-height: 0;
+  position: relative;
+  overflow-x: hidden;
+  scroll-snap-type: y proximity;
+  scroll-padding-top: 80px;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+
+  * {
+    box-sizing: border-box;
+  }
+}
+
+.snap {
+  @include flex-center;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+
+  > * {
+    max-width: 100%;
+  }
+}
+
+%ground_base {
+  @include flex-column;
+  gap: clamp(80px, 10vw, 160px);
+  padding: clamp(60px, 8vw, 120px) 5vw;
+  width: 100%;
+}
+
+.gradient {
+  @extend %ground_base;
+  background: linear-gradient(180deg, #eeeeee 0%, #b0b7bb 48%, #47555e 100%);
+}
+
+.collab_bg {
+  @extend %ground_base;
+  background: linear-gradient(
+                  180deg,
+                  #47555e 0%,
+                  #47555e 15%,
+                  #303841 35%,
+                  $color-background-darkblue 100%
+  );
+}

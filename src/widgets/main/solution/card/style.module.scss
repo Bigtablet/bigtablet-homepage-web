@@ -1,0 +1,75 @@
+@use "src/shared/styles/token" as *;
+
+.solution_card {
+  cursor: pointer;
+  position: relative;
+  width: 300px;
+  height: 350px;
+  border-radius: $radius-lg;
+  overflow: hidden;
+  background: #000;
+  box-shadow: $shadow-md;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform $transition-fast, box-shadow $transition-base;
+
+  &:focus-visible {
+    outline: 2px solid $color-primary;
+    outline-offset: 3px;
+  }
+
+  &:hover {
+    box-shadow: $shadow-lg;
+  }
+
+  &:active {
+    transform: translateY(1px);
+  }
+}
+
+.solution_card_video,
+.solution_card_overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.solution_card_video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.solution_card_overlay {
+  background: linear-gradient(
+                  180deg,
+                  rgba(0, 0, 0, 0.18) 0%,
+                  rgba(0, 0, 0, 0.24) 40%,
+                  rgba(0, 0, 0, 0.42) 100%
+  );
+  z-index: 1;
+}
+
+.solution_card_title {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  z-index: 2;
+  @include heading-3;
+  font-size: clamp($font-size-lg, 2.2vw, $font-size-2xl);
+  color: $text-inverse;
+  text-align: center;
+  white-space: pre-line;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+  padding: 0 $spacing-sm;
+  pointer-events: none;
+}
+
+@media (max-width: 900px) {
+  .solution_card {
+    width: 46vw;
+    max-width: 320px;
+    height: 40vw;
+    max-height: 360px;
+  }
+}

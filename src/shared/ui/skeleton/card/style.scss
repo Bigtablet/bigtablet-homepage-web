@@ -1,30 +1,31 @@
+@use "src/shared/styles/token" as *;
+
 .card-skeleton {
-  display: flex;
-  flex-direction: column;
-  border: 1px solid var(--line-normal);
-  border-radius: 12px;
+  @include flex-column;
+  border: 1px solid $color-border;
+  border-radius: $radius-lg;
   overflow: hidden;
-  background: var(--background-light);
+  background: $color-background;
   animation: card-skeleton-pulse 1.5s ease-in-out infinite;
 }
 
 .card-skeleton__thumb {
   width: 100%;
   aspect-ratio: 4 / 3;
-  background: var(--background-input);
+  background: $color-background-secondary;
 }
 
 .card-skeleton__text {
-  padding: 12px;
+  padding: $spacing-md;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: $spacing-sm;
 }
 
 .card-skeleton__line {
-  height: 12px;
-  background: var(--background-input);
-  border-radius: 4px;
+  height: 0.75rem;
+  background: $color-background-secondary;
+  border-radius: $radius-sm;
 
   &.short {
     width: 60%;
@@ -32,6 +33,10 @@
 }
 
 @keyframes card-skeleton-pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: .5; }
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
 }

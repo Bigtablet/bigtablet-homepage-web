@@ -1,4 +1,4 @@
-import { getParsed, postParsed } from "src/shared/libs/api/zod";
+import {getParsed, patchParsed, postParsed} from "src/shared/libs/api/zod";
 import {
     blogListResponseSchema,
     blogDetailResponseSchema,
@@ -9,15 +9,15 @@ import {
 import {ListProps} from "src/shared/types/list";
 
 // 리스트
-export const getBlogApi = async ({ page, size }: ListProps) => {
+export const getBlogApi = async ({page, size}: ListProps) => {
     return getParsed("/blog/list", blogListResponseSchema, {
-        params: { page, size },
+        params: {page, size},
     }).then((response) => response.data ?? []);
 };
 
 // 상세
 export const getBlogDetailApi = async (idx: number) =>
-    getParsed("/blog", blogDetailResponseSchema, { params: { idx } })
+    getParsed("/blog", blogDetailResponseSchema, {params: {idx}})
         .then((response: BlogDetailResponse) => {
             if (!response.data) throw new Error("Empty response");
             return response.data;
@@ -25,5 +25,5 @@ export const getBlogDetailApi = async (idx: number) =>
 
 // 조회수 증가
 export const patchBlogViewApi = async (idx: number) =>
-    postParsed("/blog/view", blogOkResponseSchema, { idx })
+    patchParsed("/blog", blogOkResponseSchema, null, {params: {idx}})
         .then((response: BlogOkResponse) => response);

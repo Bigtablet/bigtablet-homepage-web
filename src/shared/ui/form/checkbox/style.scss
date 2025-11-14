@@ -1,0 +1,18 @@
+@use "src/shared/styles/token" as *;
+
+.checkbox {
+  display: inline-flex; align-items: center; gap: $spacing-sm; cursor: pointer; user-select: none;
+  &__input { position: absolute; opacity: 0; pointer-events: none; }
+  &__box { width: 1.125rem; height: 1.125rem; border: 1px solid $color-border; border-radius: $radius-sm; background: $color-background; transition: background $transition-base, border-color $transition-base, box-shadow $transition-base; }
+  &__label { @include text-base; color: $color-text-primary; }
+  &--sm { .checkbox__box { width: 1rem; height: 1rem; } .checkbox__label { @include text-sm; } }
+  &--md { .checkbox__box { width: 1.125rem; height: 1.125rem; } }
+  &--lg { .checkbox__box { width: 1.25rem; height: 1.25rem; } .checkbox__label { @include text-md; } }
+  &:has(.checkbox__input:focus-visible) .checkbox__box { box-shadow: 0 0 0 3px rgba($color-primary, .15); border-color: $color-primary; }
+  &:has(.checkbox__input:checked) .checkbox__box,
+  &:has(.checkbox__input:indeterminate) .checkbox__box { background: $color-primary; border-color: $color-primary; }
+  &:has(.checkbox__input:checked) .checkbox__box::after,
+  &:has(.checkbox__input:indeterminate) .checkbox__box::after { content: ""; display: block; width: 100%; height: 100%; background: $color-background; clip-path: polygon(14% 52%, 0 66%, 40% 100%, 100% 24%, 86% 10%, 38% 70%); }
+  &:has(.checkbox__input:indeterminate) .checkbox__box::after { clip-path: inset(40% 15% 40% 15%); }
+  &:has(.checkbox__input:disabled) { opacity: .6; cursor: not-allowed; }
+}

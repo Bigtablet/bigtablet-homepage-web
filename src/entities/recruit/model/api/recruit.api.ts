@@ -1,30 +1,27 @@
-import BigtabletAxios from "src/shared/libs/api/axios";
+import { getParsed, postParsed } from "src/shared/libs/api/zod";
 import {
     recruitListResponseSchema,
     recruitDetailResponseSchema,
     recruitApplyResponseSchema,
     type RecruitResponse,
-    type RecruitRequest,
     type RecruitApplyResponse,
 } from "../schema/recruit.schema";
+import type { ApplyFormValues } from "src/features/recruit/model/apply/schema/apply.schema";
 
 // 목록
-export const getRecruitListApi = async (signal?: AbortSignal): Promise<RecruitResponse[]> => {
-    const res = await BigtabletAxios.get<unknown>("/job/list", {signal});
-    const parsed = recruitListResponseSchema.parse(res.data);
-    return parsed.data ?? [];
-};
+export const getRecruitListApi = async (signal?: AbortSignal): Promise<RecruitResponse[]> =>
+    (await getParsed("/job/list", recruitListResponseSchema, { signal })).data ?? [];
 
 // 상세
 export const getRecruitDetailApi = async (idx: number, signal?: AbortSignal): Promise<RecruitResponse> => {
-    const res = await BigtabletAxios.get<unknown>("/job", {params: {idx}, signal});
-    const parsed = recruitDetailResponseSchema.parse(res.data);
-    if (!parsed.data) throw new Error("Empty response data");
-    return parsed.data;
+    const { data } = await getParsed("/job", recruitDetailResponseSchema, { params: { idx }, signal });
+    if (!data) throw new Error("Empty response data");
+    return data;
 };
 
 // 지원
-export const postRecruitApplyApi = async (body: RecruitRequest, signal?: AbortSignal): Promise<RecruitApplyResponse> => {
-    const res = await BigtabletAxios.post<unknown>("/recruit", body, {signal});
-    return recruitApplyResponseSchema.parse(res.data);
-};
+export const postRecruitApplyApi = async (
+    body: ApplyFormValues,
+    signal?: AbortSignal
+): Promise<RecruitApplyResponse> =>
+    postParsed("/recruit", recruitApplyResponseSchema, body, { signal });

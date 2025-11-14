@@ -1,0 +1,90 @@
+@use "src/shared/styles/token" as *;
+@use "sass:color";
+
+.alert {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: start;
+  gap: $spacing-md;
+  padding: $spacing-md $spacing-lg;
+  border-radius: $radius-md;
+  border: 1px solid $color-border;
+  background: $color-background;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 4px;
+    border-top-left-radius: inherit;
+    border-bottom-left-radius: inherit;
+    background: $color-info;
+  }
+
+  &__icon {
+    margin-top: 2px;
+    color: $color-text-secondary;
+    display: inline-grid;
+    place-items: center;
+  }
+
+  &__content { min-width: 0; }
+
+  &__title {
+    @include text-md;
+    font-weight: $font-weight-semibold;
+    color: $color-text-primary;
+    margin-bottom: $spacing-xs;
+  }
+
+  &__desc {
+    @include body-regular;
+    color: $color-text-secondary;
+  }
+
+  &__close {
+    align-self: start;
+    display: inline-grid;
+    place-items: center;
+    margin-left: $spacing-md;
+    width: 28px;
+    height: 28px;
+    padding: 0;
+    border: 0;
+    border-radius: $radius-sm;
+    background: transparent;
+    color: $color-text-secondary;
+    line-height: 1;
+    cursor: pointer;
+    transition: background .15s ease, color .15s ease, transform .05s ease;
+    &:hover { background: rgba(0,0,0,.05); color: $color-text-primary; }
+    &:active { transform: translateY(.5px); }
+    &:focus-visible { outline: 2px solid rgba(0,0,0,.2); outline-offset: 2px; }
+  }
+
+  &--info {
+    background: color.mix($color-info, $color-background, 6%);
+    border-color: color.mix($color-info, $color-background, 28%);
+    &::before { background: $color-info; }
+    .alert__icon { color: $color-info; }
+  }
+  &--success {
+    background: color.mix($color-success, $color-background, 6%);
+    border-color: color.mix($color-success, $color-background, 28%);
+    &::before { background: $color-success; }
+    .alert__icon { color: $color-success; }
+  }
+  &--warning {
+    background: color.mix($color-warning, $color-background, 8%);
+    border-color: color.mix($color-warning, $color-background, 32%);
+    &::before { background: $color-warning; }
+    .alert__icon { color: $color-warning; }
+  }
+  &--error {
+    background: color.mix($color-error, $color-background, 6%);
+    border-color: color.mix($color-error, $color-background, 28%);
+    &::before { background: $color-error; }
+    .alert__icon { color: $color-error; }
+  }
+}

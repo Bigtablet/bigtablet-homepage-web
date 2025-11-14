@@ -1,12 +1,12 @@
 "use client";
 
 import "./style.scss";
-import Frame from "src/widgets/layout/frame";
+import Frame from "src/widgets/layout/template";
 import Link from "next/link";
 import { useParams, notFound } from "next/navigation";
 import { useTranslations } from "next-intl";
-import Profile from "src/widgets/about/member/ui/profile/ui";
-import Interview from "src/widgets/about/member/ui/interview/ui";
+import Profile from "src/widgets/about/member/ui/profile";
+import Interview from "src/widgets/about/member/ui/interview";
 import {QaList} from "src/widgets/about/member/lib/qa";
 import {isMemberSlug, SLUG_TO_MEMBER} from "src/entities/about/member/model/member.model";
 

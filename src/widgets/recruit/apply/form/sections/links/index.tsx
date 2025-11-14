@@ -2,7 +2,7 @@
 
 import { TextField } from "src/shared/ui/form/textfield";
 import styles from "./style.module.scss";
-import {ApplyFormProps} from "src/widgets/recruit/apply/form/type";
+import { ApplyFormProps } from "src/widgets/recruit/apply/form/type";
 
 type Form = ApplyFormProps["form"];
 
@@ -24,48 +24,32 @@ export const LinksSection = ({ form }: Props) => {
             <div className={styles.stack}>
                 <TextField
                     size="sm"
-                    error={!!errors.name}
-                    helperText={errors.name?.message as string}
                     type="url"
                     placeholder="https://github.com/..."
+                    error={!!errors.attachment1}
+                    helperText={errors.attachment1?.message as string}
                     {...register("attachment1")}
                 />
                 <TextField
                     size="sm"
-                    error={!!errors.name}
-                    helperText={errors.name?.message as string}
                     type="url"
                     placeholder="https://www.notion.so/..."
+                    error={!!errors.attachment2}
+                    helperText={errors.attachment2?.message as string}
                     {...register("attachment2")}
                 />
                 <TextField
                     size="sm"
-                    error={!!errors.name}
-                    helperText={errors.name?.message as string}
                     type="url"
                     placeholder="https://portfolio.site/..."
+                    error={!!errors.attachment3}
+                    helperText={errors.attachment3?.message as string}
                     {...register("attachment3")}
                 />
             </div>
             <small className={styles.help}>
                 URL은 http(s)로 시작해야 합니다.
             </small>
-
-            {errors.attachment1 && (
-                <small className={styles.error}>
-                    {errors.attachment1.message as string}
-                </small>
-            )}
-            {errors.attachment2 && (
-                <small className={styles.error}>
-                    {errors.attachment2.message as string}
-                </small>
-            )}
-            {errors.attachment3 && (
-                <small className={styles.error}>
-                    {errors.attachment3.message as string}
-                </small>
-            )}
         </div>
     );
 };

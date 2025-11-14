@@ -90,17 +90,15 @@ export const EducationSection = ({ form }: Props) => {
                         name="admissionYear"
                         render={({ field }) => (
                             <MonthPickerField
+                                label="합격연도"
                                 value={field.value}
                                 onChange={field.onChange}
-                                placeholder="합격연도 (YYYY.MM)"
+                                placeholder="YYYY.MM"
+                                error={!!errors.admissionYear}
+                                helperText={errors.admissionYear?.message as string}
                             />
                         )}
                     />
-                    {errors.admissionYear && (
-                        <small className={styles.error}>
-                            {errors.admissionYear.message as string}
-                        </small>
-                    )}
                 </div>
             ) : (
                 <>
@@ -114,6 +112,8 @@ export const EducationSection = ({ form }: Props) => {
                                     value={field.value}
                                     onChange={field.onChange}
                                     placeholder="입학년도"
+                                    error={!!errors.admissionYear}
+                                    helperText={errors.admissionYear?.message as string}
                                 />
                             )}
                         />
@@ -126,17 +126,12 @@ export const EducationSection = ({ form }: Props) => {
                                     value={field.value}
                                     onChange={field.onChange}
                                     placeholder="졸업년도"
+                                    error={!!errors.graduationEnd}
+                                    helperText={errors.graduationEnd?.message as string}
                                 />
                             )}
                         />
                     </div>
-
-                    {(errors.admissionYear || errors.graduationEnd) && (
-                        <small className={styles.error}>
-                            {(errors.admissionYear?.message ||
-                                errors.graduationEnd?.message) as string}
-                        </small>
-                    )}
 
                     <TextField
                         size="sm"

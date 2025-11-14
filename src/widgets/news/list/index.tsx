@@ -1,7 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import "./style.scss";
+import styles from "./style.module.scss";
 import NewsCard from "src/widgets/news/card";
 import SkeletonCard from "src/shared/ui/skeleton/card";
 import type { NewsItem } from "src/entities/news/model/schema/news.schema";
@@ -17,8 +17,8 @@ const NewsListSection = ({ items, locale, isLoading, pageSize = 6 }: NewsListPro
     const t = useTranslations("news");
 
     return (
-        <section className="news-list">
-            <div className="news-list__grid">
+        <section className={styles.news_list}>
+            <div className={styles.news_list_grid}>
                 {isLoading
                     ? Array.from({ length: pageSize }).map((_, i) => <SkeletonCard key={i} />)
                     : items.map((item) => (
@@ -33,7 +33,7 @@ const NewsListSection = ({ items, locale, isLoading, pageSize = 6 }: NewsListPro
             </div>
 
             {!isLoading && items.length === 0 && (
-                <p className="news-list__empty">{t("empty")}</p>
+                <p className={styles.news_list_empty}>{t("empty")}</p>
             )}
         </section>
     );

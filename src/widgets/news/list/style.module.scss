@@ -1,11 +1,11 @@
 @use "src/shared/styles/token" as *;
 
-.news-list {
+.news_list {
   width: 100%;
   height: 100%;
 }
 
-.news-list__grid {
+.news_list_grid {
   display: grid;
   grid-template-columns: repeat(1, minmax(0, 1fr));
   gap: $spacing-xl;
@@ -15,18 +15,18 @@
 }
 
 @media (min-width: 768px) {
-  .news-list__grid {
+  .news_list_grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
 @media (min-width: 1024px) {
-  .news-list__grid {
+  .news_list_grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
-.news-list__empty {
+.news_list_empty {
   @include body-regular;
   font-size: $font-size-lg;
   margin-top: $spacing-2xl;

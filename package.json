@@ -27,7 +27,7 @@
     "react-markdown": "^10.1.0",
     "react-toastify": "^11.0.5",
     "remark-gfm": "^4.0.1",
-    "sass": "^1.93.2",
+    "sass": "^1.94.0",
     "zod": "^3.25.76"
   },
   "devDependencies": {

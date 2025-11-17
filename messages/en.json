@@ -231,232 +231,232 @@
         "title": "Endless reflection \nand thought elevate \nour value",
         "description": "At Bigtablet, our team constantly reflects, questions, and refines.\nThrough this process, we strive to provide clients and users with more convenient and\n tailored analytics services.\nWe go beyond simple data collection and analysis, moving forward each day in pursuit of the deeper value that lies beyond."
       }
-    }
-  },
-  "history": {
-    "2025": [
-      "Official partnership agreements with Dell, HPE, and TP-LINK",
-      "MOU with DGSW for SW Meister talent development",
-      "Partnership agreement with Hanwha Vision",
-      "Selected for the 6th class of the Global Youth Startup Academy"
-    ],
-    "2024": [
-      "Selected for 2024 KNU LINC Family Company ICC-linked All-SET Program",
-      "Acquired certification as a Management Innovation SME (Main-Biz)",
-      "Signed patent transfer agreement with Prof. Sanghyo Park, Kyungpook National University",
-      "Confirmed transfer of registered patent from Prof. Sanghyo Park, Kyungpook National University",
-      "Designated as a Daegu Metropolitan City Dalgu-beol STAR-Bridge company",
-      "Acquired ISO 9001, ISO 14001, ISO 45001 certifications",
-      "Capital increase (from KRW 512.5M → KRW 1,012.5M)",
-      "Selected for joint project with KNU, Chonnam Univ., KNU Hospital, and Chonnam Univ. Hospital by Ministry of Science and ICT",
-      "Relocated headquarters to Suseong Univ. BI Center, Daegu",
-      "Selected for Daekyung Tech Holdings High J-Cuve Accelerating Program",
-      "Recognized as an Excellent Corporate Invention Compensation company",
-      "Selected for Pre-TIPS program",
-      "Acquired Venture Business Certification",
-      "Started joint industry-academia technology development project with Prof. Sanghyo Park, KNU Computer Science",
-      "Secured Seed investment (valuation of KRW 20B)",
-      "Transferred patent technology “Video Encoding using Neural Networks” from Prof. Sanghyo Park’s Video Intelligence Lab",
-      "Capital increase (from KRW 10M → KRW 50M)"
-    ],
-    "2023": [
-      "Secured KRW 200M funding from Korea Technology Finance Corporation",
-      "Began development of digital signage camera-based foot traffic analysis service",
-      "Established company-affiliated research institute",
-      "Registered as a specialized industrial design company",
-      "Registered domestic patent “Method and device for controlling digital signage based on cloud”"
-    ],
-    "2022": [
-      "Graduated from Youth Startup Academy",
-      "Developed prototype of digital signage advertising monitor",
-      "Filed 4 patent applications for digital ad transmission software and digital signage foot traffic analysis services",
-      "Selected for Social Venture Youth Startup Support Program",
-      "Moved into Daegu Buk-gu Youth Startup Support Center (Youth Playground)",
-      "Selected for Social Economy Startup Support Program",
-      "Selected for Daegu Buk-gu Office Early Startup Support Program for Young Entrepreneurs",
-      "Converted into a corporation (Bigtablet Inc., capital KRW 10M)",
-      "Joined 12th class of Youth Startup Academy",
-      "Awarded at National Youth Startup Competition, Daegu Buk-gu"
-    ]
-  },
-  "team": {
-    "title": "The People of Bigtablet",
-    "description": "Introducing the team shaping the future of bigtablet together.",
-    "members": {
-      "CEO": {
-        "position": "CEO",
-        "name": "Jiho Moon",
-        "description": "An adventurer in pursuit of optimal efficiency",
-        "image": "/images/member/jiho.png",
-        "qa1": {
-          "q": "Hello, Mr. Jiho Moon! Could you please give us a brief self-introduction?",
-          "a": "My name is Jiho Moon, the CEO of Bigtablet. I began my professional career a bit earlier than most, driven by my curiosity and eagerness to explore various fields. Once I’m interested in something, I study and learn until I truly understand it. Looking back, my early start in the professional world, combined with this curiosity-driven mindset, has shaped who I am today. It’s also what has allowed me to work with Bigtablet for the past three years without giving up until problems were solved."
+    },
+    "history": {
+      "2025": [
+        "Official partnership agreements with Dell, HPE, and TP-LINK",
+        "MOU with DGSW for SW Meister talent development",
+        "Partnership agreement with Hanwha Vision",
+        "Selected for the 6th class of the Global Youth Startup Academy"
+      ],
+      "2024": [
+        "Selected for 2024 KNU LINC Family Company ICC-linked All-SET Program",
+        "Acquired certification as a Management Innovation SME (Main-Biz)",
+        "Signed patent transfer agreement with Prof. Sanghyo Park, Kyungpook National University",
+        "Confirmed transfer of registered patent from Prof. Sanghyo Park, Kyungpook National University",
+        "Designated as a Daegu Metropolitan City Dalgu-beol STAR-Bridge company",
+        "Acquired ISO 9001, ISO 14001, ISO 45001 certifications",
+        "Capital increase (from KRW 512.5M → KRW 1,012.5M)",
+        "Selected for joint project with KNU, Chonnam Univ., KNU Hospital, and Chonnam Univ. Hospital by Ministry of Science and ICT",
+        "Relocated headquarters to Suseong Univ. BI Center, Daegu",
+        "Selected for Daekyung Tech Holdings High J-Cuve Accelerating Program",
+        "Recognized as an Excellent Corporate Invention Compensation company",
+        "Selected for Pre-TIPS program",
+        "Acquired Venture Business Certification",
+        "Started joint industry-academia technology development project with Prof. Sanghyo Park, KNU Computer Science",
+        "Secured Seed investment (valuation of KRW 20B)",
+        "Transferred patent technology “Video Encoding using Neural Networks” from Prof. Sanghyo Park’s Video Intelligence Lab",
+        "Capital increase (from KRW 10M → KRW 50M)"
+      ],
+      "2023": [
+        "Secured KRW 200M funding from Korea Technology Finance Corporation",
+        "Began development of digital signage camera-based foot traffic analysis service",
+        "Established company-affiliated research institute",
+        "Registered as a specialized industrial design company",
+        "Registered domestic patent “Method and device for controlling digital signage based on cloud”"
+      ],
+      "2022": [
+        "Graduated from Youth Startup Academy",
+        "Developed prototype of digital signage advertising monitor",
+        "Filed 4 patent applications for digital ad transmission software and digital signage foot traffic analysis services",
+        "Selected for Social Venture Youth Startup Support Program",
+        "Moved into Daegu Buk-gu Youth Startup Support Center (Youth Playground)",
+        "Selected for Social Economy Startup Support Program",
+        "Selected for Daegu Buk-gu Office Early Startup Support Program for Young Entrepreneurs",
+        "Converted into a corporation (Bigtablet Inc., capital KRW 10M)",
+        "Joined 12th class of Youth Startup Academy",
+        "Awarded at National Youth Startup Competition, Daegu Buk-gu"
+      ]
+    },
+    "team": {
+      "title": "The People of Bigtablet",
+      "description": "Introducing the team shaping the future of bigtablet together.",
+      "members": {
+        "CEO": {
+          "position": "CEO",
+          "name": "Jiho Moon",
+          "description": "An adventurer in pursuit of optimal efficiency",
+          "image": "/images/member/jiho.png",
+          "qa1": {
+            "q": "Hello, Mr. Jiho Moon! Could you please give us a brief self-introduction?",
+            "a": "My name is Jiho Moon, the CEO of Bigtablet. I began my professional career a bit earlier than most, driven by my curiosity and eagerness to explore various fields. Once I’m interested in something, I study and learn until I truly understand it. Looking back, my early start in the professional world, combined with this curiosity-driven mindset, has shaped who I am today. It’s also what has allowed me to work with Bigtablet for the past three years without giving up until problems were solved."
+          },
+          "qa2": {
+            "q": "Could you briefly describe your current responsibilities at Bigtablet?",
+            "a": "In many ways, I oversee nearly everything at Bigtablet from start to finish. My main responsibilities focus on defining the company’s direction, ensuring sustainable growth, and setting strategies to reach our future milestones."
+          },
+          "qa3": {
+            "q": "What inspired you to start your own company?",
+            "a": "Many people think entrepreneurship is only for experts in a specific field or those with a revolutionary idea. For me, it was more about identifying problems and finding fulfillment in solving them. Seeing the company grow as a result of our collective efforts has been deeply rewarding. That’s why I no longer see Bigtablet as just a company I founded in college, but as a true partner in solving real-world challenges."
+          },
+          "qa4": {
+            "q": "What kind of company would you like Bigtablet to become in the future?",
+            "a": "My goal is to grow Bigtablet from a startup into a global AI solutions company. Together with our talented team members, I want to build upon our strong company culture and establish Bigtablet as an influential, specialized leader in the global market."
+          },
+          "qa5": {
+            "q": "What do you think is the biggest advantage of working at Bigtablet?",
+            "a": "I believe the greatest advantage is the opportunity to grow together in a fast-evolving organization. It’s not only about professional growth — it’s about the synergy created when people from different backgrounds come together, share knowledge, and learn from each other. Of course, our employee benefits are also quite nice!"
+          },
+          "qa6": {
+            "q": "Lastly, do you have any words for your current and future team members?",
+            "a": "Bigtablet is currently on a steep growth trajectory. With rapid growth often come challenges and areas for improvement, but I want to express my sincere gratitude to everyone who has been part of this journey. To future team members, I look forward to working with passionate individuals who want to make history together in the AI industry. Thank you!"
+          }
         },
-        "qa2": {
-          "q": "Could you briefly describe your current responsibilities at Bigtablet?",
-          "a": "In many ways, I oversee nearly everything at Bigtablet from start to finish. My main responsibilities focus on defining the company’s direction, ensuring sustainable growth, and setting strategies to reach our future milestones."
+        "CTO": {
+          "position": "CTO",
+          "name": "Minho Park",
+          "description": "An engineer driven to change the world through technology",
+          "image": "/images/member/minho.png",
+          "qa1": {
+            "q": "Hello Minho! Could you please introduce yourself briefly?",
+            "a": "Hello, I’m Minho Park, currently leading research and development at BigTablet."
+          },
+          "qa2": {
+            "q": "The title of CTO might sound unfamiliar to some. Could you tell us what it means and what your role involves?",
+            "a": "CTO stands for Chief Technology Officer — the person responsible for overseeing a company’s overall technology strategy and execution. At BigTablet, I lead the development of our AI CCTV solutions and various R&D initiatives, managing both internal and external collaborative projects. I’m also in charge of technical administration such as preparing R&D proposals, writing reports, and handling intellectual property. In essence, a CTO bridges technology and business strategy to drive company growth."
+          },
+          "qa3": {
+            "q": "Could you tell us a bit about what you’re currently developing at BigTablet?",
+            "a": "We’re developing a platform for video AI analytics based on VCM — Video Coding for Machines. Traditional video compression focuses on what’s visually pleasing to humans, while we’re building compression optimized for AI interpretation. Our system preserves high resolution for objects of interest while reducing unnecessary background data, redundant frames, and excessive color information. This allows us to cut video size by up to 70% compared to standard codecs, while maintaining object detection and tracking accuracy. With this technology, we’re expanding into fields like smart retail and smart city solutions."
+          },
+          "qa4": {
+            "q": "It must have been challenging to develop products in the early stages. What difficulties did you face?",
+            "a": "Coming from a research background, joining BigTablet was my first hands-on experience in real product development. Unlike academic research, we had to design for user interface and experience, which turned out to be quite challenging. While improving algorithm performance was familiar to me, making it intuitive and usable for real users required many iterations. In the early days, limited resources and manpower meant I had to juggle development, operation, and testing at once. Prioritization and efficiency became critical. Through this, I learned to think beyond technical perfection — considering productization and market fit together."
+          },
+          "qa5": {
+            "q": "Lastly, what kind of technological vision is BigTablet pursuing?",
+            "a": "Our vision is captured in the phrase ‘Vision Beyond Pixels.’ We aim to go beyond mere image recognition — to interpret context and meaning beyond pixels, creating new value through technology."
+          }
         },
-        "qa3": {
-          "q": "What inspired you to start your own company?",
-          "a": "Many people think entrepreneurship is only for experts in a specific field or those with a revolutionary idea. For me, it was more about identifying problems and finding fulfillment in solving them. Seeing the company grow as a result of our collective efforts has been deeply rewarding. That’s why I no longer see Bigtablet as just a company I founded in college, but as a true partner in solving real-world challenges."
+        "Manage": {
+          "position": "Managing Director",
+          "name": "Chaehyung Lee",
+          "description": "With balance",
+          "image": "/images/member/chaehyung.png",
+          "qa1": {
+            "q": "Hello Chaehyung! Could you please introduce yourself briefly?",
+            "a": "Hello, I’m Chaehyung Lee, and I’m in charge of administrative affairs at Bigtablet Inc."
+          },
+          "qa2": {
+            "q": "Could you briefly introduce your role?",
+            "a": "At Bigtablet, I’m mainly responsible for operational tasks related to our ongoing projects, as well as sales and customer service support.\nSince we don’t yet have a dedicated department for areas like accounting, my work often involves handling a variety of administrative tasks as needed.\n\nIn the future, I expect to focus more on customer service operations as our services continue to expand and evolve."
+          },
+          "qa3": {
+            "q": "Was there a particular reason or moment that led you to join Bigtablet?",
+            "a": "There wasn’t really a grand reason or turning point. Before graduation, I was looking for companies to do my field training at, and Bigtablet happened to be close by. But what really drew me was that the CEO was young — I thought other places might feel too hierarchical or rigid. So I joined for my field training, and that connection eventually led me to stay on as an intern, and then as a full-time employee."
+          },
+          "qa4": {
+            "q": "Have there been any moments when you felt, 'Ah, I’m really doing well at my job'?",
+            "a": "Rather than feeling like I’m doing particularly well, I tend to feel proud whenever the company achieves progress — like when we secure new support projects or take meaningful steps forward as a team. It’s less of a self-congratulatory feeling and more of a reminder that there’s still a lot more I want to do, a kind of mixed emotion between satisfaction and motivation."
+          },
+          "qa5": {
+            "q": "How would you like to grow or what kind of role do you hope to take on in the company moving forward?",
+            "a": "Most people imagine climbing to the top of a company as their goal, but that’s not really me. My motto is ‘steady and long.’ I once thought about how I’d like to be like a fan — not as powerful as an air conditioner, but still something that quietly helps others. It’s a bit of a metaphor, but I want to be someone who’s helpful and reliable, even if not always in the spotlight. (Of course, that doesn’t mean I plan to stop working hard after one season!)"
+          },
+          "qa6": {
+            "q": "What does Bigtablet mean to you personally?",
+            "a": "At first, I thought it was a slow train, but it turned out to be an express one. Still, if I had to describe Bigtablet, I’d say it’s a lot like the moon. Sometimes it feels so big and distant, yet it radiates this quiet beauty, like a soft halo in the night sky. It’s ever-changing and full of life. Like watching the moon through a high-speed camera — even when it’s momentarily hidden, it remains the brightest, most noticeable thing in the sky. Maybe ‘the North Star’ would be a more fitting comparison, but somehow, ‘the moon’ feels closer to my heart — because it’s something I hope will keep growing and shining brighter."
+          }
         },
-        "qa4": {
-          "q": "What kind of company would you like Bigtablet to become in the future?",
-          "a": "My goal is to grow Bigtablet from a startup into a global AI solutions company. Together with our talented team members, I want to build upon our strong company culture and establish Bigtablet as an influential, specialized leader in the global market."
+        "PM": {
+          "position": "PM",
+          "name": "Yerim Kwon",
+          "description": "A product manager who sees the beauty in dreams",
+          "image": "/images/member/yerim.png",
+          "qa1": {
+            "q": "Hello Yerim! Could you please introduce yourself briefly?",
+            "a": "Hi! I’m Yerim Kwon, currently working as a Product Manager at BigTablet."
+          },
+          "qa2": {
+            "q": "Could you tell us a bit about your role at BigTablet?",
+            "a": "As a PM, I’m responsible for performance management and supporting our development team. My main focus is to help developers stay fully immersed in their work by taking care of everything around them."
+          },
+          "qa3": {
+            "q": "The title ‘PM’ might sound unfamiliar to some. What exactly does a Product Manager do?",
+            "a": "PM can mean many things, but in my case, it stands for Product Manager. A product manager is someone who constantly asks ‘why’—supporting the process of building better products that customers truly want. We connect different teams and ensure clear communication throughout development. In IT, that means coordinating with departments like planning, design, and development to define features and balance what customers want with what’s technically possible."
+          },
+          "qa4": {
+            "q": "I heard you graduated from a Meister high school. What made you decide to pursue a career in IT and become a PM?",
+            "a": "Ever since I was young, I dreamed of entering society early. My motto has always been ‘walk a different path.’ So instead of going to college, I wanted to gain real-world experience as soon as possible. I’d always been interested in computers, so naturally I wanted to make that my profession. During my time at Meister High School, I studied web development for two years, but I realized that I truly enjoyed interacting with people and supporting projects across all areas. That’s when I decided to pursue the PM role."
+          },
+          "qa5": {
+            "q": "What challenges have you faced while working as a PM?",
+            "a": "There are many challenges, but automation is probably the hardest part. Automation is meant to make things more efficient, but sometimes the process itself feels inefficient or overly complicated. Still, once it’s properly set up, it can dramatically improve workflow. I often think deeply about how tasks should be structured so that my teammates can work more efficiently. That kind of problem-solving mindset has become a big part of how I approach my work."
+          },
+          "qa6": {
+            "q": "Finally, what made you decide to join BigTablet, and what are your goals here?",
+            "a": "Before joining BigTablet, I applied to several companies, but I often ran into obstacles like educational background and the tough job market. Since most PM roles require developer experience or internal transfers, it wasn’t easy for someone new like me. I wanted a freer, startup-style environment where I could experience everything from A to Z. So when BigTablet sent a job posting to my school, I was thrilled—it felt like destiny. I think the most valuable thing I want to achieve here is to grow together with the team. Startups evolve alongside their members, and that shared growth mirrors my own journey as a young professional. I want to keep learning and growing with BigTablet."
+          }
         },
-        "qa5": {
-          "q": "What do you think is the biggest advantage of working at Bigtablet?",
-          "a": "I believe the greatest advantage is the opportunity to grow together in a fast-evolving organization. It’s not only about professional growth — it’s about the synergy created when people from different backgrounds come together, share knowledge, and learn from each other. Of course, our employee benefits are also quite nice!"
+        "BE": {
+          "position": "Backend Developer",
+          "name": "Gunwoo Kim",
+          "description": "A developer who strives for constant growth",
+          "image": "/images/member/gunwoo.png",
+          "qa1": {
+            "q": "Hello Gunwoo! Could you please introduce yourself briefly?",
+            "a": "Hello! I’m Gunwoo Kim, a backend developer at BigTablet. I joined the company in 2025 and have been working hard with our development team ever since. 😁"
+          },
+          "qa2": {
+            "q": "Could you tell us a bit about your role at BigTablet?",
+            "a": "I’m mainly responsible for server development and infrastructure management. In short, I handle most of the backend operations except for frontend development."
+          },
+          "qa3": {
+            "q": "You mentioned that you’re in charge of backend development — what exactly does a backend developer do?",
+            "a": "Backend development involves working with the data and logic that users don’t see directly. I build and manage servers, databases, and deployment workflows. To explain it a bit more, backend developers handle everything that happens from the moment a user signs up — including logins, data communication, and even security — designing, developing, and maintaining the entire system that supports the service."
+          },
+          "qa4": {
+            "q": "You and Yerim both graduated from a Meister high school. What made you decide to pursue a career in development?",
+            "a": "I’ve always been interested in IT, and since many people around me were developers, I naturally grew curious about the field. Initially, I studied to become an Android app developer, but after discovering backend development, I realized it suited me much better — and I really enjoyed it. So I shifted my focus to backend, which turned out to be one of the best decisions I’ve made. After entering Meister High School, I prepared to become a developer, and now I’m proudly part of BigTablet’s development team."
+          },
+          "qa5": {
+            "q": "What are some of the pros and cons you’ve experienced while working on the development team?",
+            "a": "Since I joined in the early development stage, there were times when the basic infrastructure was lacking. Building things from scratch and learning new technologies at the same time was quite challenging. Documentation, in particular, was tough for me — as a developer used to coding, creating templates and writing technical documents while developing was a new experience. But through discussions and collaboration with teammates, I’ve been improving both technically and personally. It’s rewarding to see progress every day and to feel like I’m putting together a big puzzle piece by piece."
+          },
+          "qa6": {
+            "q": "Lastly, what are your personal goals at BigTablet?",
+            "a": "My personal growth is important, but I believe it’s just as crucial for the team and the organization to grow together. I want to keep experimenting with and adopting new technologies, and someday become part of a leading big tech company."
+          }
         },
-        "qa6": {
-          "q": "Lastly, do you have any words for your current and future team members?",
-          "a": "Bigtablet is currently on a steep growth trajectory. With rapid growth often come challenges and areas for improvement, but I want to express my sincere gratitude to everyone who has been part of this journey. To future team members, I look forward to working with passionate individuals who want to make history together in the AI industry. Thank you!"
-        }
-      },
-      "CTO": {
-        "position": "CTO",
-        "name": "Minho Park",
-        "description": "An engineer driven to change the world through technology",
-        "image": "/images/member/minho.png",
-        "qa1": {
-          "q": "Hello Minho! Could you please introduce yourself briefly?",
-          "a": "Hello, I’m Minho Park, currently leading research and development at BigTablet."
-        },
-        "qa2": {
-          "q": "The title of CTO might sound unfamiliar to some. Could you tell us what it means and what your role involves?",
-          "a": "CTO stands for Chief Technology Officer — the person responsible for overseeing a company’s overall technology strategy and execution. At BigTablet, I lead the development of our AI CCTV solutions and various R&D initiatives, managing both internal and external collaborative projects. I’m also in charge of technical administration such as preparing R&D proposals, writing reports, and handling intellectual property. In essence, a CTO bridges technology and business strategy to drive company growth."
-        },
-        "qa3": {
-          "q": "Could you tell us a bit about what you’re currently developing at BigTablet?",
-          "a": "We’re developing a platform for video AI analytics based on VCM — Video Coding for Machines. Traditional video compression focuses on what’s visually pleasing to humans, while we’re building compression optimized for AI interpretation. Our system preserves high resolution for objects of interest while reducing unnecessary background data, redundant frames, and excessive color information. This allows us to cut video size by up to 70% compared to standard codecs, while maintaining object detection and tracking accuracy. With this technology, we’re expanding into fields like smart retail and smart city solutions."
-        },
-        "qa4": {
-          "q": "It must have been challenging to develop products in the early stages. What difficulties did you face?",
-          "a": "Coming from a research background, joining BigTablet was my first hands-on experience in real product development. Unlike academic research, we had to design for user interface and experience, which turned out to be quite challenging. While improving algorithm performance was familiar to me, making it intuitive and usable for real users required many iterations. In the early days, limited resources and manpower meant I had to juggle development, operation, and testing at once. Prioritization and efficiency became critical. Through this, I learned to think beyond technical perfection — considering productization and market fit together."
-        },
-        "qa5": {
-          "q": "Lastly, what kind of technological vision is BigTablet pursuing?",
-          "a": "Our vision is captured in the phrase ‘Vision Beyond Pixels.’ We aim to go beyond mere image recognition — to interpret context and meaning beyond pixels, creating new value through technology."
-        }
-      },
-      "Manage": {
-        "position": "Managing Director",
-        "name": "Chaehyung Lee",
-        "description": "With balance",
-        "image": "/images/member/chaehyung.png",
-        "qa1": {
-          "q": "Hello Chaehyung! Could you please introduce yourself briefly?",
-          "a": "Hello, I’m Chaehyung Lee, and I’m in charge of administrative affairs at Bigtablet Inc."
-        },
-        "qa2": {
-          "q": "Could you briefly introduce your role?",
-          "a": "At Bigtablet, I’m mainly responsible for operational tasks related to our ongoing projects, as well as sales and customer service support.\nSince we don’t yet have a dedicated department for areas like accounting, my work often involves handling a variety of administrative tasks as needed.\n\nIn the future, I expect to focus more on customer service operations as our services continue to expand and evolve."
-        },
-        "qa3": {
-          "q": "Was there a particular reason or moment that led you to join Bigtablet?",
-          "a": "There wasn’t really a grand reason or turning point. Before graduation, I was looking for companies to do my field training at, and Bigtablet happened to be close by. But what really drew me was that the CEO was young — I thought other places might feel too hierarchical or rigid. So I joined for my field training, and that connection eventually led me to stay on as an intern, and then as a full-time employee."
-        },
-        "qa4": {
-          "q": "Have there been any moments when you felt, 'Ah, I’m really doing well at my job'?",
-          "a": "Rather than feeling like I’m doing particularly well, I tend to feel proud whenever the company achieves progress — like when we secure new support projects or take meaningful steps forward as a team. It’s less of a self-congratulatory feeling and more of a reminder that there’s still a lot more I want to do, a kind of mixed emotion between satisfaction and motivation."
-        },
-        "qa5": {
-          "q": "How would you like to grow or what kind of role do you hope to take on in the company moving forward?",
-          "a": "Most people imagine climbing to the top of a company as their goal, but that’s not really me. My motto is ‘steady and long.’ I once thought about how I’d like to be like a fan — not as powerful as an air conditioner, but still something that quietly helps others. It’s a bit of a metaphor, but I want to be someone who’s helpful and reliable, even if not always in the spotlight. (Of course, that doesn’t mean I plan to stop working hard after one season!)"
-        },
-        "qa6": {
-          "q": "What does Bigtablet mean to you personally?",
-          "a": "At first, I thought it was a slow train, but it turned out to be an express one. Still, if I had to describe Bigtablet, I’d say it’s a lot like the moon. Sometimes it feels so big and distant, yet it radiates this quiet beauty, like a soft halo in the night sky. It’s ever-changing and full of life. Like watching the moon through a high-speed camera — even when it’s momentarily hidden, it remains the brightest, most noticeable thing in the sky. Maybe ‘the North Star’ would be a more fitting comparison, but somehow, ‘the moon’ feels closer to my heart — because it’s something I hope will keep growing and shining brighter."
-        }
-      },
-      "PM": {
-        "position": "PM",
-        "name": "Yerim Kwon",
-        "description": "A product manager who sees the beauty in dreams",
-        "image": "/images/member/yerim.png",
-        "qa1": {
-          "q": "Hello Yerim! Could you please introduce yourself briefly?",
-          "a": "Hi! I’m Yerim Kwon, currently working as a Product Manager at BigTablet."
-        },
-        "qa2": {
-          "q": "Could you tell us a bit about your role at BigTablet?",
-          "a": "As a PM, I’m responsible for performance management and supporting our development team. My main focus is to help developers stay fully immersed in their work by taking care of everything around them."
-        },
-        "qa3": {
-          "q": "The title ‘PM’ might sound unfamiliar to some. What exactly does a Product Manager do?",
-          "a": "PM can mean many things, but in my case, it stands for Product Manager. A product manager is someone who constantly asks ‘why’—supporting the process of building better products that customers truly want. We connect different teams and ensure clear communication throughout development. In IT, that means coordinating with departments like planning, design, and development to define features and balance what customers want with what’s technically possible."
-        },
-        "qa4": {
-          "q": "I heard you graduated from a Meister high school. What made you decide to pursue a career in IT and become a PM?",
-          "a": "Ever since I was young, I dreamed of entering society early. My motto has always been ‘walk a different path.’ So instead of going to college, I wanted to gain real-world experience as soon as possible. I’d always been interested in computers, so naturally I wanted to make that my profession. During my time at Meister High School, I studied web development for two years, but I realized that I truly enjoyed interacting with people and supporting projects across all areas. That’s when I decided to pursue the PM role."
-        },
-        "qa5": {
-          "q": "What challenges have you faced while working as a PM?",
-          "a": "There are many challenges, but automation is probably the hardest part. Automation is meant to make things more efficient, but sometimes the process itself feels inefficient or overly complicated. Still, once it’s properly set up, it can dramatically improve workflow. I often think deeply about how tasks should be structured so that my teammates can work more efficiently. That kind of problem-solving mindset has become a big part of how I approach my work."
-        },
-        "qa6": {
-          "q": "Finally, what made you decide to join BigTablet, and what are your goals here?",
-          "a": "Before joining BigTablet, I applied to several companies, but I often ran into obstacles like educational background and the tough job market. Since most PM roles require developer experience or internal transfers, it wasn’t easy for someone new like me. I wanted a freer, startup-style environment where I could experience everything from A to Z. So when BigTablet sent a job posting to my school, I was thrilled—it felt like destiny. I think the most valuable thing I want to achieve here is to grow together with the team. Startups evolve alongside their members, and that shared growth mirrors my own journey as a young professional. I want to keep learning and growing with BigTablet."
-        }
-      },
-      "BE": {
-        "position": "Backend Developer",
-        "name": "Gunwoo Kim",
-        "description": "A developer who strives for constant growth",
-        "image": "/images/member/gunwoo.png",
-        "qa1": {
-          "q": "Hello Gunwoo! Could you please introduce yourself briefly?",
-          "a": "Hello! I’m Gunwoo Kim, a backend developer at BigTablet. I joined the company in 2025 and have been working hard with our development team ever since. 😁"
-        },
-        "qa2": {
-          "q": "Could you tell us a bit about your role at BigTablet?",
-          "a": "I’m mainly responsible for server development and infrastructure management. In short, I handle most of the backend operations except for frontend development."
-        },
-        "qa3": {
-          "q": "You mentioned that you’re in charge of backend development — what exactly does a backend developer do?",
-          "a": "Backend development involves working with the data and logic that users don’t see directly. I build and manage servers, databases, and deployment workflows. To explain it a bit more, backend developers handle everything that happens from the moment a user signs up — including logins, data communication, and even security — designing, developing, and maintaining the entire system that supports the service."
-        },
-        "qa4": {
-          "q": "You and Yerim both graduated from a Meister high school. What made you decide to pursue a career in development?",
-          "a": "I’ve always been interested in IT, and since many people around me were developers, I naturally grew curious about the field. Initially, I studied to become an Android app developer, but after discovering backend development, I realized it suited me much better — and I really enjoyed it. So I shifted my focus to backend, which turned out to be one of the best decisions I’ve made. After entering Meister High School, I prepared to become a developer, and now I’m proudly part of BigTablet’s development team."
-        },
-        "qa5": {
-          "q": "What are some of the pros and cons you’ve experienced while working on the development team?",
-          "a": "Since I joined in the early development stage, there were times when the basic infrastructure was lacking. Building things from scratch and learning new technologies at the same time was quite challenging. Documentation, in particular, was tough for me — as a developer used to coding, creating templates and writing technical documents while developing was a new experience. But through discussions and collaboration with teammates, I’ve been improving both technically and personally. It’s rewarding to see progress every day and to feel like I’m putting together a big puzzle piece by piece."
-        },
-        "qa6": {
-          "q": "Lastly, what are your personal goals at BigTablet?",
-          "a": "My personal growth is important, but I believe it’s just as crucial for the team and the organization to grow together. I want to keep experimenting with and adopting new technologies, and someday become part of a leading big tech company."
-        }
-      },
-      "FE": {
-        "position": "Frontend Developer",
-        "name": "Sangmin Park",
-        "description": "A developer who never stops learning",
-        "image": "/images/member/sangmin.png",
-        "qa1": {
-          "q": "Hello Sangmin! Could you please introduce yourself briefly?",
-          "a": "Hello, I’m Sangmin Park, a frontend developer at BigTablet."
-        },
-        "qa2": {
-          "q": "Could you tell us a bit about your role at BigTablet?",
-          "a": "I’m responsible for visualizing the data analyzed from CCTV footage — one of BigTablet’s core functions — and presenting it to users in a clear and intuitive way."
-        },
-        "qa3": {
-          "q": "You mentioned that you work on frontend development. What exactly does a frontend developer do?",
-          "a": "In our company, I handle all web-related development. One of my main tasks is developing the service that visualizes analysis results from CCTV footage so users can easily understand the data through the web."
-        },
-        "qa4": {
-          "q": "You, Yerim, and Gunwoo all graduated from a Meister high school. What inspired you to become a developer?",
-          "a": "I first encountered coding during middle school in an information technology class using Scratch. I found the process of thinking through problems and seeing the results of my ideas incredibly rewarding — that sense of accomplishment made me want to pursue a career as a developer."
-        },
-        "qa5": {
-          "q": "What’s been the most challenging part of your work so far, and what do you enjoy the most?",
-          "a": "Since I’m currently the only frontend developer, there are times when the workload feels a bit heavy. However, I’m very grateful for the support I receive from the company and the culture we’ve built — where everyone trusts and respects each other’s work. That positive environment makes it enjoyable to work here."
-        },
-        "qa6": {
-          "q": "Finally, what do you hope to achieve at BigTablet, and what kind of developer do you want to become?",
-          "a": "My goal is to deliver BigTablet’s vision and services flawlessly. I find the projects we’re working on exciting and meaningful, so I want to build them without any issues. In the long run, I want to become a developer who can turn ideas into reality. While it’s easy to imagine things, bringing those ideas to life is the real challenge — and that’s the kind of developer I aspire to be."
+        "FE": {
+          "position": "Frontend Developer",
+          "name": "Sangmin Park",
+          "description": "A developer who never stops learning",
+          "image": "/images/member/sangmin.png",
+          "qa1": {
+            "q": "Hello Sangmin! Could you please introduce yourself briefly?",
+            "a": "Hello, I’m Sangmin Park, a frontend developer at BigTablet."
+          },
+          "qa2": {
+            "q": "Could you tell us a bit about your role at BigTablet?",
+            "a": "I’m responsible for visualizing the data analyzed from CCTV footage — one of BigTablet’s core functions — and presenting it to users in a clear and intuitive way."
+          },
+          "qa3": {
+            "q": "You mentioned that you work on frontend development. What exactly does a frontend developer do?",
+            "a": "In our company, I handle all web-related development. One of my main tasks is developing the service that visualizes analysis results from CCTV footage so users can easily understand the data through the web."
+          },
+          "qa4": {
+            "q": "You, Yerim, and Gunwoo all graduated from a Meister high school. What inspired you to become a developer?",
+            "a": "I first encountered coding during middle school in an information technology class using Scratch. I found the process of thinking through problems and seeing the results of my ideas incredibly rewarding — that sense of accomplishment made me want to pursue a career as a developer."
+          },
+          "qa5": {
+            "q": "What’s been the most challenging part of your work so far, and what do you enjoy the most?",
+            "a": "Since I’m currently the only frontend developer, there are times when the workload feels a bit heavy. However, I’m very grateful for the support I receive from the company and the culture we’ve built — where everyone trusts and respects each other’s work. That positive environment makes it enjoyable to work here."
+          },
+          "qa6": {
+            "q": "Finally, what do you hope to achieve at BigTablet, and what kind of developer do you want to become?",
+            "a": "My goal is to deliver BigTablet’s vision and services flawlessly. I find the projects we’re working on exciting and meaningful, so I want to build them without any issues. In the long run, I want to become a developer who can turn ideas into reality. While it’s easy to imagine things, bringing those ideas to life is the real challenge — and that’s the kind of developer I aspire to be."
+          }
         }
       }
     }

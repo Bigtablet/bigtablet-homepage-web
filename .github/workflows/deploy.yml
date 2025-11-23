@@ -11,7 +11,7 @@ jobs:
       IMAGE: ${{ secrets.DOCKER_USERNAME }}/bigtablet-homepage-web
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
       - name: Extract tag version
         id: version
         run: |

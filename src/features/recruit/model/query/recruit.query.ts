@@ -1,8 +1,8 @@
 "use client";
 
 import {
-    useQuery, UseQueryOptions,
-    useMutation, UseMutationOptions,
+    useQuery, type UseQueryOptions,
+    useMutation, type UseMutationOptions,
 } from "@tanstack/react-query";
 
 import {
@@ -11,15 +11,15 @@ import {
     postRecruitApplyApi,
 } from "src/entities/recruit/model/api/recruit.api";
 
-import {
-    type RecruitResponse,
-    type RecruitCard,
-    type RecruitApplyResponse,
+import type {
+    RecruitResponse,
+    RecruitCard,
+    RecruitApplyResponse,
 } from "src/entities/recruit/model/schema/recruit.schema";
 
 import {recruitKeys} from "./keys"
 import {toRecruitCard} from "src/entities/recruit/util/adapter";
-import {ApplyFormValues} from "src/features/recruit/model/apply/schema/apply.schema";
+import type {ApplyFormValues} from "src/features/recruit/model/apply/schema/apply.schema";
 
 /* 목록 */
 export const useRecruitListQuery = (

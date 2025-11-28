@@ -6,6 +6,8 @@ import Template from "src/widgets/layout/template";
 import { useRecruitDetailQuery } from "src/features/recruit/model/query/recruit.query";
 import type { RecruitCard } from "src/entities/recruit/model/schema/recruit.schema";
 import { Button } from "src/shared/ui/general/button";
+import ReactMarkdown from "react-markdown";
+import remarkBreaks from "remark-breaks";
 import styles from "./style.module.scss";
 
 const toIdx = (v: unknown) => {
@@ -34,34 +36,23 @@ const BENEFITS = [
 
 const HIRING_PROCESS = [
     "서류 전형",
-    "1차 면접",
-    "2차 면접 (필요시)",
+    "1차 인터뷰(직무/케이스 중심)",
+    "2차 인터뷰(조직/문화 적합)",
     "처우 협의",
     "합류"
 ];
 
-const renderText = (text: string) => {
-    const lines = text.split("\n");
-    const items = lines.filter((l) => l.trim().startsWith("-"));
-    const paragraphs = lines.filter((l) => !l.trim().startsWith("-"));
-
-    return (
-        <>
-            {paragraphs.map((p, i) => (
-                <p key={`p-${i}`} className={styles.recruit_detail_text}>
-                    {p}
-                </p>
-            ))}
-
-            {items.length > 0 && (
-                <ul className={styles.recruit_detail_list}>
-                    {items.map((l, i) => (
-                        <li key={`li-${i}`}>{l.replace(/^-+\s?/, "")}</li>
-                    ))}
-                </ul>
-            )}
-        </>
-    );
+const markdownComponents = {
+    p: ({ node, ...props }: any) => (
+        <p {...props} className={styles.recruit_detail_text} />
+    ),
+    ul: ({ node, ...props }: any) => (
+        <ul {...props} className={styles.recruit_detail_list} />
+    ),
+    ol: ({ node, ...props }: any) => (
+        <ol {...props} className={styles.recruit_detail_list} />
+    ),
+    li: ({ node, ...props }: any) => <li {...props} />
 };
 
 const RecruitDetail = () => {
@@ -96,8 +87,8 @@ const RecruitDetail = () => {
                                 <div className={styles.recruit_detail_chips}>
                                     {recruit.tags.map((t, i) => (
                                         <span key={`tag-${i}`} className={styles.chip}>
-                      {t}
-                    </span>
+                                            {t}
+                                        </span>
                                     ))}
                                 </div>
 
@@ -110,50 +101,59 @@ const RecruitDetail = () => {
 
                         <section className={styles.recruit_detail_section}>
                             <h2>조직 소개</h2>
-                            {renderText(recruit.companyIntroduction)}
+                            <ReactMarkdown remarkPlugins={[remarkBreaks]} components={markdownComponents}>
+                                {recruit.companyIntroduction}
+                            </ReactMarkdown>
                         </section>
 
                         <section className={styles.recruit_detail_section}>
                             <h2>포지션 소개</h2>
-                            {renderText(recruit.positionIntroduction)}
+                            <ReactMarkdown remarkPlugins={[remarkBreaks]} components={markdownComponents}>
+                                {recruit.positionIntroduction}
+                            </ReactMarkdown>
                         </section>
 
                         <section className={styles.recruit_detail_section}>
                             <h2>주요 업무</h2>
-                            {renderText(recruit.mainResponsibility)}
+                            <ReactMarkdown remarkPlugins={[remarkBreaks]} components={markdownComponents}>
+                                {recruit.mainResponsibility}
+                            </ReactMarkdown>
                         </section>
 
                         <section className={styles.recruit_detail_section}>
                             <h2>자격 요건</h2>
-                            {renderText(recruit.qualification)}
+                            <ReactMarkdown remarkPlugins={[remarkBreaks]} components={markdownComponents}>
+                                {recruit.qualification}
+                            </ReactMarkdown>
                         </section>
 
                         {recruit.preferredQualification && (
                             <section className={styles.recruit_detail_section}>
                                 <h2>우대사항</h2>
-                                {renderText(recruit.preferredQualification)}
+                                <ReactMarkdown remarkPlugins={[remarkBreaks]} components={markdownComponents}>
+                                    {recruit.preferredQualification}
+                                </ReactMarkdown>
                             </section>
                         )}
 
-                        {BENEFITS.length > 0 && (
-                            <section className={styles.recruit_detail_section}>
-                                <h2>복지 및 혜택</h2>
-                                <ul className={styles.recruit_detail_list}>
-                                    {BENEFITS.map((b, i) => (
-                                        <li key={`benefit-${i}`}>{b}</li>
-                                    ))}
-                                </ul>
-                            </section>
-                        )}
+                        <section className={styles.recruit_detail_section}>
+                            <h2>복지 및 혜택</h2>
+                            <ul className={styles.recruit_detail_list}>
+                                {BENEFITS.map((b, i) => (
+                                    <li key={`benefit-${i}`}>{b}</li>
+                                ))}
+                            </ul>
+                        </section>
 
-                        {HIRING_PROCESS.length > 0 && (
-                            <section className={styles.recruit_detail_section}>
-                                <h2>채용 절차</h2>
-                                <p className={styles.recruit_detail_process}>
-                                    {HIRING_PROCESS.join(" → ")}
-                                </p>
-                            </section>
-                        )}
+                        <section className={styles.recruit_detail_section}>
+                            <h2>채용 절차</h2>
+                            <p className={styles.recruit_detail_process}>
+                                {HIRING_PROCESS.join(" → ")}
+                            </p>
+                            <p className={styles.recruit_detail_notice_text}>
+                                경우에 따라 간단한 사전 과제 또는 레퍼런스 체크가 진행될 수 있습니다.
+                            </p>
+                        </section>
 
                         <section className={styles.recruit_detail_notice}>
                             <h2 className={styles.recruit_detail_notice_title}>유의 사항</h2>
@@ -163,13 +163,8 @@ const RecruitDetail = () => {
                             <ul className={styles.recruit_detail_notice_list}>
                                 <li>지원자가 채용과 관련하여 부당한 청탁이나 부적절한 요청을 한 경우</li>
                                 <li>지원자가 국내 취업 또는 해외 여행에 결격 사유가 있는 경우</li>
-                                <li>
-                                    회사 규정상 직무 수행에 지장을 줄 수 있는 징계 이력, 법 위반 사항 또는 기타
-                                    결격 사유가 발견된 경우
-                                </li>
-                                <li>
-                                    지원 과정에서 제출된 정보가 허위거나 증빙 불가하거나 고의 누락된 사실이 발견된 경우
-                                </li>
+                                <li>회사 규정상 직무 수행에 지장을 줄 수 있는 징계 이력, 법 위반 사항 또는 기타 결격 사유가 발견된 경우</li>
+                                <li>지원 과정에서 제출된 정보가 허위거나 증빙 불가하거나 고의 누락된 사실이 발견된 경우</li>
                                 <li>사회통념상 고용 유지가 어려운 정당한 사유가 발생한 경우</li>
                             </ul>
                             <p className={styles.recruit_detail_notice_text}>

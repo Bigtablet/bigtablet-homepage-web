@@ -78,13 +78,23 @@
 .recruit_detail_text {
   font-size: $font-size-md;
   color: $text-normal;
-  white-space: pre-line;
   line-height: $line-height-relaxed;
+  white-space: pre-line;
 }
 
-.recruit_detail_list {
+/* ✨ Markdown list 스타일 개선 */
+.recruit_detail_list,
+.recruit_detail_list ul,
+.recruit_detail_list ol {
   padding-left: $spacing-xl;
+}
+
+.recruit_detail_list ul {
   list-style-type: disc;
+}
+
+.recruit_detail_list ol {
+  list-style-type: decimal;
 }
 
 .recruit_detail_list li {

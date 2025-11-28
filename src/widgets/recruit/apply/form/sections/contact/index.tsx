@@ -124,7 +124,7 @@ export const ContactSection = ({ form, email }: Props) => {
                 />
                 <TextField
                     size="sm"
-                    placeholder="상세주소 (없으면 비워두셔도 됩니다)"
+                    placeholder="상세주소"
                     {...register("addressDetail")}
                 />
             </div>

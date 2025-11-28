@@ -23,15 +23,53 @@ const formatDate = (s?: string) => {
     return `${y}.${m}.${day}`;
 };
 
-const BENEFITS: string[] = ["업무에 필요한 장비 (Mac, Window, 키보드, 마우스, 모니터 등) 지원.", "시차 출퇴근", "간식 창고 자유롭게 이용 가능", "수평적인 구조, 상호 존중으로 ~님 호칭을 기본적으로 사용", "필요한 AI툴 지원 (기본적으로 GPT5 지원)", "점심 식대 지원, 야근 시 저녁 식대 지원."];
-const HIRING_PROCESS: string[] = ["서류 전형", "1차 면접", "2차 면접 (필요시)", "처우 협의", "합류"];
+const BENEFITS = [
+    "업무에 필요한 장비 (Mac, Window, 키보드, 마우스, 모니터 등) 지원.",
+    "시차 출퇴근",
+    "간식 창고 자유롭게 이용 가능",
+    "수평적인 구조, 상호 존중으로 ~님 호칭을 기본적으로 사용",
+    "필요한 AI툴 지원 (기본적으로 GPT5 지원)",
+    "점심 식대 지원, 야근 시 저녁 식대 지원."
+];
+
+const HIRING_PROCESS = [
+    "서류 전형",
+    "1차 면접",
+    "2차 면접 (필요시)",
+    "처우 협의",
+    "합류"
+];
+
+const renderText = (text: string) => {
+    const lines = text.split("\n");
+    const items = lines.filter((l) => l.trim().startsWith("-"));
+    const paragraphs = lines.filter((l) => !l.trim().startsWith("-"));
+
+    return (
+        <>
+            {paragraphs.map((p, i) => (
+                <p key={`p-${i}`} className={styles.recruit_detail_text}>
+                    {p}
+                </p>
+            ))}
+
+            {items.length > 0 && (
+                <ul className={styles.recruit_detail_list}>
+                    {items.map((l, i) => (
+                        <li key={`li-${i}`}>{l.replace(/^-+\s?/, "")}</li>
+                    ))}
+                </ul>
+            )}
+        </>
+    );
+};
 
 const RecruitDetail = () => {
     const { idx } = useParams<{ locale: string; idx: string }>();
     const idxNum = toIdx(idx);
 
     const { data, status, error } = useRecruitDetailQuery(idxNum ?? -1, {
-        enabled: idxNum !== null,
+        enabled: idxNum !== null
     });
 
     const recruit = data as RecruitCard | undefined;
@@ -58,8 +96,8 @@ const RecruitDetail = () => {
                                 <div className={styles.recruit_detail_chips}>
                                     {recruit.tags.map((t, i) => (
                                         <span key={`tag-${i}`} className={styles.chip}>
-                                            {t}
-                                        </span>
+                      {t}
+                    </span>
                                     ))}
                                 </div>
 
@@ -72,25 +110,28 @@ const RecruitDetail = () => {
 
                         <section className={styles.recruit_detail_section}>
                             <h2>조직 소개</h2>
-                            <p className={styles.recruit_detail_text}>{recruit.companyIntroduction}</p>
+                            {renderText(recruit.companyIntroduction)}
+                        </section>
+
+                        <section className={styles.recruit_detail_section}>
+                            <h2>포지션 소개</h2>
+                            {renderText(recruit.positionIntroduction)}
                         </section>
 
                         <section className={styles.recruit_detail_section}>
                             <h2>주요 업무</h2>
-                            <p className={styles.recruit_detail_text}>{recruit.mainResponsibility}</p>
+                            {renderText(recruit.mainResponsibility)}
                         </section>
 
                         <section className={styles.recruit_detail_section}>
                             <h2>자격 요건</h2>
-                            <p className={styles.recruit_detail_text}>{recruit.qualification}</p>
+                            {renderText(recruit.qualification)}
                         </section>
 
                         {recruit.preferredQualification && (
                             <section className={styles.recruit_detail_section}>
                                 <h2>우대사항</h2>
-                                <p className={styles.recruit_detail_text}>
-                                    {recruit.preferredQualification}
-                                </p>
+                                {renderText(recruit.preferredQualification)}
                             </section>
                         )}
 
@@ -127,10 +168,9 @@ const RecruitDetail = () => {
                                     결격 사유가 발견된 경우
                                 </li>
                                 <li>
-                                    지원 과정에서 제출된 정보(입사지원서 포함)가 허위이거나, 증빙 서류로 확인이
-                                    불가하거나, 고의적으로 누락된 사실이 발견된 경우
+                                    지원 과정에서 제출된 정보가 허위거나 증빙 불가하거나 고의 누락된 사실이 발견된 경우
                                 </li>
-                                <li>그 밖에 사회통념상 고용을 유지하기 어려운 정당한 사유가 발생한 경우</li>
+                                <li>사회통념상 고용 유지가 어려운 정당한 사유가 발생한 경우</li>
                             </ul>
                             <p className={styles.recruit_detail_notice_text}>
                                 귀하가 지원서를 제출하는 경우, 개인정보 제3자 제공 및 당사의 개인정보처리방침에

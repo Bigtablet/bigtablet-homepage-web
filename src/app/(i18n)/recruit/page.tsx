@@ -4,8 +4,8 @@ import { useState } from "react";
 import Template from "src/widgets/layout/template";
 import RecruitHeader from "src/widgets/recruit/main/header";
 import RequestList from "src/widgets/recruit/main/list";
-import type { RecruitSearchFilters } from "src/features/recruit/model/query/search/recruit.search.query";
 import "./style.scss";
+import {RecruitSearchFilters} from "src/entities/recruit/model/api/recruit.api";
 
 const RecruitPage = () => {
     const [filters, setFilters] = useState<RecruitSearchFilters>({

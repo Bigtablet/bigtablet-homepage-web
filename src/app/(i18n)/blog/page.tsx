@@ -17,7 +17,7 @@ const BlogPage = () => {
 
     const size = Math.max(1, Number(sp.get("size") ?? DEFAULT_SIZE));
 
-    const { data, isLoading } = useBlogPageQuery({ page: 1, size: 9999 });
+    const { data, isLoading } = useBlogPageQuery({ page: 1, size: 6 });
 
     const items = useMemo(() => data?.items ?? [], [data]);
 

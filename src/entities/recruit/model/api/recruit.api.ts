@@ -5,21 +5,60 @@ import {
     recruitApplyResponseSchema,
     type RecruitResponse,
     type RecruitApplyResponse,
-} from "../schema/recruit.schema";
+} from "../../model/schema/recruit.schema";
 import type { ApplyFormValues } from "src/features/recruit/model/apply/schema/apply.schema";
 
-// 목록
-export const getRecruitListApi = async (signal?: AbortSignal): Promise<RecruitResponse[]> =>
-    (await getParsed("/job/list", recruitListResponseSchema, { signal })).data ?? [];
+export interface RecruitSearchFilters {
+    keyword?: string;
+    job?: string;
+    education?: string;
+    career?: string;
+}
 
-// 상세
-export const getRecruitDetailApi = async (idx: number, signal?: AbortSignal): Promise<RecruitResponse> => {
-    const { data } = await getParsed("/job", recruitDetailResponseSchema, { params: { idx }, signal });
-    if (!data) throw new Error("Empty response data");
+/* 목록 + 검색 */
+export const getRecruitListApi = async ({
+                                            page = 1,
+                                            size = 10,
+                                            title,
+                                            department,
+                                            education,
+                                            recruitType,
+                                            signal,
+                                        }: {
+    page?: number;
+    size?: number;
+    title?: string | null;
+    department?: string | null;
+    education?: string | null;
+    recruitType?: string | null;
+    signal?: AbortSignal;
+} = {}): Promise<RecruitResponse[]> => {
+    const { data } = await getParsed("/job/list", recruitListResponseSchema, {
+        signal,
+        params: {
+            page,
+            size,
+            title,
+            department,
+            education,
+            recruitType,
+        },
+    });
+
+    return data ?? [];
+};
+
+/* 상세 */
+export const getRecruitDetailApi = async (idx: number, signal?: AbortSignal) => {
+    const { data } = await getParsed("/job", recruitDetailResponseSchema, {
+        signal,
+        params: { idx },
+    });
+    if (!data) throw new Error("Empty response");
     return data;
 };
 
-// 지원
+/* 지원 */
 export const postRecruitApplyApi = async (
     body: ApplyFormValues,
     signal?: AbortSignal

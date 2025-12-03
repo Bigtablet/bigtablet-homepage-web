@@ -2,7 +2,7 @@ import {z} from "zod";
 
 export const DepartmentType = z.enum([
     "BUSINESS_ADMINISTRATION",
-    "SALE",
+    "SALES",
     "MARKETING",
     "IT",
     "DESIGN",

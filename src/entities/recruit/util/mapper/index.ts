@@ -22,6 +22,7 @@ export const toRecruit = (dto: RecruitResponse): RecruitDTO | null => {
     if (typeof dto.idx !== "number" || !Number.isFinite(dto.idx)) return null;
     return {
         idx: dto.idx,
+        isActive: dto.isActive,
         title: dto.title,
         department: dto.department,
         location: dto.location,
@@ -29,6 +30,7 @@ export const toRecruit = (dto: RecruitResponse): RecruitDTO | null => {
         experiment: dto.experiment,
         education: dto.education,
         companyIntroduction: dto.companyIntroduction,
+        positionIntroduction: dto.positionIntroduction,
         mainResponsibility: dto.mainResponsibility,
         qualification: dto.qualification,
         preferredQualification: dto.preferredQualification,

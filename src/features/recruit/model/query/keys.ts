@@ -1,7 +1,12 @@
+import {RecruitSearchFilters} from "src/entities/recruit/model/api/recruit.api";
+
 export const recruitKeys = {
-    recruit: {
-        list: ["recruit", "list"] as const,
-        detail: (idx: number) => ["recruit", "detail", idx] as const,
-        applicantList: ["recruit", "applicant-list"] as const,
-    },
+    all: ["recruit"] as const,
+
+    list: () => [...recruitKeys.all, "list"] as const,
+
+    detail: (idx: number) => [...recruitKeys.all, "detail", idx] as const,
+
+    search: (filters: RecruitSearchFilters) =>
+        [...recruitKeys.all, "search", filters] as const,
 };

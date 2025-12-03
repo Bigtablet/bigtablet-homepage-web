@@ -1,8 +1,7 @@
 import { z } from "zod";
-import { baseResponseSchema, okResponseSchema } from "src/shared/types/response";
-import {DepartmentType, EducationType, LocationType, RecruitType} from "src/entities/recruit/enum/recruit.enum";
+import { baseResponseSchema } from "src/shared/types/response";
+import { DepartmentType, EducationType, LocationType, RecruitType } from "src/entities/recruit/enum/recruit.enum";
 
-/* ---------------- DTOs ---------------- */
 export const recruitResponseSchema = z.object({
     idx: z.number(),
     title: z.string(),
@@ -12,17 +11,19 @@ export const recruitResponseSchema = z.object({
     experiment: z.string(),
     education: EducationType,
     companyIntroduction: z.string(),
+    positionIntroduction: z.string(),
     mainResponsibility: z.string(),
     qualification: z.string(),
     preferredQualification: z.string(),
     startDate: z.string(),
     endDate: z.string().optional().nullable(),
+    isActive: z.boolean(),
     createdAt: z.string().optional(),
     modifiedAt: z.string().optional(),
 });
+
 export type RecruitResponse = z.infer<typeof recruitResponseSchema>;
 
-/* 목록 카드(파생 필드 포함) */
 export const recruitCardSchema = recruitResponseSchema.extend({
     idx: z.number(),
     dday: z.string(),
@@ -30,7 +31,6 @@ export const recruitCardSchema = recruitResponseSchema.extend({
 });
 export type RecruitCard = z.infer<typeof recruitCardSchema>;
 
-/* 지원서 */
 export const ApplyEducationLevel = z.enum(["GED", "HIGH_SCHOOL", "ASSOCIATE", "BACHELOR"]);
 export type ApplyEducationLevel = z.infer<typeof ApplyEducationLevel>;
 
@@ -57,6 +57,7 @@ export const recruitRequestSchema = z.object({
     attachment2: z.string().optional(),
     attachment3: z.string().optional(),
 }).strict();
+
 export type RecruitRequest = z.infer<typeof recruitRequestSchema>;
 
 export const recruitApplyResponseSchema = baseResponseSchema(z.number().nullable().optional());
@@ -69,8 +70,7 @@ export const recruitApplicantSchema = recruitRequestSchema.extend({
     modifiedAt: z.string(),
 });
 
-/* 응답 래퍼 */
-export const recruitListResponseSchema   = baseResponseSchema(recruitResponseSchema.array());
+export const recruitListResponseSchema = baseResponseSchema(recruitResponseSchema.array());
 export const recruitDetailResponseSchema = baseResponseSchema(recruitResponseSchema);
 export type RecruitListResponse = z.infer<typeof recruitListResponseSchema>;
 export type RecruitDetailResponse = z.infer<typeof recruitDetailResponseSchema>;

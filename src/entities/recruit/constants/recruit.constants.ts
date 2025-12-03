@@ -10,7 +10,7 @@ export const LOCATIONS     = LocationType.options;
 /** @description 라벨 매핑 */
 export const DEPARTMENT_LABEL: Record<typeof DepartmentType._type, string> = {
     BUSINESS_ADMINISTRATION: "경영관리",
-    SALE: "영업",
+    SALES: "영업",
     MARKETING: "마케팅",
     IT: "개발",
     DESIGN: "디자인",

@@ -9,9 +9,9 @@ import {
     educationLabel,
     recruitTypeLabel,
 } from "src/entities/recruit/constants/recruit.constants";
-import type { RecruitSearchFilters } from "src/features/recruit/model/query/search/recruit.search.query";
 import styles from "./style.module.scss";
-import { DepartmentType, EducationType, RecruitType } from "src/entities/recruit/enum/recruit.enum";
+import type { DepartmentType, EducationType, RecruitType } from "src/entities/recruit/enum/recruit.enum";
+import {RecruitSearchFilters} from "src/entities/recruit/model/api/recruit.api";
 
 interface Props {
     filters: RecruitSearchFilters;

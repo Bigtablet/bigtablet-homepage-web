@@ -26,6 +26,6 @@ jobs:
           node-version: '24'
 
       - name: Generate and submit dependency graph (npm + pnpm)
-        uses: advanced-security/component-detection-dependency-submission-action@v0.0.2
+        uses: advanced-security/component-detection-dependency-submission-action@v0.1.0
         with:
           detectorsFilter: Npm,Pnpm

@@ -10,8 +10,17 @@ import {
     recruitTypeLabel,
 } from "src/entities/recruit/constants/recruit.constants";
 import styles from "./style.module.scss";
-import type { DepartmentType, EducationType, RecruitType } from "src/entities/recruit/enum/recruit.enum";
-import {RecruitSearchFilters} from "src/entities/recruit/model/api/recruit.api";
+import type {
+    DepartmentType,
+    EducationType,
+    RecruitType,
+} from "src/entities/recruit/enum/recruit.enum";
+import { RecruitSearchFilters } from "src/entities/recruit/model/api/recruit.api";
+import { z } from "zod";
+
+type DepartmentCode = z.infer<typeof DepartmentType>;
+type EducationCode = z.infer<typeof EducationType>;
+type RecruitTypeCode = z.infer<typeof RecruitType>;
 
 interface Props {
     filters: RecruitSearchFilters;
@@ -43,7 +52,7 @@ const RecruitHeader = ({ filters, onChange }: Props) => {
                     onChange={(e) => patch({ job: e.target.value })}
                 >
                     <option value="">직무</option>
-                    {DEPARTMENTS.map((code: typeof DepartmentType._type) => (
+                    {DEPARTMENTS.map((code: DepartmentCode) => (
                         <option key={code} value={code}>
                             {departmentLabel(code)}
                         </option>
@@ -56,7 +65,7 @@ const RecruitHeader = ({ filters, onChange }: Props) => {
                     onChange={(e) => patch({ education: e.target.value })}
                 >
                     <option value="">학력</option>
-                    {EDUCATIONS.map((code: typeof EducationType._type) => (
+                    {EDUCATIONS.map((code: EducationCode) => (
                         <option key={code} value={code}>
                             {educationLabel(code)}
                         </option>
@@ -69,7 +78,7 @@ const RecruitHeader = ({ filters, onChange }: Props) => {
                     onChange={(e) => patch({ career: e.target.value })}
                 >
                     <option value="">고용형태</option>
-                    {RECRUIT_TYPES.map((code: typeof RecruitType._type) => (
+                    {RECRUIT_TYPES.map((code: RecruitTypeCode) => (
                         <option key={code} value={code}>
                             {recruitTypeLabel(code)}
                         </option>

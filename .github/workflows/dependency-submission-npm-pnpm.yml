@@ -18,14 +18,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
 
       - name: Set up Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: '24'
 
       - name: Generate and submit dependency graph (npm + pnpm)
-        uses: advanced-security/component-detection-dependency-submission-action@v0.0.2
+        uses: advanced-security/component-detection-dependency-submission-action@v0.1.0
         with:
           detectorsFilter: Npm,Pnpm

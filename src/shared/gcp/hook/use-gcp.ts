@@ -1,4 +1,4 @@
-import { useGcpUploadMutation } from "src/shared/stroage/gcp/query/gcp.query";
+import { useGcpUploadMutation } from "src/shared/gcp/mutation/gcp.query";
 
 export const useGcpUpload = () => {
     const m = useGcpUploadMutation();

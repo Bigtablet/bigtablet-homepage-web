@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "src/shared/ui/general/button";
-import { useGcpUpload } from "src/shared/stroage/gcp/hook/gcp.hook";
+import { useGcpUpload } from "src/shared/gcp/hook/use-gcp";
 import type { ApplyFormProps } from "./type";
 import styles from "./style.module.scss";
 import {ContactSection} from "src/widgets/recruit/apply/form/sections/contact";

@@ -1,7 +1,7 @@
 import { useMutation, UseMutationOptions } from "@tanstack/react-query";
-import { postGcpUploadApi } from "src/shared/stroage/gcp/api/gcp.api";
-import { Keys } from "src/shared/stroage/gcp/query/keys";
-import type { BaseResponse } from "src/shared/types/response";
+import { postGcpUploadApi } from "src/shared/gcp/api/gcp.api";
+import { Keys } from "src/shared/gcp/mutation/keys";
+import type { BaseResponse } from "src/shared/schema/response/response.schema";
 
 /**
  * @description

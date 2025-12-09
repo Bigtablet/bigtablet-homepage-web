@@ -8,7 +8,7 @@ import { useTranslations } from "next-intl";
 import Profile from "src/widgets/about/member/ui/profile";
 import Interview from "src/widgets/about/member/ui/interview";
 import {QaList} from "src/widgets/about/member/lib/qa";
-import {isMemberSlug, SLUG_TO_MEMBER} from "src/entities/about/member/model/member.model";
+import {isMemberSlug, SLUG_TO_MEMBER} from "src/entities/about/member/model/util/member.util";
 
 const MemberDetailPage = () => {
     const { id } = useParams<{ id: string }>();

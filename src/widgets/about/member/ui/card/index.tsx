@@ -6,7 +6,7 @@ import { useTranslations } from "next-intl";
 import {
     MEMBER_TO_SLUG,
     type MemberKey,
-} from "src/entities/about/member/model/member.model";
+} from "src/entities/about/member/model/util/member.util";
 import styles from "./style.module.scss";
 
 type MemberCardProps = { memberKey: MemberKey };

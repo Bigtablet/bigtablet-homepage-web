@@ -5,7 +5,7 @@ import { useMemo } from "react";
 import { useLocale } from "next-intl";
 import Template from "src/widgets/layout/template";
 import NewsListSection from "src/widgets/news/list";
-import { useNewsPageQuery } from "src/features/news/model/news.query";
+import { useNewsPageQuery } from "src/entities/news/query/news.query";
 import { Pagination } from "src/shared/ui/navigation/pagination";
 
 const DEFAULT_SIZE = 6;

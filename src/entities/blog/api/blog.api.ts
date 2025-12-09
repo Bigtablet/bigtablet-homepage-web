@@ -1,4 +1,4 @@
-import {getParsed, patchParsed, postParsed} from "src/shared/libs/api/zod";
+import {getParsed, patchParsed} from "src/shared/libs/api/zod";
 import {
     blogListResponseSchema,
     blogDetailResponseSchema,

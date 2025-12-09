@@ -4,7 +4,7 @@ import { useMemo } from "react";
 import { useLocale } from "next-intl";
 import { usePathname, useSearchParams } from "next/navigation";
 import Template from "src/widgets/layout/template";
-import { useBlogPageQuery } from "src/features/blog/model/queries/blog.query";
+import { useBlogPageQuery } from "src/entities/blog/queries/blog.query";
 import BlogListSection from "src/widgets/blog/list";
 import { Pagination } from "src/shared/ui/navigation/pagination";
 

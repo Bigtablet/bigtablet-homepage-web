@@ -16,8 +16,6 @@ export const blogItemSchema = z.object({
 });
 
 export type BlogItem = z.infer<typeof blogItemSchema>;
-
-export type BlogListResponse   = z.infer<typeof blogListResponseSchema>;
 export const blogListResponseSchema   = baseResponseSchema(z.array(blogItemSchema));
 
 export type BlogDetailResponse = z.infer<typeof blogDetailResponseSchema>;

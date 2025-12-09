@@ -11,8 +11,5 @@ export const newsItemSchema = z.object({
 });
 export type NewsItem = z.infer<typeof newsItemSchema>;
 
-// 목록, 단건
-export const newsListResponseSchema   = baseResponseSchema(z.array(newsItemSchema));
-export const newsDetailResponseSchema = baseResponseSchema(newsItemSchema);
-export type NewsListResponse   = z.infer<typeof newsListResponseSchema>;
-export type NewsDetailResponse = z.infer<typeof newsDetailResponseSchema>;
+// 목록
+export const newsListResponseSchema   = baseResponseSchema(z.array(newsItemSchema));baseResponseSchema(newsItemSchema);

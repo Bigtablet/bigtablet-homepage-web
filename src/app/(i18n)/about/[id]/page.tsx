@@ -5,9 +5,9 @@ import Frame from "src/widgets/layout/template";
 import Link from "next/link";
 import { useParams, notFound } from "next/navigation";
 import { useTranslations } from "next-intl";
-import Profile from "src/widgets/about/member/ui/profile";
-import Interview from "src/widgets/about/member/ui/interview";
-import {QaList} from "src/widgets/about/member/lib/qa";
+import Profile from "src/widgets/about/member/profile";
+import Interview from "src/widgets/about/member/interview";
+import {QaList} from "src/widgets/about/member/model/use-qa-list";
 import {isMemberSlug, SLUG_TO_MEMBER} from "src/entities/about/model/util/member.util";
 
 const MemberDetailPage = () => {

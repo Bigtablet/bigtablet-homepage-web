@@ -73,3 +73,32 @@
     outline: none;
   }
 }
+
+.recruit_register_button {
+  @include flex-center;
+  @include caption;
+  padding: $spacing-sm $spacing-md;
+  border-radius: $radius-md;
+  border: 1px solid transparent;
+  background: $color-primary;
+  color: $text-inverse;
+  height: 36px;
+
+
+  cursor: pointer;
+  transition: $transition-base;
+  white-space: nowrap;
+
+  &:hover {
+    background: $color-primary-hover;
+  }
+
+  &:active {
+    background: $color-primary-light;
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}

@@ -1,14 +1,21 @@
-import {DepartmentType, EducationType, LocationType, RecruitType} from "src/entities/recruit/enum/recruit.enum";
+import {
+    DepartmentType,
+    EducationType,
+    LocationType,
+    RecruitType,
+} from "src/entities/recruit/enum/recruit.enum";
 
-
-/** @description 셀렉트 옵션(배열) */
-export const DEPARTMENTS   = DepartmentType.options;
-export const EDUCATIONS    = EducationType.options;
+/** 옵션 배열 */
+export const DEPARTMENTS = DepartmentType.options;
+export const EDUCATIONS = EducationType.options;
 export const RECRUIT_TYPES = RecruitType.options;
-export const LOCATIONS     = LocationType.options;
+export const LOCATIONS = LocationType.options;
 
-/** @description 라벨 매핑 */
-export const DEPARTMENT_LABEL: Record<typeof DepartmentType._type, string> = {
+/** Enum에서 key 타입만 추출 */
+type EnumValue<T> = T extends { _type: infer U } ? U : never;
+
+/** 라벨 매핑 */
+export const DEPARTMENT_LABEL: Record<EnumValue<typeof DepartmentType>, string> = {
     BUSINESS_ADMINISTRATION: "경영관리",
     SALES: "영업",
     MARKETING: "마케팅",
@@ -17,20 +24,20 @@ export const DEPARTMENT_LABEL: Record<typeof DepartmentType._type, string> = {
     RESEARCH_AND_DEVELOPMENT: "연구개발",
 };
 
-export const EDUCATION_LABEL: Record<typeof EducationType._type, string> = {
+export const EDUCATION_LABEL: Record<EnumValue<typeof EducationType>, string> = {
     HIGH_SCHOOL: "고졸",
     ASSOCIATE: "전문학사",
     BACHELOR: "학사",
     NO_REQUIREMENT: "학력무관",
 };
 
-export const RECRUIT_TYPE_LABEL: Record<typeof RecruitType._type, string> = {
+export const RECRUIT_TYPE_LABEL: Record<EnumValue<typeof RecruitType>, string> = {
     FULL_TIME: "정규직",
     CONTRACT: "계약직",
     INTERN: "인턴",
 };
 
-export const LOCATION_LABEL: Record<typeof LocationType._type, string> = {
+export const LOCATION_LABEL: Record<EnumValue<typeof LocationType>, string> = {
     DAEGU: "대구",
     GASAN: "가산",
     USA: "미국",
@@ -38,15 +45,14 @@ export const LOCATION_LABEL: Record<typeof LocationType._type, string> = {
     ILSAN: "일산",
 };
 
-/** @description 라벨 헬퍼 */
-export const departmentLabel  = (v: typeof DepartmentType._type | string) =>
-    DEPARTMENT_LABEL[v as typeof DepartmentType._type] ?? v;
+/** 공통 라벨 함수 생성기 */
+const createLabelGetter =
+    <T extends Record<string, string>>(map: T) =>
+        (value: keyof T | string) =>
+            map[value as keyof T] ?? value;
 
-export const educationLabel   = (v: typeof EducationType._type | string) =>
-    EDUCATION_LABEL[v as typeof EducationType._type] ?? v;
-
-export const recruitTypeLabel = (v: typeof RecruitType._type | string) =>
-    RECRUIT_TYPE_LABEL[v as typeof RecruitType._type] ?? v;
-
-export const locationLabel    = (v: typeof LocationType._type | string) =>
-    LOCATION_LABEL[v as typeof LocationType._type] ?? v;
+/** 라벨 함수 */
+export const departmentLabel = createLabelGetter(DEPARTMENT_LABEL);
+export const educationLabel = createLabelGetter(EDUCATION_LABEL);
+export const recruitTypeLabel = createLabelGetter(RECRUIT_TYPE_LABEL);
+export const locationLabel = createLabelGetter(LOCATION_LABEL);

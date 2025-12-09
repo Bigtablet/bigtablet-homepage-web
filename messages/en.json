@@ -457,6 +457,36 @@
             "q": "Finally, what do you hope to achieve at BigTablet, and what kind of developer do you want to become?",
             "a": "My goal is to deliver BigTablet’s vision and services flawlessly. I find the projects we’re working on exciting and meaningful, so I want to build them without any issues. In the long run, I want to become a developer who can turn ideas into reality. While it’s easy to imagine things, bringing those ideas to life is the real challenge — and that’s the kind of developer I aspire to be."
           }
+        },
+        "APP": {
+          "position": "App Developer",
+          "name": "Park Byungjun",
+          "description": "A developer who cares about users",
+          "images": "/images/member/byungjun.png",
+          "qa1": {
+            "q": "Hello Byungjun! Could you briefly introduce yourself?",
+            "a": "Hello, I'm Park Byungjun, an app developer at Bigtablet."
+          },
+          "qa2": {
+            "q": "Could you briefly explain the responsibilities you handle?",
+            "a": "I develop and maintain the mobile applications required by the company."
+          },
+          "qa3": {
+            "q": "You mentioned that you work on app development. Could you explain what exactly you do?",
+            "a": "I build applications that run on smartphones. This includes designing screens, implementing features, integrating with servers, and managing updates or bug fixes to ensure the app runs smoothly."
+          },
+          "qa4": {
+            "q": "What made you decide to join Bigtablet?",
+            "a": "I have been developing Android and cross-platform apps for about three years since entering high school. Many of my previous projects were limited to small user groups or student-focused services. At Bigtablet, I can develop services tailored for real B2B and B2C clients and see the actual impact of my work, which strongly appealed to me."
+          },
+          "qa5": {
+            "q": "As a graduate of a Meister High School, what led you to choose the path of becoming a developer?",
+            "a": "I first became interested in development while creating Discord bots in the sixth grade. By the time I reached my third year of middle school, I felt that practical, hands-on education at a Meister High School would help me grow faster than a traditional university path. I genuinely enjoy writing code and seeing tangible results, which naturally led me to pursue development as a career."
+          },
+          "qa6": {
+            "q": "What goals do you hope to achieve at Bigtablet?",
+            "a": "My initial goal is to develop reliable applications that deliver real convenience to users. In the long term, I hope to grow into a team leader who can guide a development team and contribute to strengthening Bigtablet’s service capabilities."
+          }
         }
       }
     }

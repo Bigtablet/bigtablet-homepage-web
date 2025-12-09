@@ -1,0 +1,175 @@
+@use "src/shared/styles/token" as token;
+
+.modal_overlay {
+  position: fixed;
+  inset: 0;
+  background: token.$color-overlay;
+  z-index: token.$z-modal;
+
+  @include token.flex-center;
+}
+
+.modal_content {
+  width: 420px;
+  background: token.$color-background;
+  border-radius: token.$radius-lg;
+  box-shadow: token.$shadow-lg;
+  padding: token.$spacing-3xl;
+  animation: fadeIn token.$transition-base;
+
+  h2 {
+    @include token.heading-3;
+    color: token.$color-text-primary;
+    margin-bottom: token.$spacing-2xl;
+  }
+}
+
+.form {
+  @include token.flex-column;
+  gap: token.$spacing-xl;
+
+  label {
+    @include token.flex-column-start;
+    gap: token.$spacing-sm;
+
+    @include token.body-regular;
+    color: token.$color-text-primary;
+
+    input {
+      width: 100%;
+      padding: token.$spacing-md token.$spacing-lg;
+      border: 1px solid token.$color-border;
+      border-radius: token.$radius-md;
+      background: token.$color-background-secondary;
+      transition: token.$transition-base;
+
+      &:focus {
+        outline: none;
+        border-color: token.$color-primary;
+        box-shadow: token.$shadow-focus;
+      }
+    }
+  }
+}
+
+/* 개선된 URL 필드 스타일 */
+.urls {
+  @include token.flex-column;
+  gap: token.$spacing-md;
+
+  span {
+    @include token.label;
+    color: token.$text-subtle;
+  }
+
+  .url_row {
+    @include token.flex-column;
+    gap: token.$spacing-xs;
+
+    input {
+      width: 100%;
+      padding: token.$spacing-md token.$spacing-lg;
+      border: 1px solid token.$color-border;
+      border-radius: token.$radius-md;
+      background: token.$color-background-secondary;
+      transition: token.$transition-base;
+
+      &:focus {
+        outline: none;
+        border-color: token.$color-primary;
+        box-shadow: token.$shadow-focus;
+      }
+    }
+
+    .url_remove {
+      align-self: flex-end;
+      padding: token.$spacing-xs token.$spacing-md;
+
+      background: token.$color-error-bg;
+      color: token.$color-error;
+      border: 1px solid token.$color-error;
+      border-radius: token.$radius-sm;
+
+      @include token.caption;
+      transition: token.$transition-base;
+
+      &:hover {
+        background: token.$color-error;
+        color: token.$text-inverse;
+      }
+    }
+  }
+
+  .url_add {
+    width: fit-content;
+    padding: token.$spacing-sm token.$spacing-md;
+
+    background: token.$color-primary-subtle;
+    color: token.$color-primary;
+    border-radius: token.$radius-sm;
+    border: 1px solid token.$color-primary;
+
+    @include token.caption-strong;
+    transition: token.$transition-base;
+
+    &:hover {
+      background: token.$color-primary;
+      color: token.$text-inverse;
+    }
+  }
+}
+
+.actions {
+  @include token.flex-right;
+  gap: token.$spacing-lg;
+  margin-top: token.$spacing-xl;
+
+  button {
+    padding: token.$spacing-md token.$spacing-2xl;
+    border-radius: token.$radius-md;
+    transition: token.$transition-base;
+    border: 1px solid transparent;
+
+    @include token.body-medium;
+  }
+
+  button[type="button"] {
+    background: token.$color-background-secondary;
+    color: token.$color-text-secondary;
+
+    &:hover {
+      background: token.$color-background-tertiary;
+    }
+  }
+
+  button[type="submit"] {
+    background: token.$color-primary;
+    color: token.$text-inverse;
+
+    &:hover {
+      background: token.$color-primary-hover;
+    }
+
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.error {
+  @include token.text-sm;
+  color: token.$color-error;
+  margin-top: token.$spacing-xs;
+}

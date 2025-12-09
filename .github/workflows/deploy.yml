@@ -19,6 +19,23 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
 
+      - name: Check if pushed tag is latest semver tag
+        id: check_latest
+        run: |
+          PUSHED_TAG="${GITHUB_REF_NAME}"
+          LATEST_TAG=$(git tag -l | sort -V | tail -n 1)
+
+          if [ "$PUSHED_TAG" != "$LATEST_TAG" ]; then
+            echo "is_latest=false" >> $GITHUB_OUTPUT
+          else
+            echo "is_latest=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Stop if not latest tag
+        if: steps.check_latest.outputs.is_latest == 'false'
+        run: |
+          exit 0
+
       - name: Extract tag version
         id: version
         run: |
@@ -27,8 +44,7 @@ jobs:
           echo "tag=$CLEAN_TAG" >> $GITHUB_OUTPUT
 
       - name: Print version
-        run: |
-          echo "Using release tag: ${{ steps.version.outputs.tag }}"
+        run: echo "Using release tag: ${{ steps.version.outputs.tag }}"
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3

@@ -1,4 +1,4 @@
-export interface ListProps {
+export interface ListSchema {
     page: number;
     size: number;
 }

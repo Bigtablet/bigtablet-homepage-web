@@ -6,10 +6,10 @@ import {
     type BlogDetailResponse,
     type BlogOkResponse,
 } from "src/entities/blog/model/schema/blog.schema";
-import {ListProps} from "src/shared/types/list";
+import {ListSchema} from "src/shared/schema/list/list.schema";
 
 // 리스트
-export const getBlogApi = async ({page, size}: ListProps) => {
+export const getBlogApi = async ({page, size}: ListSchema) => {
     return getParsed("/blog/list", blogListResponseSchema, {
         params: {page, size},
     }).then((response) => response.data ?? []);

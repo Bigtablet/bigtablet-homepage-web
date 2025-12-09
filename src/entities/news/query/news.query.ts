@@ -6,11 +6,11 @@ import {
     getNewsDetailApi,
 } from "src/entities/news/api/news.api";
 import type { NewsItem } from "src/entities/news/model/schema/news.schema";
-import { ListProps } from "src/shared/types/list";
+import { ListSchema } from "src/shared/schema/list/list.schema";
 import { newsQueryKey } from "./keys";
 
 /** 페이지네이션: size+1 전략으로 hasNext 계산 */
-export const useNewsPageQuery = ({ page, size }: ListProps) =>
+export const useNewsPageQuery = ({ page, size }: ListSchema) =>
     useQuery<{ items: NewsItem[]; hasNext: boolean }>({
         queryKey: newsQueryKey.page(page, size),
         queryFn: async () => {

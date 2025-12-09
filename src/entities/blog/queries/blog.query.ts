@@ -3,7 +3,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { getBlogApi, getBlogDetailApi } from "src/entities/blog/api/blog.api";
 import type { BlogItem } from "src/entities/blog/model/schema/blog.schema";
-import type { ListProps } from "src/shared/types/list";
+import type { ListSchema } from "src/shared/schema/list/list.schema";
 import { blogQueryKeys } from "./keys";
 
 /** 페이지 결과 타입 */
@@ -14,7 +14,7 @@ export interface BlogPageResult {
 }
 
 /** 페이지네이션: size+1 전략으로 hasNext 계산 */
-export const useBlogPageQuery = ({ page, size }: ListProps) =>
+export const useBlogPageQuery = ({ page, size }: ListSchema) =>
     useQuery<BlogPageResult>({
         queryKey: blogQueryKeys.page(page, size),
         queryFn: async () => {

@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { baseResponseSchema, okResponseSchema } from "src/shared/types/response";
+import { baseResponseSchema, okResponseSchema } from "src/shared/schema/response/response.schema";
 
 export const blogItemSchema = z.object({
     idx: z.number(),

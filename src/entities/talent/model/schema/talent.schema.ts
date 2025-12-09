@@ -1,5 +1,5 @@
 import {z} from "zod";
-import {baseResponseSchema} from "src/shared/types/response";
+import {baseResponseSchema} from "src/shared/schema/response/response.schema";
 
 export const postTalentSchema = z.object({
     name: z.string().min(1, "이름을 입력해주세요."),

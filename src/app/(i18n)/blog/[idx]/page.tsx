@@ -1,7 +1,7 @@
 "use client";
 
 import "./style.scss";
-import Template from "src/widgets/layout/template";
+import Template from "src/shared/ui/template";
 import Image from "next/image";
 import {useEffect, useRef} from "react";
 import {useParams} from "next/navigation";

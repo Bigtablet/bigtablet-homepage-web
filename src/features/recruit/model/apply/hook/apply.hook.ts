@@ -3,8 +3,8 @@
 import type { UseFormReturn, FieldErrors } from "react-hook-form";
 import type { ApplyFormValues } from "src/features/recruit/model/apply/schema/apply.schema";
 import {useRouter} from "next/navigation";
-import {useToast} from "src/shared/ui/feedback/toast/useToast";
 import {useRecruitApplyMutation} from "src/entities/recruit/mutation/recruit.mutation";
+import {useToast} from "@bigtablet/design-system";
 
 type Params = {
     form: UseFormReturn<ApplyFormValues>;

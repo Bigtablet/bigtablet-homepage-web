@@ -1,6 +1,6 @@
 "use client";
 
-import Template from "src/widgets/layout/template";
+import Template from "src/shared/ui/template";
 import History from "src/widgets/about/history";
 import Team from "src/widgets/about/team";
 import { useMessages } from "next-intl";

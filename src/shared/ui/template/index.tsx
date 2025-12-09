@@ -1,7 +1,7 @@
 "use client";
 
-import Header from "src/widgets/layout/header";
-import Footer from "src/widgets/layout/footer";
+import Header from "src/shared/ui/header";
+import Footer from "src/shared/ui/footer";
 import "./style.scss";
 
 type Props = { children: React.ReactNode };

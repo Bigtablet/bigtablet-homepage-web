@@ -2,13 +2,13 @@
 
 import Link from "next/link";
 import { useParams } from "next/navigation";
-import Template from "src/widgets/layout/template";
+import Template from "src/shared/ui/template";
 import { useRecruitDetailQuery } from "src/entities/recruit/query/recruit.query";
 import type { RecruitCard } from "src/entities/recruit/model/schema/recruit.schema";
-import { Button } from "src/shared/ui/general/button";
 import ReactMarkdown from "react-markdown";
 import remarkBreaks from "remark-breaks";
 import styles from "./style.module.scss";
+import {Button} from "@bigtablet/design-system";
 
 const toIdx = (v: unknown) => {
     const n = Number(v);

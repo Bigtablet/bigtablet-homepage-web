@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import Template from "src/widgets/layout/template";
+import Template from "src/shared/ui/template";
 import RecruitHeader from "src/widgets/recruit/main/header";
 import RequestList from "src/widgets/recruit/main/list";
 import "./style.scss";

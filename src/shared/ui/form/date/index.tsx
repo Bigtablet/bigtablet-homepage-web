@@ -3,9 +3,9 @@
 import { forwardRef } from "react";
 import DatePicker from "react-datepicker";
 import { ko } from "date-fns/locale";
-import { TextField } from "src/shared/ui/form/textfield";
 import "react-datepicker/dist/react-datepicker.css";
 import "./style.scss";
+import {TextField} from "@bigtablet/design-system";
 
 type Props = {
     label?: string;

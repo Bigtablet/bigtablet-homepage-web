@@ -1,7 +1,7 @@
 "use client";
 
 import "./style.scss";
-import Frame from "src/widgets/layout/template";
+import Template from "src/shared/ui/template";
 import Link from "next/link";
 import { useParams, notFound } from "next/navigation";
 import { useTranslations } from "next-intl";
@@ -31,7 +31,7 @@ const MemberDetailPage = () => {
     const qaList = QaList(t as any, memberKey, 20);
 
     return (
-        <Frame>
+        <Template>
             <section className="member-detail" aria-label="Team member detail">
                 <div className="member-detail__inner">
                     <Profile
@@ -48,7 +48,7 @@ const MemberDetailPage = () => {
                     Back to Team
                 </Link>
             </section>
-        </Frame>
+        </Template>
     );
 };
 

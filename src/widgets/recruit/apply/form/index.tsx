@@ -1,6 +1,5 @@
 "use client";
 
-import { Button } from "src/shared/ui/general/button";
 import { useGcpUpload } from "src/shared/gcp/hook/use-gcp";
 import type { ApplyFormProps } from "./type";
 import styles from "./style.module.scss";
@@ -10,6 +9,7 @@ import {EducationSection} from "src/widgets/recruit/apply/form/sections/educatio
 import {MilitarySection} from "src/widgets/recruit/apply/form/sections/military";
 import {LinksSection} from "src/widgets/recruit/apply/form/sections/links";
 import {ProfileSection} from "src/widgets/recruit/apply/form/sections/profile";
+import {Button} from "@bigtablet/design-system";
 
 const ApplyForm = ({ form, email, onSubmit }: ApplyFormProps) => {
     const {

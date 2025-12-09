@@ -2,7 +2,7 @@
 
 import {ReactNode, useState} from "react";
 import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
-import {ToastProvider} from "src/shared/ui/feedback/toast";
+import {ToastProvider} from "@bigtablet/design-system";
 
 type Props = { children: ReactNode };
 

@@ -3,7 +3,7 @@
 import "./style.scss";
 import { useMemo } from "react";
 import { useLocale } from "next-intl";
-import Template from "src/widgets/layout/template";
+import Template from "src/shared/ui/template";
 import NewsListSection from "src/widgets/news/list";
 import { useNewsPageQuery } from "src/entities/news/query/news.query";
 import { Pagination } from "src/shared/ui/navigation/pagination";

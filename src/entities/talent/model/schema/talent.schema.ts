@@ -21,13 +21,10 @@ export type PostTalentFormValues = {
     portfolioUrl: string;
     etcUrl: string[];
 };
-
-export const postTalentOffer = z.object({
+z.object({
     idx: z.number(),
     text: z.string(),
 });
-export type PostTalentOffer = z.infer<typeof postTalentOffer>;
-
 export const getTalentDetailResponseSchema = baseResponseSchema(
     z.object({
         idx: z.number(),
@@ -39,11 +36,8 @@ export const getTalentDetailResponseSchema = baseResponseSchema(
         createdAt: z.string(),
     }),
 );
-
-export const getTalentListResponseSchema = baseResponseSchema(
+baseResponseSchema(
     z.array(getTalentDetailResponseSchema),
-);
-
-export const getTalentSearchSchema = baseResponseSchema(
+);baseResponseSchema(
     z.array(getTalentDetailResponseSchema),
 );

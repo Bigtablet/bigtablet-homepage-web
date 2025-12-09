@@ -1,4 +1,4 @@
-export interface EmailApplyProps {
+export interface EmailSchema {
     getEmail: () => string;
     cooldownSec?: number;
 }

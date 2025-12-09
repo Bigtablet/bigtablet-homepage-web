@@ -1,10 +1,10 @@
 "use client";
 
 import type { UseFormReturn, FieldErrors } from "react-hook-form";
-import { useRecruitApplyMutation } from "src/features/recruit/model/query/recruit.query";
 import type { ApplyFormValues } from "src/features/recruit/model/apply/schema/apply.schema";
-import { useToast } from "src/shared/ui/feedback/toast/useToast";
 import {useRouter} from "next/navigation";
+import {useToast} from "src/shared/ui/feedback/toast/useToast";
+import {useRecruitApplyMutation} from "src/entities/recruit/mutation/recruit.mutation";
 
 type Params = {
     form: UseFormReturn<ApplyFormValues>;
@@ -14,7 +14,7 @@ type Params = {
 
 export const useApplySubmit = ({ form, jobId, emailVerified }: Params) => {
     const Toast = useToast();
-    const mutation = useRecruitApplyMutation(); // 콜백 옵션 전달 X
+    const mutation = useRecruitApplyMutation();
     const router = useRouter();
 
     const onValid = async (v: ApplyFormValues) => {

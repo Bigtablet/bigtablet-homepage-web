@@ -1,4 +1,4 @@
-import type {RecruitSearchFilters} from "src/entities/recruit/model/api/recruit.api";
+import type {RecruitSearchFilters} from "src/entities/recruit/api/recruit.api";
 
 export const recruitKeys = {
     all: ["recruit"] as const,

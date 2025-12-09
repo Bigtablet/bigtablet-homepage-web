@@ -12,7 +12,7 @@ import {
     applySchema,
     type ApplyFormValues,
 } from "src/features/recruit/model/apply/schema/apply.schema";
-import useEmailVerification from "src/features/recruit/model/apply/email/model/verification";
+import useEmailVerification from "src/features/recruit/model/apply/email/schema/verification";
 import ApplyForm from "src/widgets/recruit/apply/form";
 import { useApplySubmit } from "src/features/recruit/model/apply/hook/apply.hook";
 

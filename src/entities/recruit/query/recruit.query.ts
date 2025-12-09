@@ -1,27 +1,13 @@
 "use client";
 
-import {
-    useMutation,
-    useQuery,
-    type UseMutationOptions,
-    type UseQueryOptions,
-} from "@tanstack/react-query";
-
-import {
-    getRecruitListApi,
-    getRecruitDetailApi,
-    postRecruitApplyApi,
-    type RecruitSearchFilters,
-} from "src/entities/recruit/model/api/recruit.api";
-
-import { recruitKeys } from "./keys";
-import { toRecruitCard } from "src/entities/recruit/util/adapter";
+import {useQuery, type UseQueryOptions} from "@tanstack/react-query";
+import {recruitKeys} from "./keys";
+import {toRecruitCard} from "src/entities/recruit/util/adapter";
 import type {
     RecruitResponse,
     RecruitCard,
-    RecruitApplyResponse,
 } from "src/entities/recruit/model/schema/recruit.schema";
-import type { ApplyFormValues } from "../apply/schema/apply.schema";
+import {getRecruitDetailApi, getRecruitListApi, RecruitSearchFilters} from "src/entities/recruit/api/recruit.api";
 
 /* 검색 */
 export const useRecruitSearchQuery = (
@@ -33,7 +19,7 @@ export const useRecruitSearchQuery = (
 ) =>
     useQuery({
         queryKey: recruitKeys.search(filters),
-        queryFn: ({ signal }) =>
+        queryFn: ({signal}) =>
             getRecruitListApi({
                 page: 1,
                 size: 5,
@@ -59,7 +45,7 @@ export const useRecruitListQuery = (
 ) =>
     useQuery({
         queryKey: recruitKeys.list(),
-        queryFn: ({ signal }) => getRecruitListApi({ signal }),
+        queryFn: ({signal}) => getRecruitListApi({signal}),
         select: (data) => data.map(toRecruitCard),
         staleTime: 60000,
         gcTime: 300000,
@@ -77,26 +63,11 @@ export const useRecruitDetailQuery = (
 ) =>
     useQuery({
         queryKey: recruitKeys.detail(idx),
-        queryFn: ({ signal }) => getRecruitDetailApi(idx, signal),
+        queryFn: ({signal}) => getRecruitDetailApi(idx, signal),
         select: toRecruitCard,
         enabled: !!idx,
         staleTime: 60000,
         gcTime: 300000,
         refetchOnWindowFocus: false,
-        ...options,
-    });
-
-/* 지원 */
-export const useRecruitApplyMutation = (
-    options?: UseMutationOptions<
-        RecruitApplyResponse,
-        Error,
-        ApplyFormValues,
-        unknown
-    >
-) =>
-    useMutation({
-        mutationKey: ["recruit", "apply"],
-        mutationFn: (body) => postRecruitApplyApi(body),
         ...options,
     });

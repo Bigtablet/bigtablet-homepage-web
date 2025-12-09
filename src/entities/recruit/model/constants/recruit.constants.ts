@@ -3,7 +3,7 @@ import {
     EducationType,
     LocationType,
     RecruitType,
-} from "src/entities/recruit/enum/recruit.enum";
+} from "src/entities/recruit/model/enum/recruit.enum";
 
 /** 옵션 배열 */
 export const DEPARTMENTS = DepartmentType.options;

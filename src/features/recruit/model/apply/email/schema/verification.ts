@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
-import { sendEmailApi, checkEmailApi } from "src/shared/email/api/email.api";
-import {EmailApplyProps} from "./type";
-import {useToast} from "src/shared/ui/feedback/toast/useToast";
+import {useEffect, useState} from "react";
+import {sendEmailApi, checkEmailApi} from "src/features/recruit/model/apply/email/api/email.api";
+import {EmailSchema} from "./email.schema";
+import {useToast} from "@bigtablet/design-system";
 
-const useEmailVerification = ({ getEmail, cooldownSec = 60 }: EmailApplyProps) => {
+const useEmailVerification = ({getEmail, cooldownSec = 60}: EmailSchema) => {
     const [authCode, setAuthCode] = useState("");
     const [resendSec, setResendSec] = useState(0);
     const [sendLoading, setSendLoading] = useState(false);

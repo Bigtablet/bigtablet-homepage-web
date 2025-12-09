@@ -8,14 +8,14 @@ import {
     departmentLabel,
     educationLabel,
     recruitTypeLabel,
-} from "src/entities/recruit/constants/recruit.constants";
+} from "src/entities/recruit/model/constants/recruit.constants";
 import styles from "./style.module.scss";
 import type {
     DepartmentType,
     EducationType,
     RecruitType,
-} from "src/entities/recruit/enum/recruit.enum";
-import { RecruitSearchFilters } from "src/entities/recruit/model/api/recruit.api";
+} from "src/entities/recruit/model/enum/recruit.enum";
+import { RecruitSearchFilters } from "src/entities/recruit/api/recruit.api";
 import { z } from "zod";
 import TalentFormModal from "src/widgets/talent/form/modal";
 

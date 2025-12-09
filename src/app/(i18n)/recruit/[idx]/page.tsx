@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import Template from "src/widgets/layout/template";
-import { useRecruitDetailQuery } from "src/features/recruit/model/query/recruit.query";
+import { useRecruitDetailQuery } from "src/entities/recruit/query/recruit.query";
 import type { RecruitCard } from "src/entities/recruit/model/schema/recruit.schema";
 import { Button } from "src/shared/ui/general/button";
 import ReactMarkdown from "react-markdown";

@@ -13,7 +13,7 @@
     "@bigtablet/design-system": "^1.3.2",
     "@hookform/resolvers": "^5.2.2",
     "@opentelemetry/api": "^1.9.0",
-    "@tanstack/react-query": "^5.90.11",
+    "@tanstack/react-query": "^5.90.12",
     "@vercel/otel": "^2.1.0",
     "axios": "^1.13.2",
     "clsx": "^2.1.1",

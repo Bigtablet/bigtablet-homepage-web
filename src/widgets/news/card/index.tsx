@@ -1,19 +1,10 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import clsx from "clsx";
 import { formatRelative } from "src/shared/libs/ui/date";
 import styles from "./style.module.scss";
-
-const getSource = (raw: string) => {
-    try {
-        const u = new URL(raw);
-        return u.hostname.replace(/^www\./, "");
-    } catch {
-        return "";
-    }
-};
-
-const getPreviewSrc = (raw: string) => `/api/news/preview?u=${encodeURIComponent(raw)}`;
+import {getPreviewUrl, getSourceFromUrl} from "src/widgets/news/card/model/news-card.util";
 
 interface NewsCardProps {
     title: string;
@@ -24,56 +15,40 @@ interface NewsCardProps {
 
 const NewsCard = ({ title, url, createdAt, locale }: NewsCardProps) => {
     const [loaded, setLoaded] = useState(false);
-    const [errored, setErrored] = useState(false);
+    const [error, setError] = useState(false);
 
     const time = useMemo(() => formatRelative(createdAt, locale), [createdAt, locale]);
-    const source = useMemo(() => getSource(url), [url]);
-    const preview = useMemo(() => getPreviewSrc(url), [url]);
+    const source = useMemo(() => getSourceFromUrl(url), [url]);
+    const preview = useMemo(() => getPreviewUrl(url), [url]);
 
-    const onImgError = (e: React.SyntheticEvent<HTMLImageElement>) => {
-        const img = e.currentTarget;
-        try {
-            const u = new URL(img.src, location.origin);
-            if (!u.searchParams.get("f")) {
-                u.searchParams.set("f", "1");
-                img.src = u.toString();
-                return;
-            }
-        } catch {
-        }
-        setErrored(true);
-    };
-
-    const thumbClass = [
+    const thumbClass = clsx(
         styles.news_card_thumb,
         loaded && styles.is_loaded,
-        errored && styles.is_error,
-    ]
-        .filter(Boolean)
-        .join(" ");
+        error && styles.is_error
+    );
 
     return (
         <a className={styles.news_card} href={url} target="_blank" rel="noreferrer">
-            <div className={thumbClass} aria-hidden>
-                {!errored && (
+            <div className={thumbClass}>
+                {!error && (
                     <img
                         className={styles.news_card_img}
                         src={preview}
                         alt=""
                         loading="lazy"
                         onLoad={() => setLoaded(true)}
-                        onError={onImgError}
+                        onError={() => setError(true)}
                     />
                 )}
             </div>
 
             <div className={styles.news_card_meta}>
-                <div className={styles.news_card_time}>{time}</div>
-                {source && <div className={styles.news_card_dot}>·</div>}
-                {source && <div className={styles.news_card_source}>{source}</div>}
+                <span className={styles.news_card_time}>{time}</span>
+                {source && <span className={styles.news_card_dot}>·</span>}
+                {source && <span className={styles.news_card_source}>{source}</span>}
             </div>
 
-            <h3 className={styles.news_card_title}>{title}</h3>
+            <span className={styles.news_card_title}>{title}</span>
         </a>
     );
 };

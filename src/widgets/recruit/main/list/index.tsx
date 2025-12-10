@@ -9,11 +9,11 @@ import type {
 import {
     useRecruitListQuery,
     useRecruitSearchQuery,
-} from "src/features/recruit/model/query/recruit.query";
+} from "src/entities/recruit/query/recruit.query";
 
 import { SkeletonList } from "src/shared/ui/skeleton/list";
 import { toRecruitCards } from "src/entities/recruit/util/date";
-import type { RecruitSearchFilters } from "src/entities/recruit/model/api/recruit.api";
+import type { RecruitSearchFilters } from "src/entities/recruit/api/recruit.api";
 
 import styles from "./style.module.scss";
 

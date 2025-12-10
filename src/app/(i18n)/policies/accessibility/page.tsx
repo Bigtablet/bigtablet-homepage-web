@@ -1,7 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import Template from "src/widgets/layout/template";
+import Template from "src/shared/ui/template";
 import "../style.scss";
 
 const Accessibility = () => {

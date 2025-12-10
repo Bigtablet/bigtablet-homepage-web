@@ -4,7 +4,7 @@ import {
     educationLabel,
     recruitTypeLabel,
     locationLabel,
-} from "src/entities/recruit/constants/recruit.constants";
+} from "src/entities/recruit/model/constants/recruit.constants";
 
 const calcDday = (end?: string | null): string => {
     if (!end) return "상시";

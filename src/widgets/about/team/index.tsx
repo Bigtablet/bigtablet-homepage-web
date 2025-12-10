@@ -1,10 +1,10 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import MemberCard from "src/widgets/about/member/ui/card";
+import MemberCard from "src/widgets/about/member/card";
 import styles from "./style.module.scss";
-import type { MemberKey } from "src/entities/about/member/model/member.model";
-import { MEMBER_DEFAULT_ORDER } from "src/entities/about/member/model/member.model";
+import type { MemberKey } from "src/entities/about/model/util/member.util";
+import { MEMBER_DEFAULT_ORDER } from "src/entities/about/model/util/member.util";
 
 interface TeamProps {
     order?: MemberKey[];

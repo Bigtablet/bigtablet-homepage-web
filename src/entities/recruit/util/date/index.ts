@@ -4,7 +4,7 @@ import {
     educationLabel,
     recruitTypeLabel,
     locationLabel,
-} from "src/entities/recruit/constants/recruit.constants";
+} from "src/entities/recruit/model/constants/recruit.constants";
 
 const toDate = (value?: string | null) => (value ? new Date(value) : undefined);
 

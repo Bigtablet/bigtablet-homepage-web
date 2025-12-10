@@ -1,0 +1,158 @@
+@use "src/shared/styles/token" as *;
+
+.history {
+  --container-width: 1200px;
+  --container-max: min(var(--container-width), 95vw);
+  --left-col: 172px;
+  width: 100%;
+  background: $color-background-dark;
+  position: relative;
+  padding-block: clamp(36px, 7vh, 72px);
+}
+
+.history::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: calc(50vw - var(--container-max) / 2 + var(--left-col) / 2);
+  width: 2px;
+  background: $text-inverse;
+  border-radius: 1px;
+}
+
+.history_sticky {
+  position: sticky;
+  top: 96px;
+  width: var(--container-max);
+  margin: 0 auto $spacing-lg auto;
+  display: grid;
+  grid-template-columns: var(--left-col) 1fr;
+  column-gap: 32px;
+  align-items: start;
+  z-index: 2;
+}
+
+.history_years {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: var(--left-col);
+}
+
+.history_year_item {
+  @include body-medium;
+  background: transparent;
+  border: none;
+  padding: 0;
+  text-align: left;
+  color: rgba($text-inverse, 0.56);
+  cursor: pointer;
+  transition: color .16s ease, opacity .16s ease;
+}
+
+.is_active.history_year_item,
+.history_year_item.is_active {
+  @include heading-3;
+  color: $text-inverse;
+}
+
+.history_year_block {
+  width: var(--container-max);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: var(--left-col) 1fr;
+  column-gap: 32px;
+  align-items: start;
+  padding-block: 0;
+}
+
+.history_right {
+  @include flex-column;
+  gap: 8px;
+  transition: all .32s ease-in-out;
+}
+
+.history_row {
+  display: grid;
+  grid-template-columns: 18px 1fr;
+  column-gap: 10px;
+  transition: all .24s ease-out;
+}
+
+.history_row_dot {
+  width: 5px;
+  height: 5px;
+  margin-top: 4px;
+  border-radius: 50%;
+  background: $text-inverse;
+  box-shadow: 0 0 0 2px rgba($text-inverse, 0.08);
+}
+
+.history_row_body {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.history_row_title {
+  @include heading-3;
+  font-size: 15px;
+  color: $text-inverse;
+}
+
+.history_row_desc {
+  @include body-regular;
+  font-size: 13.5px;
+  color: rgba($text-inverse, 0.85);
+  line-height: 1.6;
+}
+
+@media (max-width: 960px) {
+  .history {
+    --left-col: 140px;
+    padding-block: 56px;
+  }
+  .history_year_block {
+    column-gap: 20px;
+  }
+  .history_year_item {
+    font-size: $font-size-sm;
+  }
+  .history_row_title {
+    font-size: $font-size-base;
+  }
+  .history_row_desc {
+    font-size: $font-size-sm;
+  }
+}
+
+@media (max-width: 640px) {
+  .history {
+    --left-col: 100px;
+  }
+  .history_sticky,
+  .history_year_block {
+    grid-template-columns: 1fr;
+    row-gap: 12px;
+  }
+  .history_years {
+    width: 100%;
+    flex-direction: row;
+    gap: 10px;
+    overflow-x: auto;
+    padding: 0 16px;
+  }
+  .history_right {
+    padding: 0 16px;
+  }
+  .history_row {
+    grid-template-columns: 14px 1fr;
+    column-gap: 8px;
+  }
+  .history_row_dot {
+    margin-top: 6px;
+    width: 5px;
+    height: 5px;
+  }
+}

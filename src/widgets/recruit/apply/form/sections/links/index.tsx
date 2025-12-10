@@ -1,8 +1,8 @@
 "use client";
 
-import { TextField } from "src/shared/ui/form/textfield";
 import styles from "./style.module.scss";
 import { ApplyFormProps } from "src/widgets/recruit/apply/form/type";
+import {TextField} from "@bigtablet/design-system";
 
 type Form = ApplyFormProps["form"];
 

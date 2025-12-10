@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { baseResponseSchema, okResponseSchema } from "src/shared/types/response";
+import { baseResponseSchema, okResponseSchema } from "src/shared/schema/response/response.schema";
 
 export const blogItemSchema = z.object({
     idx: z.number(),
@@ -16,8 +16,6 @@ export const blogItemSchema = z.object({
 });
 
 export type BlogItem = z.infer<typeof blogItemSchema>;
-
-export type BlogListResponse   = z.infer<typeof blogListResponseSchema>;
 export const blogListResponseSchema   = baseResponseSchema(z.array(blogItemSchema));
 
 export type BlogDetailResponse = z.infer<typeof blogDetailResponseSchema>;

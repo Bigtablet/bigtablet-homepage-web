@@ -1,8 +1,8 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { Button } from "src/shared/ui/general/button";
 import styles from "./style.module.scss";
+import {Button} from "@bigtablet/design-system";
 
 const Banner = () => {
     const t = useTranslations("main.banner");

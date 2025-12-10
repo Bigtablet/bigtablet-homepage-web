@@ -3,11 +3,10 @@
 import { useEffect } from "react";
 import { Controller } from "react-hook-form";
 import { ApplyEducationLevel } from "src/entities/recruit/model/schema/recruit.schema";
-import { TextField } from "src/shared/ui/form/textfield";
-import { Select } from "src/shared/ui/general/select";
 import MonthPickerField from "src/shared/ui/form/date";
 import styles from "./style.module.scss";
 import { ApplyFormProps } from "src/widgets/recruit/apply/form/type";
+import {Select, TextField} from "@bigtablet/design-system";
 
 type Form = ApplyFormProps["form"];
 

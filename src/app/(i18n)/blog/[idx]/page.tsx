@@ -1,12 +1,13 @@
 "use client";
 
 import "./style.scss";
-import Frame from "src/widgets/layout/template";
+import Template from "src/shared/ui/template";
 import Image from "next/image";
 import {useEffect, useRef} from "react";
 import {useParams} from "next/navigation";
 import {useLocale} from "next-intl";
-import {useBlogDetailQuery, useBlogViewMutation} from "src/features/blog/model/queries/blog.query";
+import {useBlogDetailQuery } from "src/entities/blog/queries/blog.query";
+import {useBlogViewMutation} from "src/entities/blog/mutation/blog.mutation";
 import {formatRelative} from "src/shared/libs/ui/date";
 
 import ReactMarkdown from "react-markdown";
@@ -34,7 +35,7 @@ const BlogDetailPage = () => {
     const time = data ? formatRelative(data.createdAt, locale) : "";
 
     return (
-        <Frame>
+        <Template>
             <section className="blog-detail">
                 {!Number.isFinite(idNum) && <p className="blog-detail__empty">잘못된 요청입니다. (idx 누락)</p>}
 
@@ -77,7 +78,7 @@ const BlogDetailPage = () => {
                     </>
                 )}
             </section>
-        </Frame>
+        </Template>
     );
 };
 

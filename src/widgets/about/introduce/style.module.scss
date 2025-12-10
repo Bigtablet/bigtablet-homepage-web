@@ -1,41 +1,41 @@
-@use "src/shared/styles/token" as *;
+@use "src/shared/styles/token" as token;
 
-.about {
-  @include flex-between;
-  gap: clamp($spacing-xl, 4vw, $spacing-3xl);
-  padding: clamp($spacing-5xl, 6vw, $spacing-4xl) 8vw;
+.introduce {
+  @include token.flex-between;
+  gap: clamp(#{token.$spacing-xl}, 4vw, #{token.$spacing-3xl});
+  padding: clamp(#{token.$spacing-5xl}, 6vw, #{token.$spacing-4xl}) 8vw;
 
-  &.about_reverse {
+  &.introduce_reverse {
     flex-direction: row-reverse;
   }
 }
 
-.about_text {
+.introduce_text {
   flex: 1;
-  @include flex-column;
-  gap: clamp($spacing-sm, 1.5vw, $spacing-lg);
-  font-family: $font-family-primary;
+  @include token.flex-column;
+  gap: clamp(#{token.$spacing-sm}, 1.5vw, #{token.$spacing-lg});
+  font-family: token.$font-family-primary;
 }
 
-.about_title {
-  @include heading-2;
-  font-size: clamp($font-size-2xl, 3vw, $font-size-3xl);
-  color: $text-strong;
-  letter-spacing: $letter-spacing-tight;
-  line-height: 1.3;
+.introduce_title {
+  @include token.heading-2;
+  font-size: clamp(#{token.$font-size-2xl}, 3vw, #{token.$font-size-3xl});
+  color: token.$text-strong;
+  letter-spacing: token.$letter-spacing-tight;
+  line-height: token.$line-height-snug;
 }
 
-.about_desc {
-  @include body-medium;
-  font-size: clamp($font-size-md, 1.6vw, $font-size-lg);
-  color: $text-subtle;
-  line-height: 1.6;
+.introduce_desc {
+  @include token.body-medium;
+  font-size: clamp(#{token.$font-size-md}, 1.6vw, #{token.$font-size-lg});
+  color: token.$text-subtle;
+  line-height: token.$line-height-relaxed;
   white-space: pre-line;
 }
 
-.about_image {
+.introduce_image {
   flex: 1;
-  @include flex-center;
+  @include token.flex-center;
 
   img {
     max-width: 100%;
@@ -47,21 +47,21 @@
 }
 
 @media (max-width: 900px) {
-  .about {
-    @include flex-column;
+  .introduce {
+    @include token.flex-column;
     text-align: center;
-    gap: $spacing-xl;
+    gap: token.$spacing-xl;
   }
 
-  .about_image {
-    margin-top: $spacing-lg;
+  .introduce_image {
+    margin-top: token.$spacing-lg;
   }
 
-  .about_title {
-    font-size: clamp($font-size-xl, 5vw, $font-size-2xl);
+  .introduce_title {
+    font-size: clamp(#{token.$font-size-xl}, 5vw, #{token.$font-size-2xl});
   }
 
-  .about_desc {
-    font-size: clamp($font-size-base, 3.5vw, $font-size-lg);
+  .introduce_desc {
+    font-size: clamp(#{token.$font-size-base}, 3.5vw, #{token.$font-size-lg});
   }
 }

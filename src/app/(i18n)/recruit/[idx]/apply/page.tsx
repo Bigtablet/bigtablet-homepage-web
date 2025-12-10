@@ -2,7 +2,7 @@
 
 import { useMemo, useEffect } from "react";
 import { useParams } from "next/navigation";
-import Template from "src/widgets/layout/template";
+import Template from "src/shared/ui/template";
 import { useForm, type Resolver } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
@@ -12,7 +12,7 @@ import {
     applySchema,
     type ApplyFormValues,
 } from "src/features/recruit/model/apply/schema/apply.schema";
-import useEmailVerification from "src/features/recruit/model/apply/email/model/verification";
+import useEmailVerification from "src/features/recruit/model/apply/email/schema/verification";
 import ApplyForm from "src/widgets/recruit/apply/form";
 import { useApplySubmit } from "src/features/recruit/model/apply/hook/apply.hook";
 

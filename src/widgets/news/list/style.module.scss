@@ -1,17 +1,18 @@
-@use "src/shared/styles/token" as *;
+@use "src/shared/styles/token" as token;
 
 .news_list {
+  @include token.flex-column;
   width: 100%;
-  height: 100%;
+  padding: token.$spacing-xl 0;
+  align-items: center;
 }
 
 .news_list_grid {
+  width: 100%;
+  max-width: 1200px;
   display: grid;
   grid-template-columns: repeat(1, minmax(0, 1fr));
-  gap: $spacing-xl;
-  max-width: 1200px;
-  margin: 0 auto;
-  width: 100%;
+  gap: token.$spacing-xl;
 }
 
 @media (min-width: 768px) {
@@ -27,9 +28,9 @@
 }
 
 .news_list_empty {
-  @include body-regular;
-  font-size: $font-size-lg;
-  margin-top: $spacing-2xl;
-  color: $text-subtle;
+  @include token.body-regular;
+  font-size: token.$font-size-lg;
+  color: token.$text-subtle;
+  margin-top: token.$spacing-3xl;
   text-align: center;
 }

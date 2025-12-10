@@ -1,8 +1,0 @@
-@use "src/shared/styles/token" as *;
-
-.modal {
-  position: fixed; inset: 0; background: $color-overlay; display: grid; place-items: center; z-index: $z-modal;
-  &__panel { background: $color-background; border-radius: $radius-lg; box-shadow: $shadow-lg; max-width: calc(100% - 32px); }
-  &__header { padding: $spacing-lg; @include heading-3; color: $color-text-primary; border-bottom: 1px solid $color-border; }
-  &__body { padding: $spacing-lg; }
-}

@@ -2,10 +2,9 @@
 
 import { Controller } from "react-hook-form";
 import { formatPhone010 } from "src/features/recruit/model/apply/util/apply.util";
-import { TextField } from "src/shared/ui/form/textfield";
-import { Button } from "src/shared/ui/general/button";
 import styles from "./style.module.scss";
 import { ApplyFormProps } from "src/widgets/recruit/apply/form/type";
+import {TextField, Button} from "@bigtablet/design-system";
 
 type Form = ApplyFormProps["form"];
 type EmailCtx = ApplyFormProps["email"];

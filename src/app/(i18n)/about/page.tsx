@@ -1,11 +1,11 @@
 "use client";
 
-import Template from "src/widgets/layout/template";
-import History from "src/widgets/about/history/ui";
+import Template from "src/shared/ui/template";
+import History from "src/widgets/about/history";
 import Team from "src/widgets/about/team";
-import type { HistoryItemType } from "src/widgets/about/history/type";
 import { useMessages } from "next-intl";
 import Introduce from "src/widgets/about/introduce";
+import {HistorySchema} from "src/entities/about/history/model/schema/history.schema";
 
 type HistoryRawItem =
     | string
@@ -15,7 +15,7 @@ const About = () => {
     const messages = useMessages() as any;
     const historyByYear = (messages?.about?.history ?? {}) as Record<string, HistoryRawItem[]>;
 
-    const items: HistoryItemType[] = Object.entries(historyByYear).flatMap(
+    const items: HistorySchema[] = Object.entries(historyByYear).flatMap(
         ([year, list]) =>
             (Array.isArray(list) ? list : []).map((it, idx) => {
                 const obj = typeof it === "string" ? { title: it } : it;

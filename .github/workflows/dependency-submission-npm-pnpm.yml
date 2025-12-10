@@ -1,4 +1,4 @@
-name: Dependency Submission (npm + pnpm)
+name: Dependency Submission (npm)
 
 on:
   push:
@@ -28,4 +28,4 @@ jobs:
       - name: Generate and submit dependency graph (npm + pnpm)
         uses: advanced-security/component-detection-dependency-submission-action@v0.1.0
         with:
-          detectorsFilter: Npm,Pnpm
+          detectorsFilter: Npm

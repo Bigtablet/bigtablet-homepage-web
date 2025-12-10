@@ -16,21 +16,27 @@ interface NewsListProps {
 const NewsListSection = ({ items, locale, isLoading, pageSize = 6 }: NewsListProps) => {
     const t = useTranslations("news");
 
+    const renderList = () => {
+        if (isLoading) {
+            return Array.from({ length: pageSize }).map((_, i) => (
+                <SkeletonCard key={i} />
+            ));
+        }
+
+        return items.map((item) => (
+            <NewsCard
+                key={item.idx}
+                title={locale === "ko" ? item.titleKr : item.titleEn}
+                url={item.newsUrl}
+                createdAt={item.createdAt}
+                locale={locale}
+            />
+        ));
+    };
+
     return (
         <section className={styles.news_list}>
-            <div className={styles.news_list_grid}>
-                {isLoading
-                    ? Array.from({ length: pageSize }).map((_, i) => <SkeletonCard key={i} />)
-                    : items.map((item) => (
-                        <NewsCard
-                            key={item.idx}
-                            title={locale === "ko" ? item.titleKr : item.titleEn}
-                            url={item.newsUrl}
-                            createdAt={item.createdAt}
-                            locale={locale}
-                        />
-                    ))}
-            </div>
+            <div className={styles.news_list_grid}>{renderList()}</div>
 
             {!isLoading && items.length === 0 && (
                 <p className={styles.news_list_empty}>{t("empty")}</p>

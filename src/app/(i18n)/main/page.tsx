@@ -1,7 +1,7 @@
 "use client";
 
 import styles from "./style.module.scss";
-import Template from "src/widgets/layout/template";
+import Template from "src/shared/ui/template";
 import Banner from "src/widgets/main/banner";
 import Problem from "src/widgets/main/problem";
 import Solution from "src/widgets/main/solution/section";

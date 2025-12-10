@@ -153,6 +153,10 @@
   gap: $spacing-2xl;
   padding-top: $spacing-2xl;
   border-top: 1px solid $color-border-light;
+
+  &_button {
+    width: 100%;
+  }
 }
 
 .recruit_detail_request p {

@@ -41,6 +41,7 @@
 
 .apply_footer {
   @include body-regular;
+  text-align: center;
   font-size: $font-size-xs;
   color: $text-subtle;
   margin-top: $spacing-sm;

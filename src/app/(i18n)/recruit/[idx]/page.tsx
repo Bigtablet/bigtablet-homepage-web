@@ -1,10 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { useParams } from "next/navigation";
+import {useParams} from "next/navigation";
 import Template from "src/shared/ui/template";
-import { useRecruitDetailQuery } from "src/entities/recruit/query/recruit.query";
-import type { RecruitCard } from "src/entities/recruit/model/schema/recruit.schema";
+import {useRecruitDetailQuery} from "src/entities/recruit/query/recruit.query";
+import type {RecruitCard} from "src/entities/recruit/model/schema/recruit.schema";
 import ReactMarkdown from "react-markdown";
 import remarkBreaks from "remark-breaks";
 import styles from "./style.module.scss";
@@ -43,23 +43,23 @@ const HIRING_PROCESS = [
 ];
 
 const markdownComponents = {
-    p: ({ node, ...props }: any) => (
-        <p {...props} className={styles.recruit_detail_text} />
+    p: ({node, ...props}: any) => (
+        <p {...props} className={styles.recruit_detail_text}/>
     ),
-    ul: ({ node, ...props }: any) => (
-        <ul {...props} className={styles.recruit_detail_list} />
+    ul: ({node, ...props}: any) => (
+        <ul {...props} className={styles.recruit_detail_list}/>
     ),
-    ol: ({ node, ...props }: any) => (
-        <ol {...props} className={styles.recruit_detail_list} />
+    ol: ({node, ...props}: any) => (
+        <ol {...props} className={styles.recruit_detail_list}/>
     ),
-    li: ({ node, ...props }: any) => <li {...props} />
+    li: ({node, ...props}: any) => <li {...props} />
 };
 
 const RecruitDetail = () => {
-    const { idx } = useParams<{ locale: string; idx: string }>();
+    const {idx} = useParams<{ locale: string; idx: string }>();
     const idxNum = toIdx(idx);
 
-    const { data, status, error } = useRecruitDetailQuery(idxNum ?? -1, {
+    const {data, status, error} = useRecruitDetailQuery(idxNum ?? -1, {
         enabled: idxNum !== null
     });
 
@@ -174,9 +174,11 @@ const RecruitDetail = () => {
                         </section>
 
                         <section className={styles.recruit_detail_request}>
-                            <Button>
-                                <Link href={`/recruit/${idx}/apply`}>지원하기</Link>
-                            </Button>
+                            <Link className={styles.recruit_detail_request_button} href={`/recruit/${idx}/apply`}>
+                                <Button>
+                                    지원하기
+                                </Button>
+                            </Link>
                             <p>
                                 채용 관련 문의는{" "}
                                 <a href="mailto:recruit@bigtablet.com">recruit@bigtablet.com</a>

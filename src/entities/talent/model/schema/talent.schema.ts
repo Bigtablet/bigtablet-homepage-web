@@ -7,7 +7,7 @@ export const postTalentSchema = z.object({
         .string()
         .min(1, "이메일을 입력해주세요.")
         .email("유효한 이메일 형식이 아닙니다."),
-    department: z.string().min(1, "희망 부서를 입력해주세요."),
+    department: z.string().min(1, "희망 직무를 입력해주세요."),
     portfolioUrl: z.string().min(1, "포트폴리오 URL을 입력해주세요."),
     etcUrl: z.array(z.string()).optional(),
 });

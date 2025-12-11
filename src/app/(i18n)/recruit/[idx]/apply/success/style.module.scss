@@ -1,0 +1,19 @@
+@use "src/shared/styles/token" as *;
+
+.success {
+  @include flex-column-center;
+  gap: $spacing-xl;
+  padding: $spacing-3xl;
+  text-align: center;
+}
+
+.success_title {
+  @include heading-2;
+  color: $text-strong;
+}
+
+.success_text {
+  @include body-regular;
+  color: $text-normal;
+  line-height: 1.6;
+}

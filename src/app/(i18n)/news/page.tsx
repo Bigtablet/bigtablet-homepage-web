@@ -16,7 +16,7 @@ const NewsPage = () => {
     const items = useMemo(() => data?.items ?? [], [data]);
 
     return (
-        <Template>
+        <Template align="center">
             <section className="news-page">
                 <Pagination items={items} pageSize={DEFAULT_SIZE} maxPageButtons={7}>
                     {(pageItems) => (

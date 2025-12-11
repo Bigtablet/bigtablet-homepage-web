@@ -7,11 +7,18 @@
   color: $text-normal;
 }
 
-.template__main {
+.template_main {
   @include flex-column;
-  align-items: center;
   width: 100%;
-  flex: 1;
-  min-height: 0;
+  flex: 1 0 auto;
+  align-items: center;
   overflow: visible;
+
+  &--top {
+    justify-content: flex-start;
+  }
+
+  &--center {
+    justify-content: center;
+  }
 }

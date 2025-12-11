@@ -22,7 +22,7 @@ const BlogPage = () => {
     const items = useMemo(() => data?.items ?? [], [data]);
 
     return (
-        <Template>
+        <Template align="center">
             <div className="blog-page">
                 <Pagination items={items} pageSize={size} maxPageButtons={7}>
                     {(pageItems) => (

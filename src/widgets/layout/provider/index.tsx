@@ -2,7 +2,7 @@
 
 import {ReactNode, useState} from "react";
 import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
-import {ToastProvider} from "@bigtablet/design-system";
+import {AlertProvider, ToastProvider} from "@bigtablet/design-system";
 
 type Props = { children: ReactNode };
 
@@ -18,8 +18,11 @@ export default function Providers({children}: Props) {
 
     return (
         <QueryClientProvider client={client}>
-            <ToastProvider />
-            {children}
+            <ToastProvider/>
+            <AlertProvider>
+
+                {children}
+            </AlertProvider>
         </QueryClientProvider>
     )
 }

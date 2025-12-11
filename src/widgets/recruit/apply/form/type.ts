@@ -17,5 +17,5 @@ export interface ApplyFormProps {
         send: () => Promise<void>;
         verify: () => Promise<void>;
     };
-    onSubmit?: (e?: BaseSyntheticEvent) => void;
+    onSubmit: (e?: BaseSyntheticEvent) => void;
 }

@@ -3,23 +3,40 @@
 import { useGcpUpload } from "src/shared/gcp/hook/use-gcp";
 import type { ApplyFormProps } from "./type";
 import styles from "./style.module.scss";
-import {ContactSection} from "src/widgets/recruit/apply/form/sections/contact";
-import {PortfolioSection} from "src/widgets/recruit/apply/form/sections/portfolio";
-import {EducationSection} from "src/widgets/recruit/apply/form/sections/education";
-import {MilitarySection} from "src/widgets/recruit/apply/form/sections/military";
-import {LinksSection} from "src/widgets/recruit/apply/form/sections/links";
-import {ProfileSection} from "src/widgets/recruit/apply/form/sections/profile";
-import {Button} from "@bigtablet/design-system";
+import { ContactSection } from "src/widgets/recruit/apply/form/sections/contact";
+import { PortfolioSection } from "src/widgets/recruit/apply/form/sections/portfolio";
+import { EducationSection } from "src/widgets/recruit/apply/form/sections/education";
+import { MilitarySection } from "src/widgets/recruit/apply/form/sections/military";
+import { LinksSection } from "src/widgets/recruit/apply/form/sections/links";
+import { ProfileSection } from "src/widgets/recruit/apply/form/sections/profile";
+import { Button, useAlert } from "@bigtablet/design-system";
 
 const ApplyForm = ({ form, email, onSubmit }: ApplyFormProps) => {
     const {
         formState: { errors, isSubmitting },
+        handleSubmit,
     } = form;
 
     const { upload, isPending: isUploading } = useGcpUpload();
+    const { showAlert } = useAlert();
+
+    const handleSubmitWithConfirm = (values: any) => {
+        showAlert({
+            title: "제출 확인",
+            message: "지원서를 제출하시겠습니까?",
+            showCancel: true,
+            confirmText: "제출하기",
+            cancelText: "취소",
+            onConfirm: () => onSubmit(values),
+        });
+    };
 
     return (
-        <form className={styles.apply_form} noValidate onSubmit={onSubmit}>
+        <form
+            className={styles.apply_form}
+            noValidate
+            onSubmit={handleSubmit(handleSubmitWithConfirm)}
+        >
             <div className={styles.apply_grid}>
                 <div className={styles.apply_left}>
                     <ContactSection form={form} email={email} />
@@ -29,9 +46,7 @@ const ApplyForm = ({ form, email, onSubmit }: ApplyFormProps) => {
                     <LinksSection form={form} />
 
                     {errors.root?.message && (
-                        <p className={styles.form_error}>
-                            {errors.root.message as string}
-                        </p>
+                        <p className={styles.form_error}>{errors.root.message as string}</p>
                     )}
 
                     <Button

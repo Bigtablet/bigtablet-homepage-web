@@ -282,7 +282,7 @@
       "title": "The People of Bigtablet",
       "description": "Introducing the team shaping the future of bigtablet together.",
       "members": {
-        "CEO": {
+        "jiho": {
           "position": "CEO",
           "name": "Jiho Moon",
           "description": "An adventurer in pursuit of optimal efficiency",
@@ -312,7 +312,7 @@
             "a": "Bigtablet is currently on a steep growth trajectory. With rapid growth often come challenges and areas for improvement, but I want to express my sincere gratitude to everyone who has been part of this journey. To future team members, I look forward to working with passionate individuals who want to make history together in the AI industry. Thank you!"
           }
         },
-        "CTO": {
+        "minho": {
           "position": "CTO",
           "name": "Minho Park",
           "description": "An engineer driven to change the world through technology",
@@ -338,7 +338,7 @@
             "a": "Our vision is captured in the phrase ‘Vision Beyond Pixels.’ We aim to go beyond mere image recognition — to interpret context and meaning beyond pixels, creating new value through technology."
           }
         },
-        "Manage": {
+        "chaehyung": {
           "position": "Managing Director",
           "name": "Chaehyung Lee",
           "description": "With balance",
@@ -368,7 +368,33 @@
             "a": "At first, I thought it was a slow train, but it turned out to be an express one. Still, if I had to describe Bigtablet, I’d say it’s a lot like the moon. Sometimes it feels so big and distant, yet it radiates this quiet beauty, like a soft halo in the night sky. It’s ever-changing and full of life. Like watching the moon through a high-speed camera — even when it’s momentarily hidden, it remains the brightest, most noticeable thing in the sky. Maybe ‘the North Star’ would be a more fitting comparison, but somehow, ‘the moon’ feels closer to my heart — because it’s something I hope will keep growing and shining brighter."
           }
         },
-        "PM": {
+        "gyeongmin": {
+          "position": "PM",
+          "name": "Gyeongmin Kim",
+          "description": "Be it. A PM who makes it real",
+          "image": "/images/member/gyeongmin.png",
+          "qa1": {
+            "q": "Hello, Kyungmin! Could you briefly introduce yourself?",
+            "a": "Hello, I’m Kyungmin Kim, currently working as a Product Manager at Bigtablet."
+          },
+          "qa2": {
+            "q": "Could you tell us about your role at Bigtablet?",
+            "a": "I am responsible for turning product visions into reality. My role involves defining what to build, why it matters, and how it should be executed by connecting customer needs with business goals. I lead the overall process from planning to development, setting priorities and ensuring smooth collaboration across teams."
+          },
+          "qa3": {
+            "q": "What motivated you to join Bigtablet?",
+            "a": "As AI technology rapidly expands across industries, I wanted to contribute directly to its growth. Bigtablet’s AI video analytics technology, in particular, addresses critical industrial challenges such as safety, efficiency, and productivity. I was confident that this field could drive meaningful industrial change, which led me to join the company."
+          },
+          "qa4": {
+            "q": "You previously worked as a developer. What made you transition into a PM role?",
+            "a": "While working as a developer, I experienced the entire process from planning to deployment and realized that projects without clear direction and goals often struggle. Even the best code loses value if the ‘why’ behind it is unclear. This led me to pursue the PM role, where I could define customer problems first and connect them strategically to business objectives."
+          },
+          "qa5": {
+            "q": "What goals do you hope to achieve at Bigtablet?",
+            "a": "My goal is to transform abstract AI visions into concrete products that succeed in the market. By leading innovation through AI video analytics, I want to enhance customer safety and operational efficiency. Ultimately, I strive to be a PM who doesn’t just envision ideas, but turns them into reality and contributes meaningfully to Bigtablet’s growth."
+          }
+        },
+        "yerim": {
           "position": "PM",
           "name": "Yerim Kwon",
           "description": "A product manager who sees the beauty in dreams",
@@ -398,7 +424,7 @@
             "a": "Before joining BigTablet, I applied to several companies, but I often ran into obstacles like educational background and the tough job market. Since most PM roles require developer experience or internal transfers, it wasn’t easy for someone new like me. I wanted a freer, startup-style environment where I could experience everything from A to Z. So when BigTablet sent a job posting to my school, I was thrilled—it felt like destiny. I think the most valuable thing I want to achieve here is to grow together with the team. Startups evolve alongside their members, and that shared growth mirrors my own journey as a young professional. I want to keep learning and growing with BigTablet."
           }
         },
-        "BE": {
+        "gunwoo": {
           "position": "Backend Developer",
           "name": "Gunwoo Kim",
           "description": "A developer who strives for constant growth",
@@ -428,7 +454,7 @@
             "a": "My personal growth is important, but I believe it’s just as crucial for the team and the organization to grow together. I want to keep experimenting with and adopting new technologies, and someday become part of a leading big tech company."
           }
         },
-        "FE": {
+        "sangmin": {
           "position": "Frontend Developer",
           "name": "Sangmin Park",
           "description": "A developer who never stops learning",
@@ -458,11 +484,11 @@
             "a": "My goal is to deliver BigTablet’s vision and services flawlessly. I find the projects we’re working on exciting and meaningful, so I want to build them without any issues. In the long run, I want to become a developer who can turn ideas into reality. While it’s easy to imagine things, bringing those ideas to life is the real challenge — and that’s the kind of developer I aspire to be."
           }
         },
-        "APP": {
+        "byungjun": {
           "position": "App Developer",
           "name": "Park Byungjun",
           "description": "A developer who cares about users",
-          "images": "/images/member/byungjun.png",
+          "image": "/images/member/byungjun.png",
           "qa1": {
             "q": "Hello Byungjun! Could you briefly introduce yourself?",
             "a": "Hello, I'm Park Byungjun, an app developer at Bigtablet."

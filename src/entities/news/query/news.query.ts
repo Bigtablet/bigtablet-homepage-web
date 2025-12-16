@@ -2,21 +2,33 @@
 
 import {useQuery} from "@tanstack/react-query";
 import {getNewsApi,} from "src/entities/news/api/news.api";
-import type {NewsItem} from "src/entities/news/model/schema/news.schema";
-import {ListSchema} from "src/shared/schema/list/list.schema";
-import {newsQueryKey} from "./keys";
+import {NewsItem} from "src/entities/news/model/schema/news.schema";
+import {newsQueryKeys} from "src/entities/news/query/keys";
 
-/** 페이지네이션: size+1 전략으로 hasNext 계산 */
-export const useNewsPageQuery = ({page, size}: ListSchema) =>
-    useQuery<{ items: NewsItem[]; hasNext: boolean }>({
-        queryKey: newsQueryKey.page(page, size),
+export interface NewsPageResult {
+    items: NewsItem[];
+    hasNext: boolean;
+}
+
+/** GET /news?page&size */
+export const useNewsPageQuery = ({
+                                     page,
+                                     size,
+                                 }: {
+    page: number;
+    size: number;
+}) =>
+    useQuery<NewsPageResult>({
+        queryKey: newsQueryKeys.page(page, size),
         queryFn: async () => {
-            const over = size + 1;
-            const list = await getNewsApi({page, size: over});
-            const hasNext = list.length > size;
-            const items = hasNext ? list.slice(0, size) : list;
-            return {items, hasNext};
+            const res = await getNewsApi({page, size});
+
+            const items = res.data ?? [];
+
+            return {
+                items,
+                hasNext: items.length === size,
+            };
         },
-        placeholderData: (prev) => prev,
         staleTime: 60_000,
     });

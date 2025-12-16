@@ -3,31 +3,49 @@
 import "./style.scss";
 import { useMemo } from "react";
 import { useLocale } from "next-intl";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import Template from "src/shared/ui/template";
 import NewsListSection from "src/widgets/news/list";
 import { useNewsPageQuery } from "src/entities/news/query/news.query";
-import { Pagination } from "src/shared/ui/navigation/pagination";
 
-const DEFAULT_SIZE = 6;
+import { BigtabletSearchParams } from "src/shared/hooks/searchparams";
+import {Pagination} from "@bigtablet/design-system";
+
+const PAGE_SIZE = 6;
 
 const NewsPage = () => {
     const locale = useLocale();
-    const { data, isLoading } = useNewsPageQuery({ page: 1, size: 9999 });
+    const sp = BigtabletSearchParams();
+
+    const router = useRouter();
+    const pathname = usePathname();
+    const searchParams = useSearchParams();
+
+    const page = Math.max(1, sp.getNumber("page", 1) ?? 1);
+
+    const { data, isLoading } = useNewsPageQuery({ page, size: PAGE_SIZE });
     const items = useMemo(() => data?.items ?? [], [data]);
+
+    const hasNext = items.length === PAGE_SIZE;
+
+    const handleChangePage = (nextPage: number) => {
+        const clamped = Math.max(1, nextPage);
+        const params = new URLSearchParams(searchParams.toString());
+        params.set("page", String(clamped));
+        router.push(`${pathname}?${params.toString()}`);
+    };
 
     return (
         <Template align="center">
             <section className="news-page">
-                <Pagination items={items} pageSize={DEFAULT_SIZE} maxPageButtons={7}>
-                    {(pageItems) => (
-                        <NewsListSection
-                            items={pageItems}
-                            locale={locale}
-                            isLoading={isLoading}
-                            pageSize={DEFAULT_SIZE}
-                        />
-                    )}
-                </Pagination>
+                <NewsListSection
+                    items={items}
+                    locale={locale}
+                    isLoading={isLoading}
+                    pageSize={PAGE_SIZE}
+                />
+
+                <Pagination page={page} hasNext={hasNext} onChange={handleChangePage} />
             </section>
         </Template>
     );

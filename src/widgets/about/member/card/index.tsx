@@ -2,24 +2,20 @@
 
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import {
-    MEMBER_TO_SLUG,
-    type MemberKey,
-} from "src/entities/about/model/util/member.util";
+import type { MemberSlug } from "src/entities/about/model/util/member.util";
 import styles from "./style.module.scss";
-import {BigtabletLink} from "src/shared/hooks/link";
+import { BigtabletLink } from "src/shared/hooks/link";
 
-type MemberCardProps = { memberKey: MemberKey };
+type MemberCardProps = { memberSlug: MemberSlug };
 
-const MemberCard = ({ memberKey }: MemberCardProps) => {
+const MemberCard = ({ memberSlug }: MemberCardProps) => {
     const t = useTranslations("about.team.members");
 
-    const slug = MEMBER_TO_SLUG[memberKey];
-    const name = t(`${memberKey}.name`);
-    const position = t(`${memberKey}.position`);
-    const description = t(`${memberKey}.description`);
-    const imageSrc = `/images/member/${slug}.png`;
-    const href = `/about/${slug}`;
+    const name = t(`${memberSlug}.name`);
+    const position = t(`${memberSlug}.position`);
+    const description = t(`${memberSlug}.description`);
+    const imageSrc = t(`${memberSlug}.image`);
+    const href = `/about/${memberSlug}`;
 
     return (
         <BigtabletLink href={href} className={styles.member_card} aria-label={`${name} 상세보기`}>

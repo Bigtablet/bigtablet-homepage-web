@@ -19,8 +19,8 @@ const Team = ({ order = MEMBER_DEFAULT_ORDER }: TeamProps) => {
                 {t("title")}
             </h2>
             <div className={styles.team_grid}>
-                {order.map((key) => (
-                    <MemberCard key={key} memberKey={key} />
+                {order.map((memberSlug) => (
+                    <MemberCard key={memberSlug} memberSlug={memberSlug} />
                 ))}
             </div>
         </section>

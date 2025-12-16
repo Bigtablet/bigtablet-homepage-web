@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useEffect, useMemo } from "react";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import React, {useEffect, useMemo} from "react";
+import {usePathname, useRouter, useSearchParams} from "next/navigation";
 import "./style.scss";
 
 type RenderFn<T> = (
@@ -22,13 +22,12 @@ export interface PaginationProps<T> {
     children: RenderFn<T>;
 }
 
-export const Pagination = <T,>({
-                                   items,
-                                   pageSize = 6,
-                                   syncWithQuery = true,
-                                   maxPageButtons = null,
-                                   children,
-                               }: PaginationProps<T>) => {
+export const Pagination = <T, >({
+                                    items,
+                                    pageSize = 6,
+                                    syncWithQuery = true,
+                                    maxPageButtons = null,
+                                }: PaginationProps<T>) => {
     const list = Array.isArray(items) ? items : [];
     const total = list.length;
     const totalPages = Math.max(1, Math.ceil(total / pageSize));
@@ -39,11 +38,6 @@ export const Pagination = <T,>({
 
     const rawPage = Math.max(1, Number(sp.get("page") ?? 1));
     const page = Math.min(rawPage, totalPages);
-    const start = (page - 1) * pageSize;
-    const pageItems = useMemo(
-        () => list.slice(start, start + pageSize),
-        [list, start, pageSize]
-    );
 
     useEffect(() => {
         if (!syncWithQuery) return;
@@ -67,7 +61,7 @@ export const Pagination = <T,>({
 
     const pages: number[] = useMemo(() => {
         if (!maxPageButtons || totalPages <= maxPageButtons) {
-            return Array.from({ length: totalPages }, (_, i) => i + 1);
+            return Array.from({length: totalPages}, (_, i) => i + 1);
         }
         const half = Math.floor(maxPageButtons / 2);
         let start = Math.max(1, page - half);
@@ -76,12 +70,11 @@ export const Pagination = <T,>({
             end = totalPages;
             start = Math.max(1, end - maxPageButtons + 1);
         }
-        return Array.from({ length: end - start + 1 }, (_, i) => start + i);
+        return Array.from({length: end - start + 1}, (_, i) => start + i);
     }, [page, totalPages, maxPageButtons]);
 
     return (
         <>
-            {children(pageItems, { page, pageSize, total, totalPages })}
 
             <nav className="pagination" aria-label="Pagination">
                 <button

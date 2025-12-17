@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@bigtablet/design-system':
-        specifier: ^1.4.0
-        version: 1.4.0(lucide-react@0.553.0(react@19.2.0))(next@16.0.7(@opentelemetry/api@1.9.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(sass@1.95.1))(react-dom@19.2.0(react@19.2.0))(react-toastify@11.0.5(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react@19.2.0)
+        specifier: ^1.6.4
+        version: 1.6.4(lucide-react@0.553.0(react@19.2.0))(next@16.0.9(@opentelemetry/api@1.9.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(sass@1.95.1))(react-dom@19.2.0(react@19.2.0))(react-toastify@11.0.5(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react@19.2.0)
       '@hookform/resolvers':
         specifier: ^5.2.2
         version: 5.2.2(react-hook-form@7.68.0(react@19.2.0))
@@ -102,8 +102,8 @@ importers:
 
 packages:
 
-  '@bigtablet/design-system@1.4.0':
-    resolution: {integrity: sha512-D/pBWj9cJmQ405sM2E876YNOW9dZSMjBiHjvWg8WKNZh4WSMSR8hfS8qTMsthheJwizatV+zePSw7Txo1WO+AQ==}
+  '@bigtablet/design-system@1.6.4':
+    resolution: {integrity: sha512-YFnamLQkpTVu0sJVrL2SvesIaBWh0dGbpeHOgCU/KZu7Rir4+NxBaXN81cRDsyFgM83FyYtKJGbtuk7i/9fjUQ==}
     peerDependencies:
       lucide-react: '>=0.552.0'
       next: '*'
@@ -1333,7 +1333,8 @@ packages:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
 
 snapshots:
-  '@bigtablet/design-system@1.4.0(lucide-react@0.553.0(react@19.2.0))(next@16.0.7(@opentelemetry/api@1.9.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(sass@1.95.1))(react-dom@19.2.0(react@19.2.0))(react-toastify@11.0.5(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react@19.2.0)':
+
+  '@bigtablet/design-system@1.6.4(lucide-react@0.553.0(react@19.2.0))(next@16.0.9(@opentelemetry/api@1.9.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(sass@1.95.1))(react-dom@19.2.0(react@19.2.0))(react-toastify@11.0.5(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react@19.2.0)':
     dependencies:
       lucide-react: 0.553.0(react@19.2.0)
       react: 19.2.0

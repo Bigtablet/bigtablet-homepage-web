@@ -7,7 +7,6 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import Template from "src/shared/ui/template";
 import NewsListSection from "src/widgets/news/list";
 import { useNewsPageQuery } from "src/entities/news/query/news.query";
-
 import { BigtabletSearchParams } from "src/shared/hooks/searchparams";
 import {Pagination} from "@bigtablet/design-system";
 
@@ -24,9 +23,10 @@ const NewsPage = () => {
     const page = Math.max(1, sp.getNumber("page", 1) ?? 1);
 
     const { data, isLoading } = useNewsPageQuery({ page, size: PAGE_SIZE });
-    const items = useMemo(() => data?.items ?? [], [data]);
+    const items = useMemo(() => data?.items ?? [], [data?.items]);
 
-    const hasNext = items.length === PAGE_SIZE;
+    /** 🔑 단순 totalPages 계산 */
+    const totalPages = items.length === PAGE_SIZE ? page + 1 : page;
 
     const handleChangePage = (nextPage: number) => {
         const clamped = Math.max(1, nextPage);
@@ -45,7 +45,13 @@ const NewsPage = () => {
                     pageSize={PAGE_SIZE}
                 />
 
-                <Pagination page={page} hasNext={hasNext} onChange={handleChangePage} />
+                {totalPages > 1 && (
+                    <Pagination
+                        page={page}
+                        totalPages={totalPages}
+                        onChange={handleChangePage}
+                    />
+                )}
             </section>
         </Template>
     );

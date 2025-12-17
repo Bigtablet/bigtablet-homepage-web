@@ -1,0 +1,252 @@
+@use "@bigtablet/design-system/scss/token" as token;
+
+.modal_overlay {
+  position: fixed;
+  inset: 0;
+  background: token.$color_overlay;
+  z-index: token.$z_modal;
+  @include token.flex_center;
+}
+
+.modal_content {
+  width: 420px;
+  max-height: 80vh;
+  overflow-y: auto;
+  background: token.$color_background;
+  border-radius: token.$radius_lg;
+  box-shadow: token.$shadow_lg;
+  padding: token.$spacing_3xl;
+  animation: fade_in token.$transition_base;
+
+  h2 {
+    @include token.heading_3;
+    color: token.$text_strong;
+    margin-bottom: token.$spacing_2xl;
+  }
+}
+
+.form {
+  @include token.flex_column;
+  gap: token.$spacing_xl;
+
+  label {
+    @include token.flex_column;
+    gap: token.$spacing_sm;
+    @include token.body_regular;
+    color: token.$text_strong;
+
+    input {
+      width: 100%;
+      padding: token.$spacing_md token.$spacing_lg;
+      border: 1px solid token.$color_border;
+      border-radius: token.$radius_md;
+      background: token.$color_background_secondary;
+      transition: token.$transition_base;
+
+      &:focus {
+        outline: none;
+        border-color: token.$color_primary;
+      }
+
+      &:disabled {
+        background: token.$color_background_secondary;
+        cursor: not-allowed;
+      }
+    }
+  }
+}
+
+.portfolio {
+  @include token.flex_column;
+  gap: token.$spacing_sm;
+  @include token.body_regular;
+  color: token.$text_strong;
+}
+
+.portfolio_header {
+  @include token.flex_between;
+  align-items: center;
+  gap: token.$spacing_md;
+
+  span {
+    @include token.body_medium;
+    color: token.$text_strong;
+  }
+}
+
+.portfolio_toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: token.$spacing_xs;
+  padding: token.$spacing_xs;
+  border-radius: token.$radius_full;
+  background: token.$color_background_secondary;
+  border: 1px solid token.$color_border_light;
+}
+
+.portfolio_toggle_button,
+.portfolio_toggle_active {
+  padding: token.$spacing_xs token.$spacing_md;
+  border-radius: token.$radius_full;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  @include token.text_sm;
+  color: token.$text_subtle;
+  transition: token.$transition_base;
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.portfolio_toggle_button:hover:not(:disabled) {
+  background: token.$color_background_secondary;
+}
+
+.portfolio_toggle_active {
+  background: token.$color_background_secondary;
+  color: token.$color_primary;
+}
+
+.portfolio_file {
+  margin-top: token.$spacing_sm;
+  @include token.flex_column;
+  gap: token.$spacing_xs;
+}
+
+.helper {
+  @include token.text_sm;
+  color: token.$text_subtle;
+}
+
+.urls {
+  @include token.flex_column;
+  gap: token.$spacing_md;
+
+  span {
+    @include token.text_sm;
+    color: token.$text_subtle;
+  }
+
+  .url_row {
+    @include token.flex_column;
+    gap: token.$spacing_xs;
+
+    input {
+      width: 100%;
+      padding: token.$spacing_md token.$spacing_lg;
+      border: 1px solid token.$color_border;
+      border-radius: token.$radius_md;
+      background: token.$color_background_secondary;
+      transition: token.$transition_base;
+
+      &:focus {
+        outline: none;
+        border-color: token.$color_primary;
+      }
+
+      &:disabled {
+        background: token.$color_background_secondary;
+        cursor: not-allowed;
+      }
+    }
+
+    .url_remove {
+      align-self: flex-end;
+      padding: token.$spacing_xs token.$spacing_md;
+      background: rgba(token.$color_error, 0.08);
+      color: token.$color_error;
+      border: 1px solid token.$color_error;
+      border-radius: token.$radius_sm;
+      @include token.text_sm;
+      transition: token.$transition_base;
+
+      &:hover {
+        background: token.$color_error;
+        color: token.$text_inverse;
+      }
+
+      &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+    }
+  }
+
+  .url_add {
+    width: fit-content;
+    padding: token.$spacing_sm token.$spacing_md;
+    background: token.$color_background_secondary;
+    color: token.$color_primary;
+    border-radius: token.$radius_sm;
+    border: 1px solid token.$color_primary;
+    @include token.text_sm;
+    transition: token.$transition_base;
+
+    &:hover {
+      background: token.$color_primary;
+      color: token.$text_inverse;
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+}
+
+.actions {
+  @include token.flex_right;
+  gap: token.$spacing_lg;
+  margin-top: token.$spacing_xl;
+
+  button {
+    padding: token.$spacing_md token.$spacing_2xl;
+    border-radius: token.$radius_md;
+    border: 1px solid transparent;
+    @include token.body_medium;
+    transition: token.$transition_base;
+
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+  }
+
+  button[type="button"] {
+    background: token.$color_background_secondary;
+    color: token.$text_subtle;
+
+    &:hover:not(:disabled) {
+      background: token.$color_background_secondary;
+    }
+  }
+
+  button[type="submit"] {
+    background: token.$color_primary;
+    color: token.$text_inverse;
+
+    &:hover:not(:disabled) {
+      background: token.$color_primary_hover;
+    }
+  }
+}
+
+.error {
+  @include token.text_sm;
+  color: token.$color_error;
+  margin-top: token.$spacing_xs;
+}
+
+@keyframes fade_in {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

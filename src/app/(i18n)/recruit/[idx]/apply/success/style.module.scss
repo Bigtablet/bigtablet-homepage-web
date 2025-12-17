@@ -1,19 +1,19 @@
-@use "src/shared/styles/token" as *;
+@use "@bigtablet/design-system/scss/token" as token;
 
 .success {
-  @include flex-column-center;
-  gap: $spacing-xl;
-  padding: $spacing-3xl;
+  @include token.flex-column-center;
+  gap: token.$spacing_xl;
+  padding: token.$spacing_3xl;
   text-align: center;
 }
 
 .success_title {
-  @include heading-2;
-  color: $text-strong;
+  @include token.heading-2;
+  color: token.$text_strong;
 }
 
 .success_text {
-  @include body-regular;
-  color: $text-normal;
-  line-height: 1.6;
+  @include token.body-regular;
+  color: token.$text_normal;
+  line-height: token.$line_height_relaxed;
 }

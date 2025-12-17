@@ -1,4 +1,4 @@
-@use "src/shared/styles/token" as token;
+@use "@bigtablet/design-system/scss/token" as token;
 
 .news_list {
   @include token.flex-column;

@@ -1,0 +1,42 @@
+@use "@bigtablet/design-system/scss/token" as token;
+
+.terms {
+  padding: token.$spacing_5xl 0;
+  @include token.flex_column;
+  @include token.body_regular;
+  color: token.$text_normal;
+  max-width: 1200px;
+  width: 100%;
+  gap: token.$spacing_2xl;
+  margin: 0 auto;
+
+  section {
+    @include token.flex_column;
+    gap: token.$spacing_xl;
+  }
+
+  h1 {
+    @include token.heading_1;
+    font-size: token.$font_size_4xl;
+    color: token.$text_strong;
+  }
+
+  h2 {
+    @include token.heading_2;
+    font-size: token.$font_size_2xl;
+    color: token.$text_normal;
+  }
+
+  h4 {
+    @include token.body-medium;
+    font-size: token.$font_size_md;
+    color: token.$text_subtle;
+  }
+
+  p {
+    @include token.body-regular;
+    font-size: token.$font_size_md;
+    color: token.$text_normal;
+    line-height: token.$line_height_relaxed;
+  }
+}

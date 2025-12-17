@@ -1,16 +1,16 @@
-@use "src/shared/styles/token" as *;
+@use "@bigtablet/design-system/scss/token" as token;
 
 .solution {
-  @include flex-column;
-  @include flex-center;
-  gap: clamp($spacing-3xl, 6vw, 80px);
-  color: $text-inverse;
+  @include token.flex_column;
+  @include token.flex_center;
+  gap: token.$spacing_3xl;
+  color: token.$text_inverse;
 }
 
 .solution_title {
-  @include heading-2;
-  font-size: clamp($font-size-2xl, 4vw, $font-size-4xl);
-  color: $text-inverse;
+  @include token.heading_2;
+  font-size: token.$font_size_4xl;
+  color: token.$text_inverse;
   text-align: center;
   white-space: pre-line;
 }
@@ -18,27 +18,41 @@
 .solution_grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: $spacing-xl;
+  gap: token.$spacing_xl;
   width: 100%;
   max-width: 1600px;
   margin: 0 auto;
-  padding: 0 $spacing-xl;
+  padding: 0 token.$spacing_xl;
   justify-items: center;
 }
 
-@media (max-width: 1280px) {
+@include token.laptop {
+  .solution_title {
+    font-size: token.$font_size_3xl;
+  }
+
   .solution_grid {
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   }
 }
 
-@media (max-width: 768px) {
+/* tablet 이하 */
+@include token.tablet {
+  .solution {
+    gap: token.$spacing_2xl;
+  }
+
+  .solution_title {
+    font-size: token.$font_size_2xl;
+  }
+
   .solution_grid {
     grid-template-columns: repeat(2, minmax(200px, 1fr));
   }
 }
 
-@media (max-width: 480px) {
+/* mobile */
+@include token.mobile {
   .solution_grid {
     grid-template-columns: 1fr;
   }

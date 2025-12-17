@@ -1,0 +1,44 @@
+@use "@bigtablet/design-system/scss/token" as token;
+
+.card_skeleton {
+  @include token.flex_column;
+  border: 1px solid token.$color_border;
+  border-radius: token.$radius_lg;
+  overflow: hidden;
+  background: token.$color_background;
+  animation: card_skeleton_pulse 1.5s ease-in-out infinite;
+}
+
+.card_skeleton_thumb {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  background: token.$color_background_secondary;
+}
+
+.card_skeleton_text {
+  padding: token.$spacing_md;
+  display: flex;
+  flex-direction: column;
+  gap: token.$spacing_sm;
+}
+
+.card_skeleton_line {
+  height: 0.75rem;
+  background: token.$color_background_secondary;
+  border-radius: token.$radius_sm;
+}
+
+.short {
+  width: 60%;
+}
+
+@keyframes card_skeleton_pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+}

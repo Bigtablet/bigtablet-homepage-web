@@ -1,11 +1,12 @@
-@use "src/shared/styles/token" as *;
+@use "@bigtablet/design-system/scss/token" as token;
 
 .history {
   --container-width: 1200px;
   --container-max: min(var(--container-width), 95vw);
   --left-col: 172px;
+
   width: 100%;
-  background: $color-background-dark;
+  background: #4C545D;
   position: relative;
   padding-block: clamp(36px, 7vh, 72px);
 }
@@ -17,7 +18,7 @@
   bottom: 0;
   left: calc(50vw - var(--container-max) / 2 + var(--left-col) / 2);
   width: 2px;
-  background: $text-inverse;
+  background: token.$text_inverse;
   border-radius: 1px;
 }
 
@@ -25,7 +26,7 @@
   position: sticky;
   top: 96px;
   width: var(--container-max);
-  margin: 0 auto $spacing-lg auto;
+  margin: 0 auto token.$spacing_lg auto;
   display: grid;
   grid-template-columns: var(--left-col) 1fr;
   column-gap: 32px;
@@ -41,20 +42,20 @@
 }
 
 .history_year_item {
-  @include body-medium;
+  @include token.body_medium;
   background: transparent;
   border: none;
   padding: 0;
   text-align: left;
-  color: rgba($text-inverse, 0.56);
+  color: rgba(token.$text_inverse, 0.56);
   cursor: pointer;
-  transition: color .16s ease, opacity .16s ease;
+  transition: color 0.16s ease, opacity 0.16s ease;
 }
 
 .is_active.history_year_item,
 .history_year_item.is_active {
-  @include heading-3;
-  color: $text-inverse;
+  @include token.heading_3;
+  color: token.$text_inverse;
 }
 
 .history_year_block {
@@ -68,16 +69,16 @@
 }
 
 .history_right {
-  @include flex-column;
+  @include token.flex_column;
   gap: 8px;
-  transition: all .32s ease-in-out;
+  transition: all 0.32s ease-in-out;
 }
 
 .history_row {
   display: grid;
   grid-template-columns: 18px 1fr;
   column-gap: 10px;
-  transition: all .24s ease-out;
+  transition: all 0.24s ease-out;
 }
 
 .history_row_dot {
@@ -85,8 +86,8 @@
   height: 5px;
   margin-top: 4px;
   border-radius: 50%;
-  background: $text-inverse;
-  box-shadow: 0 0 0 2px rgba($text-inverse, 0.08);
+  background: token.$text_inverse;
+  box-shadow: 0 0 0 2px rgba(token.$text_inverse, 0.08);
 }
 
 .history_row_body {
@@ -96,15 +97,15 @@
 }
 
 .history_row_title {
-  @include heading-3;
+  @include token.heading_3;
   font-size: 15px;
-  color: $text-inverse;
+  color: token.$text_inverse;
 }
 
 .history_row_desc {
-  @include body-regular;
+  @include token.body_regular;
   font-size: 13.5px;
-  color: rgba($text-inverse, 0.85);
+  color: rgba(token.$text_inverse, 0.85);
   line-height: 1.6;
 }
 
@@ -113,17 +114,21 @@
     --left-col: 140px;
     padding-block: 56px;
   }
+
   .history_year_block {
     column-gap: 20px;
   }
+
   .history_year_item {
-    font-size: $font-size-sm;
+    font-size: token.$font_size_sm;
   }
+
   .history_row_title {
-    font-size: $font-size-base;
+    font-size: token.$font_size_base;
   }
+
   .history_row_desc {
-    font-size: $font-size-sm;
+    font-size: token.$font_size_sm;
   }
 }
 
@@ -131,11 +136,13 @@
   .history {
     --left-col: 100px;
   }
+
   .history_sticky,
   .history_year_block {
     grid-template-columns: 1fr;
     row-gap: 12px;
   }
+
   .history_years {
     width: 100%;
     flex-direction: row;
@@ -143,13 +150,16 @@
     overflow-x: auto;
     padding: 0 16px;
   }
+
   .history_right {
     padding: 0 16px;
   }
+
   .history_row {
     grid-template-columns: 14px 1fr;
     column-gap: 8px;
   }
+
   .history_row_dot {
     margin-top: 6px;
     width: 5px;

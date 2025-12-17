@@ -6,8 +6,8 @@ import { usePathname, useSearchParams, useRouter } from "next/navigation";
 import Template from "src/shared/ui/template";
 import { useBlogPageQuery } from "src/entities/blog/queries/blog.query";
 import BlogListSection from "src/widgets/blog/list";
-import {Pagination} from "@bigtablet/design-system";
-import "./style.scss";
+import { Pagination } from "@bigtablet/design-system";
+import styles from "./style.module.scss";
 
 const DEFAULT_SIZE = 6;
 
@@ -35,7 +35,7 @@ const BlogPage = () => {
 
     return (
         <Template align="center">
-            <div className="blog-page">
+            <div className={styles.blog_page}>
                 <BlogListSection
                     items={items}
                     locale={locale}
@@ -45,7 +45,11 @@ const BlogPage = () => {
                 />
 
                 {totalPages > 1 && (
-                    <Pagination page={page} totalPages={totalPages} onChange={handlePageChange} />
+                    <Pagination
+                        page={page}
+                        totalPages={totalPages}
+                        onChange={handlePageChange}
+                    />
                 )}
             </div>
         </Template>

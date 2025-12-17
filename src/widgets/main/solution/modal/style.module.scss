@@ -1,16 +1,16 @@
-@use "src/shared/styles/token" as *;
+@use "../../../../../node_modules/.pnpm/@bigtablet+design-system@1.6.6_lucide-react@0.553.0_react@19.2.0__next@16.0.9_@opentele_27ee9b57465686c2585574e092d19da6/node_modules/@bigtablet/design-system/dist/styles/scss/token" as token;
 
 .solution_modal_backdrop {
   position: fixed;
   inset: 0;
-  z-index: $z-modal;
+  z-index: token.$z_modal;
   display: grid;
   place-items: center;
-  padding: $spacing-2xl;
+  padding: token.$spacing_2xl;
   background: rgba(0, 0, 0, 0.35);
 
-  @media (min-width: 1024px) {
-    padding: $spacing-3xl;
+  @include token.laptop {
+    padding: token.$spacing_3xl;
   }
 }
 
@@ -26,12 +26,15 @@
   position: relative;
   width: min(1120px, 94vw);
   height: min(660px, 78vh);
-  border-radius: $radius-xl;
+  border-radius: token.$radius_xl;
   overflow: hidden;
-  background: #0c0c0c;
-  display: block;
+  background: token.$color_primary;
   transform-origin: center center;
-  transform: translate(var(--from-dx, 0), var(--from-dy, 0)) scale(var(--from-sx, 1), var(--from-sy, 1));
+  transform: translate(
+                  var(--from-dx, 0),
+                  var(--from-dy, 0)
+  )
+  scale(var(--from-sx, 1), var(--from-sy, 1));
   opacity: 0;
 }
 
@@ -51,46 +54,49 @@
   width: 48px;
   height: 48px;
   border: none;
-  border-radius: 50%;
+  border-radius: token.$radius_full;
   background: rgba(0, 0, 0, 0.35);
-  color: $text-inverse;
-  font-size: 28px;
+  color: token.$text_inverse;
+  font-size: token.$font_size_2xl;
   cursor: pointer;
-  transition: background $transition-base, transform $transition-fast;
+  transition:
+          background token.$transition_base,
+          transform token.$transition_fast;
 
   &:hover {
     background: rgba(0, 0, 0, 0.5);
   }
+
   &:active {
     transform: translateY(-50%) scale(0.96);
   }
 
-  @media (min-width: 1024px) {
+  @include token.laptop {
     width: 56px;
     height: 56px;
-    font-size: 32px;
+    font-size: token.$font_size_3xl;
   }
 
-  @media (max-width: 640px) {
+  @include token.mobile {
     width: 40px;
     height: 40px;
-    font-size: 24px;
+    font-size: token.$font_size_xl;
   }
 }
 
 .solution_modal_nav_prev {
-  left: 6px;
+  left: token.$spacing_xs;
 
-  @media (min-width: 1024px) {
-    left: 10px;
+  @include token.laptop {
+    left: token.$spacing_sm;
   }
 }
 
 .solution_modal_nav_next {
-  right: 6px;
+  right: token.$spacing_xs;
 
-  @media (min-width: 1024px) {
-    right: 10px;
+  @include token.laptop {
+    right: token.$spacing_sm;
   }
 }
 
@@ -102,10 +108,9 @@
 }
 
 .solution_modal_track {
-  @include flex-column;
+  @include token.flex_column;
   width: 100%;
   height: 100%;
-  transform: translateX(0);
   will-change: transform;
 }
 
@@ -122,7 +127,6 @@
 .solution_modal_panel {
   flex: 0 0 100%;
   height: 100%;
-  min-height: 100%;
   display: grid;
   grid-template-columns: 1fr 1.35fr;
 
@@ -137,49 +141,54 @@
 }
 
 .solution_modal_left {
-  @include flex-column;
-  position: relative;
+  @include token.flex_column;
   z-index: 2;
-  padding: $spacing-2xl;
-  padding-left: clamp($spacing-3xl, 4vw, 56px);
-  gap: $spacing-lg;
-  color: $text-inverse;
-  background:
-          linear-gradient(to right, rgba(12, 12, 12, 1) 85%, rgba(12, 12, 12, 0.6) 100%),
-          radial-gradient(1200px 60% at 100% 50%, rgba(0, 0, 0, 0) 0%, rgba(12, 12, 12, 1) 80%),
-          #0c0c0c;
+  padding: token.$spacing_2xl;
+  gap: token.$spacing_lg;
+  color: token.$text_inverse;
   overflow: auto;
+  line-height: token.$line_height_relaxed;
+  background:
+          linear-gradient(
+                          to right,
+                          rgba(12, 12, 12, 1) 85%,
+                          rgba(12, 12, 12, 0.6) 100%
+          ),
+          radial-gradient(
+                          1200px 60% at 100% 50%,
+                          rgba(0, 0, 0, 0) 0%,
+                          rgba(12, 12, 12, 1) 80%
+          ),
+          token.$color_primary;
 }
 
 .solution_modal_title {
-  @include heading-3;
-  text-align: left;
+  @include token.heading_3;
   white-space: pre-line;
-  margin-top: $spacing-sm;
+  margin-top: token.$spacing_sm;
+  line-height: token.$line_height_snug;
 }
 
 .solution_modal_desc {
-  @include body-regular;
-  color: rgba($text-inverse, 0.9);
+  @include token.body_regular;
+  color: rgba(token.$text_inverse, 0.9);
   white-space: pre-line;
-  margin-top: $spacing-sm;
-  line-height: 1.65;
+  margin-top: token.$spacing_sm;
+  line-height: token.$line_height_relaxed;
 }
 
 .solution_modal_right {
   position: relative;
-  background: #000;
+  background: token.$color_primary;
   overflow: hidden;
-  z-index: 0;
 }
 
 .solution_modal_right::before {
   content: "";
   position: absolute;
-  top: 0;
+  inset-block: 0;
   left: 0;
   width: 160px;
-  height: 100%;
   background: linear-gradient(
                   to left,
                   rgba(12, 12, 12, 0) 0%,
@@ -196,5 +205,4 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  z-index: 0;
 }

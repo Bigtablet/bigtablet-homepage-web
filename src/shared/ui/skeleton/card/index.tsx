@@ -1,14 +1,15 @@
 "use client";
 
-import "./style.scss";
+import styles from "./style.module.scss";
 
 const SkeletonCard = () => (
-    <div className="card-skeleton">
-        <div className="card-skeleton__thumb" />
-        <div className="card-skeleton__text">
-            <div className="card-skeleton__line short" />
-            <div className="card-skeleton__line" />
+    <div className={styles.card_skeleton}>
+        <div className={styles.card_skeleton_thumb} />
+        <div className={styles.card_skeleton_text}>
+            <div className={`${styles.card_skeleton_line} ${styles.short}`} />
+            <div className={styles.card_skeleton_line} />
         </div>
     </div>
 );
+
 export default SkeletonCard;

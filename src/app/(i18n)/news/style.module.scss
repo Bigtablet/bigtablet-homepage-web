@@ -1,0 +1,14 @@
+@use "@bigtablet/design-system/scss/token" as token;
+
+.news_page {
+  @include token.flex_column;
+  width: 100%;
+  padding: token.$spacing_3xl 0 token.$spacing_5xl;
+  justify-content: center;
+}
+
+.news_page_pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: token.$spacing_3xl;
+}

@@ -1,24 +1,24 @@
-@use "src/shared/styles/token" as *;
+@use "../../../../../node_modules/.pnpm/@bigtablet+design-system@1.6.6_lucide-react@0.553.0_react@19.2.0__next@16.0.9_@opentele_27ee9b57465686c2585574e092d19da6/node_modules/@bigtablet/design-system/dist/styles/scss/token" as token;
 
 .solution_card {
   cursor: pointer;
   position: relative;
   width: 300px;
   height: 350px;
-  border-radius: $radius-lg;
+  border-radius: token.$radius_lg;
   overflow: hidden;
-  background: #000;
-  box-shadow: $shadow-md;
+  background: token.$color_primary;
+  box-shadow: token.$shadow_md;
   -webkit-tap-highlight-color: transparent;
-  transition: transform $transition-fast, box-shadow $transition-base;
+  transition: transform token.$transition_fast, box-shadow token.$transition_base;
 
   &:focus-visible {
-    outline: 2px solid $color-primary;
+    outline: 2px solid token.$color_primary;
     outline-offset: 3px;
   }
 
   &:hover {
-    box-shadow: $shadow-lg;
+    box-shadow: token.$shadow_lg;
   }
 
   &:active {
@@ -55,21 +55,29 @@
   display: grid;
   place-items: center;
   z-index: 2;
-  @include heading-3;
-  font-size: clamp($font-size-lg, 2.2vw, $font-size-2xl);
-  color: $text-inverse;
+
+  @include token.heading_3;
+  font-size: token.$font_size_2xl;
+  line-height: token.$line_height_snug;
+  color: token.$text_inverse;
+
   text-align: center;
   white-space: pre-line;
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
-  padding: 0 $spacing-sm;
+  padding-inline: token.$spacing_sm;
   pointer-events: none;
 }
 
-@media (max-width: 900px) {
+@include token.mobile {
   .solution_card {
     width: 46vw;
     max-width: 320px;
     height: 40vw;
     max-height: 360px;
+  }
+
+  .solution_card_title {
+    font-size: token.$font_size_lg;
+    line-height: token.$line_height_snug;
   }
 }

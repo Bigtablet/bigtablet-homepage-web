@@ -1,34 +1,34 @@
-@use "src/shared/styles/token" as *;
+@use "@bigtablet/design-system/scss/token" as token;
 
 .blog_list {
   display: flex;
   width: 100%;
-  padding-block: $spacing-3xl $spacing-4xl;
+  padding-block: token.$spacing_3xl token.$spacing_4xl;
 
   &_header {
-    @include flex-column;
+    @include token.flex_column;
     align-items: center;
     text-align: center;
-    gap: $spacing-sm;
-    margin-bottom: $spacing-3xl;
+    gap: token.$spacing_sm;
+    margin-bottom: token.$spacing_3xl;
 
     h2 {
-      @include heading-2;
-      font-size: $font-size-2xl;
-      color: $text-strong;
+      @include token.heading_2;
+      font-size: token.$font_size_2xl;
+      color: token.$text_strong;
     }
 
     p {
-      @include body-medium;
-      font-size: $font-size-lg;
-      color: $text-subtle;
+      @include token.body_medium;
+      font-size: token.$font_size_lg;
+      color: token.$text_subtle;
     }
   }
 
   &_grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: $spacing-2xl;
+    gap: token.$spacing_2xl;
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
@@ -39,15 +39,15 @@
   }
 
   &_empty {
-    @include body-regular;
-    font-size: $font-size-xl;
-    margin-top: $spacing-3xl;
-    color: $text-subtle;
+    @include token.body_regular;
+    font-size: token.$font_size_xl;
+    margin-top: token.$spacing_3xl;
+    color: token.$text_subtle;
     text-align: center;
   }
 }
 
-@media (min-width: 768px) {
+@include token.mobile {
   .blog_list_grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }

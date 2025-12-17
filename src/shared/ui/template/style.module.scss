@@ -1,0 +1,24 @@
+@use "@bigtablet/design-system/scss/token" as token;
+
+.template {
+  @include token.flex_column;
+  min-height: 100svh;
+  background-color: token.$color_background_secondary;
+  color: token.$text_normal;
+}
+
+.template_main {
+  @include token.flex_column;
+  width: 100%;
+  flex: 1 0 auto;
+  align-items: center;
+  overflow: visible;
+}
+
+.template_main_top {
+  justify-content: flex-start;
+}
+
+.template_main_center {
+  justify-content: center;
+}

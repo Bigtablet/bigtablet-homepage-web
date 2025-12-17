@@ -1,4 +1,4 @@
-@use "src/shared/styles/token" as *;
+@use "@bigtablet/design-system/scss/token" as token;
 
 .interview {
 }
@@ -7,52 +7,53 @@
   max-block-size: calc(100vh - 32px - 40px);
   overflow-y: auto;
   display: grid;
-  row-gap: $spacing-md;
-  padding-inline-end: $spacing-xs;
+  row-gap: token.$spacing_md;
+  padding-inline-end: token.$spacing_xs;
 }
 
 .interview_empty {
-  @include body-regular;
-  font-size: $font-size-sm;
-  color: $text-subtle;
+  @include token.body_regular;
+  font-size: token.$font_size_sm;
+  color: token.$text_subtle;
 }
 
 .qa {
-  background: $color-background;
-  color: $text-normal;
-  border: 1px solid $color-border;
-  border-radius: $radius-lg;
-  padding: $spacing-lg;
+  background: token.$color_background;
+  color: token.$text_normal;
+  border: 1px solid token.$color_border;
+  border-radius: token.$radius_lg;
+  padding: token.$spacing_lg;
   display: grid;
-  row-gap: $spacing-sm;
+  row-gap: token.$spacing_sm;
 }
 
 .qa_q {
-  @include heading-3;
-  font-size: $font-size-xl;
-  color: $text-strong;
-  margin: 0 0 $spacing-xs 0;
+  @include token.heading_3;
+  font-size: token.$font_size_xl;
+  color: token.$text_strong;
+  margin: 0 0 token.$spacing_xs 0;
 }
 
 .qa_a {
-  @include body-regular;
-  font-size: $font-size-md;
-  color: $text-normal;
+  @include token.body_regular;
+  font-size: token.$font_size_md;
+  color: token.$text_normal;
   white-space: pre-line;
-  line-height: $line-height-relaxed;
+  line-height: token.$line_height_relaxed;
 }
 
-@media (max-width: 640px) {
+/* mobile */
+@include token.mobile {
   .qa {
-    border-radius: $radius-md;
-    padding: $spacing-md;
+    border-radius: token.$radius_md;
+    padding: token.$spacing_md;
   }
 
   .qa_q {
-    font-size: $font-size-lg;
+    font-size: token.$font_size_lg;
   }
 
   .qa_a {
-    font-size: $font-size-base;
+    font-size: token.$font_size_base;
   }
 }

@@ -17,7 +17,7 @@ import type {
 } from "src/entities/recruit/model/enum/recruit.enum";
 import { RecruitSearchFilters } from "src/entities/recruit/api/recruit.api";
 import { z } from "zod";
-import TalentFormModal from "src/widgets/talent/form/modal";
+import TalentFormModal from "src/features/talent/form/modal";
 
 
 type DepartmentCode = z.infer<typeof DepartmentType>;

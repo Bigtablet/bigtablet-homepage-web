@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import "./style.scss";
+import styles from "./style.module.scss";
 
 export interface FileInputProps
     extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "onChange"> {
@@ -30,10 +30,18 @@ export const FileInput = ({
         };
     }, [previewUrl]);
 
-    const classes = ["file", `file--${layout}`, className].filter(Boolean).join(" ");
+    const rootClass = [
+        styles.file,
+        layout === "row" && styles.file_row,
+        layout === "column" && styles.file_column,
+        className,
+    ]
+        .filter(Boolean)
+        .join(" ");
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.currentTarget.files?.[0] ?? null;
+
         setFileName(file?.name ?? "선택된 파일 없음");
         onFiles?.(file);
 
@@ -43,8 +51,7 @@ export const FileInput = ({
         }
 
         if (file && file.type.startsWith("image/")) {
-            const url = URL.createObjectURL(file);
-            setPreviewUrl(url);
+            setPreviewUrl(URL.createObjectURL(file));
         }
 
         if (inputRef.current) {
@@ -53,28 +60,30 @@ export const FileInput = ({
     };
 
     return (
-        <div className={classes}>
+        <div className={rootClass}>
             {layout === "column" && previewUrl && (
-                <div className="file__preview">
+                <div className={styles.file_preview}>
                     <img src={previewUrl} alt="미리보기" />
                 </div>
             )}
 
-            <div className="file__control">
+            <div className={styles.file_control}>
                 <input
                     ref={inputRef}
                     id={id}
                     type="file"
-                    className="file__input"
+                    className={styles.file_input}
                     accept={accept}
                     disabled={disabled}
                     onChange={handleChange}
                     {...props}
                 />
-                <label htmlFor={id} className="file__label">
+
+                <label htmlFor={id} className={styles.file_label}>
                     {label}
                 </label>
-                <span className="file__name">{fileName}</span>
+
+                <span className={styles.file_name}>{fileName}</span>
             </div>
         </div>
     );

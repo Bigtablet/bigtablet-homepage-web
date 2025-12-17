@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import {useParams} from "next/navigation";
 import Template from "src/shared/ui/template";
 import {useRecruitDetailQuery} from "src/entities/recruit/query/recruit.query";
@@ -9,6 +8,7 @@ import ReactMarkdown from "react-markdown";
 import remarkBreaks from "remark-breaks";
 import styles from "./style.module.scss";
 import {Button} from "@bigtablet/design-system";
+import {BigtabletLink} from "src/shared/hooks/link";
 
 const toIdx = (v: unknown) => {
     const n = Number(v);
@@ -174,11 +174,11 @@ const RecruitDetail = () => {
                         </section>
 
                         <section className={styles.recruit_detail_request}>
-                            <Link className={styles.recruit_detail_request_button} href={`/recruit/${idx}/apply`}>
+                            <BigtabletLink className={styles.recruit_detail_request_button} href={`/recruit/${idx}/apply`}>
                                 <Button>
                                     지원하기
                                 </Button>
-                            </Link>
+                            </BigtabletLink>
                             <p>
                                 채용 관련 문의는{" "}
                                 <a href="mailto:recruit@bigtablet.com">recruit@bigtablet.com</a>

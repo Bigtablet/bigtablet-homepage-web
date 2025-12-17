@@ -2,14 +2,14 @@
 
 import { useTranslations } from "next-intl";
 import Template from "src/shared/ui/template";
-import "../style.scss";
+import styles from "../style.module.scss";
 
 const Terms = () => {
     const t = useTranslations("policies.terms");
 
     return (
         <Template>
-            <div className="TermsOfUse">
+            <div className={styles.terms}>
                 <h1>{t("title")}</h1>
                 <h4>{t("effectiveDate")}</h4>
                 <p>{t("intro")}</p>

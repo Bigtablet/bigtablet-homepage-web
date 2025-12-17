@@ -1,0 +1,55 @@
+@use "@bigtablet/design-system/scss/token" as token;
+
+/* field */
+.field {
+  @include token.flex_column;
+  gap: token.$spacing_sm;
+
+  label {
+    @include token.body_medium;
+    font-size: token.$font_size_sm;
+    color: token.$text_strong;
+  }
+}
+
+/* profile / section wrapper */
+.profile {
+  @include token.flex_column;
+  gap: token.$spacing_sm;
+  width: 100%;
+}
+
+
+/* help / sub / error */
+.help {
+  font-size: token.$font_size_xs;
+  color: token.$text_subtle;
+}
+
+.sub {
+  font-size: token.$font_size_xs;
+  color: token.$text_subtle;
+  margin-left: token.$spacing_xs;
+}
+
+.error {
+  font-size: token.$font_size_xs;
+  color: token.$color_error;
+}
+
+/* row / stack */
+.row {
+  width: 100%;
+  display: grid;
+  gap: token.$spacing_sm;
+
+  > * {
+    min-width: 0;
+  }
+}
+
+.stack {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: token.$spacing_sm;
+}

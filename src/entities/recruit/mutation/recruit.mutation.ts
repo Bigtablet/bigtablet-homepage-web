@@ -3,7 +3,7 @@
 import {useMutation, type UseMutationOptions} from "@tanstack/react-query";
 
 import type {RecruitApplyResponse} from "src/entities/recruit/model/schema/recruit.schema";
-import {ApplyFormValues} from "src/features/recruit/model/apply/schema/apply.schema";
+import {ApplyFormValues} from "src/features/recruit/apply/form/model/schema/apply.schema";
 import {postRecruitApplyApi} from "src/entities/recruit/api/recruit.api";
 
 /* 지원하기 */

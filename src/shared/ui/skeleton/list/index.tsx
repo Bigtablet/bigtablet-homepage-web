@@ -1,19 +1,21 @@
 "use client";
 
-import "./style.scss";
+import styles from "./style.module.scss";
 
 export const SkeletonList = () => (
-    <div className="request-item skeleton">
-        <div className="request-item__left">
-            <div className="skeleton__title" />
-            <div className="request-item__tags">
-                <span className="skeleton__tag" />
-                <span className="skeleton__tag" />
-                <span className="skeleton__tag" />
+    <div className={`${styles.request_item} ${styles.skeleton}`}>
+        <div className={styles.request_item_left}>
+            <div className={styles.skeleton_title} />
+
+            <div className={styles.request_item_tags}>
+                <span className={styles.skeleton_tag} />
+                <span className={styles.skeleton_tag} />
+                <span className={styles.skeleton_tag} />
             </div>
         </div>
-        <div className="request-item__dday">
-            <span className="skeleton__dday" />
+
+        <div className={styles.request_item_dday}>
+            <span className={styles.skeleton_dday} />
         </div>
     </div>
 );

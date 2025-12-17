@@ -2,8 +2,8 @@
 
 import { useTranslations } from "next-intl";
 import { useEffect, useMemo, useRef, useState } from "react";
-import { SOURCES, Product } from "../model/sources";
-import { buildInitialSelected } from "../util/select";
+import { SOURCES, Product } from "src/widgets/main/solution/model/video/sources";
+import { buildInitialSelected } from "src/widgets/main/solution/model/util/select";
 import Card from "../card";
 import Modal from "../modal";
 import styles from "./style.module.scss";

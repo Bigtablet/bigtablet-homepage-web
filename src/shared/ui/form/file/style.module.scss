@@ -1,0 +1,79 @@
+@use "@bigtablet/design-system/scss/token" as token;
+
+.file {
+  display: flex;
+  gap: token.$spacing_sm;
+  align-items: center;
+  position: relative;
+}
+
+.file_control {
+  display: flex;
+  gap: token.$spacing_sm;
+  align-items: center;
+  position: relative;
+}
+
+.file_input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.file_label {
+  border: 1px solid token.$color_border;
+  border-radius: token.$radius_md;
+  background: token.$color_background;
+  padding: token.$spacing_sm token.$spacing_lg;
+  color: token.$text_normal;
+  font-size: token.$font_size_sm;
+  transition: border-color token.$transition_base, background token.$transition_base;
+  cursor: pointer;
+
+  &:hover {
+    border-color: token.$color_border_light;
+  }
+}
+
+.file_name {
+  font-size: token.$font_size_sm;
+  color: token.$text_subtle;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.file_row {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.file_column {
+  @include token.flex_column;
+  align-items: flex-start;
+  gap: token.$spacing_sm;
+}
+
+.file_column .file_control {
+  align-items: center;
+}
+
+.file_preview {
+  width: 100%;
+  max-width: 260px;
+  aspect-ratio: 3 / 4;
+  border-radius: token.$radius_xl;
+  border: 1px dashed token.$color_border;
+  background: token.$color_background_secondary;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+}

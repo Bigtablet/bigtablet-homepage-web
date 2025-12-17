@@ -1,9 +1,9 @@
-@use "src/shared/styles/token" as token;
+@use "@bigtablet/design-system/scss/token" as token;
 
 .introduce {
-  @include token.flex-between;
-  gap: clamp(#{token.$spacing-xl}, 4vw, #{token.$spacing-3xl});
-  padding: clamp(#{token.$spacing-5xl}, 6vw, #{token.$spacing-4xl}) 8vw;
+  @include token.flex_between;
+  gap: token.$spacing_xl;
+  padding: token.$spacing_4xl 8vw;
 
   &.introduce_reverse {
     flex-direction: row-reverse;
@@ -12,30 +12,30 @@
 
 .introduce_text {
   flex: 1;
-  @include token.flex-column;
-  gap: clamp(#{token.$spacing-sm}, 1.5vw, #{token.$spacing-lg});
-  font-family: token.$font-family-primary;
+  @include token.flex_column;
+  gap: token.$spacing_sm;
+  font-family: token.$font_family_primary;
 }
 
 .introduce_title {
-  @include token.heading-2;
-  font-size: clamp(#{token.$font-size-2xl}, 3vw, #{token.$font-size-3xl});
-  color: token.$text-strong;
-  letter-spacing: token.$letter-spacing-tight;
-  line-height: token.$line-height-snug;
+  @include token.heading_2;
+  font-size: token.$font_size_2xl;
+  color: token.$text_strong;
+  letter-spacing: token.$letter_spacing_tight;
+  line-height: token.$line_height_snug;
 }
 
 .introduce_desc {
-  @include token.body-medium;
-  font-size: clamp(#{token.$font-size-md}, 1.6vw, #{token.$font-size-lg});
-  color: token.$text-subtle;
-  line-height: token.$line-height-relaxed;
+  @include token.body_medium;
+  font-size: token.$font_size_md;
+  color: token.$text_subtle;
+  line-height: token.$line_height_relaxed;
   white-space: pre-line;
 }
 
 .introduce_image {
   flex: 1;
-  @include token.flex-center;
+  @include token.flex_center;
 
   img {
     max-width: 100%;
@@ -46,22 +46,80 @@
   }
 }
 
-@media (max-width: 900px) {
+@include token.mobile {
   .introduce {
-    @include token.flex-column;
+    @include token.flex_column;
     text-align: center;
-    gap: token.$spacing-xl;
+    gap: token.$spacing_xl;
+    padding: token.$spacing_4xl 8vw;
   }
 
   .introduce_image {
-    margin-top: token.$spacing-lg;
+    margin-top: token.$spacing_lg;
   }
 
   .introduce_title {
-    font-size: clamp(#{token.$font-size-xl}, 5vw, #{token.$font-size-2xl});
+    font-size: token.$font_size_xl;
   }
 
   .introduce_desc {
-    font-size: clamp(#{token.$font-size-base}, 3.5vw, #{token.$font-size-lg});
+    font-size: token.$font_size_base;
+  }
+}
+
+@include token.tablet {
+  .introduce {
+    gap: token.$spacing_2xl;
+    padding: token.$spacing_5xl 8vw;
+  }
+
+  .introduce_text {
+    gap: token.$spacing_md;
+  }
+
+  .introduce_title {
+    font-size: token.$font_size_2xl;
+  }
+
+  .introduce_desc {
+    font-size: token.$font_size_md;
+  }
+}
+
+@include token.laptop {
+  .introduce {
+    gap: token.$spacing_3xl;
+    padding: token.$spacing_5xl 8vw;
+  }
+
+  .introduce_text {
+    gap: token.$spacing_lg;
+  }
+
+  .introduce_title {
+    font-size: token.$font_size_3xl;
+  }
+
+  .introduce_desc {
+    font-size: token.$font_size_lg;
+  }
+}
+
+@include token.desktop {
+  .introduce {
+    gap: token.$spacing_3xl;
+    padding: token.$spacing_5xl 8vw;
+  }
+
+  .introduce_text {
+    gap: token.$spacing_lg;
+  }
+
+  .introduce_title {
+    font-size: token.$font_size_3xl;
+  }
+
+  .introduce_desc {
+    font-size: token.$font_size_lg;
   }
 }

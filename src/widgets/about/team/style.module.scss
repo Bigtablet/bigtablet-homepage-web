@@ -1,51 +1,51 @@
-@use "src/shared/styles/token" as *;
+@use "@bigtablet/design-system/scss/token" as token;
 
 .team {
-  @include flex-column;
+  @include token.flex_column;
   width: 100%;
-  background: $color-background-darkblue;
-  color: $text-inverse;
-  gap: $spacing-xl;
-  padding-block: clamp($spacing-2xl, 6vw, $spacing-4xl);
-  padding-inline: clamp($spacing-xl, 5vw, $spacing-3xl);
+  background: #47555e;
+  color: token.$text_inverse;
+  gap: token.$spacing_xl;
+  padding-block: token.$spacing_3xl;
+  padding-inline: token.$spacing_2xl;
 }
 
 .team_title {
-  @include heading-2;
+  @include token.heading_2;
   text-align: center;
-  font-size: $font-size-2xl;
-  padding-block: $spacing-lg;
-  color: $text-inverse;
+  font-size: token.$font_size_2xl;
+  padding-block: token.$spacing_lg;
+  color: token.$text_inverse;
 }
 
 .team_grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: $spacing-xl;
+  grid-template-columns: repeat(3, 240px);
+  gap: token.$spacing_xl;
   justify-content: center;
   align-items: start;
   margin: 0 auto;
   width: 100%;
-  max-width: calc(240px * 3 + $spacing-xl * 2);
+  max-width: 880px;
 }
 
-@media (max-width: 1024px) {
+@include token.laptop {
   .team_grid {
-    grid-template-columns: repeat(2, minmax(220px, 1fr));
-    max-width: calc(220px * 2 + $spacing-xl);
+    grid-template-columns: repeat(2, 220px);
+    max-width: 460px;
   }
 }
 
-@media (max-width: 640px) {
+@include token.mobile {
   .team {
-    gap: $spacing-lg;
-    padding-block: clamp($spacing-xl, 6vw, $spacing-3xl);
-    padding-inline: $spacing-xl;
+    gap: token.$spacing_lg;
+    padding-block: token.$spacing_2xl;
+    padding-inline: token.$spacing_xl;
   }
 
   .team_grid {
     grid-template-columns: 1fr;
-    gap: $spacing-lg;
+    gap: token.$spacing_lg;
     max-width: 100%;
   }
 }

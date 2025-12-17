@@ -1,0 +1,55 @@
+@use "@bigtablet/design-system/scss/token" as token;
+
+.root {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 120px);
+  padding: token.$spacing_3xl token.$spacing_lg;
+}
+
+.card {
+  @include token.flex_column;
+  align-items: center;
+  gap: token.$spacing_md;
+
+  width: 100%;
+  max-width: 420px;
+
+  padding: token.$spacing_2xl;
+  border-radius: token.$radius_lg;
+  border: 1px solid token.$color_border;
+  background: token.$color_background;
+  box-shadow: token.$shadow_sm;
+
+  text-align: center;
+}
+
+.code {
+  @include token.heading_2;
+  font-size: token.$font_size_2xl;
+  font-weight: token.$font_weight_bold;
+  color: token.$text_strong;
+  margin: 0;
+}
+
+.title {
+  @include token.body_medium;
+  font-size: token.$font_size_lg;
+  font-weight: token.$font_weight_semibold;
+  color: token.$text_strong;
+  margin: 0;
+}
+
+.desc {
+  @include token.body_regular;
+  font-size: token.$font_size_sm;
+  color: token.$text_subtle;
+  line-height: token.$line_height_relaxed;
+}
+
+.actions {
+  margin-top: token.$spacing_lg;
+  display: flex;
+  gap: token.$spacing_sm;
+}

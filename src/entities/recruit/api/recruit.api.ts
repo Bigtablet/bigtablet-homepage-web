@@ -6,7 +6,7 @@ import {
     type RecruitResponse,
     type RecruitApplyResponse,
 } from "../model/schema/recruit.schema";
-import type { ApplyFormValues } from "src/features/recruit/model/apply/schema/apply.schema";
+import type { ApplyFormValues } from "src/features/recruit/apply/form/model/schema/apply.schema";
 
 export interface RecruitSearchFilters {
     keyword?: string;

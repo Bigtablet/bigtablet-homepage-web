@@ -1,0 +1,43 @@
+@use "@bigtablet/design-system/scss/token" as token;
+
+.blog_page {
+  width: 100%;
+  padding: token.$spacing_3xl 0 token.$spacing_5xl;
+}
+
+.blog_page_title {
+  @include token.heading_2;
+  font-size: token.$font_size_2xl;
+  margin-bottom: token.$spacing_2xl;
+  color: token.$text_strong;
+  text-align: center;
+}
+
+.blog_page_grid {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: token.$spacing_xl;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+
+  @include token.tablet {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @include token.laptop {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.blog_page_sentinel {
+  height: 1px;
+}
+
+.blog_page_empty {
+  @include token.body_regular;
+  font-size: token.$font_size_lg;
+  margin-top: token.$spacing_2xl;
+  color: token.$text_subtle;
+  text-align: center;
+}

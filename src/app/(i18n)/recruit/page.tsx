@@ -4,8 +4,8 @@ import { useState } from "react";
 import Template from "src/shared/ui/template";
 import RecruitHeader from "src/widgets/recruit/main/header";
 import RequestList from "src/widgets/recruit/main/list";
-import "./style.scss";
-import {RecruitSearchFilters} from "src/entities/recruit/api/recruit.api";
+import styles from "./style.module.scss";
+import { RecruitSearchFilters } from "src/entities/recruit/api/recruit.api";
 
 const RecruitPage = () => {
     const [filters, setFilters] = useState<RecruitSearchFilters>({
@@ -17,10 +17,10 @@ const RecruitPage = () => {
 
     return (
         <Template>
-            <section className="recruit-page">
+            <section className={styles.recruit_page}>
                 <RecruitHeader filters={filters} onChange={setFilters} />
 
-                <div className="recruit-page__list">
+                <div className={styles.recruit_page_list}>
                     <RequestList filters={filters} />
                 </div>
             </section>

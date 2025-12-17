@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef } from "react";
+import { useMemo } from "react";
 import BlogCard from "src/widgets/blog/card";
 import SkeletonCard from "src/shared/ui/skeleton/card";
 import styles from "./style.module.scss";
@@ -11,9 +11,6 @@ interface BlogListProps {
     items: BlogItem[];
     locale: string;
     isLoading: boolean;
-    hasNextPage: boolean;
-    isFetchingNextPage: boolean;
-    fetchNextPage: () => void;
     pageSize: number;
     hrefBuilder?: (item: BlogItem, locale: string) => string;
 }
@@ -22,37 +19,19 @@ const BlogListSection = ({
                              items,
                              locale,
                              isLoading,
-                             hasNextPage,
-                             isFetchingNextPage,
-                             fetchNextPage,
                              pageSize,
                              hrefBuilder = (item, l) => `/${l}/blog/${item.idx}`,
                          }: BlogListProps) => {
-    const sentinelRef = useRef<HTMLDivElement | null>(null);
     const flatItems = useMemo(() => items ?? [], [items]);
     const t = useTranslations("blog");
 
-    useEffect(() => {
-        if (!sentinelRef.current || !hasNextPage) return;
-
-        const io = new IntersectionObserver(
-            (entries) => {
-                if (entries.some((e) => e.isIntersecting) && hasNextPage && !isFetchingNextPage) {
-                    fetchNextPage();
-                }
-            },
-            { rootMargin: "800px 0px" }
-        );
-
-        io.observe(sentinelRef.current);
-        return () => io.disconnect();
-    }, [fetchNextPage, hasNextPage, isFetchingNextPage]);
-
     return (
-        <section className={styles["blog-list"]}>
-            <div className={styles["blog-list__grid"]}>
+        <section className={styles.blog_list}>
+            <div className={styles.blog_list_grid}>
                 {isLoading
-                    ? Array.from({ length: pageSize }).map((_, i) => <SkeletonCard key={i} />)
+                    ? Array.from({ length: pageSize }).map((_, i) => (
+                        <SkeletonCard key={i} />
+                    ))
                     : flatItems.map((item, i) => (
                         <BlogCard
                             key={item.idx}
@@ -65,10 +44,8 @@ const BlogListSection = ({
             </div>
 
             {!isLoading && flatItems.length === 0 && (
-                <p className={styles["blog-list__empty"]}>{t("empty")}</p>
+                <p className={styles.blog_list_empty}>{t("empty")}</p>
             )}
-
-            <div ref={sentinelRef} className={styles["blog-list__sentinel"]} />
         </section>
     );
 };

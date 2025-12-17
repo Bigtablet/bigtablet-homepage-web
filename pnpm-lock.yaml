@@ -13,13 +13,13 @@ importers:
         version: 1.6.6(lucide-react@0.553.0(react@19.2.0))(next@16.0.9(@opentelemetry/api@1.9.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(sass@1.95.1))(react-dom@19.2.0(react@19.2.0))(react-toastify@11.0.5(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react@19.2.0)
       '@hookform/resolvers':
         specifier: ^5.2.2
-        version: 5.2.2(react-hook-form@7.68.0(react@19.2.0))
+        version: 5.2.2(react-hook-form@7.68.0(react@19.2.3))
       '@opentelemetry/api':
         specifier: ^1.9.0
         version: 1.9.0
       '@tanstack/react-query':
         specifier: ^5.90.11
-        version: 5.90.12(react@19.2.0)
+        version: 5.90.12(react@19.2.3)
       '@vercel/otel':
         specifier: ^2.1.0
         version: 2.1.0(@opentelemetry/api-logs@0.208.0)(@opentelemetry/api@1.9.0)(@opentelemetry/instrumentation@0.208.0(@opentelemetry/api@1.9.0))(@opentelemetry/resources@2.2.0(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-logs@0.208.0(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-metrics@2.2.0(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@2.2.0(@opentelemetry/api@1.9.0))
@@ -34,40 +34,40 @@ importers:
         version: 4.1.0
       framer-motion:
         specifier: ^12.23.24
-        version: 12.23.25(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+        version: 12.23.25(react-dom@19.2.0(react@19.2.3))(react@19.2.3)
       js-cookie:
         specifier: ^3.0.5
         version: 3.0.5
       lucide-react:
         specifier: ^0.553.0
-        version: 0.553.0(react@19.2.0)
+        version: 0.553.0(react@19.2.3)
       next:
         specifier: 16.0.9
-        version: 16.0.9(@opentelemetry/api@1.9.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(sass@1.95.1)
+        version: 16.0.9(@opentelemetry/api@1.9.0)(react-dom@19.2.0(react@19.2.3))(react@19.2.3)(sass@1.95.1)
       next-intl:
         specifier: ^4.4.0
-        version: 4.5.8(next@16.0.9(@opentelemetry/api@1.9.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(sass@1.95.1))(react@19.2.0)(typescript@5.9.3)
+        version: 4.5.8(next@16.0.9(@opentelemetry/api@1.9.0)(react-dom@19.2.0(react@19.2.3))(react@19.2.3)(sass@1.95.1))(react@19.2.3)(typescript@5.9.3)
       react:
-        specifier: 19.2.0
-        version: 19.2.0
+        specifier: 19.2.3
+        version: 19.2.3
       react-datepicker:
         specifier: ^8.10.0
-        version: 8.10.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+        version: 8.10.0(react-dom@19.2.0(react@19.2.3))(react@19.2.3)
       react-dom:
         specifier: 19.2.0
-        version: 19.2.0(react@19.2.0)
+        version: 19.2.0(react@19.2.3)
       react-fast-marquee:
         specifier: ^1.6.5
-        version: 1.6.5(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+        version: 1.6.5(react-dom@19.2.0(react@19.2.3))(react@19.2.3)
       react-hook-form:
         specifier: ^7.65.0
-        version: 7.68.0(react@19.2.0)
+        version: 7.68.0(react@19.2.3)
       react-markdown:
         specifier: ^10.1.0
-        version: 10.1.0(@types/react@19.2.7)(react@19.2.0)
+        version: 10.1.0(@types/react@19.2.7)(react@19.2.3)
       react-toastify:
         specifier: ^11.0.5
-        version: 11.0.5(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+        version: 11.0.5(react-dom@19.2.0(react@19.2.3))(react@19.2.3)
       remark-breaks:
         specifier: ^4.0.0
         version: 4.0.0
@@ -1121,6 +1121,7 @@ packages:
   next@16.0.9:
     resolution: {integrity: sha512-Xk5x/wEk6ADIAtQECLo1uyE5OagbQCiZ+gW4XEv24FjQ3O2PdSkvgsn22aaseSXC7xg84oONvQjFbSTX5YsMhQ==}
     engines: {node: '>=20.9.0'}
+    deprecated: This version has a security vulnerability. Please upgrade to a patched version. See https://nextjs.org/blog/security-update-2025-12-11 for more details.
     hasBin: true
     peerDependencies:
       '@opentelemetry/api': ^1.1.0
@@ -1200,8 +1201,8 @@ packages:
       react: ^18 || ^19
       react-dom: ^18 || ^19
 
-  react@19.2.0:
-    resolution: {integrity: sha512-tmbWg6W31tQLeB5cdIBOicJDJRR2KzXsV7uSK9iNfLWQ5bIZfxuPEHp7M8wiHyHnn0DD1i7w3Zmin0FtkrwoCQ==}
+  react@19.2.3:
+    resolution: {integrity: sha512-Ku/hhYbVjOQnXDZFv2+RibmLFGwFdeeKHFcOTlrt7xplBnya5OGn/hIRDsqDiSUcfORsDC7MPxwork8jBwsIWA==}
     engines: {node: '>=0.10.0'}
 
   readdirp@4.1.2:
@@ -1336,12 +1337,12 @@ snapshots:
 
   '@bigtablet/design-system@1.6.6(lucide-react@0.553.0(react@19.2.0))(next@16.0.9(@opentelemetry/api@1.9.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(sass@1.95.1))(react-dom@19.2.0(react@19.2.0))(react-toastify@11.0.5(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react@19.2.0)':
     dependencies:
-      lucide-react: 0.553.0(react@19.2.0)
-      react: 19.2.0
-      react-dom: 19.2.0(react@19.2.0)
-      react-toastify: 11.0.5(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      lucide-react: 0.553.0(react@19.2.3)
+      react: 19.2.3
+      react-dom: 19.2.0(react@19.2.3)
+      react-toastify: 11.0.5(react-dom@19.2.0(react@19.2.3))(react@19.2.3)
     optionalDependencies:
-      next: 16.0.9(@opentelemetry/api@1.9.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(sass@1.95.1)
+      next: 16.0.9(@opentelemetry/api@1.9.0)(react-dom@19.2.0(react@19.2.3))(react@19.2.3)(sass@1.95.1)
 
   '@biomejs/biome@2.3.8':
     optionalDependencies:
@@ -1392,18 +1393,18 @@ snapshots:
       '@floating-ui/core': 1.7.3
       '@floating-ui/utils': 0.2.10
 
-  '@floating-ui/react-dom@2.1.6(react-dom@19.2.0(react@19.2.0))(react@19.2.0)':
+  '@floating-ui/react-dom@2.1.6(react-dom@19.2.0(react@19.2.3))(react@19.2.3)':
     dependencies:
       '@floating-ui/dom': 1.7.4
-      react: 19.2.0
-      react-dom: 19.2.0(react@19.2.0)
+      react: 19.2.3
+      react-dom: 19.2.0(react@19.2.3)
 
-  '@floating-ui/react@0.27.16(react-dom@19.2.0(react@19.2.0))(react@19.2.0)':
+  '@floating-ui/react@0.27.16(react-dom@19.2.0(react@19.2.3))(react@19.2.3)':
     dependencies:
-      '@floating-ui/react-dom': 2.1.6(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      '@floating-ui/react-dom': 2.1.6(react-dom@19.2.0(react@19.2.3))(react@19.2.3)
       '@floating-ui/utils': 0.2.10
-      react: 19.2.0
-      react-dom: 19.2.0(react@19.2.0)
+      react: 19.2.3
+      react-dom: 19.2.0(react@19.2.3)
       tabbable: 6.3.0
 
   '@floating-ui/utils@0.2.10': {}
@@ -1438,10 +1439,10 @@ snapshots:
     dependencies:
       tslib: 2.8.1
 
-  '@hookform/resolvers@5.2.2(react-hook-form@7.68.0(react@19.2.0))':
+  '@hookform/resolvers@5.2.2(react-hook-form@7.68.0(react@19.2.3))':
     dependencies:
       '@standard-schema/utils': 0.3.0
-      react-hook-form: 7.68.0(react@19.2.0)
+      react-hook-form: 7.68.0(react@19.2.3)
 
   '@img/colour@1.0.0':
     optional: true
@@ -1737,10 +1738,10 @@ snapshots:
 
   '@tanstack/query-core@5.90.12': {}
 
-  '@tanstack/react-query@5.90.12(react@19.2.0)':
+  '@tanstack/react-query@5.90.12(react@19.2.3)':
     dependencies:
       '@tanstack/query-core': 5.90.12
-      react: 19.2.0
+      react: 19.2.3
 
   '@types/debug@4.1.12':
     dependencies:
@@ -1918,14 +1919,14 @@ snapshots:
       hasown: 2.0.2
       mime-types: 2.1.35
 
-  framer-motion@12.23.25(react-dom@19.2.0(react@19.2.0))(react@19.2.0):
+  framer-motion@12.23.25(react-dom@19.2.0(react@19.2.3))(react@19.2.3):
     dependencies:
       motion-dom: 12.23.23
       motion-utils: 12.23.6
       tslib: 2.8.1
     optionalDependencies:
-      react: 19.2.0
-      react-dom: 19.2.0(react@19.2.0)
+      react: 19.2.3
+      react-dom: 19.2.0(react@19.2.3)
 
   function-bind@1.1.2: {}
 
@@ -2031,9 +2032,9 @@ snapshots:
 
   longest-streak@3.1.0: {}
 
-  lucide-react@0.553.0(react@19.2.0):
+  lucide-react@0.553.0(react@19.2.3):
     dependencies:
-      react: 19.2.0
+      react: 19.2.3
 
   markdown-table@3.0.4: {}
 
@@ -2416,30 +2417,30 @@ snapshots:
 
   next-intl-swc-plugin-extractor@4.5.8: {}
 
-  next-intl@4.5.8(next@16.0.9(@opentelemetry/api@1.9.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(sass@1.95.1))(react@19.2.0)(typescript@5.9.3):
+  next-intl@4.5.8(next@16.0.9(@opentelemetry/api@1.9.0)(react-dom@19.2.0(react@19.2.3))(react@19.2.3)(sass@1.95.1))(react@19.2.3)(typescript@5.9.3):
     dependencies:
       '@formatjs/intl-localematcher': 0.5.10
       '@swc/core': 1.15.3
       negotiator: 1.0.0
-      next: 16.0.9(@opentelemetry/api@1.9.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(sass@1.95.1)
+      next: 16.0.9(@opentelemetry/api@1.9.0)(react-dom@19.2.0(react@19.2.3))(react@19.2.3)(sass@1.95.1)
       next-intl-swc-plugin-extractor: 4.5.8
       po-parser: 1.0.2
-      react: 19.2.0
-      use-intl: 4.5.8(react@19.2.0)
+      react: 19.2.3
+      use-intl: 4.5.8(react@19.2.3)
     optionalDependencies:
       typescript: 5.9.3
     transitivePeerDependencies:
       - '@swc/helpers'
 
-  next@16.0.9(@opentelemetry/api@1.9.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(sass@1.95.1):
+  next@16.0.9(@opentelemetry/api@1.9.0)(react-dom@19.2.0(react@19.2.3))(react@19.2.3)(sass@1.95.1):
     dependencies:
       '@next/env': 16.0.9
       '@swc/helpers': 0.5.15
       caniuse-lite: 1.0.30001760
       postcss: 8.4.31
-      react: 19.2.0
-      react-dom: 19.2.0(react@19.2.0)
-      styled-jsx: 5.1.6(react@19.2.0)
+      react: 19.2.3
+      react-dom: 19.2.0(react@19.2.3)
+      styled-jsx: 5.1.6(react@19.2.3)
     optionalDependencies:
       '@next/swc-darwin-arm64': 16.0.9
       '@next/swc-darwin-x64': 16.0.9
@@ -2486,29 +2487,29 @@ snapshots:
 
   proxy-from-env@1.1.0: {}
 
-  react-datepicker@8.10.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0):
+  react-datepicker@8.10.0(react-dom@19.2.0(react@19.2.3))(react@19.2.3):
     dependencies:
-      '@floating-ui/react': 0.27.16(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      '@floating-ui/react': 0.27.16(react-dom@19.2.0(react@19.2.3))(react@19.2.3)
       clsx: 2.1.1
       date-fns: 4.1.0
-      react: 19.2.0
-      react-dom: 19.2.0(react@19.2.0)
+      react: 19.2.3
+      react-dom: 19.2.0(react@19.2.3)
 
-  react-dom@19.2.0(react@19.2.0):
+  react-dom@19.2.0(react@19.2.3):
     dependencies:
-      react: 19.2.0
+      react: 19.2.3
       scheduler: 0.27.0
 
-  react-fast-marquee@1.6.5(react-dom@19.2.0(react@19.2.0))(react@19.2.0):
+  react-fast-marquee@1.6.5(react-dom@19.2.0(react@19.2.3))(react@19.2.3):
     dependencies:
-      react: 19.2.0
-      react-dom: 19.2.0(react@19.2.0)
+      react: 19.2.3
+      react-dom: 19.2.0(react@19.2.3)
 
-  react-hook-form@7.68.0(react@19.2.0):
+  react-hook-form@7.68.0(react@19.2.3):
     dependencies:
-      react: 19.2.0
+      react: 19.2.3
 
-  react-markdown@10.1.0(@types/react@19.2.7)(react@19.2.0):
+  react-markdown@10.1.0(@types/react@19.2.7)(react@19.2.3):
     dependencies:
       '@types/hast': 3.0.4
       '@types/mdast': 4.0.4
@@ -2517,7 +2518,7 @@ snapshots:
       hast-util-to-jsx-runtime: 2.3.6
       html-url-attributes: 3.0.1
       mdast-util-to-hast: 13.2.1
-      react: 19.2.0
+      react: 19.2.3
       remark-parse: 11.0.0
       remark-rehype: 11.1.2
       unified: 11.0.5
@@ -2526,13 +2527,13 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  react-toastify@11.0.5(react-dom@19.2.0(react@19.2.0))(react@19.2.0):
+  react-toastify@11.0.5(react-dom@19.2.0(react@19.2.3))(react@19.2.3):
     dependencies:
       clsx: 2.1.1
-      react: 19.2.0
-      react-dom: 19.2.0(react@19.2.0)
+      react: 19.2.3
+      react-dom: 19.2.0(react@19.2.3)
 
-  react@19.2.0: {}
+  react@19.2.3: {}
 
   readdirp@4.1.2: {}
 
@@ -2645,10 +2646,10 @@ snapshots:
     dependencies:
       inline-style-parser: 0.2.7
 
-  styled-jsx@5.1.6(react@19.2.0):
+  styled-jsx@5.1.6(react@19.2.3):
     dependencies:
       client-only: 0.0.1
-      react: 19.2.0
+      react: 19.2.3
 
   tabbable@6.3.0: {}
 
@@ -2700,12 +2701,12 @@ snapshots:
       unist-util-is: 6.0.1
       unist-util-visit-parents: 6.0.2
 
-  use-intl@4.5.8(react@19.2.0):
+  use-intl@4.5.8(react@19.2.3):
     dependencies:
       '@formatjs/fast-memoize': 2.2.7
       '@schummar/icu-type-parser': 1.21.5
       intl-messageformat: 10.7.18
-      react: 19.2.0
+      react: 19.2.3
 
   vfile-message@4.0.3:
     dependencies:

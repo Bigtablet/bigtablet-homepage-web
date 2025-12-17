@@ -2,7 +2,7 @@
 
 import Header from "src/shared/ui/header";
 import Footer from "src/shared/ui/footer";
-import "./style.scss";
+import styles from "./style.module.scss";
 
 type Props = {
     children: React.ReactNode;
@@ -11,11 +11,21 @@ type Props = {
 
 const Template = ({ children, align = "top" }: Props) => {
     return (
-        <div className="template">
+        <div className={styles.template}>
             <Header />
-            <main className={`template_main template_main--${align}`}>
+
+            <main
+                className={[
+                    styles.template_main,
+                    align === "top" && styles.template_main_top,
+                    align === "center" && styles.template_main_center,
+                ]
+                    .filter(Boolean)
+                    .join(" ")}
+            >
                 {children}
             </main>
+
             <Footer />
         </div>
     );

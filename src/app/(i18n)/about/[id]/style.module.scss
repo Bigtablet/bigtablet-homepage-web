@@ -1,0 +1,44 @@
+@use "@bigtablet/design-system/scss/token" as token;
+
+.member_detail {
+  color: token.$text_inverse;
+  min-height: 100vh;
+  padding-block: token.$spacing_2xl token.$spacing_3xl;
+  padding-inline: token.$spacing_md;
+  display: grid;
+  place-items: center;
+  row-gap: token.$spacing_md;
+
+  &_inner {
+    inline-size: min(1100px, 92vw);
+    display: grid;
+    grid-template-columns: 360px 1fr;
+    column-gap: token.$spacing_2xl;
+    align-items: start;
+  }
+
+  &_back {
+    @include token.body_medium;
+    font-size: token.$font_size_sm;
+    color: token.$text_strong;
+    background: token.$color_background;
+    text-decoration: none;
+    padding: token.$spacing_sm token.$spacing_md;
+    border-radius: token.$radius_md;
+    border: 1px solid token.$color_border;
+    transition: background token.$transition_base;
+
+    &:hover {
+      background: token.$color_background_secondary;
+    }
+  }
+}
+
+@media (max-width: 960px) {
+  .member_detail {
+    &_inner {
+      grid-template-columns: 1fr;
+      row-gap: token.$spacing_lg;
+    }
+  }
+}

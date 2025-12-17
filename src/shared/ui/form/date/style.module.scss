@@ -1,0 +1,67 @@
+@use "@bigtablet/design-system/scss/token" as token;
+
+.month_picker {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: token.$spacing_xs;
+}
+
+.month_picker_label {
+  @include token.body_medium;
+  font-size: token.$font_size_sm;
+  color: token.$text_strong;
+}
+
+.month_picker_input {
+  width: 100%;
+}
+
+.month_picker_popup {
+  font-family: inherit;
+  border-radius: token.$radius_lg;
+  border: 1px solid token.$color_border;
+  box-shadow: token.$shadow_sm;
+  background: token.$color_background;
+  padding: token.$spacing_sm;
+
+  .react-datepicker__header {
+    background: token.$color_background;
+    border-bottom: 1px solid token.$color_border;
+    padding-block: token.$spacing_xs;
+  }
+
+  .react-datepicker__current-month,
+  .react-datepicker__month-read-view--selected-month,
+  .react-datepicker__year-read-view--selected-year {
+    @include token.body_medium;
+    font-size: token.$font_size_sm;
+    color: token.$text_strong;
+  }
+
+  .react-datepicker__month {
+    margin: token.$spacing_sm;
+  }
+
+  .react-datepicker__month-text {
+    @include token.body_regular;
+    font-size: token.$font_size_sm;
+    color: token.$text_normal;
+    border-radius: token.$radius_md;
+    padding: token.$spacing_xs token.$spacing_sm;
+
+    &--selected,
+    &--keyboard-selected {
+      background: token.$color_primary;
+      color: token.$text_inverse;
+    }
+
+    &:hover {
+      background: token.$color_background_secondary;
+    }
+  }
+
+  .react-datepicker__navigation {
+    top: token.$spacing_xs;
+  }
+}

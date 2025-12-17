@@ -1,4 +1,4 @@
-@use "src/shared/styles/token" as *;
+@use "@bigtablet/design-system/scss/token" as *;
 
 .request_list {
   @include flex-column;

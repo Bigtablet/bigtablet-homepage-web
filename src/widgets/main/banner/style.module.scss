@@ -1,4 +1,4 @@
-@use "src/shared/styles/token" as *;
+@use "../../../../node_modules/.pnpm/@bigtablet+design-system@1.6.6_lucide-react@0.553.0_react@19.2.0__next@16.0.9_@opentele_27ee9b57465686c2585574e092d19da6/node_modules/@bigtablet/design-system/dist/styles/scss/token" as token;
 
 .banner {
   position: relative;
@@ -6,8 +6,8 @@
   height: 95vh;
   overflow: hidden;
   white-space: pre-line;
-  color: $text-inverse;
-  background: $color-background;
+  color: token.$text_inverse;
+  background: token.$color_background;
 }
 
 .banner_video {
@@ -30,45 +30,44 @@
 }
 
 .banner_content {
-  @include flex-column;
-  @include flex-center;
+  @include token.flex_column;
+  @include token.flex_center;
   position: relative;
   height: 100%;
-  gap: $spacing-3xl;
-  color: $text-inverse;
+  gap: token.$spacing_3xl;
+  color: token.$text_inverse;
   text-align: center;
-  padding-inline: $spacing-xl;
+  padding-inline: token.$spacing_xl;
 }
 
 .banner_title {
-  @include heading-1;
-  font-size: clamp($font-size-2xl, 5vw, $font-size-4xl);
+  @include token.heading_1;
+  font-size: token.$font_size_4xl;
   line-height: 1.1;
-  color: $text-inverse;
+  color: token.$text_inverse;
 }
 
 .banner_description {
-  @include body-medium;
-  font-size: clamp($font-size-md, 2vw, $font-size-xl);
+  @include token.body_medium;
+  font-size: token.$font_size_xl;
   opacity: 0.9;
-  color: rgba($text-inverse, 0.9);
+  color: rgba(token.$text_inverse, 0.9);
 }
 
 .banner_cta {
   display: inline-block;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
+@include token.mobile {
   .banner {
     height: 80vh;
   }
 
   .banner_title {
-    font-size: clamp($font-size-xl, 6vw, $font-size-3xl);
+    font-size: token.$font_size_3xl;
   }
 
   .banner_description {
-    font-size: clamp($font-size-sm, 2.5vw, $font-size-md);
+    font-size: token.$font_size_md;
   }
 }

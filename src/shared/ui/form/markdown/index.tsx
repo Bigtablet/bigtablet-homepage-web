@@ -3,7 +3,7 @@
 import * as React from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import "./style.scss";
+import styles from "./style.module.scss";
 
 type MarkdownEditorProps = {
     label?: string;
@@ -23,24 +23,24 @@ export const MarkdownEditor = ({
     const id = React.useId();
 
     return (
-        <div className="md">
+        <div className={styles.md}>
             {label && (
-                <label className="md__label" htmlFor={id}>
+                <label className={styles.md_label} htmlFor={id}>
                     {label}
                 </label>
             )}
 
-            <div className="md__grid">
-        <textarea
-            id={id}
-            className="md__input"
-            rows={rows}
-            value={value}
-            placeholder={placeholder}
-            onChange={(e) => onChangeAction(e.target.value)}
-        />
+            <div className={styles.md_grid}>
+                <textarea
+                    id={id}
+                    className={styles.md_input}
+                    rows={rows}
+                    value={value}
+                    placeholder={placeholder}
+                    onChange={(e) => onChangeAction(e.target.value)}
+                />
 
-                <div className="md__preview markdown-body">
+                <div className={`${styles.md_preview} ${styles.markdown_body}`}>
                     <ReactMarkdown remarkPlugins={[remarkGfm]}>
                         {value || "미리보기 영역입니다. 마크다운을 입력하세요."}
                     </ReactMarkdown>

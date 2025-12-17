@@ -1,16 +1,17 @@
-@use "src/shared/styles/token" as *;
+@use "@bigtablet/design-system/scss/token" as token;
 
 .member_card {
-  background: $color-background-secondary;
-  border: 1px solid $color-border;
-  border-radius: $radius-lg;
+  background: token.$color_background_secondary;
+  border: 1px solid token.$color_border;
+  border-radius: token.$radius_lg;
   width: 240px;
   height: 355px;
-  padding: $spacing-lg;
+  padding: token.$spacing_lg;
   text-align: center;
-  color: $text-normal;
-  transition: transform $transition-base, box-shadow $transition-base;
+  color: token.$text_normal;
+  transition: transform token.$transition_base, box-shadow token.$transition_base;
   cursor: pointer;
+
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -18,16 +19,16 @@
 
   &:hover {
     transform: translateY(-4px);
-    box-shadow: $shadow-md;
+    box-shadow: token.$shadow_md;
   }
 }
 
 .member_card_image {
   width: 100%;
   height: 220px;
-  border-radius: $radius-md;
-  background: $color-background;
-  margin-bottom: $spacing-sm;
+  border-radius: token.$radius_md;
+  background: token.$color_background;
+  margin-bottom: token.$spacing_sm;
   overflow: hidden;
   flex-shrink: 0;
 
@@ -40,25 +41,26 @@
 }
 
 .member_card_position {
-  @include body-medium;
-  font-size: $font-size-sm;
-  color: $text-subtle;
+  @include token.body_medium;
+  font-size: token.$font_size_sm;
+  color: token.$text_subtle;
   margin-bottom: 2px;
 }
 
 .member_card_name {
-  @include heading-3;
-  font-size: $font-size-lg;
+  @include token.heading_3;
+  font-size: token.$font_size_lg;
   margin: 0 0 4px;
-  color: $text-strong;
+  color: token.$text_strong;
 }
 
 .member_card_desc {
-  @include body-regular;
-  font-size: $font-size-sm;
-  color: $text-subtle;
-  line-height: $line-height-normal;
+  @include token.body_regular;
+  font-size: token.$font_size_sm;
+  color: token.$text_subtle;
+  line-height: token.$line_height_normal;
   text-align: center;
+
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
@@ -70,7 +72,7 @@
   .member_card {
     width: 200px;
     height: 300px;
-    padding: $spacing-md;
+    padding: token.$spacing_md;
   }
 
   .member_card_image {
@@ -78,10 +80,10 @@
   }
 
   .member_card_name {
-    font-size: $font-size-md;
+    font-size: token.$font_size_md;
   }
 
   .member_card_desc {
-    font-size: $font-size-xs;
+    font-size: token.$font_size_xs;
   }
 }

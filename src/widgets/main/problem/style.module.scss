@@ -1,47 +1,49 @@
-@use "src/shared/styles/token" as *;
+@use "../../../../node_modules/.pnpm/@bigtablet+design-system@1.6.6_lucide-react@0.553.0_react@19.2.0__next@16.0.9_@opentele_27ee9b57465686c2585574e092d19da6/node_modules/@bigtablet/design-system/dist/styles/scss/token" as token;
 
 .problem {
-  @include flex-between;
+  @include token.flex_between;
   align-items: flex-start;
   width: 80%;
   max-width: 1200px;
   margin: 0 auto;
   white-space: pre-line;
-  gap: $spacing-2xl;
-  color: $text-normal;
+  gap: token.$spacing_2xl;
+  color: token.$text_normal;
 }
 
 .problem_title {
-  @include heading-2;
+  @include token.heading_2;
   flex: 0 0 35%;
-  font-size: clamp($font-size-2xl, 4vw, $font-size-4xl);
-  color: $text-strong;
-  line-height: 1.25;
+  font-size: token.$font_size_4xl;
+  color: token.$text_strong;
+  line-height: token.$line_height_snug;
 }
 
 .problem_description {
-  @include body-medium;
+  @include token.body_medium;
   flex: 0 0 55%;
-  font-size: clamp($font-size-md, 2vw, $font-size-xl);
-  color: $text-normal;
-  line-height: 1.6;
+  font-size: token.$font_size_xl;
+  color: token.$text_normal;
+  line-height: token.$line_height_relaxed;
 }
 
-@media (max-width: 900px) {
+@include token.mobile {
   .problem {
-    @include flex-column;
+    @include token.flex_column;
     width: 88%;
     text-align: left;
-    gap: $spacing-xl;
+    gap: token.$spacing_xl;
   }
 
   .problem_title {
-    font-size: clamp($font-size-xl, 5vw, $font-size-2xl);
+    font-size: token.$font_size_2xl;
+    line-height: token.$line_height_snug;
     flex: 0 0 auto;
   }
 
   .problem_description {
-    font-size: clamp($font-size-base, 4vw, $font-size-lg);
+    font-size: token.$font_size_lg;
+    line-height: token.$line_height_relaxed;
     flex: 0 0 auto;
   }
 }

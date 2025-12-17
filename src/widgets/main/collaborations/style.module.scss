@@ -1,22 +1,22 @@
-@use "src/shared/styles/token" as *;
+@use "../../../../node_modules/.pnpm/@bigtablet+design-system@1.6.6_lucide-react@0.553.0_react@19.2.0__next@16.0.9_@opentele_27ee9b57465686c2585574e092d19da6/node_modules/@bigtablet/design-system/dist/styles/scss/token" as token;
 
 .collabs {
-  @include flex-column;
-  padding: $spacing-xl 0 $spacing-md;
-  color: $text-inverse;
-  gap: clamp(2rem, 6vw, 80px);
+  @include token.flex_column;
+  padding: token.$spacing_xl 0 token.$spacing_md;
+  color: token.$text_inverse;
+  gap: token.$spacing_3xl;
 }
 
 .collabs_title {
   text-align: center;
-  font-size: clamp($font-size-2xl, 4vw, $font-size-4xl);
-  color: $text-inverse;
+  font-size: token.$font_size_3xl;
+  color: token.$text_inverse;
 }
 
 .collabs_viewport {
   position: relative;
   overflow: hidden;
-  padding-block: $spacing-md;
+  padding-block: token.$spacing_md;
   line-height: 0;
 
   :global(.rfm-marquee) {
@@ -42,16 +42,16 @@
 }
 
 .collabs_card {
-  @include flex-center;
+  @include token.flex_center;
   width: 260px;
   height: 80px;
   margin-right: var(--gap, 24px);
-  border-radius: $radius-lg;
-  background: $color-background;
-  box-shadow: $shadow-sm;
-  padding: $spacing-md $spacing-lg;
+  border-radius: token.$radius_lg;
+  background: token.$color_background;
+  box-shadow: token.$shadow_sm;
+  padding: token.$spacing_md token.$spacing_lg;
   overflow: hidden;
-  transition: transform $transition-fast, box-shadow $transition-base;
+  transition: transform token.$transition_fast, box-shadow token.$transition_base;
 
   img {
     display: block;
@@ -62,8 +62,21 @@
   }
 }
 
-@media (max-width: 640px) {
-  .collabs_title { font-size: $font-size-xl; }
-  .collabs_card { width: 200px; height: 64px; }
-  .collabs_viewport { --gap: #{$spacing-lg}; }
+@include token.mobile {
+  .collabs {
+    gap: token.$spacing_xl;
+  }
+
+  .collabs_title {
+    font-size: token.$font_size_xl;
+  }
+
+  .collabs_card {
+    width: 200px;
+    height: 64px;
+  }
+
+  .collabs_viewport {
+    --gap: token.$spacing_lg;
+  }
 }

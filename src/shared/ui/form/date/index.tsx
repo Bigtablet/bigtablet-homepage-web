@@ -4,8 +4,8 @@ import { forwardRef } from "react";
 import DatePicker from "react-datepicker";
 import { ko } from "date-fns/locale";
 import "react-datepicker/dist/react-datepicker.css";
-import "./style.scss";
-import {TextField} from "@bigtablet/design-system";
+import styles from "./style.module.scss";
+import { TextField } from "@bigtablet/design-system";
 
 type Props = {
     label?: string;
@@ -47,8 +47,10 @@ const MonthPickerField = ({
                               helperText,
                           }: Props) => {
     return (
-        <div className="month-picker__wrapper">
-            {label && <label className="month-picker__label">{label}</label>}
+        <div className={styles.month_picker}>
+            {label && (
+                <label className={styles.month_picker_label}>{label}</label>
+            )}
 
             <DatePicker
                 selected={toDate(value)}
@@ -65,8 +67,8 @@ const MonthPickerField = ({
                         helperText={helperText}
                     />
                 }
-                className="month-picker"
-                calendarClassName="month-picker__popup"
+                className={styles.month_picker_input}
+                calendarClassName={styles.month_picker_popup}
             />
         </div>
     );

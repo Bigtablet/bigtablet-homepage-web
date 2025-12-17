@@ -1,28 +1,31 @@
-@use "src/shared/styles/token" as *;
+@use "@bigtablet/design-system/scss/token" as token;
 
 .news_card {
-  @include flex-column;
+  @include token.flex_column;
   height: 100%;
-  padding: $spacing-md;
-  background: $color-background;
-  border: 1px solid $color-border;
-  border-radius: $radius-lg;
-  transition: transform $transition-base, background $transition-base,
-  border-color $transition-base, box-shadow $transition-base;
+  padding: token.$spacing_md;
+  background: token.$color_background;
+  border: 1px solid token.$color_border;
+  border-radius: token.$radius_lg;
+  transition:
+          transform token.$transition_base,
+          background token.$transition_base,
+          border-color token.$transition_base,
+          box-shadow token.$transition_base;
   text-decoration: none;
-  color: $text-normal;
+  color: token.$text_normal;
 
   &:hover {
     transform: translateY(-2px);
-    background: $color-background-secondary;
-    border-color: $color-primary-hover;
-    box-shadow: $shadow-sm;
+    background: token.$color_background_secondary;
+    border-color: token.$color_primary_hover;
+    box-shadow: token.$shadow_sm;
   }
 
   &:focus-visible {
     outline: none;
-    border-color: $color-primary;
-    box-shadow: 0 0 0 3px rgba($color-primary, 0.35);
+    border-color: token.$color_primary;
+    box-shadow: 0 0 0 3px rgba(token.$color_primary, 0.35);
   }
 }
 
@@ -30,10 +33,10 @@
   position: relative;
   width: 100%;
   aspect-ratio: 4 / 3;
-  border-radius: $radius-md;
+  border-radius: token.$radius_md;
   overflow: hidden;
-  background: $color-background-secondary;
-  border: 1px solid $color-border;
+  background: token.$color_background_secondary;
+  border: 1px solid token.$color_border;
 
   &.is_loaded {
     border-color: transparent;
@@ -43,13 +46,13 @@
   &.is_error {
     display: grid;
     place-items: center;
-    border: 1px dashed rgba($color-border, 0.8);
+    border: 1px dashed rgba(token.$color_border, 0.8);
     background: linear-gradient(180deg, #eef2f6, #d8dee4);
 
     &::after {
       content: "no image";
-      @include text-xs;
-      color: $text-subtle;
+      @include token.text_xs;
+      color: token.$text_subtle;
       opacity: 0.65;
     }
   }
@@ -66,17 +69,17 @@
 .news_card_meta {
   display: flex;
   align-items: center;
-  gap: $spacing-xs;
-  margin-top: $spacing-sm;
-  color: $text-subtle;
-  font-size: $font-size-xs;
+  gap: token.$spacing_xs;
+  margin-top: token.$spacing_sm;
+  color: token.$text_subtle;
+  font-size: token.$font_size_xs;
 }
 
 .news_card_title {
-  @include heading-3;
-  margin-top: $spacing-sm;
-  font-size: $font-size-md;
-  color: $text-strong;
+  @include token.heading_3;
+  margin-top: token.$spacing_sm;
+  font-size: token.$font_size_md;
+  color: token.$text_strong;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;

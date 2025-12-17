@@ -1,0 +1,150 @@
+@use "@bigtablet/design-system/scss/token" as token;
+
+.md {
+  display: grid;
+  gap: token.$spacing_sm;
+}
+
+.md_label {
+  @include token.caption;
+  color: token.$text_subtle;
+}
+
+.md_grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: stretch;
+  column-gap: token.$spacing_2xl;
+  row-gap: token.$spacing_md;
+
+  @media (max-width: 960px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.md_input,
+.md_preview {
+  min-width: 0;
+  box-sizing: border-box;
+  max-width: 100%;
+  overflow: auto;
+}
+
+.md_input {
+  width: 100%;
+  min-height: 300px;
+  border: 1px solid token.$color_border;
+  border-radius: token.$radius_md;
+  padding: token.$spacing_md;
+  background: token.$color_background;
+
+  @include token.body_regular;
+  font-size: token.$font_size_md;
+  color: token.$text_normal;
+  line-height: token.$line_height_relaxed;
+
+  resize: vertical;
+  transition: border-color token.$transition_base, box-shadow token.$transition_base;
+
+  &:hover {
+    border-color: token.$color_border_light;
+  }
+
+  &:focus {
+    border-color: token.$color_primary;
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.06);
+    outline: none;
+  }
+}
+
+.md_preview {
+  min-height: 300px;
+  border: 1px solid token.$color_border;
+  border-radius: token.$radius_md;
+  background: token.$color_background;
+  padding: token.$spacing_md;
+}
+
+.markdown_body {
+  @include token.body_regular;
+  font-size: token.$font_size_md;
+  color: token.$text_normal;
+  line-height: token.$line_height_relaxed;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+
+  img,
+  video {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @include token.heading_3;
+    color: token.$text_strong;
+    margin: token.$spacing_lg 0 token.$spacing_sm;
+  }
+
+  p {
+    margin: token.$spacing_sm 0;
+  }
+
+  a {
+    color: token.$color_primary;
+    text-decoration: underline;
+  }
+
+  ul,
+  ol {
+    margin: token.$spacing_sm 0 token.$spacing_sm token.$spacing_lg;
+  }
+
+  blockquote {
+    border-left: 4px solid token.$color_border;
+    padding-left: token.$spacing_md;
+    color: token.$text_subtle;
+    margin: token.$spacing_sm 0;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: token.$spacing_md 0;
+
+    th,
+    td {
+      border: 1px solid token.$color_border;
+      padding: token.$spacing_sm token.$spacing_md;
+      text-align: left;
+    }
+
+    th {
+      background: token.$color_background_secondary;
+    }
+  }
+
+  code {
+    background: token.$color_background_secondary;
+    padding: 2px 6px;
+    border-radius: token.$radius_sm;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+
+  pre {
+    background: token.$color_background_secondary;
+    padding: token.$spacing_md;
+    border-radius: token.$radius_md;
+    overflow: auto;
+
+    code {
+      background: transparent;
+      padding: 0;
+    }
+  }
+}

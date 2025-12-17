@@ -1,22 +1,26 @@
-@use "src/shared/styles/token" as *;
+@use "@bigtablet/design-system/scss/token" as token;
 
 .blog_card {
-  @include flex-column;
-  background: $color-background;
-  border: 1px solid $color-border;
-  border-radius: $radius-lg;
-  padding: $spacing-md;
+  @include token.flex_column;
+  background: token.$color_background;
+  border: 1px solid token.$color_border;
+  border-radius: token.$radius_lg;
+  padding: token.$spacing_md;
   text-decoration: none;
-  color: $text-normal;
-  transition: transform $transition-base, background $transition-base, border-color $transition-base, box-shadow $transition-base;
+  color: token.$text_normal;
+  transition:
+          transform token.$transition_base,
+          background token.$transition_base,
+          border-color token.$transition_base,
+          box-shadow token.$transition_base;
   height: 100%;
   cursor: pointer;
 
   &:hover {
     transform: translateY(-2px);
-    background: $color-background-secondary;
-    border-color: $color-primary-hover;
-    box-shadow: $shadow-sm;
+    background: token.$color_background_secondary;
+    border-color: token.$color_primary_hover;
+    box-shadow: token.$shadow_sm;
   }
 }
 
@@ -24,10 +28,10 @@
   position: relative;
   width: 100%;
   aspect-ratio: 4 / 3;
-  border-radius: $radius-md;
+  border-radius: token.$radius_md;
   overflow: hidden;
-  background: $color-background-secondary;
-  border: 1px solid $color-border;
+  background: token.$color_background_secondary;
+  border: 1px solid token.$color_border;
 
   img {
     object-fit: cover;
@@ -50,14 +54,14 @@
 .blog_card_meta {
   display: flex;
   align-items: center;
-  gap: $spacing-xs;
-  margin-top: $spacing-sm;
-  color: $text-subtle;
-  font-size: $font-size-xs;
+  gap: token.$spacing_xs;
+  margin-top: token.$spacing_sm;
+  color: token.$text_subtle;
+  font-size: token.$font_size_xs;
 }
 
 .blog_card_time {
-  @include body-regular;
+  @include token.body_regular;
 }
 
 .blog_card_dot {
@@ -65,21 +69,21 @@
 }
 
 .blog_card_views {
-  font-size: $font-size-sm;
-  font-weight: $font-weight-regular;
+  font-size: token.$font_size_sm;
+  font-weight: token.$font_weight_regular;
 }
 
 .blog_card_title {
-  @include heading-3;
-  font-size: $font-size-md;
-  margin-top: $spacing-sm;
-  color: $text-strong;
+  @include token.heading_3;
+  font-size: token.$font_size_md;
+  margin-top: token.$spacing_sm;
+  color: token.$text_strong;
   word-break: keep-all;
 }
 
 .blog_card_excerpt {
-  @include body-regular;
-  font-size: $font-size-sm;
-  margin-top: $spacing-xs;
-  color: $text-subtle;
+  @include token.body_regular;
+  font-size: token.$font_size_sm;
+  margin-top: token.$spacing_xs;
+  color: token.$text_subtle;
 }

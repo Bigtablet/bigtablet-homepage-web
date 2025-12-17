@@ -1,0 +1,10 @@
+@use "@bigtablet/design-system/scss/token" as token;
+@use "../../form-base.module" as base;
+
+.row_email {
+  grid-template-columns: minmax(0, 2fr) minmax(120px, 1fr) auto auto;
+
+  @media (max-width: 720px) {
+    grid-template-columns: 1fr 1fr;
+  }
+}

@@ -1,0 +1,53 @@
+@use "@bigtablet/design-system/scss/token" as token;
+
+.apply_form {
+  width: 100%;
+  max-width: 880px;
+  margin: 0 auto;
+  background: token.$color_background;
+  border: 1px solid token.$color_border;
+  border-radius: token.$radius_xl;
+  box-shadow: token.$shadow_sm;
+  padding: token.$spacing_4xl token.$spacing_3xl;
+}
+
+.apply_grid {
+  display: flex;
+  gap: token.$spacing_4xl;
+}
+
+.apply_left {
+  @include token.flex_column;
+  gap: token.$spacing_xl;
+}
+
+.apply_right {
+  @include token.flex_column;
+  width: 30%;
+  gap: token.$spacing_lg;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.apply_submit {
+  margin-top: token.$spacing_xl;
+}
+
+.apply_footer {
+  @include token.body_regular;
+  font-size: token.$font_size_xs;
+  text-align: center;
+  color: token.$text_subtle;
+  margin-top: token.$spacing_sm;
+
+  a {
+    color: token.$color_primary;
+    text-decoration: underline;
+  }
+}
+
+.form_error {
+  margin-top: token.$spacing_sm;
+  font-size: token.$font_size_sm;
+  color: token.$color_error;
+}

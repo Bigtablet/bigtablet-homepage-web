@@ -1,84 +1,84 @@
-@use "src/shared/styles/token" as *;
+@use "@bigtablet/design-system/scss/token" as token;
 
 .recruit_detail {
   width: 100%;
   max-width: 960px;
   margin: 0 auto;
-  padding: $spacing-5xl $spacing-xl;
-  color: $text-normal;
+  padding: token.$spacing_5xl token.$spacing_xl;
+  color: token.$text_normal;
 }
 
 .recruit_detail_loading,
 .recruit_detail_error {
   text-align: center;
-  font-size: $font-size-md;
-  color: $text-subtle;
-  padding: $spacing-5xl 0;
+  font-size: token.$font_size_md;
+  color: token.$text_subtle;
+  padding: token.$spacing_5xl 0;
 }
 
 .recruit_detail_header {
-  margin-bottom: $spacing-3xl;
-  border-bottom: 1px solid $color-border-light;
-  padding-bottom: $spacing-lg;
+  margin-bottom: token.$spacing_3xl;
+  border-bottom: 1px solid token.$color_border_light;
+  padding-bottom: token.$spacing_lg;
 }
 
 .recruit_detail_title {
-  @include heading-2;
-  font-size: $font-size-3xl;
-  color: $text-strong;
-  margin: 0 0 $spacing-lg;
+  @include token.heading_2;
+  font-size: token.$font_size_3xl;
+  color: token.$text_strong;
+  margin: 0 0 token.$spacing_lg;
 }
 
 .recruit_detail_meta {
-  @include flex-between;
+  @include token.flex_between;
   align-items: center;
-  gap: $spacing-md;
+  gap: token.$spacing_md;
   flex-wrap: wrap;
 }
 
 .recruit_detail_chips {
-  @include flex-row;
+  display: flex;
   flex-wrap: wrap;
-  gap: $spacing-sm;
+  gap: token.$spacing_sm;
 }
 
 .chip {
   display: inline-flex;
   align-items: center;
   height: 28px;
-  padding: 0 $spacing-md;
-  border-radius: $radius-full;
-  background: $color-background;
-  border: 1px solid $color-border;
-  color: $text-normal;
-  font-size: $font-size-sm;
+  padding: 0 token.$spacing_md;
+  border-radius: token.$radius_full;
+  background: token.$color_background;
+  border: 1px solid token.$color_border;
+  color: token.$text_normal;
+  font-size: token.$font_size_sm;
   white-space: nowrap;
 }
 
 .recruit_detail_datebar {
   display: inline-flex;
   align-items: center;
-  color: $text-subtle;
-  font-size: $font-size-sm;
+  color: token.$text_subtle;
+  font-size: token.$font_size_sm;
   white-space: nowrap;
   height: 28px;
 }
 
 .recruit_detail_section {
-  margin-bottom: $spacing-4xl;
+  margin-bottom: token.$spacing_4xl;
 }
 
 .recruit_detail_section h2 {
-  @include heading-3;
-  font-size: $font-size-xl;
-  color: $text-normal;
-  margin: 0 0 $spacing-md;
+  @include token.heading_3;
+  font-size: token.$font_size_xl;
+  color: token.$text_normal;
+  margin: 0 0 token.$spacing_md;
 }
 
 .recruit_detail_text {
-  font-size: $font-size-md;
-  color: $text-normal;
-  line-height: $line-height-relaxed;
+  font-size: token.$font_size_md;
+  color: token.$text_normal;
+  line-height: token.$line_height_relaxed;
   white-space: pre-line;
 }
 
@@ -86,7 +86,7 @@
 .recruit_detail_list,
 .recruit_detail_list ul,
 .recruit_detail_list ol {
-  padding-left: $spacing-xl;
+  padding-left: token.$spacing_xl;
 }
 
 .recruit_detail_list ul {
@@ -98,61 +98,61 @@
 }
 
 .recruit_detail_list li {
-  font-size: $font-size-md;
-  line-height: $line-height-relaxed;
-  color: $text-normal;
+  font-size: token.$font_size_md;
+  line-height: token.$line_height_relaxed;
+  color: token.$text_normal;
 }
 
 .recruit_detail_process {
-  font-size: $font-size-md;
-  color: $text-normal;
+  font-size: token.$font_size_md;
+  color: token.$text_normal;
   letter-spacing: 0.02em;
   word-spacing: 2px;
   white-space: pre-line;
 }
 
 .recruit_detail_notice {
-  margin-bottom: $spacing-4xl;
-  padding: $spacing-xl;
-  border-radius: $radius-lg;
-  background: $color-background-secondary;
-  border: 1px solid $color-border-light;
+  margin-bottom: token.$spacing_4xl;
+  padding: token.$spacing_xl;
+  border-radius: token.$radius_lg;
+  background: token.$color_background_secondary;
+  border: 1px solid token.$color_border_light;
 }
 
 .recruit_detail_notice_title {
-  @include heading-3;
-  font-size: $font-size-lg;
-  color: $text-strong;
-  margin: 0 0 $spacing-sm;
+  @include token.heading_3;
+  font-size: token.$font_size_lg;
+  color: token.$text_strong;
+  margin: 0 0 token.$spacing_sm;
 }
 
 .recruit_detail_notice_text {
-  @include body-regular;
-  font-size: $font-size-sm;
-  color: $text-normal;
-  line-height: $line-height-relaxed;
-  margin: 0 0 $spacing-sm;
+  @include token.body_regular;
+  font-size: token.$font_size_sm;
+  color: token.$text_normal;
+  line-height: token.$line_height_relaxed;
+  margin: 0 0 token.$spacing_sm;
 }
 
 .recruit_detail_notice_list {
-  margin: 0 0 $spacing-sm;
-  padding-left: $spacing-xl;
+  margin: 0 0 token.$spacing_sm;
+  padding-left: token.$spacing_xl;
   list-style-type: disc;
 }
 
 .recruit_detail_notice_list li {
-  @include body-regular;
-  font-size: $font-size-sm;
-  color: $text-normal;
-  line-height: $line-height-relaxed;
+  @include token.body_regular;
+  font-size: token.$font_size_sm;
+  color: token.$text_normal;
+  line-height: token.$line_height_relaxed;
 }
 
 .recruit_detail_request {
-  @include flex-column;
-  @include flex-center;
-  gap: $spacing-2xl;
-  padding-top: $spacing-2xl;
-  border-top: 1px solid $color-border-light;
+  @include token.flex_column;
+  @include token.flex_center;
+  gap: token.$spacing_2xl;
+  padding-top: token.$spacing_2xl;
+  border-top: 1px solid token.$color_border_light;
 
   &_button {
     width: 100%;
@@ -160,25 +160,25 @@
 }
 
 .recruit_detail_request p {
-  @include body-regular;
-  font-size: $font-size-md;
-  color: $text-normal;
+  @include token.body_regular;
+  font-size: token.$font_size_md;
+  color: token.$text_normal;
   text-align: center;
 }
 
 @media (max-width: 768px) {
   .recruit_detail {
-    padding: $spacing-4xl $spacing-md;
+    padding: token.$spacing_4xl token.$spacing_md;
   }
 
   .recruit_detail_title {
-    font-size: $font-size-2xl;
+    font-size: token.$font_size_2xl;
   }
 
   .recruit_detail_meta {
     flex-direction: column;
     align-items: flex-start;
-    gap: $spacing-sm;
+    gap: token.$spacing_sm;
   }
 
   .recruit_detail_datebar {
@@ -187,14 +187,14 @@
   }
 
   .recruit_detail_section h2 {
-    font-size: $font-size-lg;
+    font-size: token.$font_size_lg;
   }
 
   .recruit_detail_notice {
-    padding: $spacing-lg;
+    padding: token.$spacing_lg;
   }
 
   .recruit_detail_request p {
-    font-size: $font-size-base;
+    font-size: token.$font_size_base;
   }
 }

@@ -1,0 +1,46 @@
+@use "@bigtablet/design-system/scss/token" as token;
+
+/**
+ * 에러 페이지 루트
+ */
+.error_root {
+  @include token.flex_center;
+  min-height: calc(100vh - 120px);
+}
+
+/**
+ * 에러 카드
+ */
+.error_card {
+  text-align: center;
+  background: token.$color_background;
+  border: 1px solid token.$color_border;
+  border-radius: token.$radius_lg;
+  padding: token.$spacing_3xl;
+  box-shadow: token.$shadow_sm;
+}
+
+/**
+ * 에러 타이틀
+ */
+.error_title {
+  margin-bottom: token.$spacing_md;
+  color: token.$color_error;
+}
+
+/**
+ * 에러 설명
+ */
+.error_desc {
+  margin-bottom: token.$spacing_xl;
+  color: token.$text_subtle;
+}
+
+/**
+ * 액션 영역
+ */
+.error_actions {
+  display: flex;
+  justify-content: center;
+  gap: token.$spacing_sm;
+}

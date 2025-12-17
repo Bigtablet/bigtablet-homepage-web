@@ -1,5 +1,5 @@
 @use "sass:color";
-@use "src/shared/styles/token" as *;
+@use "@bigtablet/design-system/scss/token" as token;
 
 .header {
   position: sticky;
@@ -7,22 +7,26 @@
   z-index: 1000;
   width: 100%;
   height: 80px;
-  background: $color-background;
-  color: $text-normal;
-  transition: background-color $transition-base, box-shadow $transition-base;
+  background: token.$color_background;
+  color: token.$text_normal;
+  transition: background-color token.$transition_base, box-shadow token.$transition_base;
 }
 
 .scrolled {
-  box-shadow: $shadow-md;
+  box-shadow: token.$shadow_md;
 }
 
 .inner {
-  @include flex-between;
+  @include token.flex_between;
   height: 100%;
-  padding: 0 clamp($spacing-lg, 6vw, 100px);
+  padding-inline: clamp(
+  token.$spacing_lg,
+  6vw,
+  token.$spacing_4xl
+  );
   max-width: 1440px;
   margin: 0 auto;
-  transition: transform $transition-base;
+  transition: transform token.$transition_base;
 }
 
 .logo {
@@ -32,16 +36,21 @@
 .nav {
   display: flex;
   align-items: center;
-  gap: clamp($spacing-sm, 3vw, $spacing-xl);
-  @include text-md;
+  gap: clamp(
+  token.$spacing_sm,
+  3vw,
+  token.$spacing_xl
+  );
+
+  @include token.body_medium;
 
   a {
-    @include text-md;
-    font-weight: $font-weight-semibold;
+    @include token.body_medium;
+    font-weight: token.$font_weight_semibold;
     position: relative;
     padding: 6px 2px;
-    color: $text-normal;
-    transition: color $transition-fast;
+    color: token.$text_normal;
+    transition: color token.$transition_fast;
 
     &::after {
       content: "";
@@ -53,13 +62,14 @@
       background: currentColor;
       transform: scaleX(0);
       transform-origin: right;
-      transition: transform $transition-fast;
+      transition: transform token.$transition_fast;
       opacity: 0.9;
     }
 
     &:hover {
-      color: $text-strong;
+      color: token.$text_strong;
     }
+
     &:hover::after {
       transform: scaleX(1);
       transform-origin: left;
@@ -68,16 +78,23 @@
 }
 
 .locale_switch {
-  margin-left: clamp($spacing-sm, 2vw, $spacing-md);
-  padding: $spacing-xs $spacing-md;
-  border-radius: $radius-md;
-  border: 1px solid $color-border;
-  background: $color-background-secondary;
+  margin-left: clamp(
+  token.$spacing_sm,
+  2vw,
+  token.$spacing_md
+  );
+  padding: token.$spacing_xs token.$spacing_md;
+  border-radius: token.$radius_md;
+  border: 1px solid token.$color_border;
+  background: token.$color_background_secondary;
   cursor: pointer;
-  transition: transform $transition-fast, background $transition-base, border-color $transition-base;
+  transition:
+          transform token.$transition_fast,
+          background token.$transition_base,
+          border-color token.$transition_base;
 
   &:hover {
-    background: color.adjust($color-background-secondary, $lightness: 2%);
+    background: color.adjust(token.$color_background_secondary, $lightness: 2%);
     transform: translateY(-1px);
   }
 

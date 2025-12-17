@@ -10,7 +10,7 @@ importers:
     dependencies:
       '@bigtablet/design-system':
         specifier: ^1.6.4
-        version: 1.6.4(lucide-react@0.553.0(react@19.2.0))(next@16.0.9(@opentelemetry/api@1.9.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(sass@1.95.1))(react-dom@19.2.0(react@19.2.0))(react-toastify@11.0.5(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react@19.2.0)
+        version: 1.6.4(lucide-react@0.561.0(react@19.2.0))(next@16.0.9(@opentelemetry/api@1.9.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(sass@1.95.1))(react-dom@19.2.0(react@19.2.0))(react-toastify@11.0.5(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react@19.2.0)
       '@hookform/resolvers':
         specifier: ^5.2.2
         version: 5.2.2(react-hook-form@7.68.0(react@19.2.0))
@@ -39,8 +39,8 @@ importers:
         specifier: ^3.0.5
         version: 3.0.5
       lucide-react:
-        specifier: ^0.553.0
-        version: 0.553.0(react@19.2.0)
+        specifier: ^0.561.0
+        version: 0.561.0(react@19.2.0)
       next:
         specifier: 16.0.9
         version: 16.0.9(@opentelemetry/api@1.9.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(sass@1.95.1)
@@ -928,8 +928,8 @@ packages:
   longest-streak@3.1.0:
     resolution: {integrity: sha512-9Ri+o0JYgehTaVBBDoMqIl8GXtbWg711O3srftcHhZ0dqnETqLaoIK0x17fUw9rFSlK/0NlsKe0Ahhyl5pXE2g==}
 
-  lucide-react@0.553.0:
-    resolution: {integrity: sha512-BRgX5zrWmNy/lkVAe0dXBgd7XQdZ3HTf+Hwe3c9WK6dqgnj9h+hxV+MDncM88xDWlCq27+TKvHGE70ViODNILw==}
+  lucide-react@0.561.0:
+    resolution: {integrity: sha512-Y59gMY38tl4/i0qewcqohPdEbieBy7SovpBL9IFebhc2mDd8x4PZSOsiFRkpPcOq6bj1r/mjH/Rk73gSlIJP2A==}
     peerDependencies:
       react: ^16.5.1 || ^17.0.0 || ^18.0.0 || ^19.0.0
 
@@ -1121,6 +1121,7 @@ packages:
   next@16.0.9:
     resolution: {integrity: sha512-Xk5x/wEk6ADIAtQECLo1uyE5OagbQCiZ+gW4XEv24FjQ3O2PdSkvgsn22aaseSXC7xg84oONvQjFbSTX5YsMhQ==}
     engines: {node: '>=20.9.0'}
+    deprecated: This version has a security vulnerability. Please upgrade to a patched version. See https://nextjs.org/blog/security-update-2025-12-11 for more details.
     hasBin: true
     peerDependencies:
       '@opentelemetry/api': ^1.1.0
@@ -1334,9 +1335,9 @@ packages:
 
 snapshots:
 
-  '@bigtablet/design-system@1.6.4(lucide-react@0.553.0(react@19.2.0))(next@16.0.9(@opentelemetry/api@1.9.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(sass@1.95.1))(react-dom@19.2.0(react@19.2.0))(react-toastify@11.0.5(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react@19.2.0)':
+  '@bigtablet/design-system@1.6.4(lucide-react@0.561.0(react@19.2.0))(next@16.0.9(@opentelemetry/api@1.9.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(sass@1.95.1))(react-dom@19.2.0(react@19.2.0))(react-toastify@11.0.5(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react@19.2.0)':
     dependencies:
-      lucide-react: 0.553.0(react@19.2.0)
+      lucide-react: 0.561.0(react@19.2.0)
       react: 19.2.0
       react-dom: 19.2.0(react@19.2.0)
       react-toastify: 11.0.5(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
@@ -2031,7 +2032,7 @@ snapshots:
 
   longest-streak@3.1.0: {}
 
-  lucide-react@0.553.0(react@19.2.0):
+  lucide-react@0.561.0(react@19.2.0):
     dependencies:
       react: 19.2.0
 

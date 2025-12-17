@@ -1,6 +1,6 @@
 import type { NextRequest } from "next/server";
 
-export const runtime = "edge";
+export const runtime = "nodejs";
 
 /** Content-Type quick checks */
 const IMG = /^image\//i;
@@ -209,11 +209,14 @@ export async function GET(req: NextRequest) {
             /** og:image 후보가 없으면 favicon으로 대체 */
             const og = pickOg(html, url.toString()) || faviconOf(url);
 
+            /** page 쿼리 제거 함수 */
+            const cleanReferer = `${url.origin}${url.pathname}`;
+
             const imgRes = await timedFetch(
                 og,
                 {
                     "user-agent": UA,
-                    referer: url.toString(),
+                    referer: cleanReferer,
                     accept: "image/avif,image/webp,image/*",
                 },
                 3000

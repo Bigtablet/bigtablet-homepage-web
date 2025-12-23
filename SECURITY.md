@@ -54,17 +54,18 @@ We will acknowledge receipt within **48 hours**.
 ## 처리 절차 / Triage & Response Process
 <div>
 1. 신고 접수 및 확인 — 접수 확인 메일 발송.  <br>
-2. 48시간 이내 초기 회신(접수 확인 및 담당자 연락).  <br>
-3. 취약점 검증 및 영향도 평가.  <br>
-4. 수정 계획 수립 및 패치 개발.  <br>
+2. 접수 확인 및 담당자 연락(영업일 기준 48시간 이내 초기 회신).  <br>
+3. 취약점 검증 및 영향도 평가(접수 후 7일 이내 심각도 판단 및 결과 공유).  <br>
+4. 수정 계획 수립 및 패치 개발(심각도에 따라 접수 후 최대 90일 이내 패치 목표).  <br>
 5. 패치 배포 및 공지(필요 시 커뮤니티/사용자 공지). <br>
 </div>
 <br>
+
 <div>
 1. Receive and confirm report — send receipt confirmation.  <br>
-2. Initial response within 48 hours (acknowledgement and assigned contact).  <br>
-3. Verify the vulnerability and assess impact.  <br>
-4. Plan and develop a fix.  <br>
+2. Initial response(initial response & POC assignment within 48 business hours).  <br>
+3. Verification & Impact Assessment(vulnerability triage & Severity rating within 7 days of receipt).  <br>
+4. Planning and developing a fix(aiming to release a patch within 90 days depending on the severity).  <br>
 5. Release patch and notify affected users/communities as appropriate.  <br>
 </div>
 

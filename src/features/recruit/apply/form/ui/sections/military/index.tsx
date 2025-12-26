@@ -33,8 +33,8 @@ export const MilitarySection = ({ form }: Props) => {
                         options={[
                             { value: "", label: "병역 사항 선택", disabled: true },
                             { value: "COMPLETED", label: "군필" },
-                            { value: "NOT_APPLICABLE", label: "면제" },
                             { value: "NOT_COMPLETED", label: "미필" },
+                            { value: "NOT_APPLICABLE", label: "해당없음" },
                         ]}
                     />
                 )}

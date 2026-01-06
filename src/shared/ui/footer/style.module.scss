@@ -1,7 +1,7 @@
 @use "@bigtablet/design-system/scss/token" as token;
 
 .footer {
-  background: #47555E; /* 임시 darkblue */
+  background: #47555E;
   color: token.$text_inverse;
   width: 100%;
 }
@@ -12,17 +12,18 @@
   padding: token.$spacing_xl token.$spacing_lg token.$spacing_2xl;
   display: grid;
   grid-template-columns: 1fr auto;
-  align-items: center;
   gap: token.$spacing_xl;
 }
 
 .footer_left {
   display: grid;
-  gap: token.$spacing_md;
+  gap: token.$spacing_sm;
+  max-width: 720px;
 }
 
 .footer_brand {
   @include token.heading_3;
+  margin-bottom: token.$spacing_sm;
   font-size: token.$font_size_xl;
   color: token.$text_inverse;
 }
@@ -31,38 +32,48 @@
   font-style: normal;
   @include token.body_regular;
   font-size: token.$font_size_md;
+  line-height: token.$line_height_relaxed;
   color: rgba(token.$text_inverse, 0.85);
 }
 
+.footer_left p {
+  @include token.body_regular;
+  font-size: token.$font_size_sm;
+  line-height: token.$line_height_relaxed;
+  color: rgba(token.$text_inverse, 0.75);
+}
+
 .footer_links {
+  margin-top: token.$spacing_sm;
   display: flex;
   flex-wrap: wrap;
   gap: token.$spacing_lg;
 
   a {
     @include token.body_medium;
-    font-size: token.$font_size_md;
+    font-size: token.$font_size_sm;
     color: rgba(token.$text_inverse, 0.9);
     text-decoration: none;
     transition: opacity token.$transition_base;
   }
 
   a:hover {
-    opacity: 0.8;
+    opacity: 0.75;
   }
 }
 
 .footer_social {
   list-style: none;
   display: flex;
+  align-items: flex-start;
   gap: token.$spacing_md;
   padding: 0;
   margin: 0;
 }
 
 .footer_social_btn {
-  width: 48px;
-  height: 48px;
+  width: 44px;
+  height: 44px;
   border-radius: token.$radius_full;
   background: token.$color_background;
   display: grid;
@@ -83,15 +94,13 @@
   }
 }
 
-/* Responsive */
-@media (max-width: 720px) {
+@include token.mobile {
   .footer_inner {
     grid-template-columns: 1fr;
-    justify-items: start;
-    text-align: left;
+    gap: token.$spacing_lg;
   }
 
   .footer_social {
-    justify-self: start;
+    margin-top: token.$spacing_md;
   }
 }

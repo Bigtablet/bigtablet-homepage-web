@@ -1,4 +1,18 @@
 {
+  "footer": {
+    "brand": "Bigtablet, Inc.",
+    "address": "(41585) 대구광역시 동구 동대구로 465, 대구스케일업허브 9층 912호",
+    "company_info": "대표 문지호 ｜ 사업자 등록번호 296-88-02418 ｜ 통신판매업신고 제2026-대구동구-0028호",
+    "contact": "Email : biz@bigtablet.com",
+    "cs": "고객센터 주소 : 대구광역시 동구 동대구로 465, 대구스케일업허브 9층 912호",
+    "cs_tel": "고객센터 Tel : 053-424-9994",
+    "policies": {
+      "privacy": "개인정보처리방침",
+      "terms": "이용약관",
+      "cookies": "쿠키 정책",
+      "accessibility": "접근성"
+    }
+  },
   "policies": {
     "accessibility": {
       "title": "접근성 선언문",

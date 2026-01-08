@@ -1,36 +1,60 @@
 "use client";
 
 import Link from "next/link";
-import { useLocale } from "next-intl";
+import { useTranslations } from "next-intl";
 import styles from "./style.module.scss";
 
 const Footer = () => {
-    const locale = useLocale();
+    const t = useTranslations("footer");
 
     return (
         <footer className={styles.footer}>
             <div className={styles.footer_inner}>
                 <div className={styles.footer_left}>
-                    <strong className={styles.footer_brand}>Bigtablet, Inc.</strong>
+                    <strong className={styles.footer_brand}>
+                        {t("brand")}
+                    </strong>
+
                     <address className={styles.footer_addr}>
-                        440 N. Wolfe Rd, Sunnyvale, CA 94085
+                        {t("address")}
                     </address>
+
+                    {t.has("company_info") && (
+                        <p>{t("company_info")}</p>
+                    )}
+
+                    {t.has("contact") && (
+                        <p>{t("contact")}</p>
+                    )}
+
+                    {t.has("cs") && (
+                        <p>{t("cs")}</p>
+                    )}
+
+                    {t.has("cs_tel") && (
+                        <p>{t("cs_tel")}</p>
+                    )}
 
                     <nav
                         className={styles.footer_links}
                         aria-label="policies"
                     >
-                        <Link href="/policies/privacy">Privacy Policy</Link>
-                        <Link href="/policies/terms">Terms of Service</Link>
-                        <Link href="/policies/cookies">Cookie Policy</Link>
-                        <Link href="/policies/accessibility">Accessibility</Link>
+                        <Link href="/policies/privacy">
+                            {t("policies.privacy")}
+                        </Link>
+                        <Link href="/policies/terms">
+                            {t("policies.terms")}
+                        </Link>
+                        <Link href="/policies/cookies">
+                            {t("policies.cookies")}
+                        </Link>
+                        <Link href="/policies/accessibility">
+                            {t("policies.accessibility")}
+                        </Link>
                     </nav>
                 </div>
 
-                <ul
-                    className={styles.footer_social}
-                    aria-label={`social links (${locale})`}
-                >
+                <ul className={styles.footer_social} aria-label="social links">
                     <li>
                         <a
                             href="https://www.linkedin.com/company/bigtablet/posts/?feedView=all"

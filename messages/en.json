@@ -1,4 +1,14 @@
 {
+  "footer": {
+    "brand": "Bigtablet, Inc.",
+    "address": "440 N. Wolfe Rd, Sunnyvale, CA 94085",
+    "policies": {
+      "privacy": "Privacy Policy",
+      "terms": "Terms of Service",
+      "cookies": "Cookie Policy",
+      "accessibility": "Accessibility"
+    }
+  },
   "policies": {
     "accessibility": {
       "title": "Accessibility Statement",

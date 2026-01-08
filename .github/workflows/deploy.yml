@@ -78,6 +78,7 @@ jobs:
             set -euo pipefail
             VERSION='${{ steps.version.outputs.tag }}'
             echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+            docker image prune -af || true
             docker pull "$IMAGE:$VERSION"
             docker rm -f bigtablet-homepage-web 2>/dev/null || true
             docker run -d \

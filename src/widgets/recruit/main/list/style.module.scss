@@ -1,67 +1,69 @@
-@use "@bigtablet/design-system/scss/token" as *;
+@use "@bigtablet/design-system/scss/token" as token;
 
 .request_list {
-  @include flex-column;
+  @include token.flex_column;
   width: 100%;
   margin: 0 auto;
-  gap: $spacing-sm;
+  gap: token.$spacing_sm;
 }
 
 .request_list_loading,
 .request_list_empty {
   text-align: center;
-  font-size: $font-size-sm;
-  color: $text-normal;
-  padding: $spacing-xl 0;
+  font-size: token.$font_size_sm;
+  color: token.$text_normal;
+  padding: token.$spacing_xl 0;
 }
 
 .request_item {
-  @include flex-between;
+  @include token.flex_between;
   align-items: flex-start;
   text-decoration: none;
-  color: $text-normal;
-  border: 1px solid $color-border;
-  border-radius: $radius-lg;
-  background: $color-background;
-  padding: $spacing-lg $spacing-xl;
-  transition: transform $transition-base, border-color $transition-base, box-shadow $transition-base;
+  color: token.$text_normal;
+  border: 1px solid token.$color_border;
+  border-radius: token.$radius_lg;
+  background: token.$color_background;
+  padding: token.$spacing_lg token.$spacing_xl;
+  transition: transform token.$transition_base,
+  border-color token.$transition_base,
+  box-shadow token.$transition_base;
 
   &:hover {
     transform: translateY(-2px);
-    border-color: $color-primary-hover;
-    box-shadow: $shadow-sm;
+    border-color: token.$color_primary_hover;
+    box-shadow: token.$shadow_sm;
   }
 }
 
 .request_item_left {
-  @include flex-column;
-  gap: $spacing-md;
+  @include token.flex_column;
+  gap: token.$spacing_md;
 }
 
 .request_item_title {
-  @include heading-3;
-  font-size: $font-size-lg;
-  color: $text-strong;
+  @include token.heading_3;
+  font-size: token.$font_size_lg;
+  color: token.$text_strong;
 }
 
 .request_item_tags {
   display: flex;
   flex-wrap: wrap;
-  gap: $spacing-xs;
+  gap: token.$spacing_xs;
 }
 
 .request_item_tag {
-  @include body-medium;
-  font-size: $font-size-xs;
-  color: $text-normal;
-  background: $color-background-secondary;
-  border-radius: $radius-sm;
-  padding: $spacing-xs $spacing-sm;
+  @include token.body_medium;
+  font-size: token.$font_size_xs;
+  color: token.$text_normal;
+  background: token.$color_background_secondary;
+  border-radius: token.$radius_sm;
+  padding: token.$spacing_xs token.$spacing_sm;
 }
 
 .request_item_dday {
-  @include body-medium;
-  font-size: $font-size-sm;
-  color: $color-primary;
+  @include token.body_medium;
+  font-size: token.$font_size_sm;
+  color: token.$color_primary;
   white-space: nowrap;
 }

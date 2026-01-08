@@ -29,6 +29,7 @@ const NewsListSection = ({ items, locale, isLoading, pageSize = 6 }: NewsListPro
                 title={locale === "ko" ? item.titleKr : item.titleEn}
                 url={item.newsUrl}
                 createdAt={item.createdAt}
+                thumbnailImageUrl={item.thumbnailImageUrl}
                 locale={locale}
             />
         ));

@@ -6,6 +6,7 @@ export const newsItemSchema = z.object({
     titleKr: z.string(),
     titleEn: z.string(),
     newsUrl: z.string().url(),
+    thumbnailImageUrl: z.string(),
     createdAt: z.string(),
     modifiedAt: z.string(),
 });

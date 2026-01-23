@@ -6,7 +6,7 @@
   --left-col: 172px;
 
   width: 100%;
-  background: #4C545D;
+  background: token.$color_background_primary;
   position: relative;
   padding-block: clamp(36px, 7vh, 72px);
 }

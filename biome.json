@@ -27,18 +27,7 @@
     "enabled": true,
     "actions": {
       "source": {
-        "organizeImports": "on",
-        "options": {
-          "groups": [
-            "builtin",
-            "external",
-            "internal",
-            "parent",
-            "sibling",
-            "index"
-          ],
-          "internalPattern": ["src/**"]
-        }
+        "organizeImports": "on"
       }
     }
   }

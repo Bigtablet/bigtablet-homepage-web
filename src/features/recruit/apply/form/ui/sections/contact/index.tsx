@@ -47,9 +47,9 @@ export const ContactSection = ({ form, email }: Props) => {
                             placeholder="010-1234-5678"
                             inputMode="numeric"
                             maxLength={13}
-                            onChangeAction={(e) =>
-                                field.onChange(formatPhone010(e.target.value))
-                            }
+							onChangeAction={(value) =>
+								field.onChange(formatPhone010(value as string))
+							}
                             value={field.value ?? ""}
                             error={!!errors.phoneNumber}
                             helperText={errors.phoneNumber?.message as string}
@@ -74,7 +74,7 @@ export const ContactSection = ({ form, email }: Props) => {
                         size="sm"
                         placeholder="인증코드"
                         value={email.authCode}
-                        onChangeAction={(e) => email.setAuthCode(e.target.value)}
+						onChangeAction={(value) => email.setAuthCode(value as string)}
                     />
                     <Button
                         variant="secondary"

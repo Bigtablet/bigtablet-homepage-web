@@ -7,8 +7,8 @@ import { useLocale } from "next-intl";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
-import { useBlogDetailQuery } from "src/entities/blog/queries/blog.query";
-import { useBlogViewMutation } from "src/entities/blog/mutation/blog.mutation";
+import { useBlogDetailQuery } from "src/features/blog/query/blog.query";
+import { useBlogViewMutation } from "src/features/blog/mutation/blog.mutation";
 import { formatRelative } from "src/shared/libs/ui/date";
 
 import styles from "./style.module.scss";

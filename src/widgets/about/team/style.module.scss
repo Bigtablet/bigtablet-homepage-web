@@ -3,7 +3,7 @@
 .team {
   @include token.flex_column;
   width: 100%;
-  background: #47555e;
+  background: token.$color_background_primary;
   color: token.$text_inverse;
   gap: token.$spacing_xl;
   padding-block: token.$spacing_3xl;

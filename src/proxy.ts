@@ -7,7 +7,7 @@ export const config = {
     matcher: ['/(.*)'],
 };
 
-export default function middleware(req: NextRequest) {
+export default function proxy(req: NextRequest) {
     const url = new URL(req.url);
 
     // /en/... 또는 /ko/... 이면 → 접두사 제거 후 308 리다이렉트

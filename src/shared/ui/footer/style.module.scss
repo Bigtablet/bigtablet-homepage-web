@@ -1,106 +1,101 @@
 @use "@bigtablet/design-system/scss/token" as token;
 
 .footer {
-  background: #47555E;
-  color: token.$text_inverse;
-  width: 100%;
+	background: token.$color_background_primary;
+	color: token.$text_inverse;
+	width: 100%;
 }
 
 .footer_inner {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: token.$spacing_xl token.$spacing_lg token.$spacing_2xl;
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: token.$spacing_xl;
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: token.$spacing_4xl token.$spacing_2xl token.$spacing_3xl;
+	display: grid;
+	grid-template-columns: 1fr auto;
+	gap: token.$spacing_3xl;
 }
 
 .footer_left {
-  display: grid;
-  gap: token.$spacing_sm;
-  max-width: 720px;
+	display: flex;
+	flex-direction: column;
+	gap: token.$spacing_lg;
+	max-width: 640px;
 }
 
 .footer_brand {
-  @include token.heading_3;
-  margin-bottom: token.$spacing_sm;
-  font-size: token.$font_size_xl;
-  color: token.$text_inverse;
+	font-size: token.$font_size_lg;
+	font-weight: token.$font_weight_semibold;
+	color: token.$text_inverse;
+	letter-spacing: -0.02em;
 }
 
 .footer_addr {
-  font-style: normal;
-  @include token.body_regular;
-  font-size: token.$font_size_md;
-  line-height: token.$line_height_relaxed;
-  color: rgba(token.$text_inverse, 0.85);
+	font-style: normal;
+	font-size: token.$font_size_sm;
+	line-height: token.$line_height_relaxed;
+	color: rgba(255, 255, 255, 0.7);
 }
 
 .footer_left p {
-  @include token.body_regular;
-  font-size: token.$font_size_sm;
-  line-height: token.$line_height_relaxed;
-  color: rgba(token.$text_inverse, 0.75);
+	font-size: token.$font_size_sm;
+	line-height: token.$line_height_relaxed;
+	color: rgba(255, 255, 255, 0.5);
 }
 
 .footer_links {
-  margin-top: token.$spacing_sm;
-  display: flex;
-  flex-wrap: wrap;
-  gap: token.$spacing_lg;
+	margin-top: token.$spacing_sm;
+	display: flex;
+	flex-wrap: wrap;
+	gap: token.$spacing_xl;
 
-  a {
-    @include token.body_medium;
-    font-size: token.$font_size_sm;
-    color: rgba(token.$text_inverse, 0.9);
-    text-decoration: none;
-    transition: opacity token.$transition_base;
-  }
+	a {
+		font-size: token.$font_size_sm;
+		font-weight: token.$font_weight_medium;
+		color: rgba(255, 255, 255, 0.8);
+		text-decoration: none;
+		transition: color token.$transition_fast;
 
-  a:hover {
-    opacity: 0.75;
-  }
+		&:hover {
+			color: token.$text_inverse;
+		}
+	}
 }
 
 .footer_social {
-  list-style: none;
-  display: flex;
-  align-items: flex-start;
-  gap: token.$spacing_md;
-  padding: 0;
-  margin: 0;
+	list-style: none;
+	display: flex;
+	align-items: flex-start;
+	gap: token.$spacing_md;
+	padding: 0;
+	margin: 0;
 }
 
 .footer_social_btn {
-  width: 44px;
-  height: 44px;
-  border-radius: token.$radius_full;
-  background: token.$color_background;
-  display: grid;
-  place-items: center;
-  color: token.$text_normal;
-  box-shadow:
-          0 1px 0 rgba(0, 0, 0, 0.08) inset,
-          0 2px 8px rgba(0, 0, 0, 0.12);
-  transition:
-          transform token.$transition_fast,
-          filter token.$transition_base,
-          background token.$transition_base;
+	width: 40px;
+	height: 40px;
+	border-radius: token.$radius_lg;
+	background: rgba(255, 255, 255, 0.1);
+	display: grid;
+	place-items: center;
+	color: token.$text_inverse;
+	transition:
+		transform token.$transition_fast,
+		background token.$transition_fast;
 
-  &:hover {
-    transform: translateY(-1px);
-    filter: brightness(0.95);
-    background: token.$color_background_secondary;
-  }
+	&:hover {
+		transform: translateY(-2px);
+		background: rgba(255, 255, 255, 0.15);
+	}
 }
 
 @include token.mobile {
-  .footer_inner {
-    grid-template-columns: 1fr;
-    gap: token.$spacing_lg;
-  }
+	.footer_inner {
+		grid-template-columns: 1fr;
+		gap: token.$spacing_2xl;
+		padding: token.$spacing_3xl token.$spacing_lg token.$spacing_2xl;
+	}
 
-  .footer_social {
-    margin-top: token.$spacing_md;
-  }
+	.footer_social {
+		margin-top: token.$spacing_sm;
+	}
 }

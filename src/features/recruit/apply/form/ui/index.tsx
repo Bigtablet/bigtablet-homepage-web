@@ -1,6 +1,6 @@
 "use client";
 
-import { useGcpUpload } from "src/shared/gcp/hook/use-gcp";
+import { useUpload } from "src/features/upload/model/use-upload";
 import type { ApplyFormProps } from "./type";
 import styles from "./style.module.scss";
 import { ContactSection } from "src/features/recruit/apply/form/ui/sections/contact";
@@ -17,7 +17,7 @@ const ApplyForm = ({ form, email, onSubmit }: ApplyFormProps) => {
         handleSubmit,
     } = form;
 
-    const { upload, isPending: isUploading } = useGcpUpload();
+	const { upload, isPending: isUploading } = useUpload();
     const { showAlert } = useAlert();
 
     const handleSubmitWithConfirm = (values: any) => {

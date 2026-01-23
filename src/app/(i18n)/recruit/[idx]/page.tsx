@@ -2,7 +2,7 @@
 
 import {useParams} from "next/navigation";
 import Template from "src/shared/ui/template";
-import {useRecruitDetailQuery} from "src/entities/recruit/query/recruit.query";
+import { useRecruitDetailQuery } from "src/features/recruit/query/recruit.query";
 import type {RecruitCard} from "src/entities/recruit/model/schema/recruit.schema";
 import ReactMarkdown from "react-markdown";
 import remarkBreaks from "remark-breaks";

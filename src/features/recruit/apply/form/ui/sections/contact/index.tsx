@@ -47,9 +47,7 @@ export const ContactSection = ({ form, email }: Props) => {
                             placeholder="010-1234-5678"
                             inputMode="numeric"
                             maxLength={13}
-                            onChangeAction={(value) =>
-                                field.onChange(formatPhone010(value as string))
-                            }
+              							onChangeAction={(value) => field.onChange(formatPhone010(value as string))}
                             value={field.value ?? ""}
                             error={!!errors.phoneNumber}
                             helperText={errors.phoneNumber?.message as string}

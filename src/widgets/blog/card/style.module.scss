@@ -8,19 +8,13 @@
   padding: token.$spacing_md;
   text-decoration: none;
   color: token.$text_normal;
-  transition:
-          transform token.$transition_base,
-          background token.$transition_base,
-          border-color token.$transition_base,
-          box-shadow token.$transition_base;
   height: 100%;
   cursor: pointer;
+  @include token.hover_lift(-4px, token.$shadow_elevated);
 
   &:hover {
-    transform: translateY(-2px);
     background: token.$color_background_secondary;
     border-color: token.$color_primary_hover;
-    box-shadow: token.$shadow_sm;
   }
 }
 
@@ -46,8 +40,8 @@
   height: 100%;
   background: linear-gradient(
                   180deg,
-                  rgba(90, 141, 203, 0.15),
-                  rgba(71, 85, 94, 0.08)
+                  token.$color_background_neutral,
+                  token.$color_background_muted
   );
 }
 

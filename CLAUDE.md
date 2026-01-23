@@ -563,16 +563,22 @@ feedbackWarning: #FFA726     feedbackInfo: #42A5F5
 
 사용자가 기능 개발이나 수정을 요청하면 아래 워크플로우를 따릅니다.
 
-### Branch Labels
+### Branch/Commit Labels
 
-| Label | 용도 | 예시 |
-| --- | --- | --- |
-| `feat` | 새로운 기능 추가 | `feat/member-list` |
-| `fix` | 버그 수정 | `fix/login-error` |
-| `refactor` | 코드 리팩토링 | `refactor/api-structure` |
-| `style` | 스타일/UI 변경 | `style/dashboard-layout` |
-| `docs` | 문서 수정 | `docs/readme-update` |
-| `chore` | 설정, 빌드 등 기타 작업 | `chore/biome-config` |
+| Label | Description |
+| --- | --- |
+| `feat` | 추가 기능 개발 / 새로운 코드 추가 |
+| `fix` | 기능/코드 수정 |
+| `bug` | 버그/에러 수정 |
+| `merge` | 브랜치 병합 |
+| `deploy` | 프로젝트 배포 / 관련 문서 작업 |
+| `docs` | 문서 추가/수정 |
+| `delete` | 코드/파일/문서 삭제 |
+| `note` | 주석 추가 / 제거 |
+| `style` | 코드 스타일/구조 수정 |
+| `config` | 기초 설정 파일 / 의존성 / 라이브러리 관련 버전이나 파일 수정 |
+| `etc` | 기타 위에 해당하지 않는 경우 |
+| `tada` | 프로젝트 생성 |
 
 ### 1. Issue 생성
 
@@ -625,13 +631,11 @@ feat: commit message
 )"
 ```
 
-**Commit Message 형식:**
-- `feat: 새로운 기능 추가`
-- `fix: 버그 수정`
-- `refactor: 코드 리팩토링`
-- `style: 스타일 변경`
-- `docs: 문서 수정`
-- `chore: 기타 작업`
+**Commit Message 형식:** (위 Branch/Commit Labels 참조)
+- `feat: add member list feature`
+- `fix: resolve login validation`
+- `bug: fix null pointer exception`
+- `config: update dependencies`
 
 ### 5. PR 생성
 

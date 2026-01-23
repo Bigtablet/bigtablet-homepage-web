@@ -1,10 +1,12 @@
 import "src/shared/styles/global.css";
-import {cookies} from "next/headers";
-import {NextIntlClientProvider} from "next-intl";
-import {getMessages} from "next-intl/server";
+import { Suspense } from "react";
+import { cookies } from "next/headers";
+import { NextIntlClientProvider } from "next-intl";
+import { getMessages } from "next-intl/server";
 import Providers from "src/widgets/layout/provider";
-import {Metadata} from "next";
-import {notFound} from "next/navigation";
+import { Metadata } from "next";
+import { notFound } from "next/navigation";
+import RouteLoading from "src/shared/ui/route-loading";
 
 export const metadata: Metadata = {
     title: "Bigtablet",
@@ -35,6 +37,9 @@ export default async function RootLayout({
             <link rel="icon" href="/images/logo/favicon.png"/>
         </head>
         <body className="font-sans antialiased">
+        <Suspense fallback={null}>
+            <RouteLoading />
+        </Suspense>
         <div id="modal"/>
         <NextIntlClientProvider locale={locale} messages={messages}>
             <Providers>{children}</Providers>

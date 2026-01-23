@@ -7,25 +7,19 @@
   background: token.$color_background;
   border: 1px solid token.$color_border;
   border-radius: token.$radius_lg;
-  transition:
-          transform token.$transition_base,
-          background token.$transition_base,
-          border-color token.$transition_base,
-          box-shadow token.$transition_base;
   text-decoration: none;
   color: token.$text_normal;
+  @include token.hover_lift(-4px, token.$shadow_elevated);
 
   &:hover {
-    transform: translateY(-2px);
     background: token.$color_background_secondary;
     border-color: token.$color_primary_hover;
-    box-shadow: token.$shadow_sm;
   }
 
   &:focus-visible {
     outline: none;
     border-color: token.$color_primary;
-    box-shadow: 0 0 0 3px rgba(token.$color_primary, 0.35);
+    box-shadow: token.$glow_accent;
   }
 }
 
@@ -47,7 +41,7 @@
     display: grid;
     place-items: center;
     border: 1px dashed rgba(token.$color_border, 0.8);
-    background: linear-gradient(180deg, #eef2f6, #d8dee4);
+    background: linear-gradient(180deg, token.$color_background_neutral, token.$color_background_muted);
 
     &::after {
       content: "no image";

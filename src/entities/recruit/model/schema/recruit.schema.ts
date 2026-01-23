@@ -70,7 +70,16 @@ export const recruitApplicantSchema = recruitRequestSchema.extend({
     modifiedAt: z.string(),
 });
 
-export const recruitListResponseSchema = baseResponseSchema(recruitResponseSchema.array());
+/**
+ * @description
+ * 목록 응답 스키마. 서버에서 빈 데이터 시 문자열을 반환할 수 있어 union 처리
+ */
+export const recruitListResponseSchema = z.object({
+	status: z.number(),
+	message: z.string(),
+	data: z.union([recruitResponseSchema.array(), z.string(), z.null()]).optional(),
+}).passthrough();
+
 export const recruitDetailResponseSchema = baseResponseSchema(recruitResponseSchema);
 export type RecruitListResponse = z.infer<typeof recruitListResponseSchema>;
 export type RecruitDetailResponse = z.infer<typeof recruitDetailResponseSchema>;

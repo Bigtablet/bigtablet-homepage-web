@@ -4,7 +4,7 @@ import { useMemo } from "react";
 import { useLocale } from "next-intl";
 import { usePathname, useSearchParams, useRouter } from "next/navigation";
 import Template from "src/shared/ui/template";
-import { useBlogPageQuery } from "src/entities/blog/queries/blog.query";
+import { useBlogPageQuery } from "src/features/blog/query/blog.query";
 import BlogListSection from "src/widgets/blog/list";
 import { Pagination } from "@bigtablet/design-system";
 import styles from "./style.module.scss";

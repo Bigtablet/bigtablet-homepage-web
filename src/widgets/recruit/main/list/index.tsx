@@ -7,9 +7,9 @@ import type {
 } from "src/entities/recruit/model/schema/recruit.schema";
 
 import {
-    useRecruitListQuery,
-    useRecruitSearchQuery,
-} from "src/entities/recruit/query/recruit.query";
+	useRecruitListQuery,
+	useRecruitSearchQuery,
+} from "src/features/recruit/query/recruit.query";
 
 import { SkeletonList } from "src/shared/ui/skeleton/list";
 import { toRecruitCards } from "src/entities/recruit/util/date";

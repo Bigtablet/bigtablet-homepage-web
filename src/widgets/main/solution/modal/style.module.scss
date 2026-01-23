@@ -64,7 +64,7 @@
           transform token.$transition_fast;
 
   &:hover {
-    background: rgba(0, 0, 0, 0.5);
+    background: token.$color_overlay;
   }
 
   &:active {

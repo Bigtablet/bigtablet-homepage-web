@@ -1,12 +1,12 @@
 import { getParsed, postParsed } from "src/shared/libs/api/zod";
 import {
-    recruitListResponseSchema,
-    recruitDetailResponseSchema,
-    recruitApplyResponseSchema,
-    type RecruitResponse,
-    type RecruitApplyResponse,
+	recruitListResponseSchema,
+	recruitDetailResponseSchema,
+	recruitApplyResponseSchema,
+	type RecruitResponse,
+	type RecruitApplyResponse,
+	type RecruitRequest,
 } from "../model/schema/recruit.schema";
-import type { ApplyFormValues } from "src/features/recruit/apply/form/model/schema/apply.schema";
 
 export interface RecruitSearchFilters {
     keyword?: string;
@@ -45,7 +45,11 @@ export const getRecruitListApi = async ({
         },
     });
 
-    return data ?? [];
+    // 서버에서 빈 데이터 시 문자열 반환할 수 있음
+    if (!data || typeof data === "string") {
+        return [];
+    }
+    return data;
 };
 
 /* 상세 */
@@ -58,9 +62,9 @@ export const getRecruitDetailApi = async (idx: number, signal?: AbortSignal) => 
     return data;
 };
 
-/* 지원 */
+/** 지원 */
 export const postRecruitApplyApi = async (
-    body: ApplyFormValues,
-    signal?: AbortSignal
+	body: RecruitRequest,
+	signal?: AbortSignal,
 ): Promise<RecruitApplyResponse> =>
-    postParsed("/recruit", recruitApplyResponseSchema, body, { signal });
+	postParsed("/recruit", recruitApplyResponseSchema, body, { signal });

@@ -1,73 +1,70 @@
 @use "@bigtablet/design-system/scss/token" as token;
 
 .banner {
-  position: relative;
-  width: 100%;
-  height: 95vh;
-  overflow: hidden;
-  white-space: pre-line;
-  color: token.$text_inverse;
-  background: token.$color_background;
+	position: relative;
+	width: 100%;
+	height: 95vh;
+	overflow: hidden;
+	white-space: pre-line;
+	color: token.$text_inverse;
+	background: token.$color_background;
 }
 
 .banner_video {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
 }
 
 .banner_video_tag {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
 }
 
 .banner_overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.5);
+	position: absolute;
+	inset: 0;
+	background: token.$color_overlay;
 }
 
 .banner_content {
-  @include token.flex_column;
-  @include token.flex_center;
-  position: relative;
-  height: 100%;
-  gap: token.$spacing_3xl;
-  color: token.$text_inverse;
-  text-align: center;
-  padding-inline: token.$spacing_xl;
+	@include token.flex_column;
+	@include token.flex_center;
+	position: relative;
+	height: 100%;
+	gap: token.$spacing_3xl;
+	color: token.$text_inverse;
+	text-align: center;
+	padding-inline: token.$spacing_xl;
 }
 
 .banner_title {
-  @include token.heading_1;
-  font-size: token.$font_size_4xl;
-  line-height: 1.1;
-  color: token.$text_inverse;
+	@include token.heading_1;
+	font-size: clamp(token.$font_size_3xl, 5vw, token.$font_size_4xl);
+	line-height: token.$line_height_tight;
+	color: token.$text_inverse;
 }
 
 .banner_description {
-  @include token.body_medium;
-  font-size: token.$font_size_xl;
-  opacity: 0.9;
-  color: rgba(token.$text_inverse, 0.9);
+	@include token.body_medium;
+	font-size: clamp(token.$font_size_md, 2vw, token.$font_size_xl);
+	color: token.$text_inverse;
+	opacity: 0.9;
 }
 
 .banner_cta {
-  display: inline-block;
+	display: inline-block;
 }
 
 @include token.mobile {
-  .banner {
-    height: 80vh;
-  }
+	.banner {
+		height: 80vh;
+	}
 
-  .banner_title {
-    font-size: token.$font_size_3xl;
-  }
-
-  .banner_description {
-    font-size: token.$font_size_md;
-  }
+	.banner_content {
+		gap: token.$spacing_2xl;
+		padding-inline: token.$spacing_lg;
+	}
 }

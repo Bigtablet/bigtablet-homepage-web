@@ -16,8 +16,7 @@
 }
 
 .footer_left {
-	display: flex;
-	flex-direction: column;
+	@include token.flex_column;
 	gap: token.$spacing_lg;
 	max-width: 640px;
 }
@@ -26,20 +25,20 @@
 	font-size: token.$font_size_lg;
 	font-weight: token.$font_weight_semibold;
 	color: token.$text_inverse;
-	letter-spacing: -0.02em;
+	letter-spacing: token.$letter_spacing_tight;
 }
 
 .footer_addr {
 	font-style: normal;
 	font-size: token.$font_size_sm;
 	line-height: token.$line_height_relaxed;
-	color: rgba(255, 255, 255, 0.7);
+	color: token.$color_glass_border;
 }
 
 .footer_left p {
 	font-size: token.$font_size_sm;
 	line-height: token.$line_height_relaxed;
-	color: rgba(255, 255, 255, 0.5);
+	color: token.$color_glass_light;
 }
 
 .footer_links {
@@ -51,7 +50,7 @@
 	a {
 		font-size: token.$font_size_sm;
 		font-weight: token.$font_weight_medium;
-		color: rgba(255, 255, 255, 0.8);
+		color: token.$color_glass_border;
 		text-decoration: none;
 		transition: color token.$transition_fast;
 
@@ -74,7 +73,7 @@
 	width: 40px;
 	height: 40px;
 	border-radius: token.$radius_lg;
-	background: rgba(255, 255, 255, 0.1);
+	background: token.$color_glass_light;
 	display: grid;
 	place-items: center;
 	color: token.$text_inverse;
@@ -84,7 +83,7 @@
 
 	&:hover {
 		transform: translateY(-2px);
-		background: rgba(255, 255, 255, 0.15);
+		background: token.$color_glass_border;
 	}
 }
 

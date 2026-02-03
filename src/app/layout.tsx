@@ -1,4 +1,4 @@
-import "src/shared/styles/global.css";
+import "./global.css";
 import { Suspense } from "react";
 import { cookies } from "next/headers";
 import { NextIntlClientProvider } from "next-intl";

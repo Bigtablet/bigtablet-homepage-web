@@ -1,51 +1,64 @@
 @use "@bigtablet/design-system/scss/token" as token;
 
 .team {
-  @include token.flex_column;
-  width: 100%;
-  background: token.$color_background_primary;
-  color: token.$text_inverse;
-  gap: token.$spacing_xl;
-  padding-block: token.$spacing_3xl;
-  padding-inline: token.$spacing_2xl;
+	@include token.flex_column;
+	width: 100%;
+	background: token.$color_background_primary;
+	color: token.$text_inverse;
+	gap: token.$spacing_xl;
+	padding-block: token.$spacing_3xl;
+	padding-inline: token.$spacing_2xl;
 }
 
 .team_title {
-  @include token.heading_2;
-  text-align: center;
-  font-size: token.$font_size_2xl;
-  padding-block: token.$spacing_lg;
-  color: token.$text_inverse;
+	@include token.heading_2;
+	text-align: center;
+	font-size: token.$font_size_2xl;
+	padding-block: token.$spacing_lg;
+	color: token.$text_inverse;
 }
 
 .team_grid {
-  display: grid;
-  grid-template-columns: repeat(3, 240px);
-  gap: token.$spacing_xl;
-  justify-content: center;
-  align-items: start;
-  margin: 0 auto;
-  width: 100%;
-  max-width: 880px;
+	display: grid;
+	grid-template-columns: repeat(3, minmax(200px, 260px));
+	gap: token.$spacing_xl;
+	justify-content: center;
+	align-items: start;
+	margin: 0 auto;
+	width: 100%;
+	max-width: 920px;
 }
 
 @include token.laptop {
-  .team_grid {
-    grid-template-columns: repeat(2, 220px);
-    max-width: 460px;
-  }
+	.team_grid {
+		grid-template-columns: repeat(2, minmax(180px, 240px));
+		max-width: 520px;
+	}
+}
+
+@include token.tablet {
+	.team_grid {
+		grid-template-columns: repeat(2, minmax(160px, 220px));
+		gap: token.$spacing_lg;
+		max-width: 480px;
+	}
 }
 
 @include token.mobile {
-  .team {
-    gap: token.$spacing_lg;
-    padding-block: token.$spacing_2xl;
-    padding-inline: token.$spacing_xl;
-  }
+	.team {
+		gap: token.$spacing_lg;
+		padding-block: token.$spacing_2xl;
+		padding-inline: token.$spacing_lg;
+	}
 
-  .team_grid {
-    grid-template-columns: 1fr;
-    gap: token.$spacing_lg;
-    max-width: 100%;
-  }
+	.team_title {
+		font-size: token.$font_size_xl;
+		padding-block: token.$spacing_md;
+	}
+
+	.team_grid {
+		grid-template-columns: repeat(2, 1fr);
+		gap: token.$spacing_md;
+		max-width: 100%;
+	}
 }

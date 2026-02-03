@@ -1,82 +1,80 @@
 @use "@bigtablet/design-system/scss/token" as token;
 
 .collabs {
-  @include token.flex_column;
-  padding: token.$spacing_xl 0 token.$spacing_md;
-  color: token.$text_inverse;
-  gap: token.$spacing_3xl;
+	@include token.flex_column;
+	padding: token.$spacing_xl 0 token.$spacing_md;
+	color: token.$text_inverse;
+	gap: token.$spacing_3xl;
 }
 
 .collabs_title {
-  text-align: center;
-  font-size: token.$font_size_3xl;
-  color: token.$text_inverse;
+	text-align: center;
+	font-size: token.$font_size_3xl;
+	color: token.$text_inverse;
 }
 
 .collabs_viewport {
-  position: relative;
-  overflow: hidden;
-  padding-block: token.$spacing_md;
-  line-height: 0;
+	position: relative;
+	overflow: hidden;
+	padding-block: token.$spacing_md;
+	line-height: 0;
 
-  :global(.rfm-marquee) {
-    display: flex;
-    align-items: center;
-  }
+	:global(.rfm-marquee) {
+		display: flex;
+		align-items: center;
+	}
 
-  :global(.rfm-initial-child-container) {
-    display: flex;
-    align-items: center;
-    line-height: 0;
-  }
+	:global(.rfm-initial-child-container) {
+		display: flex;
+		align-items: center;
+		line-height: 0;
+	}
 
-  :global(.rfm-child) {
-    display: flex;
-    align-items: center;
-  }
+	:global(.rfm-child) {
+		display: flex;
+		align-items: center;
+	}
 }
 
 .collabs_item {
-  display: flex;
-  align-items: center;
+	display: flex;
+	align-items: center;
 }
 
 .collabs_card {
-  @include token.flex_center;
-  width: 260px;
-  height: 80px;
-  margin-right: var(--gap, 24px);
-  border-radius: token.$radius_lg;
-  background: token.$color_background;
-  box-shadow: token.$shadow_sm;
-  padding: token.$spacing_md token.$spacing_lg;
-  overflow: hidden;
-  transition: transform token.$transition_fast, box-shadow token.$transition_base;
+	@include token.flex_center;
+	width: clamp(200px, 18vw, 280px);
+	height: clamp(64px, 6vw, 88px);
+	margin-right: token.$spacing_2xl;
+	border-radius: token.$radius_lg;
+	background: token.$color_background;
+	box-shadow: token.$shadow_sm;
+	padding: token.$spacing_md token.$spacing_lg;
+	overflow: hidden;
+	transition: transform token.$transition_fast, box-shadow token.$transition_base;
 
-  img {
-    display: block;
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
-    object-position: center;
-  }
+	img {
+		display: block;
+		max-width: 100%;
+		max-height: 100%;
+		object-fit: contain;
+		object-position: center;
+	}
 }
 
 @include token.mobile {
-  .collabs {
-    gap: token.$spacing_xl;
-  }
+	.collabs {
+		gap: token.$spacing_xl;
+	}
 
-  .collabs_title {
-    font-size: token.$font_size_xl;
-  }
+	.collabs_title {
+		font-size: token.$font_size_xl;
+	}
 
-  .collabs_card {
-    width: 200px;
-    height: 64px;
-  }
-
-  .collabs_viewport {
-    --gap: token.$spacing_lg;
-  }
+	.collabs_card {
+		width: 180px;
+		height: 56px;
+		margin-right: token.$spacing_lg;
+		padding: token.$spacing_sm token.$spacing_md;
+	}
 }

@@ -9,17 +9,17 @@
 	background: token.$color_background_primary;
 	position: relative;
 	padding-block: clamp(36px, 7vh, 72px);
-}
 
-.history::before {
-	content: "";
-	position: absolute;
-	top: 0;
-	bottom: 0;
-	left: calc(50vw - var(--container-max) / 2 + var(--left-col) / 2);
-	width: 2px;
-	background: token.$text_inverse;
-	border-radius: 1px;
+	&::before {
+		content: "";
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: calc(50vw - var(--container-max) / 2 + var(--left-col) / 2);
+		width: 2px;
+		background: token.$text_inverse;
+		border-radius: 1px;
+	}
 }
 
 .history_sticky {
@@ -49,12 +49,11 @@
 	color: token.$color_glass_border;
 	cursor: pointer;
 	transition: color token.$transition_fast, opacity token.$transition_fast;
-}
 
-.is_active.history_year_item,
-.history_year_item.is_active {
-	@include token.heading_3;
-	color: token.$text_inverse;
+	&.is_active {
+		@include token.heading_3;
+		color: token.$text_inverse;
+	}
 }
 
 .history_year_block {
@@ -134,13 +133,23 @@
 @include token.mobile {
 	.history {
 		--left-col: 100px;
+		padding-block: token.$spacing_3xl;
+
+		&::before {
+			display: none;
+		}
 	}
 
-	.history::before {
-		display: none;
+	.history_sticky {
+		position: sticky;
+		top: 64px;
+		grid-template-columns: 1fr;
+		row-gap: token.$spacing_md;
+		margin-bottom: token.$spacing_md;
+		padding-block: token.$spacing_sm;
+		background: token.$color_background_primary;
 	}
 
-	.history_sticky,
 	.history_year_block {
 		grid-template-columns: 1fr;
 		row-gap: token.$spacing_md;
@@ -149,9 +158,28 @@
 	.history_years {
 		width: 100%;
 		flex-direction: row;
-		gap: token.$spacing_sm;
+		gap: token.$spacing_xs;
 		overflow-x: auto;
 		padding: 0 token.$spacing_lg;
+		scrollbar-width: none;
+		-ms-overflow-style: none;
+
+		&::-webkit-scrollbar {
+			display: none;
+		}
+	}
+
+	.history_year_item {
+		flex-shrink: 0;
+		padding: token.$spacing_sm token.$spacing_md;
+		border-radius: token.$radius_md;
+		font-size: token.$font_size_sm;
+		background: token.$color_glass_light;
+
+		&.is_active {
+			font-size: token.$font_size_base;
+			background: token.$color_glass_border;
+		}
 	}
 
 	.history_right {
@@ -167,5 +195,13 @@
 		margin-top: token.$spacing_xs;
 		width: 5px;
 		height: 5px;
+	}
+
+	.history_row_title {
+		font-size: token.$font_size_sm;
+	}
+
+	.history_row_desc {
+		font-size: token.$font_size_xs;
 	}
 }

@@ -99,12 +99,11 @@ const Header = () => {
 				</nav>
 
 				{menuOpen && (
-					<div
+					<button
+						type="button"
 						className={styles.overlay}
 						onClick={closeMenu}
 						onKeyDown={(e) => e.key === "Escape" && closeMenu()}
-						role="button"
-						tabIndex={0}
 						aria-label="Close menu"
 					/>
 				)}

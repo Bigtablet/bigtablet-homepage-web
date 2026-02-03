@@ -563,16 +563,34 @@ feedbackWarning: #FFA726     feedbackInfo: #42A5F5
 
 사용자가 기능 개발이나 수정을 요청하면 아래 워크플로우를 따릅니다.
 
+### Commit Labels
+
+| Label | Description | 예시 |
+| --- | --- | --- |
+| `feat` | 추가 기능 개발 / 새로운 코드 추가 | `feat: add auth service` |
+| `fix` | 기능/코드 수정 | `fix: update login validation` |
+| `bug` | 버그/에러 수정 | `bug: resolve null pointer error` |
+| `merge` | 브랜치 병합 | `merge: fix/auth` |
+| `deploy` | 프로젝트 배포 / 관련 문서 작업 | `deploy: update dockerfile` |
+| `docs` | 문서 추가/수정 | `docs: update readme` |
+| `delete` | 코드/파일/문서 삭제 | `delete: remove deprecated api` |
+| `note` | 주석 추가/제거 | `note: add jsdoc comments` |
+| `style` | 코드 스타일/구조 수정 | `style: format with biome` |
+| `config` | 설정 파일 / 의존성 / 라이브러리 수정 | `config: update tsconfig` |
+| `etc` | 기타 위에 해당하지 않는 경우 | `etc: minor cleanup` |
+| `tada` | 프로젝트 생성 | `tada: init project` |
+
 ### Branch Labels
 
 | Label | 용도 | 예시 |
 | --- | --- | --- |
 | `feat` | 새로운 기능 추가 | `feat/member-list` |
-| `fix` | 버그 수정 | `fix/login-error` |
+| `fix` | 기능/코드 수정 | `fix/login-error` |
+| `bug` | 버그/에러 수정 | `bug/null-pointer` |
 | `refactor` | 코드 리팩토링 | `refactor/api-structure` |
 | `style` | 스타일/UI 변경 | `style/dashboard-layout` |
 | `docs` | 문서 수정 | `docs/readme-update` |
-| `chore` | 설정, 빌드 등 기타 작업 | `chore/biome-config` |
+| `config` | 설정 파일 수정 | `config/biome-config` |
 
 ### 1. Issue 생성
 
@@ -580,7 +598,7 @@ feedbackWarning: #FFA726     feedbackInfo: #42A5F5
 
 ```bash
 gh issue create --title "[feat] 기능 제목" --body "$(cat <<'EOF'
-## 개요
+## 제목
 기능에 대한 간단한 설명
 
 ## 작업 내용
@@ -588,7 +606,7 @@ gh issue create --title "[feat] 기능 제목" --body "$(cat <<'EOF'
 - [ ] 작업2
 - [ ] 작업3
 
-## 참고 사항
+## 전달할 추가 이슈
 - 관련 링크나 추가 정보
 EOF
 )"
@@ -596,8 +614,8 @@ EOF
 
 **Issue Title 형식:**
 - `[feat] 새로운 기능 제목`
-- `[fix] 버그 수정 제목`
-- `[refactor] 리팩토링 제목`
+- `[fix] 기능/코드 수정 제목`
+- `[bug] 버그/에러 수정 제목`
 
 ### 2. Branch 생성
 
@@ -625,13 +643,18 @@ feat: commit message
 )"
 ```
 
-**Commit Message 형식:**
-- `feat: 새로운 기능 추가`
-- `fix: 버그 수정`
-- `refactor: 코드 리팩토링`
-- `style: 스타일 변경`
-- `docs: 문서 수정`
-- `chore: 기타 작업`
+**Commit Message 규칙:**
+- 모두 소문자, 필요시 camelCase
+- 영문으로 작성
+- 어디서 무엇을 어떻게 했는지 알 수 있도록 작성
+- Description은 필요시에만 영문으로 작성
+
+**예시:**
+- `feat: add auth service`
+- `fix: update login validation`
+- `bug: resolve null pointer error`
+- `style: format with biome`
+- `config: update dependencies`
 
 ### 5. PR 생성
 
@@ -641,26 +664,18 @@ feat: commit message
 
 ```bash
 gh pr create --base develop --title "feat/123-member-list" --body "$(cat <<'EOF'
-## 작업 요약
-간단한 작업 요약 (1-2문장)
-
-## 관련 Issue
-- closes #123
+## 제목
+작업 제목 (한글)
 
 ## 작업한 내용
 - [x] 작업1
 - [x] 작업2
 - [x] 작업3
 
-## 스크린샷 (UI 변경 시)
-필요한 경우 스크린샷 첨부
-
-## 테스트
-- [ ] 로컬에서 테스트 완료
-- [ ] 빌드 성공 확인
-
 ## 전달할 추가 이슈
 - 추가로 전달할 내용이 있으면 작성
+
+closes #123
 EOF
 )"
 ```

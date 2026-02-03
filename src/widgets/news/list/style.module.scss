@@ -1,9 +1,9 @@
 @use "@bigtablet/design-system/scss/token" as token;
 
 .news_list {
-  @include token.flex-column;
+  @include token.flex_column;
   width: 100%;
-  padding: token.$spacing-xl 0;
+  padding: token.$spacing_xl 0;
   align-items: center;
 }
 
@@ -12,25 +12,31 @@
   max-width: 1200px;
   display: grid;
   grid-template-columns: repeat(1, minmax(0, 1fr));
-  gap: token.$spacing-xl;
+  gap: token.$spacing_xl;
 }
 
-@media (min-width: 768px) {
+.news_list_empty {
+  @include token.body_regular;
+  font-size: token.$font_size_lg;
+  color: token.$text_subtle;
+  margin-top: token.$spacing_3xl;
+  text-align: center;
+}
+
+@include token.tablet {
   .news_list_grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
-@media (min-width: 1024px) {
+@include token.laptop {
   .news_list_grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
-.news_list_empty {
-  @include token.body-regular;
-  font-size: token.$font-size-lg;
-  color: token.$text-subtle;
-  margin-top: token.$spacing-3xl;
-  text-align: center;
+@include token.desktop {
+  .news_list_grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
 }

@@ -1,168 +1,207 @@
 @use "@bigtablet/design-system/scss/token" as token;
 
 .history {
-  --container-width: 1200px;
-  --container-max: min(var(--container-width), 95vw);
-  --left-col: 172px;
+	--container-width: 1200px;
+	--container-max: min(var(--container-width), 95vw);
+	--left-col: 172px;
 
-  width: 100%;
-  background: token.$color_background_primary;
-  position: relative;
-  padding-block: clamp(36px, 7vh, 72px);
-}
+	width: 100%;
+	background: token.$color_background_primary;
+	position: relative;
+	padding-block: clamp(36px, 7vh, 72px);
 
-.history::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: calc(50vw - var(--container-max) / 2 + var(--left-col) / 2);
-  width: 2px;
-  background: token.$text_inverse;
-  border-radius: 1px;
+	&::before {
+		content: "";
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: calc(50vw - var(--container-max) / 2 + var(--left-col) / 2);
+		width: 2px;
+		background: token.$text_inverse;
+		border-radius: 1px;
+	}
 }
 
 .history_sticky {
-  position: sticky;
-  top: 96px;
-  width: var(--container-max);
-  margin: 0 auto token.$spacing_lg auto;
-  display: grid;
-  grid-template-columns: var(--left-col) 1fr;
-  column-gap: 32px;
-  align-items: start;
-  z-index: 2;
+	position: sticky;
+	top: 96px;
+	width: var(--container-max);
+	margin: 0 auto token.$spacing_lg auto;
+	display: grid;
+	grid-template-columns: var(--left-col) 1fr;
+	column-gap: token.$spacing_4xl;
+	align-items: start;
+	z-index: 2;
 }
 
 .history_years {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  width: var(--left-col);
+	@include token.flex_column;
+	gap: token.$spacing_xs;
+	width: var(--left-col);
 }
 
 .history_year_item {
-  @include token.body_medium;
-  background: transparent;
-  border: none;
-  padding: 0;
-  text-align: left;
-  color: rgba(token.$text_inverse, 0.56);
-  cursor: pointer;
-  transition: color 0.16s ease, opacity 0.16s ease;
-}
+	@include token.body_medium;
+	background: transparent;
+	border: none;
+	padding: 0;
+	text-align: left;
+	color: token.$color_glass_border;
+	cursor: pointer;
+	transition: color token.$transition_fast, opacity token.$transition_fast;
 
-.is_active.history_year_item,
-.history_year_item.is_active {
-  @include token.heading_3;
-  color: token.$text_inverse;
+	&.is_active {
+		@include token.heading_3;
+		color: token.$text_inverse;
+	}
 }
 
 .history_year_block {
-  width: var(--container-max);
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: var(--left-col) 1fr;
-  column-gap: 32px;
-  align-items: start;
-  padding-block: 0;
+	width: var(--container-max);
+	margin: 0 auto;
+	display: grid;
+	grid-template-columns: var(--left-col) 1fr;
+	column-gap: token.$spacing_4xl;
+	align-items: start;
+	padding-block: 0;
 }
 
 .history_right {
-  @include token.flex_column;
-  gap: 8px;
-  transition: all 0.32s ease-in-out;
+	@include token.flex_column;
+	gap: token.$spacing_sm;
+	transition: all token.$transition_slow;
 }
 
 .history_row {
-  display: grid;
-  grid-template-columns: 18px 1fr;
-  column-gap: 10px;
-  transition: all 0.24s ease-out;
+	display: grid;
+	grid-template-columns: 18px 1fr;
+	column-gap: token.$spacing_sm;
+	transition: all token.$transition_base;
 }
 
 .history_row_dot {
-  width: 5px;
-  height: 5px;
-  margin-top: 4px;
-  border-radius: 50%;
-  background: token.$text_inverse;
-  box-shadow: 0 0 0 2px rgba(token.$text_inverse, 0.08);
+	width: 5px;
+	height: 5px;
+	margin-top: token.$spacing_xs;
+	border-radius: token.$radius_full;
+	background: token.$text_inverse;
+	box-shadow: 0 0 0 2px token.$color_glass_light;
 }
 
 .history_row_body {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
+	@include token.flex_column;
+	gap: 2px;
 }
 
 .history_row_title {
-  @include token.heading_3;
-  font-size: 15px;
-  color: token.$text_inverse;
+	@include token.heading_3;
+	font-size: token.$font_size_base;
+	color: token.$text_inverse;
 }
 
 .history_row_desc {
-  @include token.body_regular;
-  font-size: 13.5px;
-  color: rgba(token.$text_inverse, 0.85);
-  line-height: 1.6;
+	@include token.body_regular;
+	font-size: token.$font_size_sm;
+	color: token.$color_glass_border;
+	line-height: token.$line_height_relaxed;
 }
 
-@media (max-width: 960px) {
-  .history {
-    --left-col: 140px;
-    padding-block: 56px;
-  }
+@include token.tablet {
+	.history {
+		--left-col: 140px;
+		padding-block: token.$spacing_6xl;
+	}
 
-  .history_year_block {
-    column-gap: 20px;
-  }
+	.history_year_block,
+	.history_sticky {
+		column-gap: token.$spacing_xl;
+	}
 
-  .history_year_item {
-    font-size: token.$font_size_sm;
-  }
+	.history_year_item {
+		font-size: token.$font_size_sm;
+	}
 
-  .history_row_title {
-    font-size: token.$font_size_base;
-  }
+	.history_row_title {
+		font-size: token.$font_size_base;
+	}
 
-  .history_row_desc {
-    font-size: token.$font_size_sm;
-  }
+	.history_row_desc {
+		font-size: token.$font_size_sm;
+	}
 }
 
-@media (max-width: 640px) {
-  .history {
-    --left-col: 100px;
-  }
+@include token.mobile {
+	.history {
+		--left-col: 100px;
+		padding-block: token.$spacing_3xl;
 
-  .history_sticky,
-  .history_year_block {
-    grid-template-columns: 1fr;
-    row-gap: 12px;
-  }
+		&::before {
+			display: none;
+		}
+	}
 
-  .history_years {
-    width: 100%;
-    flex-direction: row;
-    gap: 10px;
-    overflow-x: auto;
-    padding: 0 16px;
-  }
+	.history_sticky {
+		position: sticky;
+		top: 64px;
+		grid-template-columns: 1fr;
+		row-gap: token.$spacing_md;
+		margin-bottom: token.$spacing_md;
+		padding-block: token.$spacing_sm;
+		background: token.$color_background_primary;
+	}
 
-  .history_right {
-    padding: 0 16px;
-  }
+	.history_year_block {
+		grid-template-columns: 1fr;
+		row-gap: token.$spacing_md;
+	}
 
-  .history_row {
-    grid-template-columns: 14px 1fr;
-    column-gap: 8px;
-  }
+	.history_years {
+		width: 100%;
+		flex-direction: row;
+		gap: token.$spacing_xs;
+		overflow-x: auto;
+		padding: 0 token.$spacing_lg;
+		scrollbar-width: none;
+		-ms-overflow-style: none;
 
-  .history_row_dot {
-    margin-top: 6px;
-    width: 5px;
-    height: 5px;
-  }
+		&::-webkit-scrollbar {
+			display: none;
+		}
+	}
+
+	.history_year_item {
+		flex-shrink: 0;
+		padding: token.$spacing_sm token.$spacing_md;
+		border-radius: token.$radius_md;
+		font-size: token.$font_size_sm;
+		background: token.$color_glass_light;
+
+		&.is_active {
+			font-size: token.$font_size_base;
+			background: token.$color_glass_border;
+		}
+	}
+
+	.history_right {
+		padding: 0 token.$spacing_lg;
+	}
+
+	.history_row {
+		grid-template-columns: 14px 1fr;
+		column-gap: token.$spacing_sm;
+	}
+
+	.history_row_dot {
+		margin-top: token.$spacing_xs;
+		width: 5px;
+		height: 5px;
+	}
+
+	.history_row_title {
+		font-size: token.$font_size_sm;
+	}
+
+	.history_row_desc {
+		font-size: token.$font_size_xs;
+	}
 }

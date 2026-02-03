@@ -49,21 +49,36 @@
 @include token.mobile {
   .introduce {
     @include token.flex_column;
+    flex-direction: column-reverse;
     text-align: center;
-    gap: token.$spacing_xl;
-    padding: token.$spacing_4xl 8vw;
+    gap: token.$spacing_lg;
+    padding: token.$spacing_2xl token.$spacing_lg;
+
+    &.introduce_reverse {
+      flex-direction: column-reverse;
+    }
+  }
+
+  .introduce_text {
+    gap: token.$spacing_xs;
   }
 
   .introduce_image {
-    margin-top: token.$spacing_lg;
+    width: 100%;
+    max-width: 280px;
+    margin: 0 auto;
+
+    img {
+      max-height: 200px;
+    }
   }
 
   .introduce_title {
-    font-size: token.$font_size_xl;
+    font-size: token.$font_size_lg;
   }
 
   .introduce_desc {
-    font-size: token.$font_size_base;
+    font-size: token.$font_size_sm;
   }
 }
 

@@ -84,8 +84,7 @@
   border: 1px solid token.$color_border_light;
 }
 
-.portfolio_toggle_button,
-.portfolio_toggle_active {
+.portfolio_toggle_button {
   padding: token.$spacing_xs token.$spacing_md;
   border-radius: token.$radius_full;
   background: transparent;
@@ -99,15 +98,26 @@
     opacity: 0.5;
     cursor: not-allowed;
   }
-}
 
-.portfolio_toggle_button:hover:not(:disabled) {
-  background: token.$color_background_secondary;
+  &:hover:not(:disabled) {
+    background: token.$color_background_secondary;
+  }
 }
 
 .portfolio_toggle_active {
+  padding: token.$spacing_xs token.$spacing_md;
+  border-radius: token.$radius_full;
+  border: none;
+  cursor: pointer;
+  @include token.text_sm;
+  transition: token.$transition_base;
   background: token.$color_background_secondary;
   color: token.$color_primary;
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
 }
 
 .portfolio_file {

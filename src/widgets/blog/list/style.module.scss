@@ -1,60 +1,85 @@
 @use "@bigtablet/design-system/scss/token" as token;
 
 .blog_list {
-  display: flex;
-  width: 100%;
-  padding-block: token.$spacing_3xl token.$spacing_4xl;
+	display: flex;
+	width: 100%;
+	padding-block: token.$spacing_3xl token.$spacing_4xl;
 
-  &_header {
-    @include token.flex_column;
-    align-items: center;
-    text-align: center;
-    gap: token.$spacing_sm;
-    margin-bottom: token.$spacing_3xl;
+	&_header {
+		@include token.flex_column;
+		align-items: center;
+		text-align: center;
+		gap: token.$spacing_sm;
+		margin-bottom: token.$spacing_3xl;
 
-    h2 {
-      @include token.heading_2;
-      font-size: token.$font_size_2xl;
-      color: token.$text_strong;
-    }
+		h2 {
+			@include token.heading_2;
+			font-size: token.$font_size_2xl;
+			color: token.$text_strong;
+		}
 
-    p {
-      @include token.body_medium;
-      font-size: token.$font_size_lg;
-      color: token.$text_subtle;
-    }
-  }
+		p {
+			@include token.body_medium;
+			font-size: token.$font_size_lg;
+			color: token.$text_subtle;
+		}
+	}
 
-  &_grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: token.$spacing_2xl;
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
+	&_grid {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: token.$spacing_2xl;
+		width: 100%;
+		max-width: 1200px;
+		margin: 0 auto;
+	}
 
-  &_sentinel {
-    height: 1px;
-  }
+	&_sentinel {
+		height: 1px;
+	}
 
-  &_empty {
-    @include token.body_regular;
-    font-size: token.$font_size_xl;
-    margin-top: token.$spacing_3xl;
-    color: token.$text_subtle;
-    text-align: center;
-  }
+	&_empty {
+		@include token.body_regular;
+		font-size: token.$font_size_xl;
+		margin-top: token.$spacing_3xl;
+		color: token.$text_subtle;
+		text-align: center;
+	}
 }
 
 @include token.mobile {
-  .blog_list_grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
+	.blog_list_grid {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: token.$spacing_lg;
+	}
+
+	.blog_list_header {
+		margin-bottom: token.$spacing_2xl;
+
+		h2 {
+			font-size: token.$font_size_xl;
+		}
+
+		p {
+			font-size: token.$font_size_base;
+		}
+	}
 }
 
-@media (min-width: 1024px) {
-  .blog_list_grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
+@include token.tablet {
+	.blog_list_grid {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+}
+
+@include token.laptop {
+	.blog_list_grid {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+	}
+}
+
+@include token.desktop {
+	.blog_list_grid {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+	}
 }

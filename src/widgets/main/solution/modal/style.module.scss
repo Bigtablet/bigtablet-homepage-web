@@ -1,208 +1,209 @@
 @use "@bigtablet/design-system/scss/token" as token;
 
 .solution_modal_backdrop {
-  position: fixed;
-  inset: 0;
-  z-index: token.$z_modal;
-  display: grid;
-  place-items: center;
-  padding: token.$spacing_2xl;
-  background: rgba(0, 0, 0, 0.35);
+	position: fixed;
+	inset: 0;
+	z-index: token.$z_modal;
+	display: grid;
+	place-items: center;
+	padding: token.$spacing_2xl;
+	background: token.$color_overlay_light;
 
-  @include token.laptop {
-    padding: token.$spacing_3xl;
-  }
+	@include token.laptop {
+		padding: token.$spacing_3xl;
+	}
 }
 
 .is_locked {
-  pointer-events: none;
+	pointer-events: none;
 
-  .solution_modal {
-    pointer-events: auto;
-  }
+	.solution_modal {
+		pointer-events: auto;
+	}
 }
 
 .solution_modal {
-  position: relative;
-  width: min(1120px, 94vw);
-  height: min(660px, 78vh);
-  border-radius: token.$radius_xl;
-  overflow: hidden;
-  background: token.$color_primary;
-  transform-origin: center center;
-  transform: translate(
-                  var(--from-dx, 0),
-                  var(--from-dy, 0)
-  )
-  scale(var(--from-sx, 1), var(--from-sy, 1));
-  opacity: 0;
+	position: relative;
+	width: min(1120px, 94vw);
+	height: min(660px, 78vh);
+	border-radius: token.$radius_xl;
+	overflow: hidden;
+	background: token.$color_primary;
+	transform-origin: center center;
+	transform: translate(var(--from-dx, 0), var(--from-dy, 0)) scale(var(--from-sx, 1), var(--from-sy, 1));
+	opacity: 0;
 }
 
 .is_enter {
-  transform: translate(0, 0) scale(1);
-  opacity: 1;
-  transition:
-          transform 320ms cubic-bezier(0.2, 0.8, 0.2, 1),
-          opacity 200ms ease-out;
+	transform: translate(0, 0) scale(1);
+	opacity: 1;
+	transition:
+		transform 320ms token.$ease_out_quart,
+		opacity 200ms ease-out;
 }
 
 .solution_modal_nav {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 1;
-  width: 48px;
-  height: 48px;
-  border: none;
-  border-radius: token.$radius_full;
-  background: rgba(0, 0, 0, 0.35);
-  color: token.$text_inverse;
-  font-size: token.$font_size_2xl;
-  cursor: pointer;
-  transition:
-          background token.$transition_base,
-          transform token.$transition_fast;
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	z-index: 1;
+	width: 48px;
+	height: 48px;
+	border: none;
+	border-radius: token.$radius_full;
+	background: token.$color_overlay_light;
+	color: token.$text_inverse;
+	font-size: token.$font_size_2xl;
+	cursor: pointer;
+	transition:
+		background token.$transition_base,
+		transform token.$transition_fast;
 
-  &:hover {
-    background: token.$color_overlay;
-  }
+	&:hover {
+		background: token.$color_overlay;
+	}
 
-  &:active {
-    transform: translateY(-50%) scale(0.96);
-  }
+	&:active {
+		transform: translateY(-50%) scale(0.96);
+	}
 
-  @include token.laptop {
-    width: 56px;
-    height: 56px;
-    font-size: token.$font_size_3xl;
-  }
+	@include token.laptop {
+		width: 56px;
+		height: 56px;
+		font-size: token.$font_size_3xl;
+	}
 
-  @include token.mobile {
-    width: 40px;
-    height: 40px;
-    font-size: token.$font_size_xl;
-  }
+	@include token.mobile {
+		width: 40px;
+		height: 40px;
+		font-size: token.$font_size_xl;
+	}
 }
 
 .solution_modal_nav_prev {
-  left: token.$spacing_xs;
+	left: token.$spacing_xs;
 
-  @include token.laptop {
-    left: token.$spacing_sm;
-  }
+	@include token.laptop {
+		left: token.$spacing_sm;
+	}
 }
 
 .solution_modal_nav_next {
-  right: token.$spacing_xs;
+	right: token.$spacing_xs;
 
-  @include token.laptop {
-    right: token.$spacing_sm;
-  }
+	@include token.laptop {
+		right: token.$spacing_sm;
+	}
 }
 
 .solution_modal_content {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
+	position: relative;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
 }
 
 .solution_modal_track {
-  @include token.flex_column;
-  width: 100%;
-  height: 100%;
-  will-change: transform;
+	@include token.flex_column;
+	width: 100%;
+	height: 100%;
+	will-change: transform;
 }
 
 .is_slide_next {
-  transition: transform 350ms cubic-bezier(0.22, 0.72, 0.18, 1);
-  transform: translateX(-100%);
+	transition: transform 350ms token.$ease_out_expo;
+	transform: translateX(-100%);
 }
 
 .is_slide_prev {
-  transition: transform 350ms cubic-bezier(0.22, 0.72, 0.18, 1);
-  transform: translateX(100%);
+	transition: transform 350ms token.$ease_out_expo;
+	transform: translateX(100%);
 }
 
 .solution_modal_panel {
-  flex: 0 0 100%;
-  height: 100%;
-  display: grid;
-  grid-template-columns: 1fr 1.35fr;
+	flex: 0 0 100%;
+	height: 100%;
+	display: grid;
+	grid-template-columns: 1fr 1.35fr;
 
-  @media (max-width: 860px) {
-    grid-template-columns: 1fr;
-  }
+	@include token.tablet {
+		grid-template-columns: 1fr;
+	}
+
+	@include token.mobile {
+		grid-template-columns: 1fr;
+	}
 }
 
 .solution_modal_left,
 .solution_modal_right {
-  height: 100%;
+	height: 100%;
 }
 
 .solution_modal_left {
-  @include token.flex_column;
-  z-index: 2;
-  padding: token.$spacing_2xl;
-  gap: token.$spacing_lg;
-  color: token.$text_inverse;
-  overflow: auto;
-  line-height: token.$line_height_relaxed;
-  background:
-          linear-gradient(
-                          to right,
-                          rgba(12, 12, 12, 1) 85%,
-                          rgba(12, 12, 12, 0.6) 100%
-          ),
-          radial-gradient(
-                          1200px 60% at 100% 50%,
-                          rgba(0, 0, 0, 0) 0%,
-                          rgba(12, 12, 12, 1) 80%
-          ),
-          token.$color_primary;
+	@include token.flex_column;
+	z-index: 2;
+	padding: token.$spacing_2xl;
+	gap: token.$spacing_lg;
+	color: token.$text_inverse;
+	overflow: auto;
+	line-height: token.$line_height_relaxed;
+	background:
+		linear-gradient(to right, token.$color_background_darkest 85%, token.$color_glass_dark 100%),
+		radial-gradient(1200px 60% at 100% 50%, transparent 0%, token.$color_background_darkest 80%),
+		token.$color_primary;
 }
 
 .solution_modal_title {
-  @include token.heading_3;
-  white-space: pre-line;
-  margin-top: token.$spacing_sm;
-  line-height: token.$line_height_snug;
+	@include token.heading_3;
+	white-space: pre-line;
+	margin-top: token.$spacing_sm;
+	line-height: token.$line_height_snug;
 }
 
 .solution_modal_desc {
-  @include token.body_regular;
-  color: rgba(token.$text_inverse, 0.9);
-  white-space: pre-line;
-  margin-top: token.$spacing_sm;
-  line-height: token.$line_height_relaxed;
+	@include token.body_regular;
+	color: token.$text_inverse;
+	opacity: 0.9;
+	white-space: pre-line;
+	margin-top: token.$spacing_sm;
+	line-height: token.$line_height_relaxed;
 }
 
 .solution_modal_right {
-  position: relative;
-  background: token.$color_primary;
-  overflow: hidden;
+	position: relative;
+	background: token.$color_primary;
+	overflow: hidden;
+
+	@include token.tablet {
+		display: none;
+	}
+
+	@include token.mobile {
+		display: none;
+	}
 }
 
 .solution_modal_right::before {
-  content: "";
-  position: absolute;
-  inset-block: 0;
-  left: 0;
-  width: 160px;
-  background: linear-gradient(
-                  to left,
-                  rgba(12, 12, 12, 0) 0%,
-                  rgba(12, 12, 12, 0.6) 50%,
-                  rgba(12, 12, 12, 1) 100%
-  );
-  pointer-events: none;
-  z-index: 1;
+	content: "";
+	position: absolute;
+	inset-block: 0;
+	left: 0;
+	width: 160px;
+	background: linear-gradient(
+		to left,
+		transparent 0%,
+		token.$color_glass_dark 50%,
+		token.$color_background_darkest 100%
+	);
+	pointer-events: none;
+	z-index: 1;
 }
 
 .solution_modal_video {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
 }

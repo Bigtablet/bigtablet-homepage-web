@@ -1,59 +1,55 @@
 @use "@bigtablet/design-system/scss/token" as token;
 
 .solution {
-  @include token.flex_column;
-  @include token.flex_center;
-  gap: token.$spacing_3xl;
-  color: token.$text_inverse;
+	@include token.flex_column;
+	@include token.flex_center;
+	gap: token.$spacing_3xl;
+	color: token.$text_inverse;
 }
 
 .solution_title {
-  @include token.heading_2;
-  font-size: token.$font_size_4xl;
-  color: token.$text_inverse;
-  text-align: center;
-  white-space: pre-line;
+	@include token.heading_2;
+	font-size: clamp(token.$font_size_2xl, 4vw, token.$font_size_4xl);
+	color: token.$text_inverse;
+	text-align: center;
+	white-space: pre-line;
 }
 
 .solution_grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: token.$spacing_xl;
-  width: 100%;
-  max-width: 1600px;
-  margin: 0 auto;
-  padding: 0 token.$spacing_xl;
-  justify-items: center;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: token.$spacing_xl;
+	width: 100%;
+	max-width: 1600px;
+	margin: 0 auto;
+	padding: 0 token.$spacing_xl;
 }
 
 @include token.laptop {
-  .solution_title {
-    font-size: token.$font_size_3xl;
-  }
-
-  .solution_grid {
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  }
+	.solution_title {
+		font-size: token.$font_size_3xl;
+	}
 }
 
-/* tablet 이하 */
 @include token.tablet {
-  .solution {
-    gap: token.$spacing_2xl;
-  }
+	.solution {
+		gap: token.$spacing_2xl;
+	}
 
-  .solution_title {
-    font-size: token.$font_size_2xl;
-  }
+	.solution_title {
+		font-size: token.$font_size_2xl;
+	}
 
-  .solution_grid {
-    grid-template-columns: repeat(2, minmax(200px, 1fr));
-  }
+	.solution_grid {
+		gap: token.$spacing_lg;
+		padding: 0 token.$spacing_lg;
+	}
 }
 
-/* mobile */
 @include token.mobile {
-  .solution_grid {
-    grid-template-columns: 1fr;
-  }
+	.solution_grid {
+		gap: token.$spacing_md;
+		padding: 0 token.$spacing_md;
+	}
 }

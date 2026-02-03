@@ -19,6 +19,12 @@
 	@include token.flex_column;
 	gap: token.$spacing_lg;
 	max-width: 640px;
+
+	p {
+		font-size: token.$font_size_sm;
+		line-height: token.$line_height_relaxed;
+		color: rgba(255, 255, 255, 0.5);
+	}
 }
 
 .footer_brand {
@@ -32,13 +38,7 @@
 	font-style: normal;
 	font-size: token.$font_size_sm;
 	line-height: token.$line_height_relaxed;
-	color: token.$color_glass_border;
-}
-
-.footer_left p {
-	font-size: token.$font_size_sm;
-	line-height: token.$line_height_relaxed;
-	color: token.$color_glass_light;
+	color: rgba(255, 255, 255, 0.7);
 }
 
 .footer_links {
@@ -50,7 +50,7 @@
 	a {
 		font-size: token.$font_size_sm;
 		font-weight: token.$font_weight_medium;
-		color: token.$color_glass_border;
+		color: rgba(255, 255, 255, 0.8);
 		text-decoration: none;
 		transition: color token.$transition_fast;
 
@@ -73,7 +73,7 @@
 	width: 40px;
 	height: 40px;
 	border-radius: token.$radius_lg;
-	background: token.$color_glass_light;
+	background: rgba(255, 255, 255, 0.1);
 	display: grid;
 	place-items: center;
 	color: token.$text_inverse;
@@ -83,7 +83,7 @@
 
 	&:hover {
 		transform: translateY(-2px);
-		background: token.$color_glass_border;
+		background: rgba(255, 255, 255, 0.15);
 	}
 }
 

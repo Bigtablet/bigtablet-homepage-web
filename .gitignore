@@ -14,7 +14,6 @@
 .env.production.local
 
 # misc
-.idea/
 .DS_Store
 *.log
 npm-debug.log*
@@ -24,8 +23,21 @@ pnpm-debug.log*
 package-lock.json
 yarn.lock
 
+# ide
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# ai assistants (local settings only)
+.claude/settings.local.json
+.codex/
+
 # typescript
 *.tsbuildinfo
 
 # vercel
 .vercel
+
+# test
+/coverage

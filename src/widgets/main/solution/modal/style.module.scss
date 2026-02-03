@@ -175,6 +175,22 @@
 	background: token.$color_primary;
 	overflow: hidden;
 
+	&::before {
+		content: "";
+		position: absolute;
+		inset-block: 0;
+		left: 0;
+		width: 160px;
+		background: linear-gradient(
+			to left,
+			transparent 0%,
+			token.$color_glass_dark 50%,
+			token.$color_background_darkest 100%
+		);
+		pointer-events: none;
+		z-index: 1;
+	}
+
 	@include token.tablet {
 		display: none;
 	}
@@ -182,22 +198,6 @@
 	@include token.mobile {
 		display: none;
 	}
-}
-
-.solution_modal_right::before {
-	content: "";
-	position: absolute;
-	inset-block: 0;
-	left: 0;
-	width: 160px;
-	background: linear-gradient(
-		to left,
-		transparent 0%,
-		token.$color_glass_dark 50%,
-		token.$color_background_darkest 100%
-	);
-	pointer-events: none;
-	z-index: 1;
 }
 
 .solution_modal_video {

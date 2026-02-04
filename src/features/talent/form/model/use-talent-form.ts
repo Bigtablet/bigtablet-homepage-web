@@ -8,6 +8,7 @@ import type {
 } from "src/entities/talent/model/schema/talent.schema";
 import { useTalentMutation } from "src/features/talent/mutation/talent.mutation";
 import { useUploadMutation } from "src/features/upload/mutation/upload.mutation";
+import { validateFile } from "src/shared/libs/file/validate";
 import { useToast } from "@bigtablet/design-system";
 
 type PortfolioMode = "link" | "file";
@@ -49,6 +50,13 @@ export const useTalentForm = ({ onClose }: UseTalentFormParams) => {
 
 	const handlePortfolioFile = async (file: File | null) => {
 		if (!file) return;
+
+		const validation = validateFile(file);
+		if (!validation.valid) {
+			Toast.error(validation.error ?? "파일 검증에 실패했습니다.");
+			return;
+		}
+
 		try {
 			const res = await uploadFile(file);
 			const url = res.data ?? "";

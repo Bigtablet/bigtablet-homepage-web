@@ -1,5 +1,6 @@
 .git
 .github
+.vscode
 .next
 .turbo
 node_modules
@@ -12,3 +13,6 @@ coverage
 .env.*
 *.local
 *.log
+Dockerfile
+README.md
+README_KO.md

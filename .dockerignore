@@ -1,0 +1,14 @@
+.git
+.github
+.next
+.turbo
+node_modules
+npm-debug.log
+pnpm-debug.log
+dist
+coverage
+.DS_Store
+.env
+.env.*
+*.local
+*.log

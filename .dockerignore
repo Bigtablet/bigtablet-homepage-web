@@ -13,6 +13,5 @@ coverage
 .env.*
 *.local
 *.log
-Dockerfile
 README.md
 README_KO.md

@@ -14,7 +14,8 @@ RUN --mount=type=cache,target=/root/.local/share/pnpm/store \
 
 COPY . .
 
-RUN pnpm build
+RUN --mount=type=cache,target=/app/.next/cache \
+    pnpm build
 RUN cp -r public .next/standalone/public
 
 FROM node:24-alpine AS runner

@@ -1,4 +1,4 @@
-import {HistorySchema} from "src/entities/about/history/model/schema/history.schema";
+import { HistorySchema } from "src/entities/about/history/schema/history.schema";
 
 export type YearEntry = Pick<HistorySchema, "id" | "title" | "description" | "dateLabel">;
 

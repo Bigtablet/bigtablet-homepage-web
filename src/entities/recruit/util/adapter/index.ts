@@ -1,10 +1,10 @@
-import { recruitCardSchema, type RecruitCard, type RecruitResponse } from "src/entities/recruit/model/schema/recruit.schema";
+import { recruitCardSchema, type RecruitCard, type RecruitResponse } from "src/entities/recruit/schema/recruit.schema";
 import {
     departmentLabel,
     educationLabel,
     recruitTypeLabel,
     locationLabel,
-} from "src/entities/recruit/model/constants/recruit.constants";
+} from "src/entities/recruit/constants/recruit.constants";
 
 const calcDday = (end?: string | null): string => {
     if (!end) return "상시";

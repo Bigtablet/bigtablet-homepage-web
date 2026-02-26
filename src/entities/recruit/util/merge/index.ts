@@ -1,4 +1,4 @@
-import {RecruitResponse} from "src/entities/recruit/model/schema/recruit.schema";
+import {RecruitResponse} from "src/entities/recruit/schema/recruit.schema";
 
 export const intersectByIdx = (lists: RecruitResponse[][]): RecruitResponse[] => {
     const nonEmpty = lists.filter(a => a?.length);

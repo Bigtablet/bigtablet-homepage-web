@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { AnimatePresence, motion, type Variants } from "framer-motion";
 import styles from "./style.module.scss";
-import { buildYearGroups, YearGroup, yearsFromGroups } from "src/entities/about/history/model/util/group";
+import { buildYearGroups, YearGroup, yearsFromGroups } from "src/entities/about/history/util/group";
 
 export interface HistoryItemType {
     id: string;

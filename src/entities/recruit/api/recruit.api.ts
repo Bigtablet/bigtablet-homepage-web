@@ -6,7 +6,7 @@ import {
 	type RecruitResponse,
 	type RecruitApplyResponse,
 	type RecruitRequest,
-} from "../model/schema/recruit.schema";
+} from "../schema/recruit.schema";
 
 export interface RecruitSearchFilters {
     keyword?: string;

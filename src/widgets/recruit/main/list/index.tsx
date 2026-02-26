@@ -4,7 +4,7 @@ import { memo, useMemo } from "react";
 import type {
     RecruitResponse,
     RecruitCard,
-} from "src/entities/recruit/model/schema/recruit.schema";
+} from "src/entities/recruit/schema/recruit.schema";
 
 import {
 	useRecruitListQuery,

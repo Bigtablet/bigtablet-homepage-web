@@ -1,7 +1,7 @@
 "use client";
 
 import type { UseFormReturn, FieldArrayWithId } from "react-hook-form";
-import type { PostTalentFormValues } from "src/entities/talent/model/schema/talent.schema";
+import type { PostTalentFormValues } from "src/entities/talent/schema/talent.schema";
 import { FileInput } from "src/shared/ui/form/file";
 import styles from "../style.module.scss";
 

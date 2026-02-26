@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { recruitResponseSchema } from "../schema/recruit.schema";
+import { recruitResponseSchema } from "src/entities/recruit/schema/recruit.schema";
 
 export type RecruitDTO = z.infer<typeof recruitResponseSchema>;
 

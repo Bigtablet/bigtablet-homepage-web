@@ -1,4 +1,4 @@
-import {MemberKey} from "src/entities/about/model/util/member.util";
+import {MemberKey} from "src/entities/about/util/member.util";
 
 
 export interface QAItem { q: string; a: string }

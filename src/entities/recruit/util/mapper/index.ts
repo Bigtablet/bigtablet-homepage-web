@@ -1,5 +1,5 @@
-import type { RecruitResponse } from "../../model/schema/recruit.schema";
-import type { RecruitDTO, RecruitSummary } from "../../model/domain";
+import type { RecruitResponse } from "../../schema/recruit.schema";
+import type { RecruitDTO, RecruitSummary } from "../../schema/recruit.domain";
 
 // endDate 날짜 기준 D-DAY 문자열 반환
 const calcDday = (endDate?: string) => {

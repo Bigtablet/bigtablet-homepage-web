@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { baseResponseSchema } from "src/shared/schema/response/response.schema";
-import { DepartmentType, EducationType, LocationType, RecruitType } from "src/entities/recruit/model/enum/recruit.enum";
+import { DepartmentType, EducationType, LocationType, RecruitType } from "src/entities/recruit/schema/recruit.enum";
 
 export const recruitResponseSchema = z.object({
     idx: z.number(),

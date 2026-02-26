@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import styles from "./style.module.scss";
-import type { BlogItem } from "src/entities/blog/model/schema/blog.schema";
+import type { BlogItem } from "src/entities/blog/schema/blog.schema";
 import { formatRelative } from "src/shared/libs/ui/date";
 import { ellipsis } from "src/shared/libs/ui/text";
 

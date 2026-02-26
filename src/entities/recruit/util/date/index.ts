@@ -1,10 +1,10 @@
-import type { RecruitResponse, RecruitCard } from "src/entities/recruit/model/schema/recruit.schema";
+import type { RecruitResponse, RecruitCard } from "src/entities/recruit/schema/recruit.schema";
 import {
     departmentLabel,
     educationLabel,
     recruitTypeLabel,
     locationLabel,
-} from "src/entities/recruit/model/constants/recruit.constants";
+} from "src/entities/recruit/constants/recruit.constants";
 
 const toDate = (value?: string | null) => (value ? new Date(value) : undefined);
 

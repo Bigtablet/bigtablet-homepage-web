@@ -5,7 +5,7 @@ import { useForm, useFieldArray } from "react-hook-form";
 import type {
 	PostTalent,
 	PostTalentFormValues,
-} from "src/entities/talent/model/schema/talent.schema";
+} from "src/entities/talent/schema/talent.schema";
 import { useTalentMutation } from "src/features/talent/mutation/talent.mutation";
 import { useUploadMutation } from "src/features/upload/mutation/upload.mutation";
 import { validateFile } from "src/shared/libs/file/validate";

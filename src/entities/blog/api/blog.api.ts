@@ -5,7 +5,7 @@ import {
     blogOkResponseSchema,
     type BlogDetailResponse,
     type BlogOkResponse,
-} from "src/entities/blog/model/schema/blog.schema";
+} from "src/entities/blog/schema/blog.schema";
 import {ListSchema} from "src/shared/schema/list/list.schema";
 
 // 리스트

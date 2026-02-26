@@ -37,6 +37,7 @@
 	display: flex;
 	gap: token.$spacing_sm;
 	margin-top: token.$spacing_sm;
+	white-space: nowrap;
 }
 
 @include token.mobile {

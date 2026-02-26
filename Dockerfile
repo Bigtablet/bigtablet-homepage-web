@@ -5,6 +5,7 @@ RUN corepack enable
 RUN corepack prepare pnpm@10.23.0 --activate
 
 ARG SERVER_URL
+ENV NEXT_PUBLIC_SERVER_URL=${SERVER_URL}
 ENV SERVER_URL=${SERVER_URL}
 
 COPY pnpm-lock.yaml package.json ./

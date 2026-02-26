@@ -92,8 +92,7 @@ src/
 
 | Item | Rule |
 | --- | --- |
-| Server URL | `SERVER_URL` in `.env` (서버 전용, 클라이언트 미노출) |
-| API Proxy | `next.config.mjs` rewrites: `/api/:path*` → `SERVER_URL` |
+| Server URL | `NEXT_PUBLIC_SERVER_URL` in `.env` (Axios baseURL) |
 | Media Proxy | `next.config.mjs` rewrites: `/media/:id*` → GCS |
 | TypeScript | Strict mode, path alias `src/*` |
 | Biome | Tabs (4 spaces width), 100 char line width |

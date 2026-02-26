@@ -1,7 +1,12 @@
 import axios, { AxiosError, AxiosResponse, InternalAxiosRequestConfig } from "axios";
 
+const BASE_URL = process.env.NEXT_PUBLIC_SERVER_URL;
+if (!BASE_URL) {
+    throw new Error("NEXT_PUBLIC_SERVER_URL is missing.");
+}
+
 const api = axios.create({
-    baseURL: "/api",
+    baseURL: BASE_URL,
     withCredentials: true,
     timeout: 10000,
 });

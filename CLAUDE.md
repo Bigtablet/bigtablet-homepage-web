@@ -4,7 +4,7 @@ This file provides guidance for Claude Code when working with this repository.
 
 ## Project Overview
 
-Bigtablet Insight Web is a Next.js 16 admin web application (dashboard, payments) for the Insight platform. Built with React 19, TypeScript, and Feature-Sliced Design architecture. The visual language is derived from the Insight Flutter mobile app.
+Bigtablet Homepage Web is a Next.js 16 admin web application (dashboard, payments) for the Insight platform. Built with React 19, TypeScript, and Feature-Sliced Design architecture. The visual language is derived from the Insight Flutter mobile app.
 
 ## Tech Stack
 

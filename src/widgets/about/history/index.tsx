@@ -23,7 +23,7 @@ const History = ({ items }: Props) => {
 	const groups: YearGroup[] = useMemo(() => buildYearGroups(items), [items]);
 	const years = useMemo(() => yearsFromGroups(groups), [groups]);
 	const [currentYear, setCurrentYear] = useState<number | null>(null);
-	const contentRef = useRef<HTMLElement | null>(null);
+	const contentRef = useRef<HTMLDivElement | null>(null);
 
 	useEffect(() => {
 		if (!groups.length) return;
@@ -84,7 +84,8 @@ const History = ({ items }: Props) => {
 
 	return (
 		<section className={styles.history}>
-			<div className={styles.history_sticky}>
+			<div className={styles.history_grid}>
+				{/* 연도 네비게이션 (sticky) */}
 				<div className={styles.history_years}>
 					{years.map((y) => (
 						<button
@@ -99,16 +100,14 @@ const History = ({ items }: Props) => {
 						</button>
 					))}
 				</div>
-			</div>
 
-			{activeGroup && (
-				<section
-					ref={contentRef}
-					key={activeGroup.year}
-					className={styles.history_year_block}
-				>
-					<div className={styles.history_left} />
-					<div className={styles.history_right}>
+				{/* 내용 */}
+				{activeGroup && (
+					<div
+						ref={contentRef}
+						key={activeGroup.year}
+						className={styles.history_right}
+					>
 						{activeGroup.list.map((it) => (
 							<div key={it.id} className={styles.history_row}>
 								<span
@@ -120,11 +119,7 @@ const History = ({ items }: Props) => {
 										{it.title}
 									</div>
 									{it.description && (
-										<div
-											className={
-												styles.history_row_desc
-											}
-										>
+										<div className={styles.history_row_desc}>
 											{it.description}
 										</div>
 									)}
@@ -132,8 +127,8 @@ const History = ({ items }: Props) => {
 							</div>
 						))}
 					</div>
-				</section>
-			)}
+				)}
+			</div>
 		</section>
 	);
 };

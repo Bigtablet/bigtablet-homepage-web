@@ -1,110 +1,104 @@
 "use client";
 
-import { memo, useState } from "react";
+import { Button, Select, TextField, type SelectOption } from "@bigtablet/design-system";
+import { memo, useMemo, useState } from "react";
 import {
-    DEPARTMENTS,
-    EDUCATIONS,
-    RECRUIT_TYPES,
-    departmentLabel,
-    educationLabel,
-    recruitTypeLabel,
+	DEPARTMENTS,
+	EDUCATIONS,
+	RECRUIT_TYPES,
+	departmentLabel,
+	educationLabel,
+	recruitTypeLabel,
 } from "src/entities/recruit/constants/recruit.constants";
 import styles from "./style.module.scss";
 import type {
-    DepartmentType,
-    EducationType,
-    RecruitType,
+	DepartmentType,
+	EducationType,
+	RecruitType,
 } from "src/entities/recruit/schema/recruit.enum";
 import { RecruitSearchFilters } from "src/entities/recruit/api/recruit.api";
 import { z } from "zod";
 import TalentFormModal from "src/features/talent/form/modal";
-
 
 type DepartmentCode = z.infer<typeof DepartmentType>;
 type EducationCode = z.infer<typeof EducationType>;
 type RecruitTypeCode = z.infer<typeof RecruitType>;
 
 interface Props {
-    filters: RecruitSearchFilters;
-    onChange: (next: RecruitSearchFilters) => void;
+	filters: RecruitSearchFilters;
+	onChange: (next: RecruitSearchFilters) => void;
 }
 
 const RecruitHeader = ({ filters, onChange }: Props) => {
-    const patch = (p: Partial<RecruitSearchFilters>) => onChange({ ...filters, ...p });
-    const [open, setOpen] = useState(false);
+	const patch = (p: Partial<RecruitSearchFilters>) => onChange({ ...filters, ...p });
+	const [open, setOpen] = useState(false);
 
-    return (
-        <>
-            <header className={styles.recruit_header}>
-                <div className={styles.recruit_header_text}>
-                    <h2>픽셀 너머의 세상을 향해</h2>
-                    <p>빅태블릿의 여정을 함께하실 파트너 분들을 모집합니다.</p>
-                </div>
+	const departmentOptions: SelectOption[] = useMemo(
+		() => DEPARTMENTS.map((code: DepartmentCode) => ({ value: code, label: departmentLabel(code) })),
+		[],
+	);
 
-                <div className={styles.recruit_search}>
-                    <input
-                        type="text"
-                        className={styles.recruit_search_input}
-                        placeholder="직무 혹은 공고 이름으로 검색하실 수 있습니다."
-                        value={filters.keyword ?? ""}
-                        onChange={(e) => patch({ keyword: e.target.value })}
-                    />
+	const educationOptions: SelectOption[] = useMemo(
+		() => EDUCATIONS.map((code: EducationCode) => ({ value: code, label: educationLabel(code) })),
+		[],
+	);
 
-                    <select
-                        className={styles.recruit_search_select}
-                        value={filters.job ?? ""}
-                        onChange={(e) => patch({ job: e.target.value })}
-                    >
-                        <option value="">직무</option>
-                        {DEPARTMENTS.map((code: DepartmentCode) => (
-                            <option key={code} value={code}>
-                                {departmentLabel(code)}
-                            </option>
-                        ))}
-                    </select>
+	const recruitTypeOptions: SelectOption[] = useMemo(
+		() => RECRUIT_TYPES.map((code: RecruitTypeCode) => ({ value: code, label: recruitTypeLabel(code) })),
+		[],
+	);
 
-                    <select
-                        className={styles.recruit_search_select}
-                        value={filters.education ?? ""}
-                        onChange={(e) => patch({ education: e.target.value })}
-                    >
-                        <option value="">학력</option>
-                        {EDUCATIONS.map((code: EducationCode) => (
-                            <option key={code} value={code}>
-                                {educationLabel(code)}
-                            </option>
-                        ))}
-                    </select>
+	return (
+		<>
+			<header className={styles.recruit_header}>
+				<div className={styles.recruit_header_text}>
+					<h2>픽셀 너머의 세상을 향해</h2>
+					<p>빅태블릿의 여정을 함께하실 파트너 분들을 모집합니다.</p>
+				</div>
 
-                    <select
-                        className={styles.recruit_search_select}
-                        value={filters.career ?? ""}
-                        onChange={(e) => patch({ career: e.target.value })}
-                    >
-                        <option value="">고용형태</option>
-                        {RECRUIT_TYPES.map((code: RecruitTypeCode) => (
-                            <option key={code} value={code}>
-                                {recruitTypeLabel(code)}
-                            </option>
-                        ))}
-                    </select>
+				<div className={styles.recruit_search}>
+					<TextField
+						placeholder="직무 혹은 공고 이름으로 검색하실 수 있습니다."
+						value={filters.keyword ?? ""}
+						onChangeAction={(value) => patch({ keyword: value })}
+						size="sm"
+					/>
 
-                    {/* 인재풀 등록 버튼 */}
-                    <button
-                        className={styles.recruit_register_button}
-                        onClick={() => setOpen(true)}
-                    >
-                        인재풀 등록하기
-                    </button>
-                </div>
+					<Select
+						placeholder="직무"
+						options={departmentOptions}
+						value={filters.job ?? null}
+						onChange={(value) => patch({ job: value ?? "" })}
+						size="sm"
+					/>
 
-                <hr className={styles.recruit_divider} />
-            </header>
+					<Select
+						placeholder="학력"
+						options={educationOptions}
+						value={filters.education ?? null}
+						onChange={(value) => patch({ education: value ?? "" })}
+						size="sm"
+					/>
 
-            {/* 인재풀 등록 모달 */}
-            <TalentFormModal open={open} onClose={() => setOpen(false)} />
-        </>
-    );
+					<Select
+						placeholder="고용형태"
+						options={recruitTypeOptions}
+						value={filters.career ?? null}
+						onChange={(value) => patch({ career: value ?? "" })}
+						size="sm"
+					/>
+
+					<Button variant="primary" size="sm" onClick={() => setOpen(true)}>
+						인재풀 등록하기
+					</Button>
+				</div>
+
+				<hr className={styles.recruit_divider} />
+			</header>
+
+			<TalentFormModal open={open} onClose={() => setOpen(false)} />
+		</>
+	);
 };
 
 export default memo(RecruitHeader);

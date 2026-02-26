@@ -1,6 +1,8 @@
 "use client";
 
-import type { UseFormReturn, FieldArrayWithId } from "react-hook-form";
+import { TextField } from "@bigtablet/design-system";
+import type { UseFormReturn } from "react-hook-form";
+import { Controller } from "react-hook-form";
 import type { PostTalentFormValues } from "src/entities/talent/schema/talent.schema";
 import { FileInput } from "src/shared/ui/form/file";
 import styles from "../style.module.scss";
@@ -25,7 +27,7 @@ export const PortfolioSection = ({
 	isUploading,
 }: PortfolioSectionProps) => {
 	const {
-		register,
+		control,
 		watch,
 		formState: { errors },
 	} = form;
@@ -33,7 +35,7 @@ export const PortfolioSection = ({
 	const watchPortfolioUrl = watch("portfolioUrl");
 
 	return (
-		<label className={styles.portfolio}>
+		<div className={styles.portfolio}>
 			<div className={styles.portfolio_header}>
 				<span>포트폴리오</span>
 				<div className={styles.portfolio_toggle}>
@@ -65,12 +67,25 @@ export const PortfolioSection = ({
 			</div>
 
 			{portfolioMode === "link" && (
-				<input
-					{...register("portfolioUrl", {
+				<Controller
+					name="portfolioUrl"
+					control={control}
+					rules={{
 						required: "포트폴리오 URL을 입력하거나 파일을 업로드해주세요.",
-					})}
-					placeholder="https://portfolio.example.com"
-					disabled={isFormBusy}
+					}}
+					render={({ field: { ref, value, onChange, onBlur } }) => (
+						<TextField
+							ref={ref}
+							value={value}
+							onChangeAction={onChange}
+							onBlur={onBlur}
+							placeholder="https://portfolio.example.com"
+							disabled={isFormBusy}
+							error={!!errors.portfolioUrl}
+							helperText={errors.portfolioUrl?.message}
+							fullWidth
+						/>
+					)}
 				/>
 			)}
 
@@ -82,14 +97,17 @@ export const PortfolioSection = ({
 						disabled={isFormBusy}
 					/>
 					{watchPortfolioUrl && (
-						<p className={styles.helper}>업로드된 URL: {watchPortfolioUrl}</p>
+						<p className={styles.helper}>
+							업로드된 URL: {watchPortfolioUrl}
+						</p>
+					)}
+					{errors.portfolioUrl && (
+						<p className={styles.portfolio_error}>
+							{errors.portfolioUrl.message}
+						</p>
 					)}
 				</div>
 			)}
-
-			{errors.portfolioUrl && (
-				<p className={styles.error}>{errors.portfolioUrl.message}</p>
-			)}
-		</label>
+		</div>
 	);
 };

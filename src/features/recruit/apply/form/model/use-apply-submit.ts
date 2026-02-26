@@ -1,7 +1,7 @@
 "use client";
 
 import type { UseFormReturn, FieldErrors } from "react-hook-form";
-import type { ApplyFormValues } from "src/features/recruit/apply/form/model/schema/apply.schema";
+import type { ApplyFormValues } from "src/features/recruit/apply/form/model/apply.schema";
 import {useRouter} from "next/navigation";
 import { useRecruitApplyMutation } from "src/features/recruit/mutation/recruit.mutation";
 import {useToast} from "@bigtablet/design-system";

@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import {
 	sendEmailApi,
 	checkEmailApi,
-} from "src/features/recruit/apply/form/model/email/api/email.api";
+} from "src/features/recruit/apply/form/email/api/email.api";
 import { useToast } from "@bigtablet/design-system";
 
 interface UseEmailVerificationParams {

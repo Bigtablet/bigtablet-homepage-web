@@ -1,4 +1,4 @@
-import { ApplyMilitaryStatus } from "src/entities/recruit/model/schema/recruit.schema";
+import { ApplyMilitaryStatus } from "src/entities/recruit/schema/recruit.schema";
 
 export const currentYearMonth = () => {
     const d = new Date();

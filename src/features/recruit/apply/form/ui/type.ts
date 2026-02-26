@@ -2,7 +2,7 @@
 
 import type { BaseSyntheticEvent } from "react";
 import type { UseFormReturn } from "react-hook-form";
-import { type ApplyFormValues } from "src/features/recruit/apply/form/model/schema/apply.schema";
+import { type ApplyFormValues } from "src/features/recruit/apply/form/model/apply.schema";
 
 export interface ApplyFormProps {
     form: UseFormReturn<ApplyFormValues>;

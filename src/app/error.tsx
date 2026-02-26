@@ -1,27 +1,96 @@
 "use client";
 
 import { Button } from "@bigtablet/design-system";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { BigtabletRouter } from "src/shared/hooks/next";
 import styles from "./error.module.scss";
 import Template from "src/shared/ui/template";
 
+const MAX_RETRY = 3;
+const COOLDOWN_SEC = 3;
+
 /**
  * 전역 에러 페이지
- * - 런타임 오류
- * - 서버/클라이언트 예외
+ * - 재시도 쿨다운 (3초) + 최대 3회 제한
  */
 const GlobalError = ({ error, reset }: { error: Error; reset: () => void }) => {
-	return (
-		<Template>
-			<section className={styles.error_root}>
-				<div className={styles.error_card}>
-					<h1 className={styles.error_title}>문제가 발생했습니다</h1>
-					<p className={styles.error_desc}>잠시 후 다시 시도해주세요.</p>
+	const router = BigtabletRouter();
+	const [retryCount, setRetryCount] = useState(0);
+	const [cooldown, setCooldown] = useState(0);
+	const timerRef = useRef<ReturnType<typeof setInterval>>(undefined);
 
-					<div className={styles.error_actions}>
-						<Button variant="primary" onClick={reset}>
-							다시 시도
-						</Button>
-					</div>
+	const isMaxRetry = retryCount >= MAX_RETRY;
+	const isCooling = cooldown > 0;
+
+	useEffect(() => {
+		return () => {
+			if (timerRef.current) clearInterval(timerRef.current);
+		};
+	}, []);
+
+	const handleRetry = useCallback(() => {
+		if (isCooling || isMaxRetry) return;
+
+		setRetryCount((prev) => prev + 1);
+		setCooldown(COOLDOWN_SEC);
+
+		timerRef.current = setInterval(() => {
+			setCooldown((prev) => {
+				if (prev <= 1) {
+					clearInterval(timerRef.current);
+					return 0;
+				}
+				return prev - 1;
+			});
+		}, 1000);
+
+		reset();
+	}, [isCooling, isMaxRetry, reset]);
+
+	const handleHome = () => router.replace("/main");
+
+	const retryLabel = isCooling
+		? `${cooldown}초 후 재시도`
+		: isMaxRetry
+			? "재시도 불가"
+			: "다시 시도";
+
+	return (
+		<Template align="center">
+			<section className={styles.error_root}>
+				<p className={styles.error_emoji}>!</p>
+				<h1 className={styles.error_title}>문제가 발생했습니다</h1>
+				<p className={styles.error_desc}>
+					일시적인 오류가 발생했습니다.
+					<br />
+					잠시 후 다시 시도해주세요.
+				</p>
+
+				{!isMaxRetry && retryCount > 0 && (
+					<p className={styles.error_retry_count}>
+						재시도 {retryCount}/{MAX_RETRY}
+					</p>
+				)}
+
+				{isMaxRetry && (
+					<p className={styles.error_max}>
+						재시도 횟수를 초과했습니다.
+						<br />
+						문제가 지속되면 관리자에게 문의해주세요.
+					</p>
+				)}
+
+				<div className={styles.error_actions}>
+					<Button
+						variant="primary"
+						onClick={handleRetry}
+						disabled={isCooling || isMaxRetry}
+					>
+						{retryLabel}
+					</Button>
+					<Button variant="secondary" onClick={handleHome}>
+						홈으로 이동
+					</Button>
 				</div>
 			</section>
 		</Template>

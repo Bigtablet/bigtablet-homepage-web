@@ -8,7 +8,7 @@ import ReactMarkdown from "react-markdown";
 import remarkBreaks from "remark-breaks";
 import styles from "./style.module.scss";
 import {Button} from "@bigtablet/design-system";
-import {BigtabletLink} from "src/shared/hooks/link";
+import { BigtabletLink } from "src/shared/hooks/next";
 
 const toIdx = (v: unknown) => {
     const n = Number(v);

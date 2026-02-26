@@ -3,6 +3,7 @@
 .solution {
 	@include token.flex_column;
 	@include token.flex_center;
+	width: 100%;
 	gap: token.$spacing_3xl;
 	color: token.$text_inverse;
 }
@@ -26,9 +27,21 @@
 	padding: 0 token.$spacing_xl;
 }
 
+@include token.desktop {
+	.solution_grid {
+		display: grid;
+		grid-template-columns: repeat(5, 1fr);
+	}
+}
+
 @include token.laptop {
 	.solution_title {
 		font-size: token.$font_size_3xl;
+	}
+
+	.solution_grid {
+		display: grid;
+		grid-template-columns: repeat(5, 1fr);
 	}
 }
 

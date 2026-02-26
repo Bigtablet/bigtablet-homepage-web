@@ -24,6 +24,19 @@ const nextConfig = {
         ];
     },
 
+    async rewrites() {
+        return [
+            {
+                source: '/api/:path*',
+                destination: `${process.env.SERVER_URL}/:path*`,
+            },
+            {
+                source: '/media/:id*',
+                destination: 'https://storage.googleapis.com/bigtablet-homepage/:id*',
+            },
+        ];
+    },
+
     async redirects() {
         return [
             { source: '/', destination: '/main', permanent: true }

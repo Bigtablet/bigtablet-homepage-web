@@ -153,9 +153,9 @@ import CustomSuspense from "src/shared/ui/custom-suspense";
 
 | Item | Rule |
 | --- | --- |
-| Server URL | In `.env` file |
-| Next.js | `NEXT_PUBLIC_SERVER_URL` |
-| Vite-based | `VITE_SERVER_URL` |
+| Server URL | `SERVER_URL` in `.env` (서버 전용, 클라이언트 미노출) |
+| API Proxy | `next.config.mjs` rewrites: `/api/:path*` → `SERVER_URL` |
+| Media Proxy | `next.config.mjs` rewrites: `/media/:id*` → GCS |
 
 ## Best Practices Reference
 

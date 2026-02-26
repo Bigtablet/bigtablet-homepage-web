@@ -50,7 +50,7 @@ jobs:
           tags: |
             ${{ env.IMAGE }}:${{ steps.version.outputs.tag }}
           build-args: |
-            NEXT_PUBLIC_SERVER_URL=${{ secrets.NEXT_PUBLIC_SERVER_URL }}
+            SERVER_URL=${{ secrets.SERVER_URL }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
           provenance: false

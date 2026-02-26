@@ -3,7 +3,7 @@
 import styles from "./style.module.scss";
 import Template from "src/shared/ui/template";
 import { Button } from "@bigtablet/design-system";
-import {BigtabletRouter} from "src/shared/hooks/router";
+import { BigtabletRouter } from "src/shared/hooks/next";
 
 const ApplySuccessPage = () => {
     const router = BigtabletRouter();

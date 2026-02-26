@@ -58,6 +58,29 @@
 	display: inline-block;
 }
 
+.banner_scroll_indicator {
+	position: absolute;
+	bottom: token.$spacing_2xl;
+	left: 50%;
+	transform: translateX(-50%);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: token.$spacing_xs;
+	color: rgba(255, 255, 255, 0.5);
+	font-size: token.$font_size_xs;
+	animation: bounce_scroll 2s ease-in-out infinite;
+}
+
+@keyframes bounce_scroll {
+	0%, 100% {
+		transform: translateX(-50%) translateY(0);
+	}
+	50% {
+		transform: translateX(-50%) translateY(8px);
+	}
+}
+
 @include token.mobile {
 	.banner {
 		height: 80vh;
@@ -66,5 +89,9 @@
 	.banner_content {
 		gap: token.$spacing_2xl;
 		padding-inline: token.$spacing_lg;
+	}
+
+	.banner_scroll_indicator {
+		bottom: token.$spacing_lg;
 	}
 }

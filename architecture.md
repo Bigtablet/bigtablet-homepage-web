@@ -67,22 +67,28 @@ app/
 ```
 shared/
 ├── constants/          # 앱 전역 상수
-├── hooks/              # 공통 훅 (pagination, navigation 등)
+├── hooks/              # 공통 훅
+│   ├── next/           # Next.js 라우팅 훅 (BigtabletRouter, BigtabletLink 등)
+│   ├── use-scroll-reveal.ts   # GSAP ScrollTrigger 애니메이션 훅
+│   └── use-deferred-loading.ts # 스켈레톤 로딩 임계값 훅
 ├── libs/               # 라이브러리 래퍼 및 유틸리티
 │   ├── api/
-│   │   ├── axios/      # Axios 인스턴스, 인터셉터, 에러 처리
+│   │   ├── axios/      # Axios 인스턴스, 인터셉터
+│   │   │   └── error/  # 에러 메시지 유틸
 │   │   ├── cookie/     # 토큰 쿠키 관리
 │   │   ├── gcp/        # GCP 업로드 API + 훅
+│   │   ├── query/      # MutationCache (에러 핸들링)
+│   │   ├── toast/      # ToastBridge (전역 토스트)
 │   │   └── zod/        # Zod 파싱 유틸 (getParsed 등)
+│   ├── gsap/           # GSAP 플러그인 등록
 │   ├── i18n/           # next-intl 설정
 │   ├── modal/          # 전역 모달 시스템
-│   ├── query/          # MutationCache (에러 핸들링)
-│   ├── storage/        # localStorage 래퍼
-│   └── toast/          # ToastBridge (전역 토스트)
+│   └── storage/        # localStorage 래퍼
 ├── schema/             # 공통 스키마 (에러, 응답 등)
 ├── types/              # 전역 타입 선언
 └── ui/                 # 공통 UI 컴포넌트
     ├── custom-suspense/
+    ├── skeleton/        # 스켈레톤 로딩 컴포넌트
     └── error-fallback/
 ```
 
@@ -267,8 +273,8 @@ widgets/<widget>/
 ```
 API 에러 발생
   → Axios Response Interceptor (401 토큰 갱신)
-  → MutationCache onError (shared/libs/query/mutation-cache.ts)
-  → ToastBridge (shared/libs/toast/toast-bridge.ts)
+  → MutationCache onError (shared/libs/api/query/mutation-cache.ts)
+  → ToastBridge (shared/libs/api/toast/toast-bridge.ts)
   → 토스트 UI 표시
 ```
 

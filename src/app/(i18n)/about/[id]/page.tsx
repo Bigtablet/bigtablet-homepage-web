@@ -8,8 +8,7 @@ import Profile from "src/widgets/about/member/profile";
 import Interview from "src/widgets/about/member/interview";
 import { QaList } from "src/widgets/about/member/model/use-qa-list";
 import { isMemberSlug } from "src/entities/about/util/member.util";
-import { BigtabletParams } from "src/shared/hooks/params";
-import { BigtabletLink } from "src/shared/hooks/link";
+import { BigtabletParams, BigtabletLink } from "src/shared/hooks/next";
 
 const MemberDetailPage = () => {
     const { id } = BigtabletParams<{ id: string }>();

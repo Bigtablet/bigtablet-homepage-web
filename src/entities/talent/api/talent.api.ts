@@ -2,7 +2,7 @@ import { postParsed } from "src/shared/libs/api/zod";
 import { okResponseSchema } from "src/shared/schema/response/response.schema";
 import {
     PostTalent,
-} from "../model/schema/talent.schema";
+} from "../schema/talent.schema";
 
 /**
  * 탤런트 생성 API

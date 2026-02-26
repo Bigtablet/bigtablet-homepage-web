@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import { Controller } from "react-hook-form";
-import { ApplyEducationLevel } from "src/entities/recruit/model/schema/recruit.schema";
+import { ApplyEducationLevel } from "src/entities/recruit/schema/recruit.schema";
 import MonthPickerField from "src/shared/ui/form/date";
 import styles from "./style.module.scss";
 import { ApplyFormProps } from "src/features/recruit/apply/form/ui/type";

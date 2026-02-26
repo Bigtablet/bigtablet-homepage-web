@@ -4,7 +4,7 @@ import { useTranslations } from "next-intl";
 import styles from "./style.module.scss";
 import NewsCard from "src/widgets/news/card";
 import SkeletonCard from "src/shared/ui/skeleton/card";
-import type { NewsItem } from "src/entities/news/model/schema/news.schema";
+import type { NewsItem } from "src/entities/news/schema/news.schema";
 
 interface NewsListProps {
     items: NewsItem[];

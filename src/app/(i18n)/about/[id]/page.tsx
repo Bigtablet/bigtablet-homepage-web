@@ -7,7 +7,7 @@ import { useTranslations } from "next-intl";
 import Profile from "src/widgets/about/member/profile";
 import Interview from "src/widgets/about/member/interview";
 import { QaList } from "src/widgets/about/member/model/use-qa-list";
-import { isMemberSlug } from "src/entities/about/model/util/member.util";
+import { isMemberSlug } from "src/entities/about/util/member.util";
 import { BigtabletParams } from "src/shared/hooks/params";
 import { BigtabletLink } from "src/shared/hooks/link";
 

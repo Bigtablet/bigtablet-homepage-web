@@ -9,8 +9,8 @@
  */
 
 import { useEffect, useMemo, useState } from "react";
-import { buildYearGroups, yearsFromGroups, YearGroup } from "src/entities/about/history/model/util/group";
-import type { HistorySchema } from "src/entities/about/history/model/schema/history.schema";
+import { buildYearGroups, yearsFromGroups, YearGroup } from "src/entities/about/history/util/group";
+import type { HistorySchema } from "src/entities/about/history/schema/history.schema";
 
 export const useHistoryGroups = (items: HistorySchema[]) => {
     const groups: YearGroup[] = useMemo(() => buildYearGroups(items), [items]);

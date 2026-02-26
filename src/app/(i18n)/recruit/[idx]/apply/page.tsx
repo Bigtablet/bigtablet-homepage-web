@@ -11,10 +11,10 @@ import styles from "./style.module.scss";
 import {
     applySchema,
     type ApplyFormValues,
-} from "src/features/recruit/apply/form/model/schema/apply.schema";
-import useEmailVerification from "src/features/recruit/apply/form/model/email/use-email-verification";
+} from "src/features/recruit/apply/form/model/apply.schema";
+import useEmailVerification from "src/features/recruit/apply/form/email/use-email-verification";
 import ApplyForm from "src/features/recruit/apply/form/ui";
-import { useApplySubmit } from "src/features/recruit/apply/form/model/hook/use-apply-submit";
+import { useApplySubmit } from "src/features/recruit/apply/form/model/use-apply-submit";
 
 const ApplyPage = () => {
     const { idx } = useParams<{ locale: string; idx: string }>();

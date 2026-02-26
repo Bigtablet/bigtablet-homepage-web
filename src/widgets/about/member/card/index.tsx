@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useTranslations } from "next-intl";
 import type { MemberSlug } from "src/entities/about/util/member.util";
 import styles from "./style.module.scss";
-import { BigtabletLink } from "src/shared/hooks/link";
+import { BigtabletLink } from "src/shared/hooks/next";
 
 type MemberCardProps = { memberSlug: MemberSlug };
 

@@ -3,6 +3,7 @@
 import { useMemo } from "react";
 import BlogCard from "src/widgets/blog/card";
 import SkeletonCard from "src/shared/ui/skeleton/card";
+import useDeferredLoading from "src/shared/hooks/use-deferred-loading";
 import styles from "./style.module.scss";
 import { useTranslations } from "next-intl";
 import type { BlogItem } from "src/entities/blog/schema/blog.schema";
@@ -23,12 +24,13 @@ const BlogListSection = ({
                              hrefBuilder = (item, l) => `/${l}/blog/${item.idx}`,
                          }: BlogListProps) => {
     const flatItems = useMemo(() => items ?? [], [items]);
+    const showSkeleton = useDeferredLoading(isLoading);
     const t = useTranslations("blog");
 
     return (
         <section className={styles.blog_list}>
             <div className={styles.blog_list_grid}>
-                {isLoading
+                {showSkeleton
                     ? Array.from({ length: pageSize }).map((_, i) => (
                         <SkeletonCard key={i} />
                     ))

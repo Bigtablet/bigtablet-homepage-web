@@ -6,7 +6,7 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import Template from "src/shared/ui/template";
 import NewsListSection from "src/widgets/news/list";
 import { useNewsPageQuery } from "src/features/news/query/news.query";
-import { BigtabletSearchParams } from "src/shared/hooks/searchparams";
+import { BigtabletSearchParams } from "src/shared/hooks/next";
 import { Pagination } from "@bigtablet/design-system";
 import styles from "./style.module.scss";
 

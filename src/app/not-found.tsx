@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@bigtablet/design-system";
-import { BigtabletRouter } from "src/shared/hooks/router";
+import { BigtabletRouter } from "src/shared/hooks/next";
 import styles from "./not-found.module.scss";
 import Template from "src/shared/ui/template";
 

@@ -4,6 +4,7 @@ import { useTranslations } from "next-intl";
 import styles from "./style.module.scss";
 import NewsCard from "src/widgets/news/card";
 import SkeletonCard from "src/shared/ui/skeleton/card";
+import useDeferredLoading from "src/shared/hooks/use-deferred-loading";
 import type { NewsItem } from "src/entities/news/schema/news.schema";
 
 interface NewsListProps {
@@ -14,10 +15,11 @@ interface NewsListProps {
 }
 
 const NewsListSection = ({ items, locale, isLoading, pageSize = 6 }: NewsListProps) => {
+    const showSkeleton = useDeferredLoading(isLoading);
     const t = useTranslations("news");
 
     const renderList = () => {
-        if (isLoading) {
+        if (showSkeleton) {
             return Array.from({ length: pageSize }).map((_, i) => (
                 <SkeletonCard key={i} />
             ));

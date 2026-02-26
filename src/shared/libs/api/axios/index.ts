@@ -1,13 +1,7 @@
 import axios, { AxiosError, AxiosResponse, InternalAxiosRequestConfig } from "axios";
 
-const normalize = (s?: string) => (s ?? "").trim().replace(/\/+$/, "");
-const BASE_URL = normalize(process.env.NEXT_PUBLIC_SERVER_URL);
-if (!BASE_URL) {
-    throw new Error("NEXT_PUBLIC_SERVER_URL is missing. Set it in .env files or hosting env.");
-}
-
 const api = axios.create({
-    baseURL: BASE_URL,
+    baseURL: "/api",
     withCredentials: true,
     timeout: 10000,
 });

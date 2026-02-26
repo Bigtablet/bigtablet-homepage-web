@@ -12,6 +12,7 @@ import {
 } from "src/features/recruit/query/recruit.query";
 
 import { SkeletonList } from "src/shared/ui/skeleton/list";
+import useDeferredLoading from "src/shared/hooks/use-deferred-loading";
 import { toRecruitCards } from "src/entities/recruit/util/date";
 import type { RecruitSearchFilters } from "src/entities/recruit/api/recruit.api";
 
@@ -63,6 +64,7 @@ const RequestList = ({ filters }: Props) => {
     const isSearching = !allEmpty;
 
     const isLoading = isSearching ? searchQ.isLoading : listQ.isLoading;
+    const showSkeleton = useDeferredLoading(isLoading);
     const isError = isSearching ? searchQ.isError : listQ.isError;
     const error = isSearching ? searchQ.error : listQ.error;
 
@@ -74,7 +76,7 @@ const RequestList = ({ filters }: Props) => {
 
     return (
         <div className={styles.request_list}>
-            {isLoading &&
+            {showSkeleton &&
                 [...Array(5)].map((_, i) => <SkeletonList key={i} />)}
 
             {!isLoading && isError && (

@@ -70,6 +70,18 @@
 	overflow-wrap: break-word;
 }
 
+@include token.desktop {
+	.solution_card {
+		width: 100%;
+	}
+}
+
+@include token.laptop {
+	.solution_card {
+		width: 100%;
+	}
+}
+
 @include token.mobile {
 	.solution_card {
 		width: 44vw;

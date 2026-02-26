@@ -26,7 +26,7 @@
 	position: sticky;
 	top: 96px;
 	width: var(--container-max);
-	margin: 0 auto token.$spacing_lg auto;
+	margin: 0 auto;
 	display: grid;
 	grid-template-columns: var(--left-col) 1fr;
 	column-gap: token.$spacing_4xl;

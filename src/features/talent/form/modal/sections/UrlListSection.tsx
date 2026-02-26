@@ -1,6 +1,8 @@
 "use client";
 
+import { Button, TextField } from "@bigtablet/design-system";
 import type { UseFormReturn } from "react-hook-form";
+import { Controller } from "react-hook-form";
 import type { PostTalentFormValues } from "src/entities/talent/schema/talent.schema";
 import styles from "../style.module.scss";
 
@@ -20,7 +22,7 @@ export const UrlListSection = ({
 	isFormBusy,
 }: UrlListSectionProps) => {
 	const {
-		register,
+		control,
 		formState: { errors },
 	} = form;
 
@@ -30,37 +32,45 @@ export const UrlListSection = ({
 
 			{fields.map((field, index) => (
 				<div key={field.id} className={styles.url_row}>
-					<input
-						{...register(`etcUrl.${index}`)}
-						placeholder="예: github.com/user"
-						disabled={isFormBusy}
+					<Controller
+						name={`etcUrl.${index}`}
+						control={control}
+						render={({ field: { ref, value, onChange, onBlur } }) => (
+							<TextField
+								ref={ref}
+								value={value}
+								onChangeAction={onChange}
+								onBlur={onBlur}
+								placeholder="예: github.com/user"
+								disabled={isFormBusy}
+								error={!!errors.etcUrl?.[index]}
+								helperText={errors.etcUrl?.[index]?.message}
+								fullWidth
+							/>
+						)}
 					/>
 
 					{index > 0 && (
-						<button
-							type="button"
-							className={styles.url_remove}
+						<Button
+							variant="danger"
+							size="sm"
 							onClick={() => remove(index)}
 							disabled={isFormBusy}
 						>
 							삭제
-						</button>
-					)}
-
-					{errors.etcUrl?.[index] && (
-						<p className={styles.error}>{errors.etcUrl[index]?.message}</p>
+						</Button>
 					)}
 				</div>
 			))}
 
-			<button
-				type="button"
-				className={styles.url_add}
+			<Button
+				variant="secondary"
+				size="sm"
 				onClick={() => append("")}
 				disabled={isFormBusy}
 			>
 				+ URL 추가
-			</button>
+			</Button>
 		</div>
 	);
 };

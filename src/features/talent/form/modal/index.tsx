@@ -1,6 +1,8 @@
 "use client";
 
+import { Button, TextField } from "@bigtablet/design-system";
 import { useEffect } from "react";
+import { Controller } from "react-hook-form";
 import { useTalentForm } from "src/features/talent/form/model/use-talent-form";
 import { PortfolioSection } from "./sections/PortfolioSection";
 import { UrlListSection } from "./sections/UrlListSection";
@@ -27,7 +29,7 @@ const TalentFormModal = ({ open, onClose }: Props) => {
 	} = useTalentForm({ onClose });
 
 	const {
-		register,
+		control,
 		formState: { errors },
 	} = form;
 
@@ -43,49 +45,71 @@ const TalentFormModal = ({ open, onClose }: Props) => {
 				<h2>인재풀 등록</h2>
 
 				<form onSubmit={handleSubmit} className={styles.form}>
-					<label>
-						이름
-						<input
-							{...register("name", { required: "이름을 입력해주세요." })}
-							placeholder="이름을 입력하세요"
-							disabled={isFormBusy}
-						/>
-						{errors.name && (
-							<p className={styles.error}>{errors.name.message}</p>
+					<Controller
+						name="name"
+						control={control}
+						rules={{ required: "이름을 입력해주세요." }}
+						render={({ field: { ref, value, onChange, onBlur } }) => (
+							<TextField
+								ref={ref}
+								label="이름"
+								value={value}
+								onChangeAction={onChange}
+								onBlur={onBlur}
+								placeholder="이름을 입력하세요"
+								disabled={isFormBusy}
+								error={!!errors.name}
+								helperText={errors.name?.message}
+								fullWidth
+							/>
 						)}
-					</label>
+					/>
 
-					<label>
-						이메일
-						<input
-							{...register("email", {
-								required: "이메일을 입력해주세요.",
-								pattern: {
-									value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-									message: "유효한 이메일 형식이 아닙니다.",
-								},
-							})}
-							placeholder="example@bigtablet.kr"
-							disabled={isFormBusy}
-						/>
-						{errors.email && (
-							<p className={styles.error}>{errors.email.message}</p>
+					<Controller
+						name="email"
+						control={control}
+						rules={{
+							required: "이메일을 입력해주세요.",
+							pattern: {
+								value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+								message: "유효한 이메일 형식이 아닙니다.",
+							},
+						}}
+						render={({ field: { ref, value, onChange, onBlur } }) => (
+							<TextField
+								ref={ref}
+								label="이메일"
+								value={value}
+								onChangeAction={onChange}
+								onBlur={onBlur}
+								placeholder="example@bigtablet.kr"
+								disabled={isFormBusy}
+								error={!!errors.email}
+								helperText={errors.email?.message}
+								fullWidth
+							/>
 						)}
-					</label>
+					/>
 
-					<label>
-						희망 직무
-						<input
-							{...register("department", {
-								required: "희망 직무를 입력해주세요.",
-							})}
-							placeholder="예: 개발팀"
-							disabled={isFormBusy}
-						/>
-						{errors.department && (
-							<p className={styles.error}>{errors.department.message}</p>
+					<Controller
+						name="department"
+						control={control}
+						rules={{ required: "희망 직무를 입력해주세요." }}
+						render={({ field: { ref, value, onChange, onBlur } }) => (
+							<TextField
+								ref={ref}
+								label="희망 직무"
+								value={value}
+								onChangeAction={onChange}
+								onBlur={onBlur}
+								placeholder="예: 개발팀"
+								disabled={isFormBusy}
+								error={!!errors.department}
+								helperText={errors.department?.message}
+								fullWidth
+							/>
 						)}
-					</label>
+					/>
 
 					<PortfolioSection
 						form={form}
@@ -105,12 +129,12 @@ const TalentFormModal = ({ open, onClose }: Props) => {
 					/>
 
 					<div className={styles.actions}>
-						<button type="button" onClick={onClose} disabled={isFormBusy}>
+						<Button variant="secondary" onClick={onClose} disabled={isFormBusy}>
 							취소
-						</button>
-						<button type="submit" disabled={isFormBusy}>
+						</Button>
+						<Button variant="primary" type="submit" disabled={isFormBusy}>
 							{isPending ? "등록 중..." : "등록하기"}
-						</button>
+						</Button>
 					</div>
 				</form>
 			</div>

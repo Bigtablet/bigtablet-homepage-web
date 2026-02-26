@@ -1,0 +1,22 @@
+@use "@bigtablet/design-system/scss/token" as token;
+
+.field {
+	@include token.flex_column;
+	gap: token.$spacing_sm;
+}
+
+.label {
+	@include token.body_medium;
+	color: token.$text_strong;
+}
+
+.row {
+	display: flex;
+	align-items: center;
+	gap: token.$spacing_sm;
+}
+
+.help {
+	@include token.text_sm;
+	color: token.$text_subtle;
+}

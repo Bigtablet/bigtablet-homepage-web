@@ -22,22 +22,22 @@
 	}
 }
 
-.history_sticky {
-	position: sticky;
-	top: 96px;
+/** 단일 그리드: 연도(좌) + 내용(우) 나란히 배치 */
+.history_grid {
 	width: var(--container-max);
-	margin: 0 auto token.$spacing_lg auto;
+	margin: 0 auto;
 	display: grid;
 	grid-template-columns: var(--left-col) 1fr;
 	column-gap: token.$spacing_4xl;
 	align-items: start;
-	z-index: 2;
 }
 
 .history_years {
 	@include token.flex_column;
 	gap: token.$spacing_xs;
-	width: var(--left-col);
+	position: sticky;
+	top: 96px;
+	z-index: 2;
 }
 
 .history_year_item {
@@ -54,16 +54,6 @@
 		@include token.heading_3;
 		color: token.$text_inverse;
 	}
-}
-
-.history_year_block {
-	width: var(--container-max);
-	margin: 0 auto;
-	display: grid;
-	grid-template-columns: var(--left-col) 1fr;
-	column-gap: token.$spacing_4xl;
-	align-items: start;
-	padding-block: 0;
 }
 
 .history_right {
@@ -112,8 +102,7 @@
 		padding-block: token.$spacing_6xl;
 	}
 
-	.history_year_block,
-	.history_sticky {
+	.history_grid {
 		column-gap: token.$spacing_xl;
 	}
 
@@ -140,29 +129,22 @@
 		}
 	}
 
-	.history_sticky {
-		position: sticky;
-		top: 64px;
-		grid-template-columns: 1fr;
-		row-gap: token.$spacing_md;
-		margin-bottom: token.$spacing_md;
-		padding-block: token.$spacing_sm;
-		background: token.$color_background_primary;
-	}
-
-	.history_year_block {
+	.history_grid {
 		grid-template-columns: 1fr;
 		row-gap: token.$spacing_md;
 	}
 
 	.history_years {
+		position: sticky;
+		top: 64px;
 		width: 100%;
 		flex-direction: row;
 		gap: token.$spacing_xs;
 		overflow-x: auto;
-		padding: 0 token.$spacing_lg;
+		padding: token.$spacing_sm token.$spacing_lg;
 		scrollbar-width: none;
 		-ms-overflow-style: none;
+		background: token.$color_background_primary;
 
 		&::-webkit-scrollbar {
 			display: none;

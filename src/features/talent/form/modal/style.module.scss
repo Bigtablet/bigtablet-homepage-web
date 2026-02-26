@@ -4,8 +4,9 @@
   position: fixed;
   inset: 0;
   background: token.$color_overlay;
-  z-index: token.$z_modal;
+  z-index: calc(token.$z_modal + 10);
   @include token.flex_center;
+  backdrop-filter: blur(6px);
 }
 
 .modal_content {
@@ -28,32 +29,6 @@
 .form {
   @include token.flex_column;
   gap: token.$spacing_xl;
-
-  label {
-    @include token.flex_column;
-    gap: token.$spacing_sm;
-    @include token.body_regular;
-    color: token.$text_strong;
-
-    input {
-      width: 100%;
-      padding: token.$spacing_md token.$spacing_lg;
-      border: 1px solid token.$color_border;
-      border-radius: token.$radius_md;
-      background: token.$color_background_secondary;
-      transition: token.$transition_base;
-
-      &:focus {
-        outline: none;
-        border-color: token.$color_primary;
-      }
-
-      &:disabled {
-        background: token.$color_background_secondary;
-        cursor: not-allowed;
-      }
-    }
-  }
 }
 
 .portfolio {
@@ -131,6 +106,11 @@
   color: token.$text_subtle;
 }
 
+.portfolio_error {
+  @include token.text_sm;
+  color: token.$color_error;
+}
+
 .urls {
   @include token.flex_column;
   gap: token.$spacing_md;
@@ -143,67 +123,7 @@
   .url_row {
     @include token.flex_column;
     gap: token.$spacing_xs;
-
-    input {
-      width: 100%;
-      padding: token.$spacing_md token.$spacing_lg;
-      border: 1px solid token.$color_border;
-      border-radius: token.$radius_md;
-      background: token.$color_background_secondary;
-      transition: token.$transition_base;
-
-      &:focus {
-        outline: none;
-        border-color: token.$color_primary;
-      }
-
-      &:disabled {
-        background: token.$color_background_secondary;
-        cursor: not-allowed;
-      }
-    }
-
-    .url_remove {
-      align-self: flex-end;
-      padding: token.$spacing_xs token.$spacing_md;
-      background: rgba(token.$color_error, 0.08);
-      color: token.$color_error;
-      border: 1px solid token.$color_error;
-      border-radius: token.$radius_sm;
-      @include token.text_sm;
-      transition: token.$transition_base;
-
-      &:hover {
-        background: token.$color_error;
-        color: token.$text_inverse;
-      }
-
-      &:disabled {
-        opacity: 0.5;
-        cursor: not-allowed;
-      }
-    }
-  }
-
-  .url_add {
-    width: fit-content;
-    padding: token.$spacing_sm token.$spacing_md;
-    background: token.$color_background_secondary;
-    color: token.$color_primary;
-    border-radius: token.$radius_sm;
-    border: 1px solid token.$color_primary;
-    @include token.text_sm;
-    transition: token.$transition_base;
-
-    &:hover {
-      background: token.$color_primary;
-      color: token.$text_inverse;
-    }
-
-    &:disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
-    }
+    align-items: flex-end;
   }
 }
 
@@ -211,43 +131,6 @@
   @include token.flex_right;
   gap: token.$spacing_lg;
   margin-top: token.$spacing_xl;
-
-  button {
-    padding: token.$spacing_md token.$spacing_2xl;
-    border-radius: token.$radius_md;
-    border: 1px solid transparent;
-    @include token.body_medium;
-    transition: token.$transition_base;
-
-    &:disabled {
-      opacity: 0.6;
-      cursor: not-allowed;
-    }
-  }
-
-  button[type="button"] {
-    background: token.$color_background_secondary;
-    color: token.$text_subtle;
-
-    &:hover:not(:disabled) {
-      background: token.$color_background_secondary;
-    }
-  }
-
-  button[type="submit"] {
-    background: token.$color_primary;
-    color: token.$text_inverse;
-
-    &:hover:not(:disabled) {
-      background: token.$color_primary_hover;
-    }
-  }
-}
-
-.error {
-  @include token.text_sm;
-  color: token.$color_error;
-  margin-top: token.$spacing_xs;
 }
 
 @keyframes fade_in {

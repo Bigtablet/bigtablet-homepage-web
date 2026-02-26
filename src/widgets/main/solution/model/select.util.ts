@@ -1,4 +1,4 @@
-import {SOURCES} from "src/widgets/main/solution/model/video/sources";
+import {SOURCES} from "src/widgets/main/solution/model/video-sources";
 
 // 배열 중 하나를 랜덤으로 정합니다.
 const pickOne = <T>(arr: T[]): T =>

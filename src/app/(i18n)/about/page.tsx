@@ -5,7 +5,7 @@ import History from "src/widgets/about/history";
 import Team from "src/widgets/about/team";
 import { useMessages } from "next-intl";
 import Introduce from "src/widgets/about/introduce";
-import {HistorySchema} from "src/entities/about/history/model/schema/history.schema";
+import {HistorySchema} from "src/entities/about/history/schema/history.schema";
 
 type HistoryRawItem =
     | string

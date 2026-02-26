@@ -1,7 +1,7 @@
 "use client";
 
 import type { UseFormReturn } from "react-hook-form";
-import type { PostTalentFormValues } from "src/entities/talent/model/schema/talent.schema";
+import type { PostTalentFormValues } from "src/entities/talent/schema/talent.schema";
 import styles from "../style.module.scss";
 
 interface UrlListSectionProps {

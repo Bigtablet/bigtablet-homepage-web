@@ -1,7 +1,7 @@
 "use client";
 
 import { Controller } from "react-hook-form";
-import { formatPhone010 } from "src/features/recruit/apply/form/model/util/apply.util";
+import { formatPhone010 } from "src/features/recruit/apply/form/model/apply.util";
 import styles from "./style.module.scss";
 import { ApplyFormProps } from "src/features/recruit/apply/form/ui/type";
 import {TextField, Button} from "@bigtablet/design-system";

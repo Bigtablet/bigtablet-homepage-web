@@ -5,7 +5,7 @@ import {
 	getBlogApi,
 	getBlogDetailApi,
 } from "src/entities/blog/api/blog.api";
-import type { BlogItem } from "src/entities/blog/model/schema/blog.schema";
+import type { BlogItem } from "src/entities/blog/schema/blog.schema";
 import type { ListSchema } from "src/shared/schema/list/list.schema";
 import { blogQueryKeys } from "./keys";
 

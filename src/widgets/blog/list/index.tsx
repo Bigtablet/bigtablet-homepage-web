@@ -5,7 +5,7 @@ import BlogCard from "src/widgets/blog/card";
 import SkeletonCard from "src/shared/ui/skeleton/card";
 import styles from "./style.module.scss";
 import { useTranslations } from "next-intl";
-import type { BlogItem } from "src/entities/blog/model/schema/blog.schema";
+import type { BlogItem } from "src/entities/blog/schema/blog.schema";
 
 interface BlogListProps {
     items: BlogItem[];

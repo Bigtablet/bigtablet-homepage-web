@@ -1,7 +1,13 @@
 "use client";
 
-import { Button, Select, TextField, type SelectOption } from "@bigtablet/design-system";
+import {
+	Button,
+	Select,
+	TextField,
+	type SelectOption,
+} from "@bigtablet/design-system";
 import { memo, useMemo, useState } from "react";
+
 import {
 	DEPARTMENTS,
 	EDUCATIONS,
@@ -10,19 +16,15 @@ import {
 	educationLabel,
 	recruitTypeLabel,
 } from "src/entities/recruit/constants/recruit.constants";
-import styles from "./style.module.scss";
+import type { RecruitSearchFilters } from "src/entities/recruit/api/recruit.api";
 import type {
 	DepartmentType,
 	EducationType,
 	RecruitType,
 } from "src/entities/recruit/schema/recruit.enum";
-import { RecruitSearchFilters } from "src/entities/recruit/api/recruit.api";
-import { z } from "zod";
 import TalentFormModal from "src/features/talent/form/modal";
 
-type DepartmentCode = z.infer<typeof DepartmentType>;
-type EducationCode = z.infer<typeof EducationType>;
-type RecruitTypeCode = z.infer<typeof RecruitType>;
+import styles from "./style.module.scss";
 
 interface Props {
 	filters: RecruitSearchFilters;
@@ -30,21 +32,34 @@ interface Props {
 }
 
 const RecruitHeader = ({ filters, onChange }: Props) => {
-	const patch = (p: Partial<RecruitSearchFilters>) => onChange({ ...filters, ...p });
+	const patch = (partial: Partial<RecruitSearchFilters>) =>
+		onChange({ ...filters, ...partial });
 	const [open, setOpen] = useState(false);
 
 	const departmentOptions: SelectOption[] = useMemo(
-		() => DEPARTMENTS.map((code: DepartmentCode) => ({ value: code, label: departmentLabel(code) })),
+		() =>
+			DEPARTMENTS.map((code: DepartmentType) => ({
+				value: code,
+				label: departmentLabel(code),
+			})),
 		[],
 	);
 
 	const educationOptions: SelectOption[] = useMemo(
-		() => EDUCATIONS.map((code: EducationCode) => ({ value: code, label: educationLabel(code) })),
+		() =>
+			EDUCATIONS.map((code: EducationType) => ({
+				value: code,
+				label: educationLabel(code),
+			})),
 		[],
 	);
 
 	const recruitTypeOptions: SelectOption[] = useMemo(
-		() => RECRUIT_TYPES.map((code: RecruitTypeCode) => ({ value: code, label: recruitTypeLabel(code) })),
+		() =>
+			RECRUIT_TYPES.map((code: RecruitType) => ({
+				value: code,
+				label: recruitTypeLabel(code),
+			})),
 		[],
 	);
 
@@ -62,6 +77,7 @@ const RecruitHeader = ({ filters, onChange }: Props) => {
 						value={filters.keyword ?? ""}
 						onChangeAction={(value) => patch({ keyword: value })}
 						size="sm"
+						className={styles.recruit_search_field}
 					/>
 
 					<Select
@@ -70,6 +86,7 @@ const RecruitHeader = ({ filters, onChange }: Props) => {
 						value={filters.job ?? null}
 						onChange={(value) => patch({ job: value ?? "" })}
 						size="sm"
+						className={styles.recruit_search_select}
 					/>
 
 					<Select
@@ -78,6 +95,7 @@ const RecruitHeader = ({ filters, onChange }: Props) => {
 						value={filters.education ?? null}
 						onChange={(value) => patch({ education: value ?? "" })}
 						size="sm"
+						className={styles.recruit_search_select}
 					/>
 
 					<Select
@@ -86,9 +104,15 @@ const RecruitHeader = ({ filters, onChange }: Props) => {
 						value={filters.career ?? null}
 						onChange={(value) => patch({ career: value ?? "" })}
 						size="sm"
+						className={styles.recruit_search_select}
 					/>
 
-					<Button variant="primary" size="sm" onClick={() => setOpen(true)}>
+					<Button
+						variant="primary"
+						size="sm"
+						width="auto"
+						onClick={() => setOpen(true)}
+					>
 						인재풀 등록하기
 					</Button>
 				</div>

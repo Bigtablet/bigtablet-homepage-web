@@ -1,50 +1,69 @@
 @use "@bigtablet/design-system/scss/token" as token;
 
 .recruit_header {
-  @include token.flex_column;
-  width: 100%;
-  gap: token.$spacing_2xl;
-  color: token.$text_normal;
-  padding: token.$spacing_3xl 0 token.$spacing_xl;
-  margin: 0 auto;
+	@include token.flex_column;
+	width: 100%;
+	gap: token.$spacing_2xl;
+	color: token.$text_normal;
+	padding: token.$spacing_3xl 0 token.$spacing_xl;
+	margin: 0 auto;
+
+	@include token.mobile {
+		gap: token.$spacing_lg;
+		padding: token.$spacing_xl 0 token.$spacing_md;
+	}
 }
 
 .recruit_header_text {
-  @include token.flex_column;
-  gap: token.$spacing_sm;
+	@include token.flex_column;
+	gap: token.$spacing_sm;
 
-  h2 {
-    @include token.heading_2;
-    font-size: token.$font_size_2xl;
-    color: token.$text_strong;
-  }
+	h2 {
+		@include token.heading_2;
+		/* heading_2 기본보다 큰 사이즈 적용 */
+		font-size: token.$font_size_2xl;
+		color: token.$text_strong;
+	}
 
-  p {
-    @include token.body_medium;
-    font-size: token.$font_size_lg;
-    color: token.$text_subtle;
-  }
+	p {
+		@include token.body_medium;
+		/* body_medium 기본보다 큰 사이즈 적용 */
+		font-size: token.$font_size_lg;
+		color: token.$text_subtle;
+	}
+
+	@include token.mobile {
+		h2 {
+			font-size: token.$font_size_xl;
+		}
+
+		p {
+			font-size: token.$font_size_md;
+		}
+	}
 }
 
 .recruit_divider {
-  width: 100%;
-  height: 1px;
-  background: token.$color_border_light;
+	width: 100%;
+	height: 1px;
+	border: none;
+	margin: 0;
+	background: token.$color_border_light;
 }
 
 .recruit_search {
-  @include token.flex_center;
-  flex-wrap: wrap;
-  gap: token.$spacing_sm;
-  width: 100%;
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: token.$spacing_sm;
+	width: 100%;
 }
 
 .recruit_search_field {
-  flex: 1 1 200px;
-  min-width: 0;
+	flex: 1 1 200px;
+	min-width: 0;
 }
 
 .recruit_search_select {
-  width: auto;
+	width: auto;
 }
-

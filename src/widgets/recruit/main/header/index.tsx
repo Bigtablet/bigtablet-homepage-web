@@ -62,6 +62,7 @@ const RecruitHeader = ({ filters, onChange }: Props) => {
 						value={filters.keyword ?? ""}
 						onChangeAction={(value) => patch({ keyword: value })}
 						size="sm"
+						className={styles.recruit_search_field}
 					/>
 
 					<Select
@@ -70,6 +71,7 @@ const RecruitHeader = ({ filters, onChange }: Props) => {
 						value={filters.job ?? null}
 						onChange={(value) => patch({ job: value ?? "" })}
 						size="sm"
+						className={styles.recruit_search_select}
 					/>
 
 					<Select
@@ -78,6 +80,7 @@ const RecruitHeader = ({ filters, onChange }: Props) => {
 						value={filters.education ?? null}
 						onChange={(value) => patch({ education: value ?? "" })}
 						size="sm"
+						className={styles.recruit_search_select}
 					/>
 
 					<Select
@@ -86,9 +89,10 @@ const RecruitHeader = ({ filters, onChange }: Props) => {
 						value={filters.career ?? null}
 						onChange={(value) => patch({ career: value ?? "" })}
 						size="sm"
+						className={styles.recruit_search_select}
 					/>
 
-					<Button variant="primary" size="sm" onClick={() => setOpen(true)}>
+					<Button variant="primary" size="sm" width="auto" onClick={() => setOpen(true)}>
 						인재풀 등록하기
 					</Button>
 				</div>

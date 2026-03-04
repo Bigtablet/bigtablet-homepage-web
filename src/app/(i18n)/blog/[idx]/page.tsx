@@ -11,7 +11,7 @@ type PageProps = {
 
 /** 블로그 상세 동적 메타데이터 */
 export const generateMetadata = async ({ params }: PageProps): Promise<Metadata> => {
-    const { idx } = await params;
+    const { idx } = params;
     const idNum = Number(idx);
     if (!Number.isFinite(idNum) || idNum <= 0) return {};
 

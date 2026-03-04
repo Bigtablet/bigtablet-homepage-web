@@ -4,6 +4,9 @@ import { useEffect, useState, useCallback } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
 import { TopLoading } from "@bigtablet/design-system";
 
+/** 로딩 안전장치 타임아웃 (ms) */
+const LOADING_TIMEOUT = 5000;
+
 /**
  * @description
  * Next.js 라우트 전환 시 상단에 로딩 바를 표시하는 컴포넌트입니다.
@@ -22,6 +25,16 @@ const RouteLoading = () => {
 	useEffect(() => {
 		setIsLoading(false);
 	}, [pathname, searchParams]);
+
+	/**
+	 * 안전장치: bfcache 복원 등으로 pathname effect가 재실행되지 않는 경우
+	 * 일정 시간 후 로딩을 강제 해제합니다.
+	 */
+	useEffect(() => {
+		if (!isLoading) return;
+		const timer = setTimeout(() => setIsLoading(false), LOADING_TIMEOUT);
+		return () => clearTimeout(timer);
+	}, [isLoading]);
 
 	// Link 클릭 감지
 	useEffect(() => {

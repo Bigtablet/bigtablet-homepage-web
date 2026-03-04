@@ -4,6 +4,7 @@ import { useRef } from "react";
 import { useTranslations } from "next-intl";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "src/shared/libs/gsap";
+import { useReducedMotion } from "src/shared/hooks/use-reduced-motion";
 import { Button } from "@bigtablet/design-system";
 import { ChevronDown } from "lucide-react";
 import styles from "./style.module.scss";
@@ -11,9 +12,25 @@ import styles from "./style.module.scss";
 const Banner = () => {
 	const t = useTranslations("main.banner");
 	const containerRef = useRef<HTMLElement>(null);
+	const prefersReduced = useReducedMotion();
 
 	useGSAP(
 		() => {
+			const targets = [
+				`.${styles.banner_title}`,
+				`.${styles.banner_description}`,
+				`.${styles.banner_cta}`,
+				`.${styles.banner_scroll_indicator}`,
+			];
+
+			/** reduced motion → 애니메이션 스킵, 즉시 표시 */
+			if (prefersReduced) {
+				for (const sel of targets) {
+					gsap.set(sel, { opacity: 1, y: 0 });
+				}
+				return;
+			}
+
 			const tl = gsap.timeline({ defaults: { ease: "power2.out" } });
 			tl.from(`.${styles.banner_title}`, {
 				opacity: 0,
@@ -36,7 +53,7 @@ const Banner = () => {
 					"-=0.1",
 				);
 		},
-		{ scope: containerRef },
+		{ scope: containerRef, dependencies: [prefersReduced] },
 	);
 
 	return (

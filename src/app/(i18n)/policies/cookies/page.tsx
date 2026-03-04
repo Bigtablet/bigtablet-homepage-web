@@ -1,6 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
+import BackLink from "src/shared/ui/back-link";
 import styles from "../style.module.scss";
 
 const Cookies = () => {
@@ -8,6 +9,7 @@ const Cookies = () => {
 
     return (
         <div className={styles.terms}>
+            <BackLink href="/" label="홈으로" />
             <h1>{t("title")}</h1>
             <h4>{t("effectiveDate")}</h4>
             <p>{t("intro")}</p>

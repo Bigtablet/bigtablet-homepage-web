@@ -7,7 +7,8 @@ import Profile from "src/widgets/about/member/profile";
 import Interview from "src/widgets/about/member/interview";
 import { QaList } from "src/widgets/about/member/model/use-qa-list";
 import { isMemberSlug } from "src/entities/about/util/member.util";
-import { BigtabletParams, BigtabletLink } from "src/shared/hooks/next";
+import { BigtabletParams } from "src/shared/hooks/next";
+import BackLink from "src/shared/ui/back-link";
 
 const MemberDetailClient = () => {
     const { id } = BigtabletParams<{ id: string }>();
@@ -48,12 +49,7 @@ const MemberDetailClient = () => {
                 <Interview items={qaList} />
             </div>
 
-            <BigtabletLink
-                href="/about#team"
-                className={styles.member_detail_back}
-            >
-                Back to Team
-            </BigtabletLink>
+            <BackLink href="/about#team" label="Back to Team" />
         </section>
     );
 };

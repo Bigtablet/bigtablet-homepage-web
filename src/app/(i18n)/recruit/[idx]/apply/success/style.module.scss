@@ -2,6 +2,7 @@
 
 .success {
   @include token.flex-column-center;
+  flex: 1 0 auto;
   gap: token.$spacing_xl;
   padding: token.$spacing_3xl;
   text-align: center;

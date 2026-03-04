@@ -166,7 +166,7 @@
   text-align: center;
 }
 
-@media (max-width: 768px) {
+@include token.mobile {
   .recruit_detail {
     padding: token.$spacing_4xl token.$spacing_md;
   }

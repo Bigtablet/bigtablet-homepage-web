@@ -34,7 +34,16 @@
   }
 }
 
-@media (max-width: 960px) {
+@include token.mobile {
+  .member_detail {
+    &_inner {
+      grid-template-columns: 1fr;
+      row-gap: token.$spacing_lg;
+    }
+  }
+}
+
+@include token.tablet {
   .member_detail {
     &_inner {
       grid-template-columns: 1fr;

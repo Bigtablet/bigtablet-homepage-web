@@ -1,64 +1,53 @@
-"use client";
-
-import styles from "./style.module.scss";
-import Template from "src/shared/ui/template";
-import { notFound } from "next/navigation";
-import { useTranslations } from "next-intl";
-import Profile from "src/widgets/about/member/profile";
-import Interview from "src/widgets/about/member/interview";
-import { QaList } from "src/widgets/about/member/model/use-qa-list";
+import type { Metadata } from "next";
+import { getMessages } from "next-intl/server";
 import { isMemberSlug } from "src/entities/about/util/member.util";
-import { BigtabletParams, BigtabletLink } from "src/shared/hooks/next";
+import MemberDetailClient from "./client";
 
-const MemberDetailPage = () => {
-    const { id } = BigtabletParams<{ id: string }>();
-    const t = useTranslations();
+type PageProps = {
+    params: { id: string };
+};
 
-    if (!isMemberSlug(id)) return notFound();
+/** 멤버 상세 동적 메타데이터 */
+export const generateMetadata = async ({ params }: PageProps): Promise<Metadata> => {
+    const { id } = params;
+    if (!isMemberSlug(id)) return {};
 
-    const base = `about.team.members.${id}`;
+    try {
+        const messages = await getMessages();
+        const members = (messages as any)?.about?.team?.members;
+        const member = members?.[id];
+        if (!member) return {};
 
-    const name = t(`${base}.name`);
-    const position = t(`${base}.position`);
-    const description = t(`${base}.description`);
-    const imageSrc = t.has(`${base}.image`)
-        ? t(`${base}.image`)
-        : `/images/member/${id}.png`;
+        const name = member.name as string;
+        const position = member.position as string;
+        const description = member.description as string | undefined;
+        const image = member.image as string | undefined;
 
-    const links = {
-        linkedin: t.has(`${base}.links.linkedin`)
-            ? t(`${base}.links.linkedin`)
-            : undefined,
-        github: t.has(`${base}.links.github`)
-            ? t(`${base}.links.github`)
-            : undefined,
-    };
+        const title = `${name} - ${position} | Bigtablet`;
 
-    const qaList = QaList(t as any, id, 20);
+        return {
+            title,
+            description: description ?? `${name}, ${position} at Bigtablet`,
+            openGraph: {
+                title,
+                description: description ?? `${name}, ${position} at Bigtablet`,
+                type: "profile",
+                ...(image ? { images: [{ url: image }] } : {}),
+            },
+            twitter: {
+                card: "summary",
+                title,
+                description: description ?? `${name}, ${position} at Bigtablet`,
+                ...(image ? { images: [image] } : {}),
+            },
+        };
+    } catch {
+        return {};
+    }
+};
 
-    return (
-        <Template>
-            <section className={styles.member_detail} aria-label="Team member detail">
-                <div className={styles.member_detail_inner}>
-                    <Profile
-                        name={name}
-                        position={position}
-                        description={description}
-                        imageSrc={imageSrc}
-                        links={links}
-                    />
-                    <Interview items={qaList} />
-                </div>
-
-                <BigtabletLink
-                    href="/about#team"
-                    className={styles.member_detail_back}
-                >
-                    Back to Team
-                </BigtabletLink>
-            </section>
-        </Template>
-    );
+const MemberDetailPage = async () => {
+    return <MemberDetailClient />;
 };
 
 export default MemberDetailPage;

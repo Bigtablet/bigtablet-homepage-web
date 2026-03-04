@@ -1,0 +1,43 @@
+@use "@bigtablet/design-system/scss/token" as token;
+
+.error_fallback {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 50vh;
+    padding: token.$spacing_3xl token.$spacing_xl;
+    text-align: center;
+}
+
+.error_fallback_title {
+    font-size: token.$font_size_2xl;
+    font-weight: token.$font_weight_bold;
+    color: token.$text_strong;
+    margin-bottom: token.$spacing_md;
+}
+
+.error_fallback_desc {
+    font-size: token.$font_size_md;
+    color: token.$text_normal;
+    line-height: token.$line_height_normal;
+    margin-bottom: token.$spacing_2xl;
+}
+
+.error_fallback_actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: token.$spacing_lg;
+}
+
+.error_fallback_back {
+    font-size: token.$font_size_sm;
+    color: token.$text_subtle;
+    text-decoration: underline;
+    transition: color token.$transition_base;
+
+    &:hover {
+        color: token.$text_strong;
+    }
+}

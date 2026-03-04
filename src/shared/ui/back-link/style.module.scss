@@ -1,0 +1,20 @@
+@use "@bigtablet/design-system/scss/token" as token;
+
+.back_link {
+	@include token.body_medium;
+	display: inline-flex;
+	align-items: center;
+	gap: token.$spacing_xs;
+	font-size: token.$font_size_sm;
+	color: token.$text_strong;
+	background: token.$color_background;
+	text-decoration: none;
+	padding: token.$spacing_sm token.$spacing_md;
+	border-radius: token.$radius_md;
+	border: 1px solid token.$color_border;
+	transition: background token.$transition_base;
+
+	&:hover {
+		background: token.$color_background_secondary;
+	}
+}

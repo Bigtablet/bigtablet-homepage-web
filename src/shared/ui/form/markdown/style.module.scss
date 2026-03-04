@@ -17,7 +17,11 @@
   column-gap: token.$spacing_2xl;
   row-gap: token.$spacing_md;
 
-  @media (max-width: 960px) {
+  @include token.mobile {
+    grid-template-columns: 1fr;
+  }
+
+  @include token.tablet {
     grid-template-columns: 1fr;
   }
 }
@@ -52,7 +56,7 @@
 
   &:focus {
     border-color: token.$color_primary;
-    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.06);
+    box-shadow: token.$focus_ring;
     outline: none;
   }
 }

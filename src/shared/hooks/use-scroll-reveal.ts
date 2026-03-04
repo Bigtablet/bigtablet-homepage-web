@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import { gsap, ScrollTrigger } from "src/shared/libs/gsap";
+import { useReducedMotion } from "src/shared/hooks/use-reduced-motion";
 
 type Variant = "fade-up" | "fade-in" | "slide-left" | "slide-right";
 
@@ -31,6 +32,7 @@ const VARIANT_TO: Record<Variant, gsap.TweenVars> = {
 
 /**
  * ScrollTrigger 기반 공통 reveal 애니메이션 훅
+ * prefers-reduced-motion 활성화 시 애니메이션 없이 즉시 표시
  * @param selector - 컨테이너 내부에서 애니메이션할 요소의 CSS 셀렉터 (없으면 컨테이너 자체)
  */
 export const useScrollReveal = <T extends HTMLElement = HTMLDivElement>(
@@ -38,6 +40,7 @@ export const useScrollReveal = <T extends HTMLElement = HTMLDivElement>(
 	options: ScrollRevealOptions = {},
 ) => {
 	const containerRef = useRef<T>(null);
+	const prefersReduced = useReducedMotion();
 
 	const {
 		variant = "fade-up",
@@ -56,6 +59,12 @@ export const useScrollReveal = <T extends HTMLElement = HTMLDivElement>(
 				? containerRef.current.querySelectorAll(selector)
 				: containerRef.current;
 
+			/** reduced motion → 애니메이션 스킵, 즉시 최종 상태 적용 */
+			if (prefersReduced) {
+				gsap.set(targets, VARIANT_TO[variant]);
+				return;
+			}
+
 			gsap.fromTo(targets, VARIANT_FROM[variant], {
 				...VARIANT_TO[variant],
 				duration,
@@ -71,7 +80,7 @@ export const useScrollReveal = <T extends HTMLElement = HTMLDivElement>(
 				},
 			});
 		},
-		{ scope: containerRef, dependencies: [variant, duration, delay, stagger, start, once] },
+		{ scope: containerRef, dependencies: [variant, duration, delay, stagger, start, once, prefersReduced] },
 	);
 
 	return containerRef;

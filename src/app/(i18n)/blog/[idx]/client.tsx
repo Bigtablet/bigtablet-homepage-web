@@ -10,6 +10,7 @@ import remarkGfm from "remark-gfm";
 import { useBlogDetailQuery } from "src/features/blog/query/blog.query";
 import { useBlogViewMutation } from "src/features/blog/mutation/blog.mutation";
 import { formatRelative } from "src/shared/libs/ui/date";
+import BackLink from "src/shared/ui/back-link";
 
 import styles from "./style.module.scss";
 
@@ -65,6 +66,8 @@ const BlogDetailClient = ({ idx }: Props) => {
 
     return (
         <section className={styles.blog_detail}>
+            <BackLink href="/blog" label="블로그 목록" />
+
             <article className={styles.blog_detail_body}>
                 <h1 className={styles.blog_detail_title}>{title}</h1>
 

@@ -1,6 +1,5 @@
 "use client";
 
-import Template from "src/shared/ui/template";
 import History from "src/widgets/about/history";
 import Team from "src/widgets/about/team";
 import { useMessages } from "next-intl";
@@ -31,12 +30,12 @@ const About = () => {
     );
 
     return (
-        <Template>
+        <>
             <Introduce sectionKey="section1" />
             <Introduce sectionKey="section2" reverse />
             <History items={items} />
             <Team />
-        </Template>
+        </>
     );
 };
 

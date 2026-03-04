@@ -1,9 +1,47 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import Template from "src/shared/ui/template";
+import { cookies } from "next/headers";
+import { getBlogDetailApi } from "src/entities/blog/api/blog.api";
 import BlogDetailClient from "./client";
 
 type PageProps = {
     params: { idx: string };
+};
+
+/** 블로그 상세 동적 메타데이터 */
+export const generateMetadata = async ({ params }: PageProps): Promise<Metadata> => {
+    const { idx } = params;
+    const idNum = Number(idx);
+    if (!Number.isFinite(idNum) || idNum <= 0) return {};
+
+    try {
+        const blog = await getBlogDetailApi(idNum);
+        const store = await cookies();
+        const locale = store.get("NEXT_LOCALE")?.value === "en" ? "en" : "ko";
+
+        const title = locale === "en" ? blog.titleEn : blog.titleKr;
+        const description =
+            (locale === "en" ? blog.summaryEn : blog.summaryKr) ?? undefined;
+
+        return {
+            title,
+            description,
+            openGraph: {
+                title,
+                description,
+                type: "article",
+                ...(blog.imageUrl ? { images: [{ url: blog.imageUrl }] } : {}),
+            },
+            twitter: {
+                card: "summary_large_image",
+                title,
+                description,
+                ...(blog.imageUrl ? { images: [blog.imageUrl] } : {}),
+            },
+        };
+    } catch {
+        return {};
+    }
 };
 
 const BlogDetailPage = async ({ params }: PageProps) => {
@@ -20,11 +58,7 @@ const BlogDetailPage = async ({ params }: PageProps) => {
      */
     if (!Number.isFinite(idNum) || idNum <= 0) notFound();
 
-    return (
-        <Template>
-            <BlogDetailClient idx={idNum} />
-        </Template>
-    );
+    return <BlogDetailClient idx={idNum} />;
 };
 
 export default BlogDetailPage;

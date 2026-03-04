@@ -73,7 +73,7 @@
 	width: 40px;
 	height: 40px;
 	border-radius: token.$radius_lg;
-	background: rgba(255, 255, 255, 0.1);
+	background: token.$color_glass_light;
 	display: grid;
 	place-items: center;
 	color: token.$text_inverse;
@@ -83,7 +83,7 @@
 
 	&:hover {
 		transform: translateY(-2px);
-		background: rgba(255, 255, 255, 0.15);
+		background: token.$color_glass_border;
 	}
 }
 

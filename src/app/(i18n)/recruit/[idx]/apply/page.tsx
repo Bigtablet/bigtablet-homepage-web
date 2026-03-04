@@ -2,7 +2,6 @@
 
 import { useMemo, useEffect } from "react";
 import { useParams } from "next/navigation";
-import Template from "src/shared/ui/template";
 import { useForm, type Resolver } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
@@ -74,12 +73,10 @@ const ApplyPage = () => {
     });
 
     return (
-        <Template>
-            <div className={styles.apply}>
-                <h1 className={styles.apply_title}>지원서 작성</h1>
-                <ApplyForm form={form} email={email} onSubmit={onSubmit} />
-            </div>
-        </Template>
+        <div className={styles.apply}>
+            <h1 className={styles.apply_title}>지원서 작성</h1>
+            <ApplyForm form={form} email={email} onSubmit={onSubmit} />
+        </div>
     );
 };
 

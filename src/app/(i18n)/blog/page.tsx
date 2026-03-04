@@ -3,7 +3,6 @@
 import { useMemo } from "react";
 import { useLocale } from "next-intl";
 import { usePathname, useSearchParams, useRouter } from "next/navigation";
-import Template from "src/shared/ui/template";
 import { useBlogPageQuery } from "src/features/blog/query/blog.query";
 import BlogListSection from "src/widgets/blog/list";
 import { Pagination } from "@bigtablet/design-system";
@@ -34,25 +33,23 @@ const BlogPage = () => {
     };
 
     return (
-        <Template align="center">
-            <div className={styles.blog_page}>
-                <BlogListSection
-                    items={items}
-                    locale={locale}
-                    isLoading={isLoading}
-                    pageSize={size}
-                    hrefBuilder={(item) => `${pathname}/${item.idx}`}
-                />
+        <div className={styles.blog_page}>
+            <BlogListSection
+                items={items}
+                locale={locale}
+                isLoading={isLoading}
+                pageSize={size}
+                hrefBuilder={(item) => `${pathname}/${item.idx}`}
+            />
 
-                {totalPages > 1 && (
-                    <Pagination
-                        page={page}
-                        totalPages={totalPages}
-                        onChange={handlePageChange}
-                    />
-                )}
-            </div>
-        </Template>
+            {totalPages > 1 && (
+                <Pagination
+                    page={page}
+                    totalPages={totalPages}
+                    onChange={handlePageChange}
+                />
+            )}
+        </div>
     );
 };
 

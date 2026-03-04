@@ -378,6 +378,32 @@
             "a": "At first, I thought it was a slow train, but it turned out to be an express one. Still, if I had to describe Bigtablet, I’d say it’s a lot like the moon. Sometimes it feels so big and distant, yet it radiates this quiet beauty, like a soft halo in the night sky. It’s ever-changing and full of life. Like watching the moon through a high-speed camera — even when it’s momentarily hidden, it remains the brightest, most noticeable thing in the sky. Maybe ‘the North Star’ would be a more fitting comparison, but somehow, ‘the moon’ feels closer to my heart — because it’s something I hope will keep growing and shining brighter."
           }
         },
+        "sungho": {
+          "position": "Designer",
+          "name": "Sungho Kim",
+          "description": "A designer who listens to the voice of users",
+          "image": "/images/member/sungho.png",
+          "qa1": {
+            "q": "Hello Sungho! Could you please introduce yourself briefly?",
+            "a": "I'm Sungho Kim, a product designer with broad experience in planning and design within the B2B domain. I enjoy listening to users, communicating with teams, and building the foundation of services."
+          },
+          "qa2": {
+            "q": "Could you tell us about your role at Bigtablet?",
+            "a": "I organize requirements through user research and serve as a bridge between C-Level executives and the development team. In particular, I'm responsible for rapidly designing MVP models to validate market response, then incrementally refining the service based on those insights."
+          },
+          "qa3": {
+            "q": "What motivated you to join Bigtablet?",
+            "a": "After experiencing the dramatic efficiency gains from integrating AI into my workflow, I wanted to directly design AI solutions that enhance users' productivity. I also wanted to grow within a healthy organizational culture alongside proactive, young colleagues — which led me to join the team."
+          },
+          "qa4": {
+            "q": "Could you share your design philosophy or the direction you pursue?",
+            "a": "My design philosophy begins with the Bauhaus principle of 'practical essence,' passes through Dieter Rams' 'honest restraint,' and converges on the human-centered systems perfected by Apple and Google. I believe design should be an intelligent order that solves user problems beyond mere appearance. Stripping away unnecessary decoration and cognitive noise so that function itself becomes an intuitive language — distilling complex technology into the simplest, purest user experience — is the essence of the modern product design I pursue."
+          },
+          "qa5": {
+            "q": "What goals do you hope to achieve at Bigtablet?",
+            "a": "My goal is to design optimal experiences that allow AI technology to seamlessly integrate into users' workflows. Beyond personal growth, I want to contribute to the success of projects that innovate how people work — together with great colleagues."
+          }
+        },
         "gyeongmin": {
           "position": "PM",
           "name": "Gyeongmin Kim",

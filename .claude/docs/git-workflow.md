@@ -174,6 +174,33 @@ EOF
 - **제목 섹션**: Issue는 작업 설명, PR은 브랜치명
 - `## 개요`, `## 변경사항`, `## 관련 파일` 등 **다른 형식 사용 금지**
 
+## Release 양식 (필수)
+
+> **⚠️ Release 본문은 반드시 아래 양식을 사용해야 합니다. 자의적으로 섹션을 변경하거나 추가하지 마세요.**
+
+- **태그 형식**: `x.x.x` (v 접두사 없음, 예: `1.8.6`)
+- **제목**: 태그와 동일 (예: `1.8.6`)
+
+```markdown
+## Official Website Web of Bigtablet, Inc.
+#### Key Updates
+- 변경사항 1
+- 변경사항 2
+```
+
+- 각 변경사항은 영문 소문자로 작성
+- develop → main 머지 후 main 브랜치를 타겟으로 생성
+
+```bash
+gh release create 1.8.6 --target main --title "1.8.6" --notes "$(cat <<'EOF'
+## Official Website Web of Bigtablet, Inc.
+#### Key Updates
+- add new feature description
+- fix bug description
+EOF
+)"
+```
+
 ## Important Notes
 
 - PR은 항상 `develop` 브랜치를 타겟으로 생성

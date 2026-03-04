@@ -14,9 +14,9 @@
 	justify-content: center;
 	width: 64px;
 	height: 64px;
-	border-radius: 50%;
+	border-radius: token.$radius_pill;
 	background: token.$color_error;
-	color: white;
+	color: token.$text_inverse;
 	font-size: token.$font_size_2xl;
 	font-weight: token.$font_weight_bold;
 }

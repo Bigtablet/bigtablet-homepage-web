@@ -9,7 +9,7 @@ type PageProps = {
 
 /** 멤버 상세 동적 메타데이터 */
 export const generateMetadata = async ({ params }: PageProps): Promise<Metadata> => {
-    const { id } = await params;
+    const { id } = params;
     if (!isMemberSlug(id)) return {};
 
     try {

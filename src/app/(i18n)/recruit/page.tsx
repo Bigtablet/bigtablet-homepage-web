@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Template from "src/shared/ui/template";
 import RecruitHeader from "src/widgets/recruit/main/header";
 import RequestList from "src/widgets/recruit/main/list";
 import styles from "./style.module.scss";
@@ -16,15 +15,13 @@ const RecruitPage = () => {
     });
 
     return (
-        <Template>
-            <section className={styles.recruit_page}>
-                <RecruitHeader filters={filters} onChange={setFilters} />
+        <section className={styles.recruit_page}>
+            <RecruitHeader filters={filters} onChange={setFilters} />
 
-                <div className={styles.recruit_page_list}>
-                    <RequestList filters={filters} />
-                </div>
-            </section>
-        </Template>
+            <div className={styles.recruit_page_list}>
+                <RequestList filters={filters} />
+            </div>
+        </section>
     );
 };
 

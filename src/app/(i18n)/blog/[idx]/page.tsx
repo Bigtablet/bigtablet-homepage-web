@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { cookies } from "next/headers";
 import { getBlogDetailApi } from "src/entities/blog/api/blog.api";
-import Template from "src/shared/ui/template";
 import BlogDetailClient from "./client";
 
 type PageProps = {
@@ -59,11 +58,7 @@ const BlogDetailPage = async ({ params }: PageProps) => {
      */
     if (!Number.isFinite(idNum) || idNum <= 0) notFound();
 
-    return (
-        <Template>
-            <BlogDetailClient idx={idNum} />
-        </Template>
-    );
+    return <BlogDetailClient idx={idNum} />;
 };
 
 export default BlogDetailPage;

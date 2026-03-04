@@ -3,7 +3,6 @@
 import { useMemo } from "react";
 import { useLocale } from "next-intl";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import Template from "src/shared/ui/template";
 import NewsListSection from "src/widgets/news/list";
 import { useNewsPageQuery } from "src/features/news/query/news.query";
 import { BigtabletSearchParams } from "src/shared/hooks/next";
@@ -35,26 +34,24 @@ const NewsPage = () => {
     };
 
     return (
-        <Template align="center">
-            <section className={styles.news_page}>
-                <NewsListSection
-                    items={items}
-                    locale={locale}
-                    isLoading={isLoading}
-                    pageSize={PAGE_SIZE}
-                />
+        <section className={styles.news_page}>
+            <NewsListSection
+                items={items}
+                locale={locale}
+                isLoading={isLoading}
+                pageSize={PAGE_SIZE}
+            />
 
-                {totalPages > 1 && (
-                    <div className={styles.news_page_pagination}>
-                        <Pagination
-                            page={page}
-                            totalPages={totalPages}
-                            onChange={handleChangePage}
-                        />
-                    </div>
-                )}
-            </section>
-        </Template>
+            {totalPages > 1 && (
+                <div className={styles.news_page_pagination}>
+                    <Pagination
+                        page={page}
+                        totalPages={totalPages}
+                        onChange={handleChangePage}
+                    />
+                </div>
+            )}
+        </section>
     );
 };
 

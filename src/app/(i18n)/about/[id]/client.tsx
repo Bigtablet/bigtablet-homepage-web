@@ -1,7 +1,6 @@
 "use client";
 
 import styles from "./style.module.scss";
-import Template from "src/shared/ui/template";
 import { notFound } from "next/navigation";
 import { useTranslations } from "next-intl";
 import Profile from "src/widgets/about/member/profile";
@@ -37,27 +36,25 @@ const MemberDetailClient = () => {
     const qaList = QaList(t as any, id, 20);
 
     return (
-        <Template>
-            <section className={styles.member_detail} aria-label="Team member detail">
-                <div className={styles.member_detail_inner}>
-                    <Profile
-                        name={name}
-                        position={position}
-                        description={description}
-                        imageSrc={imageSrc}
-                        links={links}
-                    />
-                    <Interview items={qaList} />
-                </div>
+        <section className={styles.member_detail} aria-label="Team member detail">
+            <div className={styles.member_detail_inner}>
+                <Profile
+                    name={name}
+                    position={position}
+                    description={description}
+                    imageSrc={imageSrc}
+                    links={links}
+                />
+                <Interview items={qaList} />
+            </div>
 
-                <BigtabletLink
-                    href="/about#team"
-                    className={styles.member_detail_back}
-                >
-                    Back to Team
-                </BigtabletLink>
-            </section>
-        </Template>
+            <BigtabletLink
+                href="/about#team"
+                className={styles.member_detail_back}
+            >
+                Back to Team
+            </BigtabletLink>
+        </section>
     );
 };
 

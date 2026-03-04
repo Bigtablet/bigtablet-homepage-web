@@ -63,7 +63,7 @@ const RecruitDetailClient = () => {
         enabled: idxNum !== null
     });
 
-    const recruit = data as RecruitCard | undefined;
+    const recruit = data;
 
     return (
         <Template>

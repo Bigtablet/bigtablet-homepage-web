@@ -3,6 +3,7 @@ export const MEMBER_KEYS = [
     "jiho",
     "minho",
     "chaehyung",
+    "sungho",
     "gyeongmin",
     "yerim",
     "gunwoo",
@@ -16,13 +17,14 @@ export type MemberKey = (typeof MEMBER_KEYS)[number];
 export type MemberSlug = MemberKey;
 
 /** @description 멤버 역할 타입 */
-export type MemberRole = "CEO" | "CTO" | "Manage" | "PM" | "BE" | "FE" | "APP";
+export type MemberRole = "CEO" | "CTO" | "Manage" | "Designer" | "PM" | "BE" | "FE" | "APP";
 
 /** @description 멤버 역할 매핑 */
 export const MEMBER_ROLE: Record<MemberKey, MemberRole> = {
     jiho: "CEO",
     minho: "CTO",
     chaehyung: "Manage",
+    sungho: "Designer",
     gyeongmin: "PM",
     yerim: "PM",
     gunwoo: "BE",

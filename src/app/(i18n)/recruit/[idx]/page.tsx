@@ -8,7 +8,7 @@ type PageProps = {
 
 /** 채용 상세 동적 메타데이터 */
 export const generateMetadata = async ({ params }: PageProps): Promise<Metadata> => {
-    const { idx } = await params;
+    const { idx } = params;
     const idxNum = Number(idx);
     if (!Number.isFinite(idxNum) || idxNum <= 0) return {};
 

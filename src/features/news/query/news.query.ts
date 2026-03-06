@@ -30,5 +30,5 @@ export const useNewsPageQuery = ({
 				hasNext: items.length === size,
 			};
 		},
-		staleTime: 60_000,
+		staleTime: 3_600_000,
 	});

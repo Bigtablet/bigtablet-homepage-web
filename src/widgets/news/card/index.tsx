@@ -43,7 +43,6 @@ const NewsCard = ({
                         fill
                         sizes="(max-width: 768px) 100vw, 33vw"
                         priority={priority}
-                        unoptimized
                     />
                 ) : null}
             </div>

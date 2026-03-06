@@ -33,7 +33,7 @@ const Card = ({ id, src, label, onOpen }: CardProps) => {
                 muted
                 playsInline
                 loop
-                preload="auto"
+                preload="metadata"
             />
             <div className={styles.solution_card_overlay} />
             <p className={styles.solution_card_title}>{label}</p>

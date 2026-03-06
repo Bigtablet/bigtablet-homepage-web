@@ -46,7 +46,7 @@ const Modal = ({
                     muted
                     playsInline
                     loop
-                    preload="auto"
+                    preload="metadata"
                 />
             </div>
         </div>

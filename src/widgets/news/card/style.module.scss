@@ -32,31 +32,9 @@
   background: token.$color_background_secondary;
   border: 1px solid token.$color_border;
 
-  &.is_loaded {
-    border-color: transparent;
-    background: transparent;
-  }
-
-  &.is_error {
-    display: grid;
-    place-items: center;
-    border: 1px dashed rgba(token.$color_border, 0.8);
-    background: linear-gradient(180deg, token.$color_background_neutral, token.$color_background_muted);
-
-    &::after {
-      content: "no image";
-      @include token.text_xs;
-      color: token.$text_subtle;
-      opacity: 0.65;
-    }
-  }
 }
 
 .news_card_img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
   object-fit: cover;
 }
 

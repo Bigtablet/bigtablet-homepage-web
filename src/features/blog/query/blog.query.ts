@@ -27,7 +27,7 @@ export const useBlogPageQuery = ({ page, size }: ListSchema) =>
 
 			return { items, hasNext };
 		},
-		staleTime: 60_000,
+		staleTime: 3_600_000,
 	});
 
 /** 상세 조회 */
@@ -36,5 +36,5 @@ export const useBlogDetailQuery = (idx: number) =>
 		queryKey: blogQueryKeys.detail(idx),
 		queryFn: () => getBlogDetailApi(idx),
 		enabled: Number.isFinite(idx) && idx > 0,
-		staleTime: 60_000,
+		staleTime: 3_600_000,
 	});

@@ -25,7 +25,7 @@ const NewsListSection = ({ items, locale, isLoading, pageSize = 6 }: NewsListPro
             ));
         }
 
-        return items.map((item) => (
+        return items.map((item, i) => (
             <NewsCard
                 key={item.idx}
                 title={locale === "ko" ? item.titleKr : item.titleEn}
@@ -33,6 +33,7 @@ const NewsListSection = ({ items, locale, isLoading, pageSize = 6 }: NewsListPro
                 createdAt={item.createdAt}
                 thumbnailImageUrl={item.thumbnailImageUrl}
                 locale={locale}
+                priority={i < 3}
             />
         ));
     };

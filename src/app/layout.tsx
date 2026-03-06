@@ -36,6 +36,9 @@ export default async function RootLayout({
         <html lang={locale} suppressHydrationWarning>
         <head>
             <link rel="icon" href="/images/logo/favicon.png"/>
+            <link rel="preload" href="/fonts/Pretendard-Regular.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
+            <link rel="preload" href="/fonts/Pretendard-Bold.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
+            <link rel="preconnect" href="https://storage.googleapis.com" />
         </head>
         <body className="font-sans antialiased">
         <Suspense fallback={null}>

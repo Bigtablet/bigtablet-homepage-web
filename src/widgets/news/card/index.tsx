@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useMemo } from "react";
 import { formatRelative } from "src/shared/libs/ui/date";
 import styles from "./style.module.scss";
@@ -11,6 +12,7 @@ interface NewsCardProps {
     locale: string;
     thumbnailImageUrl: string;
     source?: string;
+    priority?: boolean;
 }
 
 const NewsCard = ({
@@ -20,6 +22,7 @@ const NewsCard = ({
                       locale,
                       thumbnailImageUrl,
                       source,
+                      priority = false,
                   }: NewsCardProps) => {
     const time = useMemo(() => formatRelative(createdAt, locale), [createdAt, locale]);
 
@@ -33,11 +36,13 @@ const NewsCard = ({
         <a className={styles.news_card} href={url} target="_blank" rel="noreferrer">
             <div className={styles.news_card_thumb}>
                 {imageSrc ? (
-                    <img
+                    <Image
                         className={styles.news_card_img}
                         src={imageSrc}
                         alt=""
-                        loading="lazy"
+                        fill
+                        sizes="(max-width: 768px) 100vw, 33vw"
+                        priority={priority}
                     />
                 ) : null}
             </div>

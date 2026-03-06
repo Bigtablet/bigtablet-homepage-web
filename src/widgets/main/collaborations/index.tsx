@@ -41,7 +41,7 @@ const Collaborations = ({ speed = 40 }: { speed?: number }) => {
                     {items.map((src, i) => (
                         <div className={styles.collabs_item} key={`${src}-${i}`}>
                             <div className={styles.collabs_card}>
-                                <Image src={src} alt="" width={260} height={60} priority={i < 4} draggable={false} />
+                                <Image src={src} alt="" width={260} height={60} sizes="160px" priority={i < 4} draggable={false} />
                             </div>
                         </div>
                     ))}

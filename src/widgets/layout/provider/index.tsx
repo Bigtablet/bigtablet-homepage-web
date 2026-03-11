@@ -12,7 +12,15 @@ export default function Providers({ children }: Props) {
 		() =>
 			new QueryClient({
 				defaultOptions: {
-					queries: { retry: 1 },
+					queries: {
+						staleTime: 1000 * 60 * 60,
+						gcTime: 1000 * 60 * 60 * 2,
+						retry: (failureCount, error) => {
+							const status = (error as { status?: number }).status;
+							if (status && status >= 400 && status < 500) return false;
+							return failureCount < 1;
+						},
+					},
 				},
 			}),
 	);

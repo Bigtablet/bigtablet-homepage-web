@@ -25,6 +25,7 @@ export const postGcpUploadApi = async (
 
 	const res = await BigtabletAxios.post("/gcp", formData, {
 		signal,
+		timeout: 30000,
 		withCredentials: false,
 		headers: { "Content-Type": "multipart/form-data" },
 	});

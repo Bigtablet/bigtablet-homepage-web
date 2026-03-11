@@ -11,11 +11,9 @@ type HistoryRawItem =
 	| { title: string; id?: string; description?: string; dateLabel?: string };
 
 const About = () => {
-	const messages = useMessages() as any;
-	const historyByYear = (messages?.about?.history ?? {}) as Record<
-		string,
-		HistoryRawItem[]
-	>;
+	const messages = useMessages() as Record<string, Record<string, unknown>>;
+	const historyByYear = ((messages?.about as Record<string, unknown>)
+		?.history ?? {}) as Record<string, HistoryRawItem[]>;
 
 	const items: HistorySchema[] = Object.entries(historyByYear).flatMap(
 		([year, list]) =>

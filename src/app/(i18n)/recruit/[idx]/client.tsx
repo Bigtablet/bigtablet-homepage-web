@@ -1,9 +1,12 @@
 "use client";
 
 import { Button } from "@bigtablet/design-system";
+import dynamic from "next/dynamic";
 import { useParams } from "next/navigation";
-import ReactMarkdown from "react-markdown";
 import remarkBreaks from "remark-breaks";
+
+const ReactMarkdown = dynamic(() => import("react-markdown"), { ssr: false });
+
 import { useRecruitDetailQuery } from "src/features/recruit/query/recruit.query";
 import { BigtabletLink } from "src/shared/hooks/next";
 import BackLink from "src/shared/ui/back-link";
@@ -42,16 +45,16 @@ const HIRING_PROCESS = [
 ];
 
 const markdownComponents = {
-	p: ({ node, ...props }: any) => (
+	p: (props: React.ComponentProps<"p">) => (
 		<p {...props} className={styles.recruit_detail_text} />
 	),
-	ul: ({ node, ...props }: any) => (
+	ul: (props: React.ComponentProps<"ul">) => (
 		<ul {...props} className={styles.recruit_detail_list} />
 	),
-	ol: ({ node, ...props }: any) => (
+	ol: (props: React.ComponentProps<"ol">) => (
 		<ol {...props} className={styles.recruit_detail_list} />
 	),
-	li: ({ node, ...props }: any) => <li {...props} />,
+	li: (props: React.ComponentProps<"li">) => <li {...props} />,
 };
 
 const RecruitDetailClient = () => {
@@ -74,7 +77,7 @@ const RecruitDetailClient = () => {
 
 			{status === "error" && (
 				<div className={styles.recruit_detail_error}>
-					불러오지 못했습니다. {(error as Error)?.message}
+					불러오지 못했습니다. {error instanceof Error ? error.message : ""}
 				</div>
 			)}
 

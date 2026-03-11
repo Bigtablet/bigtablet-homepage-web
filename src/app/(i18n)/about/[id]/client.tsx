@@ -34,7 +34,7 @@ const MemberDetailClient = () => {
 			: undefined,
 	};
 
-	const qaList = QaList(t as any, id, 20);
+	const qaList = QaList({ get: (k: string) => t(k), has: t.has }, id, 20);
 
 	return (
 		<section className={styles.member_detail} aria-label="Team member detail">

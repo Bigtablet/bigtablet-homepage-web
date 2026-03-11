@@ -21,10 +21,7 @@ export type PostTalentFormValues = {
 	portfolioUrl: string;
 	etcUrl: string[];
 };
-z.object({
-	idx: z.number(),
-	text: z.string(),
-});
+
 export const getTalentDetailResponseSchema = baseResponseSchema(
 	z.object({
 		idx: z.number(),
@@ -36,5 +33,3 @@ export const getTalentDetailResponseSchema = baseResponseSchema(
 		createdAt: z.string(),
 	}),
 );
-baseResponseSchema(z.array(getTalentDetailResponseSchema));
-baseResponseSchema(z.array(getTalentDetailResponseSchema));

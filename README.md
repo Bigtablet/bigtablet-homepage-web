@@ -45,8 +45,8 @@ pnpm install
 `.env` 파일에 서버 URL을 설정합니다.
 
 ```env
-NEXT_PUBLIC_SERVER_URL=https://server.bigtablet.com
-SERVER_URL=https://server.bigtablet.com
+NEXT_PUBLIC_SERVER_URL=https://localhost:8080
+SERVER_URL=https://localhost:8080
 ```
 
 ### Development

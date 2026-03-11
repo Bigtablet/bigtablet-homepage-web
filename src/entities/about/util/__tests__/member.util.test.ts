@@ -1,9 +1,9 @@
-import { describe, expect, it } from "vitest";
 import {
+	isMemberSlug,
 	MEMBER_KEYS,
 	MEMBER_ROLE,
-	isMemberSlug,
 } from "src/entities/about/util/member.util";
+import { describe, expect, it } from "vitest";
 
 describe("isMemberSlug", () => {
 	it("유효한 멤버 슬러그는 true 반환", () => {

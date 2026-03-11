@@ -1,5 +1,5 @@
-import { describe, expect, it } from "vitest";
 import { ellipsis } from "src/shared/libs/ui/text";
+import { describe, expect, it } from "vitest";
 
 describe("ellipsis", () => {
 	it("빈 값이면 빈 문자열 반환", () => {
@@ -32,7 +32,7 @@ describe("ellipsis", () => {
 	});
 
 	it("끝에 공백 있으면 trimEnd 처리", () => {
-		const text = "hello   " + "x".repeat(113);
+		const text = `hello   ${"x".repeat(113)}`;
 		const result = ellipsis(text, 8);
 		expect(result).toBe("hello…");
 	});

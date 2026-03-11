@@ -1,5 +1,5 @@
-import { describe, expect, it } from "vitest";
 import { QaList } from "src/widgets/about/member/model/use-qa-list";
+import { describe, expect, it } from "vitest";
 
 const makeTranslator = (keys: Record<string, string>) => ({
 	get: (k: string) => keys[k] ?? "",

@@ -1,5 +1,5 @@
-import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { formatRelative } from "src/shared/libs/ui/date";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 describe("formatRelative", () => {
 	beforeEach(() => {

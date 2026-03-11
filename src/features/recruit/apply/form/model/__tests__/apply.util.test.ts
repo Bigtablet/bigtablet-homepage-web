@@ -1,6 +1,9 @@
-import { describe, expect, it } from "vitest";
-import { formatPhone010, mapMil } from "src/features/recruit/apply/form/model/apply.util";
 import { ApplyMilitaryStatus } from "src/entities/recruit/schema/recruit.schema";
+import {
+	formatPhone010,
+	mapMil,
+} from "src/features/recruit/apply/form/model/apply.util";
+import { describe, expect, it } from "vitest";
 
 describe("formatPhone010", () => {
 	it("010으로 시작하는 번호 포맷팅 — 7자리 이하", () => {

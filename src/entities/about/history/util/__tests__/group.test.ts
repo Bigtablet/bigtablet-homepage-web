@@ -1,14 +1,16 @@
-import { describe, expect, it } from "vitest";
 import {
 	buildYearGroups,
 	yearsFromGroups,
 } from "src/entities/about/history/util/group";
+import { describe, expect, it } from "vitest";
 
-const makeItem = (
-	year: number,
-	title: string,
-	id = `${year}-${title}`,
-) => ({ year, title, id, description: undefined, dateLabel: undefined });
+const makeItem = (year: number, title: string, id = `${year}-${title}`) => ({
+	year,
+	title,
+	id,
+	description: undefined,
+	dateLabel: undefined,
+});
 
 describe("buildYearGroups", () => {
 	it("빈 배열이면 빈 결과 반환", () => {

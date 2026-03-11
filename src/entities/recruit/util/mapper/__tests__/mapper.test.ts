@@ -1,6 +1,6 @@
-import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { toRecruit, toRecruitSummary } from "src/entities/recruit/util/mapper";
 import type { RecruitResponse } from "src/entities/recruit/schema/recruit.schema";
+import { toRecruit, toRecruitSummary } from "src/entities/recruit/util/mapper";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 const baseResponse: RecruitResponse = {
 	idx: 1,

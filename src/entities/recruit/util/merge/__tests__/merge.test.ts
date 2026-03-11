@@ -1,10 +1,8 @@
-import { describe, expect, it } from "vitest";
 import { intersectByIdx } from "src/entities/recruit/util/merge";
+import { describe, expect, it } from "vitest";
 
 const makeItem = (idx: number) =>
-	({ idx, title: `title-${idx}` }) as Parameters<
-		typeof intersectByIdx
-	>[0][0];
+	({ idx, title: `title-${idx}` }) as Parameters<typeof intersectByIdx>[0][0];
 
 describe("intersectByIdx", () => {
 	it("빈 배열 목록이면 빈 결과 반환", () => {

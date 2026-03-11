@@ -24,7 +24,7 @@ const RouteLoading = () => {
 	// pathname/searchParams 변경 시 로딩 종료
 	useEffect(() => {
 		setIsLoading(false);
-	}, []);
+	}, [pathname, searchParams]);
 
 	/**
 	 * 안전장치: bfcache 복원 등으로 pathname effect가 재실행되지 않는 경우

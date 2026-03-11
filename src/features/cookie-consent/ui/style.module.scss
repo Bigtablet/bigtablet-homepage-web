@@ -1,35 +1,18 @@
 @use "@bigtablet/design-system/scss/token" as token;
 
-.overlay {
-	position: fixed;
-	inset: 0;
-	background: token.$color_overlay;
-	z-index: token.$z_modal;
-	backdrop-filter: blur(4px);
-	animation: fade_in token.$transition_base;
-}
-
 .banner {
 	position: fixed;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	z-index: calc(token.$z_modal + 1);
-	display: flex;
-	justify-content: center;
-	padding: token.$spacing_lg;
-	animation: slide_up token.$transition_base;
-}
-
-.content {
-	width: 100%;
-	max-width: 720px;
+	bottom: token.$spacing_2xl;
+	right: token.$spacing_2xl;
+	z-index: token.$z_modal;
+	width: 360px;
 	background: token.$color_background;
 	border-radius: token.$radius_lg;
 	box-shadow: token.$shadow_lg;
-	padding: token.$spacing_2xl token.$spacing_3xl;
+	padding: token.$spacing_xl token.$spacing_2xl;
 	@include token.flex_column;
 	gap: token.$spacing_lg;
+	animation: slide_up token.$transition_base;
 }
 
 .message {
@@ -95,11 +78,11 @@
 
 @include token.mobile {
 	.banner {
-		padding: token.$spacing_md;
-	}
-
-	.content {
-		padding: token.$spacing_xl token.$spacing_lg;
+		bottom: token.$spacing_md;
+		right: token.$spacing_md;
+		left: token.$spacing_md;
+		width: auto;
+		padding: token.$spacing_lg;
 	}
 
 	.actions {
@@ -108,15 +91,6 @@
 		button {
 			width: 100%;
 		}
-	}
-}
-
-@keyframes fade_in {
-	from {
-		opacity: 0;
-	}
-	to {
-		opacity: 1;
 	}
 }
 

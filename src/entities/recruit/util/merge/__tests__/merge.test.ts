@@ -1,8 +1,24 @@
+import type { RecruitResponse } from "src/entities/recruit/schema/recruit.schema";
 import { intersectByIdx } from "src/entities/recruit/util/merge";
 import { describe, expect, it } from "vitest";
 
-const makeItem = (idx: number) =>
-	({ idx, title: `title-${idx}` }) as Parameters<typeof intersectByIdx>[0][0];
+const makeItem = (idx: number): RecruitResponse => ({
+	idx,
+	title: `title-${idx}`,
+	department: "IT",
+	location: "PANGYO",
+	recruitType: "FULL_TIME",
+	experiment: "",
+	education: "NO_REQUIREMENT",
+	companyIntroduction: "",
+	positionIntroduction: "",
+	mainResponsibility: "",
+	qualification: "",
+	preferredQualification: "",
+	startDate: "2026-01-01",
+	endDate: null,
+	isActive: true,
+});
 
 describe("intersectByIdx", () => {
 	it("빈 배열 목록이면 빈 결과 반환", () => {

@@ -32,7 +32,6 @@ const CookieConsent = () => {
 
 	return (
 		<>
-			<div className={styles.overlay} />
 			<div className={styles.banner} role="dialog" aria-label={t("message")}>
 				<div className={styles.content}>
 					<p className={styles.message}>

@@ -3,6 +3,7 @@
 import { AlertProvider, ToastProvider } from "@bigtablet/design-system";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { type ReactNode, useState } from "react";
+import CookieConsent from "src/features/cookie-consent/ui";
 
 type Props = { children: ReactNode };
 
@@ -19,7 +20,10 @@ export default function Providers({ children }: Props) {
 	return (
 		<QueryClientProvider client={client}>
 			<ToastProvider>
-				<AlertProvider>{children}</AlertProvider>
+				<AlertProvider>
+					{children}
+					<CookieConsent />
+				</AlertProvider>
 			</ToastProvider>
 		</QueryClientProvider>
 	);

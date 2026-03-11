@@ -3,7 +3,7 @@ import type { MetadataRoute } from "next";
 const LAST_MODIFIED = "2026-03-11";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-	const baseUrl = "https://bigtablet.co.kr";
+	const baseUrl = "https://bigtablet.com";
 
 	return [
 		{

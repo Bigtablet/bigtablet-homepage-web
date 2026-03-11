@@ -18,8 +18,9 @@ export default function Providers({ children }: Props) {
 
 	return (
 		<QueryClientProvider client={client}>
-			<ToastProvider />
-			<AlertProvider>{children}</AlertProvider>
+			<ToastProvider>
+				<AlertProvider>{children}</AlertProvider>
+			</ToastProvider>
 		</QueryClientProvider>
 	);
 }

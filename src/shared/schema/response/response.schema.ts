@@ -1,4 +1,4 @@
-import {z} from "zod";
+import { z } from "zod";
 
 /**
  * @description
@@ -9,9 +9,9 @@ import {z} from "zod";
  * @template T 응답 데이터 제네릭 타입
  */
 export interface BaseResponse<T> {
-    status: number;
-    message: string;
-    data?: T | null;
+	status: number;
+	message: string;
+	data?: T | null;
 }
 
 /**
@@ -23,11 +23,13 @@ export interface BaseResponse<T> {
  * const schema = baseResponseSchema(userSchema);
  */
 export const baseResponseSchema = <T extends z.ZodTypeAny>(dataSchema: T) =>
-    z.object({
-            status: z.number(),
-            message: z.string(),
-            data: dataSchema.optional().nullable(),
-        }).passthrough();
+	z
+		.object({
+			status: z.number(),
+			message: z.string(),
+			data: dataSchema.optional().nullable(),
+		})
+		.passthrough();
 
 /**
  * @description
@@ -37,11 +39,12 @@ export const baseResponseSchema = <T extends z.ZodTypeAny>(dataSchema: T) =>
  * @example
  * const schema = okResponseSchema.parse(res.data);
  */
-export const okResponseSchema =
-    z.object({
-        status: z.number(),
-        message: z.string(),
-    }).passthrough();
+export const okResponseSchema = z
+	.object({
+		status: z.number(),
+		message: z.string(),
+	})
+	.passthrough();
 
 /** @description `okResponseSchema`의 타입 */
 export type OkResponse = z.infer<typeof okResponseSchema>;

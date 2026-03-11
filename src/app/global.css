@@ -1,110 +1,123 @@
 @font-face {
-    font-family: 'Pretendard';
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
-    src:
-            url('/fonts/Pretendard-Regular.woff2') format('woff2'),
-            url('/fonts/Pretendard-Regular.woff') format('woff');
+	font-family: "Pretendard";
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+	src:
+		url("/fonts/Pretendard-Regular.woff2") format("woff2"),
+		url("/fonts/Pretendard-Regular.woff") format("woff");
 }
 
 @font-face {
-    font-family: 'Pretendard';
-    font-weight: 500;
-    font-style: normal;
-    font-display: swap;
-    src:
-            url('/fonts/Pretendard-Medium.woff2') format('woff2'),
-            url('/fonts/Pretendard-Medium.woff') format('woff');
+	font-family: "Pretendard";
+	font-weight: 500;
+	font-style: normal;
+	font-display: swap;
+	src:
+		url("/fonts/Pretendard-Medium.woff2") format("woff2"),
+		url("/fonts/Pretendard-Medium.woff") format("woff");
 }
 
 @font-face {
-    font-family: 'Pretendard';
-    font-weight: 600;
-    font-style: normal;
-    font-display: swap;
-    src:
-            url('/fonts/Pretendard-SemiBold.woff2') format('woff2'),
-            url('/fonts/Pretendard-SemiBold.woff') format('woff');
+	font-family: "Pretendard";
+	font-weight: 600;
+	font-style: normal;
+	font-display: swap;
+	src:
+		url("/fonts/Pretendard-SemiBold.woff2") format("woff2"),
+		url("/fonts/Pretendard-SemiBold.woff") format("woff");
 }
 
 @font-face {
-    font-family: 'Pretendard';
-    font-weight: 700;
-    font-style: normal;
-    font-display: swap;
-    src:
-            url('/fonts/Pretendard-Bold.woff2') format('woff2'),
-            url('/fonts/Pretendard-Bold.woff') format('woff');
+	font-family: "Pretendard";
+	font-weight: 700;
+	font-style: normal;
+	font-display: swap;
+	src:
+		url("/fonts/Pretendard-Bold.woff2") format("woff2"),
+		url("/fonts/Pretendard-Bold.woff") format("woff");
 }
 
 *,
 *::before,
 *::after {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
 }
 
 html,
 body {
-    font-family: 'Pretendard', sans-serif;
-    height: 100%;
-    color: #1a1a1a;
-    background: #fff;
+	font-family: "Pretendard", sans-serif;
+	height: 100%;
+	color: #1a1a1a;
+	background: #fff;
 }
 
-h1, h2, h3, h4, h5, h6,
-p, ul, ol, li,
-figure, blockquote, dl, dd {
-    margin: 0;
-    padding: 0;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+ol,
+li,
+figure,
+blockquote,
+dl,
+dd {
+	margin: 0;
+	padding: 0;
 }
 
 a {
-    text-decoration: none;
-    color: inherit;
+	text-decoration: none;
+	color: inherit;
 }
 
 img {
-    max-width: 100%;
-    height: auto;
-    display: block;
+	max-width: 100%;
+	height: auto;
+	display: block;
 }
 
 button {
-    background: none;
-    border: none;
-    font: inherit;
-    cursor: pointer;
+	background: none;
+	border: none;
+	font: inherit;
+	cursor: pointer;
 }
 
-input, textarea, select {
-    font: inherit;
-    border: none;
-    outline: none;
-    background: none;
+input,
+textarea,
+select {
+	font: inherit;
+	border: none;
+	outline: none;
+	background: none;
 }
 
 /* 커스텀 스크롤바 */
 html {
-    scrollbar-width: thin;
-    scrollbar-color: rgba(150, 150, 150, 0.3) transparent;
+	scrollbar-width: thin;
+	scrollbar-color: rgba(150, 150, 150, 0.3) transparent;
 }
 
 ::-webkit-scrollbar {
-    width: 6px;
+	width: 6px;
 }
 
 ::-webkit-scrollbar-track {
-    background: transparent;
+	background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: rgba(150, 150, 150, 0.3);
-    border-radius: 3px;
+	background: rgba(150, 150, 150, 0.3);
+	border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: rgba(150, 150, 150, 0.5);
+	background: rgba(150, 150, 150, 0.5);
 }

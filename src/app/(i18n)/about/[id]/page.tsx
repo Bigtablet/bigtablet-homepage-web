@@ -4,50 +4,52 @@ import { isMemberSlug } from "src/entities/about/util/member.util";
 import MemberDetailClient from "./client";
 
 type PageProps = {
-    params: { id: string };
+	params: { id: string };
 };
 
 /** 멤버 상세 동적 메타데이터 */
-export const generateMetadata = async ({ params }: PageProps): Promise<Metadata> => {
-    const { id } = params;
-    if (!isMemberSlug(id)) return {};
+export const generateMetadata = async ({
+	params,
+}: PageProps): Promise<Metadata> => {
+	const { id } = params;
+	if (!isMemberSlug(id)) return {};
 
-    try {
-        const messages = await getMessages();
-        const members = (messages as any)?.about?.team?.members;
-        const member = members?.[id];
-        if (!member) return {};
+	try {
+		const messages = await getMessages();
+		const members = (messages as any)?.about?.team?.members;
+		const member = members?.[id];
+		if (!member) return {};
 
-        const name = member.name as string;
-        const position = member.position as string;
-        const description = member.description as string | undefined;
-        const image = member.image as string | undefined;
+		const name = member.name as string;
+		const position = member.position as string;
+		const description = member.description as string | undefined;
+		const image = member.image as string | undefined;
 
-        const title = `${name} - ${position} | Bigtablet`;
+		const title = `${name} - ${position} | Bigtablet`;
 
-        return {
-            title,
-            description: description ?? `${name}, ${position} at Bigtablet`,
-            openGraph: {
-                title,
-                description: description ?? `${name}, ${position} at Bigtablet`,
-                type: "profile",
-                ...(image ? { images: [{ url: image }] } : {}),
-            },
-            twitter: {
-                card: "summary",
-                title,
-                description: description ?? `${name}, ${position} at Bigtablet`,
-                ...(image ? { images: [image] } : {}),
-            },
-        };
-    } catch {
-        return {};
-    }
+		return {
+			title,
+			description: description ?? `${name}, ${position} at Bigtablet`,
+			openGraph: {
+				title,
+				description: description ?? `${name}, ${position} at Bigtablet`,
+				type: "profile",
+				...(image ? { images: [{ url: image }] } : {}),
+			},
+			twitter: {
+				card: "summary",
+				title,
+				description: description ?? `${name}, ${position} at Bigtablet`,
+				...(image ? { images: [image] } : {}),
+			},
+		};
+	} catch {
+		return {};
+	}
 };
 
 const MemberDetailPage = async () => {
-    return <MemberDetailClient />;
+	return <MemberDetailClient />;
 };
 
 export default MemberDetailPage;

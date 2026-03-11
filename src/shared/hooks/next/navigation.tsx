@@ -24,9 +24,13 @@ const NavigationContext = createContext<NavigationContextValue>({
  * @param children - 하위 컴포넌트
  * @returns NavigationContext Provider
  */
-export const BigtabletNavigation = ({ children }: { children: React.ReactNode }) => {
+export const BigtabletNavigation = ({
+	children,
+}: {
+	children: React.ReactNode;
+}) => {
 	const [isLoading, setIsLoading] = useState(false);
-	const pathname = usePathname();
+	const _pathname = usePathname();
 
 	const setLoading = (value: boolean) => {
 		setIsLoading(value);
@@ -34,7 +38,7 @@ export const BigtabletNavigation = ({ children }: { children: React.ReactNode })
 
 	useEffect(() => {
 		setIsLoading(false);
-	}, [pathname]);
+	}, []);
 
 	return (
 		<NavigationContext.Provider value={{ isLoading, setLoading }}>

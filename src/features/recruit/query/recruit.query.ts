@@ -1,17 +1,17 @@
 "use client";
 
-import { useQuery, type UseQueryOptions } from "@tanstack/react-query";
-import { recruitQueryKeys } from "./keys";
-import { toRecruitCard } from "src/entities/recruit/util/adapter";
-import type {
-	RecruitResponse,
-	RecruitCard,
-} from "src/entities/recruit/schema/recruit.schema";
+import { type UseQueryOptions, useQuery } from "@tanstack/react-query";
 import {
 	getRecruitDetailApi,
 	getRecruitListApi,
 	type RecruitSearchFilters,
 } from "src/entities/recruit/api/recruit.api";
+import type {
+	RecruitCard,
+	RecruitResponse,
+} from "src/entities/recruit/schema/recruit.schema";
+import { toRecruitCard } from "src/entities/recruit/util/adapter";
+import { recruitQueryKeys } from "./keys";
 
 /** 검색 */
 export const useRecruitSearchQuery = (

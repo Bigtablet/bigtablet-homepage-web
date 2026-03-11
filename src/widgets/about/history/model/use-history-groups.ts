@@ -9,31 +9,36 @@
  */
 
 import { useEffect, useMemo, useState } from "react";
-import { buildYearGroups, yearsFromGroups, YearGroup } from "src/entities/about/history/util/group";
 import type { HistorySchema } from "src/entities/about/history/schema/history.schema";
+import {
+	buildYearGroups,
+	type YearGroup,
+	yearsFromGroups,
+} from "src/entities/about/history/util/group";
 
 export const useHistoryGroups = (items: HistorySchema[]) => {
-    const groups: YearGroup[] = useMemo(() => buildYearGroups(items), [items]);
-    const years = useMemo(() => yearsFromGroups(groups), [groups]);
+	const groups: YearGroup[] = useMemo(() => buildYearGroups(items), [items]);
+	const years = useMemo(() => yearsFromGroups(groups), [groups]);
 
-    const [currentYear, setCurrentYear] = useState<number | null>(null);
+	const [currentYear, setCurrentYear] = useState<number | null>(null);
 
-    useEffect(() => {
-        if (groups.length && currentYear === null) {
-            setCurrentYear(groups[0].year);
-        }
-    }, [groups, currentYear]);
+	useEffect(() => {
+		if (groups.length && currentYear === null) {
+			setCurrentYear(groups[0].year);
+		}
+	}, [groups, currentYear]);
 
-    const activeGroup = useMemo(
-        () => (currentYear ? groups.find((g) => g.year === currentYear) ?? null : null),
-        [currentYear, groups],
-    );
+	const activeGroup = useMemo(
+		() =>
+			currentYear ? (groups.find((g) => g.year === currentYear) ?? null) : null,
+		[currentYear, groups],
+	);
 
-    return {
-        groups,
-        years,
-        currentYear,
-        setCurrentYear,
-        activeGroup,
-    };
+	return {
+		groups,
+		years,
+		currentYear,
+		setCurrentYear,
+		activeGroup,
+	};
 };

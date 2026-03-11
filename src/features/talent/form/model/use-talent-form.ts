@@ -1,7 +1,8 @@
 "use client";
 
+import { useToast } from "@bigtablet/design-system";
 import { useState } from "react";
-import { useForm, useFieldArray } from "react-hook-form";
+import { useFieldArray, useForm } from "react-hook-form";
 import type {
 	PostTalent,
 	PostTalentFormValues,
@@ -9,7 +10,6 @@ import type {
 import { useTalentMutation } from "src/features/talent/mutation/talent.mutation";
 import { useUploadMutation } from "src/features/upload/mutation/upload.mutation";
 import { validateFile } from "src/shared/libs/file/validate";
-import { useToast } from "@bigtablet/design-system";
 
 type PortfolioMode = "link" | "file";
 
@@ -62,7 +62,7 @@ export const useTalentForm = ({ onClose }: UseTalentFormParams) => {
 			const url = res.data ?? "";
 			form.setValue("portfolioUrl", url, { shouldValidate: true });
 			form.clearErrors("portfolioUrl");
-		} catch (err) {
+		} catch (_err) {
 			Toast.error("파일 업로드에 실패했습니다. 다시 시도해주세요.");
 			form.setValue("portfolioUrl", "", { shouldValidate: true });
 		}

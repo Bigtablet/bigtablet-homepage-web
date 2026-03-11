@@ -1,13 +1,13 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { gsap } from "src/shared/libs/gsap";
-import styles from "./style.module.scss";
 import {
 	buildYearGroups,
 	type YearGroup,
 	yearsFromGroups,
 } from "src/entities/about/history/util/group";
+import { gsap } from "src/shared/libs/gsap";
+import styles from "./style.module.scss";
 
 export interface HistoryItemType {
 	id: string;
@@ -32,9 +32,7 @@ const History = ({ items }: Props) => {
 
 	const activeGroup = useMemo(
 		() =>
-			currentYear
-				? groups.find((g) => g.year === currentYear) ?? null
-				: null,
+			currentYear ? (groups.find((g) => g.year === currentYear) ?? null) : null,
 		[groups, currentYear],
 	);
 
@@ -94,9 +92,7 @@ const History = ({ items }: Props) => {
 							className={`${styles.history_year_item} ${currentYear === y ? styles.is_active : ""}`}
 							onClick={() => handleYearChange(y)}
 						>
-							<span className={styles.history_year_text}>
-								{y}
-							</span>
+							<span className={styles.history_year_text}>{y}</span>
 						</button>
 					))}
 				</div>
@@ -110,14 +106,9 @@ const History = ({ items }: Props) => {
 					>
 						{activeGroup.list.map((it) => (
 							<div key={it.id} className={styles.history_row}>
-								<span
-									className={styles.history_row_dot}
-									aria-hidden
-								/>
+								<span className={styles.history_row_dot} aria-hidden />
 								<div className={styles.history_row_body}>
-									<div className={styles.history_row_title}>
-										{it.title}
-									</div>
+									<div className={styles.history_row_title}>{it.title}</div>
 									{it.description && (
 										<div className={styles.history_row_desc}>
 											{it.description}

@@ -1,7 +1,7 @@
 import { registerOTel } from "@vercel/otel";
 
 export function register() {
-    registerOTel({
-        serviceName: "bigtablet-homepage-web",
-    });
+	registerOTel({
+		serviceName: "bigtablet-homepage-web",
+	});
 }

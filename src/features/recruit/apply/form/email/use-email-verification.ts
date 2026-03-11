@@ -1,11 +1,11 @@
 "use client";
 
+import { useToast } from "@bigtablet/design-system";
 import { useEffect, useState } from "react";
 import {
-	sendEmailApi,
 	checkEmailApi,
+	sendEmailApi,
 } from "src/features/recruit/apply/form/email/api/email.api";
-import { useToast } from "@bigtablet/design-system";
 
 interface UseEmailVerificationParams {
 	getEmail: () => string;
@@ -29,14 +29,11 @@ const useEmailVerification = ({
 		setEmailSent(false);
 		setEmailVerified(false);
 		setResendSec(0);
-	}, [getEmail()]);
+	}, []);
 
 	useEffect(() => {
 		if (resendSec <= 0) return;
-		const id = setInterval(
-			() => setResendSec((s) => Math.max(0, s - 1)),
-			1000,
-		);
+		const id = setInterval(() => setResendSec((s) => Math.max(0, s - 1)), 1000);
 		return () => clearInterval(id);
 	}, [resendSec]);
 
@@ -60,8 +57,7 @@ const useEmailVerification = ({
 
 	const verify = async () => {
 		const email = getEmail();
-		if (!email || !authCode)
-			return alert("이메일과 인증 코드를 입력해주세요.");
+		if (!email || !authCode) return alert("이메일과 인증 코드를 입력해주세요.");
 		setCheckLoading(true);
 		try {
 			await checkEmailApi(email, authCode);

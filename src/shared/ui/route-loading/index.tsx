@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect, useState, useCallback } from "react";
-import { usePathname, useSearchParams } from "next/navigation";
 import { TopLoading } from "@bigtablet/design-system";
+import { usePathname, useSearchParams } from "next/navigation";
+import { useCallback, useEffect, useState } from "react";
 
 /** 로딩 안전장치 타임아웃 (ms) */
 const LOADING_TIMEOUT = 5000;
@@ -24,7 +24,7 @@ const RouteLoading = () => {
 	// pathname/searchParams 변경 시 로딩 종료
 	useEffect(() => {
 		setIsLoading(false);
-	}, [pathname, searchParams]);
+	}, []);
 
 	/**
 	 * 안전장치: bfcache 복원 등으로 pathname effect가 재실행되지 않는 경우
@@ -59,7 +59,9 @@ const RouteLoading = () => {
 			}
 
 			// 현재 경로와 같으면 무시
-			const currentPath = pathname + (searchParams?.toString() ? `?${searchParams.toString()}` : "");
+			const currentPath =
+				pathname +
+				(searchParams?.toString() ? `?${searchParams.toString()}` : "");
 			if (href === currentPath || href === pathname) {
 				return;
 			}

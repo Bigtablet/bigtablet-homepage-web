@@ -97,9 +97,7 @@ export const PortfolioSection = ({
 						disabled={isFormBusy}
 					/>
 					{watchPortfolioUrl && (
-						<p className={styles.helper}>
-							업로드된 URL: {watchPortfolioUrl}
-						</p>
+						<p className={styles.helper}>업로드된 URL: {watchPortfolioUrl}</p>
 					)}
 					{errors.portfolioUrl && (
 						<p className={styles.portfolio_error}>

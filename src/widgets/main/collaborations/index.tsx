@@ -42,7 +42,7 @@ const Collaborations = ({ speed = 40 }: { speed?: number }) => {
 			<div
 				className={styles.collabs_viewport}
 				ref={ref}
-				style={{ ["--gap" as any]: `${GAP}px` }}
+				style={{ "--gap": `${GAP}px` } as React.CSSProperties}
 			>
 				<Marquee gradient={false} speed={speed}>
 					{items.map((src, i) => (

@@ -15,23 +15,21 @@ export interface BlogPageResult {
 export const useBlogPageQuery = ({ page, size }: ListSchema) =>
 	useQuery<BlogPageResult>({
 		queryKey: blogQueryKeys.page(page, size),
-		queryFn: async () => {
+		queryFn: async ({ signal }) => {
 			const over = size + 1;
-			const rows = await getBlogApi({ page, size: over });
+			const rows = await getBlogApi({ page, size: over }, signal);
 
 			const hasNext = rows.length > size;
 			const items = hasNext ? rows.slice(0, size) : rows;
 
 			return { items, hasNext };
 		},
-		staleTime: 3_600_000,
 	});
 
 /** 상세 조회 */
 export const useBlogDetailQuery = (idx: number) =>
 	useQuery<BlogItem>({
 		queryKey: blogQueryKeys.detail(idx),
-		queryFn: () => getBlogDetailApi(idx),
+		queryFn: ({ signal }) => getBlogDetailApi(idx, signal),
 		enabled: Number.isFinite(idx) && idx > 0,
-		staleTime: 3_600_000,
 	});

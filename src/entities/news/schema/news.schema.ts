@@ -16,5 +16,4 @@ export type NewsItem = z.infer<typeof newsItemSchema>;
 export const newsListResponseSchema = baseResponseSchema(
 	z.array(newsItemSchema),
 );
-baseResponseSchema(newsItemSchema);
 export type NewsListResponse = z.infer<typeof newsListResponseSchema>;

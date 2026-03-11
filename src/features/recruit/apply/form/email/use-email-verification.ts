@@ -6,6 +6,7 @@ import {
 	checkEmailApi,
 	sendEmailApi,
 } from "src/features/recruit/apply/form/email/api/email.api";
+import { getErrorMessage } from "src/shared/libs/api/axios/error/error.util";
 
 interface UseEmailVerificationParams {
 	getEmail: () => string;
@@ -48,8 +49,8 @@ const useEmailVerification = ({
 			setEmailSent(true);
 			setResendSec(cooldownSec);
 			Toast.success("인증 코드가 전송되었습니다. 메일함을 확인해주세요.");
-		} catch (e: any) {
-			Toast.error(e?.response?.data?.message ?? "이메일 전송 실패");
+		} catch (e: unknown) {
+			Toast.error(getErrorMessage(e, "이메일 전송 실패"));
 		} finally {
 			setSendLoading(false);
 		}
@@ -63,9 +64,9 @@ const useEmailVerification = ({
 			await checkEmailApi(email, authCode);
 			setEmailVerified(true);
 			Toast.success("이메일 인증이 완료되었습니다.");
-		} catch (e: any) {
+		} catch (e: unknown) {
 			setEmailVerified(false);
-			Toast.error(e?.response?.data?.message ?? "인증 실패");
+			Toast.error(getErrorMessage(e, "인증 실패"));
 		} finally {
 			setCheckLoading(false);
 		}

@@ -20,8 +20,8 @@ export const useNewsPageQuery = ({
 }) =>
 	useQuery<NewsPageResult>({
 		queryKey: newsQueryKeys.page(page, size),
-		queryFn: async () => {
-			const res = await getNewsApi({ page, size });
+		queryFn: async ({ signal }) => {
+			const res = await getNewsApi({ page, size }, signal);
 
 			const items = res.data ?? [];
 
@@ -30,5 +30,4 @@ export const useNewsPageQuery = ({
 				hasNext: items.length === size,
 			};
 		},
-		staleTime: 3_600_000,
 	});

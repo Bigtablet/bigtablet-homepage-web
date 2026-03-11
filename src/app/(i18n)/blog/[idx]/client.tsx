@@ -1,11 +1,14 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { useLocale } from "next-intl";
 import { useEffect, useRef } from "react";
-import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+
+const ReactMarkdown = dynamic(() => import("react-markdown"), { ssr: false });
+
 import { useBlogViewMutation } from "src/features/blog/mutation/blog.mutation";
 import { useBlogDetailQuery } from "src/features/blog/query/blog.query";
 import { formatRelative } from "src/shared/libs/ui/date";

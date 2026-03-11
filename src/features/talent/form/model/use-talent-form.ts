@@ -9,6 +9,7 @@ import type {
 } from "src/entities/talent/schema/talent.schema";
 import { useTalentMutation } from "src/features/talent/mutation/talent.mutation";
 import { useUploadMutation } from "src/features/upload/mutation/upload.mutation";
+import { getErrorMessage } from "src/shared/libs/api/axios/error/error.util";
 import { validateFile } from "src/shared/libs/file/validate";
 
 type PortfolioMode = "link" | "file";
@@ -43,9 +44,10 @@ export const useTalentForm = ({ onClose }: UseTalentFormParams) => {
 		shouldUnregister: false,
 	});
 
-	const { fields, append, remove } = useFieldArray<any>({
-		control: form.control as any,
-		name: "etcUrl",
+	// useFieldArray는 원시 배열(string[])을 직접 지원하지 않아 타입 단언 필요
+	const { fields, append, remove } = useFieldArray({
+		control: form.control as never,
+		name: "etcUrl" as never,
 	});
 
 	const handlePortfolioFile = async (file: File | null) => {
@@ -87,12 +89,8 @@ export const useTalentForm = ({ onClose }: UseTalentFormParams) => {
 			form.reset();
 			setPortfolioMode("link");
 			onClose();
-		} catch (error: any) {
-			const message =
-				error?.response?.data?.message ||
-				error?.message ||
-				"등록 중 오류가 발생했습니다.";
-			Toast.error(message);
+		} catch (error: unknown) {
+			Toast.error(getErrorMessage(error, "등록 중 오류가 발생했습니다."));
 		}
 	};
 

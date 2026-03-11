@@ -14,7 +14,7 @@ type Locale = (typeof SUPPORTED)[number];
 const Header = () => {
 	const locale = useLocale() as Locale;
 	const router = useRouter();
-	const _pathname = usePathname();
+	const pathname = usePathname();
 	const [scrolled, setScrolled] = useState(false);
 	const [menuOpen, setMenuOpen] = useState(false);
 
@@ -27,7 +27,7 @@ const Header = () => {
 
 	useEffect(() => {
 		setMenuOpen(false);
-	}, []);
+	}, [pathname]);
 
 	useEffect(() => {
 		if (menuOpen) {

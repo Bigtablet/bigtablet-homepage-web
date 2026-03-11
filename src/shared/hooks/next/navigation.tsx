@@ -30,7 +30,7 @@ export const BigtabletNavigation = ({
 	children: React.ReactNode;
 }) => {
 	const [isLoading, setIsLoading] = useState(false);
-	const _pathname = usePathname();
+	const pathname = usePathname();
 
 	const setLoading = (value: boolean) => {
 		setIsLoading(value);
@@ -38,7 +38,7 @@ export const BigtabletNavigation = ({
 
 	useEffect(() => {
 		setIsLoading(false);
-	}, []);
+	}, [pathname]);
 
 	return (
 		<NavigationContext.Provider value={{ isLoading, setLoading }}>

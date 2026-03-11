@@ -1,43 +1,40 @@
-import {z} from "zod";
-import {baseResponseSchema} from "src/shared/schema/response/response.schema";
+import { baseResponseSchema } from "src/shared/schema/response/response.schema";
+import { z } from "zod";
 
 export const postTalentSchema = z.object({
-    name: z.string().min(1, "이름을 입력해주세요."),
-    email: z
-        .string()
-        .min(1, "이메일을 입력해주세요.")
-        .email("유효한 이메일 형식이 아닙니다."),
-    department: z.string().min(1, "희망 직무를 입력해주세요."),
-    portfolioUrl: z.string().min(1, "포트폴리오 URL을 입력해주세요."),
-    etcUrl: z.array(z.string()).optional(),
+	name: z.string().min(1, "이름을 입력해주세요."),
+	email: z
+		.string()
+		.min(1, "이메일을 입력해주세요.")
+		.email("유효한 이메일 형식이 아닙니다."),
+	department: z.string().min(1, "희망 직무를 입력해주세요."),
+	portfolioUrl: z.string().min(1, "포트폴리오 URL을 입력해주세요."),
+	etcUrl: z.array(z.string()).optional(),
 });
 
 export type PostTalent = z.infer<typeof postTalentSchema>;
 
 export type PostTalentFormValues = {
-    email: string;
-    name: string;
-    department: string;
-    portfolioUrl: string;
-    etcUrl: string[];
+	email: string;
+	name: string;
+	department: string;
+	portfolioUrl: string;
+	etcUrl: string[];
 };
 z.object({
-    idx: z.number(),
-    text: z.string(),
+	idx: z.number(),
+	text: z.string(),
 });
 export const getTalentDetailResponseSchema = baseResponseSchema(
-    z.object({
-        idx: z.number(),
-        email: z.string(),
-        name: z.string(),
-        department: z.string(),
-        portfolioUrl: z.string(),
-        etcUrl: z.array(z.string()).optional(),
-        createdAt: z.string(),
-    }),
+	z.object({
+		idx: z.number(),
+		email: z.string(),
+		name: z.string(),
+		department: z.string(),
+		portfolioUrl: z.string(),
+		etcUrl: z.array(z.string()).optional(),
+		createdAt: z.string(),
+	}),
 );
-baseResponseSchema(
-    z.array(getTalentDetailResponseSchema),
-);baseResponseSchema(
-    z.array(getTalentDetailResponseSchema),
-);
+baseResponseSchema(z.array(getTalentDetailResponseSchema));
+baseResponseSchema(z.array(getTalentDetailResponseSchema));

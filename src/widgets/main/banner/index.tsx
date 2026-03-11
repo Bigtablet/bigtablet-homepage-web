@@ -1,12 +1,12 @@
 "use client";
 
-import { useRef } from "react";
-import { useTranslations } from "next-intl";
-import { useGSAP } from "@gsap/react";
-import { gsap } from "src/shared/libs/gsap";
-import { useReducedMotion } from "src/shared/hooks/use-reduced-motion";
 import { Button } from "@bigtablet/design-system";
+import { useGSAP } from "@gsap/react";
 import { ChevronDown } from "lucide-react";
+import { useTranslations } from "next-intl";
+import { useRef } from "react";
+import { useReducedMotion } from "src/shared/hooks/use-reduced-motion";
+import { gsap } from "src/shared/libs/gsap";
 import styles from "./style.module.scss";
 
 const Banner = () => {
@@ -60,7 +60,6 @@ const Banner = () => {
 		<section
 			ref={containerRef}
 			className={styles.banner}
-			role="region"
 			aria-labelledby="banner_title"
 		>
 			<div className={styles.banner_video}>

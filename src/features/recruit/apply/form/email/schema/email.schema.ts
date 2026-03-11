@@ -1,4 +1,4 @@
 export interface EmailSchema {
-    getEmail: () => string;
-    cooldownSec?: number;
+	getEmail: () => string;
+	cooldownSec?: number;
 }

@@ -1,14 +1,14 @@
 /** @description 멤버 고유 키 상수 */
 export const MEMBER_KEYS = [
-    "jiho",
-    "minho",
-    "chaehyung",
-    "sungho",
-    "gyeongmin",
-    "yerim",
-    "gunwoo",
-    "sangmin",
-    "byungjun",
+	"jiho",
+	"minho",
+	"chaehyung",
+	"sungho",
+	"gyeongmin",
+	"yerim",
+	"gunwoo",
+	"sangmin",
+	"byungjun",
 ] as const;
 
 export type MemberKey = (typeof MEMBER_KEYS)[number];
@@ -17,19 +17,27 @@ export type MemberKey = (typeof MEMBER_KEYS)[number];
 export type MemberSlug = MemberKey;
 
 /** @description 멤버 역할 타입 */
-export type MemberRole = "CEO" | "CTO" | "Manage" | "Designer" | "PM" | "BE" | "FE" | "APP";
+export type MemberRole =
+	| "CEO"
+	| "CTO"
+	| "Manage"
+	| "Designer"
+	| "PM"
+	| "BE"
+	| "FE"
+	| "APP";
 
 /** @description 멤버 역할 매핑 */
 export const MEMBER_ROLE: Record<MemberKey, MemberRole> = {
-    jiho: "CEO",
-    minho: "CTO",
-    chaehyung: "Manage",
-    sungho: "Designer",
-    gyeongmin: "PM",
-    yerim: "PM",
-    gunwoo: "BE",
-    sangmin: "FE",
-    byungjun: "APP",
+	jiho: "CEO",
+	minho: "CTO",
+	chaehyung: "Manage",
+	sungho: "Designer",
+	gyeongmin: "PM",
+	yerim: "PM",
+	gunwoo: "BE",
+	sangmin: "FE",
+	byungjun: "APP",
 } as const;
 
 /** @description 기본 노출 순서 */
@@ -37,4 +45,4 @@ export const MEMBER_DEFAULT_ORDER: MemberKey[] = [...MEMBER_KEYS];
 
 /** @description 주어진 값이 멤버 슬러그인지 검사 */
 export const isMemberSlug = (x: string): x is MemberSlug =>
-    MEMBER_KEYS.includes(x as MemberSlug);
+	MEMBER_KEYS.includes(x as MemberSlug);

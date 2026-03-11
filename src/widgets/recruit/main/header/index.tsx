@@ -3,20 +3,19 @@
 import {
 	Button,
 	Select,
-	TextField,
 	type SelectOption,
+	TextField,
 } from "@bigtablet/design-system";
 import { memo, useMemo, useState } from "react";
-
+import type { RecruitSearchFilters } from "src/entities/recruit/api/recruit.api";
 import {
 	DEPARTMENTS,
-	EDUCATIONS,
-	RECRUIT_TYPES,
 	departmentLabel,
+	EDUCATIONS,
 	educationLabel,
+	RECRUIT_TYPES,
 	recruitTypeLabel,
 } from "src/entities/recruit/constants/recruit.constants";
-import type { RecruitSearchFilters } from "src/entities/recruit/api/recruit.api";
 import type {
 	DepartmentType,
 	EducationType,

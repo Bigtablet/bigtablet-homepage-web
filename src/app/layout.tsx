@@ -1,54 +1,66 @@
 import "src/app/global.css";
 import "./global.css";
-import { Suspense } from "react";
+import type { Metadata } from "next";
 import { cookies } from "next/headers";
+import { notFound } from "next/navigation";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
-import Providers from "src/widgets/layout/provider";
-import { Metadata } from "next";
-import { notFound } from "next/navigation";
+import { Suspense } from "react";
 import RouteLoading from "src/shared/ui/route-loading";
+import Providers from "src/widgets/layout/provider";
 
 export const metadata: Metadata = {
-    title: "Bigtablet",
-    description: "Bigtablet's Official Website",
+	title: "Bigtablet",
+	description: "Bigtablet's Official Website",
 };
 
 export const dynamic = "force-dynamic";
 
 export default async function RootLayout({
-                                             children,
-                                         }: {
-    children: React.ReactNode;
+	children,
+}: {
+	children: React.ReactNode;
 }) {
-    const store = await cookies();
-    const val = store.get("NEXT_LOCALE")?.value;
-    const locale = (val === "en" ? "en" : "ko") as "en" | "ko";
+	const store = await cookies();
+	const val = store.get("NEXT_LOCALE")?.value;
+	const locale = (val === "en" ? "en" : "ko") as "en" | "ko";
 
-    let messages;
-    try {
-        messages = await getMessages();
-    } catch {
-        notFound();
-    }
+	let messages;
+	try {
+		messages = await getMessages();
+	} catch {
+		notFound();
+	}
 
-    return (
-        <html lang={locale} suppressHydrationWarning>
-        <head>
-            <link rel="icon" href="/images/logo/favicon.png"/>
-            <link rel="preload" href="/fonts/Pretendard-Regular.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
-            <link rel="preload" href="/fonts/Pretendard-Bold.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
-            <link rel="preconnect" href="https://storage.googleapis.com" />
-        </head>
-        <body className="font-sans antialiased">
-        <Suspense fallback={null}>
-            <RouteLoading />
-        </Suspense>
-        <div id="modal"/>
-        <NextIntlClientProvider locale={locale} messages={messages}>
-            <Providers>{children}</Providers>
-        </NextIntlClientProvider>
-        </body>
-        </html>
-    );
+	return (
+		<html lang={locale} suppressHydrationWarning>
+			<head>
+				<link rel="icon" href="/images/logo/favicon.png" />
+				<link
+					rel="preload"
+					href="/fonts/Pretendard-Regular.woff2"
+					as="font"
+					type="font/woff2"
+					crossOrigin="anonymous"
+				/>
+				<link
+					rel="preload"
+					href="/fonts/Pretendard-Bold.woff2"
+					as="font"
+					type="font/woff2"
+					crossOrigin="anonymous"
+				/>
+				<link rel="preconnect" href="https://storage.googleapis.com" />
+			</head>
+			<body className="font-sans antialiased">
+				<Suspense fallback={null}>
+					<RouteLoading />
+				</Suspense>
+				<div id="modal" />
+				<NextIntlClientProvider locale={locale} messages={messages}>
+					<Providers>{children}</Providers>
+				</NextIntlClientProvider>
+			</body>
+		</html>
+	);
 }

@@ -1,28 +1,38 @@
 "use client";
 
-import {ReactNode, useState} from "react";
-import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
-import {AlertProvider, ToastProvider} from "@bigtablet/design-system";
+import { AlertProvider, ToastProvider } from "@bigtablet/design-system";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { type ReactNode, useState } from "react";
+import CookieConsent from "src/features/cookie-consent/ui";
 
 type Props = { children: ReactNode };
 
-export default function Providers({children}: Props) {
-    const [client] = useState(
-        () =>
-            new QueryClient({
-                defaultOptions: {
-                    queries: {retry: 1},
-                },
-            })
-    );
+export default function Providers({ children }: Props) {
+	const [client] = useState(
+		() =>
+			new QueryClient({
+				defaultOptions: {
+					queries: {
+						staleTime: 1000 * 60 * 60,
+						gcTime: 1000 * 60 * 60 * 2,
+						retry: (failureCount, error) => {
+							const status = (error as { status?: number }).status;
+							if (status && status >= 400 && status < 500) return false;
+							return failureCount < 1;
+						},
+					},
+				},
+			}),
+	);
 
-    return (
-        <QueryClientProvider client={client}>
-            <ToastProvider/>
-            <AlertProvider>
-
-                {children}
-            </AlertProvider>
-        </QueryClientProvider>
-    )
+	return (
+		<QueryClientProvider client={client}>
+			<ToastProvider>
+				<AlertProvider>
+					{children}
+					<CookieConsent />
+				</AlertProvider>
+			</ToastProvider>
+		</QueryClientProvider>
+	);
 }

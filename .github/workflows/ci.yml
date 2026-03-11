@@ -7,16 +7,18 @@ on:
 jobs:
   validate:
     runs-on: ubuntu-latest
+    env:
+      NEXT_PUBLIC_SERVER_URL: https://placeholder.test
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: 24
           cache: pnpm
@@ -28,7 +30,10 @@ jobs:
         run: pnpm lint
 
       - name: Type check
-        run: npx tsc --noEmit
+        run: pnpm type-check
+
+      - name: Test
+        run: pnpm test
 
       - name: Build
         run: pnpm build

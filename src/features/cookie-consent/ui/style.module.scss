@@ -1,0 +1,106 @@
+@use "@bigtablet/design-system/scss/token" as token;
+
+.banner {
+	position: fixed;
+	bottom: token.$spacing_2xl;
+	right: token.$spacing_2xl;
+	z-index: token.$z_modal;
+	width: 360px;
+	background: token.$color_background;
+	border-radius: token.$radius_lg;
+	box-shadow: token.$shadow_lg;
+	padding: token.$spacing_xl token.$spacing_2xl;
+	@include token.flex_column;
+	gap: token.$spacing_lg;
+	animation: slide_up token.$transition_base;
+}
+
+.message {
+	@include token.body_regular;
+	color: token.$text_strong;
+	line-height: token.$line_height_relaxed;
+
+	a {
+		color: token.$color_primary;
+		text-decoration: underline;
+		font-weight: token.$font_weight_medium;
+		transition: opacity token.$transition_fast;
+
+		&:hover {
+			opacity: 0.8;
+		}
+	}
+}
+
+.actions {
+	display: flex;
+	justify-content: flex-end;
+	gap: token.$spacing_md;
+}
+
+.button_accept {
+	padding: token.$spacing_sm token.$spacing_xl;
+	border-radius: token.$radius_md;
+	border: none;
+	cursor: pointer;
+	@include token.text_sm;
+	font-weight: token.$font_weight_semibold;
+	background: token.$color_background_primary;
+	color: token.$text_inverse;
+	transition:
+		opacity token.$transition_fast,
+		transform token.$transition_fast;
+
+	&:hover {
+		opacity: 0.9;
+		transform: translateY(-1px);
+	}
+}
+
+.button_decline {
+	padding: token.$spacing_sm token.$spacing_xl;
+	border-radius: token.$radius_md;
+	border: 1px solid token.$color_border_light;
+	cursor: pointer;
+	@include token.text_sm;
+	font-weight: token.$font_weight_medium;
+	background: transparent;
+	color: token.$text_subtle;
+	transition:
+		background token.$transition_fast,
+		transform token.$transition_fast;
+
+	&:hover {
+		background: token.$color_background_secondary;
+		transform: translateY(-1px);
+	}
+}
+
+@include token.mobile {
+	.banner {
+		bottom: token.$spacing_md;
+		right: token.$spacing_md;
+		left: token.$spacing_md;
+		width: auto;
+		padding: token.$spacing_lg;
+	}
+
+	.actions {
+		flex-direction: column;
+
+		button {
+			width: 100%;
+		}
+	}
+}
+
+@keyframes slide_up {
+	from {
+		opacity: 0;
+		transform: translateY(20px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}

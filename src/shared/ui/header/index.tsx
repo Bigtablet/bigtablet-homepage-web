@@ -1,11 +1,11 @@
 "use client";
 
-import Link from "next/link";
-import Image from "next/image";
-import { useEffect, useState, useCallback } from "react";
-import { useLocale } from "next-intl";
-import { useRouter, usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
+import { useLocale } from "next-intl";
+import { useCallback, useEffect, useState } from "react";
 import styles from "./style.module.scss";
 
 const SUPPORTED = ["ko", "en"] as const;
@@ -93,7 +93,11 @@ const Header = () => {
 					<Link href="/recruit" onClick={closeMenu}>
 						Recruit
 					</Link>
-					<button type="button" onClick={switchLocale} className={styles.locale_switch}>
+					<button
+						type="button"
+						onClick={switchLocale}
+						className={styles.locale_switch}
+					>
 						{locale === "en" ? "한국어" : "English"}
 					</button>
 				</nav>

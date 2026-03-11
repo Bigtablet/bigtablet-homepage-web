@@ -1,15 +1,16 @@
 "use client";
 
+import { useToast } from "@bigtablet/design-system";
 import { useState } from "react";
-import { useForm, useFieldArray } from "react-hook-form";
+import { useFieldArray, useForm } from "react-hook-form";
 import type {
 	PostTalent,
 	PostTalentFormValues,
 } from "src/entities/talent/schema/talent.schema";
 import { useTalentMutation } from "src/features/talent/mutation/talent.mutation";
 import { useUploadMutation } from "src/features/upload/mutation/upload.mutation";
+import { getErrorMessage } from "src/shared/libs/api/axios/error/error.util";
 import { validateFile } from "src/shared/libs/file/validate";
-import { useToast } from "@bigtablet/design-system";
 
 type PortfolioMode = "link" | "file";
 
@@ -43,9 +44,10 @@ export const useTalentForm = ({ onClose }: UseTalentFormParams) => {
 		shouldUnregister: false,
 	});
 
-	const { fields, append, remove } = useFieldArray<any>({
-		control: form.control as any,
-		name: "etcUrl",
+	// useFieldArray는 원시 배열(string[])을 직접 지원하지 않아 타입 단언 필요
+	const { fields, append, remove } = useFieldArray({
+		control: form.control as never,
+		name: "etcUrl" as never,
 	});
 
 	const handlePortfolioFile = async (file: File | null) => {
@@ -62,7 +64,7 @@ export const useTalentForm = ({ onClose }: UseTalentFormParams) => {
 			const url = res.data ?? "";
 			form.setValue("portfolioUrl", url, { shouldValidate: true });
 			form.clearErrors("portfolioUrl");
-		} catch (err) {
+		} catch (_err) {
 			Toast.error("파일 업로드에 실패했습니다. 다시 시도해주세요.");
 			form.setValue("portfolioUrl", "", { shouldValidate: true });
 		}
@@ -87,12 +89,8 @@ export const useTalentForm = ({ onClose }: UseTalentFormParams) => {
 			form.reset();
 			setPortfolioMode("link");
 			onClose();
-		} catch (error: any) {
-			const message =
-				error?.response?.data?.message ||
-				error?.message ||
-				"등록 중 오류가 발생했습니다.";
-			Toast.error(message);
+		} catch (error: unknown) {
+			Toast.error(getErrorMessage(error, "등록 중 오류가 발생했습니다."));
 		}
 	};
 

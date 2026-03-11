@@ -1,6 +1,6 @@
 "use client";
 
-import { useMutation, type UseMutationOptions } from "@tanstack/react-query";
+import { type UseMutationOptions, useMutation } from "@tanstack/react-query";
 import { patchBlogViewApi } from "src/entities/blog/api/blog.api";
 import type { BlogOkResponse } from "src/entities/blog/schema/blog.schema";
 import { blogMutationKeys } from "./keys";

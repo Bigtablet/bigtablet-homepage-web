@@ -2,8 +2,8 @@
 
 import { Button } from "@bigtablet/design-system";
 import { BigtabletRouter } from "src/shared/hooks/next";
-import styles from "./not-found.module.scss";
 import Template from "src/shared/ui/template";
+import styles from "./not-found.module.scss";
 
 /**
  * 공통 404 페이지

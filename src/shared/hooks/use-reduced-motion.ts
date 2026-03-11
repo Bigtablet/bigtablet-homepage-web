@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const QUERY = "(prefers-reduced-motion: reduce)";
 
@@ -11,16 +11,16 @@ const QUERY = "(prefers-reduced-motion: reduce)";
  * SSR 안전: 서버에서는 false를 기본값으로 사용한다.
  */
 export const useReducedMotion = (): boolean => {
-    const [prefersReduced, setPrefersReduced] = useState(false);
+	const [prefersReduced, setPrefersReduced] = useState(false);
 
-    useEffect(() => {
-        const mql = window.matchMedia(QUERY);
-        setPrefersReduced(mql.matches);
+	useEffect(() => {
+		const mql = window.matchMedia(QUERY);
+		setPrefersReduced(mql.matches);
 
-        const handler = (e: MediaQueryListEvent) => setPrefersReduced(e.matches);
-        mql.addEventListener("change", handler);
-        return () => mql.removeEventListener("change", handler);
-    }, []);
+		const handler = (e: MediaQueryListEvent) => setPrefersReduced(e.matches);
+		mql.addEventListener("change", handler);
+		return () => mql.removeEventListener("change", handler);
+	}, []);
 
-    return prefersReduced;
+	return prefersReduced;
 };

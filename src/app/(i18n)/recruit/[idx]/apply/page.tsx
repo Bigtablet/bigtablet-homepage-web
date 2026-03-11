@@ -1,83 +1,82 @@
 "use client";
 
-import { useMemo, useEffect } from "react";
-import { useParams } from "next/navigation";
-import { useForm, type Resolver } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-
-import styles from "./style.module.scss";
+import { useParams } from "next/navigation";
+import { useEffect, useMemo } from "react";
+import { type Resolver, useForm } from "react-hook-form";
+import useEmailVerification from "src/features/recruit/apply/form/email/use-email-verification";
 
 import {
-    applySchema,
-    type ApplyFormValues,
+	type ApplyFormValues,
+	applySchema,
 } from "src/features/recruit/apply/form/model/apply.schema";
-import useEmailVerification from "src/features/recruit/apply/form/email/use-email-verification";
-import ApplyForm from "src/features/recruit/apply/form/ui";
 import { useApplySubmit } from "src/features/recruit/apply/form/model/use-apply-submit";
+import ApplyForm from "src/features/recruit/apply/form/ui";
+import styles from "./style.module.scss";
 
 const ApplyPage = () => {
-    const { idx } = useParams<{ locale: string; idx: string }>();
-    const jobId = useMemo(() => Number(idx) || -1, [idx]);
+	const { idx } = useParams<{ locale: string; idx: string }>();
+	const jobId = useMemo(() => Number(idx) || -1, [idx]);
 
-    const form = useForm<ApplyFormValues>({
-        resolver: zodResolver(applySchema) as Resolver<ApplyFormValues>,
-        defaultValues: {
-            jobId,
-            name: "",
-            phoneNumber: "010",
-            email: "",
-            address: "",
-            addressDetail: "",
-            portfolio: "",
-            coverLetter: "",
-            profileImage: "",
-            educationLevel: "BACHELOR",
-            schoolName: "",
-            admissionYear: "",
-            graduationEnd: "",
-            department: "",
-            military: "NOT_COMPLETED",
-            attachment1: "",
-            attachment2: "",
-            attachment3: "",
-        },
-        mode: "onChange",
-    });
+	const form = useForm<ApplyFormValues>({
+		resolver: zodResolver(applySchema) as Resolver<ApplyFormValues>,
+		defaultValues: {
+			jobId,
+			name: "",
+			phoneNumber: "010",
+			email: "",
+			address: "",
+			addressDetail: "",
+			portfolio: "",
+			coverLetter: "",
+			profileImage: "",
+			educationLevel: "BACHELOR",
+			schoolName: "",
+			admissionYear: "",
+			graduationEnd: "",
+			department: "",
+			military: "NOT_COMPLETED",
+			attachment1: "",
+			attachment2: "",
+			attachment3: "",
+		},
+		mode: "onChange",
+	});
 
-    useEffect(() => {
-        const current = form.getValues("jobId");
-        if (current !== jobId) {
-            form.setValue("jobId", jobId, { shouldDirty: true });
-        }
-    }, [jobId, form]);
+	useEffect(() => {
+		const current = form.getValues("jobId");
+		if (current !== jobId) {
+			form.setValue("jobId", jobId, { shouldDirty: true });
+		}
+	}, [jobId, form]);
 
-    const rawEmail = useEmailVerification({
-        getEmail: () => form.getValues("email"),
-        cooldownSec: 60,
-    });
+	const rawEmail = useEmailVerification({
+		getEmail: () => form.getValues("email"),
+		cooldownSec: 60,
+	});
 
-    const email = {
-        ...rawEmail,
-        send: async () => {
-            await rawEmail.send();
-        },
-        verify: async () => {
-            await rawEmail.verify();
-        },
-    };
+	const email = {
+		...rawEmail,
+		send: async () => {
+			await rawEmail.send();
+		},
+		verify: async () => {
+			await rawEmail.verify();
+		},
+	};
 
-    const { onSubmit } = useApplySubmit({
-        form,
-        jobId,
-        emailVerified: email.emailVerified,
-    });
+	const { onSubmit } = useApplySubmit({
+		form,
+		jobId,
+		emailVerified: email.emailVerified,
+	});
 
-    return (
-        <div className={styles.apply}>
-            <h1 className={styles.apply_title}>지원서 작성</h1>
-            <ApplyForm form={form} email={email} onSubmit={onSubmit} />
-        </div>
-    );
+	return (
+		<div className={styles.apply}>
+			<h1 className={styles.apply_title}>지원서 작성</h1>
+			<ApplyForm form={form} email={email} onSubmit={onSubmit} />
+		</div>
+	);
 };
 
 export default ApplyPage;

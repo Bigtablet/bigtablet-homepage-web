@@ -97,6 +97,13 @@ src/
 | TypeScript | Strict mode, path alias `src/*` |
 | Biome | Tabs (4 spaces width), 100 char line width |
 
+## SEO
+
+- `src/app/sitemap.ts`의 `LAST_MODIFIED` 상수는 **사이트 콘텐츠를 수정한 날짜**로 수동 업데이트
+  - 형식: `"YYYY-MM-DD"`
+  - 빌드 시점 자동 날짜(`new Date()`) 사용 금지 — 내용 변경 없이 매 배포마다 갱신되어 크롤러 과부하 유발
+- `src/app/robots.ts` 변경 시 sitemap URL 일치 여부 확인
+
 ## Authentication Flow
 
 1. Tokens stored in cookies via `js-cookie`

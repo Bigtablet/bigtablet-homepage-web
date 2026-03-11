@@ -1,9 +1,9 @@
 "use client";
 
-import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
-import { gsap, ScrollTrigger } from "src/shared/libs/gsap";
+import { useRef } from "react";
 import { useReducedMotion } from "src/shared/hooks/use-reduced-motion";
+import { gsap } from "src/shared/libs/gsap";
 
 type Variant = "fade-up" | "fade-in" | "slide-left" | "slide-right";
 
@@ -80,7 +80,18 @@ export const useScrollReveal = <T extends HTMLElement = HTMLDivElement>(
 				},
 			});
 		},
-		{ scope: containerRef, dependencies: [variant, duration, delay, stagger, start, once, prefersReduced] },
+		{
+			scope: containerRef,
+			dependencies: [
+				variant,
+				duration,
+				delay,
+				stagger,
+				start,
+				once,
+				prefersReduced,
+			],
+		},
 	);
 
 	return containerRef;

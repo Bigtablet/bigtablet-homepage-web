@@ -3,8 +3,8 @@
 import { Button } from "@bigtablet/design-system";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { BigtabletRouter } from "src/shared/hooks/next";
-import styles from "./error.module.scss";
 import Template from "src/shared/ui/template";
+import styles from "./error.module.scss";
 
 const MAX_RETRY = 3;
 const COOLDOWN_SEC = 3;

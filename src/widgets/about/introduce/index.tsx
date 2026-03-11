@@ -1,9 +1,9 @@
 "use client";
 
 import clsx from "clsx";
-import styles from "./style.module.scss";
 import { useTranslations } from "next-intl";
 import { useScrollReveal } from "src/shared/hooks/use-scroll-reveal";
+import styles from "./style.module.scss";
 
 interface AboutSchema {
 	sectionKey: string;
@@ -19,15 +19,10 @@ const Introduce = ({ sectionKey, reverse = false }: AboutSchema) => {
 	return (
 		<section
 			ref={sectionRef}
-			className={clsx(
-				styles.introduce,
-				reverse && styles.introduce_reverse,
-			)}
+			className={clsx(styles.introduce, reverse && styles.introduce_reverse)}
 		>
 			<div className={styles.introduce_text}>
-				<p className={styles.introduce_title}>
-					{t(`${sectionKey}.title`)}
-				</p>
+				<p className={styles.introduce_title}>{t(`${sectionKey}.title`)}</p>
 				<p className={styles.introduce_desc}>
 					{t(`${sectionKey}.description`)}
 				</p>

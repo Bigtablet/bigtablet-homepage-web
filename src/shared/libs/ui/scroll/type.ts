@@ -1,3 +1,3 @@
 export type ScrollOption = IntersectionObserverInit & {
-    onIntersect: () => void;
+	onIntersect: () => void;
 };

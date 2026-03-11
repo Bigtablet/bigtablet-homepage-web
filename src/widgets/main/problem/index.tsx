@@ -15,7 +15,6 @@ const Problem = () => {
 		<section
 			ref={sectionRef}
 			className={styles.problem}
-			role="region"
 			aria-labelledby="problem_title"
 		>
 			<h2 id="problem_title" className={styles.problem_title}>

@@ -3,8 +3,39 @@ name: CI
 on:
   pull_request:
     branches: [develop, main]
+  push:
+    branches: [develop]
+
+permissions:
+  contents: read
+  pull-requests: write
 
 jobs:
+  commitlint:
+    name: Lint commit messages
+    runs-on: ubuntu-latest
+    # develop 브랜치 대상 PR에서만 실행, dependabot PR은 제외
+    if: github.event_name == 'pull_request' && github.actor != 'dependabot[bot]' && github.base_ref == 'develop'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Lint commit messages
+        run: pnpm exec commitlint --from ${{ github.event.pull_request.base.sha }} --to ${{ github.event.pull_request.head.sha }} --verbose
+
   validate:
     runs-on: ubuntu-latest
     env:

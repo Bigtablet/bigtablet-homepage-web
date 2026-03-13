@@ -12,7 +12,8 @@
 		"test": "vitest run",
 		"test:watch": "vitest",
 		"test:coverage": "vitest run --coverage",
-		"type-check": "tsc --noEmit"
+		"type-check": "tsc --noEmit",
+		"prepare": "husky"
 	},
 	"dependencies": {
 		"@bigtablet/design-system": "^1.19.4",
@@ -53,6 +54,9 @@
 		"@vitest/coverage-v8": "^4.0.18",
 		"jsdom": "^28.1.0",
 		"typescript": "^5",
-		"vitest": "^4.0.18"
+		"vitest": "^4.0.18",
+		"@commitlint/cli": "^19.8.0",
+		"@commitlint/core": "^19.8.0",
+		"husky": "^9.1.7"
 	}
 }

@@ -142,7 +142,7 @@ src/
 - **커밋 메시지는 반드시 영문 소문자**: `label: english message` (한글 금지)
 - **Co-Authored-By**: `Co-Authored-By: Claude <noreply@anthropic.com>`
 - **브랜치**: `label/domain` (예: `feat/member-table`)
-- **브랜치 라벨**: `feat`, `fix`, `bug`, `style`, `docs`, `config`, `delete`, `note`, `etc` (이 목록에 없는 라벨 사용 금지)
+- **브랜치 라벨**: `feat`, `fix`, `bug`, `chore`, `test`, `style`, `docs`, `config`, `delete`, `note`, `etc` (이 목록에 없는 라벨 사용 금지)
 - **PR/Issue 워크플로우** (순서 필수):
   1. Issue 생성 (title = 브랜치명)
   2. Branch 생성

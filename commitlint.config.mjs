@@ -9,6 +9,8 @@ export default {
 				"feat",
 				"fix",
 				"bug",
+				"chore",
+				"test",
 				"merge",
 				"deploy",
 				"docs",

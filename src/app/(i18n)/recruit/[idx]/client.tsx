@@ -9,8 +9,8 @@ import { RecruitMarkdownSection } from "./recruit-markdown-section";
 import { RecruitNotice } from "./recruit-notice";
 import { RecruitProcess } from "./recruit-process";
 import { RecruitRequestSection } from "./recruit-request-section";
-import { toIdx } from "./utils";
 import styles from "./style.module.scss";
+import { toIdx } from "./utils";
 
 const RecruitDetailClient = () => {
 	const { idx } = useParams<{ locale: string; idx: string }>();
@@ -38,7 +38,7 @@ const RecruitDetailClient = () => {
 
 			{status === "success" && recruit && (
 				<>
-					<RecruitHeader recruit={recruit} idx={idx} />
+					<RecruitHeader recruit={recruit} />
 					<RecruitMarkdownSection
 						title="조직 소개"
 						content={recruit.companyIntroduction}

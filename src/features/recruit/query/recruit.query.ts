@@ -1,6 +1,6 @@
 "use client";
 
-import { type UseQueryOptions, useQuery } from "@tanstack/react-query";
+import { queryOptions, useQuery } from "@tanstack/react-query";
 import {
 	getRecruitDetailApi,
 	getRecruitListApi,
@@ -11,67 +11,79 @@ import type {
 	RecruitResponse,
 } from "src/entities/recruit/schema/recruit.schema";
 import { toRecruitCard } from "src/entities/recruit/util/adapter";
-import { recruitQueryKeys } from "./keys";
 
-/** 검색 */
+/**
+ * @description Recruit query key factory
+ * Organized hierarchically for cache management
+ */
+export const recruitQueries = {
+	all: ["recruit"] as const,
+	list: () =>
+		queryOptions({
+			queryKey: [...recruitQueries.all, "list"] as const,
+			queryFn: ({ signal }) => getRecruitListApi({ signal }),
+			select: (data: RecruitResponse[]) => data.map(toRecruitCard),
+			staleTime: 60000,
+			gcTime: 300000,
+			refetchOnWindowFocus: false,
+		}),
+	detail: (idx: number) =>
+		queryOptions({
+			queryKey: [...recruitQueries.all, "detail", idx] as const,
+			queryFn: ({ signal }) => getRecruitDetailApi(idx, signal),
+			select: toRecruitCard,
+			enabled: !!idx,
+			staleTime: 60000,
+			gcTime: 300000,
+			refetchOnWindowFocus: false,
+		}),
+	search: (filters: RecruitSearchFilters) =>
+		queryOptions({
+			queryKey: [...recruitQueries.all, "search", filters] as const,
+			queryFn: ({ signal }) =>
+				getRecruitListApi({
+					page: 1,
+					size: 5,
+					title: filters.keyword ?? null,
+					department: filters.job ?? null,
+					education: filters.education ?? null,
+					recruitType: filters.career ?? null,
+					signal,
+				}),
+			select: (data: RecruitResponse[]) => data.map(toRecruitCard),
+			staleTime: 60000,
+			gcTime: 300000,
+			refetchOnWindowFocus: false,
+		}),
+};
+
+/**
+ * @description Search recruit by filters
+ * @param filters Search filter criteria
+ */
 export const useRecruitSearchQuery = (
 	filters: RecruitSearchFilters,
-	options?: Omit<
-		UseQueryOptions<RecruitResponse[], Error, RecruitCard[]>,
-		"queryKey" | "queryFn" | "select"
-	>,
-) =>
-	useQuery({
-		queryKey: recruitQueryKeys.search(filters),
-		queryFn: ({ signal }) =>
-			getRecruitListApi({
-				page: 1,
-				size: 5,
-				title: filters.keyword ?? null,
-				department: filters.job ?? null,
-				education: filters.education ?? null,
-				recruitType: filters.career ?? null,
-				signal,
-			}),
-		select: (data) => data.map(toRecruitCard),
-		staleTime: 60000,
-		gcTime: 300000,
-		refetchOnWindowFocus: false,
-		...options,
+) => {
+	return useQuery({
+		...recruitQueries.search(filters),
 	});
+};
 
-/** 목록 */
-export const useRecruitListQuery = (
-	options?: Omit<
-		UseQueryOptions<RecruitResponse[], Error, RecruitCard[]>,
-		"queryKey" | "queryFn" | "select"
-	>,
-) =>
-	useQuery({
-		queryKey: recruitQueryKeys.list(),
-		queryFn: ({ signal }) => getRecruitListApi({ signal }),
-		select: (data) => data.map(toRecruitCard),
-		staleTime: 60000,
-		gcTime: 300000,
-		refetchOnWindowFocus: false,
-		...options,
+/**
+ * @description Fetch recruit list
+ */
+export const useRecruitListQuery = () => {
+	return useQuery({
+		...recruitQueries.list(),
 	});
+};
 
-/** 상세 */
-export const useRecruitDetailQuery = (
-	idx: number,
-	options?: Omit<
-		UseQueryOptions<RecruitResponse, Error, RecruitCard>,
-		"queryKey" | "queryFn" | "select"
-	>,
-) =>
-	useQuery({
-		queryKey: recruitQueryKeys.detail(idx),
-		queryFn: ({ signal }) => getRecruitDetailApi(idx, signal),
-		select: toRecruitCard,
-		enabled: !!idx,
-		staleTime: 60000,
-		gcTime: 300000,
-		refetchOnWindowFocus: false,
-		...options,
+/**
+ * @description Fetch recruit detail by index
+ * @param idx Recruit ID
+ */
+export const useRecruitDetailQuery = (idx: number) => {
+	return useQuery({
+		...recruitQueries.detail(idx),
 	});
+};

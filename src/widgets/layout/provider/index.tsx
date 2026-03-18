@@ -2,19 +2,22 @@
 
 import { AlertProvider, ToastProvider } from "@bigtablet/design-system";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { type ReactNode, useState } from "react";
+import { type ReactNode, useMemo } from "react";
+import { createMutationCache } from "src/shared/libs/api/query/mutation-cache";
+import ToastBridgeProvider from "src/shared/libs/api/toast/toast-bridge-provider";
 import CookieConsent from "src/features/cookie-consent/ui";
 
 type Props = { children: ReactNode };
 
 export default function Providers({ children }: Props) {
-	const [client] = useState(
+	const queryClient = useMemo(
 		() =>
 			new QueryClient({
+				mutationCache: createMutationCache(),
 				defaultOptions: {
 					queries: {
-						staleTime: 1000 * 60 * 60,
-						gcTime: 1000 * 60 * 60 * 2,
+						staleTime: 5 * 60 * 1000,
+						gcTime: 5 * 60 * 1000,
 						retry: (failureCount, error) => {
 							const status = (error as { status?: number }).status;
 							if (status && status >= 400 && status < 500) return false;
@@ -23,16 +26,18 @@ export default function Providers({ children }: Props) {
 					},
 				},
 			}),
+		[],
 	);
 
 	return (
-		<QueryClientProvider client={client}>
+		<AlertProvider>
 			<ToastProvider>
-				<AlertProvider>
+				<QueryClientProvider client={queryClient}>
+					<ToastBridgeProvider />
 					{children}
 					<CookieConsent />
-				</AlertProvider>
+				</QueryClientProvider>
 			</ToastProvider>
-		</QueryClientProvider>
+		</AlertProvider>
 	);
 }

@@ -18,8 +18,8 @@ describe("toIdx", () => {
 		expect(toIdx(undefined)).toBeNull();
 	});
 
-	it("null → 0 (Number(null) === 0)", () => {
-		expect(toIdx(null)).toBe(0);
+	it("null → null", () => {
+		expect(toIdx(null)).toBeNull();
 	});
 
 	it("Infinity → null", () => {

@@ -29,7 +29,7 @@ export const recruitQueries = {
 			queryKey: [...recruitQueries.all, "detail", idx] as const,
 			queryFn: ({ signal }) => getRecruitDetailApi(idx, signal),
 			select: toRecruitCard,
-			enabled: !!idx,
+			enabled: Number.isFinite(idx) && idx > 0,
 			staleTime: 60000,
 			gcTime: 300000,
 			refetchOnWindowFocus: false,

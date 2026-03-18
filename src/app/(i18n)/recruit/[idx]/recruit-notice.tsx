@@ -1,0 +1,35 @@
+/**
+ * @description
+ * Recruit notice section component.
+ */
+
+import styles from "./style.module.scss";
+
+/**
+ * Displays notice section with hiring requirements and disclaimers.
+ */
+export const RecruitNotice = () => (
+	<section className={styles.recruit_detail_notice}>
+		<h2 className={styles.recruit_detail_notice_title}>유의 사항</h2>
+		<p className={styles.recruit_detail_notice_text}>
+			다음의 경우에 해당될 시, 채용 절차가 중단되거나 입사가 중단될 수 있습니다:
+		</p>
+		<ul className={styles.recruit_detail_notice_list}>
+			<li>지원자가 채용과 관련하여 부당한 청탁이나 부적절한 요청을 한 경우</li>
+			<li>지원자가 국내 취업 또는 해외 여행에 결격 사유가 있는 경우</li>
+			<li>
+				회사 규정상 직무 수행에 지장을 줄 수 있는 징계 이력, 법 위반 사항 또는
+				기타 결격 사유가 발견된 경우
+			</li>
+			<li>
+				지원 과정에서 제출된 정보가 허위거나 증빙 불가하거나 고의 누락된 사실이
+				발견된 경우
+			</li>
+			<li>사회통념상 고용 유지가 어려운 정당한 사유가 발생한 경우</li>
+		</ul>
+		<p className={styles.recruit_detail_notice_text}>
+			귀하가 지원서를 제출하는 경우, 개인정보 제3자 제공 및 당사의
+			개인정보처리방침에 동의한 것으로 간주됩니다.
+		</p>
+	</section>
+);

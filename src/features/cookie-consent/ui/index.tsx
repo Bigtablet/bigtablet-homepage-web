@@ -31,31 +31,29 @@ const CookieConsent = () => {
 	if (!visible) return null;
 
 	return (
-		<>
-			<div className={styles.banner} role="dialog" aria-label={t("message")}>
-				<div className={styles.content}>
-					<p className={styles.message}>
-						{t("message")} <Link href="/policies/cookies">{t("link")}</Link>
-					</p>
-					<div className={styles.actions}>
-						<button
-							type="button"
-							className={styles.button_decline}
-							onClick={() => setCookie("declined")}
-						>
-							{t("decline")}
-						</button>
-						<button
-							type="button"
-							className={styles.button_accept}
-							onClick={() => setCookie("accepted")}
-						>
-							{t("accept")}
-						</button>
-					</div>
+		<div className={styles.banner} role="dialog" aria-label={t("message")}>
+			<div className={styles.content}>
+				<p className={styles.message}>
+					{t("message")} <Link href="/policies/cookies">{t("link")}</Link>
+				</p>
+				<div className={styles.actions}>
+					<button
+						type="button"
+						className={styles.button_decline}
+						onClick={() => setCookie("declined")}
+					>
+						{t("decline")}
+					</button>
+					<button
+						type="button"
+						className={styles.button_accept}
+						onClick={() => setCookie("accepted")}
+					>
+						{t("accept")}
+					</button>
 				</div>
 			</div>
-		</>
+		</div>
 	);
 };
 

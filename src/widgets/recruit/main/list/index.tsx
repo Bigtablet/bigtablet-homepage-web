@@ -2,11 +2,7 @@
 
 import { memo, useMemo } from "react";
 import type { RecruitSearchFilters } from "src/entities/recruit/api/recruit.api";
-import type {
-	RecruitCard,
-	RecruitResponse,
-} from "src/entities/recruit/schema/recruit.schema";
-import { toRecruitCards } from "src/entities/recruit/util/date";
+import type { RecruitCard } from "src/entities/recruit/schema/recruit.schema";
 import {
 	useRecruitListQuery,
 	useRecruitSearchQuery,
@@ -64,11 +60,10 @@ const RequestList = ({ filters }: Props) => {
 	const isError = isSearching ? searchQ.isError : listQ.isError;
 	const error = isSearching ? searchQ.error : listQ.error;
 
-	const data = useMemo<RecruitCard[]>(() => {
-		const base: RecruitResponse[] =
-			(isSearching ? searchQ.data : listQ.data) ?? [];
-		return toRecruitCards(base);
-	}, [isSearching, searchQ.data, listQ.data]);
+	const data = useMemo<RecruitCard[]>(
+		() => (isSearching ? searchQ.data : listQ.data) ?? [],
+		[isSearching, searchQ.data, listQ.data],
+	);
 
 	return (
 		<div className={styles.request_list}>

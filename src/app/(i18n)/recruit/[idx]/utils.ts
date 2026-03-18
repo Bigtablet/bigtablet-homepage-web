@@ -9,6 +9,7 @@
  * @returns Finite number or null
  */
 export const toIdx = (value: unknown): number | null => {
+	if (value === null || value === undefined) return null;
 	const numberValue = Number(value);
 	return Number.isFinite(numberValue) ? numberValue : null;
 };

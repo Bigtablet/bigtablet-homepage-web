@@ -58,18 +58,23 @@ export const recruitQueries = {
  * @description Search recruit by filters
  * @param filters Search filter criteria
  */
-export const useRecruitSearchQuery = (filters: RecruitSearchFilters) => {
+export const useRecruitSearchQuery = (
+	filters: RecruitSearchFilters,
+	options?: { enabled?: boolean },
+) => {
 	return useQuery({
 		...recruitQueries.search(filters),
+		...options,
 	});
 };
 
 /**
  * @description Fetch recruit list
  */
-export const useRecruitListQuery = () => {
+export const useRecruitListQuery = (options?: { enabled?: boolean }) => {
 	return useQuery({
 		...recruitQueries.list(),
+		...options,
 	});
 };
 
@@ -77,8 +82,12 @@ export const useRecruitListQuery = () => {
  * @description Fetch recruit detail by index
  * @param idx Recruit ID
  */
-export const useRecruitDetailQuery = (idx: number) => {
+export const useRecruitDetailQuery = (
+	idx: number,
+	options?: { enabled?: boolean },
+) => {
 	return useQuery({
 		...recruitQueries.detail(idx),
+		...options,
 	});
 };

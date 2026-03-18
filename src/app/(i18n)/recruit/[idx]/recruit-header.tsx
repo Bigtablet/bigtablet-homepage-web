@@ -3,7 +3,7 @@
  * Recruit detail header section component.
  */
 
-import type { RecruitDTO } from "src/entities/recruit/schema/recruit.domain";
+import type { RecruitCard } from "src/entities/recruit/schema/recruit.schema";
 import styles from "./style.module.scss";
 import { formatDate } from "./utils";
 
@@ -14,7 +14,7 @@ interface RecruitHeaderProps {
 	/**
 	 * Recruit data to display.
 	 */
-	recruit: RecruitDTO;
+	recruit: RecruitCard;
 }
 
 /**

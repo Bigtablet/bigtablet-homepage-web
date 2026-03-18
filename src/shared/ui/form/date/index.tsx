@@ -52,7 +52,7 @@ const MonthPickerField = ({
 
 			<DatePicker
 				selected={toDate(value)}
-				onChange={(date) => onChange(toValue(date))}
+				onChange={(date: Date | null) => onChange(toValue(date))}
 				dateFormat="yyyy.MM"
 				showMonthYearPicker
 				locale={ko}

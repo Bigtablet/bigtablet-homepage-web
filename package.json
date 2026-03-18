@@ -2,7 +2,7 @@
 	"name": "bigtablet-homepage-web",
 	"version": "0.0.1",
 	"private": true,
-	"packageManager": "pnpm@10.32.0",
+	"packageManager": "pnpm@10.32.1",
 	"scripts": {
 		"dev": "next dev --turbopack",
 		"build": "next build --turbopack",
@@ -16,47 +16,52 @@
 		"prepare": "husky"
 	},
 	"dependencies": {
-		"@bigtablet/design-system": "^1.19.4",
+		"@bigtablet/design-system": "^1.22.0",
 		"@gsap/react": "^2.1.2",
 		"@hookform/resolvers": "^5.2.2",
 		"@opentelemetry/api": "^1.9.0",
-		"@tanstack/react-query": "^5.90.11",
-		"@vercel/otel": "^2.1.1",
-		"axios": "1.13.5",
+		"@tanstack/react-query": "^5.90.21",
+		"@vercel/otel": "^2.1.0",
+		"axios": "^1.13.6",
 		"clsx": "^2.1.1",
 		"date-fns": "^4.1.0",
 		"gsap": "^3.14.2",
 		"js-cookie": "^3.0.5",
-		"lucide-react": "^0.561.0",
-		"next": "16.1.5",
-		"next-intl": "^4.4.0",
-		"react": "19.2.3",
-		"react-datepicker": "^8.10.0",
-		"react-dom": "19.2.3",
+		"lucide-react": "^0.577.0",
+		"next": "16.1.7",
+		"next-intl": "^4.8.3",
+		"react": "19.2.4",
+		"react-datepicker": "^9.1.0",
+		"react-dom": "19.2.4",
 		"react-fast-marquee": "^1.6.5",
-		"react-hook-form": "^7.65.0",
+		"react-hook-form": "^7.71.2",
 		"react-markdown": "^10.1.0",
 		"react-toastify": "^11.0.5",
 		"remark-breaks": "^4.0.0",
 		"remark-gfm": "^4.0.1",
 		"sass": "^1.98.0",
-		"zod": "^4.1.13"
+		"zod": "^4.3.6"
 	},
 	"devDependencies": {
-		"@biomejs/biome": "^2.4.6",
+		"@biomejs/biome": "2.4.7",
+		"@commitlint/cli": "^20.5.0",
+		"@commitlint/core": "^20.5.0",
 		"@testing-library/jest-dom": "^6.9.1",
 		"@testing-library/react": "^16.3.2",
 		"@types/js-cookie": "^3.0.6",
 		"@types/node": "^24",
 		"@types/react": "^19",
 		"@types/react-dom": "^19",
-		"@vitejs/plugin-react": "^5.2.0",
-		"@vitest/coverage-v8": "^4.0.18",
+		"@vitejs/plugin-react": "^5.1.4",
+		"@vitest/coverage-v8": "^4.1.0",
+		"husky": "^9.1.7",
 		"jsdom": "^28.1.0",
-		"typescript": "^5",
-		"vitest": "^4.0.18",
-		"@commitlint/cli": "^19.8.0",
-		"@commitlint/core": "^19.8.0",
-		"husky": "^9.1.7"
+		"typescript": "^5.9.3",
+		"vitest": "^4.1.0"
+	},
+	"lint-staged": {
+		"**/*.{ts,tsx,js,jsx,json}": [
+			"biome check --write --no-errors-on-unmatched"
+		]
 	}
 }

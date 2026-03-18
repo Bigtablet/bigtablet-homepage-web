@@ -1,33 +1,49 @@
 "use client";
 
-import { useQuery } from "@tanstack/react-query";
+import { queryOptions, useQuery } from "@tanstack/react-query";
 import { getNewsApi } from "src/entities/news/api/news.api";
 import type { NewsItem } from "src/entities/news/schema/news.schema";
-import { newsQueryKeys } from "./keys";
 
 export interface NewsPageResult {
 	items: NewsItem[];
 	hasNext: boolean;
 }
 
-/** GET /news?page&size */
+/**
+ * @description News query key factory
+ * Organized hierarchically for cache management
+ */
+export const newsQueries = {
+	all: ["news"] as const,
+	page: (page: number, size: number) =>
+		queryOptions({
+			queryKey: [...newsQueries.all, "page", page, size] as const,
+			queryFn: async ({ signal }) => {
+				const res = await getNewsApi({ page, size }, signal);
+
+				const items = res.data ?? [];
+
+				return {
+					items,
+					hasNext: items.length === size,
+				};
+			},
+		}),
+};
+
+/**
+ * @description Fetch news page with pagination
+ * @param page Page number
+ * @param size Items per page
+ */
 export const useNewsPageQuery = ({
 	page,
 	size,
 }: {
 	page: number;
 	size: number;
-}) =>
-	useQuery<NewsPageResult>({
-		queryKey: newsQueryKeys.page(page, size),
-		queryFn: async ({ signal }) => {
-			const res = await getNewsApi({ page, size }, signal);
-
-			const items = res.data ?? [];
-
-			return {
-				items,
-				hasNext: items.length === size,
-			};
-		},
+}) => {
+	return useQuery({
+		...newsQueries.page(page, size),
 	});
+};

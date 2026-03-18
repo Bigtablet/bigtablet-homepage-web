@@ -2,16 +2,19 @@
 
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { PostTalentApi } from "src/entities/talent/api/talent.api";
-import { talentMutationKeys } from "./keys";
 
+/**
+ * @description Create new talent profile
+ * Invalidates talent list cache on success
+ */
 export const useTalentMutation = () => {
 	const queryClient = useQueryClient();
 
 	return useMutation({
-		mutationKey: talentMutationKeys.create(),
+		mutationKey: ["talent", "create"] as const,
 		mutationFn: PostTalentApi,
 		onSuccess: () => {
-			queryClient.invalidateQueries({ queryKey: talentMutationKeys.list() });
+			queryClient.invalidateQueries({ queryKey: ["talent", "list"] as const });
 		},
 	});
 };

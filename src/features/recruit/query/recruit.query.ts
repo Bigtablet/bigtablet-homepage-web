@@ -6,10 +6,7 @@ import {
 	getRecruitListApi,
 	type RecruitSearchFilters,
 } from "src/entities/recruit/api/recruit.api";
-import type {
-	RecruitCard,
-	RecruitResponse,
-} from "src/entities/recruit/schema/recruit.schema";
+import type { RecruitResponse } from "src/entities/recruit/schema/recruit.schema";
 import { toRecruitCard } from "src/entities/recruit/util/adapter";
 
 /**
@@ -61,9 +58,7 @@ export const recruitQueries = {
  * @description Search recruit by filters
  * @param filters Search filter criteria
  */
-export const useRecruitSearchQuery = (
-	filters: RecruitSearchFilters,
-) => {
+export const useRecruitSearchQuery = (filters: RecruitSearchFilters) => {
 	return useQuery({
 		...recruitQueries.search(filters),
 	});

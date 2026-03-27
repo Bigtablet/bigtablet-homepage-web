@@ -94,20 +94,8 @@ describe("useApplySubmit", () => {
 		});
 
 		it("검정고시(GED) 학력 선택 시 학교 관련 필드를 초기화한다", async () => {
-			const gedValues = { ...baseValues, educationLevel: "GED" as const };
-			let capturedValues: ApplyFormValues | null = null;
-
-			const form = {
-				handleSubmit: (onValid: (v: ApplyFormValues) => void) => async () => {
-					await onValid(gedValues);
-				},
-				setValue: vi.fn(),
-			} as unknown as UseFormReturn<ApplyFormValues>;
-
-			mockMutateAsync.mockImplementation((payload: ApplyFormValues) => {
-				capturedValues = payload;
-				return Promise.resolve();
-			});
+			mockMutateAsync.mockResolvedValue(undefined);
+			const form = makeMockForm({ educationLevel: "GED" as const });
 
 			const { result } = renderHook(() =>
 				useApplySubmit({ form, jobId: 1, emailVerified: true }),
@@ -115,15 +103,12 @@ describe("useApplySubmit", () => {
 
 			await act(() => result.current.onSubmit());
 
-			expect(capturedValues).not.toBeNull();
-			expect((capturedValues as unknown as ApplyFormValues).schoolName).toBe(
-				"",
-			);
-			expect((capturedValues as unknown as ApplyFormValues).graduationEnd).toBe(
-				"",
-			);
-			expect((capturedValues as unknown as ApplyFormValues).department).toBe(
-				"",
+			expect(mockMutateAsync).toHaveBeenCalledWith(
+				expect.objectContaining({
+					schoolName: "",
+					graduationEnd: "",
+					department: "",
+				}),
 			);
 		});
 

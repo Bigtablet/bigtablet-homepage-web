@@ -128,100 +128,103 @@ describe("useTalentForm", () => {
 	});
 
 	describe("handleSubmit (ensureHttps + etcUrl 필터링)", () => {
-		it("portfolioUrl에 프로토콜이 없으면 https://를 추가한다", async () => {
-			mockCreateTalent.mockResolvedValue(undefined);
-
-			const { result } = renderHook(() => useTalentForm({ onClose }));
-			act(() => {
-				result.current.form.setValue("email", "test@example.com");
-				result.current.form.setValue("name", "홍길동");
-				result.current.form.setValue("department", "개발팀");
-				result.current.form.setValue("portfolioUrl", "example.com/portfolio");
-				result.current.form.setValue("etcUrl", [""]);
-			});
-
-			await act(async () => {
-				await result.current.handleSubmit();
-			});
-
-			const payload = mockCreateTalent.mock.calls[0][0];
-			expect(payload.portfolioUrl).toBe("https://example.com/portfolio");
-		});
-
-		it("이미 https://가 있는 URL은 그대로 유지한다", async () => {
-			mockCreateTalent.mockResolvedValue(undefined);
-
-			const { result } = renderHook(() => useTalentForm({ onClose }));
+		/** 폼 기본값 설정 헬퍼 */
+		const fillBaseForm = (
+			result: ReturnType<
+				typeof renderHook<ReturnType<typeof useTalentForm>, unknown>
+			>["result"],
+			overrides: { portfolioUrl?: string; etcUrl?: string[] } = {},
+		) => {
 			act(() => {
 				result.current.form.setValue("email", "test@example.com");
 				result.current.form.setValue("name", "홍길동");
 				result.current.form.setValue("department", "개발팀");
 				result.current.form.setValue(
 					"portfolioUrl",
-					"https://example.com/portfolio",
+					overrides.portfolioUrl ?? "https://example.com",
 				);
-				result.current.form.setValue("etcUrl", [""]);
+				result.current.form.setValue("etcUrl", overrides.etcUrl ?? [""]);
 			});
+		};
+
+		it("portfolioUrl에 프로토콜이 없으면 https://를 추가한다", async () => {
+			mockCreateTalent.mockResolvedValue(undefined);
+			const { result } = renderHook(() => useTalentForm({ onClose }));
+			fillBaseForm(result, { portfolioUrl: "example.com/portfolio" });
 
 			await act(async () => {
 				await result.current.handleSubmit();
 			});
 
-			const payload = mockCreateTalent.mock.calls[0][0];
-			expect(payload.portfolioUrl).toBe("https://example.com/portfolio");
+			expect(mockCreateTalent).toHaveBeenCalledWith(
+				expect.objectContaining({
+					portfolioUrl: "https://example.com/portfolio",
+				}),
+			);
+		});
+
+		it("빈 문자열 portfolioUrl은 그대로 빈 문자열로 유지한다", async () => {
+			mockCreateTalent.mockResolvedValue(undefined);
+			const { result } = renderHook(() => useTalentForm({ onClose }));
+			fillBaseForm(result, { portfolioUrl: "" });
+
+			await act(async () => {
+				await result.current.handleSubmit();
+			});
+
+			expect(mockCreateTalent).toHaveBeenCalledWith(
+				expect.objectContaining({ portfolioUrl: "" }),
+			);
+		});
+
+		it("이미 https://가 있는 URL은 그대로 유지한다", async () => {
+			mockCreateTalent.mockResolvedValue(undefined);
+			const { result } = renderHook(() => useTalentForm({ onClose }));
+			fillBaseForm(result, { portfolioUrl: "https://example.com/portfolio" });
+
+			await act(async () => {
+				await result.current.handleSubmit();
+			});
+
+			expect(mockCreateTalent).toHaveBeenCalledWith(
+				expect.objectContaining({
+					portfolioUrl: "https://example.com/portfolio",
+				}),
+			);
 		});
 
 		it("빈 etcUrl은 필터링되어 payload에 포함되지 않는다", async () => {
 			mockCreateTalent.mockResolvedValue(undefined);
-
 			const { result } = renderHook(() => useTalentForm({ onClose }));
-			act(() => {
-				result.current.form.setValue("email", "test@example.com");
-				result.current.form.setValue("name", "홍길동");
-				result.current.form.setValue("department", "개발팀");
-				result.current.form.setValue("portfolioUrl", "https://example.com");
-				result.current.form.setValue("etcUrl", ["", "  ", ""]);
-			});
+			fillBaseForm(result, { etcUrl: ["", "  ", ""] });
 
 			await act(async () => {
 				await result.current.handleSubmit();
 			});
 
-			const payload = mockCreateTalent.mock.calls[0][0];
-			expect(payload.etcUrl).toBeUndefined();
+			expect(mockCreateTalent).toHaveBeenCalledWith(
+				expect.not.objectContaining({ etcUrl: expect.anything() }),
+			);
 		});
 
-		it("유효한 etcUrl은 필터링 없이 포함된다", async () => {
+		it("유효한 etcUrl은 https 정규화 후 포함된다", async () => {
 			mockCreateTalent.mockResolvedValue(undefined);
-
 			const { result } = renderHook(() => useTalentForm({ onClose }));
-			act(() => {
-				result.current.form.setValue("email", "test@example.com");
-				result.current.form.setValue("name", "홍길동");
-				result.current.form.setValue("department", "개발팀");
-				result.current.form.setValue("portfolioUrl", "https://example.com");
-				result.current.form.setValue("etcUrl", ["github.com/user", ""]);
-			});
+			fillBaseForm(result, { etcUrl: ["github.com/user", ""] });
 
 			await act(async () => {
 				await result.current.handleSubmit();
 			});
 
-			const payload = mockCreateTalent.mock.calls[0][0];
-			expect(payload.etcUrl).toEqual(["https://github.com/user"]);
+			expect(mockCreateTalent).toHaveBeenCalledWith(
+				expect.objectContaining({ etcUrl: ["https://github.com/user"] }),
+			);
 		});
 
 		it("제출 성공 시 success 토스트를 표시하고 폼을 초기화 후 onClose를 호출한다", async () => {
 			mockCreateTalent.mockResolvedValue(undefined);
-
 			const { result } = renderHook(() => useTalentForm({ onClose }));
-			act(() => {
-				result.current.form.setValue("email", "test@example.com");
-				result.current.form.setValue("name", "홍길동");
-				result.current.form.setValue("department", "개발팀");
-				result.current.form.setValue("portfolioUrl", "https://example.com");
-				result.current.form.setValue("etcUrl", [""]);
-			});
+			fillBaseForm(result);
 
 			await act(async () => {
 				await result.current.handleSubmit();
@@ -234,15 +237,8 @@ describe("useTalentForm", () => {
 
 		it("제출 실패 시 error 토스트를 표시한다", async () => {
 			mockCreateTalent.mockRejectedValue(new Error("서버 오류"));
-
 			const { result } = renderHook(() => useTalentForm({ onClose }));
-			act(() => {
-				result.current.form.setValue("email", "test@example.com");
-				result.current.form.setValue("name", "홍길동");
-				result.current.form.setValue("department", "개발팀");
-				result.current.form.setValue("portfolioUrl", "https://example.com");
-				result.current.form.setValue("etcUrl", [""]);
-			});
+			fillBaseForm(result);
 
 			await act(async () => {
 				await result.current.handleSubmit();

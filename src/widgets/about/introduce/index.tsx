@@ -31,7 +31,7 @@ const Introduce = ({ sectionKey, reverse = false }: AboutSchema) => {
 			<div className={styles.introduce_image} aria-hidden="true">
 				<Image
 					src="/images/logo/img.png"
-alt="Bigtablet 로고"
+					alt="Bigtablet 로고"
 					width={420}
 					height={420}
 					className={styles.introduce_img}

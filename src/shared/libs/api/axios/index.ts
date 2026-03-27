@@ -37,10 +37,11 @@ api.interceptors.response.use(
 	(res: AxiosResponse) => res,
 	(err: AxiosError) => {
 		const status = err.response?.status ?? 0;
-		const message =
+		const message = String(
 			(err.response?.data as Record<string, unknown>)?.message ??
-			err.message ??
-			"network_error";
+				err.message ??
+				"network_error",
+		);
 		return Promise.reject(
 			Object.assign(new Error(message), {
 				name: "HttpError",

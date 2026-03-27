@@ -4,6 +4,7 @@ import { Button, TextField } from "@bigtablet/design-system";
 import { Controller } from "react-hook-form";
 import { formatPhone010 } from "src/features/recruit/apply/form/model/apply.util";
 import type { ApplyFormProps } from "src/features/recruit/apply/form/ui/type";
+import baseStyles from "../../form-base.module.scss";
 import styles from "./style.module.scss";
 
 type Form = ApplyFormProps["form"];
@@ -25,7 +26,7 @@ export const ContactSection = ({ form, email }: Props) => {
 		<>
 			{/* 이름 */}
 			<div className={styles.field}>
-				<label>이름*</label>
+				<span className={baseStyles.field_label}>이름*</span>
 				<TextField
 					size="sm"
 					placeholder="홍길동"
@@ -37,7 +38,7 @@ export const ContactSection = ({ form, email }: Props) => {
 
 			{/* 전화번호 */}
 			<div className={styles.field}>
-				<label>전화번호*</label>
+				<span className={baseStyles.field_label}>전화번호*</span>
 				<Controller
 					control={control}
 					name="phoneNumber"
@@ -60,7 +61,7 @@ export const ContactSection = ({ form, email }: Props) => {
 
 			{/* 이메일 + 인증 */}
 			<div className={styles.field}>
-				<label>이메일*</label>
+				<span className={baseStyles.field_label}>이메일*</span>
 				<div className={`${styles.row} ${styles.row_email}`}>
 					<TextField
 						size="sm"
@@ -113,7 +114,7 @@ export const ContactSection = ({ form, email }: Props) => {
 
 			{/* 주소 */}
 			<div className={styles.field}>
-				<label>거주지*</label>
+				<span className={baseStyles.field_label}>거주지*</span>
 				<TextField
 					size="sm"
 					placeholder="서울특별시 중구 세종대로 110"

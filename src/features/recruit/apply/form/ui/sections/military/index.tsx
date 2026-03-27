@@ -19,7 +19,7 @@ export const MilitarySection = ({ form }: Props) => {
 
 	return (
 		<div className={styles.field}>
-			<label>병역 사항*</label>
+			<span className={styles.field_label}>병역 사항*</span>
 			<Controller
 				control={control}
 				name="military"

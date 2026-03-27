@@ -1,9 +1,3 @@
-/** HttpError 타입 (Axios 인터셉터에서 생성) */
-type HttpError = Error & {
-	status?: number;
-	data?: unknown;
-};
-
 /**
  * @description
  * 에러 객체에서 사용자에게 표시할 메시지를 추출합니다.

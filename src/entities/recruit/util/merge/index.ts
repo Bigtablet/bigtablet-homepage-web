@@ -23,6 +23,6 @@ export const intersectByIdx = (
 	const need = nonEmpty.length;
 	return Array.from(freq.entries())
 		.filter(([, n]) => n === need)
-		.map(([idx]) => count.get(idx)!)
-		.sort((a, b) => b.idx! - a.idx!);
+		.map(([idx]) => count.get(idx) as RecruitResponse)
+		.sort((a, b) => (b.idx ?? 0) - (a.idx ?? 0));
 };

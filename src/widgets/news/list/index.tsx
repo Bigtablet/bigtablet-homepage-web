@@ -1,6 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
+import { useMemo } from "react";
 import type { NewsItem } from "src/entities/news/schema/news.schema";
 import useDeferredLoading from "src/shared/hooks/use-deferred-loading";
 import SkeletonCard from "src/shared/ui/skeleton/card";
@@ -22,12 +23,14 @@ const NewsListSection = ({
 }: NewsListProps) => {
 	const showSkeleton = useDeferredLoading(isLoading);
 	const t = useTranslations("news");
+	const skeletonKeys = useMemo(
+		() => Array.from({ length: pageSize }, (_, i) => `skeleton-${i}`),
+		[pageSize],
+	);
 
 	const renderList = () => {
 		if (showSkeleton) {
-			return Array.from({ length: pageSize }).map((_, i) => (
-				<SkeletonCard key={i} />
-			));
+			return skeletonKeys.map((key) => <SkeletonCard key={key} />);
 		}
 
 		return items.map((item, i) => (

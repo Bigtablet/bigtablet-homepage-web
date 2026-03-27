@@ -30,7 +30,7 @@ const EmailVerifyInline = ({
 }: EmailFormProps) => {
 	return (
 		<div className={styles.field}>
-			<label className={styles.label}>이메일 인증</label>
+			<span className={styles.label}>이메일 인증</span>
 
 			<div className={styles.row}>
 				<TextField value={email} readOnly size="sm" fullWidth />

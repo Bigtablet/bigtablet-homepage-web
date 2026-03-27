@@ -21,7 +21,7 @@ export const ProfileSection = ({ form, upload, isUploading }: Props) => {
 
 	return (
 		<div className={styles.profile}>
-			<label className={styles.profile_label}>프로필 사진*</label>
+			<span className={styles.field_label}>프로필 사진*</span>
 			<Controller
 				control={control}
 				name="profileImage"

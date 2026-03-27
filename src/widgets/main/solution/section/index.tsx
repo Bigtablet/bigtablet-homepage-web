@@ -1,7 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { buildInitialSelected } from "src/widgets/main/solution/model/select.util";
 import {
 	type Product,
@@ -51,14 +51,17 @@ const SolutionSection = () => {
 		}
 	};
 
-	const closeNow = () => {
-		cancelClose();
+	const closeNow = useCallback(() => {
+		if (closeTimer.current) {
+			clearTimeout(closeTimer.current);
+			closeTimer.current = null;
+		}
 		setIsEntering(false);
 		setActiveId(null);
 		setAnimVars(null);
 		setSliding(null);
 		setBlockBackdropClose(false);
-	};
+	}, []);
 
 	const scheduleClose = (delay = 120) => {
 		cancelClose();

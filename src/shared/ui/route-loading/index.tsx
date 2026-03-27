@@ -21,8 +21,9 @@ const RouteLoading = () => {
 		setIsLoading(true);
 	}, []);
 
-	// pathname/searchParams 변경 시 로딩 종료
 	useEffect(() => {
+		void pathname;
+		void searchParams;
 		setIsLoading(false);
 	}, [pathname, searchParams]);
 

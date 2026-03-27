@@ -16,8 +16,9 @@ const api = axios.create({
 });
 
 // 불필요한 기본 Content-Type 제거
-delete (api.defaults.headers as any).common?.["Content-Type"];
-delete (api.defaults.headers as any).post?.["Content-Type"];
+const headers = api.defaults.headers as Record<string, Record<string, unknown>>;
+delete headers.common?.["Content-Type"];
+delete headers.post?.["Content-Type"];
 
 // URL 정규화
 api.interceptors.request.use((config: InternalAxiosRequestConfig) => {
@@ -36,8 +37,11 @@ api.interceptors.response.use(
 	(res: AxiosResponse) => res,
 	(err: AxiosError) => {
 		const status = err.response?.status ?? 0;
-		const message =
-			(err.response?.data as any)?.message ?? err.message ?? "network_error";
+		const message = String(
+			(err.response?.data as Record<string, unknown>)?.message ??
+				err.message ??
+				"network_error",
+		);
 		return Promise.reject(
 			Object.assign(new Error(message), {
 				name: "HttpError",

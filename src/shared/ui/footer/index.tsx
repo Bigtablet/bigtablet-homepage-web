@@ -39,9 +39,9 @@ const Footer = () => {
 							href="https://www.linkedin.com/company/bigtablet/posts/?feedView=all"
 							target="_blank"
 							rel="noreferrer"
-							aria-label="LinkedIn"
 							className={styles.footer_social_btn}
 						>
+							<span className={styles.sr_only}>LinkedIn</span>
 							<svg
 								viewBox="0 0 24 24"
 								width="20"

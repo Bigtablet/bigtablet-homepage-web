@@ -25,7 +25,7 @@ describe("buildYearGroups", () => {
 		];
 		const groups = buildYearGroups(items);
 		expect(groups).toHaveLength(2);
-		const g2024 = groups.find((g) => g.year === 2024)!;
+		const g2024 = groups.find((g) => g.year === 2024);
 		expect(g2024.list).toHaveLength(2);
 	});
 

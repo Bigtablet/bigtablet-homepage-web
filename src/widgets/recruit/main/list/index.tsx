@@ -12,6 +12,8 @@ import { SkeletonList } from "src/shared/ui/skeleton/list";
 
 import styles from "./style.module.scss";
 
+const SKELETON_KEYS = ["s0", "s1", "s2", "s3", "s4"];
+
 interface Props {
 	filters: RecruitSearchFilters;
 }
@@ -67,8 +69,7 @@ const RequestList = ({ filters }: Props) => {
 
 	return (
 		<div className={styles.request_list}>
-			{/* biome-ignore lint/suspicious/noArrayIndexKey: 스켈레톤은 고정 개수이며 재정렬되지 않음 */}
-			{showSkeleton && [...Array(5)].map((_, i) => <SkeletonList key={i} />)}
+			{showSkeleton && SKELETON_KEYS.map((key) => <SkeletonList key={key} />)}
 
 			{!isLoading && isError && (
 				<div className={styles.request_list_empty}>{error?.message}</div>

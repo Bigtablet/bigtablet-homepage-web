@@ -26,15 +26,16 @@ const BlogListSection = ({
 	const flatItems = useMemo(() => items ?? [], [items]);
 	const showSkeleton = useDeferredLoading(isLoading);
 	const t = useTranslations("blog");
+	const skeletonKeys = useMemo(
+		() => Array.from({ length: pageSize }, (_, i) => `skeleton-${i}`),
+		[pageSize],
+	);
 
 	return (
 		<section className={styles.blog_list}>
 			<div className={styles.blog_list_grid}>
 				{showSkeleton
-					? Array.from({ length: pageSize }).map((_, i) => (
-							// biome-ignore lint/suspicious/noArrayIndexKey: 스켈레톤은 고정 개수이며 재정렬되지 않음
-							<SkeletonCard key={i} />
-						))
+					? skeletonKeys.map((key) => <SkeletonCard key={key} />)
 					: flatItems.map((item, i) => (
 							<BlogCard
 								key={item.idx}

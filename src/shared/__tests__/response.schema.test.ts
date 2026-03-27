@@ -1,6 +1,9 @@
+import {
+	baseResponseSchema,
+	okResponseSchema,
+} from "src/shared/schema/response/response.schema";
 import { describe, expect, it } from "vitest";
 import { z } from "zod";
-import { baseResponseSchema, okResponseSchema } from "../response.schema";
 
 describe("okResponseSchema", () => {
 	it("유효한 응답을 파싱한다", () => {

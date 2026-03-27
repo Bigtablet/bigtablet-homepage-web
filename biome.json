@@ -55,5 +55,30 @@
 				"organizeImports": "on"
 			}
 		}
-	}
+	},
+	"overrides": [
+		{
+			"includes": ["src/widgets/main/solution/modal/index.tsx"],
+			"linter": {
+				"rules": {
+					"a11y": {
+						"noStaticElementInteractions": "off"
+					}
+				}
+			}
+		},
+		{
+			"includes": [
+				"src/features/cookie-consent/ui/index.tsx",
+				"src/shared/ui/header/index.tsx"
+			],
+			"linter": {
+				"rules": {
+					"suspicious": {
+						"noDocumentCookie": "off"
+					}
+				}
+			}
+		}
+	]
 }

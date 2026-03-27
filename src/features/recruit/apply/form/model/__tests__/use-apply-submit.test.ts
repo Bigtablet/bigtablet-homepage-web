@@ -26,20 +26,24 @@ import { useApplySubmit } from "src/features/recruit/apply/form/model/use-apply-
 
 /** 기본 폼 값 */
 const baseValues: ApplyFormValues = {
+	jobId: 1,
 	name: "홍길동",
-	phone: "010-1234-5678",
+	phoneNumber: "010-1234-5678",
 	email: "test@example.com",
+	address: "서울시 강남구",
+	addressDetail: "",
+	portfolio: "https://portfolio.example.com",
+	coverLetter: "",
+	profileImage: "https://image.example.com/profile.jpg",
 	educationLevel: "BACHELOR",
 	schoolName: "한국대학교",
+	admissionYear: "2020",
+	graduationEnd: "2024",
 	department: "컴퓨터공학과",
-	graduationEnd: "2024-02",
-	militaryService: "DONE",
-	portfolioUrl: "",
-	coverLetterUrl: "",
-	etcUrl: [],
-	gender: "MALE",
-	birthDate: "1999-01-01",
-	address: "서울시 강남구",
+	military: "COMPLETED",
+	attachment1: "",
+	attachment2: "",
+	attachment3: "",
 };
 
 /** mock form 헬퍼 — handleSubmit이 onValid / onInvalid를 즉시 호출 */

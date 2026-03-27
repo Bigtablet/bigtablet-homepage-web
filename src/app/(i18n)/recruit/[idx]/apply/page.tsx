@@ -51,7 +51,7 @@ const ApplyPage = () => {
 	}, [jobId, form]);
 
 	const rawEmail = useEmailVerification({
-		getEmail: () => form.getValues("email"),
+		email: form.watch("email"),
 		cooldownSec: 60,
 	});
 

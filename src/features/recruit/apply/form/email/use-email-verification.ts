@@ -1,7 +1,7 @@
 "use client";
 
 import { useToast } from "@bigtablet/design-system";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
 	checkEmailApi,
 	sendEmailApi,
@@ -9,12 +9,12 @@ import {
 import { getErrorMessage } from "src/shared/libs/api/axios/error/error.util";
 
 interface UseEmailVerificationParams {
-	getEmail: () => string;
+	email: string;
 	cooldownSec?: number;
 }
 
 const useEmailVerification = ({
-	getEmail,
+	email,
 	cooldownSec = 60,
 }: UseEmailVerificationParams) => {
 	const [authCode, setAuthCode] = useState("");
@@ -24,13 +24,16 @@ const useEmailVerification = ({
 	const [emailSent, setEmailSent] = useState(false);
 	const [emailVerified, setEmailVerified] = useState(false);
 	const Toast = useToast();
+	const prevEmail = useRef(email);
 
 	useEffect(() => {
+		if (prevEmail.current === email) return;
+		prevEmail.current = email;
 		setAuthCode("");
 		setEmailSent(false);
 		setEmailVerified(false);
 		setResendSec(0);
-	}, []);
+	});
 
 	useEffect(() => {
 		if (resendSec <= 0) return;
@@ -39,9 +42,9 @@ const useEmailVerification = ({
 	}, [resendSec]);
 
 	const send = async () => {
-		const email = getEmail();
 		if (!email) return Toast.error("이메일을 입력해주세요.");
-		if (resendSec > 0) return alert(`${resendSec}초 후 재전송 가능합니다.`);
+		if (resendSec > 0)
+			return Toast.warning(`${resendSec}초 후 재전송 가능합니다.`);
 
 		setSendLoading(true);
 		try {
@@ -57,8 +60,8 @@ const useEmailVerification = ({
 	};
 
 	const verify = async () => {
-		const email = getEmail();
-		if (!email || !authCode) return alert("이메일과 인증 코드를 입력해주세요.");
+		if (!email || !authCode)
+			return Toast.warning("이메일과 인증 코드를 입력해주세요.");
 		setCheckLoading(true);
 		try {
 			await checkEmailApi(email, authCode);

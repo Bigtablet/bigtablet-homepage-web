@@ -1,5 +1,5 @@
+import { getErrorMessage } from "src/shared/libs/api/axios/error/error.util";
 import { describe, expect, it } from "vitest";
-import { getErrorMessage } from "../error.util";
 
 describe("getErrorMessage", () => {
 	it("Error 인스턴스에서 message를 추출한다", () => {

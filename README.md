@@ -31,7 +31,7 @@ src/
 
 ### Requirements
 
-- **Node.js:** v20 LTS 이상
+- **Node.js:** v24 이상
 - **Package Manager:** pnpm
 
 ### Setup

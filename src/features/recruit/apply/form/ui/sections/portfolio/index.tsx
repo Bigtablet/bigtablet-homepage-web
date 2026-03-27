@@ -22,9 +22,9 @@ export const PortfolioSection = ({ form, upload, isUploading }: Props) => {
 	return (
 		<>
 			<div className={styles.field}>
-				<label>
+				<span className={styles.field_label}>
 					포트폴리오 / 이력서* <span className={styles.sub}>PDF만 가능</span>
-				</label>
+				</span>
 				<Controller
 					control={control}
 					name="portfolio"
@@ -49,9 +49,9 @@ export const PortfolioSection = ({ form, upload, isUploading }: Props) => {
 			</div>
 
 			<div className={styles.field}>
-				<label>
+				<span className={styles.field_label}>
 					자기소개서 <span className={styles.sub}>PDF만 가능</span>
-				</label>
+				</span>
 				<Controller
 					control={control}
 					name="coverLetter"

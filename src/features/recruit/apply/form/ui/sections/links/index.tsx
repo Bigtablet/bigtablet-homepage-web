@@ -18,9 +18,9 @@ export const LinksSection = ({ form }: Props) => {
 
 	return (
 		<div className={styles.field}>
-			<label>
+			<span className={styles.field_label}>
 				첨부 자료 <span className={styles.sub}>최대 3개</span>
-			</label>
+			</span>
 			<div className={styles.stack}>
 				<TextField
 					size="sm"

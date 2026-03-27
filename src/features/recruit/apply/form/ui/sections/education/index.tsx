@@ -6,6 +6,7 @@ import { Controller } from "react-hook-form";
 import { ApplyEducationLevel } from "src/entities/recruit/schema/recruit.schema";
 import type { ApplyFormProps } from "src/features/recruit/apply/form/ui/type";
 import MonthPickerField from "src/shared/ui/form/date";
+import baseStyles from "../../form-base.module.scss";
 import styles from "./style.module.scss";
 
 type Form = ApplyFormProps["form"];
@@ -36,7 +37,7 @@ export const EducationSection = ({ form }: Props) => {
 
 	return (
 		<div className={styles.field}>
-			<label>최종 학력*</label>
+			<span className={baseStyles.field_label}>최종 학력*</span>
 
 			<div
 				className={[

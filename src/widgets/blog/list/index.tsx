@@ -32,6 +32,7 @@ const BlogListSection = ({
 			<div className={styles.blog_list_grid}>
 				{showSkeleton
 					? Array.from({ length: pageSize }).map((_, i) => (
+							// biome-ignore lint/suspicious/noArrayIndexKey: 스켈레톤은 고정 개수이며 재정렬되지 않음
 							<SkeletonCard key={i} />
 						))
 					: flatItems.map((item, i) => (

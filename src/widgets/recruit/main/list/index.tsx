@@ -24,8 +24,8 @@ const RequestCard = memo(({ item }: { item: RecruitCard }) => {
 			<div className={styles.request_item_left}>
 				<div className={styles.request_item_title}>{item.title}</div>
 				<div className={styles.request_item_tags}>
-					{item.tags.map((t, i) => (
-						<span key={i} className={styles.request_item_tag}>
+					{item.tags.map((t) => (
+						<span key={t} className={styles.request_item_tag}>
 							{t}
 						</span>
 					))}
@@ -67,6 +67,7 @@ const RequestList = ({ filters }: Props) => {
 
 	return (
 		<div className={styles.request_list}>
+			{/* biome-ignore lint/suspicious/noArrayIndexKey: 스켈레톤은 고정 개수이며 재정렬되지 않음 */}
 			{showSkeleton && [...Array(5)].map((_, i) => <SkeletonList key={i} />)}
 
 			{!isLoading && isError && (

@@ -45,8 +45,8 @@ const Collaborations = ({ speed = 40 }: { speed?: number }) => {
 				style={{ "--gap": `${GAP}px` } as React.CSSProperties}
 			>
 				<Marquee gradient={false} speed={speed}>
-					{items.map((src, i) => (
-						<div className={styles.collabs_item} key={`${src}-${i}`}>
+					{items.map((src) => (
+						<div className={styles.collabs_item} key={src}>
 							<div className={styles.collabs_card}>
 								<Image
 									src={src}

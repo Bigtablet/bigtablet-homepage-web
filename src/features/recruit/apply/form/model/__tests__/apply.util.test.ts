@@ -65,9 +65,14 @@ describe("mapMil", () => {
 		expect(mapMil("")).toBe(ApplyMilitaryStatus.enum.NOT_APPLICABLE);
 	});
 
-	// Object.values(ZodEnum)이 Zod 메서드를 반환하므로 enum 직접 전달 시 fallback 동작
-	it("매핑되지 않는 유효한 enum 값도 NOT_APPLICABLE fallback", () => {
-		expect(mapMil("COMPLETED")).toBe(ApplyMilitaryStatus.enum.NOT_APPLICABLE);
+	it("유효한 enum 값을 직접 전달하면 그대로 반환한다", () => {
+		expect(mapMil("COMPLETED")).toBe(ApplyMilitaryStatus.enum.COMPLETED);
+		expect(mapMil("NOT_COMPLETED")).toBe(
+			ApplyMilitaryStatus.enum.NOT_COMPLETED,
+		);
+		expect(mapMil("NOT_APPLICABLE")).toBe(
+			ApplyMilitaryStatus.enum.NOT_APPLICABLE,
+		);
 	});
 
 	it("알 수 없는 값 → NOT_APPLICABLE (fallback)", () => {

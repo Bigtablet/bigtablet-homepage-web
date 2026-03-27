@@ -26,6 +26,7 @@ const Header = () => {
 	}, []);
 
 	useEffect(() => {
+		void pathname;
 		setMenuOpen(false);
 	}, [pathname]);
 

@@ -37,6 +37,7 @@ export const BigtabletNavigation = ({
 	};
 
 	useEffect(() => {
+		void pathname;
 		setIsLoading(false);
 	}, [pathname]);
 

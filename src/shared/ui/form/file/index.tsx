@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import * as React from "react";
 import styles from "./style.module.scss";
 
@@ -63,7 +64,13 @@ export const FileInput = ({
 		<div className={rootClass}>
 			{layout === "column" && previewUrl && (
 				<div className={styles.file_preview}>
-					<img src={previewUrl} alt="미리보기" />
+					<Image
+						src={previewUrl}
+						alt="미리보기"
+						width={200}
+						height={200}
+						unoptimized
+					/>
 				</div>
 			)}
 

@@ -1,6 +1,7 @@
 "use client";
 
 import clsx from "clsx";
+import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { useScrollReveal } from "src/shared/hooks/use-scroll-reveal";
 import styles from "./style.module.scss";
@@ -28,7 +29,13 @@ const Introduce = ({ sectionKey, reverse = false }: AboutSchema) => {
 				</p>
 			</div>
 			<div className={styles.introduce_image} aria-hidden="true">
-				<img src="/images/logo/img.png" alt="logo" />
+				<Image
+					src="/images/logo/img.png"
+					alt=""
+					width={420}
+					height={420}
+					className={styles.introduce_img}
+				/>
 			</div>
 		</section>
 	);

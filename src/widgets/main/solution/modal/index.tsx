@@ -96,8 +96,10 @@ const Modal = ({
 					className={`${styles.solution_modal} ${isEntering ? styles.is_enter : ""}`}
 					style={styleVars}
 					onClick={(e) => e.stopPropagation()}
+					role="presentation"
 				>
 					<button
+						type="button"
 						className={`${styles.solution_modal_nav} ${styles.solution_modal_nav_prev}`}
 						onClick={prev}
 						aria-label="previous"
@@ -126,6 +128,7 @@ const Modal = ({
 					</div>
 
 					<button
+						type="button"
 						className={`${styles.solution_modal_nav} ${styles.solution_modal_nav_next}`}
 						onClick={next}
 						aria-label="next"

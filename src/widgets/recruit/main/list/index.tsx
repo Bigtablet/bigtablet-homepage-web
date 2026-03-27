@@ -12,6 +12,8 @@ import { SkeletonList } from "src/shared/ui/skeleton/list";
 
 import styles from "./style.module.scss";
 
+const SKELETON_KEYS = ["s0", "s1", "s2", "s3", "s4"];
+
 interface Props {
 	filters: RecruitSearchFilters;
 }
@@ -24,8 +26,8 @@ const RequestCard = memo(({ item }: { item: RecruitCard }) => {
 			<div className={styles.request_item_left}>
 				<div className={styles.request_item_title}>{item.title}</div>
 				<div className={styles.request_item_tags}>
-					{item.tags.map((t, i) => (
-						<span key={i} className={styles.request_item_tag}>
+					{item.tags.map((t) => (
+						<span key={t} className={styles.request_item_tag}>
 							{t}
 						</span>
 					))}
@@ -67,7 +69,7 @@ const RequestList = ({ filters }: Props) => {
 
 	return (
 		<div className={styles.request_list}>
-			{showSkeleton && [...Array(5)].map((_, i) => <SkeletonList key={i} />)}
+			{showSkeleton && SKELETON_KEYS.map((key) => <SkeletonList key={key} />)}
 
 			{!isLoading && isError && (
 				<div className={styles.request_list_empty}>{error?.message}</div>

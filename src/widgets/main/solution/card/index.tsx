@@ -10,22 +10,15 @@ interface CardProps {
 }
 
 const Card = ({ id, src, label, onOpen }: CardProps) => {
-	const openFromTarget = (el: HTMLDivElement) =>
+	const openFromTarget = (el: HTMLElement) =>
 		onOpen(id, el.getBoundingClientRect());
 
 	return (
-		<div
+		<button
+			type="button"
 			className={styles.solution_card}
-			role="button"
-			tabIndex={0}
 			aria-label={label}
-			onClick={(e) => openFromTarget(e.currentTarget as HTMLDivElement)}
-			onKeyDown={(e) => {
-				if (e.key === "Enter" || e.key === " ") {
-					e.preventDefault();
-					openFromTarget(e.currentTarget as HTMLDivElement);
-				}
-			}}
+			onClick={(e) => openFromTarget(e.currentTarget)}
 		>
 			<video
 				className={styles.solution_card_video}
@@ -38,7 +31,7 @@ const Card = ({ id, src, label, onOpen }: CardProps) => {
 			/>
 			<div className={styles.solution_card_overlay} />
 			<p className={styles.solution_card_title}>{label}</p>
-		</div>
+		</button>
 	);
 };
 

@@ -48,7 +48,7 @@ const MonthPickerField = ({
 }: Props) => {
 	return (
 		<div className={styles.month_picker}>
-			{label && <label className={styles.month_picker_label}>{label}</label>}
+			{label && <span className={styles.month_picker_label}>{label}</span>}
 
 			<DatePicker
 				selected={toDate(value)}

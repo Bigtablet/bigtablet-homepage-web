@@ -20,14 +20,14 @@ const ApplyForm = ({ form, email, onSubmit }: ApplyFormProps) => {
 	const { upload, isPending: isUploading } = useUpload();
 	const { showAlert } = useAlert();
 
-	const handleSubmitWithConfirm = (values: any) => {
+	const handleSubmitWithConfirm = () => {
 		showAlert({
 			title: "제출 확인",
 			message: "지원서를 제출하시겠습니까?",
 			showCancel: true,
 			confirmText: "제출하기",
 			cancelText: "취소",
-			onConfirm: () => onSubmit(values),
+			onConfirm: () => onSubmit(),
 		});
 	};
 

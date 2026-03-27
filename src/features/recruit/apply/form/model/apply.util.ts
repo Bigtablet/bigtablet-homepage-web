@@ -24,9 +24,8 @@ export const mapMil = (v: string): ApplyMilitaryStatus => {
 	if (v === "PENDING") return ApplyMilitaryStatus.enum.NOT_COMPLETED;
 	if (v === "EXEMPT" || v === "")
 		return ApplyMilitaryStatus.enum.NOT_APPLICABLE;
-	if (Object.values(ApplyMilitaryStatus).includes(v as ApplyMilitaryStatus)) {
-		return v as ApplyMilitaryStatus;
-	}
+	const parsed = ApplyMilitaryStatus.safeParse(v);
+	if (parsed.success) return parsed.data;
 	return ApplyMilitaryStatus.enum.NOT_APPLICABLE;
 };
 

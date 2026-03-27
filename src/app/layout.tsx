@@ -25,7 +25,7 @@ export default async function RootLayout({
 	const val = store.get("NEXT_LOCALE")?.value;
 	const locale = (val === "en" ? "en" : "ko") as "en" | "ko";
 
-	let messages;
+	let messages: Awaited<ReturnType<typeof getMessages>> | undefined;
 	try {
 		messages = await getMessages();
 	} catch {

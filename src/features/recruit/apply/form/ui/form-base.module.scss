@@ -5,7 +5,7 @@
   @include token.flex_column;
   gap: token.$spacing_sm;
 
-  label {
+  .field_label {
     @include token.body_medium;
     font-size: token.$font_size_sm;
     color: token.$text_strong;

@@ -46,7 +46,7 @@ const Collaborations = ({ speed = 40 }: { speed?: number }) => {
 			>
 				<Marquee gradient={false} speed={speed}>
 					{items.map((src, i) => (
-						<div className={styles.collabs_item} key={`${src}-${i}`}>
+						<div className={styles.collabs_item} key={src}>
 							<div className={styles.collabs_card}>
 								<Image
 									src={src}

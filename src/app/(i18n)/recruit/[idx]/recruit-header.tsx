@@ -25,8 +25,8 @@ export const RecruitHeader = ({ recruit }: RecruitHeaderProps) => (
 		<h1 className={styles.recruit_detail_title}>{recruit.title}</h1>
 		<div className={styles.recruit_detail_meta}>
 			<div className={styles.recruit_detail_chips}>
-				{recruit.tags.map((tag, index) => (
-					<span key={`tag-${index}`} className={styles.chip}>
+				{recruit.tags.map((tag) => (
+					<span key={tag} className={styles.chip}>
 						{tag}
 					</span>
 				))}

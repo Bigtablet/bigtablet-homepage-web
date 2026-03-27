@@ -1,6 +1,7 @@
 "use client";
 
 import { Button, useAlert } from "@bigtablet/design-system";
+import type { ApplyFormValues } from "src/features/recruit/apply/form/model/apply.schema";
 import { ContactSection } from "src/features/recruit/apply/form/ui/sections/contact";
 import { EducationSection } from "src/features/recruit/apply/form/ui/sections/education";
 import { LinksSection } from "src/features/recruit/apply/form/ui/sections/links";
@@ -20,7 +21,7 @@ const ApplyForm = ({ form, email, onSubmit }: ApplyFormProps) => {
 	const { upload, isPending: isUploading } = useUpload();
 	const { showAlert } = useAlert();
 
-	const handleSubmitWithConfirm = (values: any) => {
+	const handleSubmitWithConfirm = (values: ApplyFormValues) => {
 		showAlert({
 			title: "제출 확인",
 			message: "지원서를 제출하시겠습니까?",

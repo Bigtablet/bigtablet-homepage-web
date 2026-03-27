@@ -16,7 +16,8 @@ export const generateMetadata = async ({
 
 	try {
 		const messages = await getMessages();
-		const members = (messages as any)?.about?.team?.members;
+		const members = (messages as Record<string, Record<string, unknown>>)?.about
+			?.team?.members as Record<string, Record<string, unknown>> | undefined;
 		const member = members?.[id];
 		if (!member) return {};
 

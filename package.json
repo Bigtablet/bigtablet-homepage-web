@@ -19,7 +19,7 @@
 		"@bigtablet/design-system": "^1.22.0",
 		"@gsap/react": "^2.1.2",
 		"@hookform/resolvers": "^5.2.2",
-		"@opentelemetry/api": "^1.9.0",
+		"@opentelemetry/api": "^1.9.1",
 		"@tanstack/react-query": "^5.95.0",
 		"@vercel/otel": "^2.1.0",
 		"axios": "^1.13.6",

@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@bigtablet/design-system':
-        specifier: ^1.22.0
-        version: 1.22.0(lucide-react@0.577.0(react@19.2.4))(next@16.1.7(@babel/core@7.29.0)(@opentelemetry/api@1.9.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(sass@1.98.0))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
+        specifier: ^1.22.1
+        version: 1.22.1(lucide-react@0.577.0(react@19.2.4))(next@16.1.7(@babel/core@7.29.0)(@opentelemetry/api@1.9.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(sass@1.98.0))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       '@gsap/react':
         specifier: ^2.1.2
         version: 2.1.2(gsap@3.14.2)(react@19.2.4)
@@ -254,11 +254,11 @@ packages:
     resolution: {integrity: sha512-6zABk/ECA/QYSCQ1NGiVwwbQerUCZ+TQbp64Q3AgmfNvurHH0j8TtXa1qbShXA6qqkpAj4V5W8pP6mLe1mcMqA==}
     engines: {node: '>=18'}
 
-  '@bigtablet/design-system@1.22.0':
-    resolution: {integrity: sha512-cIHPoUVmKheIhxJ89YI0n7T3DkQRgwaCK45WpZhvIJu0nTQayj6TU8sE//VXRC9iIVvCFv0n7V+rYmdrYNAPMQ==}
+  '@bigtablet/design-system@1.22.1':
+    resolution: {integrity: sha512-3vKWp1hCPTjGf+WG9zS2BBvxl9TFa4VDs0X76ijKCU0wTIisTAeVmt4hSjnZ0CcRFaFFZqYgg2rYMQRt3tc5qw==}
     peerDependencies:
       lucide-react: '>=0.552.0'
-      next: '*'
+      next: '>=16'
       react: ^19
       react-dom: ^19
     peerDependenciesMeta:
@@ -2969,7 +2969,7 @@ snapshots:
 
   '@bcoe/v8-coverage@1.0.2': {}
 
-  '@bigtablet/design-system@1.22.0(lucide-react@0.577.0(react@19.2.4))(next@16.1.7(@babel/core@7.29.0)(@opentelemetry/api@1.9.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(sass@1.98.0))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)':
+  '@bigtablet/design-system@1.22.1(lucide-react@0.577.0(react@19.2.4))(next@16.1.7(@babel/core@7.29.0)(@opentelemetry/api@1.9.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(sass@1.98.0))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)':
     dependencies:
       lucide-react: 0.577.0(react@19.2.4)
       react: 19.2.4

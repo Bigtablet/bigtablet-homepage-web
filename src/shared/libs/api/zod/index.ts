@@ -13,7 +13,12 @@ const handleNoContent = <S extends z.ZodTypeAny>(
 	schema: S,
 ): z.infer<S> => {
 	if (status === 204 || data === "" || data === null || data === undefined) {
-		return schema.parse({ status: 204, message: "No Content", data: null });
+		// baseResponseSchema 구조가 아닌 스키마에 대한 안전 처리
+		try {
+			return schema.parse({ status: 204, message: "No Content", data: null });
+		} catch {
+			return schema.parse(data);
+		}
 	}
 	return schema.parse(data);
 };

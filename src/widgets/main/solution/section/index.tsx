@@ -34,6 +34,7 @@ const SolutionSection = () => {
 	const [sliding, setSliding] = useState<SlideState>(null);
 	const [blockBackdropClose, setBlockBackdropClose] = useState(false);
 	const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+	const slideTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
 	useEffect(() => setSelected(buildInitialSelected()), []);
 
@@ -66,6 +67,10 @@ const SolutionSection = () => {
 		if (closeTimer.current) {
 			clearTimeout(closeTimer.current);
 			closeTimer.current = null;
+		}
+		if (slideTimer.current) {
+			clearTimeout(slideTimer.current);
+			slideTimer.current = null;
 		}
 		setIsEntering(false);
 		setActiveId(null);
@@ -105,7 +110,8 @@ const SolutionSection = () => {
 				: products[(currentIndex - 1 + products.length) % products.length].id;
 		setBlockBackdropClose(true);
 		setSliding({ dir, nextId });
-		setTimeout(() => {
+		slideTimer.current = setTimeout(() => {
+			slideTimer.current = null;
 			setActiveId(nextId);
 			setSliding(null);
 			setBlockBackdropClose(false);

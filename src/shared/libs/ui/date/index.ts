@@ -12,6 +12,7 @@
 export const formatRelative = (dateStr?: string, locale?: string) => {
 	if (!dateStr || !locale) return "";
 	const date = new Date(dateStr);
+	if (Number.isNaN(date.getTime())) return "";
 	const now = new Date();
 	const diffMs = date.getTime() - now.getTime();
 	const absSec = Math.round(Math.abs(diffMs) / 1000);

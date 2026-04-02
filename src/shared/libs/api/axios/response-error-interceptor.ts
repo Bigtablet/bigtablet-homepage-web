@@ -9,7 +9,7 @@ const INITIAL_RETRY_DELAY_MILLISECONDS = 1000;
  * @description
  * Axios 응답 에러 인터셉터 팩토리 함수입니다.
  *
- * - 요청 취소 시: `null`로 resolve하여 무시
+ * - 요청 취소 시: reject하여 호출자에게 전파
  * - 5xx 에러: 지수 백오프로 최대 2회 재시도 (1초, 2초)
  * - 그 외: HttpError로 변환하여 전파
  */
@@ -46,13 +46,16 @@ export const createResponseErrorInterceptor = (
 			}
 		}
 
-		Sentry.captureException(error, {
-			extra: {
-				url: error.config?.url,
-				method: error.config?.method,
-				status: httpStatusCode,
-			},
-		});
+		// 5xx 서버 에러 및 네트워크 에러만 Sentry에 전송 (4xx는 노이즈 방지)
+		if (httpStatusCode >= 500 || httpStatusCode === 0) {
+			Sentry.captureException(error, {
+				extra: {
+					url: error.config?.url,
+					method: error.config?.method,
+					status: httpStatusCode,
+				},
+			});
+		}
 
 		// HttpError로 변환
 		const message = String(

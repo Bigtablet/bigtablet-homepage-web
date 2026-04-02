@@ -4,6 +4,7 @@ const withNextIntl = createNextIntlPlugin({});
 
 const nextConfig = {
 	output: "standalone",
+	reactCompiler: true,
 
 	images: {
 		remotePatterns: [
@@ -26,6 +27,14 @@ const nextConfig = {
 					{
 						key: "Permissions-Policy",
 						value: "camera=(), microphone=(), geolocation=()",
+					},
+					{
+						key: "Strict-Transport-Security",
+						value: "max-age=63072000; includeSubDomains",
+					},
+					{
+						key: "X-XSS-Protection",
+						value: "0",
 					},
 				],
 			},

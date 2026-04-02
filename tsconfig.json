@@ -1,12 +1,13 @@
 {
 	"compilerOptions": {
-		"target": "ES2017",
+		"target": "esnext",
 		"lib": ["dom", "dom.iterable", "esnext"],
+		"verbatimModuleSyntax": true,
 		"allowJs": true,
 		"skipLibCheck": true,
 		"strict": true,
 		"noEmit": true,
-		"esModuleInterop": true,
+		"noImplicitOverride": true,
 		"module": "esnext",
 		"moduleResolution": "bundler",
 		"resolveJsonModule": true,
@@ -20,7 +21,8 @@
 		],
 		"paths": {
 			"src/*": ["./src/*"]
-		}
+		},
+		"esModuleInterop": true
 	},
 	"include": [
 		"next-env.d.ts",

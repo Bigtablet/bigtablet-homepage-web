@@ -42,16 +42,16 @@ const GlobalError = ({
 	const handleRetry = useCallback(() => {
 		if (isCooling || isMaxRetry) return;
 
-		setRetryCount((prev) => prev + 1);
+		setRetryCount((previous) => previous + 1);
 		setCooldown(COOLDOWN_SEC);
 
 		timerRef.current = setInterval(() => {
-			setCooldown((prev) => {
-				if (prev <= 1) {
+			setCooldown((previous) => {
+				if (previous <= 1) {
 					clearInterval(timerRef.current);
 					return 0;
 				}
-				return prev - 1;
+				return previous - 1;
 			});
 		}, 1000);
 

@@ -45,16 +45,16 @@ describe("blogItemSchema", () => {
 
 describe("blogListResponseSchema", () => {
 	it("목록 응답을 파싱한다", () => {
-		const res = { status: 200, message: "ok", data: [validItem] };
-		const parsed = blogListResponseSchema.parse(res);
+		const response = { status: 200, message: "ok", data: [validItem] };
+		const parsed = blogListResponseSchema.parse(response);
 		expect(parsed.data).toHaveLength(1);
 	});
 });
 
 describe("blogDetailResponseSchema", () => {
 	it("상세 응답을 파싱한다", () => {
-		const res = { status: 200, message: "ok", data: validItem };
-		const parsed = blogDetailResponseSchema.parse(res);
+		const response = { status: 200, message: "ok", data: validItem };
+		const parsed = blogDetailResponseSchema.parse(response);
 		expect(parsed.data?.idx).toBe(1);
 	});
 });

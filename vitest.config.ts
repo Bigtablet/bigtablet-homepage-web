@@ -13,6 +13,9 @@ export default defineConfig({
 		environment: "jsdom",
 		setupFiles: ["./vitest.setup.ts"],
 		globals: true,
+		env: {
+			NEXT_PUBLIC_SERVER_URL: "http://localhost:3000",
+		},
 		exclude: ["e2e/**", "node_modules/**"],
 		coverage: {
 			provider: "v8",
@@ -24,9 +27,7 @@ export default defineConfig({
 				"src/**/index.ts",
 				// Next.js 앱 라우터 (페이지, 레이아웃)
 				"src/app/**",
-				// API 함수 (HTTP 요청 — 통합 테스트 대상)
-				"src/**/api/*.ts",
-				"src/**/api/**/*.ts",
+				// API 함수 (MSW 테스트 추가됨 — 커버리지 포함)
 				// React 컴포넌트 및 훅 (UI 테스트 불필요)
 				"src/**/*.tsx",
 				"src/**/hooks/**",

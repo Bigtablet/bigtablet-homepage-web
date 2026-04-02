@@ -9,6 +9,15 @@ import { useReducedMotion } from "src/shared/hooks/use-reduced-motion";
 import { gsap } from "src/shared/libs/gsap";
 import styles from "./style.module.scss";
 
+/**
+ * @component Banner
+ *
+ * @description
+ * 메인 페이지 상단 히어로 배너 섹션.
+ * GSAP를 사용한 텍스트 등장 애니메이션과 스크롤 유도 버튼을 포함한다.
+ *
+ * @see {@link useReducedMotion} 접근성 모션 감소 지원
+ */
 const Banner = () => {
 	const t = useTranslations("main.banner");
 	const containerRef = useRef<HTMLElement>(null);

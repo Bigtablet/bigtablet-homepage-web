@@ -28,8 +28,8 @@ describe("newsItemSchema", () => {
 
 describe("newsListResponseSchema", () => {
 	it("목록 응답을 파싱한다", () => {
-		const res = { status: 200, message: "ok", data: [validItem] };
-		const parsed = newsListResponseSchema.parse(res);
+		const response = { status: 200, message: "ok", data: [validItem] };
+		const parsed = newsListResponseSchema.parse(response);
 		expect(parsed.data).toHaveLength(1);
 	});
 });

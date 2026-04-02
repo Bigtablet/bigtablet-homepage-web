@@ -18,8 +18,13 @@ interface Props {
 	filters: RecruitSearchFilters;
 }
 
-const isEmpty = (v?: string) => v === "" || v === undefined;
+const isEmpty = (value?: string) => value === "" || value === undefined;
 
+/**
+ * @component RequestCard
+ *
+ * @description 채용 공고 카드. D-Day와 태그를 표시한다.
+ */
 const RequestCard = memo(({ item }: { item: RecruitCard }) => {
 	return (
 		<a className={styles.request_item} href={`/recruit/${item.idx}`}>

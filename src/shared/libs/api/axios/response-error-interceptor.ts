@@ -17,7 +17,7 @@ export const createResponseErrorInterceptor = (
 ) => {
 	return async (error: AxiosError) => {
 		if (axios.isCancel(error)) {
-			return Promise.resolve(null);
+			return Promise.reject(error);
 		}
 
 		const httpStatusCode = error.response?.status ?? 0;
@@ -35,7 +35,7 @@ export const createResponseErrorInterceptor = (
 				if (currentRetryCount < MAXIMUM_RETRY_COUNT) {
 					requestConfig.retryCount = currentRetryCount + 1;
 					const delayMilliseconds =
-						INITIAL_RETRY_DELAY_MILLISECONDS * (currentRetryCount + 1);
+						INITIAL_RETRY_DELAY_MILLISECONDS * 2 ** currentRetryCount;
 
 					await new Promise((resolve) =>
 						setTimeout(resolve, delayMilliseconds),

@@ -14,6 +14,15 @@ const logos = [
 const GAP = 24;
 const CARD_W = 260;
 
+/**
+ * @component Collaborations
+ *
+ * @description
+ * 메인 페이지 협력사 로고 마퀴 섹션.
+ * 뷰포트 너비에 맞춰 반복 횟수를 자동 조절한다.
+ *
+ * @param props.speed - 마퀴 스크롤 속도 (기본 40)
+ */
 const Collaborations = ({ speed = 40 }: { speed?: number }) => {
 	const t = useTranslations("main.collaboration");
 	const ref = useRef<HTMLDivElement | null>(null);
@@ -21,9 +30,12 @@ const Collaborations = ({ speed = 40 }: { speed?: number }) => {
 
 	useEffect(() => {
 		const calc = () => {
-			const w = ref.current?.offsetWidth ?? 1200;
+			const containerWidth = ref.current?.offsetWidth ?? 1200;
 			const unit = CARD_W + GAP;
-			const need = Math.max(4, Math.ceil((w * 2) / (logos.length * unit)));
+			const need = Math.max(
+				4,
+				Math.ceil((containerWidth * 2) / (logos.length * unit)),
+			);
 			setRepeat(need);
 		};
 		calc();
@@ -45,7 +57,7 @@ const Collaborations = ({ speed = 40 }: { speed?: number }) => {
 				style={{ "--gap": `${GAP}px` } as React.CSSProperties}
 			>
 				<Marquee gradient={false} speed={speed}>
-					{items.map((src, i) => (
+					{items.map((src, index) => (
 						<div className={styles.collabs_item} key={src}>
 							<div className={styles.collabs_card}>
 								<Image
@@ -54,7 +66,7 @@ const Collaborations = ({ speed = 40 }: { speed?: number }) => {
 									width={260}
 									height={60}
 									sizes="160px"
-									priority={i < 4}
+									priority={index < 4}
 									draggable={false}
 								/>
 							</div>

@@ -19,7 +19,7 @@ api.interceptors.request.use(requestInterceptor, (error) =>
 );
 
 api.interceptors.response.use(
-	(res) => res,
+	(response) => response,
 	createResponseErrorInterceptor(api),
 );
 

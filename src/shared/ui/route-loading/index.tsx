@@ -39,8 +39,8 @@ const RouteLoading = () => {
 
 	// Link 클릭 감지
 	useEffect(() => {
-		const handleClick = (e: MouseEvent) => {
-			const target = e.target as HTMLElement;
+		const handleClick = (event: MouseEvent) => {
+			const target = event.target as HTMLElement;
 			const anchor = target.closest("a");
 
 			if (!anchor) return;

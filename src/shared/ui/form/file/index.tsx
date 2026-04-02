@@ -4,6 +4,7 @@ import Image from "next/image";
 import * as React from "react";
 import styles from "./style.module.scss";
 
+/** 파일 입력 컴포넌트 Props */
 export interface FileInputProps
 	extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "onChange"> {
 	label?: string;
@@ -11,6 +12,16 @@ export interface FileInputProps
 	onFiles?: (file: File | null) => void;
 }
 
+/**
+ * @component FileInput
+ *
+ * @description
+ * 파일 선택 입력 컴포넌트. 이미지 파일 선택 시 미리보기를 표시한다.
+ * row/column 레이아웃을 지원한다.
+ *
+ * @param props.onFiles - 파일 선택 시 콜백 (File 또는 null)
+ * @param props.layout - 레이아웃 방향 ("row" | "column")
+ */
 export const FileInput = ({
 	label = "파일 선택",
 	layout = "column",
@@ -40,8 +51,8 @@ export const FileInput = ({
 		.filter(Boolean)
 		.join(" ");
 
-	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		const file = e.currentTarget.files?.[0] ?? null;
+	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+		const file = event.currentTarget.files?.[0] ?? null;
 
 		setFileName(file?.name ?? "선택된 파일 없음");
 		onFiles?.(file);

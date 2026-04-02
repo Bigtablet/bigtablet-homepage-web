@@ -23,7 +23,7 @@ export const postGcpUploadApi = async (
 	const formData = new FormData();
 	formData.append("multipartFile", file);
 
-	const res = await BigtabletAxios.post("/gcp", formData, {
+	const response = await BigtabletAxios.post("/gcp", formData, {
 		signal,
 		timeout: 30000,
 		withCredentials: false,
@@ -31,8 +31,8 @@ export const postGcpUploadApi = async (
 	});
 
 	return {
-		status: res.data?.status ?? 0,
-		message: res.data?.message ?? "",
-		data: res.data?.data ?? "",
+		status: response.data?.status ?? 0,
+		message: response.data?.message ?? "",
+		data: response.data?.data ?? "",
 	};
 };

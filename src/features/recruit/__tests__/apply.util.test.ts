@@ -13,8 +13,8 @@ describe("currentYearMonth", () => {
 	});
 
 	it("현재 연도와 월 반환", () => {
-		const d = new Date();
-		const expected = `${d.getFullYear()}-${`${d.getMonth() + 1}`.padStart(2, "0")}`;
+		const date = new Date();
+		const expected = `${date.getFullYear()}-${`${date.getMonth() + 1}`.padStart(2, "0")}`;
 		expect(currentYearMonth()).toBe(expected);
 	});
 });

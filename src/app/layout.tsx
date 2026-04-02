@@ -22,8 +22,8 @@ export default async function RootLayout({
 	children: React.ReactNode;
 }) {
 	const store = await cookies();
-	const val = store.get("NEXT_LOCALE")?.value;
-	const locale = (val === "en" ? "en" : "ko") as "en" | "ko";
+	const value = store.get("NEXT_LOCALE")?.value;
+	const locale = (value === "en" ? "en" : "ko") as "en" | "ko";
 
 	let messages: Awaited<ReturnType<typeof getMessages>> | undefined;
 	try {

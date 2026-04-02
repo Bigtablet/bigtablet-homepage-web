@@ -8,6 +8,15 @@ import type { ModalItem, ModalProps } from "./type";
 
 const CLOSE_INTENT_DELAY = 180;
 
+/**
+ * @component Modal
+ *
+ * @description
+ * 솔루션 제품 상세 모달. 좌우 슬라이드 네비게이션과
+ * 제품 비디오 재생을 지원한다. ESC 키로 닫을 수 있다.
+ *
+ * @see {@link Portal} 모달 포탈 렌더링
+ */
 const Modal = ({
 	current,
 	ghost,
@@ -73,8 +82,8 @@ const Modal = ({
 	};
 
 	useEffect(() => {
-		const onKey = (e: KeyboardEvent) => {
-			if (e.key === "Escape" && !blockBackdropClose) close();
+		const onKey = (event: KeyboardEvent) => {
+			if (event.key === "Escape" && !blockBackdropClose) close();
 		};
 		document.addEventListener("keydown", onKey);
 		return () => document.removeEventListener("keydown", onKey);

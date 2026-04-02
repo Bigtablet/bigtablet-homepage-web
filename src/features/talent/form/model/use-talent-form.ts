@@ -60,11 +60,11 @@ export const useTalentForm = ({ onClose }: UseTalentFormParams) => {
 		}
 
 		try {
-			const res = await uploadFile(file);
-			const url = res.data ?? "";
+			const response = await uploadFile(file);
+			const url = response.data ?? "";
 			form.setValue("portfolioUrl", url, { shouldValidate: true });
 			form.clearErrors("portfolioUrl");
-		} catch (_err) {
+		} catch (_error) {
 			Toast.error("파일 업로드에 실패했습니다. 다시 시도해주세요.");
 			form.setValue("portfolioUrl", "", { shouldValidate: true });
 		}
@@ -72,8 +72,8 @@ export const useTalentForm = ({ onClose }: UseTalentFormParams) => {
 
 	const handleSubmit = async (values: PostTalentFormValues) => {
 		const filtered = values.etcUrl
-			.filter((v) => v.trim() !== "")
-			.map((u) => ensureHttps(u));
+			.filter((url) => url.trim() !== "")
+			.map((url) => ensureHttps(url));
 
 		const payload: PostTalent = {
 			email: values.email,

@@ -18,8 +18,8 @@ export const useUpload = () => {
 			throw new Error(validation.error ?? "파일 검증에 실패했습니다.");
 		}
 
-		const res = await mutation.mutateAsync(file);
-		return res.data ?? "";
+		const response = await mutation.mutateAsync(file);
+		return response.data ?? "";
 	};
 
 	return { upload, ...mutation };

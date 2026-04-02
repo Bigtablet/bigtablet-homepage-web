@@ -19,9 +19,9 @@ export const newsQueries = {
 		queryOptions({
 			queryKey: [...newsQueries.all, "page", page, size] as const,
 			queryFn: async ({ signal }) => {
-				const res = await getNewsApi({ page, size }, signal);
+				const response = await getNewsApi({ page, size }, signal);
 
-				const items = res.data ?? [];
+				const items = response.data ?? [];
 
 				return {
 					items,

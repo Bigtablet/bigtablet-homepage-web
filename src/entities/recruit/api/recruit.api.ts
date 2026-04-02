@@ -8,6 +8,7 @@ import {
 	recruitListResponseSchema,
 } from "../schema/recruit.schema";
 
+/** 채용 공고 검색 필터 인터페이스 */
 export interface RecruitSearchFilters {
 	keyword?: string;
 	job?: string;
@@ -15,7 +16,23 @@ export interface RecruitSearchFilters {
 	career?: string;
 }
 
-/* 목록 + 검색 */
+/**
+ * @author 박상민
+ *
+ * @description 채용 공고 목록을 필터 조건으로 조회한다.
+ * @endpoint GET /job/list
+ * @auth Unnecessary
+ * @permission Unnecessary
+ *
+ * @param options.page - 페이지 번호 (기본 1)
+ * @param options.size - 페이지 크기 (기본 10)
+ * @param options.title - 제목 검색어
+ * @param options.department - 부서 필터
+ * @param options.education - 학력 필터
+ * @param options.recruitType - 채용 유형 필터
+ * @param options.signal - 요청 취소를 위한 AbortSignal
+ * @returns 채용 공고 배열 (빈 데이터 시 빈 배열)
+ */
 export const getRecruitListApi = async ({
 	page = 1,
 	size = 10,
@@ -52,20 +69,43 @@ export const getRecruitListApi = async ({
 	return data;
 };
 
-/* 상세 */
+/**
+ * @author 박상민
+ *
+ * @description 채용 공고 상세 정보를 조회한다.
+ * @endpoint GET /job?idx={index}
+ * @auth Unnecessary
+ * @permission Unnecessary
+ *
+ * @param index - 채용 공고 고유 번호
+ * @param signal - 요청 취소를 위한 AbortSignal
+ * @returns 채용 공고 상세 데이터
+ * @throws 응답 데이터가 비어있으면 "Empty response" 에러
+ */
 export const getRecruitDetailApi = async (
-	idx: number,
+	index: number,
 	signal?: AbortSignal,
 ) => {
 	const { data } = await getParsed("/job", recruitDetailResponseSchema, {
 		signal,
-		params: { idx },
+		params: { idx: index },
 	});
 	if (!data) throw new Error("Empty response");
 	return data;
 };
 
-/** 지원 */
+/**
+ * @author 박상민
+ *
+ * @description 채용 공고에 지원서를 제출한다.
+ * @endpoint POST /recruit
+ * @auth Unnecessary
+ * @permission Unnecessary
+ *
+ * @param body - 지원서 데이터
+ * @param signal - 요청 취소를 위한 AbortSignal
+ * @returns 지원 결과 응답
+ */
 export const postRecruitApplyApi = async (
 	body: RecruitRequest,
 	signal?: AbortSignal,

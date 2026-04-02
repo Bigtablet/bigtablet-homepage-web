@@ -26,10 +26,10 @@ const BlogPage = () => {
 	const totalPages = data?.hasNext ? page + 1 : page;
 
 	const handlePageChange = (nextPage: number) => {
-		const params = new URLSearchParams(sp.toString());
-		params.set("page", String(nextPage));
-		params.set("size", String(size));
-		router.push(`${pathname}?${params.toString()}`);
+		const searchParameters = new URLSearchParams(sp.toString());
+		searchParameters.set("page", String(nextPage));
+		searchParameters.set("size", String(size));
+		router.push(`${pathname}?${searchParameters.toString()}`);
 	};
 
 	return (

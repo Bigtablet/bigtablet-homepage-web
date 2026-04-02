@@ -13,6 +13,8 @@
 		"test:watch": "vitest",
 		"test:coverage": "vitest run --coverage",
 		"type-check": "tsc --noEmit",
+		"e2e": "playwright test",
+		"e2e:ui": "playwright test --ui",
 		"analyze": "ANALYZE=true next build --turbopack",
 		"prepare": "husky"
 	},
@@ -49,6 +51,7 @@
 		"@commitlint/cli": "^20.5.0",
 		"@commitlint/core": "^20.5.0",
 		"@next/bundle-analyzer": "^16.2.2",
+		"@playwright/test": "^1.59.1",
 		"@testing-library/jest-dom": "^6.9.1",
 		"@testing-library/react": "^16.3.2",
 		"@testing-library/user-event": "^14.6.1",

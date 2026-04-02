@@ -41,3 +41,6 @@ yarn.lock
 
 # test
 /coverage
+/test-results/
+/playwright-report/
+/blob-report/

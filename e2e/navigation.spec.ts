@@ -3,25 +3,25 @@ import { expect, test } from "@playwright/test";
 test.describe("header navigation", () => {
 	test("navigates to recruit page", async ({ page }) => {
 		await page.goto("/main");
-		await page.click('a[href="/recruit"]');
+		await page.getByRole("link", { name: "Recruit" }).click();
 		await expect(page).toHaveURL(/\/recruit/);
 	});
 
 	test("navigates to blog page", async ({ page }) => {
 		await page.goto("/main");
-		await page.click('a[href="/blog"]');
+		await page.getByRole("link", { name: "Blog" }).click();
 		await expect(page).toHaveURL(/\/blog/);
 	});
 
 	test("navigates to news page", async ({ page }) => {
 		await page.goto("/main");
-		await page.click('a[href="/news"]');
+		await page.getByRole("link", { name: "News" }).click();
 		await expect(page).toHaveURL(/\/news/);
 	});
 
 	test("navigates to about page", async ({ page }) => {
 		await page.goto("/main");
-		await page.click('a[href="/about"]');
+		await page.getByRole("link", { name: "About Us" }).click();
 		await expect(page).toHaveURL(/\/about/);
 	});
 });

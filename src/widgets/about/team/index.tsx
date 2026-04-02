@@ -10,6 +10,15 @@ interface TeamProps {
 	order?: MemberKey[];
 }
 
+/**
+ * @component Team
+ *
+ * @description
+ * About 페이지 팀 소개 섹션.
+ * 멤버 카드 그리드를 표시하며, 표시 순서를 props로 제어할 수 있다.
+ *
+ * @param props.order - 멤버 표시 순서 (기본: MEMBER_DEFAULT_ORDER)
+ */
 const Team = ({ order = MEMBER_DEFAULT_ORDER }: TeamProps) => {
 	const t = useTranslations("about.team");
 

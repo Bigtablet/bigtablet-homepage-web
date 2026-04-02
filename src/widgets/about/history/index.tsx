@@ -19,6 +19,16 @@ export interface HistoryItemType {
 
 type Props = { items: HistoryItemType[] };
 
+/**
+ * @component History
+ *
+ * @description
+ * About 페이지 연혁 섹션.
+ * 연도별 탭 네비게이션과 GSAP 전환 애니메이션을 적용한다.
+ *
+ * @param props.items - 연혁 데이터 배열
+ * @see {@link buildYearGroups} 연도별 그룹핑 유틸
+ */
 const History = ({ items }: Props) => {
 	const groups: YearGroup[] = useMemo(() => buildYearGroups(items), [items]);
 	const years = useMemo(() => yearsFromGroups(groups), [groups]);
@@ -27,12 +37,14 @@ const History = ({ items }: Props) => {
 
 	useEffect(() => {
 		if (!groups.length) return;
-		setCurrentYear((prev) => prev ?? groups[0].year);
+		setCurrentYear((previous) => previous ?? groups[0].year);
 	}, [groups]);
 
 	const activeGroup = useMemo(
 		() =>
-			currentYear ? (groups.find((g) => g.year === currentYear) ?? null) : null,
+			currentYear
+				? (groups.find((group) => group.year === currentYear) ?? null)
+				: null,
 		[groups, currentYear],
 	);
 
@@ -85,14 +97,14 @@ const History = ({ items }: Props) => {
 			<div className={styles.history_grid}>
 				{/* 연도 네비게이션 (sticky) */}
 				<div className={styles.history_years}>
-					{years.map((y) => (
+					{years.map((year) => (
 						<button
-							key={y}
+							key={year}
 							type="button"
-							className={`${styles.history_year_item} ${currentYear === y ? styles.is_active : ""}`}
-							onClick={() => handleYearChange(y)}
+							className={`${styles.history_year_item} ${currentYear === year ? styles.is_active : ""}`}
+							onClick={() => handleYearChange(year)}
 						>
-							<span className={styles.history_year_text}>{y}</span>
+							<span className={styles.history_year_text}>{year}</span>
 						</button>
 					))}
 				</div>
@@ -104,14 +116,16 @@ const History = ({ items }: Props) => {
 						key={activeGroup.year}
 						className={styles.history_right}
 					>
-						{activeGroup.list.map((it) => (
-							<div key={it.id} className={styles.history_row}>
+						{activeGroup.list.map((historyItem) => (
+							<div key={historyItem.id} className={styles.history_row}>
 								<span className={styles.history_row_dot} aria-hidden />
 								<div className={styles.history_row_body}>
-									<div className={styles.history_row_title}>{it.title}</div>
-									{it.description && (
+									<div className={styles.history_row_title}>
+										{historyItem.title}
+									</div>
+									{historyItem.description && (
 										<div className={styles.history_row_desc}>
-											{it.description}
+											{historyItem.description}
 										</div>
 									)}
 								</div>

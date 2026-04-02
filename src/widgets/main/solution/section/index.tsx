@@ -14,6 +14,16 @@ import styles from "./style.module.scss";
 type SlideState = { dir: "next" | "prev"; nextId: number } | null;
 type AnimVars = { dx: number; dy: number; sx: number; sy: number } | null;
 
+/**
+ * @component SolutionSection
+ *
+ * @description
+ * 메인 페이지 솔루션 섹션.
+ * 제품 카드 그리드와 상세 모달 열기/닫기 애니메이션을 관리한다.
+ *
+ * @see {@link Modal} 제품 상세 모달
+ * @see {@link Card} 제품 카드
+ */
 const SolutionSection = () => {
 	const t = useTranslations("main.solution");
 
@@ -36,12 +46,13 @@ const SolutionSection = () => {
 		[selected],
 	);
 
-	const idxOf = (id: number) => products.findIndex((p) => p.id === id);
+	const indexOfProduct = (id: number) =>
+		products.findIndex((product) => product.id === id);
 	const current = activeId
-		? (products.find((p) => p.id === activeId) ?? null)
+		? (products.find((product) => product.id === activeId) ?? null)
 		: null;
 	const ghost = sliding
-		? (products.find((p) => p.id === sliding.nextId) ?? null)
+		? (products.find((product) => product.id === sliding.nextId) ?? null)
 		: null;
 
 	const cancelClose = () => {
@@ -87,11 +98,11 @@ const SolutionSection = () => {
 
 	const go = (dir: "next" | "prev") => {
 		if (!activeId) return;
-		const i = idxOf(activeId);
+		const currentIndex = indexOfProduct(activeId);
 		const nextId =
 			dir === "next"
-				? products[(i + 1) % products.length].id
-				: products[(i - 1 + products.length) % products.length].id;
+				? products[(currentIndex + 1) % products.length].id
+				: products[(currentIndex - 1 + products.length) % products.length].id;
 		setBlockBackdropClose(true);
 		setSliding({ dir, nextId });
 		setTimeout(() => {
@@ -103,7 +114,8 @@ const SolutionSection = () => {
 
 	useEffect(() => {
 		if (!activeId) return;
-		const onKey = (e: KeyboardEvent) => e.key === "Escape" && closeNow();
+		const onKey = (event: KeyboardEvent) =>
+			event.key === "Escape" && closeNow();
 		window.addEventListener("keydown", onKey);
 		return () => window.removeEventListener("keydown", onKey);
 	}, [activeId, closeNow]);

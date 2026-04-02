@@ -52,7 +52,7 @@ describe("postTalentSchema", () => {
 
 describe("getTalentDetailResponseSchema", () => {
 	it("상세 응답을 파싱한다", () => {
-		const res = {
+		const response = {
 			status: 200,
 			message: "ok",
 			data: {
@@ -64,7 +64,7 @@ describe("getTalentDetailResponseSchema", () => {
 				createdAt: "2024-01-01",
 			},
 		};
-		const parsed = getTalentDetailResponseSchema.parse(res);
+		const parsed = getTalentDetailResponseSchema.parse(response);
 		expect(parsed.data?.idx).toBe(1);
 	});
 });

@@ -11,6 +11,13 @@ import styles from "./style.module.scss";
 const SUPPORTED = ["ko", "en"] as const;
 type Locale = (typeof SUPPORTED)[number];
 
+/**
+ * @component Header
+ *
+ * @description
+ * 글로벌 헤더 네비게이션. 스크롤 감지 배경 변환,
+ * 모바일 햄버거 메뉴, 로케일 전환 버튼을 포함한다.
+ */
 const Header = () => {
 	const locale = useLocale() as Locale;
 	const router = useRouter();
@@ -50,7 +57,7 @@ const Header = () => {
 	}, [locale, router]);
 
 	const toggleMenu = useCallback(() => {
-		setMenuOpen((prev) => !prev);
+		setMenuOpen((previous) => !previous);
 	}, []);
 
 	const closeMenu = useCallback(() => {
@@ -108,7 +115,7 @@ const Header = () => {
 						type="button"
 						className={styles.overlay}
 						onClick={closeMenu}
-						onKeyDown={(e) => e.key === "Escape" && closeMenu()}
+						onKeyDown={(event) => event.key === "Escape" && closeMenu()}
 						aria-label="Close menu"
 					/>
 				)}

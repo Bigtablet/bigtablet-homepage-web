@@ -15,6 +15,17 @@ interface NewsListProps {
 	pageSize: number;
 }
 
+/**
+ * @component NewsListSection
+ *
+ * @description
+ * 뉴스 목록 그리드 섹션. 로딩 시 스켈레톤 카드를 표시한다.
+ *
+ * @param props.items - 뉴스 아이템 배열
+ * @param props.locale - 현재 로케일
+ * @param props.isLoading - 로딩 상태
+ * @param props.pageSize - 페이지 크기 (스켈레톤 수 결정)
+ */
 const NewsListSection = ({
 	items,
 	locale,
@@ -24,7 +35,7 @@ const NewsListSection = ({
 	const showSkeleton = useDeferredLoading(isLoading);
 	const t = useTranslations("news");
 	const skeletonKeys = useMemo(
-		() => Array.from({ length: pageSize }, (_, i) => `skeleton-${i}`),
+		() => Array.from({ length: pageSize }, (_, index) => `skeleton-${index}`),
 		[pageSize],
 	);
 
@@ -33,7 +44,7 @@ const NewsListSection = ({
 			return skeletonKeys.map((key) => <SkeletonCard key={key} />);
 		}
 
-		return items.map((item, i) => (
+		return items.map((item, index) => (
 			<NewsCard
 				key={item.idx}
 				title={locale === "ko" ? item.titleKr : item.titleEn}
@@ -41,7 +52,7 @@ const NewsListSection = ({
 				createdAt={item.createdAt}
 				thumbnailImageUrl={item.thumbnailImageUrl}
 				locale={locale}
-				priority={i < 3}
+				priority={index < 3}
 			/>
 		));
 	};

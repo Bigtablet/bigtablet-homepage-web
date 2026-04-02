@@ -13,6 +13,7 @@ const envSchema = z.object({
 		.default("development"),
 });
 
+/** 검증된 환경변수 객체. 빌드/런타임 시점에 Zod 스키마로 검증된다. */
 export const env = envSchema.parse({
 	NEXT_PUBLIC_SERVER_URL: process.env.NEXT_PUBLIC_SERVER_URL,
 	NEXT_PUBLIC_SENTRY_DSN: process.env.NEXT_PUBLIC_SENTRY_DSN,

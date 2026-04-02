@@ -10,7 +10,7 @@ import styles from "./style.module.scss";
 type Props = {
 	label?: string;
 	value?: string;
-	onChange: (v: string) => void;
+	onChange: (value: string) => void;
 	placeholder?: string;
 	disabled?: boolean;
 	error?: boolean;
@@ -19,16 +19,16 @@ type Props = {
 
 const toDate = (value?: string) => {
 	if (!value) return null;
-	const [y, m] = value.split("-").map(Number);
-	if (!y || !m) return null;
-	return new Date(y, m - 1, 1);
+	const [year, month] = value.split("-").map(Number);
+	if (!year || !month) return null;
+	return new Date(year, month - 1, 1);
 };
 
 const toValue = (date: Date | null): string => {
 	if (!date) return "";
-	const y = date.getFullYear();
-	const m = String(date.getMonth() + 1).padStart(2, "0");
-	return `${y}-${m}`;
+	const year = date.getFullYear();
+	const month = String(date.getMonth() + 1).padStart(2, "0");
+	return `${year}-${month}`;
 };
 
 const MonthInput = forwardRef<
@@ -37,6 +37,16 @@ const MonthInput = forwardRef<
 >((props, ref) => <TextField {...props} ref={ref} readOnly />);
 MonthInput.displayName = "MonthInput";
 
+/**
+ * @component MonthPickerField
+ *
+ * @description
+ * 연-월 선택 날짜 피커 컴포넌트.
+ * react-datepicker 기반으로 "YYYY.MM" 형식을 사용한다.
+ *
+ * @param props.value - "YYYY-MM" 형식 문자열
+ * @param props.onChange - 선택 변경 콜백 ("YYYY-MM" 문자열 전달)
+ */
 const MonthPickerField = ({
 	label,
 	value,

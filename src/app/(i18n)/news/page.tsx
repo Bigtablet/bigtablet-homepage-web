@@ -28,9 +28,9 @@ const NewsPage = () => {
 
 	const handleChangePage = (nextPage: number) => {
 		const clamped = Math.max(1, nextPage);
-		const params = new URLSearchParams(searchParams.toString());
-		params.set("page", String(clamped));
-		router.push(`${pathname}?${params.toString()}`);
+		const searchParameters = new URLSearchParams(searchParams.toString());
+		searchParameters.set("page", String(clamped));
+		router.push(`${pathname}?${searchParameters.toString()}`);
 	};
 
 	return (

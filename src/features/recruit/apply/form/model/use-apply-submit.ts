@@ -17,22 +17,22 @@ export const useApplySubmit = ({ form, jobId, emailVerified }: Params) => {
 	const mutation = useRecruitApplyMutation();
 	const router = useRouter();
 
-	const onValid = async (v: ApplyFormValues) => {
+	const onValid = async (values: ApplyFormValues) => {
 		if (!emailVerified) {
 			Toast.warning("이메일 인증을 완료해주세요.");
 			return;
 		}
-		if (v.educationLevel === "GED") {
-			v.schoolName = "";
-			v.graduationEnd = "";
-			v.department = "";
+		if (values.educationLevel === "GED") {
+			values.schoolName = "";
+			values.graduationEnd = "";
+			values.department = "";
 		}
 
 		try {
-			await mutation.mutateAsync({ ...v, jobId });
+			await mutation.mutateAsync({ ...values, jobId });
 			Toast.success("지원이 완료되었습니다.");
 			router.push("/recruit");
-		} catch (_err) {
+		} catch (_error) {
 			Toast.error("지원 중 문제가 발생했습니다.");
 		}
 	};

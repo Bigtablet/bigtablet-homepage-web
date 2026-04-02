@@ -10,8 +10,10 @@ export default async function LocaleLayout({
 }: {
 	children: ReactNode;
 }) {
-	const c = (await cookies()).get("NEXT_LOCALE")?.value?.toLowerCase();
-	const locale = c === "en" ? "en" : "ko"; // 기본 ko
+	const localeValue = (await cookies())
+		.get("NEXT_LOCALE")
+		?.value?.toLowerCase();
+	const locale = localeValue === "en" ? "en" : "ko"; // 기본 ko
 	const messages = (await import(`../../../messages/${locale}.json`)).default;
 
 	return (

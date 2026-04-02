@@ -13,7 +13,7 @@ import type { ListSchema } from "src/shared/schema/list/list.schema";
  * @auth Unnecessary
  * @permission Unnecessary
  *
- * @param parameters - 페이지 번호와 페이지 크기
+ * @param {ListSchema} options - 페이지 번호와 페이지 크기
  * @param signal - 요청 취소를 위한 AbortSignal
  * @returns 뉴스 목록 응답 (data 배열 포함)
  */

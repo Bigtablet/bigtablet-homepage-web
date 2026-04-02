@@ -16,7 +16,7 @@ import type { ListSchema } from "src/shared/schema/list/list.schema";
  * @auth Unnecessary
  * @permission Unnecessary
  *
- * @param parameters - 페이지 번호와 페이지 크기
+ * @param {ListSchema} options - 페이지 번호와 페이지 크기
  * @param signal - 요청 취소를 위한 AbortSignal
  * @returns 블로그 아이템 배열 (빈 데이터 시 빈 배열)
  */

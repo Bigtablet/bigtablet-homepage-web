@@ -41,40 +41,46 @@ const getDdayText = (endDate?: string | null): string => {
 /**
  * @description 채용 공고에서 부서, 학력, 유형, 지역 태그를 추출한다.
  *
- * @param r - 채용 공고 응답 데이터
+ * @param recruitResponse - 채용 공고 응답 데이터
  * @returns 라벨 문자열 배열
  */
-const extractTags = (r: RecruitResponse): string[] => {
+const extractTags = (recruitResponse: RecruitResponse): string[] => {
 	const tags: string[] = [];
-	if (r.department) tags.push(departmentLabel(r.department));
-	if (r.education) tags.push(educationLabel(r.education));
-	if (r.recruitType) tags.push(recruitTypeLabel(r.recruitType));
-	if (r.location) tags.push(locationLabel(r.location));
+	if (recruitResponse.department)
+		tags.push(departmentLabel(recruitResponse.department));
+	if (recruitResponse.education)
+		tags.push(educationLabel(recruitResponse.education));
+	if (recruitResponse.recruitType)
+		tags.push(recruitTypeLabel(recruitResponse.recruitType));
+	if (recruitResponse.location)
+		tags.push(locationLabel(recruitResponse.location));
 	return tags;
 };
 
 /**
  * @description 채용 응답 데이터를 카드 UI용 데이터로 변환한다.
  *
- * @param r - 채용 공고 응답 데이터
+ * @param recruitResponse - 채용 공고 응답 데이터
  * @returns D-Day와 태그가 추가된 카드 데이터
  *
  * @example
  * toRecruitCard(recruitResponse) // { ...response, dday: "D-3", tags: ["IT", "서울"] }
  */
-export const toRecruitCard = (r: RecruitResponse): RecruitCard => ({
-	...r,
-	dday: getDdayText(r.endDate ?? null),
-	tags: extractTags(r),
+export const toRecruitCard = (
+	recruitResponse: RecruitResponse,
+): RecruitCard => ({
+	...recruitResponse,
+	dday: getDdayText(recruitResponse.endDate ?? null),
+	tags: extractTags(recruitResponse),
 });
 
 /**
  * @description 채용 응답 배열을 카드 배열로 일괄 변환한다.
  *
- * @param arr - 채용 공고 응답 배열
+ * @param recruitResponses - 채용 공고 응답 배열
  * @returns 카드 데이터 배열
  *
  * @see {@link toRecruitCard}
  */
-export const toRecruitCards = (arr: RecruitResponse[]) =>
-	arr.map(toRecruitCard);
+export const toRecruitCards = (recruitResponses: RecruitResponse[]) =>
+	recruitResponses.map(toRecruitCard);

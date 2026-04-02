@@ -1,7 +1,35 @@
 import { getErrorMessage } from "src/shared/libs/api/axios/error/error.util";
 import { describe, expect, it } from "vitest";
 
+/** HttpError와 동일한 구조의 에러를 생성하는 헬퍼 */
+const createHttpError = (message: string, status: number, code?: string) =>
+	Object.assign(new Error(message), {
+		name: "HttpError",
+		status,
+		code,
+	});
+
 describe("getErrorMessage", () => {
+	it("에러 코드가 있으면 매핑된 메시지를 반환한다", () => {
+		const error = createHttpError("raw message", 400, "EMAIL_NOT_VALID");
+		expect(getErrorMessage(error)).toBe("인증 코드가 올바르지 않습니다.");
+	});
+
+	it("에러 코드가 매핑에 없으면 HTTP 상태 메시지를 반환한다", () => {
+		const error = createHttpError("raw message", 404, "UNKNOWN_CODE");
+		expect(getErrorMessage(error)).toBe("요청한 리소스를 찾을 수 없습니다.");
+	});
+
+	it("에러 코드도 상태 매핑도 없으면 서버 메시지를 반환한다", () => {
+		const error = createHttpError("커스텀 서버 메시지", 499);
+		expect(getErrorMessage(error)).toBe("커스텀 서버 메시지");
+	});
+
+	it("네트워크 에러일 때 네트워크 메시지를 반환한다", () => {
+		const error = createHttpError("network_error", 0);
+		expect(getErrorMessage(error)).toBe("네트워크 연결을 확인해 주세요.");
+	});
+
 	it("Error 인스턴스에서 message를 추출한다", () => {
 		const error = new Error("서버 오류가 발생했습니다.");
 		expect(getErrorMessage(error)).toBe("서버 오류가 발생했습니다.");

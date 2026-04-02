@@ -1,9 +1,16 @@
+import withBundleAnalyzer from "@next/bundle-analyzer";
+import { withSentryConfig } from "@sentry/nextjs";
 import createNextIntlPlugin from "next-intl/plugin";
 
 const withNextIntl = createNextIntlPlugin({});
 
+const analyze = withBundleAnalyzer({
+	enabled: process.env.ANALYZE === "true",
+});
+
 const nextConfig = {
 	output: "standalone",
+	reactCompiler: true,
 
 	images: {
 		remotePatterns: [
@@ -26,6 +33,14 @@ const nextConfig = {
 					{
 						key: "Permissions-Policy",
 						value: "camera=(), microphone=(), geolocation=()",
+					},
+					{
+						key: "Strict-Transport-Security",
+						value: "max-age=63072000; includeSubDomains",
+					},
+					{
+						key: "X-XSS-Protection",
+						value: "0",
 					},
 				],
 			},
@@ -72,4 +87,11 @@ const nextConfig = {
 	},
 };
 
-export default withNextIntl(nextConfig);
+export default withSentryConfig(analyze(withNextIntl(nextConfig)), {
+	org: process.env.SENTRY_ORG,
+	project: process.env.SENTRY_PROJECT,
+	silent: true,
+	tunnelRoute: "/monitoring",
+	disableLogger: true,
+	widenClientFileUpload: true,
+});

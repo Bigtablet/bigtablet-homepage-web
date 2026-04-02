@@ -1,16 +1,10 @@
-import axios, {
-	type AxiosError,
-	type AxiosResponse,
-	type InternalAxiosRequestConfig,
-} from "axios";
-
-const BASE_URL = process.env.NEXT_PUBLIC_SERVER_URL;
-if (!BASE_URL) {
-	throw new Error("NEXT_PUBLIC_SERVER_URL is missing.");
-}
+import axios from "axios";
+import { env } from "src/shared/libs/env";
+import { requestInterceptor } from "./request-interceptor";
+import { createResponseErrorInterceptor } from "./response-error-interceptor";
 
 const api = axios.create({
-	baseURL: BASE_URL,
+	baseURL: env.NEXT_PUBLIC_SERVER_URL,
 	withCredentials: true,
 	timeout: 10000,
 });
@@ -20,36 +14,13 @@ const headers = api.defaults.headers as Record<string, Record<string, unknown>>;
 delete headers.common?.["Content-Type"];
 delete headers.post?.["Content-Type"];
 
-// URL 정규화
-api.interceptors.request.use((config: InternalAxiosRequestConfig) => {
-	if (
-		config.url &&
-		!/^https?:\/\//i.test(config.url) &&
-		!config.url.startsWith("/")
-	) {
-		config.url = `/${config.url}`;
-	}
-	return config;
-});
+api.interceptors.request.use(requestInterceptor, (error) =>
+	Promise.reject(error),
+);
 
-// 응답 에러 처리
 api.interceptors.response.use(
-	(res: AxiosResponse) => res,
-	(err: AxiosError) => {
-		const status = err.response?.status ?? 0;
-		const message = String(
-			(err.response?.data as Record<string, unknown>)?.message ??
-				err.message ??
-				"network_error",
-		);
-		return Promise.reject(
-			Object.assign(new Error(message), {
-				name: "HttpError",
-				status,
-				data: err.response?.data,
-			}),
-		);
-	},
+	(res) => res,
+	createResponseErrorInterceptor(api),
 );
 
 export default api;

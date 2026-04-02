@@ -13,6 +13,7 @@
 		"test:watch": "vitest",
 		"test:coverage": "vitest run --coverage",
 		"type-check": "tsc --noEmit",
+		"analyze": "ANALYZE=true next build --turbopack",
 		"prepare": "husky"
 	},
 	"dependencies": {
@@ -20,6 +21,7 @@
 		"@gsap/react": "^2.1.2",
 		"@hookform/resolvers": "^5.2.2",
 		"@opentelemetry/api": "^1.9.1",
+		"@sentry/nextjs": "^10.47.0",
 		"@tanstack/react-query": "^5.96.1",
 		"@vercel/otel": "^2.1.1",
 		"axios": "^1.14.0",
@@ -46,6 +48,7 @@
 		"@biomejs/biome": "2.4.10",
 		"@commitlint/cli": "^20.5.0",
 		"@commitlint/core": "^20.5.0",
+		"@next/bundle-analyzer": "^16.2.2",
 		"@testing-library/jest-dom": "^6.9.1",
 		"@testing-library/react": "^16.3.2",
 		"@testing-library/user-event": "^14.6.1",

@@ -1,14 +1,10 @@
 import axios from "axios";
+import { env } from "src/shared/libs/env";
 import { requestInterceptor } from "./request-interceptor";
 import { createResponseErrorInterceptor } from "./response-error-interceptor";
 
-const BASE_URL = process.env.NEXT_PUBLIC_SERVER_URL;
-if (!BASE_URL) {
-	throw new Error("NEXT_PUBLIC_SERVER_URL is missing.");
-}
-
 const api = axios.create({
-	baseURL: BASE_URL,
+	baseURL: env.NEXT_PUBLIC_SERVER_URL,
 	withCredentials: true,
 	timeout: 10000,
 });

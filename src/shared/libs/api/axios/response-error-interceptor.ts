@@ -1,3 +1,4 @@
+import * as Sentry from "@sentry/nextjs";
 import type { AxiosError, AxiosInstance, AxiosRequestConfig } from "axios";
 import axios from "axios";
 
@@ -44,6 +45,14 @@ export const createResponseErrorInterceptor = (
 				}
 			}
 		}
+
+		Sentry.captureException(error, {
+			extra: {
+				url: error.config?.url,
+				method: error.config?.method,
+				status: httpStatusCode,
+			},
+		});
 
 		// HttpError로 변환
 		const message = String(

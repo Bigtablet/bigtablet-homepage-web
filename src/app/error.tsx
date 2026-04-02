@@ -1,6 +1,7 @@
 "use client";
 
 import { Button } from "@bigtablet/design-system";
+import * as Sentry from "@sentry/nextjs";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { BigtabletRouter } from "src/shared/hooks/next";
 import Template from "src/shared/ui/template";
@@ -27,6 +28,10 @@ const GlobalError = ({
 
 	const isMaxRetry = retryCount >= MAX_RETRY;
 	const isCooling = cooldown > 0;
+
+	useEffect(() => {
+		Sentry.captureException(_error);
+	}, [_error]);
 
 	useEffect(() => {
 		return () => {

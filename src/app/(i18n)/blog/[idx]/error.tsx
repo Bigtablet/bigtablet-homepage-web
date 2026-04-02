@@ -1,8 +1,20 @@
 "use client";
 
+import * as Sentry from "@sentry/nextjs";
+import { useEffect } from "react";
 import ErrorFallback from "src/shared/ui/error-fallback";
 
-const BlogDetailError = ({ reset }: { error: Error; reset: () => void }) => {
+const BlogDetailError = ({
+	error,
+	reset,
+}: {
+	error: Error;
+	reset: () => void;
+}) => {
+	useEffect(() => {
+		Sentry.captureException(error);
+	}, [error]);
+
 	return (
 		<ErrorFallback
 			reset={reset}

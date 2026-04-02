@@ -87,13 +87,11 @@ const nextConfig = {
 	},
 };
 
-export default analyze(
-	withSentryConfig(withNextIntl(nextConfig), {
-		org: process.env.SENTRY_ORG,
-		project: process.env.SENTRY_PROJECT,
-		silent: true,
-		tunnelRoute: "/monitoring",
-		disableLogger: true,
-		widenClientFileUpload: true,
-	}),
-);
+export default withSentryConfig(analyze(withNextIntl(nextConfig)), {
+	org: process.env.SENTRY_ORG,
+	project: process.env.SENTRY_PROJECT,
+	silent: true,
+	tunnelRoute: "/monitoring",
+	disableLogger: true,
+	widenClientFileUpload: true,
+});

@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@bigtablet/design-system':
-        specifier: 1.22.0
-        version: 1.22.0(lucide-react@1.7.0(react@19.2.4))(next@16.2.2(@babel/core@7.29.0)(@opentelemetry/api@1.9.1)(@playwright/test@1.59.1)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(sass@1.99.0))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
+        specifier: 1.24.1
+        version: 1.24.1(lucide-react@1.7.0(react@19.2.4))(next@16.2.2(@babel/core@7.29.0)(@opentelemetry/api@1.9.1)(@playwright/test@1.59.1)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(sass@1.99.0))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       '@gsap/react':
         specifier: ^2.1.2
         version: 2.1.2(gsap@3.14.2)(react@19.2.4)
@@ -255,11 +255,11 @@ packages:
     resolution: {integrity: sha512-6zABk/ECA/QYSCQ1NGiVwwbQerUCZ+TQbp64Q3AgmfNvurHH0j8TtXa1qbShXA6qqkpAj4V5W8pP6mLe1mcMqA==}
     engines: {node: '>=18'}
 
-  '@bigtablet/design-system@1.22.0':
-    resolution: {integrity: sha512-cIHPoUVmKheIhxJ89YI0n7T3DkQRgwaCK45WpZhvIJu0nTQayj6TU8sE//VXRC9iIVvCFv0n7V+rYmdrYNAPMQ==}
+  '@bigtablet/design-system@1.24.1':
+    resolution: {integrity: sha512-bjUwBIhhs0wLZhCczuUzA6xFnyrSsXS0hznwxBsYYePKlDnF/wNhbT5Pq51PErgS0tRAnDyPZrl+UBbAtDdrwQ==}
     peerDependencies:
       lucide-react: '>=0.552.0'
-      next: '*'
+      next: '>=16'
       react: ^19
       react-dom: ^19
     peerDependenciesMeta:
@@ -3737,7 +3737,7 @@ snapshots:
 
   '@bcoe/v8-coverage@1.0.2': {}
 
-  '@bigtablet/design-system@1.22.0(lucide-react@1.7.0(react@19.2.4))(next@16.2.2(@babel/core@7.29.0)(@opentelemetry/api@1.9.1)(@playwright/test@1.59.1)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(sass@1.99.0))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)':
+  '@bigtablet/design-system@1.24.1(lucide-react@1.7.0(react@19.2.4))(next@16.2.2(@babel/core@7.29.0)(@opentelemetry/api@1.9.1)(@playwright/test@1.59.1)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(sass@1.99.0))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)':
     dependencies:
       lucide-react: 1.7.0(react@19.2.4)
       react: 19.2.4

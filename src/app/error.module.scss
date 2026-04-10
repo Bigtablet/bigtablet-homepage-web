@@ -3,8 +3,8 @@
 .error_root {
 	@include token.flex_column;
 	@include token.flex_center;
-	gap: token.$spacing_md;
-	padding: token.$spacing_3xl token.$spacing_lg;
+	gap: token.$spacing_16;
+	padding: token.$spacing_48 token.$spacing_24;
 	text-align: center;
 }
 
@@ -14,44 +14,44 @@
 	justify-content: center;
 	width: 64px;
 	height: 64px;
-	border-radius: token.$radius_pill;
-	background: token.$color_error;
-	color: token.$text_inverse;
-	font-size: token.$font_size_2xl;
+	border-radius: token.$radius_full;
+	background: token.$color_status_error;
+	color: token.$color_text_inverse;
+	font-size: token.$font_size_24;
 	font-weight: token.$font_weight_bold;
 }
 
 .error_title {
-	font-size: token.$font_size_xl;
+	font-size: token.$font_size_20;
 	font-weight: token.$font_weight_bold;
-	color: token.$text_strong;
+	color: token.$color_text_heading;
 }
 
 .error_desc {
-	font-size: token.$font_size_sm;
-	color: token.$text_subtle;
-	line-height: token.$line_height_relaxed;
+	font-size: token.$font_size_14;
+	color: token.$color_text_caption;
+	line-height: token.$line_height_28;
 }
 
 .error_retry_count {
-	font-size: token.$font_size_xs;
-	color: token.$text_subtle;
+	font-size: token.$font_size_12;
+	color: token.$color_text_caption;
 }
 
 .error_max {
-	font-size: token.$font_size_sm;
-	color: token.$color_error;
-	line-height: token.$line_height_relaxed;
+	font-size: token.$font_size_14;
+	color: token.$color_status_error;
+	line-height: token.$line_height_28;
 }
 
 .error_actions {
 	display: flex;
-	gap: token.$spacing_sm;
-	margin-top: token.$spacing_sm;
+	gap: token.$spacing_8;
+	margin-top: token.$spacing_8;
 	white-space: nowrap;
 }
 
-@include token.mobile {
+@include token.compact {
 	.error_actions {
 		@include token.flex_column;
 		width: 100%;

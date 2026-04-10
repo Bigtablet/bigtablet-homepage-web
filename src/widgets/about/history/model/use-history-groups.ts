@@ -29,8 +29,7 @@ export const useHistoryGroups = (items: HistorySchema[]) => {
 	}, [groups, currentYear]);
 
 	const activeGroup = useMemo(
-		() =>
-			currentYear ? (groups.find((g) => g.year === currentYear) ?? null) : null,
+		() => (currentYear ? (groups.find((g) => g.year === currentYear) ?? null) : null),
 		[currentYear, groups],
 	);
 

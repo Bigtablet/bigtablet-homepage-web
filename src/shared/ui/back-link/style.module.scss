@@ -4,17 +4,17 @@
 	@include token.body_medium;
 	display: inline-flex;
 	align-items: center;
-	gap: token.$spacing_xs;
-	font-size: token.$font_size_sm;
-	color: token.$text_strong;
-	background: token.$color_background;
+	gap: token.$spacing_4;
+	font-size: token.$font_size_14;
+	color: token.$color_text_heading;
+	background: token.$color_bg_solid;
 	text-decoration: none;
-	padding: token.$spacing_sm token.$spacing_md;
+	padding: token.$spacing_8 token.$spacing_16;
 	border-radius: token.$radius_md;
-	border: 1px solid token.$color_border;
+	border: 1px solid token.$color_border_default;
 	transition: background token.$transition_base;
 
 	&:hover {
-		background: token.$color_background_secondary;
+		background: token.$color_bg_solid_dim;
 	}
 }

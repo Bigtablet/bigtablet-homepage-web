@@ -12,22 +12,23 @@ type HistoryRawItem =
 
 const About = () => {
 	const messages = useMessages() as Record<string, Record<string, unknown>>;
-	const historyByYear = ((messages?.about as Record<string, unknown>)
-		?.history ?? {}) as Record<string, HistoryRawItem[]>;
+	const historyByYear = ((messages?.about as Record<string, unknown>)?.history ?? {}) as Record<
+		string,
+		HistoryRawItem[]
+	>;
 
-	const items: HistorySchema[] = Object.entries(historyByYear).flatMap(
-		([year, list]) =>
-			(Array.isArray(list) ? list : []).map((it, idx) => {
-				const obj = typeof it === "string" ? { title: it } : it;
-				const id = obj.id ?? `${year}-${String(idx + 1).padStart(2, "0")}`;
-				return {
-					id,
-					year: Number(year),
-					title: obj.title,
-					description: obj.description,
-					dateLabel: obj.dateLabel,
-				};
-			}),
+	const items: HistorySchema[] = Object.entries(historyByYear).flatMap(([year, list]) =>
+		(Array.isArray(list) ? list : []).map((it, idx) => {
+			const obj = typeof it === "string" ? { title: it } : it;
+			const id = obj.id ?? `${year}-${String(idx + 1).padStart(2, "0")}`;
+			return {
+				id,
+				year: Number(year),
+				title: obj.title,
+				description: obj.description,
+				dateLabel: obj.dateLabel,
+			};
+		}),
 	);
 
 	return (

@@ -12,13 +12,7 @@ interface MemberProfileProps {
 	links?: { linkedin?: string; github?: string };
 }
 
-const Profile = ({
-	name,
-	position,
-	description,
-	imageSrc,
-	links,
-}: MemberProfileProps) => {
+const Profile = ({ name, position, description, imageSrc, links }: MemberProfileProps) => {
 	return (
 		<aside className={styles.profile} aria-label="Profile">
 			<div className={styles.profile_image}>

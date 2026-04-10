@@ -6,8 +6,8 @@
 	height: 95vh;
 	overflow: hidden;
 	white-space: pre-line;
-	color: token.$text_inverse;
-	background: token.$color_background;
+	color: token.$color_text_inverse;
+	background: token.$color_bg_solid;
 }
 
 .banner_video {
@@ -26,7 +26,7 @@
 .banner_overlay {
 	position: absolute;
 	inset: 0;
-	background: token.$color_overlay;
+	background: token.$color_bg_overlay;
 }
 
 .banner_content {
@@ -34,23 +34,23 @@
 	@include token.flex_center;
 	position: relative;
 	height: 100%;
-	gap: token.$spacing_3xl;
-	color: token.$text_inverse;
+	gap: token.$spacing_48;
+	color: token.$color_text_inverse;
 	text-align: center;
-	padding-inline: token.$spacing_xl;
+	padding-inline: token.$spacing_32;
 }
 
 .banner_title {
-	@include token.heading_1;
-	font-size: clamp(token.$font_size_3xl, 5vw, token.$font_size_4xl);
-	line-height: token.$line_height_tight;
-	color: token.$text_inverse;
+	@include token.heading_large_medium;
+	font-size: clamp(token.$font_size_32, 5vw, token.$font_size_40);
+	line-height: token.$line_height_18;
+	color: token.$color_text_inverse;
 }
 
 .banner_description {
 	@include token.body_medium;
-	font-size: clamp(token.$font_size_md, 2vw, token.$font_size_xl);
-	color: token.$text_inverse;
+	font-size: clamp(token.$font_size_16, 2vw, token.$font_size_20);
+	color: token.$color_text_inverse;
 	opacity: 0.9;
 }
 
@@ -60,15 +60,15 @@
 
 .banner_scroll_indicator {
 	position: absolute;
-	bottom: token.$spacing_2xl;
+	bottom: token.$spacing_40;
 	left: 50%;
 	transform: translateX(-50%);
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	gap: token.$spacing_xs;
+	gap: token.$spacing_4;
 	color: rgba(255, 255, 255, 0.5);
-	font-size: token.$font_size_xs;
+	font-size: token.$font_size_12;
 	animation: bounce_scroll 2s ease-in-out infinite;
 }
 
@@ -81,17 +81,17 @@
 	}
 }
 
-@include token.mobile {
+@include token.compact {
 	.banner {
 		height: 80vh;
 	}
 
 	.banner_content {
-		gap: token.$spacing_2xl;
-		padding-inline: token.$spacing_lg;
+		gap: token.$spacing_40;
+		padding-inline: token.$spacing_24;
 	}
 
 	.banner_scroll_indicator {
-		bottom: token.$spacing_lg;
+		bottom: token.$spacing_24;
 	}
 }

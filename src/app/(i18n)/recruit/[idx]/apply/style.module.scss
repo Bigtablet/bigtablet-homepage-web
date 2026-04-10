@@ -3,17 +3,17 @@
 .apply {
   @include token.flex_column_center;
   width: 100%;
-  padding: token.$spacing_xl 0 token.$spacing_5xl;
-  border-top: 1px solid token.$color_border;
+  padding: token.$spacing_32 0 token.$spacing_48;
+  border-top: 1px solid token.$color_border_default;
   align-items: center;
 }
 
 .apply_title {
-  @include token.heading_2;
-  font-size: token.$font_size_2xl;
-  color: token.$text_strong;
+  @include token.heading_medium_medium;
+  font-size: token.$font_size_24;
+  color: token.$color_text_heading;
   width: 100%;
   max-width: 880px;
-  margin: 0 auto token.$spacing_lg auto;
+  margin: 0 auto token.$spacing_24 auto;
   text-align: left;
 }

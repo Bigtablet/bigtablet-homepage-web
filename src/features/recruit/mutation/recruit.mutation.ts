@@ -10,12 +10,7 @@ import type { ApplyFormValues } from "src/features/recruit/apply/form/model/appl
  * @param options Optional mutation configuration
  */
 export const useRecruitApplyMutation = (
-	options?: UseMutationOptions<
-		RecruitApplyResponse,
-		Error,
-		ApplyFormValues,
-		unknown
-	>,
+	options?: UseMutationOptions<RecruitApplyResponse, Error, ApplyFormValues, unknown>,
 ) => {
 	return useMutation({
 		mutationKey: ["recruit", "apply"] as const,

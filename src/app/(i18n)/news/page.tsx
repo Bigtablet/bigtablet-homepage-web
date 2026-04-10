@@ -35,20 +35,11 @@ const NewsPage = () => {
 
 	return (
 		<section className={styles.news_page}>
-			<NewsListSection
-				items={items}
-				locale={locale}
-				isLoading={isLoading}
-				pageSize={PAGE_SIZE}
-			/>
+			<NewsListSection items={items} locale={locale} isLoading={isLoading} pageSize={PAGE_SIZE} />
 
 			{totalPages > 1 && (
 				<div className={styles.news_page_pagination}>
-					<Pagination
-						page={page}
-						totalPages={totalPages}
-						onChange={handleChangePage}
-					/>
+					<Pagination page={page} totalPages={totalPages} onChange={handleChangePage} />
 				</div>
 			)}
 		</section>

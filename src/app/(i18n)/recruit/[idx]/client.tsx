@@ -26,9 +26,7 @@ const RecruitDetailClient = () => {
 		<div className={styles.recruit_detail}>
 			<BackLink href="/recruit" label="채용 목록" />
 
-			{status === "pending" && (
-				<div className={styles.recruit_detail_loading}>불러오는 중…</div>
-			)}
+			{status === "pending" && <div className={styles.recruit_detail_loading}>불러오는 중…</div>}
 
 			{status === "error" && (
 				<div className={styles.recruit_detail_error}>
@@ -39,27 +37,12 @@ const RecruitDetailClient = () => {
 			{status === "success" && recruit && (
 				<>
 					<RecruitHeader recruit={recruit} />
-					<RecruitMarkdownSection
-						title="조직 소개"
-						content={recruit.companyIntroduction}
-					/>
-					<RecruitMarkdownSection
-						title="포지션 소개"
-						content={recruit.positionIntroduction}
-					/>
-					<RecruitMarkdownSection
-						title="주요 업무"
-						content={recruit.mainResponsibility}
-					/>
-					<RecruitMarkdownSection
-						title="자격 요건"
-						content={recruit.qualification}
-					/>
+					<RecruitMarkdownSection title="조직 소개" content={recruit.companyIntroduction} />
+					<RecruitMarkdownSection title="포지션 소개" content={recruit.positionIntroduction} />
+					<RecruitMarkdownSection title="주요 업무" content={recruit.mainResponsibility} />
+					<RecruitMarkdownSection title="자격 요건" content={recruit.qualification} />
 					{recruit.preferredQualification && (
-						<RecruitMarkdownSection
-							title="우대사항"
-							content={recruit.preferredQualification}
-						/>
+						<RecruitMarkdownSection title="우대사항" content={recruit.preferredQualification} />
 					)}
 					<RecruitBenefits />
 					<RecruitProcess />

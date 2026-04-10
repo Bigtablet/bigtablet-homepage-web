@@ -24,9 +24,7 @@ const Introduce = ({ sectionKey, reverse = false }: AboutSchema) => {
 		>
 			<div className={styles.introduce_text}>
 				<p className={styles.introduce_title}>{t(`${sectionKey}.title`)}</p>
-				<p className={styles.introduce_desc}>
-					{t(`${sectionKey}.description`)}
-				</p>
+				<p className={styles.introduce_desc}>{t(`${sectionKey}.description`)}</p>
 			</div>
 			<div className={styles.introduce_image} aria-hidden="true">
 				<Image

@@ -8,9 +8,7 @@ import { z } from "zod";
 const envSchema = z.object({
 	NEXT_PUBLIC_SERVER_URL: z.url("NEXT_PUBLIC_SERVER_URL must be a valid URL"),
 	NEXT_PUBLIC_SENTRY_DSN: z.string().optional(),
-	NODE_ENV: z
-		.enum(["development", "test", "production"])
-		.default("development"),
+	NODE_ENV: z.enum(["development", "test", "production"]).default("development"),
 });
 
 describe("envSchema", () => {

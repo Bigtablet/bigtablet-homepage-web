@@ -6,26 +6,14 @@ test.describe("internationalization", () => {
 		await expect(page.locator("main")).toBeVisible();
 	});
 
-	test("korean locale renders korean content", async ({
-		page,
-		context,
-		baseURL,
-	}) => {
-		await context.addCookies([
-			{ name: "NEXT_LOCALE", value: "ko", url: baseURL! },
-		]);
+	test("korean locale renders korean content", async ({ page, context, baseURL }) => {
+		await context.addCookies([{ name: "NEXT_LOCALE", value: "ko", url: baseURL! }]);
 		await page.goto("/main");
 		await expect(page.locator("main")).toBeVisible();
 	});
 
-	test("english locale renders english content", async ({
-		page,
-		context,
-		baseURL,
-	}) => {
-		await context.addCookies([
-			{ name: "NEXT_LOCALE", value: "en", url: baseURL! },
-		]);
+	test("english locale renders english content", async ({ page, context, baseURL }) => {
+		await context.addCookies([{ name: "NEXT_LOCALE", value: "en", url: baseURL! }]);
 		await page.goto("/main");
 		await expect(page.locator("main")).toBeVisible();
 	});

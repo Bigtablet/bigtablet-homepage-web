@@ -34,16 +34,7 @@ const stripMarkdown = (value: string) =>
 		.trim();
 
 const BlogCard = ({ item, locale, href, priority = false }: Props) => {
-	const {
-		idx,
-		titleKr,
-		titleEn,
-		contentKr,
-		contentEn,
-		imageUrl,
-		createdAt,
-		views,
-	} = item;
+	const { idx, titleKr, titleEn, contentKr, contentEn, imageUrl, createdAt, views } = item;
 
 	const isKo = locale.startsWith("ko");
 	const title = (isKo ? titleKr : titleEn) ?? "";
@@ -75,9 +66,7 @@ const BlogCard = ({ item, locale, href, priority = false }: Props) => {
 			<div className={styles.blog_card_meta}>
 				<div className={styles.blog_card_time}>{time}</div>
 				<div className={styles.blog_card_dot}>·</div>
-				<div className={styles.blog_card_views}>
-					{(views ?? 0).toLocaleString()} views
-				</div>
+				<div className={styles.blog_card_views}>{(views ?? 0).toLocaleString()} views</div>
 			</div>
 
 			<h3 className={styles.blog_card_title}>{title}</h3>

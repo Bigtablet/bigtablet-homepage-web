@@ -43,11 +43,7 @@ const BlogPage = () => {
 			/>
 
 			{totalPages > 1 && (
-				<Pagination
-					page={page}
-					totalPages={totalPages}
-					onChange={handlePageChange}
-				/>
+				<Pagination page={page} totalPages={totalPages} onChange={handlePageChange} />
 			)}
 		</div>
 	);

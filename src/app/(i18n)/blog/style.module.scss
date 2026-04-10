@@ -2,30 +2,30 @@
 
 .blog_page {
   width: 100%;
-  padding: token.$spacing_3xl 0 token.$spacing_5xl;
+  padding: token.$spacing_48 0 token.$spacing_48;
 }
 
 .blog_page_title {
-  @include token.heading_2;
-  font-size: token.$font_size_2xl;
-  margin-bottom: token.$spacing_2xl;
-  color: token.$text_strong;
+  @include token.heading_medium_medium;
+  font-size: token.$font_size_24;
+  margin-bottom: token.$spacing_40;
+  color: token.$color_text_heading;
   text-align: center;
 }
 
 .blog_page_grid {
   display: grid;
   grid-template-columns: repeat(1, minmax(0, 1fr));
-  gap: token.$spacing_xl;
+  gap: token.$spacing_32;
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
 
-  @include token.tablet {
+  @include token.medium {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  @include token.laptop {
+  @include token.from_expanded {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
@@ -35,9 +35,9 @@
 }
 
 .blog_page_empty {
-  @include token.body_regular;
-  font-size: token.$font_size_lg;
-  margin-top: token.$spacing_2xl;
-  color: token.$text_subtle;
+  @include token.body_medium;
+  font-size: token.$font_size_18;
+  margin-top: token.$spacing_40;
+  color: token.$color_text_caption;
   text-align: center;
 }

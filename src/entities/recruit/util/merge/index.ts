@@ -10,9 +10,7 @@ import type { RecruitResponse } from "src/entities/recruit/schema/recruit.schema
  * @example
  * intersectByIdx([[item1, item2], [item2, item3]]) // [item2]
  */
-export const intersectByIdx = (
-	lists: RecruitResponse[][],
-): RecruitResponse[] => {
+export const intersectByIdx = (lists: RecruitResponse[][]): RecruitResponse[] => {
 	const nonEmpty = lists.filter((list) => list?.length);
 	if (nonEmpty.length === 0) return [];
 	if (nonEmpty.length === 1) return nonEmpty[0];
@@ -26,12 +24,8 @@ export const intersectByIdx = (
 			if (typeof recruitItem.idx !== "number") continue;
 			if (seen.has(recruitItem.idx)) continue;
 			seen.add(recruitItem.idx);
-			if (!itemMap.has(recruitItem.idx))
-				itemMap.set(recruitItem.idx, recruitItem);
-			frequencyMap.set(
-				recruitItem.idx,
-				(frequencyMap.get(recruitItem.idx) ?? 0) + 1,
-			);
+			if (!itemMap.has(recruitItem.idx)) itemMap.set(recruitItem.idx, recruitItem);
+			frequencyMap.set(recruitItem.idx, (frequencyMap.get(recruitItem.idx) ?? 0) + 1);
 		}
 	}
 	const need = nonEmpty.length;

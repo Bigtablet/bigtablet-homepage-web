@@ -2,26 +2,26 @@
 
 .md {
   display: grid;
-  gap: token.$spacing_sm;
+  gap: token.$spacing_8;
 }
 
 .md_label {
-  @include token.caption;
-  color: token.$text_subtle;
+  @include token.label_small;
+  color: token.$color_text_caption;
 }
 
 .md_grid {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   align-items: stretch;
-  column-gap: token.$spacing_2xl;
-  row-gap: token.$spacing_md;
+  column-gap: token.$spacing_40;
+  row-gap: token.$spacing_16;
 
-  @include token.mobile {
+  @include token.compact {
     grid-template-columns: 1fr;
   }
 
-  @include token.tablet {
+  @include token.medium {
     grid-template-columns: 1fr;
   }
 }
@@ -37,25 +37,25 @@
 .md_input {
   width: 100%;
   min-height: 300px;
-  border: 1px solid token.$color_border;
+  border: 1px solid token.$color_border_default;
   border-radius: token.$radius_md;
-  padding: token.$spacing_md;
-  background: token.$color_background;
+  padding: token.$spacing_16;
+  background: token.$color_bg_solid;
 
-  @include token.body_regular;
-  font-size: token.$font_size_md;
-  color: token.$text_normal;
-  line-height: token.$line_height_relaxed;
+  @include token.body_medium;
+  font-size: token.$font_size_16;
+  color: token.$color_text_body;
+  line-height: token.$line_height_28;
 
   resize: vertical;
   transition: border-color token.$transition_base, box-shadow token.$transition_base;
 
   &:hover {
-    border-color: token.$color_border_light;
+    border-color: token.$color_border_subtle;
   }
 
   &:focus {
-    border-color: token.$color_primary;
+    border-color: token.$color_brand_primary;
     box-shadow: token.$focus_ring;
     outline: none;
   }
@@ -63,17 +63,17 @@
 
 .md_preview {
   min-height: 300px;
-  border: 1px solid token.$color_border;
+  border: 1px solid token.$color_border_default;
   border-radius: token.$radius_md;
-  background: token.$color_background;
-  padding: token.$spacing_md;
+  background: token.$color_bg_solid;
+  padding: token.$spacing_16;
 }
 
 .markdown_body {
-  @include token.body_regular;
-  font-size: token.$font_size_md;
-  color: token.$text_normal;
-  line-height: token.$line_height_relaxed;
+  @include token.body_medium;
+  font-size: token.$font_size_16;
+  color: token.$color_text_body;
+  line-height: token.$line_height_28;
   word-break: break-word;
   overflow-wrap: anywhere;
 
@@ -90,59 +90,59 @@
   h4,
   h5,
   h6 {
-    @include token.heading_3;
-    color: token.$text_strong;
-    margin: token.$spacing_lg 0 token.$spacing_sm;
+    @include token.heading_small_medium;
+    color: token.$color_text_heading;
+    margin: token.$spacing_24 0 token.$spacing_8;
   }
 
   p {
-    margin: token.$spacing_sm 0;
+    margin: token.$spacing_8 0;
   }
 
   a {
-    color: token.$color_primary;
+    color: token.$color_brand_primary;
     text-decoration: underline;
   }
 
   ul,
   ol {
-    margin: token.$spacing_sm 0 token.$spacing_sm token.$spacing_lg;
+    margin: token.$spacing_8 0 token.$spacing_8 token.$spacing_24;
   }
 
   blockquote {
-    border-left: 4px solid token.$color_border;
-    padding-left: token.$spacing_md;
-    color: token.$text_subtle;
-    margin: token.$spacing_sm 0;
+    border-left: 4px solid token.$color_border_default;
+    padding-left: token.$spacing_16;
+    color: token.$color_text_caption;
+    margin: token.$spacing_8 0;
   }
 
   table {
     width: 100%;
     border-collapse: collapse;
-    margin: token.$spacing_md 0;
+    margin: token.$spacing_16 0;
 
     th,
     td {
-      border: 1px solid token.$color_border;
-      padding: token.$spacing_sm token.$spacing_md;
+      border: 1px solid token.$color_border_default;
+      padding: token.$spacing_8 token.$spacing_16;
       text-align: left;
     }
 
     th {
-      background: token.$color_background_secondary;
+      background: token.$color_bg_solid_dim;
     }
   }
 
   code {
-    background: token.$color_background_secondary;
+    background: token.$color_bg_solid_dim;
     padding: 2px 6px;
     border-radius: token.$radius_sm;
     font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
   }
 
   pre {
-    background: token.$color_background_secondary;
-    padding: token.$spacing_md;
+    background: token.$color_bg_solid_dim;
+    padding: token.$spacing_16;
     border-radius: token.$radius_md;
     overflow: auto;
 

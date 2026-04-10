@@ -1,10 +1,7 @@
 import type { HistorySchema } from "src/entities/about/history/schema/history.schema";
 
 /** 연혁 항목에서 표시에 필요한 필드만 추출한 타입 */
-export type YearEntry = Pick<
-	HistorySchema,
-	"id" | "title" | "description" | "dateLabel"
->;
+export type YearEntry = Pick<HistorySchema, "id" | "title" | "description" | "dateLabel">;
 
 /** 연도별로 그룹핑된 연혁 데이터 */
 export interface YearGroup {
@@ -49,5 +46,4 @@ export const buildYearGroups = (items: HistorySchema[]): YearGroup[] => {
  *
  * @see {@link buildYearGroups}
  */
-export const yearsFromGroups = (groups: YearGroup[]) =>
-	groups.map((group) => group.year);
+export const yearsFromGroups = (groups: YearGroup[]) => groups.map((group) => group.year);

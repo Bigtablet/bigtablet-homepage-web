@@ -1,7 +1,4 @@
-import {
-	newsItemSchema,
-	newsListResponseSchema,
-} from "src/entities/news/schema/news.schema";
+import { newsItemSchema, newsListResponseSchema } from "src/entities/news/schema/news.schema";
 import { describe, expect, it } from "vitest";
 
 const validItem = {
@@ -20,9 +17,7 @@ describe("newsItemSchema", () => {
 	});
 
 	it("newsUrl이 유효한 URL이 아니면 실패한다", () => {
-		expect(() =>
-			newsItemSchema.parse({ ...validItem, newsUrl: "not-a-url" }),
-		).toThrow();
+		expect(() => newsItemSchema.parse({ ...validItem, newsUrl: "not-a-url" })).toThrow();
 	});
 });
 

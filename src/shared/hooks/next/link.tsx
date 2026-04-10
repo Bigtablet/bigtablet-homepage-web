@@ -14,11 +14,7 @@ type Props = ComponentProps<typeof Link> & {
  * @param props - Next.js Link props
  * @returns 공통 스타일이 적용된 링크
  */
-export const BigtabletLink = ({
-	underline = false,
-	className,
-	...props
-}: Props) => {
+export const BigtabletLink = ({ underline = false, className, ...props }: Props) => {
 	const classNames = ["bt_link", underline && "bt_link--underline", className]
 		.filter(Boolean)
 		.join(" ");

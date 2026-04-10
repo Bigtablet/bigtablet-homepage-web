@@ -8,8 +8,7 @@ export const ERROR_CODE_MESSAGES: Record<string, string> = {
 	// 공통
 	UNAUTHORIZED: "인증이 만료되었습니다. 다시 로그인해 주세요.",
 	FORBIDDEN: "해당 작업을 수행할 권한이 없습니다.",
-	INTERNAL_SERVER_ERROR:
-		"서버에 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.",
+	INTERNAL_SERVER_ERROR: "서버에 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.",
 
 	// 이메일 인증
 	EMAIL_IS_NOT_CERTIFIED: "이메일 인증이 완료되지 않았습니다.",

@@ -16,11 +16,7 @@ export const metadata: Metadata = {
 
 export const dynamic = "force-dynamic";
 
-export default async function RootLayout({
-	children,
-}: {
-	children: React.ReactNode;
-}) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
 	const store = await cookies();
 	const value = store.get("NEXT_LOCALE")?.value;
 	const locale = (value === "en" ? "en" : "ko") as "en" | "ko";

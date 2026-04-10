@@ -21,17 +21,11 @@ const MemberDetailClient = () => {
 	const name = t(`${base}.name`);
 	const position = t(`${base}.position`);
 	const description = t(`${base}.description`);
-	const imageSrc = t.has(`${base}.image`)
-		? t(`${base}.image`)
-		: `/images/member/${id}.png`;
+	const imageSrc = t.has(`${base}.image`) ? t(`${base}.image`) : `/images/member/${id}.png`;
 
 	const links = {
-		linkedin: t.has(`${base}.links.linkedin`)
-			? t(`${base}.links.linkedin`)
-			: undefined,
-		github: t.has(`${base}.links.github`)
-			? t(`${base}.links.github`)
-			: undefined,
+		linkedin: t.has(`${base}.links.linkedin`) ? t(`${base}.links.linkedin`) : undefined,
+		github: t.has(`${base}.links.github`) ? t(`${base}.links.github`) : undefined,
 	};
 
 	const qaList = QaList({ get: (k: string) => t(k), has: t.has }, id, 20);

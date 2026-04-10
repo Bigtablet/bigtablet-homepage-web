@@ -20,12 +20,11 @@ const ApplySuccessPage = () => {
 			</p>
 
 			<p className={styles.success_text}>
-				기타 채용 관련 문의사항은{" "}
-				<a href="mailto:recruit@bigtablet.com">recruit@bigtablet.com</a> 으로
-				연락 바랍니다.
+				기타 채용 관련 문의사항은 <a href="mailto:recruit@bigtablet.com">recruit@bigtablet.com</a>{" "}
+				으로 연락 바랍니다.
 			</p>
 
-			<Button size="lg" onClick={() => router.push("/")}>
+			<Button size="xl" onClick={() => router.push("/")}>
 				메인으로 돌아가기
 			</Button>
 		</div>

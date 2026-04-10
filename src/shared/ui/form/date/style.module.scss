@@ -4,13 +4,13 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: token.$spacing_xs;
+  gap: token.$spacing_4;
 }
 
 .month_picker_label {
   @include token.body_medium;
-  font-size: token.$font_size_sm;
-  color: token.$text_strong;
+  font-size: token.$font_size_14;
+  color: token.$color_text_heading;
 }
 
 .month_picker_input {
@@ -20,48 +20,48 @@
 .month_picker_popup {
   font-family: inherit;
   border-radius: token.$radius_lg;
-  border: 1px solid token.$color_border;
-  box-shadow: token.$shadow_sm;
-  background: token.$color_background;
-  padding: token.$spacing_sm;
+  border: 1px solid token.$color_border_default;
+  box-shadow: token.$elevation_level1;
+  background: token.$color_bg_solid;
+  padding: token.$spacing_8;
 
   .react-datepicker__header {
-    background: token.$color_background;
-    border-bottom: 1px solid token.$color_border;
-    padding-block: token.$spacing_xs;
+    background: token.$color_bg_solid;
+    border-bottom: 1px solid token.$color_border_default;
+    padding-block: token.$spacing_4;
   }
 
   .react-datepicker__current-month,
   .react-datepicker__month-read-view--selected-month,
   .react-datepicker__year-read-view--selected-year {
     @include token.body_medium;
-    font-size: token.$font_size_sm;
-    color: token.$text_strong;
+    font-size: token.$font_size_14;
+    color: token.$color_text_heading;
   }
 
   .react-datepicker__month {
-    margin: token.$spacing_sm;
+    margin: token.$spacing_8;
   }
 
   .react-datepicker__month-text {
-    @include token.body_regular;
-    font-size: token.$font_size_sm;
-    color: token.$text_normal;
+    @include token.body_medium;
+    font-size: token.$font_size_14;
+    color: token.$color_text_body;
     border-radius: token.$radius_md;
-    padding: token.$spacing_xs token.$spacing_sm;
+    padding: token.$spacing_4 token.$spacing_8;
 
     &--selected,
     &--keyboard-selected {
-      background: token.$color_primary;
-      color: token.$text_inverse;
+      background: token.$color_brand_primary;
+      color: token.$color_text_inverse;
     }
 
     &:hover {
-      background: token.$color_background_secondary;
+      background: token.$color_bg_solid_dim;
     }
   }
 
   .react-datepicker__navigation {
-    top: token.$spacing_xs;
+    top: token.$spacing_4;
   }
 }

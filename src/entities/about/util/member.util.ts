@@ -17,15 +17,7 @@ export type MemberKey = (typeof MEMBER_KEYS)[number];
 export type MemberSlug = MemberKey;
 
 /** @description 멤버 역할 타입 */
-export type MemberRole =
-	| "CEO"
-	| "CTO"
-	| "Manage"
-	| "Designer"
-	| "PM"
-	| "BE"
-	| "FE"
-	| "APP";
+export type MemberRole = "CEO" | "CTO" | "Manage" | "Designer" | "PM" | "BE" | "FE" | "APP";
 
 /** @description 멤버 역할 매핑 */
 export const MEMBER_ROLE: Record<MemberKey, MemberRole> = {
@@ -44,5 +36,4 @@ export const MEMBER_ROLE: Record<MemberKey, MemberRole> = {
 export const MEMBER_DEFAULT_ORDER: MemberKey[] = [...MEMBER_KEYS];
 
 /** @description 주어진 값이 멤버 슬러그인지 검사 */
-export const isMemberSlug = (x: string): x is MemberSlug =>
-	MEMBER_KEYS.includes(x as MemberSlug);
+export const isMemberSlug = (x: string): x is MemberSlug => MEMBER_KEYS.includes(x as MemberSlug);

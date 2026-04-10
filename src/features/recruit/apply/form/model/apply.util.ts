@@ -31,10 +31,8 @@ export const formatPhone010 = (input: string) => {
 		digits = digits.length >= 3 ? `010${digits.slice(3)}` : "010";
 	}
 	digits = digits.slice(0, 11);
-	if (digits.length > 3 && digits.length <= 7)
-		return `${digits.slice(0, 3)}-${digits.slice(3)}`;
-	if (digits.length > 7)
-		return `${digits.slice(0, 3)}-${digits.slice(3, 7)}-${digits.slice(7)}`;
+	if (digits.length > 3 && digits.length <= 7) return `${digits.slice(0, 3)}-${digits.slice(3)}`;
+	if (digits.length > 7) return `${digits.slice(0, 3)}-${digits.slice(3, 7)}-${digits.slice(7)}`;
 	return digits;
 };
 
@@ -53,8 +51,7 @@ export const formatPhone010 = (input: string) => {
 export const mapMil = (value: string): ApplyMilitaryStatus => {
 	if (value === "DONE") return ApplyMilitaryStatus.enum.COMPLETED;
 	if (value === "PENDING") return ApplyMilitaryStatus.enum.NOT_COMPLETED;
-	if (value === "EXEMPT" || value === "")
-		return ApplyMilitaryStatus.enum.NOT_APPLICABLE;
+	if (value === "EXEMPT" || value === "") return ApplyMilitaryStatus.enum.NOT_APPLICABLE;
 	const parsed = ApplyMilitaryStatus.safeParse(value);
 	if (parsed.success) return parsed.data;
 	return ApplyMilitaryStatus.enum.NOT_APPLICABLE;

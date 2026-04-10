@@ -46,31 +46,15 @@ const Banner = () => {
 				y: 30,
 				duration: 0.8,
 			})
-				.from(
-					`.${styles.banner_description}`,
-					{ opacity: 0, y: 20, duration: 0.6 },
-					"-=0.3",
-				)
-				.from(
-					`.${styles.banner_cta}`,
-					{ opacity: 0, y: 20, duration: 0.5 },
-					"-=0.2",
-				)
-				.from(
-					`.${styles.banner_scroll_indicator}`,
-					{ opacity: 0, duration: 0.5 },
-					"-=0.1",
-				);
+				.from(`.${styles.banner_description}`, { opacity: 0, y: 20, duration: 0.6 }, "-=0.3")
+				.from(`.${styles.banner_cta}`, { opacity: 0, y: 20, duration: 0.5 }, "-=0.2")
+				.from(`.${styles.banner_scroll_indicator}`, { opacity: 0, duration: 0.5 }, "-=0.1");
 		},
 		{ scope: containerRef, dependencies: [prefersReduced] },
 	);
 
 	return (
-		<section
-			ref={containerRef}
-			className={styles.banner}
-			aria-labelledby="banner_title"
-		>
+		<section ref={containerRef} className={styles.banner} aria-labelledby="banner_title">
 			<div className={styles.banner_video}>
 				<video
 					className={styles.banner_video_tag}
@@ -96,7 +80,7 @@ const Banner = () => {
 					target="_blank"
 					rel="noopener noreferrer"
 				>
-					<Button variant="primary" size="lg">
+					<Button variant="filled" size="xl">
 						{t("button")}
 					</Button>
 				</a>

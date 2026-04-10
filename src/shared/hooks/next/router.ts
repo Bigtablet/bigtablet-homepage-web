@@ -17,10 +17,7 @@ export const BigtabletRouter = () => {
 	const { setLoading } = useNavigationStore();
 	const lastCallRef = useRef(0);
 
-	const runWithThrottle = (
-		callback: () => void,
-		throttleMs = DEFAULT_THROTTLE_MS,
-	) => {
+	const runWithThrottle = (callback: () => void, throttleMs = DEFAULT_THROTTLE_MS) => {
 		const now = Date.now();
 		if (now - lastCallRef.current < throttleMs) return;
 		lastCallRef.current = now;

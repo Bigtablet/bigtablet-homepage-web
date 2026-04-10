@@ -41,10 +41,7 @@ const History = ({ items }: Props) => {
 	}, [groups]);
 
 	const activeGroup = useMemo(
-		() =>
-			currentYear
-				? (groups.find((group) => group.year === currentYear) ?? null)
-				: null,
+		() => (currentYear ? (groups.find((group) => group.year === currentYear) ?? null) : null),
 		[groups, currentYear],
 	);
 
@@ -111,22 +108,14 @@ const History = ({ items }: Props) => {
 
 				{/* 내용 */}
 				{activeGroup && (
-					<div
-						ref={contentRef}
-						key={activeGroup.year}
-						className={styles.history_right}
-					>
+					<div ref={contentRef} key={activeGroup.year} className={styles.history_right}>
 						{activeGroup.list.map((historyItem) => (
 							<div key={historyItem.id} className={styles.history_row}>
 								<span className={styles.history_row_dot} aria-hidden />
 								<div className={styles.history_row_body}>
-									<div className={styles.history_row_title}>
-										{historyItem.title}
-									</div>
+									<div className={styles.history_row_title}>{historyItem.title}</div>
 									{historyItem.description && (
-										<div className={styles.history_row_desc}>
-											{historyItem.description}
-										</div>
+										<div className={styles.history_row_desc}>{historyItem.description}</div>
 									)}
 								</div>
 							</div>

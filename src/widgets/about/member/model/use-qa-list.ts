@@ -10,11 +10,7 @@ export interface TranslationAccessor {
 	has: (k: string) => boolean;
 }
 
-export const QaList = (
-	t: TranslationAccessor,
-	memberKey: MemberKey,
-	max = 20,
-): QAItem[] => {
+export const QaList = (t: TranslationAccessor, memberKey: MemberKey, max = 20): QAItem[] => {
 	const base = `about.team.members.${memberKey}`;
 	return Array.from({ length: max }, (_, i) => i + 1)
 		.map((n) => ({ qKey: `${base}.qa${n}.q`, aKey: `${base}.qa${n}.a` }))

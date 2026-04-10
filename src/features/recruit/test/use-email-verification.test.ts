@@ -52,9 +52,7 @@ describe("useEmailVerification", () => {
 		it("인증 메일 전송 성공 시 상태를 업데이트한다", async () => {
 			mockSendEmailApi.mockResolvedValue({});
 
-			const { result } = renderHook(() =>
-				useEmailVerification({ email: EMAIL }),
-			);
+			const { result } = renderHook(() => useEmailVerification({ email: EMAIL }));
 
 			await act(() => result.current.send());
 
@@ -69,9 +67,7 @@ describe("useEmailVerification", () => {
 		it("재전송 쿨다운 중에는 warning 토스트를 표시한다", async () => {
 			mockSendEmailApi.mockResolvedValue({});
 
-			const { result } = renderHook(() =>
-				useEmailVerification({ email: EMAIL }),
-			);
+			const { result } = renderHook(() => useEmailVerification({ email: EMAIL }));
 
 			await act(() => result.current.send());
 			expect(result.current.resendSec).toBe(60);
@@ -85,9 +81,7 @@ describe("useEmailVerification", () => {
 		it("전송 실패 시 에러 토스트를 표시한다", async () => {
 			mockSendEmailApi.mockRejectedValue(new Error("서버 오류"));
 
-			const { result } = renderHook(() =>
-				useEmailVerification({ email: EMAIL }),
-			);
+			const { result } = renderHook(() => useEmailVerification({ email: EMAIL }));
 
 			await act(() => result.current.send());
 
@@ -98,9 +92,7 @@ describe("useEmailVerification", () => {
 		it("커스텀 cooldownSec를 적용한다", async () => {
 			mockSendEmailApi.mockResolvedValue({});
 
-			const { result } = renderHook(() =>
-				useEmailVerification({ email: EMAIL, cooldownSec: 30 }),
-			);
+			const { result } = renderHook(() => useEmailVerification({ email: EMAIL, cooldownSec: 30 }));
 
 			await act(() => result.current.send());
 
@@ -110,41 +102,31 @@ describe("useEmailVerification", () => {
 
 	describe("verify", () => {
 		it("인증코드가 비어있으면 warning 토스트를 표시한다", async () => {
-			const { result } = renderHook(() =>
-				useEmailVerification({ email: EMAIL }),
-			);
+			const { result } = renderHook(() => useEmailVerification({ email: EMAIL }));
 
 			await act(() => result.current.verify());
 
 			expect(mockCheckEmailApi).not.toHaveBeenCalled();
-			expect(mockToast.warning).toHaveBeenCalledWith(
-				"이메일과 인증 코드를 입력해주세요.",
-			);
+			expect(mockToast.warning).toHaveBeenCalledWith("이메일과 인증 코드를 입력해주세요.");
 		});
 
 		it("인증 성공 시 emailVerified를 true로 설정한다", async () => {
 			mockCheckEmailApi.mockResolvedValue({});
 
-			const { result } = renderHook(() =>
-				useEmailVerification({ email: EMAIL }),
-			);
+			const { result } = renderHook(() => useEmailVerification({ email: EMAIL }));
 
 			act(() => result.current.setAuthCode("123456"));
 			await act(() => result.current.verify());
 
 			expect(mockCheckEmailApi).toHaveBeenCalledWith(EMAIL, "123456");
 			expect(result.current.emailVerified).toBe(true);
-			expect(mockToast.success).toHaveBeenCalledWith(
-				"이메일 인증이 완료되었습니다.",
-			);
+			expect(mockToast.success).toHaveBeenCalledWith("이메일 인증이 완료되었습니다.");
 		});
 
 		it("인증 실패 시 emailVerified를 false로 유지하고 에러 토스트를 표시한다", async () => {
 			mockCheckEmailApi.mockRejectedValue(new Error("잘못된 코드"));
 
-			const { result } = renderHook(() =>
-				useEmailVerification({ email: EMAIL }),
-			);
+			const { result } = renderHook(() => useEmailVerification({ email: EMAIL }));
 
 			act(() => result.current.setAuthCode("wrong"));
 			await act(() => result.current.verify());
@@ -184,9 +166,7 @@ describe("useEmailVerification", () => {
 		it("1초마다 resendSec가 감소한다", async () => {
 			mockSendEmailApi.mockResolvedValue({});
 
-			const { result } = renderHook(() =>
-				useEmailVerification({ email: EMAIL, cooldownSec: 3 }),
-			);
+			const { result } = renderHook(() => useEmailVerification({ email: EMAIL, cooldownSec: 3 }));
 
 			await act(() => result.current.send());
 			expect(result.current.resendSec).toBe(3);

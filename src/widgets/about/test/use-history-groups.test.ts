@@ -25,11 +25,7 @@ describe("useHistoryGroups", () => {
 	});
 
 	it("activeGroup은 currentYear의 그룹 반환", () => {
-		const items = [
-			makeItem(2024, "A"),
-			makeItem(2024, "B"),
-			makeItem(2023, "C"),
-		];
+		const items = [makeItem(2024, "A"), makeItem(2024, "B"), makeItem(2023, "C")];
 		const { result } = renderHook(() => useHistoryGroups(items));
 		expect(result.current.activeGroup?.year).toBe(2024);
 		expect(result.current.activeGroup?.list).toHaveLength(2);
@@ -49,11 +45,7 @@ describe("useHistoryGroups", () => {
 	});
 
 	it("years는 내림차순 정렬", () => {
-		const items = [
-			makeItem(2022, "A"),
-			makeItem(2025, "B"),
-			makeItem(2023, "C"),
-		];
+		const items = [makeItem(2022, "A"), makeItem(2025, "B"), makeItem(2023, "C")];
 		const { result } = renderHook(() => useHistoryGroups(items));
 		expect(result.current.years).toEqual([2025, 2023, 2022]);
 	});

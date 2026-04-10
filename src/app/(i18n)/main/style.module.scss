@@ -36,9 +36,9 @@
   @extend %ground_base;
   background: linear-gradient(
                   180deg,
-                  token.$color_background_secondary 0%,
-                  token.$text_subtle 48%,
-                  token.$color_background_primary 100%
+                  token.$color_bg_solid_dim 0%,
+                  token.$color_text_caption 48%,
+                  token.$color_brand_primary_container 100%
   );
 }
 
@@ -46,9 +46,9 @@
   @extend %ground_base;
   background: linear-gradient(
                   180deg,
-                  token.$color_background_primary 0%,
-                  token.$color_background_primary 15%,
-                  token.$color_background_dark 35%,
-                  token.$color_background_primary 100%
+                  token.$color_brand_primary_container 0%,
+                  token.$color_brand_primary_container 15%,
+                  token.$color_bg_overlay 35%,
+                  token.$color_brand_primary_container 100%
   );
 }

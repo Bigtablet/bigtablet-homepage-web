@@ -26,11 +26,8 @@ vi.mock("src/features/upload/mutation/upload.mutation", () => ({
 import { useTalentForm } from "src/features/talent/form/model/use-talent-form";
 
 const MB = 1024 * 1024;
-const makeFile = (
-	sizeBytes: number,
-	type = "application/pdf",
-	name = "portfolio.pdf",
-) => new File([new ArrayBuffer(sizeBytes)], name, { type });
+const makeFile = (sizeBytes: number, type = "application/pdf", name = "portfolio.pdf") =>
+	new File([new ArrayBuffer(sizeBytes)], name, { type });
 
 describe("useTalentForm", () => {
 	const onClose = vi.fn();
@@ -80,18 +77,14 @@ describe("useTalentForm", () => {
 				await result.current.handlePortfolioFile(makeFile(1 * MB));
 			});
 
-			expect(result.current.form.getValues("portfolioUrl")).toBe(
-				"https://cdn.example.com/p.pdf",
-			);
+			expect(result.current.form.getValues("portfolioUrl")).toBe("https://cdn.example.com/p.pdf");
 		});
 
 		it("파일 검증 실패 시 error 토스트를 표시하고 업로드하지 않는다", async () => {
 			const { result } = renderHook(() => useTalentForm({ onClose }));
 
 			await act(async () => {
-				await result.current.handlePortfolioFile(
-					makeFile(51 * MB, "video/mp4", "bad.mp4"),
-				);
+				await result.current.handlePortfolioFile(makeFile(51 * MB, "video/mp4", "bad.mp4"));
 			});
 
 			expect(mockToast.error).toHaveBeenCalled();
@@ -130,9 +123,7 @@ describe("useTalentForm", () => {
 	describe("handleSubmit (ensureHttps + etcUrl 필터링)", () => {
 		/** 폼 기본값 설정 헬퍼 */
 		const fillBaseForm = (
-			result: ReturnType<
-				typeof renderHook<ReturnType<typeof useTalentForm>, unknown>
-			>["result"],
+			result: ReturnType<typeof renderHook<ReturnType<typeof useTalentForm>, unknown>>["result"],
 			overrides: { portfolioUrl?: string; etcUrl?: string[] } = {},
 		) => {
 			act(() => {
@@ -172,9 +163,7 @@ describe("useTalentForm", () => {
 				await result.current.handleSubmit();
 			});
 
-			expect(mockCreateTalent).toHaveBeenCalledWith(
-				expect.objectContaining({ portfolioUrl: "" }),
-			);
+			expect(mockCreateTalent).toHaveBeenCalledWith(expect.objectContaining({ portfolioUrl: "" }));
 		});
 
 		it("이미 https://가 있는 URL은 그대로 유지한다", async () => {

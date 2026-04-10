@@ -101,11 +101,7 @@ const Header = () => {
 					<Link href="/recruit" onClick={closeMenu}>
 						Recruit
 					</Link>
-					<button
-						type="button"
-						onClick={switchLocale}
-						className={styles.locale_switch}
-					>
+					<button type="button" onClick={switchLocale} className={styles.locale_switch}>
 						{locale === "en" ? "한국어" : "English"}
 					</button>
 				</nav>

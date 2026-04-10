@@ -24,10 +24,7 @@ const NewsCard = ({
 	source,
 	priority = false,
 }: NewsCardProps) => {
-	const time = useMemo(
-		() => formatRelative(createdAt, locale),
-		[createdAt, locale],
-	);
+	const time = useMemo(() => formatRelative(createdAt, locale), [createdAt, locale]);
 
 	const imageSrc = useMemo(() => {
 		const trimmed = thumbnailImageUrl?.trim();

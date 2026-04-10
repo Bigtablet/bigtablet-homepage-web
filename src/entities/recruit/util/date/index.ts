@@ -4,10 +4,7 @@ import {
 	locationLabel,
 	recruitTypeLabel,
 } from "src/entities/recruit/constants/recruit.constants";
-import type {
-	RecruitCard,
-	RecruitResponse,
-} from "src/entities/recruit/schema/recruit.schema";
+import type { RecruitCard, RecruitResponse } from "src/entities/recruit/schema/recruit.schema";
 
 /**
  * @description 문자열을 Date 객체로 변환한다.
@@ -46,14 +43,10 @@ const getDdayText = (endDate?: string | null): string => {
  */
 const extractTags = (recruitResponse: RecruitResponse): string[] => {
 	const tags: string[] = [];
-	if (recruitResponse.department)
-		tags.push(departmentLabel(recruitResponse.department));
-	if (recruitResponse.education)
-		tags.push(educationLabel(recruitResponse.education));
-	if (recruitResponse.recruitType)
-		tags.push(recruitTypeLabel(recruitResponse.recruitType));
-	if (recruitResponse.location)
-		tags.push(locationLabel(recruitResponse.location));
+	if (recruitResponse.department) tags.push(departmentLabel(recruitResponse.department));
+	if (recruitResponse.education) tags.push(educationLabel(recruitResponse.education));
+	if (recruitResponse.recruitType) tags.push(recruitTypeLabel(recruitResponse.recruitType));
+	if (recruitResponse.location) tags.push(locationLabel(recruitResponse.location));
 	return tags;
 };
 
@@ -66,9 +59,7 @@ const extractTags = (recruitResponse: RecruitResponse): string[] => {
  * @example
  * toRecruitCard(recruitResponse) // { ...response, dday: "D-3", tags: ["IT", "서울"] }
  */
-export const toRecruitCard = (
-	recruitResponse: RecruitResponse,
-): RecruitCard => ({
+export const toRecruitCard = (recruitResponse: RecruitResponse): RecruitCard => ({
 	...recruitResponse,
 	dday: getDdayText(recruitResponse.endDate ?? null),
 	tags: extractTags(recruitResponse),

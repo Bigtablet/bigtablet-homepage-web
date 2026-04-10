@@ -3,10 +3,7 @@
 import { useToast } from "@bigtablet/design-system";
 import { useState } from "react";
 import { useFieldArray, useForm } from "react-hook-form";
-import type {
-	PostTalent,
-	PostTalentFormValues,
-} from "src/entities/talent/schema/talent.schema";
+import type { PostTalent, PostTalentFormValues } from "src/entities/talent/schema/talent.schema";
 import { useTalentMutation } from "src/features/talent/mutation/talent.mutation";
 import { useUploadMutation } from "src/features/upload/mutation/upload.mutation";
 import { getErrorMessage } from "src/shared/libs/api/axios/error/error.util";
@@ -27,8 +24,7 @@ interface UseTalentFormParams {
 export const useTalentForm = ({ onClose }: UseTalentFormParams) => {
 	const Toast = useToast();
 	const { mutateAsync: createTalent, isPending } = useTalentMutation();
-	const { mutateAsync: uploadFile, isPending: isUploading } =
-		useUploadMutation();
+	const { mutateAsync: uploadFile, isPending: isUploading } = useUploadMutation();
 
 	const [portfolioMode, setPortfolioMode] = useState<PortfolioMode>("link");
 

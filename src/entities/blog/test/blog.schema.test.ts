@@ -25,15 +25,7 @@ describe("blogItemSchema", () => {
 	});
 
 	it("optional 필드가 없어도 파싱된다", () => {
-		const {
-			imageUrl,
-			summaryKr,
-			summaryEn,
-			contentKr,
-			contentEn,
-			views,
-			...minimal
-		} = validItem;
+		const { imageUrl, summaryKr, summaryEn, contentKr, contentEn, views, ...minimal } = validItem;
 		expect(blogItemSchema.parse(minimal)).toMatchObject({ idx: 1 });
 	});
 

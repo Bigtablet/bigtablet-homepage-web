@@ -10,8 +10,7 @@ interface CardProps {
 }
 
 const Card = ({ id, src, label, onOpen }: CardProps) => {
-	const openFromTarget = (el: HTMLElement) =>
-		onOpen(id, el.getBoundingClientRect());
+	const openFromTarget = (el: HTMLElement) => onOpen(id, el.getBoundingClientRect());
 
 	return (
 		<button

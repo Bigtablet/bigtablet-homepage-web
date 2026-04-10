@@ -1,6 +1,6 @@
 {
 	"compilerOptions": {
-		"target": "esnext",
+		"target": "ES2022",
 		"lib": ["dom", "dom.iterable", "esnext"],
 		"verbatimModuleSyntax": true,
 		"allowJs": true,
@@ -22,7 +22,8 @@
 		"paths": {
 			"src/*": ["./src/*"]
 		},
-		"esModuleInterop": true
+		"esModuleInterop": true,
+		"forceConsistentCasingInFileNames": true
 	},
 	"include": [
 		"next-env.d.ts",

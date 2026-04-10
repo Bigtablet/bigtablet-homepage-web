@@ -61,8 +61,7 @@ const RouteLoading = () => {
 
 			// 현재 경로와 같으면 무시
 			const currentPath =
-				pathname +
-				(searchParams?.toString() ? `?${searchParams.toString()}` : "");
+				pathname + (searchParams?.toString() ? `?${searchParams.toString()}` : "");
 			if (href === currentPath || href === pathname) {
 				return;
 			}

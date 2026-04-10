@@ -5,14 +5,8 @@ import Footer from "src/shared/ui/footer";
 import Header from "src/shared/ui/header";
 import styles from "./layout.module.scss";
 
-export default async function LocaleLayout({
-	children,
-}: {
-	children: ReactNode;
-}) {
-	const localeValue = (await cookies())
-		.get("NEXT_LOCALE")
-		?.value?.toLowerCase();
+export default async function LocaleLayout({ children }: { children: ReactNode }) {
+	const localeValue = (await cookies()).get("NEXT_LOCALE")?.value?.toLowerCase();
 	const locale = localeValue === "en" ? "en" : "ko"; // 기본 ko
 	const messages = (await import(`../../../messages/${locale}.json`)).default;
 

@@ -3,11 +3,7 @@ import { z } from "zod";
 /**
  * 첨부 URL 스키마 (URL 또는 빈 문자열 허용)
  */
-const AttachUrl = z
-	.string()
-	.url("유효한 URL을 입력해 주세요.")
-	.or(z.literal(""))
-	.default("");
+const AttachUrl = z.string().url("유효한 URL을 입력해 주세요.").or(z.literal("")).default("");
 
 /**
  * 지원서 기본 스키마
@@ -22,10 +18,7 @@ const baseSchema = z.object({
 
 	phoneNumber: z
 		.string()
-		.regex(
-			/^010-\d{4}-\d{4}$/,
-			"전화번호 형식이 올바르지 않습니다. 예: 010-1234-5678",
-		),
+		.regex(/^010-\d{4}-\d{4}$/, "전화번호 형식이 올바르지 않습니다. 예: 010-1234-5678"),
 
 	email: z.string().email("유효한 이메일 주소를 입력해주세요."),
 
@@ -94,11 +87,7 @@ export const applySchema = baseSchema.superRefine((data, ctx) => {
 		}
 	}
 
-	if (
-		!Number.isNaN(admission) &&
-		!Number.isNaN(graduation) &&
-		graduation < admission
-	) {
+	if (!Number.isNaN(admission) && !Number.isNaN(graduation) && graduation < admission) {
 		ctx.addIssue({
 			code: "custom",
 			path: ["graduationEnd"],

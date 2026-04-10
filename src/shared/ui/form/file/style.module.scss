@@ -2,14 +2,14 @@
 
 .file {
   display: flex;
-  gap: token.$spacing_8;
+  gap: token.$spacing_sm;
   align-items: center;
   position: relative;
 }
 
 .file_control {
   display: flex;
-  gap: token.$spacing_8;
+  gap: token.$spacing_sm;
   align-items: center;
   position: relative;
 }
@@ -22,23 +22,23 @@
 }
 
 .file_label {
-  border: 1px solid token.$color_border_default;
+  border: 1px solid token.$color_border;
   border-radius: token.$radius_md;
-  background: token.$color_bg_solid;
-  padding: token.$spacing_8 token.$spacing_24;
-  color: token.$color_text_body;
-  font-size: token.$font_size_14;
+  background: token.$color_background;
+  padding: token.$spacing_sm token.$spacing_lg;
+  color: token.$text_normal;
+  font-size: token.$font_size_sm;
   transition: border-color token.$transition_base, background token.$transition_base;
   cursor: pointer;
 
   &:hover {
-    border-color: token.$color_border_subtle;
+    border-color: token.$color_border_light;
   }
 }
 
 .file_name {
-  font-size: token.$font_size_14;
-  color: token.$color_text_caption;
+  font-size: token.$font_size_sm;
+  color: token.$text_subtle;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -52,7 +52,7 @@
 .file_column {
   @include token.flex_column;
   align-items: flex-start;
-  gap: token.$spacing_8;
+  gap: token.$spacing_sm;
 }
 
 .file_column .file_control {
@@ -64,8 +64,8 @@
   max-width: 260px;
   aspect-ratio: 3 / 4;
   border-radius: token.$radius_xl;
-  border: 1px dashed token.$color_border_default;
-  background: token.$color_bg_solid_dim;
+  border: 1px dashed token.$color_border;
+  background: token.$color_background_secondary;
   overflow: hidden;
   display: grid;
   place-items: center;

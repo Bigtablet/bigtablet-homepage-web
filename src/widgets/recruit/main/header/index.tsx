@@ -69,6 +69,7 @@ const RecruitHeader = ({ filters, onChange }: Props) => {
 						placeholder="직무 혹은 공고 이름으로 검색하실 수 있습니다."
 						value={filters.keyword ?? ""}
 						onChangeAction={(value) => patch({ keyword: value })}
+						size="sm"
 						className={styles.recruit_search_field}
 					/>
 
@@ -99,7 +100,7 @@ const RecruitHeader = ({ filters, onChange }: Props) => {
 						className={styles.recruit_search_select}
 					/>
 
-					<Button variant="filled" size="sm" onClick={() => setOpen(true)}>
+					<Button variant="primary" size="sm" width="auto" onClick={() => setOpen(true)}>
 						인재풀 등록하기
 					</Button>
 				</div>

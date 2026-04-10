@@ -7,43 +7,43 @@
   max-width: 1200px;
   margin: 0 auto;
   white-space: pre-line;
-  gap: token.$spacing_40;
-  color: token.$color_text_body;
+  gap: token.$spacing_2xl;
+  color: token.$text_normal;
 }
 
 .problem_title {
-  @include token.heading_medium_medium;
+  @include token.heading_2;
   flex: 0 0 35%;
-  font-size: token.$font_size_40;
-  color: token.$color_text_heading;
-  line-height: token.$line_height_20;
+  font-size: token.$font_size_4xl;
+  color: token.$text_strong;
+  line-height: token.$line_height_snug;
 }
 
 .problem_description {
   @include token.body_medium;
   flex: 0 0 55%;
-  font-size: token.$font_size_20;
-  color: token.$color_text_body;
-  line-height: token.$line_height_28;
+  font-size: token.$font_size_xl;
+  color: token.$text_normal;
+  line-height: token.$line_height_relaxed;
 }
 
-@include token.compact {
+@include token.mobile {
   .problem {
     @include token.flex_column;
     width: 88%;
     text-align: left;
-    gap: token.$spacing_32;
+    gap: token.$spacing_xl;
   }
 
   .problem_title {
-    font-size: token.$font_size_24;
-    line-height: token.$line_height_20;
+    font-size: token.$font_size_2xl;
+    line-height: token.$line_height_snug;
     flex: 0 0 auto;
   }
 
   .problem_description {
-    font-size: token.$font_size_18;
-    line-height: token.$line_height_28;
+    font-size: token.$font_size_lg;
+    line-height: token.$line_height_relaxed;
     flex: 0 0 auto;
   }
 }

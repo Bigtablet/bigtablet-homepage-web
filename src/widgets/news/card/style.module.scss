@@ -3,23 +3,23 @@
 .news_card {
   @include token.flex_column;
   height: 100%;
-  padding: token.$spacing_16;
-  background: token.$color_bg_solid;
-  border: 1px solid token.$color_border_default;
+  padding: token.$spacing_md;
+  background: token.$color_background;
+  border: 1px solid token.$color_border;
   border-radius: token.$radius_lg;
   text-decoration: none;
-  color: token.$color_text_body;
-  @include token.hover_lift(-4px, token.$elevation_level4);
+  color: token.$text_normal;
+  @include token.hover_lift(-4px, token.$shadow_elevated);
 
   &:hover {
-    background: token.$color_bg_solid_dim;
-    border-color: token.$color_border_hover;
+    background: token.$color_background_secondary;
+    border-color: token.$color_primary_hover;
   }
 
   &:focus-visible {
     outline: none;
-    border-color: token.$color_brand_primary;
-    box-shadow: token.$elevation_level2;
+    border-color: token.$color_primary;
+    box-shadow: token.$glow_accent;
   }
 }
 
@@ -29,8 +29,8 @@
   aspect-ratio: 4 / 3;
   border-radius: token.$radius_md;
   overflow: hidden;
-  background: token.$color_bg_solid_dim;
-  border: 1px solid token.$color_border_default;
+  background: token.$color_background_secondary;
+  border: 1px solid token.$color_border;
 
 }
 
@@ -41,17 +41,17 @@
 .news_card_meta {
   display: flex;
   align-items: center;
-  gap: token.$spacing_4;
-  margin-top: token.$spacing_8;
-  color: token.$color_text_caption;
-  font-size: token.$font_size_12;
+  gap: token.$spacing_xs;
+  margin-top: token.$spacing_sm;
+  color: token.$text_subtle;
+  font-size: token.$font_size_xs;
 }
 
 .news_card_title {
-  @include token.heading_small_medium;
-  margin-top: token.$spacing_8;
-  font-size: token.$font_size_16;
-  color: token.$color_text_heading;
+  @include token.heading_3;
+  margin-top: token.$spacing_sm;
+  font-size: token.$font_size_md;
+  color: token.$text_strong;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;

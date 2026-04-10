@@ -4,81 +4,81 @@
   width: 100%;
   max-width: 960px;
   margin: 0 auto;
-  padding: token.$spacing_48 token.$spacing_32;
-  color: token.$color_text_body;
+  padding: token.$spacing_5xl token.$spacing_xl;
+  color: token.$text_normal;
 }
 
 .recruit_detail_loading,
 .recruit_detail_error {
   text-align: center;
-  font-size: token.$font_size_16;
-  color: token.$color_text_caption;
-  padding: token.$spacing_48 0;
+  font-size: token.$font_size_md;
+  color: token.$text_subtle;
+  padding: token.$spacing_5xl 0;
 }
 
 .recruit_detail_header {
-  margin-bottom: token.$spacing_48;
-  border-bottom: 1px solid token.$color_border_subtle;
-  padding-bottom: token.$spacing_24;
+  margin-bottom: token.$spacing_3xl;
+  border-bottom: 1px solid token.$color_border_light;
+  padding-bottom: token.$spacing_lg;
 }
 
 .recruit_detail_title {
-  @include token.heading_medium_medium;
-  font-size: token.$font_size_32;
-  color: token.$color_text_heading;
-  margin: 0 0 token.$spacing_24;
+  @include token.heading_2;
+  font-size: token.$font_size_3xl;
+  color: token.$text_strong;
+  margin: 0 0 token.$spacing_lg;
 }
 
 .recruit_detail_meta {
   @include token.flex_between;
   align-items: center;
-  gap: token.$spacing_16;
+  gap: token.$spacing_md;
   flex-wrap: wrap;
 }
 
 .recruit_detail_chips {
   display: flex;
   flex-wrap: wrap;
-  gap: token.$spacing_8;
+  gap: token.$spacing_sm;
 }
 
 .chip {
   display: inline-flex;
   align-items: center;
   height: 28px;
-  padding: 0 token.$spacing_16;
+  padding: 0 token.$spacing_md;
   border-radius: token.$radius_full;
-  background: token.$color_bg_solid;
-  border: 1px solid token.$color_border_default;
-  color: token.$color_text_body;
-  font-size: token.$font_size_14;
+  background: token.$color_background;
+  border: 1px solid token.$color_border;
+  color: token.$text_normal;
+  font-size: token.$font_size_sm;
   white-space: nowrap;
 }
 
 .recruit_detail_datebar {
   display: inline-flex;
   align-items: center;
-  color: token.$color_text_caption;
-  font-size: token.$font_size_14;
+  color: token.$text_subtle;
+  font-size: token.$font_size_sm;
   white-space: nowrap;
   height: 28px;
 }
 
 .recruit_detail_section {
-  margin-bottom: token.$spacing_48;
+  margin-bottom: token.$spacing_4xl;
 }
 
 .recruit_detail_section h2 {
-  @include token.heading_small_medium;
-  font-size: token.$font_size_20;
-  color: token.$color_text_body;
-  margin: 0 0 token.$spacing_16;
+  @include token.heading_3;
+  font-size: token.$font_size_xl;
+  color: token.$text_normal;
+  margin: 0 0 token.$spacing_md;
 }
 
 .recruit_detail_text {
-  font-size: token.$font_size_16;
-  color: token.$color_text_body;
-  line-height: token.$line_height_28;
+  font-size: token.$font_size_md;
+  color: token.$text_normal;
+  line-height: token.$line_height_relaxed;
   white-space: pre-line;
 }
 
@@ -86,7 +86,7 @@
 .recruit_detail_list,
 .recruit_detail_list ul,
 .recruit_detail_list ol {
-  padding-left: token.$spacing_32;
+  padding-left: token.$spacing_xl;
 }
 
 .recruit_detail_list ul {
@@ -98,61 +98,61 @@
 }
 
 .recruit_detail_list li {
-  font-size: token.$font_size_16;
-  line-height: token.$line_height_28;
-  color: token.$color_text_body;
+  font-size: token.$font_size_md;
+  line-height: token.$line_height_relaxed;
+  color: token.$text_normal;
 }
 
 .recruit_detail_process {
-  font-size: token.$font_size_16;
-  color: token.$color_text_body;
+  font-size: token.$font_size_md;
+  color: token.$text_normal;
   letter-spacing: 0.02em;
   word-spacing: 2px;
   white-space: pre-line;
 }
 
 .recruit_detail_notice {
-  margin-bottom: token.$spacing_48;
-  padding: token.$spacing_32;
+  margin-bottom: token.$spacing_4xl;
+  padding: token.$spacing_xl;
   border-radius: token.$radius_lg;
-  background: token.$color_bg_solid_dim;
-  border: 1px solid token.$color_border_subtle;
+  background: token.$color_background_secondary;
+  border: 1px solid token.$color_border_light;
 }
 
 .recruit_detail_notice_title {
-  @include token.heading_small_medium;
-  font-size: token.$font_size_18;
-  color: token.$color_text_heading;
-  margin: 0 0 token.$spacing_8;
+  @include token.heading_3;
+  font-size: token.$font_size_lg;
+  color: token.$text_strong;
+  margin: 0 0 token.$spacing_sm;
 }
 
 .recruit_detail_notice_text {
-  @include token.body_medium;
-  font-size: token.$font_size_14;
-  color: token.$color_text_body;
-  line-height: token.$line_height_28;
-  margin: 0 0 token.$spacing_8;
+  @include token.body_regular;
+  font-size: token.$font_size_sm;
+  color: token.$text_normal;
+  line-height: token.$line_height_relaxed;
+  margin: 0 0 token.$spacing_sm;
 }
 
 .recruit_detail_notice_list {
-  margin: 0 0 token.$spacing_8;
-  padding-left: token.$spacing_32;
+  margin: 0 0 token.$spacing_sm;
+  padding-left: token.$spacing_xl;
   list-style-type: disc;
 }
 
 .recruit_detail_notice_list li {
-  @include token.body_medium;
-  font-size: token.$font_size_14;
-  color: token.$color_text_body;
-  line-height: token.$line_height_28;
+  @include token.body_regular;
+  font-size: token.$font_size_sm;
+  color: token.$text_normal;
+  line-height: token.$line_height_relaxed;
 }
 
 .recruit_detail_request {
   @include token.flex_column;
   @include token.flex_center;
-  gap: token.$spacing_40;
-  padding-top: token.$spacing_40;
-  border-top: 1px solid token.$color_border_subtle;
+  gap: token.$spacing_2xl;
+  padding-top: token.$spacing_2xl;
+  border-top: 1px solid token.$color_border_light;
 
   &_button {
     width: 100%;
@@ -160,25 +160,25 @@
 }
 
 .recruit_detail_request p {
-  @include token.body_medium;
-  font-size: token.$font_size_16;
-  color: token.$color_text_body;
+  @include token.body_regular;
+  font-size: token.$font_size_md;
+  color: token.$text_normal;
   text-align: center;
 }
 
-@include token.compact {
+@include token.mobile {
   .recruit_detail {
-    padding: token.$spacing_48 token.$spacing_16;
+    padding: token.$spacing_4xl token.$spacing_md;
   }
 
   .recruit_detail_title {
-    font-size: token.$font_size_24;
+    font-size: token.$font_size_2xl;
   }
 
   .recruit_detail_meta {
     flex-direction: column;
     align-items: flex-start;
-    gap: token.$spacing_8;
+    gap: token.$spacing_sm;
   }
 
   .recruit_detail_datebar {
@@ -187,14 +187,14 @@
   }
 
   .recruit_detail_section h2 {
-    font-size: token.$font_size_18;
+    font-size: token.$font_size_lg;
   }
 
   .recruit_detail_notice {
-    padding: token.$spacing_24;
+    padding: token.$spacing_lg;
   }
 
   .recruit_detail_request p {
-    font-size: token.$font_size_16;
+    font-size: token.$font_size_base;
   }
 }

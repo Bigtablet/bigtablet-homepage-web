@@ -6,17 +6,17 @@
 
 .skeleton_title {
   width: 14rem;
-  height: token.$spacing_24;
+  height: token.$spacing_lg;
   border-radius: token.$radius_md;
   background: linear-gradient(
                   90deg,
-                  token.$color_bg_solid_dim 25%,
-                  token.$color_border_default 37%,
-                  token.$color_bg_solid_dim 63%
+                  token.$color_background_secondary 25%,
+                  token.$color_border 37%,
+                  token.$color_background_secondary 63%
   );
   background-size: 400% 100%;
   animation: skeleton_shimmer 1.2s ease-in-out infinite;
-  margin-bottom: token.$spacing_8;
+  margin-bottom: token.$spacing_sm;
 }
 
 .skeleton_tag {
@@ -26,9 +26,9 @@
   border-radius: token.$radius_md;
   background: linear-gradient(
                   90deg,
-                  token.$color_bg_solid_dim 25%,
-                  token.$color_border_default 37%,
-                  token.$color_bg_solid_dim 63%
+                  token.$color_background_secondary 25%,
+                  token.$color_border 37%,
+                  token.$color_background_secondary 63%
   );
   background-size: 400% 100%;
   animation: skeleton_shimmer 1.2s ease-in-out infinite;
@@ -41,9 +41,9 @@
   border-radius: token.$radius_md;
   background: linear-gradient(
                   90deg,
-                  token.$color_bg_solid_dim 25%,
-                  token.$color_border_default 37%,
-                  token.$color_bg_solid_dim 63%
+                  token.$color_background_secondary 25%,
+                  token.$color_border 37%,
+                  token.$color_background_secondary 63%
   );
   background-size: 400% 100%;
   animation: skeleton_shimmer 1.2s ease-in-out infinite;

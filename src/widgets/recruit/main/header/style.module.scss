@@ -3,42 +3,42 @@
 .recruit_header {
 	@include token.flex_column;
 	width: 100%;
-	gap: token.$spacing_40;
-	color: token.$color_text_body;
-	padding: token.$spacing_48 0 token.$spacing_32;
+	gap: token.$spacing_2xl;
+	color: token.$text_normal;
+	padding: token.$spacing_3xl 0 token.$spacing_xl;
 	margin: 0 auto;
 
-	@include token.compact {
-		gap: token.$spacing_24;
-		padding: token.$spacing_32 0 token.$spacing_16;
+	@include token.mobile {
+		gap: token.$spacing_lg;
+		padding: token.$spacing_xl 0 token.$spacing_md;
 	}
 }
 
 .recruit_header_text {
 	@include token.flex_column;
-	gap: token.$spacing_8;
+	gap: token.$spacing_sm;
 
 	h2 {
-		@include token.heading_medium_medium;
+		@include token.heading_2;
 		/* heading_2 기본보다 큰 사이즈 적용 */
-		font-size: token.$font_size_24;
-		color: token.$color_text_heading;
+		font-size: token.$font_size_2xl;
+		color: token.$text_strong;
 	}
 
 	p {
 		@include token.body_medium;
 		/* body_medium 기본보다 큰 사이즈 적용 */
-		font-size: token.$font_size_18;
-		color: token.$color_text_caption;
+		font-size: token.$font_size_lg;
+		color: token.$text_subtle;
 	}
 
-	@include token.compact {
+	@include token.mobile {
 		h2 {
-			font-size: token.$font_size_20;
+			font-size: token.$font_size_xl;
 		}
 
 		p {
-			font-size: token.$font_size_16;
+			font-size: token.$font_size_md;
 		}
 	}
 }
@@ -48,14 +48,14 @@
 	height: 1px;
 	border: none;
 	margin: 0;
-	background: token.$color_border_subtle;
+	background: token.$color_border_light;
 }
 
 .recruit_search {
 	display: flex;
 	align-items: center;
 	flex-wrap: wrap;
-	gap: token.$spacing_8;
+	gap: token.$spacing_sm;
 	width: 100%;
 }
 

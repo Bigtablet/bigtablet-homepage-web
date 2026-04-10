@@ -4,66 +4,66 @@
   @include token.flex_column;
   width: 100%;
   margin: 0 auto;
-  gap: token.$spacing_8;
+  gap: token.$spacing_sm;
 }
 
 .request_list_loading,
 .request_list_empty {
   text-align: center;
-  font-size: token.$font_size_14;
-  color: token.$color_text_body;
-  padding: token.$spacing_32 0;
+  font-size: token.$font_size_sm;
+  color: token.$text_normal;
+  padding: token.$spacing_xl 0;
 }
 
 .request_item {
   @include token.flex_between;
   align-items: flex-start;
   text-decoration: none;
-  color: token.$color_text_body;
-  border: 1px solid token.$color_border_default;
+  color: token.$text_normal;
+  border: 1px solid token.$color_border;
   border-radius: token.$radius_lg;
-  background: token.$color_bg_solid;
-  padding: token.$spacing_24 token.$spacing_32;
+  background: token.$color_background;
+  padding: token.$spacing_lg token.$spacing_xl;
   transition: transform token.$transition_base,
   border-color token.$transition_base,
   box-shadow token.$transition_base;
 
   &:hover {
     transform: translateY(-2px);
-    border-color: token.$color_border_hover;
-    box-shadow: token.$elevation_level1;
+    border-color: token.$color_primary_hover;
+    box-shadow: token.$shadow_sm;
   }
 }
 
 .request_item_left {
   @include token.flex_column;
-  gap: token.$spacing_16;
+  gap: token.$spacing_md;
 }
 
 .request_item_title {
-  @include token.heading_small_medium;
-  font-size: token.$font_size_18;
-  color: token.$color_text_heading;
+  @include token.heading_3;
+  font-size: token.$font_size_lg;
+  color: token.$text_strong;
 }
 
 .request_item_tags {
   display: flex;
   flex-wrap: wrap;
-  gap: token.$spacing_4;
+  gap: token.$spacing_xs;
 }
 
 .request_item_tag {
   @include token.body_medium;
-  font-size: token.$font_size_12;
-  color: token.$color_text_body;
-  background: token.$color_bg_solid_dim;
+  font-size: token.$font_size_xs;
+  color: token.$text_normal;
+  background: token.$color_background_secondary;
   border-radius: token.$radius_sm;
-  padding: token.$spacing_4 token.$spacing_8;
+  padding: token.$spacing_xs token.$spacing_sm;
 }
 
 .request_item_dday {
   @include token.body_medium;
-  font-size: token.$font_size_14;
-  color: token.$color_brand_primary;
+  font-size: token.$font_size_sm;
+  color: token.$color_primary;
   white-space: nowrap;
 }

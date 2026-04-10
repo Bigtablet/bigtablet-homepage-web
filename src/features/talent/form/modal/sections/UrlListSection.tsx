@@ -44,21 +44,21 @@ export const UrlListSection = ({
 								placeholder="예: github.com/user"
 								disabled={isFormBusy}
 								error={!!errors.etcUrl?.[index]}
-								supportingText={errors.etcUrl?.[index]?.message}
+								helperText={errors.etcUrl?.[index]?.message}
 								fullWidth
 							/>
 						)}
 					/>
 
 					{index > 0 && (
-						<Button variant="outline" size="sm" onClick={() => remove(index)} disabled={isFormBusy}>
+						<Button variant="danger" size="sm" onClick={() => remove(index)} disabled={isFormBusy}>
 							삭제
 						</Button>
 					)}
 				</div>
 			))}
 
-			<Button variant="tonal" size="sm" onClick={() => append("")} disabled={isFormBusy}>
+			<Button variant="secondary" size="sm" onClick={() => append("")} disabled={isFormBusy}>
 				+ URL 추가
 			</Button>
 		</div>

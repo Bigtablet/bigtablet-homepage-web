@@ -4,14 +4,14 @@
 	@include token.flex_column;
 	@include token.flex_center;
 	width: 100%;
-	gap: token.$spacing_48;
-	color: token.$color_text_inverse;
+	gap: token.$spacing_3xl;
+	color: token.$text_inverse;
 }
 
 .solution_title {
-	@include token.heading_medium_medium;
-	font-size: clamp(token.$font_size_24, 4vw, token.$font_size_40);
-	color: token.$color_text_inverse;
+	@include token.heading_2;
+	font-size: clamp(token.$font_size_2xl, 4vw, token.$font_size_4xl);
+	color: token.$text_inverse;
 	text-align: center;
 	white-space: pre-line;
 }
@@ -20,23 +20,23 @@
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
-	gap: token.$spacing_32;
+	gap: token.$spacing_xl;
 	width: 100%;
 	max-width: 1600px;
 	margin: 0 auto;
-	padding: 0 token.$spacing_32;
+	padding: 0 token.$spacing_xl;
 }
 
-@include token.from_large {
+@include token.desktop {
 	.solution_grid {
 		display: grid;
 		grid-template-columns: repeat(5, 1fr);
 	}
 }
 
-@include token.from_expanded {
+@include token.laptop {
 	.solution_title {
-		font-size: token.$font_size_32;
+		font-size: token.$font_size_3xl;
 	}
 
 	.solution_grid {
@@ -45,24 +45,24 @@
 	}
 }
 
-@include token.medium {
+@include token.tablet {
 	.solution {
-		gap: token.$spacing_40;
+		gap: token.$spacing_2xl;
 	}
 
 	.solution_title {
-		font-size: token.$font_size_24;
+		font-size: token.$font_size_2xl;
 	}
 
 	.solution_grid {
-		gap: token.$spacing_24;
-		padding: 0 token.$spacing_24;
+		gap: token.$spacing_lg;
+		padding: 0 token.$spacing_lg;
 	}
 }
 
-@include token.compact {
+@include token.mobile {
 	.solution_grid {
-		gap: token.$spacing_16;
-		padding: 0 token.$spacing_16;
+		gap: token.$spacing_md;
+		padding: 0 token.$spacing_md;
 	}
 }

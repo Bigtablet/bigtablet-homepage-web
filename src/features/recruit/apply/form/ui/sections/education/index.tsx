@@ -62,9 +62,10 @@ export const EducationSection = ({ form }: Props) => {
 
 				{!isGed && (
 					<TextField
+						size="sm"
 						placeholder="학교명"
 						error={!!errors.schoolName}
-						supportingText={errors.schoolName?.message as string}
+						helperText={errors.schoolName?.message as string}
 						{...register("schoolName")}
 					/>
 				)}
@@ -86,7 +87,7 @@ export const EducationSection = ({ form }: Props) => {
 								onChange={field.onChange}
 								placeholder="YYYY.MM"
 								error={!!errors.admissionYear}
-								supportingText={errors.admissionYear?.message as string}
+								helperText={errors.admissionYear?.message as string}
 							/>
 						)}
 					/>
@@ -104,7 +105,7 @@ export const EducationSection = ({ form }: Props) => {
 									onChange={field.onChange}
 									placeholder="입학년도"
 									error={!!errors.admissionYear}
-									supportingText={errors.admissionYear?.message as string}
+									helperText={errors.admissionYear?.message as string}
 								/>
 							)}
 						/>
@@ -118,16 +119,17 @@ export const EducationSection = ({ form }: Props) => {
 									onChange={field.onChange}
 									placeholder="졸업년도"
 									error={!!errors.graduationEnd}
-									supportingText={errors.graduationEnd?.message as string}
+									helperText={errors.graduationEnd?.message as string}
 								/>
 							)}
 						/>
 					</div>
 
 					<TextField
+						size="sm"
 						placeholder="계열 (학과)"
 						error={!!errors.department}
-						supportingText={errors.department?.message as string}
+						helperText={errors.department?.message as string}
 						{...register("department")}
 					/>
 				</>

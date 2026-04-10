@@ -2,9 +2,9 @@
 
 .profile {
   @include token.flex_column;
-  color: token.$color_text_body;
-  gap: token.$spacing_8;
-  padding: token.$spacing_24;
+  color: token.$text_normal;
+  gap: token.$spacing_sm;
+  padding: token.$spacing_lg;
 }
 
 .profile_image {
@@ -13,7 +13,7 @@
   aspect-ratio: 1 / 1.25;
   border-radius: token.$radius_md;
   overflow: hidden;
-  background: token.$color_bg_solid_dim;
+  background: token.$color_background_secondary;
 
   img {
     object-fit: cover;
@@ -26,13 +26,13 @@
 .profile_image_fallback {
   inline-size: 100%;
   block-size: 100%;
-  background: token.$color_border_subtle;
+  background: token.$color_border_light;
 }
 
 .profile_content {
   @include token.flex_column;
-  gap: token.$spacing_8;
-  color: token.$color_text_heading;
+  gap: token.$spacing_sm;
+  color: token.$text_strong;
 }
 
 .profile_info {
@@ -42,27 +42,27 @@
 
 .profile_position {
   @include token.body_medium;
-  font-size: token.$font_size_14;
-  color: token.$color_text_caption;
+  font-size: token.$font_size_sm;
+  color: token.$text_subtle;
 }
 
 .profile_name {
-  @include token.heading_medium_medium;
-  font-size: token.$font_size_24;
-  color: token.$color_text_heading;
+  @include token.heading_2;
+  font-size: token.$font_size_2xl;
+  color: token.$text_strong;
 }
 
 .profile_description {
-  @include token.body_medium;
-  font-size: token.$font_size_16;
-  color: token.$color_text_body;
-  line-height: token.$line_height_28;
+  @include token.body_regular;
+  font-size: token.$font_size_md;
+  color: token.$text_normal;
+  line-height: token.$line_height_relaxed;
 }
 
 .profile_links {
   display: grid;
   grid-auto-flow: column;
-  gap: token.$spacing_8;
+  gap: token.$spacing_sm;
   justify-content: start;
 }
 
@@ -70,37 +70,37 @@
   inline-size: 28px;
   block-size: 28px;
   border-radius: token.$radius_sm;
-  background: token.$color_text_heading;
-  color: token.$color_text_inverse;
+  background: token.$text_strong;
+  color: token.$text_inverse;
   display: grid;
   place-items: center;
   text-decoration: none;
 
   @include token.body_medium;
-  font-size: token.$font_size_12;
+  font-size: token.$font_size_xs;
   transition: background token.$transition_base;
 
   &:hover {
-    background: token.$color_brand_primary;
+    background: token.$color_primary;
   }
 }
 
-@include token.compact {
+@include token.mobile {
   .profile {
-    padding: token.$spacing_16;
+    padding: token.$spacing_md;
   }
 
   .profile_name {
-    font-size: token.$font_size_20;
+    font-size: token.$font_size_xl;
   }
 
   .profile_description {
-    font-size: token.$font_size_16;
+    font-size: token.$font_size_base;
   }
 
   .profile_link {
     inline-size: 24px;
     block-size: 24px;
-    font-size: token.$font_size_12;
+    font-size: token.$font_size_xs;
   }
 }

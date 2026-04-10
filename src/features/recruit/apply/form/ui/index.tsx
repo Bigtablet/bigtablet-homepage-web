@@ -48,7 +48,7 @@ const ApplyForm = ({ form, email, onSubmit }: ApplyFormProps) => {
 					<Button
 						className={styles.apply_submit}
 						type="submit"
-						size="xl"
+						size="lg"
 						disabled={isSubmitting || isUploading}
 					>
 						제출하기

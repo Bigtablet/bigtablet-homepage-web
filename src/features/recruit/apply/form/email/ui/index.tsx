@@ -33,17 +33,18 @@ const EmailVerifyInline = ({
 			<span className={styles.label}>이메일 인증</span>
 
 			<div className={styles.row}>
-				<TextField value={email} readOnly fullWidth />
+				<TextField value={email} readOnly size="sm" fullWidth />
 				<TextField
 					placeholder="인증 코드"
 					value={authCode}
 					onChangeAction={setAuthCode}
+					size="sm"
 					fullWidth
 				/>
-				<Button variant="text" size="sm" onClick={onSend} disabled={sendLoading || resendSec > 0}>
+				<Button variant="ghost" size="sm" onClick={onSend} disabled={sendLoading || resendSec > 0}>
 					{sendLoading ? "전송 중..." : resendSec > 0 ? `재전송 ${resendSec}s` : "전송"}
 				</Button>
-				<Button variant="text" size="sm" onClick={onVerify} disabled={checkLoading}>
+				<Button variant="ghost" size="sm" onClick={onVerify} disabled={checkLoading}>
 					{checkLoading ? "확인 중..." : "확인"}
 				</Button>
 			</div>

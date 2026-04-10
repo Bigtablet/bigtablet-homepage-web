@@ -19,7 +19,7 @@
 		"prepare": "husky"
 	},
 	"dependencies": {
-		"@bigtablet/design-system": "^1.23.0",
+		"@bigtablet/design-system": "1.22.0",
 		"@gsap/react": "^2.1.2",
 		"@hookform/resolvers": "^5.2.2",
 		"@opentelemetry/api": "^1.9.1",

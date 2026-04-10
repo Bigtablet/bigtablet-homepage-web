@@ -2,21 +2,21 @@
 
 .collabs {
 	@include token.flex_column;
-	padding: token.$spacing_32 0 token.$spacing_16;
-	color: token.$color_text_inverse;
-	gap: token.$spacing_48;
+	padding: token.$spacing_xl 0 token.$spacing_md;
+	color: token.$text_inverse;
+	gap: token.$spacing_3xl;
 }
 
 .collabs_title {
 	text-align: center;
-	font-size: token.$font_size_32;
-	color: token.$color_text_inverse;
+	font-size: token.$font_size_3xl;
+	color: token.$text_inverse;
 }
 
 .collabs_viewport {
 	position: relative;
 	overflow: hidden;
-	padding-block: token.$spacing_16;
+	padding-block: token.$spacing_md;
 	line-height: 0;
 
 	:global(.rfm-marquee) {
@@ -45,11 +45,11 @@
 	@include token.flex_center;
 	width: clamp(200px, 18vw, 280px);
 	height: clamp(64px, 6vw, 88px);
-	margin-right: token.$spacing_40;
+	margin-right: token.$spacing_2xl;
 	border-radius: token.$radius_lg;
-	background: token.$color_bg_solid;
-	box-shadow: token.$elevation_level1;
-	padding: token.$spacing_16 token.$spacing_24;
+	background: token.$color_background;
+	box-shadow: token.$shadow_sm;
+	padding: token.$spacing_md token.$spacing_lg;
 	overflow: hidden;
 	transition: transform token.$transition_fast, box-shadow token.$transition_base;
 
@@ -62,19 +62,19 @@
 	}
 }
 
-@include token.compact {
+@include token.mobile {
 	.collabs {
-		gap: token.$spacing_32;
+		gap: token.$spacing_xl;
 	}
 
 	.collabs_title {
-		font-size: token.$font_size_20;
+		font-size: token.$font_size_xl;
 	}
 
 	.collabs_card {
 		width: 180px;
 		height: 56px;
-		margin-right: token.$spacing_24;
-		padding: token.$spacing_8 token.$spacing_16;
+		margin-right: token.$spacing_lg;
+		padding: token.$spacing_sm token.$spacing_md;
 	}
 }

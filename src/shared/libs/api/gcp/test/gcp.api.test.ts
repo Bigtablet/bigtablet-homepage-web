@@ -22,9 +22,7 @@ describe("postGcpUploadApi", () => {
 	});
 
 	it("서버 에러 시 예외를 throw한다", async () => {
-		server.use(
-			http.post("*/gcp", () => HttpResponse.json(null, { status: 500 })),
-		);
+		server.use(http.post("*/gcp", () => HttpResponse.json(null, { status: 500 })));
 		const file = createMockFile();
 		await expect(postGcpUploadApi(file)).rejects.toThrow();
 	});

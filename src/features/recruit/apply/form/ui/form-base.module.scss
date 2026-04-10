@@ -3,45 +3,45 @@
 /* field */
 .field {
   @include token.flex_column;
-  gap: token.$spacing_sm;
+  gap: token.$spacing_8;
 
   .field_label {
     @include token.body_medium;
-    font-size: token.$font_size_sm;
-    color: token.$text_strong;
+    font-size: token.$font_size_14;
+    color: token.$color_text_heading;
   }
 }
 
 /* profile / section wrapper */
 .profile {
   @include token.flex_column;
-  gap: token.$spacing_sm;
+  gap: token.$spacing_8;
   width: 100%;
 }
 
 
 /* help / sub / error */
 .help {
-  font-size: token.$font_size_xs;
-  color: token.$text_subtle;
+  font-size: token.$font_size_12;
+  color: token.$color_text_caption;
 }
 
 .sub {
-  font-size: token.$font_size_xs;
-  color: token.$text_subtle;
-  margin-left: token.$spacing_xs;
+  font-size: token.$font_size_12;
+  color: token.$color_text_caption;
+  margin-left: token.$spacing_4;
 }
 
 .error {
-  font-size: token.$font_size_xs;
-  color: token.$color_error;
+  font-size: token.$font_size_12;
+  color: token.$color_status_error;
 }
 
 /* row / stack */
 .row {
   width: 100%;
   display: grid;
-  gap: token.$spacing_sm;
+  gap: token.$spacing_8;
 
   > * {
     min-width: 0;
@@ -51,5 +51,5 @@
 .stack {
   display: grid;
   grid-template-columns: 1fr;
-  gap: token.$spacing_sm;
+  gap: token.$spacing_8;
 }

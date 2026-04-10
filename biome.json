@@ -10,7 +10,9 @@
 	},
 	"formatter": {
 		"enabled": true,
-		"indentStyle": "tab"
+		"indentStyle": "tab",
+		"indentWidth": 2,
+		"lineWidth": 100
 	},
 	"linter": {
 		"enabled": true,
@@ -25,7 +27,8 @@
 			"correctness": {
 				"noUnusedFunctionParameters": "warn",
 				"noUnusedVariables": "warn",
-				"useExhaustiveDependencies": "warn"
+				"useExhaustiveDependencies": "warn",
+				"noUnusedImports": "error"
 			},
 			"style": {
 				"noNonNullAssertion": "warn"
@@ -45,7 +48,10 @@
 	},
 	"javascript": {
 		"formatter": {
-			"quoteStyle": "double"
+			"quoteStyle": "double",
+			"arrowParentheses": "always",
+			"trailingCommas": "all",
+			"semicolons": "always"
 		}
 	},
 	"assist": {
@@ -68,10 +74,7 @@
 			}
 		},
 		{
-			"includes": [
-				"src/features/cookie-consent/ui/index.tsx",
-				"src/shared/ui/header/index.tsx"
-			],
+			"includes": ["src/features/cookie-consent/ui/index.tsx", "src/shared/ui/header/index.tsx"],
 			"linter": {
 				"rules": {
 					"suspicious": {

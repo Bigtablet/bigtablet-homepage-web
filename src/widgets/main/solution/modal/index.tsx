@@ -44,12 +44,8 @@ const Modal = ({
 	const renderPanel = (item: ModalItem) => (
 		<div className={styles.solution_modal_panel}>
 			<div className={styles.solution_modal_left}>
-				<h3 className={styles.solution_modal_title}>
-					{t(`product.${item.id}.title`)}
-				</h3>
-				<p className={styles.solution_modal_desc}>
-					{t(`product.${item.id}.description`)}
-				</p>
+				<h3 className={styles.solution_modal_title}>{t(`product.${item.id}.title`)}</h3>
+				<p className={styles.solution_modal_desc}>{t(`product.${item.id}.description`)}</p>
 			</div>
 			<div className={styles.solution_modal_right}>
 				<video
@@ -116,11 +112,7 @@ const Modal = ({
 						‹
 					</button>
 
-					<div
-						className={styles.solution_modal_content}
-						role="dialog"
-						aria-modal="true"
-					>
+					<div className={styles.solution_modal_content} role="dialog" aria-modal="true">
 						<div
 							className={`${styles.solution_modal_track} ${
 								sliding

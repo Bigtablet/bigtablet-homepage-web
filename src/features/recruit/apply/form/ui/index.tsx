@@ -32,19 +32,11 @@ const ApplyForm = ({ form, email, onSubmit }: ApplyFormProps) => {
 	};
 
 	return (
-		<form
-			className={styles.apply_form}
-			noValidate
-			onSubmit={handleSubmit(handleSubmitWithConfirm)}
-		>
+		<form className={styles.apply_form} noValidate onSubmit={handleSubmit(handleSubmitWithConfirm)}>
 			<div className={styles.apply_grid}>
 				<div className={styles.apply_left}>
 					<ContactSection form={form} email={email} />
-					<PortfolioSection
-						form={form}
-						upload={upload}
-						isUploading={isUploading}
-					/>
+					<PortfolioSection form={form} upload={upload} isUploading={isUploading} />
 					<EducationSection form={form} />
 					<MilitarySection form={form} />
 					<LinksSection form={form} />
@@ -56,7 +48,7 @@ const ApplyForm = ({ form, email, onSubmit }: ApplyFormProps) => {
 					<Button
 						className={styles.apply_submit}
 						type="submit"
-						size="lg"
+						size="xl"
 						disabled={isSubmitting || isUploading}
 					>
 						제출하기
@@ -64,17 +56,12 @@ const ApplyForm = ({ form, email, onSubmit }: ApplyFormProps) => {
 
 					<p className={styles.apply_footer}>
 						기타 채용 관련 문의사항은{" "}
-						<a href="mailto:recruit@bigtablet.com">recruit@bigtablet.com</a>{" "}
-						으로 연락 바랍니다
+						<a href="mailto:recruit@bigtablet.com">recruit@bigtablet.com</a> 으로 연락 바랍니다
 					</p>
 				</div>
 
 				<div className={styles.apply_right}>
-					<ProfileSection
-						form={form}
-						upload={upload}
-						isUploading={isUploading}
-					/>
+					<ProfileSection form={form} upload={upload} isUploading={isUploading} />
 				</div>
 			</div>
 		</form>

@@ -2,21 +2,21 @@
 
 .field {
 	@include token.flex_column;
-	gap: token.$spacing_sm;
+	gap: token.$spacing_8;
 }
 
 .label {
 	@include token.body_medium;
-	color: token.$text_strong;
+	color: token.$color_text_heading;
 }
 
 .row {
 	display: flex;
 	align-items: center;
-	gap: token.$spacing_sm;
+	gap: token.$spacing_8;
 }
 
 .help {
-	@include token.text_sm;
-	color: token.$text_subtle;
+	@include token.body_small;
+	color: token.$color_text_caption;
 }

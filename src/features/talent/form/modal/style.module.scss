@@ -3,8 +3,8 @@
 .modal_overlay {
   position: fixed;
   inset: 0;
-  background: token.$color_overlay;
-  z-index: calc(token.$z_modal + 10);
+  background: token.$color_bg_overlay;
+  z-index: calc(token.$z_level4 + 10);
   @include token.flex_center;
   backdrop-filter: blur(6px);
 }
@@ -13,60 +13,60 @@
   width: 420px;
   max-height: 80vh;
   overflow-y: auto;
-  background: token.$color_background;
+  background: token.$color_bg_solid;
   border-radius: token.$radius_lg;
-  box-shadow: token.$shadow_lg;
-  padding: token.$spacing_3xl;
+  box-shadow: token.$elevation_level3;
+  padding: token.$spacing_48;
   animation: fade_in token.$transition_base;
 
   h2 {
-    @include token.heading_3;
-    color: token.$text_strong;
-    margin-bottom: token.$spacing_2xl;
+    @include token.heading_small_medium;
+    color: token.$color_text_heading;
+    margin-bottom: token.$spacing_40;
   }
 }
 
 .form {
   @include token.flex_column;
-  gap: token.$spacing_xl;
+  gap: token.$spacing_32;
 }
 
 .portfolio {
   @include token.flex_column;
-  gap: token.$spacing_sm;
-  @include token.body_regular;
-  color: token.$text_strong;
+  gap: token.$spacing_8;
+  @include token.body_medium;
+  color: token.$color_text_heading;
 }
 
 .portfolio_header {
   @include token.flex_between;
   align-items: center;
-  gap: token.$spacing_md;
+  gap: token.$spacing_16;
 
   span {
     @include token.body_medium;
-    color: token.$text_strong;
+    color: token.$color_text_heading;
   }
 }
 
 .portfolio_toggle {
   display: inline-flex;
   align-items: center;
-  gap: token.$spacing_xs;
-  padding: token.$spacing_xs;
+  gap: token.$spacing_4;
+  padding: token.$spacing_4;
   border-radius: token.$radius_full;
-  background: token.$color_background_secondary;
-  border: 1px solid token.$color_border_light;
+  background: token.$color_bg_solid_dim;
+  border: 1px solid token.$color_border_subtle;
 }
 
 .portfolio_toggle_button {
-  padding: token.$spacing_xs token.$spacing_md;
+  padding: token.$spacing_4 token.$spacing_16;
   border-radius: token.$radius_full;
   background: transparent;
   border: none;
   cursor: pointer;
-  @include token.text_sm;
-  color: token.$text_subtle;
+  @include token.body_small;
+  color: token.$color_text_caption;
   transition: token.$transition_base;
 
   &:disabled {
@@ -75,19 +75,19 @@
   }
 
   &:hover:not(:disabled) {
-    background: token.$color_background_secondary;
+    background: token.$color_bg_solid_dim;
   }
 }
 
 .portfolio_toggle_active {
-  padding: token.$spacing_xs token.$spacing_md;
+  padding: token.$spacing_4 token.$spacing_16;
   border-radius: token.$radius_full;
   border: none;
   cursor: pointer;
-  @include token.text_sm;
+  @include token.body_small;
   transition: token.$transition_base;
-  background: token.$color_background_secondary;
-  color: token.$color_primary;
+  background: token.$color_bg_solid_dim;
+  color: token.$color_brand_primary;
 
   &:disabled {
     opacity: 0.5;
@@ -96,41 +96,41 @@
 }
 
 .portfolio_file {
-  margin-top: token.$spacing_sm;
+  margin-top: token.$spacing_8;
   @include token.flex_column;
-  gap: token.$spacing_xs;
+  gap: token.$spacing_4;
 }
 
 .helper {
-  @include token.text_sm;
-  color: token.$text_subtle;
+  @include token.body_small;
+  color: token.$color_text_caption;
 }
 
 .portfolio_error {
-  @include token.text_sm;
-  color: token.$color_error;
+  @include token.body_small;
+  color: token.$color_status_error;
 }
 
 .urls {
   @include token.flex_column;
-  gap: token.$spacing_md;
+  gap: token.$spacing_16;
 
   span {
-    @include token.text_sm;
-    color: token.$text_subtle;
+    @include token.body_small;
+    color: token.$color_text_caption;
   }
 
   .url_row {
     @include token.flex_column;
-    gap: token.$spacing_xs;
+    gap: token.$spacing_4;
     align-items: flex-end;
   }
 }
 
 .actions {
   @include token.flex_right;
-  gap: token.$spacing_lg;
-  margin-top: token.$spacing_xl;
+  gap: token.$spacing_24;
+  margin-top: token.$spacing_32;
 }
 
 @keyframes fade_in {

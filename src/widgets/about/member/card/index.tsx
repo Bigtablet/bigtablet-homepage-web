@@ -18,11 +18,7 @@ const MemberCard = ({ memberSlug }: MemberCardProps) => {
 	const href = `/about/${memberSlug}`;
 
 	return (
-		<BigtabletLink
-			href={href}
-			className={styles.member_card}
-			aria-label={`${name} 상세보기`}
-		>
+		<BigtabletLink href={href} className={styles.member_card} aria-label={`${name} 상세보기`}>
 			<div className={styles.member_card_image} aria-hidden>
 				<Image
 					src={imageSrc}

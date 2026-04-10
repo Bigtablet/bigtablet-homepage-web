@@ -81,15 +81,11 @@ describe("useApplySubmit", () => {
 	describe("onValid", () => {
 		it("이메일 미인증 시 warning 토스트를 표시하고 mutation을 호출하지 않는다", async () => {
 			const form = makeMockForm();
-			const { result } = renderHook(() =>
-				useApplySubmit({ form, jobId: 1, emailVerified: false }),
-			);
+			const { result } = renderHook(() => useApplySubmit({ form, jobId: 1, emailVerified: false }));
 
 			await act(() => result.current.onSubmit());
 
-			expect(mockToast.warning).toHaveBeenCalledWith(
-				"이메일 인증을 완료해주세요.",
-			);
+			expect(mockToast.warning).toHaveBeenCalledWith("이메일 인증을 완료해주세요.");
 			expect(mockMutateAsync).not.toHaveBeenCalled();
 		});
 
@@ -97,9 +93,7 @@ describe("useApplySubmit", () => {
 			mockMutateAsync.mockResolvedValue(undefined);
 			const form = makeMockForm({ educationLevel: "GED" as const });
 
-			const { result } = renderHook(() =>
-				useApplySubmit({ form, jobId: 1, emailVerified: true }),
-			);
+			const { result } = renderHook(() => useApplySubmit({ form, jobId: 1, emailVerified: true }));
 
 			await act(() => result.current.onSubmit());
 
@@ -116,9 +110,7 @@ describe("useApplySubmit", () => {
 			mockMutateAsync.mockResolvedValue(undefined);
 
 			const form = makeMockForm();
-			const { result } = renderHook(() =>
-				useApplySubmit({ form, jobId: 42, emailVerified: true }),
-			);
+			const { result } = renderHook(() => useApplySubmit({ form, jobId: 42, emailVerified: true }));
 
 			await act(() => result.current.onSubmit());
 
@@ -130,15 +122,11 @@ describe("useApplySubmit", () => {
 			mockMutateAsync.mockRejectedValue(new Error("서버 오류"));
 
 			const form = makeMockForm();
-			const { result } = renderHook(() =>
-				useApplySubmit({ form, jobId: 1, emailVerified: true }),
-			);
+			const { result } = renderHook(() => useApplySubmit({ form, jobId: 1, emailVerified: true }));
 
 			await act(() => result.current.onSubmit());
 
-			expect(mockToast.error).toHaveBeenCalledWith(
-				"지원 중 문제가 발생했습니다.",
-			);
+			expect(mockToast.error).toHaveBeenCalledWith("지원 중 문제가 발생했습니다.");
 			expect(mockPush).not.toHaveBeenCalled();
 		});
 	});
@@ -149,9 +137,7 @@ describe("useApplySubmit", () => {
 				name: { type: "required", message: "이름을 입력해주세요." },
 			};
 			const form = makeMockForm(undefined, errors);
-			const { result } = renderHook(() =>
-				useApplySubmit({ form, jobId: 1, emailVerified: true }),
-			);
+			const { result } = renderHook(() => useApplySubmit({ form, jobId: 1, emailVerified: true }));
 
 			await act(() => result.current.onSubmit());
 
@@ -163,9 +149,7 @@ describe("useApplySubmit", () => {
 				name: { type: "required" },
 			};
 			const form = makeMockForm(undefined, errors);
-			const { result } = renderHook(() =>
-				useApplySubmit({ form, jobId: 1, emailVerified: true }),
-			);
+			const { result } = renderHook(() => useApplySubmit({ form, jobId: 1, emailVerified: true }));
 
 			await act(() => result.current.onSubmit());
 

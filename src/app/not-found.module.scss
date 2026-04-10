@@ -3,8 +3,8 @@
 .root {
 	@include token.flex_column;
 	@include token.flex_center;
-	gap: token.$spacing_md;
-	padding: token.$spacing_3xl token.$spacing_lg;
+	gap: token.$spacing_16;
+	padding: token.$spacing_48 token.$spacing_24;
 	text-align: center;
 }
 
@@ -14,33 +14,33 @@
 	justify-content: center;
 	width: 64px;
 	height: 64px;
-	border-radius: token.$radius_pill;
-	background: token.$text_strong;
-	color: token.$text_inverse;
-	font-size: token.$font_size_lg;
+	border-radius: token.$radius_full;
+	background: token.$color_text_heading;
+	color: token.$color_text_inverse;
+	font-size: token.$font_size_18;
 	font-weight: token.$font_weight_bold;
 }
 
 .title {
-	font-size: token.$font_size_xl;
+	font-size: token.$font_size_20;
 	font-weight: token.$font_weight_bold;
-	color: token.$text_strong;
+	color: token.$color_text_heading;
 }
 
 .desc {
-	font-size: token.$font_size_sm;
-	color: token.$text_subtle;
-	line-height: token.$line_height_relaxed;
+	font-size: token.$font_size_14;
+	color: token.$color_text_caption;
+	line-height: token.$line_height_28;
 }
 
 .actions {
 	display: flex;
-	gap: token.$spacing_sm;
-	margin-top: token.$spacing_sm;
+	gap: token.$spacing_8;
+	margin-top: token.$spacing_8;
 	white-space: nowrap;
 }
 
-@include token.mobile {
+@include token.compact {
 	.actions {
 		@include token.flex_column;
 		width: 100%;

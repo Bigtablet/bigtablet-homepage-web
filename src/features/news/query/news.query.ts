@@ -36,13 +36,7 @@ export const newsQueries = {
  * @param page Page number
  * @param size Items per page
  */
-export const useNewsPageQuery = ({
-	page,
-	size,
-}: {
-	page: number;
-	size: number;
-}) => {
+export const useNewsPageQuery = ({ page, size }: { page: number; size: number }) => {
 	return useQuery({
 		...newsQueries.page(page, size),
 	});

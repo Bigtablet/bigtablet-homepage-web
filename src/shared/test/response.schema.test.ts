@@ -1,7 +1,4 @@
-import {
-	baseResponseSchema,
-	okResponseSchema,
-} from "src/shared/schema/response/response.schema";
+import { baseResponseSchema, okResponseSchema } from "src/shared/schema/response/response.schema";
 import { describe, expect, it } from "vitest";
 import { z } from "zod";
 

@@ -26,12 +26,7 @@ interface NewsListProps {
  * @param props.isLoading - 로딩 상태
  * @param props.pageSize - 페이지 크기 (스켈레톤 수 결정)
  */
-const NewsListSection = ({
-	items,
-	locale,
-	isLoading,
-	pageSize = 6,
-}: NewsListProps) => {
+const NewsListSection = ({ items, locale, isLoading, pageSize = 6 }: NewsListProps) => {
 	const showSkeleton = useDeferredLoading(isLoading);
 	const t = useTranslations("news");
 	const skeletonKeys = useMemo(
@@ -61,9 +56,7 @@ const NewsListSection = ({
 		<section className={styles.news_list}>
 			<div className={styles.news_list_grid}>{renderList()}</div>
 
-			{!isLoading && items.length === 0 && (
-				<p className={styles.news_list_empty}>{t("empty")}</p>
-			)}
+			{!isLoading && items.length === 0 && <p className={styles.news_list_empty}>{t("empty")}</p>}
 		</section>
 	);
 };

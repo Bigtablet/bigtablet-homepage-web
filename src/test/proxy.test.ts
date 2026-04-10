@@ -84,18 +84,12 @@ describe("middleware", () => {
 
 		it("/ko → / 308 리다이렉트", () => {
 			middleware(makeRequest("/ko"));
-			expect(mockRedirect).toHaveBeenCalledWith(
-				expect.objectContaining({ pathname: "/" }),
-				308,
-			);
+			expect(mockRedirect).toHaveBeenCalledWith(expect.objectContaining({ pathname: "/" }), 308);
 		});
 
 		it("쿼리 파라미터를 유지한다", () => {
 			middleware(makeRequest("/en/about", "?tab=1"));
-			expect(mockRedirect).toHaveBeenCalledWith(
-				expect.objectContaining({ search: "?tab=1" }),
-				308,
-			);
+			expect(mockRedirect).toHaveBeenCalledWith(expect.objectContaining({ search: "?tab=1" }), 308);
 		});
 	});
 
@@ -109,9 +103,7 @@ describe("middleware", () => {
 
 	describe("locale cookie", () => {
 		it("쿠키가 없으면 Accept-Language 기반으로 설정한다", () => {
-			middleware(
-				makeRequest("/about", "", { acceptLanguage: "ko-KR,ko;q=0.9" }),
-			);
+			middleware(makeRequest("/about", "", { acceptLanguage: "ko-KR,ko;q=0.9" }));
 			expect(mockCookies.has("NEXT_LOCALE")).toBe(true);
 			expect(mockCookies.get("NEXT_LOCALE")).toMatchObject({
 				value: "ko",
@@ -124,9 +116,7 @@ describe("middleware", () => {
 		});
 
 		it("지원하지 않는 언어이면 기본값 en을 설정한다", () => {
-			middleware(
-				makeRequest("/about", "", { acceptLanguage: "fr-FR,fr;q=0.9" }),
-			);
+			middleware(makeRequest("/about", "", { acceptLanguage: "fr-FR,fr;q=0.9" }));
 			expect(mockCookies.get("NEXT_LOCALE")).toMatchObject({
 				value: "en",
 			});

@@ -3,10 +3,7 @@
 import { useTranslations } from "next-intl";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { buildInitialSelected } from "src/widgets/main/solution/model/select.util";
-import {
-	type Product,
-	SOURCES,
-} from "src/widgets/main/solution/model/video-sources";
+import { type Product, SOURCES } from "src/widgets/main/solution/model/video-sources";
 import Card from "../card";
 import Modal from "../modal";
 import styles from "./style.module.scss";
@@ -46,11 +43,8 @@ const SolutionSection = () => {
 		[selected],
 	);
 
-	const indexOfProduct = (id: number) =>
-		products.findIndex((product) => product.id === id);
-	const current = activeId
-		? (products.find((product) => product.id === activeId) ?? null)
-		: null;
+	const indexOfProduct = (id: number) => products.findIndex((product) => product.id === id);
+	const current = activeId ? (products.find((product) => product.id === activeId) ?? null) : null;
 	const ghost = sliding
 		? (products.find((product) => product.id === sliding.nextId) ?? null)
 		: null;
@@ -91,9 +85,7 @@ const SolutionSection = () => {
 		const sy = Math.max(0.01, rect.height / targetH);
 		setAnimVars({ dx, dy, sx, sy });
 		setActiveId(id);
-		requestAnimationFrame(() =>
-			requestAnimationFrame(() => setIsEntering(true)),
-		);
+		requestAnimationFrame(() => requestAnimationFrame(() => setIsEntering(true)));
 	};
 
 	const go = (dir: "next" | "prev") => {
@@ -114,8 +106,7 @@ const SolutionSection = () => {
 
 	useEffect(() => {
 		if (!activeId) return;
-		const onKey = (event: KeyboardEvent) =>
-			event.key === "Escape" && closeNow();
+		const onKey = (event: KeyboardEvent) => event.key === "Escape" && closeNow();
 		window.addEventListener("keydown", onKey);
 		return () => window.removeEventListener("keydown", onKey);
 	}, [activeId, closeNow]);

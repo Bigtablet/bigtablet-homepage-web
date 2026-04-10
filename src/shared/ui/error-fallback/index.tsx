@@ -29,7 +29,7 @@ const ErrorFallback = ({
 			</p>
 
 			<div className={styles.error_fallback_actions}>
-				<Button variant="primary" onClick={() => reset()}>
+				<Button variant="filled" onClick={() => reset()}>
 					다시 시도
 				</Button>
 

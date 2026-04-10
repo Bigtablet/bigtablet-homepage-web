@@ -13,5 +13,4 @@ import type { PostTalent } from "../schema/talent.schema";
  * @param data - 탤런트 등록 요청 데이터 (이름, 이메일, 부서, 포트폴리오 URL)
  * @returns 성공 응답 객체
  */
-export const PostTalentApi = (data: PostTalent) =>
-	postParsed("/talent", okResponseSchema, data);
+export const PostTalentApi = (data: PostTalent) => postParsed("/talent", okResponseSchema, data);

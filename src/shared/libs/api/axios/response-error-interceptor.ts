@@ -13,9 +13,7 @@ const INITIAL_RETRY_DELAY_MILLISECONDS = 1000;
  * - 5xx 에러: 지수 백오프로 최대 2회 재시도 (1초, 2초)
  * - 그 외: HttpError로 변환하여 전파
  */
-export const createResponseErrorInterceptor = (
-	axiosInstance: AxiosInstance,
-) => {
+export const createResponseErrorInterceptor = (axiosInstance: AxiosInstance) => {
 	return async (error: AxiosError) => {
 		if (axios.isCancel(error)) {
 			return Promise.reject(error);
@@ -35,12 +33,9 @@ export const createResponseErrorInterceptor = (
 
 				if (currentRetryCount < MAXIMUM_RETRY_COUNT) {
 					requestConfig.retryCount = currentRetryCount + 1;
-					const delayMilliseconds =
-						INITIAL_RETRY_DELAY_MILLISECONDS * 2 ** currentRetryCount;
+					const delayMilliseconds = INITIAL_RETRY_DELAY_MILLISECONDS * 2 ** currentRetryCount;
 
-					await new Promise((resolve) =>
-						setTimeout(resolve, delayMilliseconds),
-					);
+					await new Promise((resolve) => setTimeout(resolve, delayMilliseconds));
 					return axiosInstance(requestConfig);
 				}
 			}
@@ -63,9 +58,7 @@ export const createResponseErrorInterceptor = (
 				error.message ??
 				"network_error",
 		);
-		const code = String(
-			(error.response?.data as Record<string, unknown>)?.code ?? "",
-		);
+		const code = String((error.response?.data as Record<string, unknown>)?.code ?? "");
 
 		return Promise.reject(
 			Object.assign(new Error(message), {

@@ -39,13 +39,7 @@ export const EducationSection = ({ form }: Props) => {
 		<div className={styles.field}>
 			<span className={baseStyles.field_label}>최종 학력*</span>
 
-			<div
-				className={[
-					styles.row,
-					styles.row_edu,
-					isGed ? styles.is_ged : "",
-				].join(" ")}
-			>
+			<div className={[styles.row, styles.row_edu, isGed ? styles.is_ged : ""].join(" ")}>
 				<Controller
 					control={control}
 					name="educationLevel"
@@ -68,19 +62,16 @@ export const EducationSection = ({ form }: Props) => {
 
 				{!isGed && (
 					<TextField
-						size="sm"
 						placeholder="학교명"
 						error={!!errors.schoolName}
-						helperText={errors.schoolName?.message as string}
+						supportingText={errors.schoolName?.message as string}
 						{...register("schoolName")}
 					/>
 				)}
 			</div>
 
 			{errors.educationLevel && (
-				<small className={styles.error}>
-					{errors.educationLevel.message as string}
-				</small>
+				<small className={styles.error}>{errors.educationLevel.message as string}</small>
 			)}
 
 			{isGed ? (
@@ -95,7 +86,7 @@ export const EducationSection = ({ form }: Props) => {
 								onChange={field.onChange}
 								placeholder="YYYY.MM"
 								error={!!errors.admissionYear}
-								helperText={errors.admissionYear?.message as string}
+								supportingText={errors.admissionYear?.message as string}
 							/>
 						)}
 					/>
@@ -113,7 +104,7 @@ export const EducationSection = ({ form }: Props) => {
 									onChange={field.onChange}
 									placeholder="입학년도"
 									error={!!errors.admissionYear}
-									helperText={errors.admissionYear?.message as string}
+									supportingText={errors.admissionYear?.message as string}
 								/>
 							)}
 						/>
@@ -127,17 +118,16 @@ export const EducationSection = ({ form }: Props) => {
 									onChange={field.onChange}
 									placeholder="졸업년도"
 									error={!!errors.graduationEnd}
-									helperText={errors.graduationEnd?.message as string}
+									supportingText={errors.graduationEnd?.message as string}
 								/>
 							)}
 						/>
 					</div>
 
 					<TextField
-						size="sm"
 						placeholder="계열 (학과)"
 						error={!!errors.department}
-						helperText={errors.department?.message as string}
+						supportingText={errors.department?.message as string}
 						{...register("department")}
 					/>
 				</>

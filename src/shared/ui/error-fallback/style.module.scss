@@ -6,38 +6,38 @@
     align-items: center;
     justify-content: center;
     min-height: 50vh;
-    padding: token.$spacing_3xl token.$spacing_xl;
+    padding: token.$spacing_48 token.$spacing_32;
     text-align: center;
 }
 
 .error_fallback_title {
-    font-size: token.$font_size_2xl;
+    font-size: token.$font_size_24;
     font-weight: token.$font_weight_bold;
-    color: token.$text_strong;
-    margin-bottom: token.$spacing_md;
+    color: token.$color_text_heading;
+    margin-bottom: token.$spacing_16;
 }
 
 .error_fallback_desc {
-    font-size: token.$font_size_md;
-    color: token.$text_normal;
-    line-height: token.$line_height_normal;
-    margin-bottom: token.$spacing_2xl;
+    font-size: token.$font_size_16;
+    color: token.$color_text_body;
+    line-height: token.$line_height_24;
+    margin-bottom: token.$spacing_40;
 }
 
 .error_fallback_actions {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: token.$spacing_lg;
+    gap: token.$spacing_24;
 }
 
 .error_fallback_back {
-    font-size: token.$font_size_sm;
-    color: token.$text_subtle;
+    font-size: token.$font_size_14;
+    color: token.$color_text_caption;
     text-decoration: underline;
     transition: color token.$transition_base;
 
     &:hover {
-        color: token.$text_strong;
+        color: token.$color_text_heading;
     }
 }

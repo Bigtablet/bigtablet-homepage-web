@@ -14,7 +14,7 @@ type Props = {
 	placeholder?: string;
 	disabled?: boolean;
 	error?: boolean;
-	helperText?: string;
+	supportingText?: string;
 };
 
 const toDate = (value?: string) => {
@@ -31,10 +31,9 @@ const toValue = (date: Date | null): string => {
 	return `${year}-${month}`;
 };
 
-const MonthInput = forwardRef<
-	HTMLInputElement,
-	React.ComponentProps<typeof TextField>
->((props, ref) => <TextField {...props} ref={ref} readOnly />);
+const MonthInput = forwardRef<HTMLInputElement, React.ComponentProps<typeof TextField>>(
+	(props, ref) => <TextField {...props} ref={ref} readOnly />,
+);
 MonthInput.displayName = "MonthInput";
 
 /**
@@ -54,7 +53,7 @@ const MonthPickerField = ({
 	placeholder,
 	disabled,
 	error,
-	helperText,
+	supportingText,
 }: Props) => {
 	return (
 		<div className={styles.month_picker}>
@@ -70,9 +69,8 @@ const MonthPickerField = ({
 				customInput={
 					<MonthInput
 						placeholder={placeholder ?? "YYYY.MM"}
-						size="sm"
 						error={error}
-						helperText={helperText}
+						supportingText={supportingText}
 					/>
 				}
 				className={styles.month_picker_input}

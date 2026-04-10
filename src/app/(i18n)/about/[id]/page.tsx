@@ -8,9 +8,7 @@ type PageProps = {
 };
 
 /** 멤버 상세 동적 메타데이터 */
-export const generateMetadata = async ({
-	params,
-}: PageProps): Promise<Metadata> => {
+export const generateMetadata = async ({ params }: PageProps): Promise<Metadata> => {
 	const { id } = params;
 	if (!isMemberSlug(id)) return {};
 
@@ -20,9 +18,7 @@ export const generateMetadata = async ({
 			| Record<string, unknown>
 			| undefined;
 		const team = about?.team as Record<string, unknown> | undefined;
-		const members = team?.members as
-			| Record<string, Record<string, unknown>>
-			| undefined;
+		const members = team?.members as Record<string, Record<string, unknown>> | undefined;
 		const member = members?.[id];
 		if (!member) return {};
 

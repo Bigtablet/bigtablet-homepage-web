@@ -28,10 +28,9 @@ export const ContactSection = ({ form, email }: Props) => {
 			<div className={styles.field}>
 				<span className={baseStyles.field_label}>이름*</span>
 				<TextField
-					size="sm"
 					placeholder="홍길동"
 					error={!!errors.name}
-					helperText={errors.name?.message as string}
+					supportingText={errors.name?.message as string}
 					{...register("name")}
 				/>
 			</div>
@@ -44,16 +43,13 @@ export const ContactSection = ({ form, email }: Props) => {
 					name="phoneNumber"
 					render={({ field }) => (
 						<TextField
-							size="sm"
 							placeholder="010-1234-5678"
 							inputMode="numeric"
 							maxLength={13}
-							onChangeAction={(value) =>
-								field.onChange(formatPhone010(value as string))
-							}
+							onChangeAction={(value) => field.onChange(formatPhone010(value as string))}
 							value={field.value ?? ""}
 							error={!!errors.phoneNumber}
-							helperText={errors.phoneNumber?.message as string}
+							supportingText={errors.phoneNumber?.message as string}
 						/>
 					)}
 				/>
@@ -64,21 +60,19 @@ export const ContactSection = ({ form, email }: Props) => {
 				<span className={baseStyles.field_label}>이메일*</span>
 				<div className={`${styles.row} ${styles.row_email}`}>
 					<TextField
-						size="sm"
 						type="email"
 						placeholder="example@email.com"
 						error={!!errors.email}
-						helperText={errors.email?.message as string}
+						supportingText={errors.email?.message as string}
 						{...register("email")}
 					/>
 					<TextField
-						size="sm"
 						placeholder="인증코드"
 						value={email.authCode}
 						onChangeAction={(value) => email.setAuthCode(value as string)}
 					/>
 					<Button
-						variant="secondary"
+						variant="tonal"
 						onClick={email.send}
 						disabled={email.sendLoading || email.resendSec > 0}
 						size="sm"
@@ -91,7 +85,7 @@ export const ContactSection = ({ form, email }: Props) => {
 								: "전송"}
 					</Button>
 					<Button
-						variant="secondary"
+						variant="tonal"
 						onClick={email.verify}
 						disabled={email.checkLoading}
 						size="sm"
@@ -116,17 +110,12 @@ export const ContactSection = ({ form, email }: Props) => {
 			<div className={styles.field}>
 				<span className={baseStyles.field_label}>거주지*</span>
 				<TextField
-					size="sm"
 					placeholder="서울특별시 중구 세종대로 110"
 					error={!!errors.address}
-					helperText={errors.address?.message as string}
+					supportingText={errors.address?.message as string}
 					{...register("address")}
 				/>
-				<TextField
-					size="sm"
-					placeholder="상세주소"
-					{...register("addressDetail")}
-				/>
+				<TextField placeholder="상세주소" {...register("addressDetail")} />
 			</div>
 		</>
 	);

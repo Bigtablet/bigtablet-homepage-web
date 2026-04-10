@@ -35,10 +35,10 @@ const NotFoundPage = () => {
 				</p>
 
 				<div className={styles.actions}>
-					<Button variant="primary" onClick={handleHome}>
+					<Button variant="filled" onClick={handleHome}>
 						홈으로 이동
 					</Button>
-					<Button variant="secondary" onClick={handleBack}>
+					<Button variant="tonal" onClick={handleBack}>
 						이전 페이지
 					</Button>
 				</div>

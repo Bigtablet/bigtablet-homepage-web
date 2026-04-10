@@ -3,7 +3,7 @@
 .news_list {
   @include token.flex_column;
   width: 100%;
-  padding: token.$spacing_xl 0;
+  padding: token.$spacing_32 0;
   align-items: center;
 }
 
@@ -12,30 +12,30 @@
   max-width: 1200px;
   display: grid;
   grid-template-columns: repeat(1, minmax(0, 1fr));
-  gap: token.$spacing_xl;
+  gap: token.$spacing_32;
 }
 
 .news_list_empty {
-  @include token.body_regular;
-  font-size: token.$font_size_lg;
-  color: token.$text_subtle;
-  margin-top: token.$spacing_3xl;
+  @include token.body_medium;
+  font-size: token.$font_size_18;
+  color: token.$color_text_caption;
+  margin-top: token.$spacing_48;
   text-align: center;
 }
 
-@include token.tablet {
+@include token.medium {
   .news_list_grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
-@include token.laptop {
+@include token.from_expanded {
   .news_list_grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
-@include token.desktop {
+@include token.from_large {
   .news_list_grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }

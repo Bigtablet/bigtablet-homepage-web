@@ -14,13 +14,7 @@ const COOLDOWN_SEC = 3;
  * 전역 에러 페이지
  * - 재시도 쿨다운 (3초) + 최대 3회 제한
  */
-const GlobalError = ({
-	error: _error,
-	reset,
-}: {
-	error: Error;
-	reset: () => void;
-}) => {
+const GlobalError = ({ error: _error, reset }: { error: Error; reset: () => void }) => {
 	const router = BigtabletRouter();
 	const [retryCount, setRetryCount] = useState(0);
 	const [cooldown, setCooldown] = useState(0);
@@ -92,14 +86,10 @@ const GlobalError = ({
 				)}
 
 				<div className={styles.error_actions}>
-					<Button
-						variant="primary"
-						onClick={handleRetry}
-						disabled={isCooling || isMaxRetry}
-					>
+					<Button variant="filled" onClick={handleRetry} disabled={isCooling || isMaxRetry}>
 						{retryLabel}
 					</Button>
-					<Button variant="secondary" onClick={handleHome}>
+					<Button variant="tonal" onClick={handleHome}>
 						홈으로 이동
 					</Button>
 				</div>

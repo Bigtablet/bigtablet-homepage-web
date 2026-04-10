@@ -6,10 +6,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import Marquee from "react-fast-marquee";
 import styles from "./style.module.scss";
 
-const logos = [
-	"/images/collaborations/google.png",
-	"/images/collaborations/nvdia.png",
-];
+const logos = ["/images/collaborations/google.png", "/images/collaborations/nvdia.png"];
 
 const GAP = 24;
 const CARD_W = 260;
@@ -32,10 +29,7 @@ const Collaborations = ({ speed = 40 }: { speed?: number }) => {
 		const calc = () => {
 			const containerWidth = ref.current?.offsetWidth ?? 1200;
 			const unit = CARD_W + GAP;
-			const need = Math.max(
-				4,
-				Math.ceil((containerWidth * 2) / (logos.length * unit)),
-			);
+			const need = Math.max(4, Math.ceil((containerWidth * 2) / (logos.length * unit)));
 			setRepeat(need);
 		};
 		calc();
@@ -43,10 +37,7 @@ const Collaborations = ({ speed = 40 }: { speed?: number }) => {
 		return () => window.removeEventListener("resize", calc);
 	}, []);
 
-	const items = useMemo(
-		() => Array.from({ length: repeat }).flatMap(() => logos),
-		[repeat],
-	);
+	const items = useMemo(() => Array.from({ length: repeat }).flatMap(() => logos), [repeat]);
 
 	return (
 		<section className={styles.collabs}>

@@ -82,7 +82,7 @@ export const PortfolioSection = ({
 							placeholder="https://portfolio.example.com"
 							disabled={isFormBusy}
 							error={!!errors.portfolioUrl}
-							helperText={errors.portfolioUrl?.message}
+							supportingText={errors.portfolioUrl?.message}
 							fullWidth
 						/>
 					)}
@@ -96,13 +96,9 @@ export const PortfolioSection = ({
 						onFiles={handlePortfolioFile}
 						disabled={isFormBusy}
 					/>
-					{watchPortfolioUrl && (
-						<p className={styles.helper}>업로드된 URL: {watchPortfolioUrl}</p>
-					)}
+					{watchPortfolioUrl && <p className={styles.helper}>업로드된 URL: {watchPortfolioUrl}</p>}
 					{errors.portfolioUrl && (
-						<p className={styles.portfolio_error}>
-							{errors.portfolioUrl.message}
-						</p>
+						<p className={styles.portfolio_error}>{errors.portfolioUrl.message}</p>
 					)}
 				</div>
 			)}

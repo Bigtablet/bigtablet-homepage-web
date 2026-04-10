@@ -2,10 +2,7 @@
 
 import { useToast } from "@bigtablet/design-system";
 import { useEffect, useRef, useState } from "react";
-import {
-	checkEmailApi,
-	sendEmailApi,
-} from "src/features/recruit/apply/form/email/api/email.api";
+import { checkEmailApi, sendEmailApi } from "src/features/recruit/apply/form/email/api/email.api";
 import { getErrorMessage } from "src/shared/libs/api/axios/error/error.util";
 
 interface UseEmailVerificationParams {
@@ -13,10 +10,7 @@ interface UseEmailVerificationParams {
 	cooldownSec?: number;
 }
 
-const useEmailVerification = ({
-	email,
-	cooldownSec = 60,
-}: UseEmailVerificationParams) => {
+const useEmailVerification = ({ email, cooldownSec = 60 }: UseEmailVerificationParams) => {
 	const [authCode, setAuthCode] = useState("");
 	const [resendSec, setResendSec] = useState(0);
 	const [sendLoading, setSendLoading] = useState(false);
@@ -43,8 +37,7 @@ const useEmailVerification = ({
 
 	const send = async () => {
 		if (!email) return Toast.error("이메일을 입력해주세요.");
-		if (resendSec > 0)
-			return Toast.warning(`${resendSec}초 후 재전송 가능합니다.`);
+		if (resendSec > 0) return Toast.warning(`${resendSec}초 후 재전송 가능합니다.`);
 
 		setSendLoading(true);
 		try {
@@ -60,8 +53,7 @@ const useEmailVerification = ({
 	};
 
 	const verify = async () => {
-		if (!email || !authCode)
-			return Toast.warning("이메일과 인증 코드를 입력해주세요.");
+		if (!email || !authCode) return Toast.warning("이메일과 인증 코드를 입력해주세요.");
 		setCheckLoading(true);
 		try {
 			await checkEmailApi(email, authCode);

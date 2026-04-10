@@ -1,11 +1,6 @@
 "use client";
 
-import {
-	Button,
-	Select,
-	type SelectOption,
-	TextField,
-} from "@bigtablet/design-system";
+import { Button, Select, type SelectOption, TextField } from "@bigtablet/design-system";
 import { memo, useMemo, useState } from "react";
 import type { RecruitSearchFilters } from "src/entities/recruit/api/recruit.api";
 import {
@@ -31,8 +26,7 @@ interface Props {
 }
 
 const RecruitHeader = ({ filters, onChange }: Props) => {
-	const patch = (partial: Partial<RecruitSearchFilters>) =>
-		onChange({ ...filters, ...partial });
+	const patch = (partial: Partial<RecruitSearchFilters>) => onChange({ ...filters, ...partial });
 	const [open, setOpen] = useState(false);
 
 	const departmentOptions: SelectOption[] = useMemo(
@@ -75,7 +69,6 @@ const RecruitHeader = ({ filters, onChange }: Props) => {
 						placeholder="직무 혹은 공고 이름으로 검색하실 수 있습니다."
 						value={filters.keyword ?? ""}
 						onChangeAction={(value) => patch({ keyword: value })}
-						size="sm"
 						className={styles.recruit_search_field}
 					/>
 
@@ -106,12 +99,7 @@ const RecruitHeader = ({ filters, onChange }: Props) => {
 						className={styles.recruit_search_select}
 					/>
 
-					<Button
-						variant="primary"
-						size="sm"
-						width="auto"
-						onClick={() => setOpen(true)}
-					>
+					<Button variant="filled" size="sm" onClick={() => setOpen(true)}>
 						인재풀 등록하기
 					</Button>
 				</div>

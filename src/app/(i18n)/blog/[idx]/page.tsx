@@ -9,9 +9,7 @@ type PageProps = {
 };
 
 /** 블로그 상세 동적 메타데이터 */
-export const generateMetadata = async ({
-	params,
-}: PageProps): Promise<Metadata> => {
+export const generateMetadata = async ({ params }: PageProps): Promise<Metadata> => {
 	const { idx } = params;
 	const idNum = Number(idx);
 	if (!Number.isFinite(idNum) || idNum <= 0) return {};
@@ -22,8 +20,7 @@ export const generateMetadata = async ({
 		const locale = store.get("NEXT_LOCALE")?.value === "en" ? "en" : "ko";
 
 		const title = locale === "en" ? blog.titleEn : blog.titleKr;
-		const description =
-			(locale === "en" ? blog.summaryEn : blog.summaryKr) ?? undefined;
+		const description = (locale === "en" ? blog.summaryEn : blog.summaryKr) ?? undefined;
 
 		return {
 			title,

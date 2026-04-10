@@ -1,8 +1,7 @@
 import { SOURCES } from "src/widgets/main/solution/model/video-sources";
 import { describe, expect, it } from "vitest";
 
-const UUID_PATTERN =
-	/^\/media\/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/;
+const UUID_PATTERN = /^\/media\/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/;
 
 describe("SOURCES", () => {
 	it("키 1~5가 모두 존재한다", () => {
@@ -34,10 +33,7 @@ describe("SOURCES", () => {
 	});
 
 	it("총 10개의 URL이 있다", () => {
-		const total = Object.values(SOURCES).reduce(
-			(sum, urls) => sum + urls.length,
-			0,
-		);
+		const total = Object.values(SOURCES).reduce((sum, urls) => sum + urls.length, 0);
 		expect(total).toBe(10);
 	});
 });

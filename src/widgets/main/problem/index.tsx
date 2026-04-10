@@ -21,11 +21,7 @@ const Problem = () => {
 	);
 
 	return (
-		<section
-			ref={sectionRef}
-			className={styles.problem}
-			aria-labelledby="problem_title"
-		>
+		<section ref={sectionRef} className={styles.problem} aria-labelledby="problem_title">
 			<h2 id="problem_title" className={styles.problem_title}>
 				{t("title")}
 			</h2>

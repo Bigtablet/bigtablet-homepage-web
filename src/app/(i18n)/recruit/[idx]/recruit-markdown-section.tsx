@@ -28,16 +28,10 @@ interface RecruitMarkdownSectionProps {
 /**
  * Renders a section with markdown-formatted content.
  */
-export const RecruitMarkdownSection = ({
-	title,
-	content,
-}: RecruitMarkdownSectionProps) => (
+export const RecruitMarkdownSection = ({ title, content }: RecruitMarkdownSectionProps) => (
 	<section className={styles.recruit_detail_section}>
 		<h2>{title}</h2>
-		<ReactMarkdown
-			remarkPlugins={[remarkBreaks]}
-			components={markdownComponents}
-		>
+		<ReactMarkdown remarkPlugins={[remarkBreaks]} components={markdownComponents}>
 			{content}
 		</ReactMarkdown>
 	</section>

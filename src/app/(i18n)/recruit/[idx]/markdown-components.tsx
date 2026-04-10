@@ -10,9 +10,7 @@ import styles from "./style.module.scss";
  * Markdown component configuration for rendering recruit detail content.
  */
 export const markdownComponents = {
-	p: (props: React.ComponentProps<"p">) => (
-		<p {...props} className={styles.recruit_detail_text} />
-	),
+	p: (props: React.ComponentProps<"p">) => <p {...props} className={styles.recruit_detail_text} />,
 	ul: (props: React.ComponentProps<"ul">) => (
 		<ul {...props} className={styles.recruit_detail_list} />
 	),

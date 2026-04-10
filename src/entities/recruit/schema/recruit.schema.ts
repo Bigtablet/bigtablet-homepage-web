@@ -36,19 +36,10 @@ export const recruitCardSchema = recruitResponseSchema.extend({
 });
 export type RecruitCard = z.infer<typeof recruitCardSchema>;
 
-export const ApplyEducationLevel = z.enum([
-	"GED",
-	"HIGH_SCHOOL",
-	"ASSOCIATE",
-	"BACHELOR",
-]);
+export const ApplyEducationLevel = z.enum(["GED", "HIGH_SCHOOL", "ASSOCIATE", "BACHELOR"]);
 export type ApplyEducationLevel = z.infer<typeof ApplyEducationLevel>;
 
-export const ApplyMilitaryStatus = z.enum([
-	"NOT_COMPLETED",
-	"COMPLETED",
-	"NOT_APPLICABLE",
-]);
+export const ApplyMilitaryStatus = z.enum(["NOT_COMPLETED", "COMPLETED", "NOT_APPLICABLE"]);
 export type ApplyMilitaryStatus = z.infer<typeof ApplyMilitaryStatus>;
 
 export const recruitRequestSchema = z
@@ -76,9 +67,7 @@ export const recruitRequestSchema = z
 
 export type RecruitRequest = z.infer<typeof recruitRequestSchema>;
 
-export const recruitApplyResponseSchema = baseResponseSchema(
-	z.number().nullable().optional(),
-);
+export const recruitApplyResponseSchema = baseResponseSchema(z.number().nullable().optional());
 export type RecruitApplyResponse = z.infer<typeof recruitApplyResponseSchema>;
 
 export const recruitApplicantSchema = recruitRequestSchema.extend({
@@ -96,14 +85,10 @@ export const recruitListResponseSchema = z
 	.object({
 		status: z.number(),
 		message: z.string(),
-		data: z
-			.union([recruitResponseSchema.array(), z.string(), z.null()])
-			.optional(),
+		data: z.union([recruitResponseSchema.array(), z.string(), z.null()]).optional(),
 	})
 	.passthrough();
 
-export const recruitDetailResponseSchema = baseResponseSchema(
-	recruitResponseSchema,
-);
+export const recruitDetailResponseSchema = baseResponseSchema(recruitResponseSchema);
 export type RecruitListResponse = z.infer<typeof recruitListResponseSchema>;
 export type RecruitDetailResponse = z.infer<typeof recruitDetailResponseSchema>;

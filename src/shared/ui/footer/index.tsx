@@ -27,9 +27,7 @@ const Footer = () => {
 						<Link href="/policies/privacy">{t("policies.privacy")}</Link>
 						<Link href="/policies/terms">{t("policies.terms")}</Link>
 						<Link href="/policies/cookies">{t("policies.cookies")}</Link>
-						<Link href="/policies/accessibility">
-							{t("policies.accessibility")}
-						</Link>
+						<Link href="/policies/accessibility">{t("policies.accessibility")}</Link>
 					</nav>
 				</div>
 
@@ -42,12 +40,7 @@ const Footer = () => {
 							className={styles.footer_social_btn}
 						>
 							<span className={styles.sr_only}>LinkedIn</span>
-							<svg
-								viewBox="0 0 24 24"
-								width="20"
-								height="20"
-								aria-hidden="true"
-							>
+							<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
 								<path
 									fill="currentColor"
 									d="M4.98 3.5A2.5 2.5 0 1 1 5 8.5a2.5 2.5 0 0 1-.02-5zM4 9h4v12H4zM10 9h3.8v1.7h.1c.5-.9 1.7-1.9 3.5-1.9C21 8.8 22 11 22 14.1V21H18v-6c0-1.4 0-3.1-1.9-3.1-1.9 0-2.1 1.5-2.1 3v6H10z"

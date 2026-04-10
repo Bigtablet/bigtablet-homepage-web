@@ -74,23 +74,13 @@ export const useScrollReveal = <T extends HTMLElement = HTMLDivElement>(
 				scrollTrigger: {
 					trigger: containerRef.current,
 					start,
-					toggleActions: once
-						? "play none none none"
-						: "play none none reverse",
+					toggleActions: once ? "play none none none" : "play none none reverse",
 				},
 			});
 		},
 		{
 			scope: containerRef,
-			dependencies: [
-				variant,
-				duration,
-				delay,
-				stagger,
-				start,
-				once,
-				prefersReduced,
-			],
+			dependencies: [variant, duration, delay, stagger, start, once, prefersReduced],
 		},
 	);
 

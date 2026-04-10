@@ -42,9 +42,7 @@ export const PortfolioSection = ({ form, upload, isUploading }: Props) => {
 					)}
 				/>
 				{errors.portfolio && (
-					<small className={styles.error}>
-						{errors.portfolio.message as string}
-					</small>
+					<small className={styles.error}>{errors.portfolio.message as string}</small>
 				)}
 			</div>
 

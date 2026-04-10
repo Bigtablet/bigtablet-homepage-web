@@ -76,17 +76,13 @@ const RequestList = ({ filters }: Props) => {
 		<div className={styles.request_list}>
 			{showSkeleton && SKELETON_KEYS.map((key) => <SkeletonList key={key} />)}
 
-			{!isLoading && isError && (
-				<div className={styles.request_list_empty}>{error?.message}</div>
-			)}
+			{!isLoading && isError && <div className={styles.request_list_empty}>{error?.message}</div>}
 
 			{!isLoading && !isError && data.length === 0 && (
 				<div className={styles.request_list_empty}>공고가 없습니다.</div>
 			)}
 
-			{!isLoading &&
-				!isError &&
-				data.map((item) => <RequestCard key={item.idx} item={item} />)}
+			{!isLoading && !isError && data.map((item) => <RequestCard key={item.idx} item={item} />)}
 		</div>
 	);
 };

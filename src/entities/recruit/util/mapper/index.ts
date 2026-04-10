@@ -6,9 +6,7 @@ const calcDday = (endDate?: string) => {
 	if (!endDate) return "";
 	const today = new Date();
 	const end = new Date(endDate);
-	const diff = Math.ceil(
-		(end.getTime() - today.getTime()) / (1000 * 60 * 60 * 24),
-	);
+	const diff = Math.ceil((end.getTime() - today.getTime()) / (1000 * 60 * 60 * 24));
 	if (Number.isNaN(diff)) return "";
 	if (diff > 0) return `D-${diff}`;
 	if (diff === 0) return "D-DAY";
@@ -44,9 +42,7 @@ export const toRecruit = (dto: RecruitResponse): RecruitDTO | null => {
 };
 
 // DTO → Domain(리스트)
-export const toRecruitSummary = (
-	dto: RecruitResponse,
-): RecruitSummary | null => {
+export const toRecruitSummary = (dto: RecruitResponse): RecruitSummary | null => {
 	if (typeof dto.idx !== "number" || !Number.isFinite(dto.idx)) return null;
 	return {
 		idx: dto.idx,

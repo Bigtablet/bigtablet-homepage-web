@@ -82,10 +82,7 @@ export const useRecruitListQuery = (options?: { enabled?: boolean }) => {
  * @description Fetch recruit detail by index
  * @param idx Recruit ID
  */
-export const useRecruitDetailQuery = (
-	idx: number,
-	options?: { enabled?: boolean },
-) => {
+export const useRecruitDetailQuery = (idx: number, options?: { enabled?: boolean }) => {
 	return useQuery({
 		...recruitQueries.detail(idx),
 		...options,

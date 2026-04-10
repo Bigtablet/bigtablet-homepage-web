@@ -15,10 +15,7 @@ export const LOCATIONS = LocationType.options;
 type EnumValue<T> = T extends { _type: infer U } ? U : never;
 
 /** 라벨 매핑 */
-export const DEPARTMENT_LABEL: Record<
-	EnumValue<typeof DepartmentType>,
-	string
-> = {
+export const DEPARTMENT_LABEL: Record<EnumValue<typeof DepartmentType>, string> = {
 	BUSINESS_ADMINISTRATION: "경영혁신",
 	SALES: "영업",
 	MARKETING: "마케팅",
@@ -27,20 +24,14 @@ export const DEPARTMENT_LABEL: Record<
 	RESEARCH_AND_DEVELOPMENT: "연구개발",
 };
 
-export const EDUCATION_LABEL: Record<
-	EnumValue<typeof EducationType>,
-	string
-> = {
+export const EDUCATION_LABEL: Record<EnumValue<typeof EducationType>, string> = {
 	HIGH_SCHOOL: "고졸",
 	ASSOCIATE: "전문학사",
 	BACHELOR: "학사",
 	NO_REQUIREMENT: "학력무관",
 };
 
-export const RECRUIT_TYPE_LABEL: Record<
-	EnumValue<typeof RecruitType>,
-	string
-> = {
+export const RECRUIT_TYPE_LABEL: Record<EnumValue<typeof RecruitType>, string> = {
 	FULL_TIME: "정규직",
 	CONTRACT: "계약직",
 	INTERN: "인턴",

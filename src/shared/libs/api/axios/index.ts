@@ -14,13 +14,8 @@ const headers = api.defaults.headers as Record<string, Record<string, unknown>>;
 delete headers.common?.["Content-Type"];
 delete headers.post?.["Content-Type"];
 
-api.interceptors.request.use(requestInterceptor, (error) =>
-	Promise.reject(error),
-);
+api.interceptors.request.use(requestInterceptor, (error) => Promise.reject(error));
 
-api.interceptors.response.use(
-	(response) => response,
-	createResponseErrorInterceptor(api),
-);
+api.interceptors.response.use((response) => response, createResponseErrorInterceptor(api));
 
 export default api;

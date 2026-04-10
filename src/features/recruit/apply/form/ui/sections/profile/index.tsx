@@ -42,9 +42,7 @@ export const ProfileSection = ({ form, upload, isUploading }: Props) => {
 				)}
 			/>
 			{errors.profileImage && (
-				<small className={styles.error}>
-					{errors.profileImage.message as string}
-				</small>
+				<small className={styles.error}>{errors.profileImage.message as string}</small>
 			)}
 			<p className={styles.profile_help}>PNG 파일만 업로드 가능합니다.</p>
 		</div>

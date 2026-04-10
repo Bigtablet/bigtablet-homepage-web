@@ -15,11 +15,8 @@ import { useUpload } from "src/features/upload/model/use-upload";
 
 const MB = 1024 * 1024;
 
-const makeFile = (
-	sizeBytes: number,
-	type = "application/pdf",
-	name = "test.pdf",
-) => new File([new ArrayBuffer(sizeBytes)], name, { type });
+const makeFile = (sizeBytes: number, type = "application/pdf", name = "test.pdf") =>
+	new File([new ArrayBuffer(sizeBytes)], name, { type });
 
 describe("useUpload", () => {
 	beforeEach(() => {
@@ -76,9 +73,7 @@ describe("useUpload", () => {
 
 			const { result } = renderHook(() => useUpload());
 
-			await expect(result.current.upload(makeFile(1 * MB))).rejects.toThrow(
-				"서버 오류",
-			);
+			await expect(result.current.upload(makeFile(1 * MB))).rejects.toThrow("서버 오류");
 		});
 	});
 });

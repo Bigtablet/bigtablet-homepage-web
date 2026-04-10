@@ -1,8 +1,4 @@
-import {
-	isMemberSlug,
-	MEMBER_KEYS,
-	MEMBER_ROLE,
-} from "src/entities/about/util/member.util";
+import { isMemberSlug, MEMBER_KEYS, MEMBER_ROLE } from "src/entities/about/util/member.util";
 import { describe, expect, it } from "vitest";
 
 describe("isMemberSlug", () => {

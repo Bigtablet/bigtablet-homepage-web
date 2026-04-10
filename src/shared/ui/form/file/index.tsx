@@ -75,13 +75,7 @@ export const FileInput = ({
 		<div className={rootClass}>
 			{layout === "column" && previewUrl && (
 				<div className={styles.file_preview}>
-					<Image
-						src={previewUrl}
-						alt="미리보기"
-						width={200}
-						height={200}
-						unoptimized
-					/>
+					<Image src={previewUrl} alt="미리보기" width={200} height={200} unoptimized />
 				</div>
 			)}
 

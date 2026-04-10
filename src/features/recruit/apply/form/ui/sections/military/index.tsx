@@ -40,9 +40,7 @@ export const MilitarySection = ({ form }: Props) => {
 				)}
 			/>
 			{errors.military && (
-				<small className={styles.error}>
-					{errors.military.message as string}
-				</small>
+				<small className={styles.error}>{errors.military.message as string}</small>
 			)}
 		</div>
 	);

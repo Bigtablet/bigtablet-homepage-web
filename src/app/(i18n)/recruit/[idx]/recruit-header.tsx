@@ -32,8 +32,7 @@ export const RecruitHeader = ({ recruit }: RecruitHeaderProps) => (
 				))}
 			</div>
 			<div className={styles.recruit_detail_datebar}>
-				{formatDate(recruit.startDate)} -{" "}
-				{recruit.endDate ? formatDate(recruit.endDate) : "상시"}
+				{formatDate(recruit.startDate)} - {recruit.endDate ? formatDate(recruit.endDate) : "상시"}
 			</div>
 		</div>
 	</header>

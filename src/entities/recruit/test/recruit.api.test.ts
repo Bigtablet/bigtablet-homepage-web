@@ -13,9 +13,7 @@ describe("getRecruitListApi", () => {
 
 	it("빈 데이터 시 빈 배열을 반환한다", async () => {
 		server.use(
-			http.get("*/job/list", () =>
-				HttpResponse.json({ status: 200, message: "ok", data: null }),
-			),
+			http.get("*/job/list", () => HttpResponse.json({ status: 200, message: "ok", data: null })),
 		);
 		const result = await getRecruitListApi({ page: 1, size: 10 });
 		expect(result).toEqual([]);
@@ -44,9 +42,7 @@ describe("getRecruitListApi", () => {
 	});
 
 	it("서버 에러 시 예외를 throw한다", async () => {
-		server.use(
-			http.get("*/job/list", () => HttpResponse.json(null, { status: 500 })),
-		);
+		server.use(http.get("*/job/list", () => HttpResponse.json(null, { status: 500 })));
 		await expect(getRecruitListApi({ page: 1, size: 10 })).rejects.toThrow();
 	});
 });
@@ -60,9 +56,7 @@ describe("getRecruitDetailApi", () => {
 
 	it("빈 응답 시 에러를 throw한다", async () => {
 		server.use(
-			http.get("*/job", () =>
-				HttpResponse.json({ status: 200, message: "ok", data: null }),
-			),
+			http.get("*/job", () => HttpResponse.json({ status: 200, message: "ok", data: null })),
 		);
 		await expect(getRecruitDetailApi(1)).rejects.toThrow("Empty response");
 	});

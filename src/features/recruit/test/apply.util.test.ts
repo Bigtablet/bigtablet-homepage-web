@@ -67,12 +67,8 @@ describe("mapMil", () => {
 
 	it("유효한 enum 값을 직접 전달하면 그대로 반환한다", () => {
 		expect(mapMil("COMPLETED")).toBe(ApplyMilitaryStatus.enum.COMPLETED);
-		expect(mapMil("NOT_COMPLETED")).toBe(
-			ApplyMilitaryStatus.enum.NOT_COMPLETED,
-		);
-		expect(mapMil("NOT_APPLICABLE")).toBe(
-			ApplyMilitaryStatus.enum.NOT_APPLICABLE,
-		);
+		expect(mapMil("NOT_COMPLETED")).toBe(ApplyMilitaryStatus.enum.NOT_COMPLETED);
+		expect(mapMil("NOT_APPLICABLE")).toBe(ApplyMilitaryStatus.enum.NOT_APPLICABLE);
 	});
 
 	it("알 수 없는 값 → NOT_APPLICABLE (fallback)", () => {

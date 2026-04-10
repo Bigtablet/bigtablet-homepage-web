@@ -20,10 +20,7 @@ import type { ListSchema } from "src/shared/schema/list/list.schema";
  * @param signal - 요청 취소를 위한 AbortSignal
  * @returns 블로그 아이템 배열 (빈 데이터 시 빈 배열)
  */
-export const getBlogApi = async (
-	{ page, size }: ListSchema,
-	signal?: AbortSignal,
-) => {
+export const getBlogApi = async ({ page, size }: ListSchema, signal?: AbortSignal) => {
 	return getParsed("/blog/list", blogListResponseSchema, {
 		params: { page, size },
 		signal,

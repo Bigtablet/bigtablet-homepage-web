@@ -2,29 +2,29 @@
 
 .card_skeleton {
   @include token.flex_column;
-  border: 1px solid token.$color_border_default;
+  border: 1px solid token.$color_border;
   border-radius: token.$radius_lg;
   overflow: hidden;
-  background: token.$color_bg_solid;
+  background: token.$color_background;
   animation: card_skeleton_pulse 1.5s ease-in-out infinite;
 }
 
 .card_skeleton_thumb {
   width: 100%;
   aspect-ratio: 4 / 3;
-  background: token.$color_bg_solid_dim;
+  background: token.$color_background_secondary;
 }
 
 .card_skeleton_text {
-  padding: token.$spacing_16;
+  padding: token.$spacing_md;
   display: flex;
   flex-direction: column;
-  gap: token.$spacing_8;
+  gap: token.$spacing_sm;
 }
 
 .card_skeleton_line {
   height: 0.75rem;
-  background: token.$color_bg_solid_dim;
+  background: token.$color_background_secondary;
   border-radius: token.$radius_sm;
 }
 

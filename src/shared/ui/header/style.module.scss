@@ -7,39 +7,39 @@ $header_height_mobile: 64px;
 .header {
 	position: sticky;
 	top: 0;
-	z-index: token.$z_level4;
+	z-index: token.$z_modal;
 	width: 100%;
 	height: $header_height;
-	background: token.$color_bg_solid;
-	color: token.$color_text_body;
+	background: token.$color_background;
+	color: token.$text_normal;
 	transition: background-color token.$transition_base, box-shadow token.$transition_base;
 
-	@include token.compact {
+	@include token.mobile {
 		height: $header_height_mobile;
 	}
 }
 
 .scrolled {
-	box-shadow: token.$elevation_level2;
+	box-shadow: token.$shadow_md;
 }
 
 .inner {
 	@include token.flex_between;
 	height: 100%;
-	padding-inline: clamp(token.$spacing_24, 6vw, token.$spacing_48);
+	padding-inline: clamp(token.$spacing_lg, 6vw, token.$spacing_4xl);
 	max-width: 1440px;
 	margin: 0 auto;
 	transition: transform token.$transition_base;
 
-	@include token.compact {
-		padding-inline: token.$spacing_24;
+	@include token.mobile {
+		padding-inline: token.$spacing_lg;
 	}
 }
 
 .logo {
 	vertical-align: middle;
 
-	@include token.compact {
+	@include token.mobile {
 		width: 100px;
 		height: auto;
 	}
@@ -55,39 +55,39 @@ $header_height_mobile: 64px;
 	border: none;
 	border-radius: token.$radius_md;
 	background: transparent;
-	color: token.$color_text_body;
+	color: token.$text_normal;
 	cursor: pointer;
 	transition: background-color token.$transition_fast;
 	-webkit-tap-highlight-color: transparent;
 
 	&:hover {
-		background: token.$color_bg_solid_dim;
+		background: token.$color_background_secondary;
 	}
 
 	&:active {
-		background: token.$color_bg_additive;
+		background: token.$color_background_muted;
 	}
 
-	@include token.compact {
+	@include token.mobile {
 		display: flex;
 		position: relative;
-		z-index: calc(token.$z_level4 + 2);
+		z-index: calc(token.$z_modal + 2);
 	}
 }
 
 .nav {
 	display: flex;
 	align-items: center;
-	gap: clamp(token.$spacing_8, 3vw, token.$spacing_32);
+	gap: clamp(token.$spacing_sm, 3vw, token.$spacing_xl);
 
 	@include token.body_medium;
 
 	a {
 		@include token.body_medium;
-		font-weight: token.$font_weight_semi_bold;
+		font-weight: token.$font_weight_semibold;
 		position: relative;
-		padding: token.$spacing_4 2px;
-		color: token.$color_text_body;
+		padding: token.$spacing_xs 2px;
+		color: token.$text_normal;
 		transition: color token.$transition_fast;
 
 		&::after {
@@ -105,7 +105,7 @@ $header_height_mobile: 64px;
 		}
 
 		&:hover {
-			color: token.$color_text_heading;
+			color: token.$text_strong;
 		}
 
 		&:hover::after {
@@ -114,27 +114,27 @@ $header_height_mobile: 64px;
 		}
 	}
 
-	@include token.compact {
+	@include token.mobile {
 		position: fixed;
 		top: 0;
 		right: 0;
 		width: min(320px, 85vw);
 		height: 100dvh;
-		padding: calc($header_height_mobile + token.$spacing_40) token.$spacing_40 token.$spacing_40;
+		padding: calc($header_height_mobile + token.$spacing_2xl) token.$spacing_2xl token.$spacing_2xl;
 		flex-direction: column;
 		align-items: stretch;
 		gap: 0;
-		background: token.$color_bg_solid;
-		box-shadow: token.$elevation_level3;
+		background: token.$color_background;
+		box-shadow: token.$shadow_lg;
 		transform: translateX(100%);
 		transition: transform token.$transition_slide;
-		z-index: calc(token.$z_level4 + 1);
+		z-index: calc(token.$z_modal + 1);
 		overflow-y: auto;
 
 		a {
-			padding: token.$spacing_24 0;
-			font-size: token.$font_size_18;
-			border-bottom: 1px solid token.$color_border_subtle;
+			padding: token.$spacing_lg 0;
+			font-size: token.$font_size_lg;
+			border-bottom: 1px solid token.$color_border_light;
 
 			&::after {
 				display: none;
@@ -148,17 +148,17 @@ $header_height_mobile: 64px;
 }
 
 .nav_open {
-	@include token.compact {
+	@include token.mobile {
 		transform: translateX(0);
 	}
 }
 
 .locale_switch {
-	margin-left: clamp(token.$spacing_8, 2vw, token.$spacing_16);
-	padding: token.$spacing_4 token.$spacing_16;
+	margin-left: clamp(token.$spacing_sm, 2vw, token.$spacing_md);
+	padding: token.$spacing_xs token.$spacing_md;
 	border-radius: token.$radius_md;
-	border: 1px solid token.$color_border_default;
-	background: token.$color_bg_solid_dim;
+	border: 1px solid token.$color_border;
+	background: token.$color_background_secondary;
 	cursor: pointer;
 	transition:
 		transform token.$transition_fast,
@@ -166,7 +166,7 @@ $header_height_mobile: 64px;
 		border-color token.$transition_base;
 
 	&:hover {
-		background: token.$color_bg_additive;
+		background: token.$color_background_muted;
 		transform: translateY(-1px);
 	}
 
@@ -174,11 +174,11 @@ $header_height_mobile: 64px;
 		transform: translateY(0);
 	}
 
-	@include token.compact {
+	@include token.mobile {
 		margin-left: 0;
-		margin-top: token.$spacing_40;
-		padding: token.$spacing_16 token.$spacing_24;
-		font-size: token.$font_size_16;
+		margin-top: token.$spacing_2xl;
+		padding: token.$spacing_md token.$spacing_lg;
+		font-size: token.$font_size_base;
 		text-align: center;
 	}
 }
@@ -186,12 +186,12 @@ $header_height_mobile: 64px;
 .overlay {
 	display: none;
 
-	@include token.compact {
+	@include token.mobile {
 		display: block;
 		position: fixed;
 		inset: 0;
-		background: token.$color_bg_overlay;
-		z-index: token.$z_level4;
+		background: token.$color_overlay;
+		z-index: token.$z_modal;
 		animation: fade_in 0.2s ease-out;
 	}
 }

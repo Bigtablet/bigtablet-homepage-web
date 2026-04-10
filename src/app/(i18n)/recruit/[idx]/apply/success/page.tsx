@@ -24,7 +24,7 @@ const ApplySuccessPage = () => {
 				으로 연락 바랍니다.
 			</p>
 
-			<Button size="xl" onClick={() => router.push("/")}>
+			<Button size="lg" onClick={() => router.push("/")}>
 				메인으로 돌아가기
 			</Button>
 		</div>

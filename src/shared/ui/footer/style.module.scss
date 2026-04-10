@@ -1,61 +1,61 @@
 @use "@bigtablet/design-system/scss/token" as token;
 
 .footer {
-	background: token.$color_brand_primary_container;
-	color: token.$color_text_inverse;
+	background: token.$color_background_primary;
+	color: token.$text_inverse;
 	width: 100%;
 }
 
 .footer_inner {
 	max-width: 1200px;
 	margin: 0 auto;
-	padding: token.$spacing_48 token.$spacing_40 token.$spacing_48;
+	padding: token.$spacing_4xl token.$spacing_2xl token.$spacing_3xl;
 	display: grid;
 	grid-template-columns: 1fr auto;
-	gap: token.$spacing_48;
+	gap: token.$spacing_3xl;
 }
 
 .footer_left {
 	@include token.flex_column;
-	gap: token.$spacing_24;
+	gap: token.$spacing_lg;
 	max-width: 640px;
 
 	p {
-		font-size: token.$font_size_14;
-		line-height: token.$line_height_28;
+		font-size: token.$font_size_sm;
+		line-height: token.$line_height_relaxed;
 		color: rgba(255, 255, 255, 0.5);
 	}
 }
 
 .footer_brand {
-	font-size: token.$font_size_18;
-	font-weight: token.$font_weight_semi_bold;
-	color: token.$color_text_inverse;
-	letter-spacing: token.$letter_spacing_normal;
+	font-size: token.$font_size_lg;
+	font-weight: token.$font_weight_semibold;
+	color: token.$text_inverse;
+	letter-spacing: token.$letter_spacing_tight;
 }
 
 .footer_addr {
 	font-style: normal;
-	font-size: token.$font_size_14;
-	line-height: token.$line_height_28;
+	font-size: token.$font_size_sm;
+	line-height: token.$line_height_relaxed;
 	color: rgba(255, 255, 255, 0.7);
 }
 
 .footer_links {
-	margin-top: token.$spacing_8;
+	margin-top: token.$spacing_sm;
 	display: flex;
 	flex-wrap: wrap;
-	gap: token.$spacing_32;
+	gap: token.$spacing_xl;
 
 	a {
-		font-size: token.$font_size_14;
+		font-size: token.$font_size_sm;
 		font-weight: token.$font_weight_medium;
 		color: rgba(255, 255, 255, 0.8);
 		text-decoration: none;
 		transition: color token.$transition_fast;
 
 		&:hover {
-			color: token.$color_text_inverse;
+			color: token.$text_inverse;
 		}
 	}
 }
@@ -64,7 +64,7 @@
 	list-style: none;
 	display: flex;
 	align-items: flex-start;
-	gap: token.$spacing_16;
+	gap: token.$spacing_md;
 	padding: 0;
 	margin: 0;
 }
@@ -85,28 +85,28 @@
 	width: 40px;
 	height: 40px;
 	border-radius: token.$radius_lg;
-	background: token.$color_base_alpha_white_8;
+	background: token.$color_glass_light;
 	display: grid;
 	place-items: center;
-	color: token.$color_text_inverse;
+	color: token.$text_inverse;
 	transition:
 		transform token.$transition_fast,
 		background token.$transition_fast;
 
 	&:hover {
 		transform: translateY(-2px);
-		background: token.$color_base_alpha_white_12;
+		background: token.$color_glass_border;
 	}
 }
 
-@include token.compact {
+@include token.mobile {
 	.footer_inner {
 		grid-template-columns: 1fr;
-		gap: token.$spacing_40;
-		padding: token.$spacing_48 token.$spacing_24 token.$spacing_40;
+		gap: token.$spacing_2xl;
+		padding: token.$spacing_3xl token.$spacing_lg token.$spacing_2xl;
 	}
 
 	.footer_social {
-		margin-top: token.$spacing_8;
+		margin-top: token.$spacing_sm;
 	}
 }

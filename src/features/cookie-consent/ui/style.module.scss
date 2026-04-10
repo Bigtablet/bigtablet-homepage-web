@@ -2,26 +2,26 @@
 
 .banner {
 	position: fixed;
-	bottom: token.$spacing_40;
-	right: token.$spacing_40;
-	z-index: token.$z_level4;
+	bottom: token.$spacing_2xl;
+	right: token.$spacing_2xl;
+	z-index: token.$z_modal;
 	width: 360px;
-	background: token.$color_bg_solid;
+	background: token.$color_background;
 	border-radius: token.$radius_lg;
-	box-shadow: token.$elevation_level3;
-	padding: token.$spacing_32 token.$spacing_40;
+	box-shadow: token.$shadow_lg;
+	padding: token.$spacing_xl token.$spacing_2xl;
 	@include token.flex_column;
-	gap: token.$spacing_24;
+	gap: token.$spacing_lg;
 	animation: slide_up token.$transition_base;
 }
 
 .message {
-	@include token.body_medium;
-	color: token.$color_text_heading;
-	line-height: token.$line_height_28;
+	@include token.body_regular;
+	color: token.$text_strong;
+	line-height: token.$line_height_relaxed;
 
 	a {
-		color: token.$color_brand_primary;
+		color: token.$color_primary;
 		text-decoration: underline;
 		font-weight: token.$font_weight_medium;
 		transition: opacity token.$transition_fast;
@@ -35,18 +35,18 @@
 .actions {
 	display: flex;
 	justify-content: flex-end;
-	gap: token.$spacing_16;
+	gap: token.$spacing_md;
 }
 
 .button_accept {
-	padding: token.$spacing_8 token.$spacing_32;
+	padding: token.$spacing_sm token.$spacing_xl;
 	border-radius: token.$radius_md;
 	border: none;
 	cursor: pointer;
-	@include token.body_small;
-	font-weight: token.$font_weight_semi_bold;
-	background: token.$color_brand_primary_container;
-	color: token.$color_text_inverse;
+	@include token.text_sm;
+	font-weight: token.$font_weight_semibold;
+	background: token.$color_background_primary;
+	color: token.$text_inverse;
 	transition:
 		opacity token.$transition_fast,
 		transform token.$transition_fast;
@@ -58,31 +58,31 @@
 }
 
 .button_decline {
-	padding: token.$spacing_8 token.$spacing_32;
+	padding: token.$spacing_sm token.$spacing_xl;
 	border-radius: token.$radius_md;
-	border: 1px solid token.$color_border_subtle;
+	border: 1px solid token.$color_border_light;
 	cursor: pointer;
-	@include token.body_small;
+	@include token.text_sm;
 	font-weight: token.$font_weight_medium;
 	background: transparent;
-	color: token.$color_text_caption;
+	color: token.$text_subtle;
 	transition:
 		background token.$transition_fast,
 		transform token.$transition_fast;
 
 	&:hover {
-		background: token.$color_bg_solid_dim;
+		background: token.$color_background_secondary;
 		transform: translateY(-1px);
 	}
 }
 
-@include token.compact {
+@include token.mobile {
 	.banner {
-		bottom: token.$spacing_16;
-		right: token.$spacing_16;
-		left: token.$spacing_16;
+		bottom: token.$spacing_md;
+		right: token.$spacing_md;
+		left: token.$spacing_md;
 		width: auto;
-		padding: token.$spacing_24;
+		padding: token.$spacing_lg;
 	}
 
 	.actions {

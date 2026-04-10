@@ -4,7 +4,7 @@
 .row_edu {
   grid-template-columns: 1fr 1fr;
 
-  @include token.medium {
+  @include token.tablet {
     grid-template-columns: 1fr;
   }
 }
@@ -16,7 +16,7 @@
 .row_edu_dates {
   grid-template-columns: repeat(2, 1fr);
 
-  @include token.compact {
+  @include token.mobile {
     grid-template-columns: 1fr;
   }
 }

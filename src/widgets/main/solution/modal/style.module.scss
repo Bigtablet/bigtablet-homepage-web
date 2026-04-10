@@ -3,14 +3,14 @@
 .solution_modal_backdrop {
 	position: fixed;
 	inset: 0;
-	z-index: token.$z_level4;
+	z-index: token.$z_modal;
 	display: grid;
 	place-items: center;
-	padding: token.$spacing_40;
-	background: token.$color_state_hover_on_light;
+	padding: token.$spacing_2xl;
+	background: token.$color_overlay_light;
 
-	@include token.from_expanded {
-		padding: token.$spacing_48;
+	@include token.laptop {
+		padding: token.$spacing_3xl;
 	}
 }
 
@@ -28,7 +28,7 @@
 	height: min(660px, 78vh);
 	border-radius: token.$radius_xl;
 	overflow: hidden;
-	background: token.$color_brand_primary;
+	background: token.$color_primary;
 	transform-origin: center center;
 	transform: translate(var(--from-dx, 0), var(--from-dy, 0)) scale(var(--from-sx, 1), var(--from-sy, 1));
 	opacity: 0;
@@ -51,48 +51,48 @@
 	height: 48px;
 	border: none;
 	border-radius: token.$radius_full;
-	background: token.$color_state_hover_on_light;
-	color: token.$color_text_inverse;
-	font-size: token.$font_size_24;
+	background: token.$color_overlay_light;
+	color: token.$text_inverse;
+	font-size: token.$font_size_2xl;
 	cursor: pointer;
 	transition:
 		background token.$transition_base,
 		transform token.$transition_fast;
 
 	&:hover {
-		background: token.$color_bg_overlay;
+		background: token.$color_overlay;
 	}
 
 	&:active {
 		transform: translateY(-50%) scale(0.96);
 	}
 
-	@include token.from_expanded {
+	@include token.laptop {
 		width: 56px;
 		height: 56px;
-		font-size: token.$font_size_32;
+		font-size: token.$font_size_3xl;
 	}
 
-	@include token.compact {
+	@include token.mobile {
 		width: 40px;
 		height: 40px;
-		font-size: token.$font_size_20;
+		font-size: token.$font_size_xl;
 	}
 }
 
 .solution_modal_nav_prev {
-	left: token.$spacing_4;
+	left: token.$spacing_xs;
 
-	@include token.from_expanded {
-		left: token.$spacing_8;
+	@include token.laptop {
+		left: token.$spacing_sm;
 	}
 }
 
 .solution_modal_nav_next {
-	right: token.$spacing_4;
+	right: token.$spacing_xs;
 
-	@include token.from_expanded {
-		right: token.$spacing_8;
+	@include token.laptop {
+		right: token.$spacing_sm;
 	}
 }
 
@@ -126,11 +126,11 @@
 	display: grid;
 	grid-template-columns: 1fr 1.35fr;
 
-	@include token.medium {
+	@include token.tablet {
 		grid-template-columns: 1fr;
 	}
 
-	@include token.compact {
+	@include token.mobile {
 		grid-template-columns: 1fr;
 	}
 }
@@ -143,36 +143,36 @@
 .solution_modal_left {
 	@include token.flex_column;
 	z-index: 2;
-	padding: token.$spacing_40;
-	gap: token.$spacing_24;
-	color: token.$color_text_inverse;
+	padding: token.$spacing_2xl;
+	gap: token.$spacing_lg;
+	color: token.$text_inverse;
 	overflow: auto;
-	line-height: token.$line_height_28;
+	line-height: token.$line_height_relaxed;
 	background:
-		linear-gradient(to right, token.$color_base_brand_primary 85%, token.$color_base_alpha_black_50 100%),
-		radial-gradient(1200px 60% at 100% 50%, transparent 0%, token.$color_base_brand_primary 80%),
-		token.$color_brand_primary;
+		linear-gradient(to right, token.$color_background_darkest 85%, token.$color_glass_dark 100%),
+		radial-gradient(1200px 60% at 100% 50%, transparent 0%, token.$color_background_darkest 80%),
+		token.$color_primary;
 }
 
 .solution_modal_title {
-	@include token.heading_small_medium;
+	@include token.heading_3;
 	white-space: pre-line;
-	margin-top: token.$spacing_8;
-	line-height: token.$line_height_20;
+	margin-top: token.$spacing_sm;
+	line-height: token.$line_height_snug;
 }
 
 .solution_modal_desc {
-	@include token.body_medium;
-	color: token.$color_text_inverse;
+	@include token.body_regular;
+	color: token.$text_inverse;
 	opacity: 0.9;
 	white-space: pre-line;
-	margin-top: token.$spacing_8;
-	line-height: token.$line_height_28;
+	margin-top: token.$spacing_sm;
+	line-height: token.$line_height_relaxed;
 }
 
 .solution_modal_right {
 	position: relative;
-	background: token.$color_brand_primary;
+	background: token.$color_primary;
 	overflow: hidden;
 
 	&::before {
@@ -184,18 +184,18 @@
 		background: linear-gradient(
 			to left,
 			transparent 0%,
-			token.$color_base_alpha_black_50 50%,
-			token.$color_base_brand_primary 100%
+			token.$color_glass_dark 50%,
+			token.$color_background_darkest 100%
 		);
 		pointer-events: none;
 		z-index: 1;
 	}
 
-	@include token.medium {
+	@include token.tablet {
 		display: none;
 	}
 
-	@include token.compact {
+	@include token.mobile {
 		display: none;
 	}
 }

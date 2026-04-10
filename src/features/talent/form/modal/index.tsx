@@ -59,7 +59,7 @@ const TalentFormModal = ({ open, onClose }: Props) => {
 								placeholder="이름을 입력하세요"
 								disabled={isFormBusy}
 								error={!!errors.name}
-								supportingText={errors.name?.message}
+								helperText={errors.name?.message}
 								fullWidth
 							/>
 						)}
@@ -85,7 +85,7 @@ const TalentFormModal = ({ open, onClose }: Props) => {
 								placeholder="example@bigtablet.kr"
 								disabled={isFormBusy}
 								error={!!errors.email}
-								supportingText={errors.email?.message}
+								helperText={errors.email?.message}
 								fullWidth
 							/>
 						)}
@@ -105,7 +105,7 @@ const TalentFormModal = ({ open, onClose }: Props) => {
 								placeholder="예: 개발팀"
 								disabled={isFormBusy}
 								error={!!errors.department}
-								supportingText={errors.department?.message}
+								helperText={errors.department?.message}
 								fullWidth
 							/>
 						)}
@@ -129,10 +129,10 @@ const TalentFormModal = ({ open, onClose }: Props) => {
 					/>
 
 					<div className={styles.actions}>
-						<Button variant="tonal" onClick={onClose} disabled={isFormBusy}>
+						<Button variant="secondary" onClick={onClose} disabled={isFormBusy}>
 							취소
 						</Button>
-						<Button variant="filled" type="submit" disabled={isFormBusy}>
+						<Button variant="primary" type="submit" disabled={isFormBusy}>
 							{isPending ? "등록 중..." : "등록하기"}
 						</Button>
 					</div>

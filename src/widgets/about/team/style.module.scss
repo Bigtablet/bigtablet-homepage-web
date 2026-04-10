@@ -3,25 +3,25 @@
 .team {
 	@include token.flex_column;
 	width: 100%;
-	background: token.$color_brand_primary_container;
-	color: token.$color_text_inverse;
-	gap: token.$spacing_32;
-	padding-block: token.$spacing_48;
-	padding-inline: token.$spacing_40;
+	background: token.$color_background_primary;
+	color: token.$text_inverse;
+	gap: token.$spacing_xl;
+	padding-block: token.$spacing_3xl;
+	padding-inline: token.$spacing_2xl;
 }
 
 .team_title {
-	@include token.heading_medium_medium;
+	@include token.heading_2;
 	text-align: center;
-	font-size: token.$font_size_24;
-	padding-block: token.$spacing_24;
-	color: token.$color_text_inverse;
+	font-size: token.$font_size_2xl;
+	padding-block: token.$spacing_lg;
+	color: token.$text_inverse;
 }
 
 .team_grid {
 	display: grid;
 	grid-template-columns: repeat(3, minmax(200px, 260px));
-	gap: token.$spacing_32;
+	gap: token.$spacing_xl;
 	justify-content: center;
 	align-items: start;
 	margin: 0 auto;
@@ -29,36 +29,36 @@
 	max-width: 920px;
 }
 
-@include token.from_expanded {
+@include token.laptop {
 	.team_grid {
 		grid-template-columns: repeat(2, minmax(180px, 240px));
 		max-width: 520px;
 	}
 }
 
-@include token.medium {
+@include token.tablet {
 	.team_grid {
 		grid-template-columns: repeat(2, minmax(160px, 220px));
-		gap: token.$spacing_24;
+		gap: token.$spacing_lg;
 		max-width: 480px;
 	}
 }
 
-@include token.compact {
+@include token.mobile {
 	.team {
-		gap: token.$spacing_24;
-		padding-block: token.$spacing_40;
-		padding-inline: token.$spacing_24;
+		gap: token.$spacing_lg;
+		padding-block: token.$spacing_2xl;
+		padding-inline: token.$spacing_lg;
 	}
 
 	.team_title {
-		font-size: token.$font_size_20;
-		padding-block: token.$spacing_16;
+		font-size: token.$font_size_xl;
+		padding-block: token.$spacing_md;
 	}
 
 	.team_grid {
 		grid-template-columns: repeat(2, 1fr);
-		gap: token.$spacing_16;
+		gap: token.$spacing_md;
 		max-width: 100%;
 	}
 }

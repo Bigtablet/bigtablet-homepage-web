@@ -1,38 +1,38 @@
 @use "@bigtablet/design-system/scss/token" as token;
 
 .member_detail {
-  color: token.$color_text_inverse;
+  color: token.$text_inverse;
   min-height: 100vh;
-  padding-block: token.$spacing_40 token.$spacing_48;
-  padding-inline: token.$spacing_16;
+  padding-block: token.$spacing_2xl token.$spacing_3xl;
+  padding-inline: token.$spacing_md;
   display: grid;
   place-items: center;
-  row-gap: token.$spacing_16;
+  row-gap: token.$spacing_md;
 
   &_inner {
     inline-size: min(1100px, 92vw);
     display: grid;
     grid-template-columns: 360px 1fr;
-    column-gap: token.$spacing_40;
+    column-gap: token.$spacing_2xl;
     align-items: start;
   }
 
 }
 
-@include token.compact {
+@include token.mobile {
   .member_detail {
     &_inner {
       grid-template-columns: 1fr;
-      row-gap: token.$spacing_24;
+      row-gap: token.$spacing_lg;
     }
   }
 }
 
-@include token.medium {
+@include token.tablet {
   .member_detail {
     &_inner {
       grid-template-columns: 1fr;
-      row-gap: token.$spacing_24;
+      row-gap: token.$spacing_lg;
     }
   }
 }

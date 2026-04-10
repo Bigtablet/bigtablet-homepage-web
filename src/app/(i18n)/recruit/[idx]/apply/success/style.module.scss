@@ -1,20 +1,20 @@
 @use "@bigtablet/design-system/scss/token" as token;
 
 .success {
-  @include token.flex_column_center;
+  @include token.flex-column-center;
   flex: 1 0 auto;
-  gap: token.$spacing_32;
-  padding: token.$spacing_48;
+  gap: token.$spacing_xl;
+  padding: token.$spacing_3xl;
   text-align: center;
 }
 
 .success_title {
-  @include token.heading_medium_medium;
-  color: token.$color_text_heading;
+  @include token.heading-2;
+  color: token.$text_strong;
 }
 
 .success_text {
-  @include token.body_medium;
-  color: token.$color_text_body;
-  line-height: token.$line_height_28;
+  @include token.body-regular;
+  color: token.$text_normal;
+  line-height: token.$line_height_relaxed;
 }

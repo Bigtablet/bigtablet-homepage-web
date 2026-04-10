@@ -86,10 +86,10 @@ const GlobalError = ({ error: _error, reset }: { error: Error; reset: () => void
 				)}
 
 				<div className={styles.error_actions}>
-					<Button variant="filled" onClick={handleRetry} disabled={isCooling || isMaxRetry}>
+					<Button variant="primary" onClick={handleRetry} disabled={isCooling || isMaxRetry}>
 						{retryLabel}
 					</Button>
-					<Button variant="tonal" onClick={handleHome}>
+					<Button variant="secondary" onClick={handleHome}>
 						홈으로 이동
 					</Button>
 				</div>

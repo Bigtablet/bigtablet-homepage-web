@@ -2,8 +2,8 @@
 
 .introduce {
   @include token.flex_between;
-  gap: token.$spacing_32;
-  padding: token.$spacing_48 8vw;
+  gap: token.$spacing_xl;
+  padding: token.$spacing_4xl 8vw;
 
   &.introduce_reverse {
     flex-direction: row-reverse;
@@ -13,23 +13,23 @@
 .introduce_text {
   flex: 1;
   @include token.flex_column;
-  gap: token.$spacing_8;
+  gap: token.$spacing_sm;
   font-family: token.$font_family_primary;
 }
 
 .introduce_title {
-  @include token.heading_medium_medium;
-  font-size: token.$font_size_24;
-  color: token.$color_text_heading;
-  letter-spacing: token.$letter_spacing_normal;
-  line-height: token.$line_height_20;
+  @include token.heading_2;
+  font-size: token.$font_size_2xl;
+  color: token.$text_strong;
+  letter-spacing: token.$letter_spacing_tight;
+  line-height: token.$line_height_snug;
 }
 
 .introduce_desc {
   @include token.body_medium;
-  font-size: token.$font_size_16;
-  color: token.$color_text_caption;
-  line-height: token.$line_height_28;
+  font-size: token.$font_size_md;
+  color: token.$text_subtle;
+  line-height: token.$line_height_relaxed;
   white-space: pre-line;
 }
 
@@ -47,13 +47,13 @@
   display: block;
 }
 
-@include token.compact {
+@include token.mobile {
   .introduce {
     @include token.flex_column;
     flex-direction: column-reverse;
     text-align: center;
-    gap: token.$spacing_24;
-    padding: token.$spacing_40 token.$spacing_24;
+    gap: token.$spacing_lg;
+    padding: token.$spacing_2xl token.$spacing_lg;
 
     &.introduce_reverse {
       flex-direction: column-reverse;
@@ -61,7 +61,7 @@
   }
 
   .introduce_text {
-    gap: token.$spacing_4;
+    gap: token.$spacing_xs;
   }
 
   .introduce_image {
@@ -75,67 +75,67 @@
   }
 
   .introduce_title {
-    font-size: token.$font_size_18;
+    font-size: token.$font_size_lg;
   }
 
   .introduce_desc {
-    font-size: token.$font_size_14;
+    font-size: token.$font_size_sm;
   }
 }
 
-@include token.medium {
+@include token.tablet {
   .introduce {
-    gap: token.$spacing_40;
-    padding: token.$spacing_48 8vw;
+    gap: token.$spacing_2xl;
+    padding: token.$spacing_5xl 8vw;
   }
 
   .introduce_text {
-    gap: token.$spacing_16;
+    gap: token.$spacing_md;
   }
 
   .introduce_title {
-    font-size: token.$font_size_24;
+    font-size: token.$font_size_2xl;
   }
 
   .introduce_desc {
-    font-size: token.$font_size_16;
+    font-size: token.$font_size_md;
   }
 }
 
-@include token.from_expanded {
+@include token.laptop {
   .introduce {
-    gap: token.$spacing_48;
-    padding: token.$spacing_48 8vw;
+    gap: token.$spacing_3xl;
+    padding: token.$spacing_5xl 8vw;
   }
 
   .introduce_text {
-    gap: token.$spacing_24;
+    gap: token.$spacing_lg;
   }
 
   .introduce_title {
-    font-size: token.$font_size_32;
+    font-size: token.$font_size_3xl;
   }
 
   .introduce_desc {
-    font-size: token.$font_size_18;
+    font-size: token.$font_size_lg;
   }
 }
 
-@include token.from_large {
+@include token.desktop {
   .introduce {
-    gap: token.$spacing_48;
-    padding: token.$spacing_48 8vw;
+    gap: token.$spacing_3xl;
+    padding: token.$spacing_5xl 8vw;
   }
 
   .introduce_text {
-    gap: token.$spacing_24;
+    gap: token.$spacing_lg;
   }
 
   .introduce_title {
-    font-size: token.$font_size_32;
+    font-size: token.$font_size_3xl;
   }
 
   .introduce_desc {
-    font-size: token.$font_size_18;
+    font-size: token.$font_size_lg;
   }
 }

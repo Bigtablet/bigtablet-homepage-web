@@ -43,7 +43,7 @@ const MemberDetailClient = () => {
 				<Interview items={qaList} />
 			</div>
 
-			<BackLink href="/about#team" label="Back to Team" />
+			<BackLink href="/about#team" label={t("common.backToTeam")} />
 		</section>
 	);
 };

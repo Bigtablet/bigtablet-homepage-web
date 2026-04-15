@@ -63,7 +63,7 @@ const Banner = () => {
 					loop
 					muted
 					playsInline
-					preload="metadata"
+					preload="auto"
 				/>
 				<div className={styles.banner_overlay} />
 			</div>

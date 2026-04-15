@@ -24,8 +24,8 @@ const MemberCard = ({ memberSlug }: MemberCardProps) => {
 					src={imageSrc}
 					alt={name}
 					width={240}
-					height={300}
-					sizes="(max-width:768px) 50vw, 240px"
+					height={360}
+					sizes="(max-width: 768px) 50vw, 240px"
 				/>
 			</div>
 

@@ -51,6 +51,7 @@ const Modal = ({
 				<video
 					className={styles.solution_modal_video}
 					src={item.src}
+					poster={item.poster}
 					autoPlay
 					muted
 					playsInline

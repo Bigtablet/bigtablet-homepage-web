@@ -2,13 +2,16 @@
 
 .back_link {
 	@include token.body_medium;
+	appearance: none;
+	font: inherit;
+	cursor: pointer;
 	display: inline-flex;
 	align-items: center;
+	align-self: flex-start;
 	gap: token.$spacing_xs;
 	font-size: token.$font_size_sm;
 	color: token.$text_strong;
 	background: token.$color_background;
-	text-decoration: none;
 	padding: token.$spacing_sm token.$spacing_md;
 	border-radius: token.$radius_md;
 	border: 1px solid token.$color_border;

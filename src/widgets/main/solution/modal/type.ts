@@ -10,6 +10,7 @@ export interface ModalAnimVars {
 export interface ModalItem {
 	id: number;
 	src: string;
+	poster?: string;
 }
 
 export interface ModalProps {

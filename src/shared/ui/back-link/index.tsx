@@ -1,20 +1,25 @@
-import { BigtabletLink } from "src/shared/hooks/next";
+"use client";
+
+import { useRouter } from "next/navigation";
 import styles from "./style.module.scss";
 
 type Props = {
-	href: string;
 	label: string;
 };
 
 /**
  * @description
- * 이전 페이지로 돌아가는 링크 컴포넌트입니다.
- * 상세/정책 페이지 등에서 공통으로 사용합니다.
+ * 이전 페이지로 돌아가는 버튼 컴포넌트.
+ * router.back()으로 브라우저 히스토리 기반 뒤로가기를 수행한다.
  */
-const BackLink = ({ href, label }: Props) => (
-	<BigtabletLink href={href} className={styles.back_link}>
-		← {label}
-	</BigtabletLink>
-);
+const BackLink = ({ label }: Props) => {
+	const router = useRouter();
+
+	return (
+		<button type="button" className={styles.back_link} onClick={() => router.back()}>
+			← {label}
+		</button>
+	);
+};
 
 export default BackLink;

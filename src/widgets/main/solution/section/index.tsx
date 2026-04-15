@@ -118,11 +118,12 @@ const SolutionSection = () => {
 			</p>
 
 			<div className={styles.solution_grid}>
-				{products.map(({ id, src }) => (
+				{products.map(({ id, src, poster }) => (
 					<Card
 						key={id}
 						id={id}
 						src={src}
+						poster={poster}
 						label={t(`product.${id}.cardTitle`)}
 						onOpen={openFromRect}
 					/>

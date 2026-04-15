@@ -32,6 +32,7 @@ const Introduce = ({ sectionKey, reverse = false }: AboutSchema) => {
 					alt="Bigtablet 로고"
 					width={420}
 					height={420}
+					sizes="(max-width: 768px) 280px, 420px"
 					className={styles.introduce_img}
 				/>
 			</div>

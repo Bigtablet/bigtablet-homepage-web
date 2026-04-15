@@ -5,11 +5,12 @@ import styles from "./style.module.scss";
 interface CardProps {
 	id: number;
 	src: string;
+	poster?: string;
 	label: string;
 	onOpen: (id: number, rect: DOMRect) => void;
 }
 
-const Card = ({ id, src, label, onOpen }: CardProps) => {
+const Card = ({ id, src, poster, label, onOpen }: CardProps) => {
 	const openFromTarget = (el: HTMLElement) => onOpen(id, el.getBoundingClientRect());
 
 	return (
@@ -22,6 +23,7 @@ const Card = ({ id, src, label, onOpen }: CardProps) => {
 			<video
 				className={styles.solution_card_video}
 				src={src}
+				poster={poster}
 				autoPlay
 				muted
 				playsInline

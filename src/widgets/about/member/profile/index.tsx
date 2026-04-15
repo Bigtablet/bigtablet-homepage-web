@@ -17,7 +17,7 @@ const Profile = ({ name, position, description, imageSrc, links }: MemberProfile
 		<aside className={styles.profile} aria-label="Profile">
 			<div className={styles.profile_image}>
 				{imageSrc ? (
-					<Image src={imageSrc} alt={name} fill sizes="360px" />
+					<Image src={imageSrc} alt={name} fill sizes="(max-width: 768px) 92vw, 360px" />
 				) : (
 					<div className={styles.profile_image_fallback} aria-hidden />
 				)}

@@ -1,38 +1,12 @@
 "use client";
 
-import { useTranslations } from "next-intl";
-import BackLink from "src/shared/ui/back-link";
-import styles from "../style.module.scss";
+import { policyContent } from "content/policies";
+import { useLocale } from "next-intl";
+import PolicyContent from "src/widgets/policies/content";
 
 const Cookies = () => {
-	const t = useTranslations("policies.cookies");
-
-	return (
-		<div className={styles.terms}>
-			<BackLink href="/" label="홈으로" />
-			<h1>{t("title")}</h1>
-			<h4>{t("effectiveDate")}</h4>
-			<p>{t("intro")}</p>
-
-			<h2>{t("sections.1.title")}</h2>
-			<p>{t("sections.1.content")}</p>
-
-			<h2>{t("sections.2.title")}</h2>
-			<p>{t("sections.2.content")}</p>
-
-			<h2>{t("sections.3.title")}</h2>
-			<p>{t("sections.3.content")}</p>
-
-			<h2>{t("sections.4.title")}</h2>
-			<p>{t("sections.4.content")}</p>
-
-			<h2>{t("sections.5.title")}</h2>
-			<p>{t("sections.5.content")}</p>
-
-			<h2>{t("sections.6.title")}</h2>
-			<p>{t("sections.6.content")}</p>
-		</div>
-	);
+	const locale = useLocale();
+	return <PolicyContent content={policyContent[locale]?.cookies ?? policyContent.ko.cookies} />;
 };
 
 export default Cookies;

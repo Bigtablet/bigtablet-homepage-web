@@ -3,6 +3,7 @@ import { NextIntlClientProvider } from "next-intl";
 import type { ReactNode } from "react";
 import Footer from "src/shared/ui/footer";
 import Header from "src/shared/ui/header";
+import PageTransition from "src/shared/ui/page-transition";
 import styles from "./layout.module.scss";
 
 export default async function LocaleLayout({ children }: { children: ReactNode }) {
@@ -14,7 +15,9 @@ export default async function LocaleLayout({ children }: { children: ReactNode }
 		<NextIntlClientProvider locale={locale} messages={messages}>
 			<div className={styles.layout}>
 				<Header />
-				<main className={styles.layout_main}>{children}</main>
+				<main className={styles.layout_main}>
+					<PageTransition>{children}</PageTransition>
+				</main>
 				<Footer />
 			</div>
 		</NextIntlClientProvider>

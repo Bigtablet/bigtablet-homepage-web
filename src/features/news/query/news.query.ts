@@ -1,6 +1,6 @@
 "use client";
 
-import { queryOptions, useQuery } from "@tanstack/react-query";
+import { queryOptions, useQuery, useSuspenseQuery } from "@tanstack/react-query";
 import { getNewsApi } from "src/entities/news/api/news.api";
 import type { NewsItem } from "src/entities/news/schema/news.schema";
 
@@ -38,6 +38,15 @@ export const newsQueries = {
  */
 export const useNewsPageQuery = ({ page, size }: { page: number; size: number }) => {
 	return useQuery({
+		...newsQueries.page(page, size),
+	});
+};
+
+/**
+ * @description Fetch news page with Suspense (AsyncBoundary용)
+ */
+export const useSuspenseNewsPageQuery = ({ page, size }: { page: number; size: number }) => {
+	return useSuspenseQuery({
 		...newsQueries.page(page, size),
 	});
 };

@@ -1,6 +1,6 @@
 "use client";
 
-import { queryOptions, useQuery } from "@tanstack/react-query";
+import { queryOptions, useQuery, useSuspenseQuery } from "@tanstack/react-query";
 import { getBlogApi, getBlogDetailApi } from "src/entities/blog/api/blog.api";
 import type { BlogItem } from "src/entities/blog/schema/blog.schema";
 import type { ListSchema } from "src/shared/schema/list/list.schema";
@@ -44,6 +44,15 @@ export const blogQueries = {
  */
 export const useBlogPageQuery = ({ page, size }: ListSchema) => {
 	return useQuery({
+		...blogQueries.page(page, size),
+	});
+};
+
+/**
+ * @description Fetch blog page with Suspense (AsyncBoundary용)
+ */
+export const useSuspenseBlogPageQuery = ({ page, size }: ListSchema) => {
+	return useSuspenseQuery({
 		...blogQueries.page(page, size),
 	});
 };

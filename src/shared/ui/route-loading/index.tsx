@@ -89,6 +89,13 @@ const RouteLoading = () => {
 		return () => document.removeEventListener("click", handleClick);
 	}, [pathname, searchParams, handleStart]);
 
+	// 뒤로가기/앞으로가기 감지
+	useEffect(() => {
+		const handlePopState = () => handleStart();
+		window.addEventListener("popstate", handlePopState);
+		return () => window.removeEventListener("popstate", handlePopState);
+	}, [handleStart]);
+
 	return <TopLoading isLoading={isLoading} />;
 };
 

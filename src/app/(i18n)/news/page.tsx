@@ -2,7 +2,7 @@
 
 import { Pagination } from "@bigtablet/design-system";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useMemo } from "react";
 import { useSuspenseNewsPageQuery } from "src/features/news/query/news.query";
 import AsyncBoundary from "src/shared/ui/async-boundary";
@@ -46,15 +46,18 @@ const NewsContent = () => {
 	);
 };
 
-const NewsPage = () => (
-	<AsyncBoundary
-		pendingFallback={<NewsListSkeleton />}
-		rejectedFallback={({ resetErrorBoundary }) => (
-			<ErrorFallback reset={resetErrorBoundary} backHref="/main" backLabel="메인으로 돌아가기" />
-		)}
-	>
-		<NewsContent />
-	</AsyncBoundary>
-);
+const NewsPage = () => {
+	const t = useTranslations("common");
+	return (
+		<AsyncBoundary
+			pendingFallback={<NewsListSkeleton />}
+			rejectedFallback={({ resetErrorBoundary }) => (
+				<ErrorFallback reset={resetErrorBoundary} backHref="/main" backLabel={t("backToMain")} />
+			)}
+		>
+			<NewsContent />
+		</AsyncBoundary>
+	);
+};
 
 export default NewsPage;

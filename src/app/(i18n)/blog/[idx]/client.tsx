@@ -68,7 +68,7 @@ const BlogDetailClient = ({ idx }: Props) => {
 
 	return (
 		<section className={styles.blog_detail}>
-			<BackLink label="블로그 목록" />
+			<BackLink href="/blog" label="블로그 목록" />
 
 			<article className={styles.blog_detail_body}>
 				<h1 className={styles.blog_detail_title}>{title}</h1>

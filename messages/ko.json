@@ -1,4 +1,10 @@
 {
+	"common": {
+		"backToHome": "홈으로",
+		"backToMain": "메인으로 돌아가기",
+		"backToList": "목록으로",
+		"backToTeam": "팀으로 돌아가기"
+	},
 	"footer": {
 		"brand": "Bigtablet, Inc.",
 		"address": "(41585) 대구광역시 동구 동대구로 465, 대구스케일업허브 9층 912호",

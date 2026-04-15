@@ -2,7 +2,7 @@
 
 import { Pagination } from "@bigtablet/design-system";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useMemo } from "react";
 import { useSuspenseBlogPageQuery } from "src/features/blog/query/blog.query";
 import AsyncBoundary from "src/shared/ui/async-boundary";
@@ -51,15 +51,18 @@ const BlogContent = () => {
 	);
 };
 
-const BlogPage = () => (
-	<AsyncBoundary
-		pendingFallback={<BlogListSkeleton />}
-		rejectedFallback={({ resetErrorBoundary }) => (
-			<ErrorFallback reset={resetErrorBoundary} backHref="/main" backLabel="메인으로 돌아가기" />
-		)}
-	>
-		<BlogContent />
-	</AsyncBoundary>
-);
+const BlogPage = () => {
+	const t = useTranslations("common");
+	return (
+		<AsyncBoundary
+			pendingFallback={<BlogListSkeleton />}
+			rejectedFallback={({ resetErrorBoundary }) => (
+				<ErrorFallback reset={resetErrorBoundary} backHref="/main" backLabel={t("backToMain")} />
+			)}
+		>
+			<BlogContent />
+		</AsyncBoundary>
+	);
+};
 
 export default BlogPage;

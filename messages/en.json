@@ -1,4 +1,10 @@
 {
+	"common": {
+		"backToHome": "Home",
+		"backToMain": "Back to Main",
+		"backToList": "Back to List",
+		"backToTeam": "Back to Team"
+	},
 	"footer": {
 		"brand": "Bigtablet, Inc.",
 		"address": "440 N. Wolfe Rd, Sunnyvale, CA 94085",

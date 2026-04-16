@@ -75,6 +75,7 @@ jobs:
           name: nextjs-build
           path: .next/
           retention-days: 1
+          include-hidden-files: true
 
   e2e:
     runs-on: ubuntu-latest

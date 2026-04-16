@@ -1,10 +1,12 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { useEffect, useMemo, useRef, useState } from "react";
-import Marquee from "react-fast-marquee";
 import styles from "./style.module.scss";
+
+const Marquee = dynamic(() => import("react-fast-marquee"), { ssr: false });
 
 const logos = ["/images/collaborations/google.png", "/images/collaborations/nvdia.png"];
 

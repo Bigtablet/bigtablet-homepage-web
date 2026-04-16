@@ -14,6 +14,7 @@
 		"test:coverage": "vitest run --coverage",
 		"type-check": "tsc --noEmit",
 		"e2e": "playwright test",
+		"e2e:start": "cp -r .next/static .next/standalone/.next/static && cp -r public .next/standalone/public && node .next/standalone/server.js",
 		"e2e:ui": "playwright test --ui",
 		"analyze": "ANALYZE=true next build --turbopack",
 		"prepare": "husky"
@@ -48,6 +49,7 @@
 		"zod": "^4.3.6"
 	},
 	"devDependencies": {
+		"@axe-core/playwright": "^4.11.1",
 		"@biomejs/biome": "^2.4.10",
 		"@commitlint/cli": "^20.5.0",
 		"@commitlint/core": "^20.5.0",
@@ -61,13 +63,14 @@
 		"@types/react": "^19.2.14",
 		"@types/react-dom": "^19.2.3",
 		"@vitejs/plugin-react": "^5.2.0",
-		"@vitest/coverage-v8": "^4.1.2",
+		"@vitest/coverage-v8": "^4.1.4",
 		"babel-plugin-react-compiler": "^1.0.0",
 		"husky": "^9.1.7",
 		"jsdom": "^29.0.2",
 		"msw": "^2.12.14",
 		"typescript": "^6.0.2",
-		"vitest": "^4.1.2"
+		"vite": "^8.0.8",
+		"vitest": "^4.1.4"
 	},
 	"lint-staged": {
 		"**/*.{ts,tsx,js,jsx,json}": [

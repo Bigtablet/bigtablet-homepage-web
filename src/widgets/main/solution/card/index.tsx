@@ -24,11 +24,10 @@ const Card = ({ id, src, poster, label, onOpen }: CardProps) => {
 				className={styles.solution_card_video}
 				src={src}
 				poster={poster}
-				autoPlay
 				muted
 				playsInline
 				loop
-				preload="metadata"
+				preload="none"
 			/>
 			<div className={styles.solution_card_overlay} />
 			<p className={styles.solution_card_title}>{label}</p>

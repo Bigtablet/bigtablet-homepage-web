@@ -1,20 +1,44 @@
 import { expect, test } from "@playwright/test";
 
 test.describe("internationalization", () => {
-	test("default locale renders content", async ({ page }) => {
+	test("default locale renders korean content", async ({ page }) => {
 		await page.goto("/main");
 		await expect(page.locator("main")).toBeVisible();
+		// 기본 로케일 = 한국어
+		await expect(page.getByRole("link", { name: "About Us" })).toBeVisible();
 	});
 
-	test("korean locale renders korean content", async ({ page, context, baseURL }) => {
-		await context.addCookies([{ name: "NEXT_LOCALE", value: "ko", url: baseURL! }]);
+	test("korean locale renders korean navigation", async ({ page, context, baseURL }) => {
+		await context.addCookies([
+			{ name: "NEXT_LOCALE", value: "ko", url: baseURL ?? "http://localhost:3000" },
+		]);
 		await page.goto("/main");
 		await expect(page.locator("main")).toBeVisible();
+		await expect(page.locator("header")).toBeVisible();
 	});
 
-	test("english locale renders english content", async ({ page, context, baseURL }) => {
-		await context.addCookies([{ name: "NEXT_LOCALE", value: "en", url: baseURL! }]);
+	test("english locale renders english navigation", async ({ page, context, baseURL }) => {
+		await context.addCookies([
+			{ name: "NEXT_LOCALE", value: "en", url: baseURL ?? "http://localhost:3000" },
+		]);
 		await page.goto("/main");
+		await expect(page.locator("main")).toBeVisible();
+		await expect(page.locator("header")).toBeVisible();
+	});
+
+	test("language switch changes content on about page", async ({ page, context, baseURL }) => {
+		// 한국어
+		await context.addCookies([
+			{ name: "NEXT_LOCALE", value: "ko", url: baseURL ?? "http://localhost:3000" },
+		]);
+		await page.goto("/about");
+		await expect(page.locator("main")).toBeVisible();
+
+		// 영어로 전환
+		await context.addCookies([
+			{ name: "NEXT_LOCALE", value: "en", url: baseURL ?? "http://localhost:3000" },
+		]);
+		await page.reload();
 		await expect(page.locator("main")).toBeVisible();
 	});
 

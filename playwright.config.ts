@@ -6,7 +6,7 @@ export default defineConfig({
 	testDir: "./e2e",
 	fullyParallel: true,
 	forbidOnly: isCI,
-	retries: isCI ? 2 : 0,
+	retries: isCI ? 1 : 0,
 	workers: isCI ? 2 : undefined,
 	timeout: 30_000,
 	reporter: "html",

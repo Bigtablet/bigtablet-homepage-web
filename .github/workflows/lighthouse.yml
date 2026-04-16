@@ -12,7 +12,7 @@ jobs:
   lighthouse:
     runs-on: ubuntu-latest
     env:
-      NEXT_PUBLIC_SERVER_URL: https://placeholder.test
+      NEXT_PUBLIC_SERVER_URL: http://127.0.0.1:1
 
     steps:
       - name: Checkout
@@ -34,8 +34,63 @@ jobs:
         run: pnpm build
 
       - name: Run Lighthouse CI
+        id: lhci
         uses: treosh/lighthouse-ci-action@v12
         with:
           configPath: ./lighthouserc.json
           uploadArtifacts: true
           temporaryPublicStorage: true
+
+      - name: Post Lighthouse report to PR
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const results = ${{ steps.lhci.outputs.manifest }};
+            const links = ${{ steps.lhci.outputs.links }};
+
+            const rows = results.map((r) => {
+              const url = new URL(r.url);
+              const path = url.pathname;
+              const s = (v) => Math.round(v * 100);
+              const emoji = (v) => (v >= 0.9 ? '🟢' : v >= 0.5 ? '🟠' : '🔴');
+              const perf = r.summary.performance;
+              const a11y = r.summary.accessibility;
+              const bp = r.summary['best-practices'];
+              const seo = r.summary.seo;
+              const link = links[r.url] || '';
+              return `| [${path}](${link}) | ${emoji(perf)} ${s(perf)} | ${emoji(a11y)} ${s(a11y)} | ${emoji(bp)} ${s(bp)} | ${emoji(seo)} ${s(seo)} |`;
+            });
+
+            const body = [
+              '### ⚡ Lighthouse Report',
+              '',
+              '| Page | Performance | Accessibility | Best Practices | SEO |',
+              '|------|:-----------:|:------------:|:--------------:|:---:|',
+              ...rows,
+              '',
+              `> Results from Lighthouse CI on \`${context.sha.slice(0, 7)}\``,
+            ].join('\n');
+
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+            });
+
+            const existing = comments.find((c) => c.body?.includes('### ⚡ Lighthouse Report'));
+
+            if (existing) {
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: existing.id,
+                body,
+              });
+            } else {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body,
+              });
+            }

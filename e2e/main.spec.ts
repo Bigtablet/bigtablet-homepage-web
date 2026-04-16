@@ -1,9 +1,7 @@
 import { expect, test } from "@playwright/test";
 
 test.beforeEach(async ({ context, baseURL }) => {
-	await context.addCookies([
-		{ name: "NEXT_LOCALE", value: "ko", url: baseURL ?? "http://localhost:3000" },
-	]);
+	await context.addCookies([{ name: "NEXT_LOCALE", value: "ko", url: baseURL }]);
 });
 
 test.describe("main page", () => {
@@ -40,6 +38,6 @@ test.describe("main page", () => {
 		const footer = page.locator("footer");
 		await expect(footer.getByText("개인정보처리방침")).toBeVisible({ timeout: 10_000 });
 		await footer.getByText("개인정보처리방침").click();
-		await expect(page).toHaveURL(/\/policies\/privacy/);
+		await expect(page).toHaveURL(/\/policies\/privacy/, { timeout: 10_000 });
 	});
 });

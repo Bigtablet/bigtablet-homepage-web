@@ -96,6 +96,14 @@ export async function mockApiRoutes(page: Page) {
 	});
 
 	await page.route("**/blog?idx=*", (route) => {
+		if (route.request().method() === "PATCH") {
+			route.fulfill({
+				status: 200,
+				contentType: "application/json",
+				body: JSON.stringify({ status: 200, message: "ok" }),
+			});
+			return;
+		}
 		route.fulfill({
 			status: 200,
 			contentType: "application/json",
@@ -135,7 +143,7 @@ export async function mockApiRoutes(page: Page) {
 		});
 	});
 
-	// PATCH /blog (view count) — 무시
+	// PATCH /blog (view count, query param 없는 경우)
 	await page.route("**/blog", (route) => {
 		if (route.request().method() === "PATCH") {
 			route.fulfill({

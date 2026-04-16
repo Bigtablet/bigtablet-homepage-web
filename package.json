@@ -48,6 +48,7 @@
 		"zod": "^4.3.6"
 	},
 	"devDependencies": {
+		"@axe-core/playwright": "^4.11.1",
 		"@biomejs/biome": "^2.4.10",
 		"@commitlint/cli": "^20.5.0",
 		"@commitlint/core": "^20.5.0",

@@ -14,6 +14,8 @@ export const metadata: Metadata = {
 	description: "Bigtablet's Official Website",
 };
 
+export const dynamic = "force-dynamic";
+
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
 	const store = await cookies();
 	const value = store.get("NEXT_LOCALE")?.value;

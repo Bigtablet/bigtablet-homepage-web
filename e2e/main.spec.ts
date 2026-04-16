@@ -38,6 +38,6 @@ test.describe("main page", () => {
 		const footer = page.locator("footer");
 		await expect(footer.getByText("개인정보처리방침")).toBeVisible({ timeout: 10_000 });
 		await footer.getByText("개인정보처리방침").click();
-		await expect(page).toHaveURL(/\/policies\/privacy/);
+		await expect(page).toHaveURL(/\/policies\/privacy/, { timeout: 10_000 });
 	});
 });

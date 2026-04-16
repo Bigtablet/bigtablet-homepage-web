@@ -19,7 +19,6 @@ test.describe("accessibility", () => {
 
 			const results = await new AxeBuilder({ page })
 				.withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa"])
-				.disableRules(["color-contrast"])
 				.analyze();
 
 			// critical만 실패, serious는 경고 출력

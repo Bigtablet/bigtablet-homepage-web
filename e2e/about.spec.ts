@@ -1,9 +1,7 @@
 import { expect, test } from "@playwright/test";
 
 test.beforeEach(async ({ context, baseURL }) => {
-	await context.addCookies([
-		{ name: "NEXT_LOCALE", value: "ko", url: baseURL ?? "http://localhost:3000" },
-	]);
+	await context.addCookies([{ name: "NEXT_LOCALE", value: "ko", url: baseURL }]);
 });
 
 test.describe("about page", () => {

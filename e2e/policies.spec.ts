@@ -13,9 +13,7 @@ const policyPages = [
 
 test.describe("policy pages - korean", () => {
 	test.beforeEach(async ({ context, baseURL }) => {
-		await context.addCookies([
-			{ name: "NEXT_LOCALE", value: "ko", url: baseURL ?? "http://localhost:3000" },
-		]);
+		await context.addCookies([{ name: "NEXT_LOCALE", value: "ko", url: baseURL }]);
 	});
 
 	for (const policy of policyPages) {
@@ -42,9 +40,7 @@ test.describe("policy pages - korean", () => {
 
 test.describe("policy pages - english", () => {
 	test.beforeEach(async ({ context, baseURL }) => {
-		await context.addCookies([
-			{ name: "NEXT_LOCALE", value: "en", url: baseURL ?? "http://localhost:3000" },
-		]);
+		await context.addCookies([{ name: "NEXT_LOCALE", value: "en", url: baseURL }]);
 	});
 
 	for (const policy of policyPages) {

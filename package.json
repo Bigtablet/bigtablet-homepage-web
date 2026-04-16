@@ -62,13 +62,14 @@
 		"@types/react": "^19.2.14",
 		"@types/react-dom": "^19.2.3",
 		"@vitejs/plugin-react": "^5.2.0",
-		"@vitest/coverage-v8": "^4.1.2",
+		"@vitest/coverage-v8": "^4.1.4",
 		"babel-plugin-react-compiler": "^1.0.0",
 		"husky": "^9.1.7",
 		"jsdom": "^29.0.2",
 		"msw": "^2.12.14",
 		"typescript": "^6.0.2",
-		"vitest": "^4.1.2"
+		"vite": "^8.0.8",
+		"vitest": "^4.1.4"
 	},
 	"lint-staged": {
 		"**/*.{ts,tsx,js,jsx,json}": [

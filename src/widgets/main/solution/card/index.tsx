@@ -22,7 +22,7 @@ const Card = ({ id, src, poster, label, onOpen }: CardProps) => {
 		const observer = new IntersectionObserver(
 			([entry]) => {
 				if (entry.isIntersecting) {
-					video.play();
+					video.play().catch(() => {});
 				} else {
 					video.pause();
 				}

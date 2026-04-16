@@ -25,8 +25,7 @@ export default defineConfig({
 		},
 	],
 	webServer: {
-		command:
-			"cp -r .next/static .next/standalone/.next/static && cp -r public .next/standalone/public && node .next/standalone/server.js",
+		command: "pnpm e2e:start",
 		url: "http://localhost:3000",
 		reuseExistingServer: !isCI,
 		timeout: 120_000,

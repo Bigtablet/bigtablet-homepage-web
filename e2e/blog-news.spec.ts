@@ -10,9 +10,7 @@ test.describe("blog page", () => {
 	test("blog page renders main or error state", async ({ page }) => {
 		await page.goto("/blog");
 		// API 가용 시 main visible, 불가 시 에러 페이지 렌더
-		const main = page.locator("main");
-		const body = page.locator("body");
-		await expect(body).toBeVisible();
+		await expect(page.locator("body")).toBeVisible();
 	});
 });
 
@@ -24,7 +22,6 @@ test.describe("news page", () => {
 
 	test("news page renders main or error state", async ({ page }) => {
 		await page.goto("/news");
-		const body = page.locator("body");
-		await expect(body).toBeVisible();
+		await expect(page.locator("body")).toBeVisible();
 	});
 });

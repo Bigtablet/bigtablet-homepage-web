@@ -44,3 +44,5 @@ yarn.lock
 /test-results/
 /playwright-report/
 /blob-report/
+.lighthouseci/
+.lighthouseci-report/

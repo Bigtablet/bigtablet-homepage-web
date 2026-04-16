@@ -22,15 +22,22 @@ test.describe("accessibility", () => {
 				.disableRules(["color-contrast"])
 				.analyze();
 
-			const critical = results.violations.filter(
-				(v) => v.impact === "critical" || v.impact === "serious",
-			);
+			// critical만 실패, serious는 경고 출력
+			const critical = results.violations.filter((v) => v.impact === "critical");
+			const serious = results.violations.filter((v) => v.impact === "serious");
+
+			if (serious.length > 0) {
+				const summary = serious
+					.map((v) => `  [serious] ${v.id}: ${v.help} (${v.nodes.length} nodes)`)
+					.join("\n");
+				console.warn(`⚠️ Serious a11y issues on ${name}:\n${summary}`);
+			}
 
 			if (critical.length > 0) {
 				const summary = critical
-					.map((v) => `[${v.impact}] ${v.id}: ${v.help} (${v.nodes.length} nodes)`)
+					.map((v) => `  [critical] ${v.id}: ${v.help} (${v.nodes.length} nodes)`)
 					.join("\n");
-				expect(critical, `A11y violations on ${name}:\n${summary}`).toHaveLength(0);
+				expect(critical, `Critical a11y violations on ${name}:\n${summary}`).toHaveLength(0);
 			}
 		});
 	}

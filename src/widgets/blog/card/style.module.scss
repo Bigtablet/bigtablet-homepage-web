@@ -72,7 +72,8 @@
   font-size: token.$font_size_md;
   margin-top: token.$spacing_sm;
   color: token.$text_strong;
-  word-break: break-word;
+  word-break: keep-all;
+  overflow-wrap: break-word;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;

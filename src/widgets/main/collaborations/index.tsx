@@ -32,7 +32,7 @@ const Collaborations = () => {
 									alt=""
 									width={260}
 									height={60}
-									sizes="160px"
+									sizes="(max-width: 768px) 180px, 280px"
 									priority={index < 2}
 									draggable={false}
 								/>

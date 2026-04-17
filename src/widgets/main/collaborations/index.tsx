@@ -6,6 +6,9 @@ import styles from "./style.module.scss";
 
 const logos = ["/images/collaborations/google.webp", "/images/collaborations/nvdia.webp"];
 
+/** 무한 스크롤용 복제 — 와이드 화면(4K 등)에서 트랙 절반이 뷰포트를 덮도록 충분히 반복 */
+const items = Array.from({ length: 12 }, () => logos).flat();
+
 /**
  * @component Collaborations
  *
@@ -15,9 +18,6 @@ const logos = ["/images/collaborations/google.webp", "/images/collaborations/nvd
  */
 const Collaborations = () => {
 	const t = useTranslations("main.collaboration");
-
-	// 무한 스크롤을 위해 로고 목록을 2배로 복제
-	const items = [...logos, ...logos, ...logos, ...logos];
 
 	return (
 		<section className={styles.collabs}>

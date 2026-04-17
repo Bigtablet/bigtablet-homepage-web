@@ -20,6 +20,10 @@
 	width: 100%;
 }
 
+/**
+ * 40s — 로고 개수(items 배열 길이)와 비례하여 설정됨.
+ * 로고 개수 변경 시 속도 재조정 필요 (items 12 × logos 2 = 24개 기준).
+ */
 .collabs_track {
 	display: flex;
 	align-items: center;

@@ -8,7 +8,7 @@ import styles from "./style.module.scss";
 
 const Marquee = dynamic(() => import("react-fast-marquee"), { ssr: false });
 
-const logos = ["/images/collaborations/google.png", "/images/collaborations/nvdia.png"];
+const logos = ["/images/collaborations/google.webp", "/images/collaborations/nvdia.webp"];
 
 const GAP = 24;
 const CARD_W = 260;

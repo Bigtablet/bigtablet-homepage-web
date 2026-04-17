@@ -124,7 +124,7 @@
 					"position": "CEO",
 					"name": "Jiho Moon",
 					"description": "An adventurer in pursuit of optimal efficiency",
-					"image": "/images/member/jiho.png",
+					"image": "/images/member/jiho.webp",
 					"qa1": {
 						"q": "Hello, Mr. Jiho Moon! Could you please give us a brief self-introduction?",
 						"a": "My name is Jiho Moon, the CEO of Bigtablet. I began my professional career a bit earlier than most, driven by my curiosity and eagerness to explore various fields. Once I’m interested in something, I study and learn until I truly understand it. Looking back, my early start in the professional world, combined with this curiosity-driven mindset, has shaped who I am today. It’s also what has allowed me to work with Bigtablet for the past three years without giving up until problems were solved."
@@ -154,7 +154,7 @@
 					"position": "CTO",
 					"name": "Minho Park",
 					"description": "An engineer driven to change the world through technology",
-					"image": "/images/member/minho.png",
+					"image": "/images/member/minho.webp",
 					"qa1": {
 						"q": "Hello Minho! Could you please introduce yourself briefly?",
 						"a": "Hello, I’m Minho Park, currently leading research and development at BigTablet."
@@ -180,7 +180,7 @@
 					"position": "Managing Director",
 					"name": "Chaehyung Lee",
 					"description": "Where momentum meets sincere leadership",
-					"image": "/images/member/chaehyung.png",
+					"image": "/images/member/chaehyung.webp",
 					"qa1": {
 						"q": "Hello Chaehyung! Could you please introduce yourself briefly?",
 						"a": "Hello, I’m Chaehyung Lee, and I’m in charge of administrative affairs at Bigtablet Inc."
@@ -210,7 +210,7 @@
 					"position": "Designer",
 					"name": "Sungho Kim",
 					"description": "A designer who listens to the voice of users",
-					"image": "/images/member/sungho.png",
+					"image": "/images/member/sungho.webp",
 					"qa1": {
 						"q": "Hello Sungho! Could you please introduce yourself briefly?",
 						"a": "I'm Sungho Kim, a product designer with broad experience in planning and design within the B2B domain. I enjoy listening to users, communicating with teams, and building the foundation of services."
@@ -236,7 +236,7 @@
 					"position": "PM",
 					"name": "Gyeongmin Kim",
 					"description": "Be it. A PM who make dreams come true",
-					"image": "/images/member/gyeongmin.png",
+					"image": "/images/member/gyeongmin.webp",
 					"qa1": {
 						"q": "Hello, Kyungmin! Could you briefly introduce yourself?",
 						"a": "Hello, I’m Kyungmin Kim, currently working as a Product Manager at Bigtablet."
@@ -262,7 +262,7 @@
 					"position": "PM",
 					"name": "Yerim Kwon",
 					"description": "A product manager who sees the beauty in dreams",
-					"image": "/images/member/yerim.png",
+					"image": "/images/member/yerim.webp",
 					"qa1": {
 						"q": "Hello Yerim! Could you please introduce yourself briefly?",
 						"a": "Hi! I’m Yerim Kwon, currently working as a Product Manager at BigTablet."
@@ -292,7 +292,7 @@
 					"position": "Backend Developer",
 					"name": "Gunwoo Kim",
 					"description": "A developer who strives for constant growth",
-					"image": "/images/member/gunwoo.png",
+					"image": "/images/member/gunwoo.webp",
 					"qa1": {
 						"q": "Hello Gunwoo! Could you please introduce yourself briefly?",
 						"a": "Hello! I’m Gunwoo Kim, a backend developer at BigTablet. I joined the company in 2025 and have been working hard with our development team ever since. 😁"
@@ -322,7 +322,7 @@
 					"position": "Frontend Developer",
 					"name": "Sangmin Park",
 					"description": "A developer who never stops learning",
-					"image": "/images/member/sangmin.png",
+					"image": "/images/member/sangmin.webp",
 					"qa1": {
 						"q": "Hello Sangmin! Could you please introduce yourself briefly?",
 						"a": "Hello, I’m Sangmin Park, a frontend developer at BigTablet."
@@ -352,7 +352,7 @@
 					"position": "App Developer",
 					"name": "Park Byungjun",
 					"description": "A developer who cares about users",
-					"image": "/images/member/byungjun.png",
+					"image": "/images/member/byungjun.webp",
 					"qa1": {
 						"q": "Hello Byungjun! Could you briefly introduce yourself?",
 						"a": "Hello, I'm Park Byungjun, an app developer at Bigtablet."

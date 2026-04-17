@@ -1,12 +1,8 @@
 "use client";
 
 import { Button } from "@bigtablet/design-system";
-import { useGSAP } from "@gsap/react";
 import { ChevronDown } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { useRef } from "react";
-import { useReducedMotion } from "src/shared/hooks/use-reduced-motion";
-import { gsap } from "src/shared/libs/gsap";
 import styles from "./style.module.scss";
 
 /**
@@ -14,47 +10,14 @@ import styles from "./style.module.scss";
  *
  * @description
  * 메인 페이지 상단 히어로 배너 섹션.
- * GSAP를 사용한 텍스트 등장 애니메이션과 스크롤 유도 버튼을 포함한다.
- *
- * @see {@link useReducedMotion} 접근성 모션 감소 지원
+ * CSS keyframe 애니메이션으로 텍스트 등장 (GSAP 의존성 제거).
+ * prefers-reduced-motion 자동 대응 (CSS media query).
  */
 const Banner = () => {
 	const t = useTranslations("main.banner");
-	const containerRef = useRef<HTMLElement>(null);
-	const prefersReduced = useReducedMotion();
-
-	useGSAP(
-		() => {
-			const targets = [
-				`.${styles.banner_title}`,
-				`.${styles.banner_description}`,
-				`.${styles.banner_cta}`,
-				`.${styles.banner_scroll_indicator}`,
-			];
-
-			/** reduced motion → 애니메이션 스킵, 즉시 표시 */
-			if (prefersReduced) {
-				for (const sel of targets) {
-					gsap.set(sel, { opacity: 1, y: 0 });
-				}
-				return;
-			}
-
-			const tl = gsap.timeline({ defaults: { ease: "power2.out" } });
-			tl.from(`.${styles.banner_title}`, {
-				opacity: 0,
-				y: 30,
-				duration: 0.8,
-			})
-				.from(`.${styles.banner_description}`, { opacity: 0, y: 20, duration: 0.6 }, "-=0.3")
-				.from(`.${styles.banner_cta}`, { opacity: 0, y: 20, duration: 0.5 }, "-=0.2")
-				.from(`.${styles.banner_scroll_indicator}`, { opacity: 0, duration: 0.5 }, "-=0.1");
-		},
-		{ scope: containerRef, dependencies: [prefersReduced] },
-	);
 
 	return (
-		<section ref={containerRef} className={styles.banner} aria-labelledby="banner_title">
+		<section className={styles.banner} aria-labelledby="banner_title">
 			<div className={styles.banner_video}>
 				<video
 					className={styles.banner_video_tag}

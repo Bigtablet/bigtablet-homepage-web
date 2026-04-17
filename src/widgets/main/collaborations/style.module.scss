@@ -17,28 +17,38 @@
 	position: relative;
 	overflow: hidden;
 	padding-block: token.$spacing_md;
-	line-height: 0;
+	width: 100%;
+}
 
-	:global(.rfm-marquee) {
-		display: flex;
-		align-items: center;
+/**
+ * 40s — 로고 개수(items 배열 길이)와 비례하여 설정됨.
+ * 로고 개수 변경 시 속도 재조정 필요 (items 12 × logos 2 = 24개 기준).
+ */
+.collabs_track {
+	display: flex;
+	align-items: center;
+	width: max-content;
+	animation: scroll 40s linear infinite;
+	will-change: transform;
+
+	@media (prefers-reduced-motion: reduce) {
+		animation: none;
 	}
+}
 
-	:global(.rfm-initial-child-container) {
-		display: flex;
-		align-items: center;
-		line-height: 0;
+@keyframes scroll {
+	from {
+		transform: translateX(0);
 	}
-
-	:global(.rfm-child) {
-		display: flex;
-		align-items: center;
+	to {
+		transform: translateX(-50%);
 	}
 }
 
 .collabs_item {
 	display: flex;
 	align-items: center;
+	flex-shrink: 0;
 }
 
 .collabs_card {
@@ -51,7 +61,9 @@
 	box-shadow: token.$shadow_sm;
 	padding: token.$spacing_md token.$spacing_lg;
 	overflow: hidden;
-	transition: transform token.$transition_fast, box-shadow token.$transition_base;
+	transition:
+		transform token.$transition_fast,
+		box-shadow token.$transition_base;
 
 	img {
 		display: block;

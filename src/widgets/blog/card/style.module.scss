@@ -73,6 +73,11 @@
   margin-top: token.$spacing_sm;
   color: token.$text_strong;
   word-break: keep-all;
+  overflow-wrap: break-word;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .blog_card_excerpt {
@@ -80,4 +85,8 @@
   font-size: token.$font_size_sm;
   margin-top: token.$spacing_xs;
   color: token.$text_subtle;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }

@@ -21,7 +21,7 @@ const MemberDetailClient = () => {
 	const name = t(`${base}.name`);
 	const position = t(`${base}.position`);
 	const description = t(`${base}.description`);
-	const imageSrc = t.has(`${base}.image`) ? t(`${base}.image`) : `/images/member/${id}.png`;
+	const imageSrc = t.has(`${base}.image`) ? t(`${base}.image`) : `/images/member/${id}.webp`;
 
 	const links = {
 		linkedin: t.has(`${base}.links.linkedin`) ? t(`${base}.links.linkedin`) : undefined,

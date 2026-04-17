@@ -65,9 +65,6 @@ importers:
       react-error-boundary:
         specifier: ^6.1.1
         version: 6.1.1(react@19.2.4)
-      react-fast-marquee:
-        specifier: ^1.6.5
-        version: 1.6.5(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       react-hook-form:
         specifier: ^7.72.1
         version: 7.72.1(react@19.2.4)
@@ -3273,12 +3270,6 @@ packages:
     resolution: {integrity: sha512-BrYwPOdXi5mqkk5lw+Uvt0ThHx32rCt3BkukS4X23A2AIWDPSGX6iaWTc0y9TU/mHDA/6qOSGel+B2ERkOvD1w==}
     peerDependencies:
       react: ^18.0.0 || ^19.0.0
-
-  react-fast-marquee@1.6.5:
-    resolution: {integrity: sha512-swDnPqrT2XISAih0o74zQVE2wQJFMvkx+9VZXYYNSLb/CUcAzU9pNj637Ar2+hyRw6b4tP6xh4GQZip2ZCpQpg==}
-    peerDependencies:
-      react: '>= 16.8.0 || ^18.0.0'
-      react-dom: '>= 16.8.0 || ^18.0.0'
 
   react-hook-form@7.72.1:
     resolution: {integrity: sha512-RhwBoy2ygeVZje+C+bwJ8g0NjTdBmDlJvAUHTxRjTmSUKPYsKfMphkS2sgEMotsY03bP358yEYlnUeZy//D9Ig==}
@@ -6957,11 +6948,6 @@ snapshots:
   react-error-boundary@6.1.1(react@19.2.4):
     dependencies:
       react: 19.2.4
-
-  react-fast-marquee@1.6.5(react-dom@19.2.4(react@19.2.4))(react@19.2.4):
-    dependencies:
-      react: 19.2.4
-      react-dom: 19.2.4(react@19.2.4)
 
   react-hook-form@7.72.1(react@19.2.4):
     dependencies:

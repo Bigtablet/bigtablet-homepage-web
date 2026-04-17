@@ -1,57 +1,31 @@
 "use client";
 
-import dynamic from "next/dynamic";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import { useEffect, useMemo, useRef, useState } from "react";
 import styles from "./style.module.scss";
 
-const Marquee = dynamic(() => import("react-fast-marquee"), { ssr: false });
-
 const logos = ["/images/collaborations/google.webp", "/images/collaborations/nvdia.webp"];
-
-const GAP = 24;
-const CARD_W = 260;
 
 /**
  * @component Collaborations
  *
  * @description
  * 메인 페이지 협력사 로고 마퀴 섹션.
- * 뷰포트 너비에 맞춰 반복 횟수를 자동 조절한다.
- *
- * @param props.speed - 마퀴 스크롤 속도 (기본 40)
+ * CSS keyframe 애니메이션으로 무한 스크롤 구현 — react-fast-marquee 의존성 제거.
  */
-const Collaborations = ({ speed = 40 }: { speed?: number }) => {
+const Collaborations = () => {
 	const t = useTranslations("main.collaboration");
-	const ref = useRef<HTMLDivElement | null>(null);
-	const [repeat, setRepeat] = useState(6);
 
-	useEffect(() => {
-		const calc = () => {
-			const containerWidth = ref.current?.offsetWidth ?? 1200;
-			const unit = CARD_W + GAP;
-			const need = Math.max(4, Math.ceil((containerWidth * 2) / (logos.length * unit)));
-			setRepeat(need);
-		};
-		calc();
-		window.addEventListener("resize", calc);
-		return () => window.removeEventListener("resize", calc);
-	}, []);
-
-	const items = useMemo(() => Array.from({ length: repeat }).flatMap(() => logos), [repeat]);
+	// 무한 스크롤을 위해 로고 목록을 2배로 복제
+	const items = [...logos, ...logos, ...logos, ...logos];
 
 	return (
 		<section className={styles.collabs}>
 			<h3 className={styles.collabs_title}>{t("title")}</h3>
-			<div
-				className={styles.collabs_viewport}
-				ref={ref}
-				style={{ "--gap": `${GAP}px` } as React.CSSProperties}
-			>
-				<Marquee gradient={false} speed={speed}>
+			<div className={styles.collabs_viewport}>
+				<div className={styles.collabs_track}>
 					{items.map((src, index) => (
-						<div className={styles.collabs_item} key={src}>
+						<div className={styles.collabs_item} key={`${src}-${index}`}>
 							<div className={styles.collabs_card}>
 								<Image
 									src={src}
@@ -59,13 +33,13 @@ const Collaborations = ({ speed = 40 }: { speed?: number }) => {
 									width={260}
 									height={60}
 									sizes="160px"
-									priority={index < 4}
+									priority={index < 2}
 									draggable={false}
 								/>
 							</div>
 						</div>
 					))}
-				</Marquee>
+				</div>
 			</div>
 		</section>
 	);

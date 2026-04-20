@@ -27,7 +27,7 @@
 		"@sentry/nextjs": "^10.48.0",
 		"@tanstack/react-query": "^5.99.0",
 		"@vercel/otel": "^2.1.2",
-		"axios": "^1.15.0",
+		"axios": "^1.15.1",
 		"clsx": "^2.1.1",
 		"date-fns": "^4.1.0",
 		"gsap": "^3.14.2",

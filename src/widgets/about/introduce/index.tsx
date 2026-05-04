@@ -3,7 +3,6 @@
 import clsx from "clsx";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import { useScrollReveal } from "src/shared/hooks/use-scroll-reveal";
 import styles from "./style.module.scss";
 
 interface AboutSchema {
@@ -13,15 +12,9 @@ interface AboutSchema {
 
 const Introduce = ({ sectionKey, reverse = false }: AboutSchema) => {
 	const t = useTranslations("about.top");
-	const sectionRef = useScrollReveal<HTMLElement>(undefined, {
-		variant: reverse ? "slide-right" : "slide-left",
-	});
 
 	return (
-		<section
-			ref={sectionRef}
-			className={clsx(styles.introduce, reverse && styles.introduce_reverse)}
-		>
+		<section className={clsx(styles.introduce, reverse && styles.introduce_reverse)}>
 			<div className={styles.introduce_text}>
 				<p className={styles.introduce_title}>{t(`${sectionKey}.title`)}</p>
 				<p className={styles.introduce_desc}>{t(`${sectionKey}.description`)}</p>

@@ -3,7 +3,7 @@
 import { useTranslations } from "next-intl";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { buildInitialSelected } from "src/widgets/main/solution/model/select.util";
-import { type Product, SOURCES } from "src/widgets/main/solution/model/video-sources";
+import { POSTERS, type Product, SOURCES } from "src/widgets/main/solution/model/video-sources";
 import Card from "../card";
 import Modal from "../modal";
 import styles from "./style.module.scss";
@@ -39,7 +39,7 @@ const SolutionSection = () => {
 			Object.keys(SOURCES)
 				.map(Number)
 				.sort((a, b) => a - b)
-				.map((id) => ({ id, src: selected[id] ?? SOURCES[id][0] })),
+				.map((id) => ({ id, src: selected[id] ?? SOURCES[id][0], poster: POSTERS[id] })),
 		[selected],
 	);
 

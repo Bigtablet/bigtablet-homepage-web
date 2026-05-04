@@ -22,6 +22,7 @@ const Banner = () => {
 				<video
 					className={styles.banner_video_tag}
 					src="/media/6122c823-e40e-4d29-8855-4a64f0c7d881"
+					poster="/images/banner-poster.webp"
 					autoPlay
 					loop
 					muted

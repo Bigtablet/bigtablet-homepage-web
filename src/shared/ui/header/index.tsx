@@ -75,6 +75,7 @@ const Header = () => {
 						height={40}
 						priority
 						className={styles.logo}
+						style={{ height: "auto" }}
 					/>
 				</Link>
 

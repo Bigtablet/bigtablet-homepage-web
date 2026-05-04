@@ -28,8 +28,8 @@ const Team = ({ order = MEMBER_DEFAULT_ORDER }: TeamProps) => {
 				{t("title")}
 			</h2>
 			<div className={styles.team_grid}>
-				{order.map((memberSlug) => (
-					<MemberCard key={memberSlug} memberSlug={memberSlug} />
+				{order.map((memberSlug, index) => (
+					<MemberCard key={memberSlug} memberSlug={memberSlug} priority={index < 4} />
 				))}
 			</div>
 		</section>

@@ -1,13 +1,16 @@
 "use client";
 
 import { Button, TextField } from "@bigtablet/design-system";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 import { Controller } from "react-hook-form";
 import { useTalentForm } from "src/features/talent/form/model/use-talent-form";
 import { PortfolioSection } from "./sections/PortfolioSection";
 import { UrlListSection } from "./sections/UrlListSection";
 import styles from "./style.module.scss";
+
+const FOCUSABLE =
+	'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
 
 interface Props {
 	open: boolean;
@@ -34,6 +37,8 @@ const TalentFormModal = ({ open, onClose }: Props) => {
 		formState: { errors },
 	} = form;
 
+	const dialogRef = useRef<HTMLDivElement>(null);
+
 	useEffect(() => {
 		document.body.style.overflow = open ? "hidden" : "auto";
 	}, [open]);
@@ -45,7 +50,39 @@ const TalentFormModal = ({ open, onClose }: Props) => {
 		return () => window.removeEventListener("keydown", onKey);
 	}, [open, onClose]);
 
-	if (!open) return null;
+	/** 포커스 트랩 — Tab/Shift+Tab이 모달 내부에서만 순환 */
+	useEffect(() => {
+		if (!open) return;
+		const dialog = dialogRef.current;
+		if (!dialog) return;
+
+		const focusable = Array.from(dialog.querySelectorAll<HTMLElement>(FOCUSABLE));
+		if (!focusable.length) return;
+
+		focusable[0].focus();
+
+		const trap = (e: KeyboardEvent) => {
+			if (e.key !== "Tab") return;
+			const first = focusable[0];
+			const last = focusable[focusable.length - 1];
+			if (e.shiftKey) {
+				if (document.activeElement === first) {
+					e.preventDefault();
+					last.focus();
+				}
+			} else {
+				if (document.activeElement === last) {
+					e.preventDefault();
+					first.focus();
+				}
+			}
+		};
+
+		window.addEventListener("keydown", trap);
+		return () => window.removeEventListener("keydown", trap);
+	}, [open]);
+
+	if (!open || typeof window === "undefined") return null;
 
 	return createPortal(
 		// biome-ignore lint/a11y/noStaticElementInteractions: backdrop overlay — ESC handled via window keydown
@@ -55,6 +92,7 @@ const TalentFormModal = ({ open, onClose }: Props) => {
 			onClick={(e) => e.target === e.currentTarget && onClose()}
 		>
 			<div
+				ref={dialogRef}
 				role="dialog"
 				aria-modal="true"
 				aria-labelledby="talent_modal_title"

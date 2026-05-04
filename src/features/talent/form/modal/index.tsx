@@ -40,7 +40,12 @@ const TalentFormModal = ({ open, onClose }: Props) => {
 	const dialogRef = useRef<HTMLDivElement>(null);
 
 	useEffect(() => {
-		document.body.style.overflow = open ? "hidden" : "auto";
+		if (!open) return;
+		const originalStyle = window.getComputedStyle(document.body).overflow;
+		document.body.style.overflow = "hidden";
+		return () => {
+			document.body.style.overflow = originalStyle;
+		};
 	}, [open]);
 
 	useEffect(() => {
@@ -50,19 +55,21 @@ const TalentFormModal = ({ open, onClose }: Props) => {
 		return () => window.removeEventListener("keydown", onKey);
 	}, [open, onClose]);
 
-	/** 포커스 트랩 — Tab/Shift+Tab이 모달 내부에서만 순환 */
+	/** 포커스 트랩 — Tab/Shift+Tab이 모달 내부에서만 순환, 동적 요소 대응 */
 	useEffect(() => {
 		if (!open) return;
 		const dialog = dialogRef.current;
 		if (!dialog) return;
 
-		const focusable = Array.from(dialog.querySelectorAll<HTMLElement>(FOCUSABLE));
-		if (!focusable.length) return;
+		const getFocusable = () => Array.from(dialog.querySelectorAll<HTMLElement>(FOCUSABLE));
 
-		focusable[0].focus();
+		const initialFocusable = getFocusable();
+		if (initialFocusable.length > 0) initialFocusable[0].focus();
 
 		const trap = (e: KeyboardEvent) => {
 			if (e.key !== "Tab") return;
+			const focusable = getFocusable();
+			if (!focusable.length) return;
 			const first = focusable[0];
 			const last = focusable[focusable.length - 1];
 			if (e.shiftKey) {

@@ -48,11 +48,19 @@ const TalentFormModal = ({ open, onClose }: Props) => {
 	if (!open) return null;
 
 	return createPortal(
-		// biome-ignore lint/a11y/useKeyWithClickEvents: overlay backdrop dismissal
-		<div className={styles.modal_overlay} onClick={onClose}>
-			{/* biome-ignore lint/a11y/useKeyWithClickEvents: stop propagation */}
-			<div className={styles.modal_content} onClick={(e) => e.stopPropagation()}>
-				<h2>인재풀 등록</h2>
+		// biome-ignore lint/a11y/noStaticElementInteractions: backdrop overlay — ESC handled via window keydown
+		<div
+			role="presentation"
+			className={styles.modal_overlay}
+			onClick={(e) => e.target === e.currentTarget && onClose()}
+		>
+			<div
+				role="dialog"
+				aria-modal="true"
+				aria-labelledby="talent_modal_title"
+				className={styles.modal_content}
+			>
+				<h2 id="talent_modal_title">인재풀 등록</h2>
 
 				<form onSubmit={handleSubmit} className={styles.form}>
 					<Controller

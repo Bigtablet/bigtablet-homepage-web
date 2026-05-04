@@ -3,7 +3,6 @@
 import { Button } from "@bigtablet/design-system";
 import * as Sentry from "@sentry/nextjs";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { BigtabletRouter } from "src/shared/hooks/next";
 import Template from "src/shared/ui/template";
 import styles from "./error.module.scss";
 
@@ -13,9 +12,9 @@ const COOLDOWN_SEC = 3;
 /**
  * 전역 에러 페이지
  * - 재시도 쿨다운 (3초) + 최대 3회 제한
+ * - router 훅은 에러 바운더리에서 불안정하므로 window.location 사용
  */
 const GlobalError = ({ error: _error, reset }: { error: Error; reset: () => void }) => {
-	const router = BigtabletRouter();
 	const [retryCount, setRetryCount] = useState(0);
 	const [cooldown, setCooldown] = useState(0);
 	const timerRef = useRef<ReturnType<typeof setInterval>>(undefined);
@@ -52,7 +51,9 @@ const GlobalError = ({ error: _error, reset }: { error: Error; reset: () => void
 		reset();
 	}, [isCooling, isMaxRetry, reset]);
 
-	const handleHome = () => router.replace("/main");
+	const handleHome = () => {
+		window.location.href = "/main";
+	};
 
 	const retryLabel = isCooling
 		? `${cooldown}초 후 재시도`

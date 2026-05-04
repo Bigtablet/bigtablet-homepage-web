@@ -3,13 +3,18 @@
 import { useTranslations } from "next-intl";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { buildInitialSelected } from "src/widgets/main/solution/model/select.util";
-import { type Product, SOURCES } from "src/widgets/main/solution/model/video-sources";
+import { POSTERS, type Product, SOURCES } from "src/widgets/main/solution/model/video-sources";
 import Card from "../card";
 import Modal from "../modal";
 import styles from "./style.module.scss";
 
 type SlideState = { dir: "next" | "prev"; nextId: number } | null;
 type AnimVars = { dx: number; dy: number; sx: number; sy: number } | null;
+
+/** SOURCES 키는 정적 — 렌더마다 재계산 불필요 */
+const SORTED_IDS = Object.keys(SOURCES)
+	.map(Number)
+	.sort((a, b) => a - b);
 
 /**
  * @component SolutionSection
@@ -36,10 +41,7 @@ const SolutionSection = () => {
 
 	const products: Product[] = useMemo(
 		() =>
-			Object.keys(SOURCES)
-				.map(Number)
-				.sort((a, b) => a - b)
-				.map((id) => ({ id, src: selected[id] ?? SOURCES[id][0] })),
+			SORTED_IDS.map((id) => ({ id, src: selected[id] ?? SOURCES[id][0], poster: POSTERS[id] })),
 		[selected],
 	);
 

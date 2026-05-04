@@ -6,9 +6,9 @@ import type { MemberSlug } from "src/entities/about/util/member.util";
 import { BigtabletLink } from "src/shared/hooks/next";
 import styles from "./style.module.scss";
 
-type MemberCardProps = { memberSlug: MemberSlug };
+type MemberCardProps = { memberSlug: MemberSlug; priority?: boolean };
 
-const MemberCard = ({ memberSlug }: MemberCardProps) => {
+const MemberCard = ({ memberSlug, priority = false }: MemberCardProps) => {
 	const t = useTranslations("about.team.members");
 
 	const name = t(`${memberSlug}.name`);
@@ -26,6 +26,7 @@ const MemberCard = ({ memberSlug }: MemberCardProps) => {
 					width={240}
 					height={360}
 					sizes="(max-width: 768px) 50vw, 240px"
+					priority={priority}
 				/>
 			</div>
 

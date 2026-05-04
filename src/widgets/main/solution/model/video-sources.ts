@@ -10,6 +10,14 @@ export interface Product {
  * 이 영상들은 gcp를 통해 경량화 된 상태니 링크를 수정하지 마시고,
  * 추가로 영상을 삽입할 경우 gcp를 통해 링크로 변환 후, 삽입하시길 바랍니다.
  */
+export const POSTERS: Record<number, string> = {
+	1: "/images/solution/card-1.webp",
+	2: "/images/solution/card-2.webp",
+	3: "/images/solution/card-3.webp",
+	4: "/images/solution/card-4.webp",
+	5: "/images/solution/card-5.webp",
+};
+
 export const SOURCES: Record<number, string[]> = {
 	1: ["/media/e54c4886-77f5-4df2-b2e7-c721921845b9"],
 	2: ["/media/4125700b-ccda-42c8-9acb-705a3f93826b"],

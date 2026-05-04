@@ -4,7 +4,7 @@
   position: fixed;
   inset: 0;
   background: token.$color_overlay;
-  z-index: calc(token.$z_modal + 10);
+  z-index: token.$z_modal; /* toast는 z_modal+1(10001)이므로 모달보다 항상 위에 뜸 */
   @include token.flex_center;
   backdrop-filter: blur(6px);
 }

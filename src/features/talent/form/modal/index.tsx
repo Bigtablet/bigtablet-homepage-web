@@ -38,11 +38,20 @@ const TalentFormModal = ({ open, onClose }: Props) => {
 		document.body.style.overflow = open ? "hidden" : "auto";
 	}, [open]);
 
+	useEffect(() => {
+		if (!open) return;
+		const onKey = (e: KeyboardEvent) => e.key === "Escape" && onClose();
+		window.addEventListener("keydown", onKey);
+		return () => window.removeEventListener("keydown", onKey);
+	}, [open, onClose]);
+
 	if (!open) return null;
 
 	return createPortal(
-		<div className={styles.modal_overlay}>
-			<div className={styles.modal_content}>
+		// biome-ignore lint/a11y/useKeyWithClickEvents: overlay backdrop dismissal
+		<div className={styles.modal_overlay} onClick={onClose}>
+			{/* biome-ignore lint/a11y/useKeyWithClickEvents: stop propagation */}
+			<div className={styles.modal_content} onClick={(e) => e.stopPropagation()}>
 				<h2>인재풀 등록</h2>
 
 				<form onSubmit={handleSubmit} className={styles.form}>
@@ -83,7 +92,7 @@ const TalentFormModal = ({ open, onClose }: Props) => {
 								value={value}
 								onChangeAction={onChange}
 								onBlur={onBlur}
-								placeholder="example@bigtablet.kr"
+								placeholder="example@bigtablet.com"
 								disabled={isFormBusy}
 								error={!!errors.email}
 								helperText={errors.email?.message}

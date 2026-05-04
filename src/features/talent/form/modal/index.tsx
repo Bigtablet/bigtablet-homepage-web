@@ -38,12 +38,29 @@ const TalentFormModal = ({ open, onClose }: Props) => {
 		document.body.style.overflow = open ? "hidden" : "auto";
 	}, [open]);
 
+	useEffect(() => {
+		if (!open) return;
+		const onKey = (e: KeyboardEvent) => e.key === "Escape" && onClose();
+		window.addEventListener("keydown", onKey);
+		return () => window.removeEventListener("keydown", onKey);
+	}, [open, onClose]);
+
 	if (!open) return null;
 
 	return createPortal(
-		<div className={styles.modal_overlay}>
-			<div className={styles.modal_content}>
-				<h2>인재풀 등록</h2>
+		// biome-ignore lint/a11y/noStaticElementInteractions: backdrop overlay — ESC handled via window keydown
+		<div
+			role="presentation"
+			className={styles.modal_overlay}
+			onClick={(e) => e.target === e.currentTarget && onClose()}
+		>
+			<div
+				role="dialog"
+				aria-modal="true"
+				aria-labelledby="talent_modal_title"
+				className={styles.modal_content}
+			>
+				<h2 id="talent_modal_title">인재풀 등록</h2>
 
 				<form onSubmit={handleSubmit} className={styles.form}>
 					<Controller

@@ -2,6 +2,7 @@
 
 import { Button, TextField } from "@bigtablet/design-system";
 import { useEffect } from "react";
+import { createPortal } from "react-dom";
 import { Controller } from "react-hook-form";
 import { useTalentForm } from "src/features/talent/form/model/use-talent-form";
 import { PortfolioSection } from "./sections/PortfolioSection";
@@ -39,7 +40,7 @@ const TalentFormModal = ({ open, onClose }: Props) => {
 
 	if (!open) return null;
 
-	return (
+	return createPortal(
 		<div className={styles.modal_overlay}>
 			<div className={styles.modal_content}>
 				<h2>인재풀 등록</h2>
@@ -138,7 +139,8 @@ const TalentFormModal = ({ open, onClose }: Props) => {
 					</div>
 				</form>
 			</div>
-		</div>
+		</div>,
+		document.body,
 	);
 };
 

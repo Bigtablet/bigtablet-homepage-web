@@ -1,12 +1,16 @@
 "use client";
 
 import { Button, TextField } from "@bigtablet/design-system";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
+import { createPortal } from "react-dom";
 import { Controller } from "react-hook-form";
 import { useTalentForm } from "src/features/talent/form/model/use-talent-form";
 import { PortfolioSection } from "./sections/PortfolioSection";
 import { UrlListSection } from "./sections/UrlListSection";
 import styles from "./style.module.scss";
+
+const FOCUSABLE =
+	'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
 
 interface Props {
 	open: boolean;
@@ -33,16 +37,68 @@ const TalentFormModal = ({ open, onClose }: Props) => {
 		formState: { errors },
 	} = form;
 
+	const dialogRef = useRef<HTMLDivElement>(null);
+
 	useEffect(() => {
 		document.body.style.overflow = open ? "hidden" : "auto";
 	}, [open]);
 
-	if (!open) return null;
+	useEffect(() => {
+		if (!open) return;
+		const onKey = (e: KeyboardEvent) => e.key === "Escape" && onClose();
+		window.addEventListener("keydown", onKey);
+		return () => window.removeEventListener("keydown", onKey);
+	}, [open, onClose]);
 
-	return (
-		<div className={styles.modal_overlay}>
-			<div className={styles.modal_content}>
-				<h2>인재풀 등록</h2>
+	/** 포커스 트랩 — Tab/Shift+Tab이 모달 내부에서만 순환 */
+	useEffect(() => {
+		if (!open) return;
+		const dialog = dialogRef.current;
+		if (!dialog) return;
+
+		const focusable = Array.from(dialog.querySelectorAll<HTMLElement>(FOCUSABLE));
+		if (!focusable.length) return;
+
+		focusable[0].focus();
+
+		const trap = (e: KeyboardEvent) => {
+			if (e.key !== "Tab") return;
+			const first = focusable[0];
+			const last = focusable[focusable.length - 1];
+			if (e.shiftKey) {
+				if (document.activeElement === first) {
+					e.preventDefault();
+					last.focus();
+				}
+			} else {
+				if (document.activeElement === last) {
+					e.preventDefault();
+					first.focus();
+				}
+			}
+		};
+
+		window.addEventListener("keydown", trap);
+		return () => window.removeEventListener("keydown", trap);
+	}, [open]);
+
+	if (!open || typeof window === "undefined") return null;
+
+	return createPortal(
+		// biome-ignore lint/a11y/noStaticElementInteractions: backdrop overlay — ESC handled via window keydown
+		<div
+			role="presentation"
+			className={styles.modal_overlay}
+			onClick={(e) => e.target === e.currentTarget && onClose()}
+		>
+			<div
+				ref={dialogRef}
+				role="dialog"
+				aria-modal="true"
+				aria-labelledby="talent_modal_title"
+				className={styles.modal_content}
+			>
+				<h2 id="talent_modal_title">인재풀 등록</h2>
 
 				<form onSubmit={handleSubmit} className={styles.form}>
 					<Controller
@@ -138,7 +194,8 @@ const TalentFormModal = ({ open, onClose }: Props) => {
 					</div>
 				</form>
 			</div>
-		</div>
+		</div>,
+		document.body,
 	);
 };
 

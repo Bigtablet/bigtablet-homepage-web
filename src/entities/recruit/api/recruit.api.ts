@@ -1,3 +1,4 @@
+import { cache } from "react";
 import { getParsed, postParsed } from "src/shared/libs/api/zod";
 import {
 	type RecruitApplyResponse,
@@ -82,14 +83,17 @@ export const getRecruitListApi = async ({
  * @returns 채용 공고 상세 데이터
  * @throws 응답 데이터가 비어있으면 "Empty response" 에러
  */
-export const getRecruitDetailApi = async (index: number, signal?: AbortSignal) => {
+/**
+ * react cache로 감싸서 같은 request 내 generateMetadata + prefetch 중복 fetch 방지.
+ */
+export const getRecruitDetailApi = cache(async (index: number, signal?: AbortSignal) => {
 	const { data } = await getParsed("/job", recruitDetailResponseSchema, {
 		signal,
 		params: { idx: index },
 	});
 	if (!data) throw new Error("Empty response");
 	return data;
-};
+});
 
 /**
  * @author 박상민

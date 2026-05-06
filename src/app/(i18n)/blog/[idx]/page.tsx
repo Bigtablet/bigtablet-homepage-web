@@ -1,16 +1,18 @@
+import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query";
 import type { Metadata } from "next";
 import { cookies } from "next/headers";
 import { notFound } from "next/navigation";
 import { getBlogDetailApi } from "src/entities/blog/api/blog.api";
+import { blogQueries } from "src/features/blog/query/blog.query";
 import BlogDetailClient from "./client";
 
 type PageProps = {
-	params: { idx: string };
+	params: Promise<{ idx: string }>;
 };
 
 /** 블로그 상세 동적 메타데이터 */
 export const generateMetadata = async ({ params }: PageProps): Promise<Metadata> => {
-	const { idx } = params;
+	const { idx } = await params;
 	const idNum = Number(idx);
 	if (!Number.isFinite(idNum) || idNum <= 0) return {};
 
@@ -57,7 +59,15 @@ const BlogDetailPage = async ({ params }: PageProps) => {
 	 */
 	if (!Number.isFinite(idNum) || idNum <= 0) notFound();
 
-	return <BlogDetailClient idx={idNum} />;
+	/* prefetch — generateMetadata와 react cache 통해 동일 요청 dedupe */
+	const queryClient = new QueryClient();
+	await queryClient.prefetchQuery(blogQueries.detail(idNum));
+
+	return (
+		<HydrationBoundary state={dehydrate(queryClient)}>
+			<BlogDetailClient idx={idNum} />
+		</HydrationBoundary>
+	);
 };
 
 export default BlogDetailPage;

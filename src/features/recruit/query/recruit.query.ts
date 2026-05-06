@@ -1,5 +1,3 @@
-"use client";
-
 import { queryOptions, useQuery } from "@tanstack/react-query";
 import {
 	getRecruitDetailApi,

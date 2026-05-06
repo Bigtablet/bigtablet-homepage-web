@@ -24,7 +24,8 @@ const BlogContent = () => {
 	const { data } = useSuspenseBlogPageQuery({ page, size });
 
 	const items = data.items;
-	const totalPages = data.hasNext ? page + 1 : page;
+	/* items 비어 있으면 pagination 숨김 — 빈 페이지를 totalPages로 잡지 않음 */
+	const totalPages = items.length === 0 ? 0 : data.hasNext ? page + 1 : page;
 
 	const handlePageChange = (nextPage: number) => {
 		const searchParameters = new URLSearchParams(sp.toString());

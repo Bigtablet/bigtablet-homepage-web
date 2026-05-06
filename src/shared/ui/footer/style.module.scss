@@ -9,15 +9,15 @@
 .footer_inner {
 	max-width: 1200px;
 	margin: 0 auto;
-	padding: token.$spacing_4xl token.$spacing_2xl token.$spacing_3xl;
+	padding: token.$spacing_2xl token.$spacing_2xl token.$spacing_xl;
 	display: grid;
 	grid-template-columns: 1fr auto;
-	gap: token.$spacing_3xl;
+	gap: token.$spacing_2xl;
 }
 
 .footer_left {
 	@include token.flex_column;
-	gap: token.$spacing_lg;
+	gap: token.$spacing_sm;
 	max-width: 640px;
 
 	p {

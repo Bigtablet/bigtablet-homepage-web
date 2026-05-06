@@ -24,14 +24,10 @@
 }
 
 .news_card_thumb {
-  position: relative;
   width: 100%;
   aspect-ratio: 4 / 3;
   border-radius: token.$radius_md;
-  overflow: hidden;
-  background: token.$color_background_secondary;
   border: 1px solid token.$color_border;
-
 }
 
 .news_card_img {

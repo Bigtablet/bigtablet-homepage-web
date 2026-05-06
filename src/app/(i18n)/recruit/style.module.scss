@@ -4,7 +4,7 @@
   @include token.flex_column;
   align-items: center;
   width: 70%;
-  min-height: 70vh;
+  /* min-height 제거 — PageTransition > * flex: 1로 layout 레벨에서 처리 */
   padding: token.$spacing_4xl 0 token.$spacing_5xl;
   margin: 0 auto;
 }

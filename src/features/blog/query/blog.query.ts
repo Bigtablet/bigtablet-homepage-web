@@ -30,7 +30,8 @@ export const blogQueries = {
 	detail: (idx: number) =>
 		queryOptions({
 			queryKey: [...blogQueries.all, "detail", idx] as const,
-			queryFn: ({ signal }) => getBlogDetailApi(idx, signal),
+			/* signal 미전달 — react cache 키 일관성 유지 (generateMetadata와 dedupe) */
+			queryFn: () => getBlogDetailApi(idx),
 			enabled: Number.isFinite(idx) && idx > 0,
 		}),
 };

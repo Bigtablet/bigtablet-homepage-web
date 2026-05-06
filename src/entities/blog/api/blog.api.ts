@@ -43,12 +43,11 @@ export const getBlogApi = async ({ page, size }: ListSchema, signal?: AbortSigna
  */
 /**
  * react cache로 감싸서 같은 request 내 generateMetadata + prefetch 중복 fetch 방지.
- * signal 인자가 있으면 dedup 안되니, server 호출은 signal 없이만 사용.
+ * cache 키는 인자 전체이므로 signal을 받지 않는다 — 호출부도 일관되게 signal 없이.
  */
-export const getBlogDetailApi = cache(async (index: number, signal?: AbortSignal) =>
+export const getBlogDetailApi = cache(async (index: number) =>
 	getParsed("/blog", blogDetailResponseSchema, {
 		params: { idx: index },
-		signal,
 	}).then((response: BlogDetailResponse) => {
 		if (!response.data) throw new Error("Empty response");
 		return response.data;

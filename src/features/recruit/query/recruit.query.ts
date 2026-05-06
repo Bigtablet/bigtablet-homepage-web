@@ -25,7 +25,8 @@ export const recruitQueries = {
 	detail: (idx: number) =>
 		queryOptions({
 			queryKey: [...recruitQueries.all, "detail", idx] as const,
-			queryFn: ({ signal }) => getRecruitDetailApi(idx, signal),
+			/* signal 미전달 — react cache 키 일관성 유지 (generateMetadata와 dedupe) */
+			queryFn: () => getRecruitDetailApi(idx),
 			select: toRecruitCard,
 			enabled: Number.isFinite(idx) && idx > 0,
 			staleTime: 60000,

@@ -24,8 +24,16 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 	 * getMessages()는 middleware가 next-intl routing을 안 쓰는 환경에서
 	 * defaultLocale로 fallback되므로, root layout의 CookieConsent가
 	 * 항상 영문으로 노출되는 버그가 있었음.
+	 *
+	 * import 실패 시 빈 객체로 fallback — 앱 전체가 500으로 멈추는 것보다
+	 * 일부 텍스트만 빠진 채 렌더되는 게 낫다.
 	 */
-	const messages = (await import(`../../messages/${locale}.json`)).default;
+	let messages: Record<string, unknown> = {};
+	try {
+		messages = (await import(`../../messages/${locale}.json`)).default;
+	} catch {
+		messages = {};
+	}
 
 	return (
 		<html lang={locale} suppressHydrationWarning>

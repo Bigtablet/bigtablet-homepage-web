@@ -3,6 +3,7 @@
 .news_list {
   @include token.flex_column;
   width: 100%;
+  flex: 1;
   padding: token.$spacing_xl 0;
   align-items: center;
 }
@@ -17,9 +18,14 @@
 }
 
 .news_list_empty {
+  @include token.flex_column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  min-height: 240px;
+  width: 100%;
   @include token.body_regular;
   font-size: token.$font_size_lg;
   color: token.$text_subtle;
-  margin-top: token.$spacing_3xl;
   text-align: center;
 }

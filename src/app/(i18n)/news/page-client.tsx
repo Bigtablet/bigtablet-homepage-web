@@ -3,7 +3,6 @@
 import { Pagination } from "@bigtablet/design-system";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
-import { useMemo } from "react";
 import { useSuspenseNewsPageQuery } from "src/features/news/query/news.query";
 import AsyncBoundary from "src/shared/ui/async-boundary";
 import ErrorFallback from "src/shared/ui/error-fallback";
@@ -22,9 +21,8 @@ const NewsContent = () => {
 	const page = Math.max(1, Number(searchParams.get("page") ?? 1));
 
 	const { data } = useSuspenseNewsPageQuery({ page, size: PAGE_SIZE });
-	const items = useMemo(() => data?.items ?? [], [data?.items]);
-
-	const totalPages = items.length === PAGE_SIZE ? page + 1 : page;
+	const items = data.items;
+	const totalPages = data.hasNext ? page + 1 : page;
 
 	const handleChangePage = (nextPage: number) => {
 		const clamped = Math.max(1, nextPage);

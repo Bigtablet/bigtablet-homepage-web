@@ -1,5 +1,6 @@
-import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query";
+import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
 import { recruitQueries } from "src/features/recruit/query/recruit.query";
+import { createServerQueryClient } from "src/shared/libs/api/query/server-query-client";
 import RecruitPageClient from "./page-client";
 
 /**
@@ -8,7 +9,7 @@ import RecruitPageClient from "./page-client";
  * 첫 페인트에 공고 카드 즉시 표시 → skeleton 깜빡임 제거.
  */
 const RecruitPage = async () => {
-	const queryClient = new QueryClient();
+	const queryClient = createServerQueryClient();
 	await queryClient.prefetchQuery(recruitQueries.list());
 
 	return (

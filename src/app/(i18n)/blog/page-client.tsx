@@ -3,7 +3,6 @@
 import { Pagination } from "@bigtablet/design-system";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
-import { useMemo } from "react";
 import { useSuspenseBlogPageQuery } from "src/features/blog/query/blog.query";
 import AsyncBoundary from "src/shared/ui/async-boundary";
 import ErrorFallback from "src/shared/ui/error-fallback";
@@ -24,8 +23,8 @@ const BlogContent = () => {
 
 	const { data } = useSuspenseBlogPageQuery({ page, size });
 
-	const items = useMemo(() => data?.items ?? [], [data?.items]);
-	const totalPages = data?.hasNext ? page + 1 : page;
+	const items = data.items;
+	const totalPages = data.hasNext ? page + 1 : page;
 
 	const handlePageChange = (nextPage: number) => {
 		const searchParameters = new URLSearchParams(sp.toString());

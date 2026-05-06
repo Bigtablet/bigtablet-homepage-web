@@ -1,5 +1,6 @@
-import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query";
+import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
 import { newsQueries } from "src/features/news/query/news.query";
+import { createServerQueryClient } from "src/shared/libs/api/query/server-query-client";
 import NewsPageClient from "./page-client";
 
 const PAGE_SIZE = 6;
@@ -17,7 +18,7 @@ const NewsPage = async ({ searchParams }: Props) => {
 	const params = await searchParams;
 	const page = Math.max(1, Number(params?.page ?? 1));
 
-	const queryClient = new QueryClient();
+	const queryClient = createServerQueryClient();
 	await queryClient.prefetchQuery(newsQueries.page(page, PAGE_SIZE));
 
 	return (

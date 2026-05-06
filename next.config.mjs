@@ -19,8 +19,8 @@ const nextConfig = {
 				hostname: "storage.googleapis.com",
 			},
 		],
-		/* 30일 캐시 — news 썸네일 URL은 idx별로 안정적이라 길게 잡아도 안전 */
-		minimumCacheTTL: 60 * 60 * 24 * 30,
+		/* 1일 캐시 — 외부 썸네일 갱신 가능성 고려해 짧게. 60s 기본보단 충분히 김 */
+		minimumCacheTTL: 60 * 60 * 24,
 		/* AVIF 우선 → WebP 폴백 — 페이로드 30~50% 감소 */
 		formats: ["image/avif", "image/webp"],
 	},

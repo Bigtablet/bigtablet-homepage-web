@@ -1,9 +1,10 @@
-import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query";
+import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
 import type { Metadata } from "next";
 import { cookies } from "next/headers";
 import { notFound } from "next/navigation";
 import { getBlogDetailApi } from "src/entities/blog/api/blog.api";
 import { blogQueries } from "src/features/blog/query/blog.query";
+import { createServerQueryClient } from "src/shared/libs/api/query/server-query-client";
 import BlogDetailClient from "./client";
 
 type PageProps = {
@@ -60,7 +61,7 @@ const BlogDetailPage = async ({ params }: PageProps) => {
 	if (!Number.isFinite(idNum) || idNum <= 0) notFound();
 
 	/* prefetch — generateMetadata와 react cache 통해 동일 요청 dedupe */
-	const queryClient = new QueryClient();
+	const queryClient = createServerQueryClient();
 	await queryClient.prefetchQuery(blogQueries.detail(idNum));
 
 	return (

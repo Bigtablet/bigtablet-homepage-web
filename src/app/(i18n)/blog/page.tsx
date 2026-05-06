@@ -1,5 +1,6 @@
-import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query";
+import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
 import { blogQueries } from "src/features/blog/query/blog.query";
+import { createServerQueryClient } from "src/shared/libs/api/query/server-query-client";
 import BlogPageClient from "./page-client";
 
 const DEFAULT_SIZE = 6;
@@ -18,7 +19,7 @@ const BlogPage = async ({ searchParams }: Props) => {
 	const page = Math.max(1, Number(params?.page ?? 1));
 	const size = Math.max(1, Number(params?.size ?? DEFAULT_SIZE));
 
-	const queryClient = new QueryClient();
+	const queryClient = createServerQueryClient();
 	await queryClient.prefetchQuery(blogQueries.page(page, size));
 
 	return (

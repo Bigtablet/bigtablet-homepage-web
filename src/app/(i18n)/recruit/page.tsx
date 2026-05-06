@@ -1,40 +1,20 @@
-"use client";
+import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query";
+import { recruitQueries } from "src/features/recruit/query/recruit.query";
+import RecruitPageClient from "./page-client";
 
-import { useState } from "react";
-import { ErrorBoundary } from "react-error-boundary";
-import type { RecruitSearchFilters } from "src/entities/recruit/api/recruit.api";
-import ErrorFallback from "src/shared/ui/error-fallback";
-import RecruitHeader from "src/widgets/recruit/main/header";
-import RequestList from "src/widgets/recruit/main/list";
-import styles from "./style.module.scss";
-
-const RecruitPage = () => {
-	const [filters, setFilters] = useState<RecruitSearchFilters>({
-		keyword: "",
-		job: "",
-		education: "",
-		career: "",
-	});
+/**
+ * @description
+ * /recruit 서버 페이지. 빈 필터 기준 list 쿼리를 SSR 단계에서 prefetch.
+ * 첫 페인트에 공고 카드 즉시 표시 → skeleton 깜빡임 제거.
+ */
+const RecruitPage = async () => {
+	const queryClient = new QueryClient();
+	await queryClient.prefetchQuery(recruitQueries.list());
 
 	return (
-		<section className={styles.recruit_page}>
-			<RecruitHeader filters={filters} onChange={setFilters} />
-
-			<div className={styles.recruit_page_list}>
-				<ErrorBoundary
-					fallbackRender={({ resetErrorBoundary }) => (
-						<ErrorFallback
-							reset={resetErrorBoundary}
-							backHref="/main"
-							backLabel="메인으로 돌아가기"
-						/>
-					)}
-					resetKeys={[filters]}
-				>
-					<RequestList filters={filters} />
-				</ErrorBoundary>
-			</div>
-		</section>
+		<HydrationBoundary state={dehydrate(queryClient)}>
+			<RecruitPageClient />
+		</HydrationBoundary>
 	);
 };
 

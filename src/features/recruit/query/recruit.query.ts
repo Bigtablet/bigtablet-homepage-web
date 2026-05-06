@@ -1,4 +1,4 @@
-import { queryOptions, useQuery } from "@tanstack/react-query";
+import { keepPreviousData, queryOptions, useQuery } from "@tanstack/react-query";
 import {
 	getRecruitDetailApi,
 	getRecruitListApi,
@@ -46,6 +46,8 @@ export const recruitQueries = {
 					signal,
 				}),
 			select: (data: RecruitResponse[]) => data.map(toRecruitCard),
+			/* 필터 변경 시 이전 결과 유지해 깜빡임 방지 */
+			placeholderData: keepPreviousData,
 			staleTime: 60000,
 			gcTime: 300000,
 			refetchOnWindowFocus: false,

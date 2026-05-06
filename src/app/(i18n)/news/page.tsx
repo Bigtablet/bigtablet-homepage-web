@@ -1,62 +1,29 @@
-"use client";
-
-import { Pagination } from "@bigtablet/design-system";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useLocale, useTranslations } from "next-intl";
-import { useMemo } from "react";
-import { useSuspenseNewsPageQuery } from "src/features/news/query/news.query";
-import AsyncBoundary from "src/shared/ui/async-boundary";
-import ErrorFallback from "src/shared/ui/error-fallback";
-import NewsListSection from "src/widgets/news/list";
-import NewsListSkeleton from "src/widgets/news/list/skeleton";
-import styles from "./style.module.scss";
+import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query";
+import { newsQueries } from "src/features/news/query/news.query";
+import NewsPageClient from "./page-client";
 
 const PAGE_SIZE = 6;
 
-const NewsContent = () => {
-	const locale = useLocale();
-	const router = useRouter();
-	const pathname = usePathname();
-	const searchParams = useSearchParams();
+interface Props {
+	searchParams: Promise<{ page?: string }>;
+}
 
-	const page = Math.max(1, Number(searchParams.get("page") ?? 1));
+/**
+ * @description
+ * /news 서버 페이지. 첫 페이지 데이터를 SSR 단계에서 prefetch 후 HydrationBoundary로 전달.
+ * 클라이언트는 useSuspenseQuery에서 prefetched 데이터를 즉시 받아 waterfall 제거.
+ */
+const NewsPage = async ({ searchParams }: Props) => {
+	const params = await searchParams;
+	const page = Math.max(1, Number(params?.page ?? 1));
 
-	const { data } = useSuspenseNewsPageQuery({ page, size: PAGE_SIZE });
-	const items = useMemo(() => data?.items ?? [], [data?.items]);
-
-	const totalPages = items.length === PAGE_SIZE ? page + 1 : page;
-
-	const handleChangePage = (nextPage: number) => {
-		const clamped = Math.max(1, nextPage);
-		const sp = new URLSearchParams(searchParams.toString());
-		sp.set("page", String(clamped));
-		router.push(`${pathname}?${sp.toString()}`);
-	};
+	const queryClient = new QueryClient();
+	await queryClient.prefetchQuery(newsQueries.page(page, PAGE_SIZE));
 
 	return (
-		<section className={styles.news_page}>
-			<NewsListSection items={items} locale={locale} isLoading={false} pageSize={PAGE_SIZE} />
-
-			{totalPages > 1 && (
-				<div className={styles.news_page_pagination}>
-					<Pagination page={page} totalPages={totalPages} onChange={handleChangePage} />
-				</div>
-			)}
-		</section>
-	);
-};
-
-const NewsPage = () => {
-	const t = useTranslations("common");
-	return (
-		<AsyncBoundary
-			pendingFallback={<NewsListSkeleton />}
-			rejectedFallback={({ resetErrorBoundary }) => (
-				<ErrorFallback reset={resetErrorBoundary} backHref="/main" backLabel={t("backToMain")} />
-			)}
-		>
-			<NewsContent />
-		</AsyncBoundary>
+		<HydrationBoundary state={dehydrate(queryClient)}>
+			<NewsPageClient />
+		</HydrationBoundary>
 	);
 };
 

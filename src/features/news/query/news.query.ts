@@ -1,5 +1,3 @@
-"use client";
-
 import { queryOptions, useQuery, useSuspenseQuery } from "@tanstack/react-query";
 import { getNewsApi } from "src/entities/news/api/news.api";
 import type { NewsItem } from "src/entities/news/schema/news.schema";

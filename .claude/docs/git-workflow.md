@@ -174,29 +174,43 @@ EOF
 - **제목 섹션**: Issue는 작업 설명, PR은 브랜치명
 - `## 개요`, `## 변경사항`, `## 관련 파일` 등 **다른 형식 사용 금지**
 
-## Release 양식 (필수)
+## Release 양식 (⚠️ 필수 — 자의적 변경 금지)
 
-> **⚠️ Release 본문은 반드시 아래 양식을 사용해야 합니다. 자의적으로 섹션을 변경하거나 추가하지 마세요.**
+> **Release 본문은 반드시 아래 양식 그대로 사용. 섹션 추가/삭제/이름 변경 모두 금지.**
 
 - **태그 형식**: `x.x.x` (v 접두사 없음, 예: `1.8.6`)
 - **제목**: 태그와 동일 (예: `1.8.6`)
+- **타겟 브랜치**: `main` (develop → main 머지 후 main 기준 생성)
+
+### 본문 템플릿
 
 ```markdown
 ## Official Website Web of Bigtablet, Inc.
+
 #### Key Updates
-- 변경사항 1
-- 변경사항 2
+- <conventional commit-style line, 영문 소문자>
+- <conventional commit-style line, 영문 소문자>
 ```
 
-- 각 변경사항은 영문 소문자로 작성
-- develop → main 머지 후 main 브랜치를 타겟으로 생성
+### 규칙
+
+- 첫 줄 `## Official Website Web of Bigtablet, Inc.` — 텍스트 그대로 (변경 금지)
+- 두 번째 `#### Key Updates` — 텍스트 그대로 (변경 금지)
+- bullet 한 줄 = 하나의 변경 사항. **영문 소문자 + conventional prefix** (`fix:`, `feat:`, `chore:`, `delete:`, `style:`, `refactor:` 등)
+- ❌ `## Features` / `## Bug Fixes` / `## Performance` / `## Security` 등 **카테고리 섹션 절대 추가 금지**
+- ❌ 한글 본문 금지 — 한글 commit 메시지였어도 release 본문은 영문 소문자로 변환
+- ❌ bullet을 빈 줄로 그룹화 금지 — 모든 bullet 연속
+
+### 생성 예시
 
 ```bash
 gh release create 1.8.6 --target main --title "1.8.6" --notes "$(cat <<'EOF'
 ## Official Website Web of Bigtablet, Inc.
+
 #### Key Updates
-- add new feature description
-- fix bug description
+- feat: add new feature description
+- fix: bug description
+- chore: bump dependency from x to y
 EOF
 )"
 ```

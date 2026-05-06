@@ -1,7 +1,6 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import Image from "next/image";
 import { notFound } from "next/navigation";
 import { useLocale } from "next-intl";
 import { useEffect, useRef } from "react";
@@ -13,6 +12,7 @@ import { useBlogViewMutation } from "src/features/blog/mutation/blog.mutation";
 import { useBlogDetailQuery } from "src/features/blog/query/blog.query";
 import { formatRelative } from "src/shared/libs/ui/date";
 import BackLink from "src/shared/ui/back-link";
+import ImageThumb from "src/shared/ui/image-thumb";
 
 import styles from "./style.module.scss";
 
@@ -82,15 +82,13 @@ const BlogDetailClient = ({ idx }: Props) => {
 				</div>
 
 				{data.imageUrl && (
-					<div className={styles.blog_detail_hero}>
-						<Image
-							src={data.imageUrl}
-							alt={title || "blog thumbnail"}
-							fill
-							sizes="(max-width: 768px) 100vw, 960px"
-							priority
-						/>
-					</div>
+					<ImageThumb
+						className={styles.blog_detail_hero}
+						src={data.imageUrl}
+						alt={title || "blog thumbnail"}
+						sizes="(max-width: 768px) 100vw, 960px"
+						priority
+					/>
 				)}
 
 				<div className={styles.blog_detail_content}>

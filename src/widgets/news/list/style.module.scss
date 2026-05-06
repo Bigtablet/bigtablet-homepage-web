@@ -13,7 +13,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 384px));
   gap: token.$spacing_xl;
-  justify-content: center;
+  justify-content: start;
 }
 
 .news_list_empty {

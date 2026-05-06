@@ -1,10 +1,10 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import type { BlogItem } from "src/entities/blog/schema/blog.schema";
 import { formatRelative } from "src/shared/libs/ui/date";
 import { ellipsis } from "src/shared/libs/ui/text";
+import ImageThumb from "src/shared/ui/image-thumb";
 import styles from "./style.module.scss";
 
 type Props = {
@@ -49,19 +49,13 @@ const BlogCard = ({ item, locale, href, priority = false }: Props) => {
 			aria-label={title ? `${title} 상세보기` : "블로그 상세보기"}
 			prefetch
 		>
-			<div className={styles.blog_card_thumb}>
-				{imageUrl ? (
-					<Image
-						src={imageUrl}
-						alt={title || `blog-${idx}`}
-						fill
-						sizes="(max-width: 768px) 100vw, 33vw"
-						priority={priority}
-					/>
-				) : (
-					<div className={styles.blog_card_thumb_fallback} />
-				)}
-			</div>
+			<ImageThumb
+				className={styles.blog_card_thumb}
+				src={imageUrl ?? undefined}
+				alt={title || `blog-${idx}`}
+				sizes="(max-width: 768px) 100vw, 33vw"
+				priority={priority}
+			/>
 
 			<div className={styles.blog_card_meta}>
 				<div className={styles.blog_card_time}>{time}</div>

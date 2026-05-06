@@ -1,5 +1,3 @@
-"use client";
-
 import { queryOptions, useQuery, useSuspenseQuery } from "@tanstack/react-query";
 import { getBlogApi, getBlogDetailApi } from "src/entities/blog/api/blog.api";
 import type { BlogItem } from "src/entities/blog/schema/blog.schema";

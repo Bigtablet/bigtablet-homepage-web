@@ -19,6 +19,9 @@
 	@include token.body_regular;
 	color: token.$text_strong;
 	line-height: token.$line_height_relaxed;
+	/* 한글 단어 중간 줄바꿈 방지 */
+	word-break: keep-all;
+	overflow-wrap: break-word;
 
 	a {
 		color: token.$color_primary;

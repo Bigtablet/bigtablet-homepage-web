@@ -1,0 +1,63 @@
+@use "@bigtablet/design-system/scss/token" as token;
+
+.thumb {
+  position: relative;
+  overflow: hidden;
+  background: token.$color_background_secondary;
+}
+
+/* 로딩 중 — shimmer 애니메이션 */
+.thumb_loading {
+  background: linear-gradient(
+    110deg,
+    rgba(0, 0, 0, 0.04) 8%,
+    rgba(0, 0, 0, 0.10) 18%,
+    rgba(0, 0, 0, 0.04) 33%
+  );
+  background-size: 200% 100%;
+  animation: thumb_shimmer 1.5s linear infinite;
+
+  img {
+    opacity: 0;
+    transition: opacity 0.25s ease-out;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}
+
+/* 로드 완료 — 이미지 fade-in, shimmer 제거 */
+.thumb_loaded {
+  background: transparent;
+  animation: none;
+
+  img {
+    opacity: 1;
+    transition: opacity 0.25s ease-out;
+  }
+}
+
+/* 이미지 없음 / 에러 — 잔잔한 그래디언트 placeholder */
+.thumb_fallback {
+  background: linear-gradient(
+    135deg,
+    token.$color_background_secondary 0%,
+    token.$color_background 100%
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: token.$text_subtle;
+  font-size: token.$font_size_sm;
+  animation: none;
+}
+
+@keyframes thumb_shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}

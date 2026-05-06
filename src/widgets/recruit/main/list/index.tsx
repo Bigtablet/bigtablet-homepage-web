@@ -62,6 +62,7 @@ const RequestList = ({ filters }: Props) => {
 
 	const isSearching = !allEmpty;
 
+	/* isLoading: 캐시 데이터 없을 때만 true. placeholderData 덕에 검색 시엔 false 유지 */
 	const isLoading = isSearching ? searchQ.isLoading : listQ.isLoading;
 	const showSkeleton = useDeferredLoading(isLoading);
 	const isError = isSearching ? searchQ.isError : listQ.isError;
@@ -79,7 +80,9 @@ const RequestList = ({ filters }: Props) => {
 			{!isLoading && isError && <div className={styles.request_list_empty}>{error?.message}</div>}
 
 			{!isLoading && !isError && data.length === 0 && (
-				<div className={styles.request_list_empty}>공고가 없습니다.</div>
+				<div className={styles.request_list_empty}>
+					<p>공고가 없습니다.</p>
+				</div>
 			)}
 
 			{!isLoading && !isError && data.map((item) => <RequestCard key={item.idx} item={item} />)}

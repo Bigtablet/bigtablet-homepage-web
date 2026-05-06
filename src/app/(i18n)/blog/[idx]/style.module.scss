@@ -49,12 +49,9 @@
   }
 
   &_hero {
-    position: relative;
     width: 100%;
     aspect-ratio: 16 / 9;
     border-radius: token.$radius_lg;
-    overflow: hidden;
-    background: token.$color_background_secondary;
     border: 1px solid token.$color_border;
     margin: token.$spacing_lg 0 token.$spacing_xl;
 

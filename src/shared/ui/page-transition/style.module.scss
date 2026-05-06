@@ -6,13 +6,12 @@
 }
 
 /**
- * 모든 페이지 컨테이너가 viewport 잔여 공간을 동일하게 차지하도록 강제.
- * 콘텐츠 양에 따라 footer 위 빈 공간 비율이 달라지던 문제 해결.
- * display는 강제하지 않음 — 페이지가 자체 grid/flex/block 구조를 그대로 유지.
+ * 모든 페이지 컨테이너가 viewport 잔여 공간을 동일하게 차지하도록 flex grow만 부여.
+ * width는 강제하지 않음 — 페이지가 자체 width(예: recruit 70%)를 그대로 유지.
+ * align-items: stretch(기본) + width 미지정 페이지는 자연스럽게 100% 차지.
  */
 .transition > * {
 	flex: 1;
-	width: 100%;
 }
 
 .entering {

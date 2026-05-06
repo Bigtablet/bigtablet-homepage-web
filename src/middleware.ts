@@ -9,10 +9,13 @@ const DEFAULT_LOCALE = "en";
  * @description
  * CSP nonce를 생성하고 Content-Security-Policy 헤더를 설정합니다.
  */
-const buildCsp = (nonce: string) =>
-	[
+const buildCsp = (nonce: string) => {
+	/* dev에서는 React DevTools가 eval()을 사용하므로 unsafe-eval 허용. production은 strict. */
+	const isDev = process.env.NODE_ENV === "development";
+	const scriptSrc = `script-src 'self' 'nonce-${nonce}' 'strict-dynamic'${isDev ? " 'unsafe-eval'" : ""}`;
+	return [
 		"default-src 'self'",
-		`script-src 'self' 'nonce-${nonce}' 'strict-dynamic'`,
+		scriptSrc,
 		"style-src 'self' 'unsafe-inline'",
 		"img-src 'self' https://storage.googleapis.com data:",
 		"font-src 'self'",
@@ -22,6 +25,7 @@ const buildCsp = (nonce: string) =>
 		"base-uri 'self'",
 		"form-action 'self'",
 	].join("; ");
+};
 
 /**
  * @description
@@ -44,7 +48,11 @@ export function middleware(request: NextRequest) {
 	requestHeaders.set("x-nonce", nonce);
 
 	const response = NextResponse.next({ request: { headers: requestHeaders } });
-	response.headers.set("Content-Security-Policy-Report-Only", buildCsp(nonce));
+	/**
+	 * 운영에서는 CSP 강제(enforce). report-only는 검사기에서 high로 평가됨.
+	 * 깨지는 inline script/style이 발견되면 nonce 부여 또는 정책 완화로 대응.
+	 */
+	response.headers.set("Content-Security-Policy", buildCsp(nonce));
 
 	// locale 쿠키 자동 설정
 	if (!request.cookies.has(LOCALE_COOKIE_KEY)) {

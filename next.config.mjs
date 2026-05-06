@@ -11,6 +11,8 @@ const analyze = withBundleAnalyzer({
 const nextConfig = {
 	output: "standalone",
 	reactCompiler: true,
+	/* X-Powered-By: Next.js 헤더 제거 — 서버 기술 스택 정보 노출 방지 */
+	poweredByHeader: false,
 
 	images: {
 		remotePatterns: [
@@ -40,11 +42,20 @@ const nextConfig = {
 					},
 					{
 						key: "Strict-Transport-Security",
-						value: "max-age=63072000; includeSubDomains",
+						value: "max-age=63072000; includeSubDomains; preload",
 					},
 					{
 						key: "X-XSS-Protection",
 						value: "0",
+					},
+					/* Cross-origin isolation — observatory.mozilla.org medium */
+					{
+						key: "Cross-Origin-Opener-Policy",
+						value: "same-origin",
+					},
+					{
+						key: "Cross-Origin-Resource-Policy",
+						value: "same-site",
 					},
 				],
 			},

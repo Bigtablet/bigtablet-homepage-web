@@ -4,8 +4,8 @@ import { TopLoading } from "@bigtablet/design-system";
 import { usePathname, useSearchParams } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
 
-/** 로딩 안전장치 타임아웃 (ms) */
-const LOADING_TIMEOUT = 5000;
+/** 로딩 안전장치 타임아웃 (ms) — pathname effect가 끝까지 안 발동하는 케이스 fallback */
+const LOADING_TIMEOUT = 1500;
 
 /** 로딩바 표시 지연 — 즉시 전환 시 깜빡임 방지 (ms) */
 const SHOW_DELAY = 120;

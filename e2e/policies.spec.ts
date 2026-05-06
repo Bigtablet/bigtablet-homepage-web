@@ -31,9 +31,9 @@ test.describe("policy pages - korean", () => {
 		await page.goto("/policies/privacy");
 		await expect(page.locator("main")).toBeVisible({ timeout: 10_000 });
 
-		const backButton = page.locator("button").filter({ hasText: /홈/ });
-		await expect(backButton).toBeVisible({ timeout: 10_000 });
-		await backButton.click();
+		const backLink = page.getByRole("link", { name: /홈/ });
+		await expect(backLink).toBeVisible({ timeout: 10_000 });
+		await backLink.click();
 		await expect(page).toHaveURL(/\/main/);
 	});
 });

@@ -85,10 +85,10 @@ export const getRecruitListApi = async ({
  */
 /**
  * react cache로 감싸서 같은 request 내 generateMetadata + prefetch 중복 fetch 방지.
+ * cache 키는 인자 전체이므로 signal을 받지 않는다 — 호출부도 일관되게 signal 없이.
  */
-export const getRecruitDetailApi = cache(async (index: number, signal?: AbortSignal) => {
+export const getRecruitDetailApi = cache(async (index: number) => {
 	const { data } = await getParsed("/job", recruitDetailResponseSchema, {
-		signal,
 		params: { idx: index },
 	});
 	if (!data) throw new Error("Empty response");

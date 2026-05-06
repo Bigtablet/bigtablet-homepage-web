@@ -5,17 +5,15 @@
   width: 100%;
   margin: 0 auto;
   gap: token.$spacing_sm;
-  /* skeleton 5개 + gap 기준 대략적 최소 높이 — empty/loading 상태에서 collapse 방지 */
-  min-height: 480px;
 }
 
+/* empty/loading 자체에 min-height — list 전체는 자연 높이 유지해 viewport 초과 방지 */
 .request_list_loading,
 .request_list_empty {
   @include token.flex_column;
   align-items: center;
   justify-content: center;
-  flex: 1;
-  min-height: 360px;
+  min-height: 240px;
   text-align: center;
   font-size: token.$font_size_md;
   color: token.$text_subtle;

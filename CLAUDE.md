@@ -162,6 +162,39 @@ src/
   ```
 - **PR 제목 = 브랜치명** (설명문 아님, 예: `fix/detail-page-pagination`)
 
-### Release Tag 규칙 (⚠️ 필수 준수)
+### Release 규칙 (⚠️ 필수 준수)
 
 - **태그 형식: `X.Y.Z`** — `v` 접두사 절대 사용 금지 (예: `1.9.0` ✅, `v1.9.0` ❌)
+- **제목**: 태그와 동일 (예: `1.9.0`)
+- **타겟 브랜치**: `main` (develop → main 머지 후 main 기준 생성)
+
+#### Release 본문 양식 (자의적 변경 금지)
+
+```markdown
+## Official Website Web of Bigtablet, Inc.
+
+#### Key Updates
+- <conventional commit-style line, 영문 소문자>
+- <conventional commit-style line, 영문 소문자>
+```
+
+- 첫 줄: `## Official Website Web of Bigtablet, Inc.` (절대 변경 금지)
+- 두 번째: `#### Key Updates` (절대 변경 금지)
+- 본문은 **영문 소문자 conventional commit 스타일** (`fix:`, `feat:`, `chore:`, `delete:` 등) 한 줄씩
+- ❌ `## Features` / `## Bug Fixes` / `## Performance` 등 카테고리 섹션 추가 금지
+- ❌ 한글 본문 금지 — 모두 영문 소문자
+- ❌ 빈 줄로 그룹 분리 금지
+
+생성 예시:
+
+```bash
+gh release create 1.9.0 --target main --title "1.9.0" --notes "$(cat <<'EOF'
+## Official Website Web of Bigtablet, Inc.
+
+#### Key Updates
+- feat: add new feature description
+- fix: bug description
+- chore: bump dependency from x to y
+EOF
+)"
+```

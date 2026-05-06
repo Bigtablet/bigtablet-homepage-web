@@ -2,9 +2,7 @@ import "src/app/global.css";
 import "./global.css";
 import type { Metadata } from "next";
 import { cookies } from "next/headers";
-import { notFound } from "next/navigation";
 import { NextIntlClientProvider } from "next-intl";
-import { getMessages } from "next-intl/server";
 import { Suspense } from "react";
 import RouteLoading from "src/shared/ui/route-loading";
 import Providers from "src/widgets/layout/provider";
@@ -18,14 +16,23 @@ export const dynamic = "force-dynamic";
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
 	const store = await cookies();
-	const value = store.get("NEXT_LOCALE")?.value;
+	const value = store.get("NEXT_LOCALE")?.value?.toLowerCase();
 	const locale = (value === "en" ? "en" : "ko") as "en" | "ko";
 
-	let messages: Awaited<ReturnType<typeof getMessages>> | undefined;
+	/**
+	 * 쿠키 기반으로 직접 messages 로드. (i18n) layout과 동일한 로직.
+	 * getMessages()는 middleware가 next-intl routing을 안 쓰는 환경에서
+	 * defaultLocale로 fallback되므로, root layout의 CookieConsent가
+	 * 항상 영문으로 노출되는 버그가 있었음.
+	 *
+	 * import 실패 시 빈 객체로 fallback — 앱 전체가 500으로 멈추는 것보다
+	 * 일부 텍스트만 빠진 채 렌더되는 게 낫다.
+	 */
+	let messages: Record<string, unknown> = {};
 	try {
-		messages = await getMessages();
+		messages = (await import(`../../messages/${locale}.json`)).default;
 	} catch {
-		notFound();
+		messages = {};
 	}
 
 	return (

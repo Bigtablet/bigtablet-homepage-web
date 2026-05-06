@@ -5,14 +5,21 @@
   width: 100%;
   margin: 0 auto;
   gap: token.$spacing_sm;
+  /* skeleton 5개 + gap 기준 대략적 최소 높이 — empty/loading 상태에서 collapse 방지 */
+  min-height: 480px;
 }
 
 .request_list_loading,
 .request_list_empty {
+  @include token.flex_column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  min-height: 360px;
   text-align: center;
-  font-size: token.$font_size_sm;
-  color: token.$text_normal;
-  padding: token.$spacing_xl 0;
+  font-size: token.$font_size_md;
+  color: token.$text_subtle;
+  padding: token.$spacing_2xl 0;
 }
 
 .request_item {

@@ -1,3 +1,4 @@
+import { cache } from "react";
 import {
 	type BlogDetailResponse,
 	type BlogOkResponse,
@@ -40,14 +41,18 @@ export const getBlogApi = async ({ page, size }: ListSchema, signal?: AbortSigna
  * @returns 블로그 상세 데이터
  * @throws 응답 데이터가 비어있으면 "Empty response" 에러
  */
-export const getBlogDetailApi = async (index: number, signal?: AbortSignal) =>
+/**
+ * react cache로 감싸서 같은 request 내 generateMetadata + prefetch 중복 fetch 방지.
+ * cache 키는 인자 전체이므로 signal을 받지 않는다 — 호출부도 일관되게 signal 없이.
+ */
+export const getBlogDetailApi = cache(async (index: number) =>
 	getParsed("/blog", blogDetailResponseSchema, {
 		params: { idx: index },
-		signal,
 	}).then((response: BlogDetailResponse) => {
 		if (!response.data) throw new Error("Empty response");
 		return response.data;
-	});
+	}),
+);
 
 /**
  * @author 박상민

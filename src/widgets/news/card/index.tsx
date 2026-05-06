@@ -1,8 +1,8 @@
 "use client";
 
-import Image from "next/image";
 import { useMemo } from "react";
 import { formatRelative } from "src/shared/libs/ui/date";
+import ImageThumb from "src/shared/ui/image-thumb";
 import styles from "./style.module.scss";
 
 interface NewsCardProps {
@@ -34,18 +34,14 @@ const NewsCard = ({
 
 	return (
 		<a className={styles.news_card} href={url} target="_blank" rel="noreferrer">
-			<div className={styles.news_card_thumb}>
-				{imageSrc ? (
-					<Image
-						className={styles.news_card_img}
-						src={imageSrc}
-						alt=""
-						fill
-						sizes="(max-width: 768px) 100vw, 33vw"
-						priority={priority}
-					/>
-				) : null}
-			</div>
+			<ImageThumb
+				className={styles.news_card_thumb}
+				imgClassName={styles.news_card_img}
+				src={imageSrc ?? undefined}
+				alt=""
+				sizes="(max-width: 768px) 100vw, 33vw"
+				priority={priority}
+			/>
 
 			<div className={styles.news_card_meta}>
 				<span className={styles.news_card_time}>{time}</span>

@@ -1,6 +1,4 @@
-"use client";
-
-import { queryOptions, useQuery } from "@tanstack/react-query";
+import { keepPreviousData, queryOptions, useQuery } from "@tanstack/react-query";
 import {
 	getRecruitDetailApi,
 	getRecruitListApi,
@@ -27,7 +25,8 @@ export const recruitQueries = {
 	detail: (idx: number) =>
 		queryOptions({
 			queryKey: [...recruitQueries.all, "detail", idx] as const,
-			queryFn: ({ signal }) => getRecruitDetailApi(idx, signal),
+			/* signal 미전달 — react cache 키 일관성 유지 (generateMetadata와 dedupe) */
+			queryFn: () => getRecruitDetailApi(idx),
 			select: toRecruitCard,
 			enabled: Number.isFinite(idx) && idx > 0,
 			staleTime: 60000,
@@ -48,6 +47,8 @@ export const recruitQueries = {
 					signal,
 				}),
 			select: (data: RecruitResponse[]) => data.map(toRecruitCard),
+			/* 필터 변경 시 이전 결과 유지해 깜빡임 방지 */
+			placeholderData: keepPreviousData,
 			staleTime: 60000,
 			gcTime: 300000,
 			refetchOnWindowFocus: false,

@@ -1,3 +1,4 @@
+import SkeletonDetail from "src/shared/ui/skeleton/detail";
 import styles from "./style.module.scss";
 
 /**
@@ -6,7 +7,7 @@ import styles from "./style.module.scss";
  */
 const RecruitDetailLoading = () => (
 	<div className={styles.recruit_detail}>
-		<div className={styles.recruit_detail_loading}>...</div>
+		<SkeletonDetail />
 	</div>
 );
 

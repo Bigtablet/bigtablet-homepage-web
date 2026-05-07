@@ -51,8 +51,8 @@ const writeParsed = async <S extends z.ZodTypeAny>(
 	const response =
 		method === "delete"
 			? await BigtabletAxios.delete<unknown>(url, config)
-			: await BigtabletAxios[method]<unknown>(url, body, config);
-	return schema.parse(response.data);
+			: await BigtabletAxios[method as "post" | "put" | "patch"]<unknown>(url, body, config);
+	return handleNoContent(response.status, response.data, schema);
 };
 
 /** POST 요청 후 Zod 스키마로 응답을 파싱한다. */

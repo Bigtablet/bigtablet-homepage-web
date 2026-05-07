@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import type { BlogItem } from "src/entities/blog/schema/blog.schema";
-import { formatRelative } from "src/shared/libs/ui/date";
+import { formatDate } from "src/shared/libs/ui/date";
 import { ellipsis } from "src/shared/libs/ui/text";
 import ImageThumb from "src/shared/ui/image-thumb";
 import styles from "./style.module.scss";
@@ -40,7 +40,7 @@ const BlogCard = ({ item, locale, href, priority = false }: Props) => {
 	const title = (isKo ? titleKr : titleEn) ?? "";
 	const content = (isKo ? contentKr : contentEn) ?? "";
 	const plainContent = stripMarkdown(content);
-	const time = formatRelative(createdAt, locale);
+	const time = formatDate(createdAt, locale);
 
 	return (
 		<Link

@@ -6,6 +6,9 @@ import type { Product } from "src/widgets/main/solution/model/video-sources";
 type SlideState = { dir: "next" | "prev"; nextId: number } | null;
 type AnimVars = { dx: number; dy: number; sx: number; sy: number } | null;
 
+/** CSS .is_slide_next/.is_slide_prev transition duration과 일치 */
+const SLIDE_DURATION_MS = 360;
+
 /**
  * @description
  * 솔루션 카드 모달의 열기/닫기/슬라이드 애니메이션 상태를 관리하는 hook.
@@ -18,6 +21,7 @@ export const useSolutionModal = (products: Product[]) => {
 	const [sliding, setSliding] = useState<SlideState>(null);
 	const [blockBackdropClose, setBlockBackdropClose] = useState(false);
 	const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+	const slideTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
 	const cancelClose = useCallback(() => {
 		if (closeTimer.current) {
@@ -26,14 +30,22 @@ export const useSolutionModal = (products: Product[]) => {
 		}
 	}, []);
 
+	const cancelSlide = useCallback(() => {
+		if (slideTimer.current) {
+			clearTimeout(slideTimer.current);
+			slideTimer.current = null;
+		}
+	}, []);
+
 	const closeNow = useCallback(() => {
 		cancelClose();
+		cancelSlide();
 		setIsEntering(false);
 		setActiveId(null);
 		setAnimVars(null);
 		setSliding(null);
 		setBlockBackdropClose(false);
-	}, [cancelClose]);
+	}, [cancelClose, cancelSlide]);
 
 	const scheduleClose = useCallback(
 		(delay = 120) => {
@@ -72,13 +84,15 @@ export const useSolutionModal = (products: Product[]) => {
 					: products[(currentIndex - 1 + products.length) % products.length].id;
 			setBlockBackdropClose(true);
 			setSliding({ dir, nextId });
-			setTimeout(() => {
+			cancelSlide();
+			slideTimer.current = setTimeout(() => {
+				slideTimer.current = null;
 				setActiveId(nextId);
 				setSliding(null);
 				setBlockBackdropClose(false);
-			}, 360);
+			}, SLIDE_DURATION_MS);
 		},
-		[activeId, products],
+		[activeId, products, cancelSlide],
 	);
 
 	/* ESC로 닫기 + 좌/우 화살표 키로 슬라이드 이동 */
@@ -102,6 +116,14 @@ export const useSolutionModal = (products: Product[]) => {
 		window.addEventListener("keydown", onKey);
 		return () => window.removeEventListener("keydown", onKey);
 	}, [activeId, closeNow, go]);
+
+	/* 언마운트 시 잔여 타이머 정리 — modal 닫힌 뒤에 setActiveId가 다시 깨우지 않도록 */
+	useEffect(() => {
+		return () => {
+			cancelClose();
+			cancelSlide();
+		};
+	}, [cancelClose, cancelSlide]);
 
 	const current = activeId ? (products.find((p) => p.id === activeId) ?? null) : null;
 	const ghost = sliding ? (products.find((p) => p.id === sliding.nextId) ?? null) : null;

@@ -13,7 +13,7 @@ type MarkdownEditorProps = {
 	rows?: number;
 };
 
-export const MarkdownEditor = ({
+const MarkdownEditor = ({
 	label,
 	placeholder,
 	value,

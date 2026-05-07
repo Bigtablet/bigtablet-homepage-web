@@ -5,12 +5,10 @@ import { useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 import { Controller } from "react-hook-form";
 import { useTalentForm } from "src/features/talent/form/model/use-talent-form";
+import { useFocusTrap } from "src/shared/hooks/use-focus-trap";
 import { PortfolioSection } from "./sections/PortfolioSection";
 import { UrlListSection } from "./sections/UrlListSection";
 import styles from "./style.module.scss";
-
-const FOCUSABLE =
-	'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
 
 interface Props {
 	open: boolean;
@@ -55,39 +53,8 @@ const TalentFormModal = ({ open, onClose }: Props) => {
 		return () => window.removeEventListener("keydown", onKey);
 	}, [open, onClose]);
 
-	/** 포커스 트랩 — Tab/Shift+Tab이 모달 내부에서만 순환, 동적 요소 대응 */
-	useEffect(() => {
-		if (!open) return;
-		const dialog = dialogRef.current;
-		if (!dialog) return;
-
-		const getFocusable = () => Array.from(dialog.querySelectorAll<HTMLElement>(FOCUSABLE));
-
-		const initialFocusable = getFocusable();
-		if (initialFocusable.length > 0) initialFocusable[0].focus();
-
-		const trap = (e: KeyboardEvent) => {
-			if (e.key !== "Tab") return;
-			const focusable = getFocusable();
-			if (!focusable.length) return;
-			const first = focusable[0];
-			const last = focusable[focusable.length - 1];
-			if (e.shiftKey) {
-				if (document.activeElement === first) {
-					e.preventDefault();
-					last.focus();
-				}
-			} else {
-				if (document.activeElement === last) {
-					e.preventDefault();
-					first.focus();
-				}
-			}
-		};
-
-		window.addEventListener("keydown", trap);
-		return () => window.removeEventListener("keydown", trap);
-	}, [open]);
+	/* 포커스 트랩 — Tab/Shift+Tab이 모달 내부에서만 순환 */
+	useFocusTrap(dialogRef, open);
 
 	if (!open || typeof window === "undefined") return null;
 

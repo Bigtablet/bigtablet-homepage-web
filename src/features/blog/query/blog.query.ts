@@ -26,6 +26,9 @@ export const blogQueries = {
 
 				return { items, hasNext };
 			},
+			staleTime: 60_000,
+			gcTime: 300_000,
+			refetchOnWindowFocus: false,
 		}),
 	detail: (idx: number) =>
 		queryOptions({
@@ -33,6 +36,9 @@ export const blogQueries = {
 			/* signal 미전달 — react cache 키 일관성 유지 (generateMetadata와 dedupe) */
 			queryFn: () => getBlogDetailApi(idx),
 			enabled: Number.isFinite(idx) && idx > 0,
+			staleTime: 60_000,
+			gcTime: 300_000,
+			refetchOnWindowFocus: false,
 		}),
 };
 

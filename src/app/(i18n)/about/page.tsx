@@ -25,7 +25,7 @@ const About = async () => {
 	 */
 	const store = await cookies();
 	const localeValue = store.get("NEXT_LOCALE")?.value?.toLowerCase();
-	const locale = localeValue === "en" ? "en" : "ko";
+	const locale = localeValue?.startsWith("en") ? "en" : "ko";
 
 	let aboutHistory: unknown = {};
 	try {

@@ -27,6 +27,7 @@ const BlogDetailClient = ({ idx }: Props) => {
 	 */
 	const locale = useLocale();
 	const t = useTranslations("common");
+	const tBlog = useTranslations("blog.detail");
 	const { data, isLoading, isError } = useBlogDetailQuery(idx);
 	const { mutate: incView } = useBlogViewMutation();
 	const firedRef = useRef(false);
@@ -78,7 +79,7 @@ const BlogDetailClient = ({ idx }: Props) => {
 					<span className={styles.blog_detail_time}>{time}</span>
 					<span className={styles.blog_detail_dot}>·</span>
 					<span className={styles.blog_detail_views}>
-						{(data.views ?? 0).toLocaleString()} views
+						{(data.views ?? 0).toLocaleString()} {tBlog("views")}
 					</span>
 				</div>
 

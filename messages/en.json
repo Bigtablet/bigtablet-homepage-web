@@ -26,6 +26,19 @@
 		"notFoundTitle": "Page not found",
 		"notFoundDescription": "The page you requested does not exist\nor has been moved."
 	},
+	"recruit": {
+		"detail": {
+			"loading": "Loading…",
+			"loadFailed": "Failed to load.",
+			"section": {
+				"company": "About the Organization",
+				"position": "About the Position",
+				"responsibility": "Key Responsibilities",
+				"qualification": "Qualifications",
+				"preferredQualification": "Preferred Qualifications"
+			}
+		}
+	},
 	"footer": {
 		"brand": "Bigtablet, Inc.",
 		"address": "440 N. Wolfe Rd, Sunnyvale, CA 94085",
@@ -384,7 +397,10 @@
 	},
 	"blog": {
 		"title": "Blog",
-		"empty": "No blog posts yet."
+		"empty": "No blog posts yet.",
+		"detail": {
+			"views": "views"
+		}
 	},
 	"cookie": {
 		"message": "This website uses cookies for a better experience.",

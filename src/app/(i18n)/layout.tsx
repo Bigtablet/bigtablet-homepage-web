@@ -8,7 +8,7 @@ import styles from "./layout.module.scss";
 
 export default async function LocaleLayout({ children }: { children: ReactNode }) {
 	const localeValue = (await cookies()).get("NEXT_LOCALE")?.value?.toLowerCase();
-	const locale = localeValue === "en" ? "en" : "ko"; // 기본 ko
+	const locale = localeValue?.startsWith("en") ? "en" : "ko"; // 기본 ko, 'en-US' 등 region code도 인식
 	const messages = (await import(`../../../messages/${locale}.json`)).default;
 
 	return (

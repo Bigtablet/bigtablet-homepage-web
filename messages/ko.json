@@ -26,6 +26,19 @@
 		"notFoundTitle": "페이지를 찾을 수 없습니다",
 		"notFoundDescription": "요청하신 페이지가 존재하지 않거나\n잘못된 접근입니다."
 	},
+	"recruit": {
+		"detail": {
+			"loading": "불러오는 중…",
+			"loadFailed": "불러오지 못했습니다.",
+			"section": {
+				"company": "조직 소개",
+				"position": "포지션 소개",
+				"responsibility": "주요 업무",
+				"qualification": "자격 요건",
+				"preferredQualification": "우대사항"
+			}
+		}
+	},
 	"footer": {
 		"brand": "Bigtablet, Inc.",
 		"address": "(41585) 대구광역시 동구 동대구로 465, 대구스케일업허브 9층 912호",
@@ -384,7 +397,10 @@
 		"empty": "등록된 뉴스가 없습니다."
 	},
 	"blog": {
-		"empty": "등록된 블로그가 없습니다."
+		"empty": "등록된 블로그가 없습니다.",
+		"detail": {
+			"views": "조회"
+		}
 	},
 	"cookie": {
 		"message": "이 웹사이트는 더 나은 경험을 위해 쿠키를 사용합니다.",

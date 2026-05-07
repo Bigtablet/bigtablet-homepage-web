@@ -17,7 +17,7 @@ export const dynamic = "force-dynamic";
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
 	const store = await cookies();
 	const value = store.get("NEXT_LOCALE")?.value?.toLowerCase();
-	const locale = (value === "en" ? "en" : "ko") as "en" | "ko";
+	const locale = (value?.startsWith("en") ? "en" : "ko") as "en" | "ko";
 
 	/**
 	 * 쿠키 기반으로 직접 messages 로드. (i18n) layout과 동일한 로직.

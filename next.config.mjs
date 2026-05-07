@@ -107,6 +107,6 @@ export default withSentryConfig(analyze(withNextIntl(nextConfig)), {
 	project: process.env.SENTRY_PROJECT,
 	silent: true,
 	tunnelRoute: "/monitoring",
-	disableLogger: true,
+	/* disableLogger 제거 — deprecated. Turbopack에서 webpack.treeshake.removeDebugLogging 미지원이라 대체도 없음. Sentry 자체 build-time pruning에 의존. */
 	widenClientFileUpload: true,
 });

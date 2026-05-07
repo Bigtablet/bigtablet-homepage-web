@@ -42,17 +42,27 @@
 
 .history_year_item {
 	@include token.body_medium;
+	/* 폰트 크기 고정 — active 시 weight/color/scale만 변경해 layout shift 제거 */
+	font-size: token.$font_size_lg;
+	font-weight: token.$font_weight_regular;
 	background: transparent;
 	border: none;
 	padding: 0;
 	text-align: left;
 	color: token.$color_glass_border;
 	cursor: pointer;
-	transition: color token.$transition_fast, opacity token.$transition_fast;
+	transform-origin: left center;
+	transition: color token.$transition_base, font-weight token.$transition_base,
+		transform token.$transition_base;
+
+	&:hover {
+		color: token.$text_inverse;
+	}
 
 	&.is_active {
-		@include token.heading_3;
+		font-weight: token.$font_weight_bold;
 		color: token.$text_inverse;
+		transform: scale(1.15);
 	}
 }
 

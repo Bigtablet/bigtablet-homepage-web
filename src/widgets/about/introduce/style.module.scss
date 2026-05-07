@@ -1,5 +1,9 @@
 @use "@bigtablet/design-system/scss/token" as token;
 
+/**
+ * 1080px 컨테이너 폭과 360px 이미지 폭은 디자인 결정으로, 토큰화된 spacing 범위(최대 48px)에
+ * 맞지 않아 px를 직접 사용. clamp의 min/max는 가능한 곳에서 spacing 토큰으로 대체.
+ */
 .introduce {
   display: flex;
   align-items: center;
@@ -7,8 +11,9 @@
      max-width 컨테이너 + 양쪽 자연 폭으로 제한해 텍스트와 이미지가 적절히 가깝게. */
   width: min(1080px, 92%);
   margin: 0 auto;
-  gap: clamp(48px, 6vw, 96px);
-  padding-block: token.$spacing_4xl;
+  /* clamp로 viewport 기반 스케일 — 브레이크포인트별 gap/padding 재선언 없이 흡수 */
+  gap: clamp(token.$spacing_8xl, 6vw, calc(token.$spacing_8xl * 2));
+  padding-block: clamp(token.$spacing_4xl, 5vw, token.$spacing_5xl);
   animation: fade_in 0.6s ease both;
 
   &.introduce_reverse {
@@ -113,12 +118,11 @@
   }
 }
 
+/**
+ * .introduce 기본 gap/padding-block은 clamp로 viewport에 따라 스케일하므로
+ * 브레이크포인트별 재선언은 폰트 크기와 텍스트 내부 gap에 한정.
+ */
 @include token.tablet {
-  .introduce {
-    gap: clamp(40px, 5vw, 72px);
-    padding-block: token.$spacing_5xl;
-  }
-
   .introduce_text {
     gap: token.$spacing_md;
   }
@@ -133,11 +137,6 @@
 }
 
 @include token.laptop {
-  .introduce {
-    gap: clamp(56px, 5vw, 88px);
-    padding-block: token.$spacing_5xl;
-  }
-
   .introduce_text {
     gap: token.$spacing_lg;
   }
@@ -152,15 +151,6 @@
 }
 
 @include token.desktop {
-  .introduce {
-    gap: clamp(64px, 5vw, 96px);
-    padding-block: token.$spacing_5xl;
-  }
-
-  .introduce_text {
-    gap: token.$spacing_lg;
-  }
-
   .introduce_title {
     font-size: token.$font_size_3xl;
   }

@@ -20,6 +20,9 @@ importers:
       '@hookform/resolvers':
         specifier: ^5.2.2
         version: 5.2.2(react-hook-form@7.72.1(react@19.2.5))
+      '@next/bundle-analyzer':
+        specifier: ^16.2.5
+        version: 16.2.5
       '@opentelemetry/api':
         specifier: ^1.9.1
         version: 1.9.1
@@ -102,9 +105,6 @@ importers:
       '@commitlint/core':
         specifier: ^20.5.0
         version: 20.5.0(@types/node@25.6.0)(conventional-commits-parser@6.4.0)(typescript@6.0.3)
-      '@next/bundle-analyzer':
-        specifier: ^16.2.5
-        version: 16.2.5
       '@playwright/test':
         specifier: ^1.59.1
         version: 1.59.1

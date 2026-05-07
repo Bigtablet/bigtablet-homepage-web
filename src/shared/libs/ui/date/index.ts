@@ -1,28 +1,27 @@
 /**
- * @description 날짜 문자열을 상대 시간 표현으로 변환한다.
- * "방금 전", "5분 전", "3시간 전", "2일 전" 등의 형식으로 반환.
+ * @description ISO 날짜 문자열을 로케일별 실제 날짜 표기로 변환한다.
  *
- * @param dateStr - 날짜 문자열 (ISO 8601)
+ * 예전엔 "X분 전" 같은 상대 시간을 반환했지만, server 렌더와 client 렌더
+ * 사이에 흐른 시간 차로 인해 텍스트가 달라져 React hydration mismatch
+ * (#418)를 일으켰다. 이로 인해 React가 SSR HTML을 버리고 client에서 다시
+ * 렌더링하면서 초기 페인트가 느려졌다. 절대 날짜는 입력에만 의존하므로
+ * server/client 결과가 일치한다.
+ *
+ * @param dateStr - ISO 8601 날짜 문자열
  * @param locale - 로케일 ("ko" 또는 "en")
- * @returns 상대 시간 문자열 (입력이 없으면 빈 문자열)
+ * @returns 로케일에 맞는 날짜 문자열 (입력 누락 시 빈 문자열)
  *
  * @example
- * formatRelative("2026-04-02T10:00:00", "ko") // "3시간 전"
+ * formatRelative("2026-04-02T10:00:00", "ko") // "2026. 4. 2."
+ * formatRelative("2026-04-02T10:00:00", "en") // "Apr 2, 2026"
  */
 export const formatRelative = (dateStr?: string, locale?: string) => {
 	if (!dateStr || !locale) return "";
 	const date = new Date(dateStr);
-	const now = new Date();
-	const diffMs = date.getTime() - now.getTime();
-	const absSec = Math.round(Math.abs(diffMs) / 1000);
-	const rtf = new Intl.RelativeTimeFormat(locale.startsWith("ko") ? "ko" : "en", {
-		numeric: "auto",
-	});
-
-	if (absSec < 60) return rtf.format(Math.round(diffMs / 1000), "second");
-	const absMin = Math.round(absSec / 60);
-	if (absMin < 60) return rtf.format(Math.round(diffMs / (60 * 1000)), "minute");
-	const absHr = Math.round(absMin / 60);
-	if (absHr < 24) return rtf.format(Math.round(diffMs / (60 * 60 * 1000)), "hour");
-	return rtf.format(Math.round(diffMs / (24 * 60 * 60 * 1000)), "day");
+	if (Number.isNaN(date.getTime())) return "";
+	return new Intl.DateTimeFormat(locale.startsWith("ko") ? "ko" : "en", {
+		year: "numeric",
+		month: "short",
+		day: "numeric",
+	}).format(date);
 };

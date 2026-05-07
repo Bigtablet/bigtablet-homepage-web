@@ -1,3 +1,21 @@
+import { resolveLocale } from "src/shared/libs/locale";
+
+/* Intl.DateTimeFormat 인스턴스 캐시 — 매 호출마다 생성 비용 회피. 목록 페이지처럼 다수 호출 시 효과. */
+const formatterCache = new Map<string, Intl.DateTimeFormat>();
+
+const getFormatter = (locale: string) => {
+	const cached = formatterCache.get(locale);
+	if (cached) return cached;
+	const formatter = new Intl.DateTimeFormat(locale, {
+		year: "numeric",
+		month: "short",
+		day: "numeric",
+		timeZone: "Asia/Seoul",
+	});
+	formatterCache.set(locale, formatter);
+	return formatter;
+};
+
 /**
  * @description ISO 날짜 문자열을 로케일별 실제 날짜 표기로 변환한다.
  *
@@ -10,7 +28,7 @@
  * 입력에 다른 날짜가 나오는 일을 막는다. 미명시 시 시스템 시간대 사용.
  *
  * @param dateStr - ISO 8601 날짜 문자열
- * @param locale - 로케일 ("ko" 또는 "en")
+ * @param locale - 로케일 ("ko" 또는 "en", region code 허용)
  * @returns 로케일에 맞는 날짜 문자열 (입력 누락 시 빈 문자열)
  *
  * @example
@@ -21,10 +39,5 @@ export const formatDate = (dateStr?: string, locale?: string) => {
 	if (!dateStr || !locale) return "";
 	const date = new Date(dateStr);
 	if (Number.isNaN(date.getTime())) return "";
-	return new Intl.DateTimeFormat(locale.startsWith("ko") ? "ko" : "en", {
-		year: "numeric",
-		month: "short",
-		day: "numeric",
-		timeZone: "Asia/Seoul",
-	}).format(date);
+	return getFormatter(resolveLocale(locale)).format(date);
 };

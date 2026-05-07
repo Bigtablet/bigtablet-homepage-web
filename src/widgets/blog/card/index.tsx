@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import type { BlogItem } from "src/entities/blog/schema/blog.schema";
+import { isKorean } from "src/shared/libs/locale";
 import { formatDate } from "src/shared/libs/ui/date";
 import { ellipsis } from "src/shared/libs/ui/text";
 import ImageThumb from "src/shared/ui/image-thumb";
@@ -36,7 +37,7 @@ const stripMarkdown = (value: string) =>
 const BlogCard = ({ item, locale, href, priority = false }: Props) => {
 	const { idx, titleKr, titleEn, contentKr, contentEn, imageUrl, createdAt, views } = item;
 
-	const isKo = locale.startsWith("ko");
+	const isKo = isKorean(locale);
 	const title = (isKo ? titleKr : titleEn) ?? "";
 	const content = (isKo ? contentKr : contentEn) ?? "";
 	const plainContent = stripMarkdown(content);

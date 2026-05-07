@@ -6,17 +6,30 @@ type WriteMethod = "post" | "put" | "patch" | "delete";
 
 /**
  * @description
- * 204 No Content 응답 시 빈 응답 객체 반환
+ * 204 No Content / 빈 응답 처리.
+ * 스키마 형태가 다양하므로 null → undefined → 빈 객체 → envelope 순으로
+ * safeParse를 시도하고, 모두 실패하면 schema.parse(data)에서 명확한 ZodError를 던지도록 위임한다.
  */
 const handleNoContent = <S extends z.ZodTypeAny>(
 	status: number,
 	data: unknown,
 	schema: S,
 ): z.infer<S> => {
-	if (status === 204 || data === "" || data === null || data === undefined) {
-		return schema.parse({ status: 204, message: "No Content", data: null });
+	const isEmpty = status === 204 || data === "" || data === null || data === undefined;
+	if (!isEmpty) return schema.parse(data);
+
+	const candidates: unknown[] = [
+		null,
+		undefined,
+		{},
+		{ status: 204, message: "No Content", data: null },
+	];
+	for (const candidate of candidates) {
+		const result = schema.safeParse(candidate);
+		if (result.success) return result.data;
 	}
-	return schema.parse(data);
+	/* 어떤 후보도 통과하지 못하면 호출부가 ZodError를 받도록 강제 파싱. */
+	return schema.parse(data ?? null);
 };
 
 /**

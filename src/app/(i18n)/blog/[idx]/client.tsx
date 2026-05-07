@@ -10,6 +10,7 @@ const ReactMarkdown = dynamic(() => import("react-markdown"), { ssr: false });
 
 import { useBlogViewMutation } from "src/features/blog/mutation/blog.mutation";
 import { useBlogDetailQuery } from "src/features/blog/query/blog.query";
+import { isKorean } from "src/shared/libs/locale";
 import { formatDate } from "src/shared/libs/ui/date";
 import BackLink from "src/shared/ui/back-link";
 import ImageThumb from "src/shared/ui/image-thumb";
@@ -64,8 +65,9 @@ const BlogDetailClient = ({ idx }: Props) => {
 	 */
 	if (!data) notFound();
 
-	const title = locale.startsWith("ko") ? data.titleKr : data.titleEn;
-	const content = locale.startsWith("ko") ? data.contentKr : data.contentEn;
+	const isKo = isKorean(locale);
+	const title = isKo ? data.titleKr : data.titleEn;
+	const content = isKo ? data.contentKr : data.contentEn;
 	const time = formatDate(data.createdAt, locale);
 
 	return (

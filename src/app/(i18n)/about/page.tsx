@@ -1,5 +1,6 @@
 import { cookies } from "next/headers";
 import type { HistorySchema } from "src/entities/about/history/schema/history.schema";
+import { resolveLocale } from "src/shared/libs/locale";
 import History from "src/widgets/about/history";
 import Introduce from "src/widgets/about/introduce";
 import Team from "src/widgets/about/team";
@@ -24,8 +25,7 @@ const About = async () => {
 	 * defaultLocale로 fallback되는 문제가 있음.
 	 */
 	const store = await cookies();
-	const localeValue = store.get("NEXT_LOCALE")?.value?.toLowerCase();
-	const locale = localeValue?.startsWith("en") ? "en" : "ko";
+	const locale = resolveLocale(store.get("NEXT_LOCALE")?.value);
 
 	let aboutHistory: unknown = {};
 	try {

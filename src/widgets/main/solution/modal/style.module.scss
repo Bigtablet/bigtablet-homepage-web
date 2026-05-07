@@ -145,7 +145,8 @@
 
 .solution_modal_left {
 	@include token.flex_column;
-	justify-content: center;
+	/* safe center — 콘텐츠 길이가 컨테이너 초과 시 start로 fallback해 상단 잘림 방지 */
+	justify-content: safe center;
 	z-index: 2;
 	padding: clamp(token.$spacing_2xl, 4vw, token.$spacing_4xl);
 	gap: token.$spacing_lg;

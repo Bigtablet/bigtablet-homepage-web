@@ -32,14 +32,23 @@
   width: 100%;
 }
 
-/* Problem + Solution — 라이트 톤 유지. 모달 닫은 후 어두워 보이는 문제 해결. */
 .gradient {
   @extend %ground_base;
-  background: token.$color_background_secondary;
+  background: linear-gradient(
+                  180deg,
+                  token.$color_background_secondary 0%,
+                  token.$text_subtle 48%,
+                  token.$color_background_primary 100%
+  );
 }
 
-/* Collaborations — 단색 다크 배경으로 시각적 구분 (그래디언트 제거) */
 .collab_bg {
   @extend %ground_base;
-  background: token.$color_background_primary;
+  background: linear-gradient(
+                  180deg,
+                  token.$color_background_primary 0%,
+                  token.$color_background_primary 15%,
+                  token.$color_background_dark 35%,
+                  token.$color_background_primary 100%
+  );
 }

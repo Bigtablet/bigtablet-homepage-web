@@ -81,13 +81,27 @@ export const useSolutionModal = (products: Product[]) => {
 		[activeId, products],
 	);
 
-	/* ESC로 닫기 */
+	/* ESC로 닫기 + 좌/우 화살표 키로 슬라이드 이동 */
 	useEffect(() => {
 		if (!activeId) return;
-		const onKey = (event: KeyboardEvent) => event.key === "Escape" && closeNow();
+		const onKey = (event: KeyboardEvent) => {
+			if (event.key === "Escape") {
+				closeNow();
+				return;
+			}
+			if (event.key === "ArrowLeft") {
+				event.preventDefault();
+				go("prev");
+				return;
+			}
+			if (event.key === "ArrowRight") {
+				event.preventDefault();
+				go("next");
+			}
+		};
 		window.addEventListener("keydown", onKey);
 		return () => window.removeEventListener("keydown", onKey);
-	}, [activeId, closeNow]);
+	}, [activeId, closeNow, go]);
 
 	const current = activeId ? (products.find((p) => p.id === activeId) ?? null) : null;
 	const ghost = sliding ? (products.find((p) => p.id === sliding.nextId) ?? null) : null;

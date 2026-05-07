@@ -28,8 +28,8 @@ const handleNoContent = <S extends z.ZodTypeAny>(
 		const result = schema.safeParse(candidate);
 		if (result.success) return result.data;
 	}
-	/* 어떤 후보도 통과하지 못하면 호출부가 ZodError를 받도록 강제 파싱. */
-	return schema.parse(data ?? null);
+	/* 어떤 후보도 통과하지 못하면 원본 data 그대로 파싱 — 정확한 ZodError(received undefined 등)를 보존. */
+	return schema.parse(data);
 };
 
 /**

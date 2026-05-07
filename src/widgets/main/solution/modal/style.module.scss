@@ -7,7 +7,10 @@
 	display: grid;
 	place-items: center;
 	padding: token.$spacing_2xl;
-	background: token.$color_overlay_light;
+	/* 진한 백드롭 + blur — 뒤 콘텐츠 가독성 차단해 모달에 시선 집중 */
+	background: token.$color_overlay_strong;
+	backdrop-filter: blur(8px);
+	-webkit-backdrop-filter: blur(8px);
 
 	@include token.laptop {
 		padding: token.$spacing_3xl;
@@ -142,8 +145,10 @@
 
 .solution_modal_left {
 	@include token.flex_column;
+	/* safe center — 콘텐츠 길이가 컨테이너 초과 시 start로 fallback해 상단 잘림 방지 */
+	justify-content: safe center;
 	z-index: 2;
-	padding: token.$spacing_2xl;
+	padding: clamp(token.$spacing_2xl, 4vw, token.$spacing_4xl);
 	gap: token.$spacing_lg;
 	color: token.$text_inverse;
 	overflow: auto;
@@ -155,19 +160,22 @@
 }
 
 .solution_modal_title {
-	@include token.heading_3;
+	@include token.heading_2;
+	font-weight: token.$font_weight_bold;
+	letter-spacing: token.$letter_spacing_tight;
 	white-space: pre-line;
-	margin-top: token.$spacing_sm;
-	line-height: token.$line_height_snug;
+	line-height: token.$line_height_tight;
+	margin: 0;
 }
 
 .solution_modal_desc {
 	@include token.body_regular;
 	color: token.$text_inverse;
-	opacity: 0.9;
+	opacity: 0.85;
 	white-space: pre-line;
-	margin-top: token.$spacing_sm;
+	margin: 0;
 	line-height: token.$line_height_relaxed;
+	max-width: 42ch;
 }
 
 .solution_modal_right {

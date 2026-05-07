@@ -48,12 +48,12 @@ const History = ({ items }: Props) => {
 	const animateIn = useCallback(() => {
 		if (!contentRef.current) return;
 		const rows = contentRef.current.querySelectorAll(`.${styles.history_row}`);
-		/* 컨테이너 자체는 inline opacity:0으로 mount 됨 — fromTo로 fade-in 처리 */
-		gsap.fromTo(
-			contentRef.current,
-			{ opacity: 0 },
-			{ opacity: 1, duration: 0.28, ease: "power2.out" },
-		);
+		/* 컨테이너 자체는 inline opacity:0으로 mount 됨 — to로 fade-in (이미 from 상태가 JSX에 정의됨) */
+		gsap.to(contentRef.current, {
+			opacity: 1,
+			duration: 0.28,
+			ease: "power2.out",
+		});
 		gsap.fromTo(
 			rows,
 			{ opacity: 0, y: 6 },

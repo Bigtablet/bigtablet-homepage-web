@@ -42,7 +42,8 @@
 
 .history_year_item {
 	@include token.body_medium;
-	/* 폰트 크기 고정 — active 시 weight/color/scale만 변경해 layout shift 제거 */
+	/* 폰트 크기 고정 — active 시 color + scale만 변경해 layout shift 제거.
+	   font-weight는 transition 대상에서 제외 — 가변 폰트 아니면 즉시 flip이라 부드럽지 않음 */
 	font-size: token.$font_size_lg;
 	font-weight: token.$font_weight_regular;
 	background: transparent;
@@ -52,8 +53,7 @@
 	color: token.$color_glass_border;
 	cursor: pointer;
 	transform-origin: left center;
-	transition: color token.$transition_base, font-weight token.$transition_base,
-		transform token.$transition_base;
+	transition: color token.$transition_base, transform token.$transition_base;
 
 	&:hover {
 		color: token.$text_inverse;
@@ -165,12 +165,13 @@
 		flex-shrink: 0;
 		padding: token.$spacing_sm token.$spacing_md;
 		border-radius: token.$radius_md;
+		/* 모바일도 font-size 고정 — active는 background + scale로 강조해 layout shift 제거 */
 		font-size: token.$font_size_sm;
 		background: token.$color_glass_light;
 
 		&.is_active {
-			font-size: token.$font_size_base;
 			background: token.$color_glass_border;
+			transform: scale(1.08);
 		}
 	}
 

@@ -3,8 +3,8 @@
  * Recruit benefits section component.
  */
 
-import { BENEFITS } from "./constants";
-import styles from "./style.module.scss";
+import { BENEFITS } from "../constants";
+import styles from "../style.module.scss";
 
 /**
  * Displays employee benefits list.

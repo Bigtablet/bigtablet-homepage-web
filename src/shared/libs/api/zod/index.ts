@@ -2,6 +2,7 @@ import BigtabletAxios from "src/shared/libs/api/axios";
 import type { z } from "zod";
 
 type AxiosConfig = Record<string, unknown>;
+type WriteMethod = "post" | "put" | "patch" | "delete";
 
 /**
  * @description
@@ -37,79 +38,50 @@ export const getParsed = async <S extends z.ZodTypeAny>(
 };
 
 /**
- * @description POST 요청 후 Zod 스키마로 응답을 파싱한다.
- *
- * @param url - 요청 URL
- * @param schema - 응답 검증용 Zod 스키마
- * @param body - 요청 본문
- * @param config - Axios 설정
- * @returns 스키마로 파싱된 응답 데이터
- * @throws Zod 파싱 실패 시 ZodError
+ * @description body를 동반하는 write 메서드(POST/PUT/PATCH/DELETE) 공용 helper.
+ * Axios 메서드별 시그니처 차이를 흡수하고 응답을 Zod 스키마로 파싱한다.
  */
-export const postParsed = async <S extends z.ZodTypeAny>(
+const writeParsed = async <S extends z.ZodTypeAny>(
+	method: WriteMethod,
 	url: string,
 	schema: S,
 	body?: unknown,
 	config?: AxiosConfig,
 ): Promise<z.infer<S>> => {
-	const response = await BigtabletAxios.post<unknown>(url, body, config);
+	const response =
+		method === "delete"
+			? await BigtabletAxios.delete<unknown>(url, config)
+			: await BigtabletAxios[method]<unknown>(url, body, config);
 	return schema.parse(response.data);
 };
 
-/**
- * @description PUT 요청 후 Zod 스키마로 응답을 파싱한다.
- *
- * @param url - 요청 URL
- * @param schema - 응답 검증용 Zod 스키마
- * @param body - 요청 본문
- * @param config - Axios 설정
- * @returns 스키마로 파싱된 응답 데이터
- * @throws Zod 파싱 실패 시 ZodError
- */
-export const putParsed = async <S extends z.ZodTypeAny>(
+/** POST 요청 후 Zod 스키마로 응답을 파싱한다. */
+export const postParsed = <S extends z.ZodTypeAny>(
 	url: string,
 	schema: S,
 	body?: unknown,
 	config?: AxiosConfig,
-): Promise<z.infer<S>> => {
-	const response = await BigtabletAxios.put<unknown>(url, body, config);
-	return schema.parse(response.data);
-};
+) => writeParsed("post", url, schema, body, config);
 
-/**
- * @description PATCH 요청 후 Zod 스키마로 응답을 파싱한다.
- *
- * @param url - 요청 URL
- * @param schema - 응답 검증용 Zod 스키마
- * @param body - 요청 본문
- * @param config - Axios 설정
- * @returns 스키마로 파싱된 응답 데이터
- * @throws Zod 파싱 실패 시 ZodError
- */
-export const patchParsed = async <S extends z.ZodTypeAny>(
+/** PUT 요청 후 Zod 스키마로 응답을 파싱한다. */
+export const putParsed = <S extends z.ZodTypeAny>(
 	url: string,
 	schema: S,
 	body?: unknown,
 	config?: AxiosConfig,
-): Promise<z.infer<S>> => {
-	const response = await BigtabletAxios.patch<unknown>(url, body, config);
-	return schema.parse(response.data);
-};
+) => writeParsed("put", url, schema, body, config);
 
-/**
- * @description DELETE 요청 후 Zod 스키마로 응답을 파싱한다.
- *
- * @param url - 요청 URL
- * @param schema - 응답 검증용 Zod 스키마
- * @param config - Axios 설정
- * @returns 스키마로 파싱된 응답 데이터
- * @throws Zod 파싱 실패 시 ZodError
- */
-export const deleteParsed = async <S extends z.ZodTypeAny>(
+/** PATCH 요청 후 Zod 스키마로 응답을 파싱한다. */
+export const patchParsed = <S extends z.ZodTypeAny>(
+	url: string,
+	schema: S,
+	body?: unknown,
+	config?: AxiosConfig,
+) => writeParsed("patch", url, schema, body, config);
+
+/** DELETE 요청 후 Zod 스키마로 응답을 파싱한다. */
+export const deleteParsed = <S extends z.ZodTypeAny>(
 	url: string,
 	schema: S,
 	config?: AxiosConfig,
-): Promise<z.infer<S>> => {
-	const response = await BigtabletAxios.delete<unknown>(url, config);
-	return schema.parse(response.data);
-};
+) => writeParsed("delete", url, schema, undefined, config);

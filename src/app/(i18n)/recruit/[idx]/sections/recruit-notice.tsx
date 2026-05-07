@@ -3,7 +3,7 @@
  * Recruit notice section component.
  */
 
-import styles from "./style.module.scss";
+import styles from "../style.module.scss";
 
 /**
  * Displays notice section with hiring requirements and disclaimers.

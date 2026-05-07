@@ -3,8 +3,8 @@
  * Recruit hiring process section component.
  */
 
-import { HIRING_PROCESS } from "./constants";
-import styles from "./style.module.scss";
+import { HIRING_PROCESS } from "../constants";
+import styles from "../style.module.scss";
 
 /**
  * Displays hiring process steps and additional information.

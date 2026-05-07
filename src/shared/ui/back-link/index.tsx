@@ -32,7 +32,7 @@ const BackLink = ({ href, label }: Props) => {
 
 	return (
 		<a className={styles.back_link} href={href ?? "#"} onClick={handleClick}>
-			← {label}
+			<span aria-hidden="true">←</span> {label}
 		</a>
 	);
 };

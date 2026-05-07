@@ -1,9 +1,14 @@
 @use "@bigtablet/design-system/scss/token" as token;
 
 .introduce {
-  @include token.flex_between;
-  gap: token.$spacing_xl;
-  padding: token.$spacing_4xl 8vw;
+  display: flex;
+  align-items: center;
+  /* 좌우 8vw padding + flex_between + flex:1 양쪽이 합쳐져 시각 간격이 과하게 벌어졌음.
+     max-width 컨테이너 + 양쪽 자연 폭으로 제한해 텍스트와 이미지가 적절히 가깝게. */
+  width: min(1080px, 92%);
+  margin: 0 auto;
+  gap: clamp(48px, 6vw, 96px);
+  padding-block: token.$spacing_4xl;
   animation: fade_in 0.6s ease both;
 
   &.introduce_reverse {
@@ -32,7 +37,8 @@
 }
 
 .introduce_text {
-  flex: 1;
+  flex: 1 1 0;
+  min-width: 0;
   @include token.flex_column;
   gap: token.$spacing_sm;
   font-family: token.$font_family_primary;
@@ -55,7 +61,10 @@
 }
 
 .introduce_image {
-  flex: 1;
+  /* flex:1 이면 절반을 무조건 차지해 이미지가 작아도 빈 공간이 생김.
+     자연 폭 기반 + max-width로 제한 — 텍스트와 시각적으로 가까이 */
+  flex: 0 1 auto;
+  max-width: 360px;
   @include token.flex_center;
 }
 
@@ -106,8 +115,8 @@
 
 @include token.tablet {
   .introduce {
-    gap: token.$spacing_2xl;
-    padding: token.$spacing_5xl 8vw;
+    gap: clamp(40px, 5vw, 72px);
+    padding-block: token.$spacing_5xl;
   }
 
   .introduce_text {
@@ -125,8 +134,8 @@
 
 @include token.laptop {
   .introduce {
-    gap: token.$spacing_3xl;
-    padding: token.$spacing_5xl 8vw;
+    gap: clamp(56px, 5vw, 88px);
+    padding-block: token.$spacing_5xl;
   }
 
   .introduce_text {
@@ -144,8 +153,8 @@
 
 @include token.desktop {
   .introduce {
-    gap: token.$spacing_3xl;
-    padding: token.$spacing_5xl 8vw;
+    gap: clamp(64px, 5vw, 96px);
+    padding-block: token.$spacing_5xl;
   }
 
   .introduce_text {

@@ -29,9 +29,10 @@ const buildCsp = (nonce: string) => {
 
 /**
  * @description
- * Next.js 미들웨어 — CSP nonce 주입, locale 리다이렉트 및 쿠키 설정
+ * Next.js proxy (구 middleware) — CSP nonce 주입, locale 리다이렉트 및 쿠키 설정.
+ * Next 16에서 middleware 파일 컨벤션이 deprecated되어 proxy로 rename됨.
  */
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
 	const url = new URL(request.url);
 
 	// /en/... 또는 /ko/... 이면 → 접두사 제거 후 308 리다이렉트

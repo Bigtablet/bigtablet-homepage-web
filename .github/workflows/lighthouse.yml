@@ -1,8 +1,15 @@
 name: Lighthouse CI
 
+# 릴리스 전 main PR 에서만 실행. develop 사이클에선 비용 큼 → skip.
+# 문서/워크플로 전용 변경도 skip. 수동 트리거(workflow_dispatch) 가능.
 on:
   pull_request:
-    branches: [develop, main]
+    branches: [main]
+    paths-ignore:
+      - "**/*.md"
+      - ".github/**"
+      - ".claude/**"
+  workflow_dispatch:
 
 permissions:
   contents: read

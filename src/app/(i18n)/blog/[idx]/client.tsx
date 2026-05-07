@@ -10,7 +10,7 @@ const ReactMarkdown = dynamic(() => import("react-markdown"), { ssr: false });
 
 import { useBlogViewMutation } from "src/features/blog/mutation/blog.mutation";
 import { useBlogDetailQuery } from "src/features/blog/query/blog.query";
-import { formatRelative } from "src/shared/libs/ui/date";
+import { formatDate } from "src/shared/libs/ui/date";
 import BackLink from "src/shared/ui/back-link";
 import ImageThumb from "src/shared/ui/image-thumb";
 
@@ -64,7 +64,7 @@ const BlogDetailClient = ({ idx }: Props) => {
 
 	const title = locale.startsWith("ko") ? data.titleKr : data.titleEn;
 	const content = locale.startsWith("ko") ? data.contentKr : data.contentEn;
-	const time = formatRelative(data.createdAt, locale);
+	const time = formatDate(data.createdAt, locale);
 
 	return (
 		<section className={styles.blog_detail}>

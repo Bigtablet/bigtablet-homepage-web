@@ -2,7 +2,7 @@
 
 import dynamic from "next/dynamic";
 import { notFound } from "next/navigation";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useEffect, useRef } from "react";
 import remarkGfm from "remark-gfm";
 
@@ -26,6 +26,7 @@ const BlogDetailClient = ({ idx }: Props) => {
 	 * - 렌더마다 Hook 순서를 고정하기 위함
 	 */
 	const locale = useLocale();
+	const t = useTranslations("common");
 	const { data, isLoading, isError } = useBlogDetailQuery(idx);
 	const { mutate: incView } = useBlogViewMutation();
 	const firedRef = useRef(false);
@@ -68,7 +69,7 @@ const BlogDetailClient = ({ idx }: Props) => {
 
 	return (
 		<section className={styles.blog_detail}>
-			<BackLink href="/blog" label="블로그 목록" />
+			<BackLink href="/blog" label={t("backToBlog")} />
 
 			<article className={styles.blog_detail_body}>
 				<h1 className={styles.blog_detail_title}>{title}</h1>

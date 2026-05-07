@@ -2,6 +2,7 @@
 
 import { Button } from "@bigtablet/design-system";
 import * as Sentry from "@sentry/nextjs";
+import { useTranslations } from "next-intl";
 import { useCallback, useEffect, useRef, useState } from "react";
 import Template from "src/shared/ui/template";
 import styles from "./error.module.scss";
@@ -15,6 +16,7 @@ const COOLDOWN_SEC = 3;
  * - router 훅은 에러 바운더리에서 불안정하므로 window.location 사용
  */
 const GlobalError = ({ error: _error, reset }: { error: Error; reset: () => void }) => {
+	const t = useTranslations("error");
 	const [retryCount, setRetryCount] = useState(0);
 	const [cooldown, setCooldown] = useState(0);
 	const timerRef = useRef<ReturnType<typeof setInterval>>(undefined);
@@ -56,42 +58,32 @@ const GlobalError = ({ error: _error, reset }: { error: Error; reset: () => void
 	};
 
 	const retryLabel = isCooling
-		? `${cooldown}초 후 재시도`
+		? t("retryCooldown", { seconds: cooldown })
 		: isMaxRetry
-			? "재시도 불가"
-			: "다시 시도";
+			? t("retryDisabled")
+			: t("retry");
 
 	return (
 		<Template align="center">
 			<section className={styles.error_root}>
 				<p className={styles.error_emoji}>!</p>
-				<h1 className={styles.error_title}>문제가 발생했습니다</h1>
-				<p className={styles.error_desc}>
-					일시적인 오류가 발생했습니다.
-					<br />
-					잠시 후 다시 시도해주세요.
-				</p>
+				<h1 className={styles.error_title}>{t("title")}</h1>
+				<p className={styles.error_desc}>{t("globalDescription")}</p>
 
 				{!isMaxRetry && retryCount > 0 && (
 					<p className={styles.error_retry_count}>
-						재시도 {retryCount}/{MAX_RETRY}
+						{t("retryProgress", { current: retryCount, max: MAX_RETRY })}
 					</p>
 				)}
 
-				{isMaxRetry && (
-					<p className={styles.error_max}>
-						재시도 횟수를 초과했습니다.
-						<br />
-						문제가 지속되면 관리자에게 문의해주세요.
-					</p>
-				)}
+				{isMaxRetry && <p className={styles.error_max}>{t("retryExceeded")}</p>}
 
 				<div className={styles.error_actions}>
 					<Button variant="primary" onClick={handleRetry} disabled={isCooling || isMaxRetry}>
 						{retryLabel}
 					</Button>
 					<Button variant="secondary" onClick={handleHome}>
-						홈으로 이동
+						{t("goHome")}
 					</Button>
 				</div>
 			</section>

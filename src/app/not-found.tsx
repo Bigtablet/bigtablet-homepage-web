@@ -1,6 +1,7 @@
 "use client";
 
 import { Button } from "@bigtablet/design-system";
+import { useTranslations } from "next-intl";
 import { BigtabletRouter } from "src/shared/hooks/next";
 import Template from "src/shared/ui/template";
 import styles from "./not-found.module.scss";
@@ -11,6 +12,7 @@ import styles from "./not-found.module.scss";
  * - notFound() 호출 시 자동 표시
  */
 const NotFoundPage = () => {
+	const t = useTranslations("error");
 	const router = BigtabletRouter();
 
 	const handleBack = () => {
@@ -26,20 +28,16 @@ const NotFoundPage = () => {
 	return (
 		<Template align="center">
 			<section className={styles.root}>
-				<p className={styles.code}>404</p>
-				<h1 className={styles.title}>페이지를 찾을 수 없습니다</h1>
-				<p className={styles.desc}>
-					요청하신 페이지가 존재하지 않거나
-					<br />
-					잘못된 접근입니다.
-				</p>
+				<p className={styles.code}>{t("notFoundCode")}</p>
+				<h1 className={styles.title}>{t("notFoundTitle")}</h1>
+				<p className={styles.desc}>{t("notFoundDescription")}</p>
 
 				<div className={styles.actions}>
 					<Button variant="primary" onClick={handleHome}>
-						홈으로 이동
+						{t("goHome")}
 					</Button>
 					<Button variant="secondary" onClick={handleBack}>
-						이전 페이지
+						{t("goBack")}
 					</Button>
 				</div>
 			</section>

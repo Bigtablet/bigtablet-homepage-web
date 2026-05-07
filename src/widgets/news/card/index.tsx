@@ -38,7 +38,7 @@ const NewsCard = ({
 				className={styles.news_card_thumb}
 				imgClassName={styles.news_card_img}
 				src={imageSrc ?? undefined}
-				alt=""
+				alt={title}
 				sizes="(max-width: 768px) 100vw, 33vw"
 				priority={priority}
 			/>

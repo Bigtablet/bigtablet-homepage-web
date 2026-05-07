@@ -1,6 +1,7 @@
 "use client";
 
 import { useParams } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { useRecruitDetailQuery } from "src/features/recruit/query/recruit.query";
 import BackLink from "src/shared/ui/back-link";
 import { RecruitBenefits } from "./recruit-benefits";
@@ -14,6 +15,7 @@ import { toIdx } from "./utils";
 
 const RecruitDetailClient = () => {
 	const { idx } = useParams<{ locale: string; idx: string }>();
+	const t = useTranslations("common");
 	const idxNum = toIdx(idx);
 
 	const { data, status, error } = useRecruitDetailQuery(idxNum ?? -1, {
@@ -24,7 +26,7 @@ const RecruitDetailClient = () => {
 
 	return (
 		<div className={styles.recruit_detail}>
-			<BackLink href="/recruit" label="채용 목록" />
+			<BackLink href="/recruit" label={t("backToRecruit")} />
 
 			{status === "pending" && <div className={styles.recruit_detail_loading}>불러오는 중…</div>}
 

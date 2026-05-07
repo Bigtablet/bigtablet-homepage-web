@@ -3,7 +3,28 @@
 		"backToHome": "홈으로",
 		"backToMain": "메인으로 돌아가기",
 		"backToList": "목록으로",
-		"backToTeam": "팀으로 돌아가기"
+		"backToListGeneric": "목록으로 돌아가기",
+		"backToTeam": "팀으로 돌아가기",
+		"backToBlog": "블로그 목록",
+		"backToBlogList": "블로그 목록으로 돌아가기",
+		"backToRecruit": "채용 목록",
+		"backToRecruitList": "채용 목록으로 돌아가기",
+		"backToAboutTeam": "팀 소개로 돌아가기"
+	},
+	"error": {
+		"title": "문제가 발생했습니다",
+		"description": "페이지를 불러오는 중 오류가 발생했습니다.\n잠시 후 다시 시도해 주세요.",
+		"retry": "다시 시도",
+		"globalDescription": "일시적인 오류가 발생했습니다.\n잠시 후 다시 시도해주세요.",
+		"retryCooldown": "{seconds}초 후 재시도",
+		"retryDisabled": "재시도 불가",
+		"retryProgress": "재시도 {current}/{max}",
+		"retryExceeded": "재시도 횟수를 초과했습니다.\n문제가 지속되면 관리자에게 문의해주세요.",
+		"goHome": "홈으로 이동",
+		"goBack": "이전 페이지",
+		"notFoundCode": "404",
+		"notFoundTitle": "페이지를 찾을 수 없습니다",
+		"notFoundDescription": "요청하신 페이지가 존재하지 않거나\n잘못된 접근입니다."
 	},
 	"footer": {
 		"brand": "Bigtablet, Inc.",

@@ -32,6 +32,7 @@ const Collaborations = () => {
 								<Image
 									src={src}
 									alt=""
+									aria-hidden="true"
 									width={260}
 									height={60}
 									sizes="(max-width: 768px) 180px, 280px"

@@ -22,6 +22,7 @@
     color: token.$text_normal;
     line-height: token.$line_height_normal;
     margin-bottom: token.$spacing_2xl;
+    white-space: pre-line;
 }
 
 .error_fallback_actions {

@@ -31,6 +31,7 @@
 	font-size: token.$font_size_sm;
 	color: token.$text_subtle;
 	line-height: token.$line_height_relaxed;
+	white-space: pre-line;
 }
 
 .actions {

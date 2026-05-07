@@ -30,7 +30,8 @@
 	width: min(1120px, 94vw);
 	height: min(660px, 78vh);
 	border-radius: token.$radius_xl;
-	overflow: hidden;
+	/* nav 화살표가 모달 외부로 빠지므로 visible. 내부 panel 슬라이드는 content가 hidden 처리. */
+	overflow: visible;
 	background: token.$color_primary;
 	transform-origin: center center;
 	transform: translate(var(--from-dx, 0), var(--from-dy, 0)) scale(var(--from-sx, 1), var(--from-sy, 1));
@@ -49,12 +50,15 @@
 	position: absolute;
 	top: 50%;
 	transform: translateY(-50%);
-	z-index: 1;
+	z-index: 3;
 	width: 48px;
 	height: 48px;
 	border: none;
 	border-radius: token.$radius_full;
-	background: token.$color_overlay_light;
+	/* 모달 외부로 이동했으므로 backdrop 위에서 보이도록 약간 진한 글래스 톤 */
+	background: rgba(0, 0, 0, 0.45);
+	backdrop-filter: blur(10px);
+	-webkit-backdrop-filter: blur(10px);
 	color: token.$text_inverse;
 	font-size: token.$font_size_2xl;
 	cursor: pointer;
@@ -63,7 +67,7 @@
 		transform token.$transition_fast;
 
 	&:hover {
-		background: token.$color_overlay;
+		background: rgba(0, 0, 0, 0.65);
 	}
 
 	&:active {
@@ -83,19 +87,37 @@
 	}
 }
 
+/* 데스크탑/랩탑에서 화살표를 모달 바깥쪽으로 — 콘텐츠/영상 위 가림 방지 */
 .solution_modal_nav_prev {
-	left: token.$spacing_xs;
+	left: -64px;
 
 	@include token.laptop {
-		left: token.$spacing_sm;
+		left: -72px;
+	}
+
+	/* 모바일은 모달이 viewport 가득 차서 외부 공간 없음 — 안쪽 유지 */
+	@include token.tablet {
+		left: token.$spacing_xs;
+	}
+
+	@include token.mobile {
+		left: token.$spacing_xs;
 	}
 }
 
 .solution_modal_nav_next {
-	right: token.$spacing_xs;
+	right: -64px;
 
 	@include token.laptop {
-		right: token.$spacing_sm;
+		right: -72px;
+	}
+
+	@include token.tablet {
+		right: token.$spacing_xs;
+	}
+
+	@include token.mobile {
+		right: token.$spacing_xs;
 	}
 }
 
@@ -104,6 +126,8 @@
 	width: 100%;
 	height: 100%;
 	overflow: hidden;
+	/* 모달의 둥근 모서리 보존 — modal이 overflow visible이라 content에서 처리 */
+	border-radius: token.$radius_xl;
 }
 
 .solution_modal_track {
@@ -153,10 +177,8 @@
 	color: token.$text_inverse;
 	overflow: auto;
 	line-height: token.$line_height_relaxed;
-	background:
-		linear-gradient(to right, token.$color_background_darkest 85%, token.$color_glass_dark 100%),
-		radial-gradient(1200px 60% at 100% 50%, transparent 0%, token.$color_background_darkest 80%),
-		token.$color_primary;
+	/* 우측 끝까지 단색 유지 — right panel의 fade와 자연스럽게 만나 라인 형성 안 함 */
+	background: token.$color_background_darkest;
 }
 
 .solution_modal_title {
@@ -183,17 +205,18 @@
 	background: token.$color_primary;
 	overflow: hidden;
 
+	/* 좌측 가장자리 → 영상으로 부드럽게 fade. left panel과 같은 색에서 시작해 경계 라인 제거. */
 	&::before {
 		content: "";
 		position: absolute;
 		inset-block: 0;
 		left: 0;
-		width: 160px;
+		width: 240px;
 		background: linear-gradient(
-			to left,
-			transparent 0%,
-			token.$color_glass_dark 50%,
-			token.$color_background_darkest 100%
+			to right,
+			token.$color_background_darkest 0%,
+			rgba(0, 0, 0, 0.5) 40%,
+			transparent 100%
 		);
 		pointer-events: none;
 		z-index: 1;

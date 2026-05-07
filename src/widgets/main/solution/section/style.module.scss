@@ -5,13 +5,13 @@
 	@include token.flex_center;
 	width: 100%;
 	gap: token.$spacing_3xl;
-	color: token.$text_inverse;
+	color: token.$text_strong;
 }
 
 .solution_title {
 	@include token.heading_2;
 	font-size: clamp(token.$font_size_2xl, 4vw, token.$font_size_4xl);
-	color: token.$text_inverse;
+	color: token.$text_strong;
 	text-align: center;
 	white-space: pre-line;
 }

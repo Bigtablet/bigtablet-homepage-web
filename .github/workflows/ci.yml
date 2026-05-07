@@ -1,10 +1,19 @@
 name: CI
 
+# 문서/워크플로 전용 변경은 skip — 코드에 영향 없으므로 lint/type/test/build 불필요.
 on:
   pull_request:
     branches: [develop, main]
+    paths-ignore:
+      - "**/*.md"
+      - ".github/**"
+      - ".claude/**"
   push:
     branches: [develop]
+    paths-ignore:
+      - "**/*.md"
+      - ".github/**"
+      - ".claude/**"
 
 permissions:
   contents: read
@@ -80,6 +89,8 @@ jobs:
   e2e:
     runs-on: ubuntu-latest
     needs: validate
+    # 릴리스 전 main PR 에서만 실행. develop 사이클에선 비용 큼 → skip.
+    if: github.event_name == 'pull_request' && github.base_ref == 'main'
     timeout-minutes: 10
     env:
       NEXT_PUBLIC_SERVER_URL: http://127.0.0.1:1

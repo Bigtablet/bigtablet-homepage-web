@@ -1,8 +1,13 @@
 name: Coverage
 
+# 문서/워크플로 전용 변경은 skip.
 on:
   pull_request:
     branches: [develop, main]
+    paths-ignore:
+      - "**/*.md"
+      - ".github/**"
+      - ".claude/**"
 
 permissions:
   contents: read

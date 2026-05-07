@@ -5,7 +5,7 @@
 
 import { Button } from "@bigtablet/design-system";
 import { BigtabletLink } from "src/shared/hooks/next";
-import styles from "./style.module.scss";
+import styles from "../style.module.scss";
 
 /**
  * Props for RecruitRequestSection component.

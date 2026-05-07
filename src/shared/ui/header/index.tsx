@@ -32,8 +32,9 @@ const Header = () => {
 		return () => window.removeEventListener("scroll", onScroll);
 	}, []);
 
+	/* 경로 변경 시 모바일 메뉴 자동 닫기 */
+	// biome-ignore lint/correctness/useExhaustiveDependencies: pathname 변경이 트리거 — 본문에선 미사용
 	useEffect(() => {
-		void pathname;
 		setMenuOpen(false);
 	}, [pathname]);
 

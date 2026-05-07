@@ -2,7 +2,7 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useParams } from "next/navigation";
-import { useEffect, useMemo } from "react";
+import { useEffect } from "react";
 import { type Resolver, useForm } from "react-hook-form";
 import useEmailVerification from "src/features/recruit/apply/form/email/use-email-verification";
 
@@ -16,7 +16,7 @@ import styles from "./style.module.scss";
 
 const ApplyPage = () => {
 	const { idx } = useParams<{ locale: string; idx: string }>();
-	const jobId = useMemo(() => Number(idx) || -1, [idx]);
+	const jobId = Number(idx) || -1;
 
 	const form = useForm<ApplyFormValues>({
 		resolver: zodResolver(applySchema) as Resolver<ApplyFormValues>,

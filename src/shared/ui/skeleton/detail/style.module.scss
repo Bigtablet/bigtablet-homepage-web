@@ -1,0 +1,56 @@
+@use "@bigtablet/design-system/scss/token" as token;
+
+.detail_skeleton {
+  @include token.flex_column;
+  width: 100%;
+  gap: token.$spacing_md;
+  animation: detail_skeleton_pulse 1.5s ease-in-out infinite;
+}
+
+.detail_skeleton_line {
+  height: 1rem;
+  background: token.$color_background_secondary;
+  border-radius: token.$radius_sm;
+}
+
+.title {
+  height: 2.25rem;
+  width: 70%;
+}
+
+.meta {
+  height: 0.875rem;
+  width: 40%;
+  margin-bottom: token.$spacing_md;
+}
+
+.detail_skeleton_thumb {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: token.$color_background_secondary;
+  border-radius: token.$radius_md;
+  margin-bottom: token.$spacing_lg;
+}
+
+.detail_skeleton_body {
+  @include token.flex_column;
+  gap: token.$spacing_sm;
+}
+
+.short {
+  width: 55%;
+}
+
+.medium {
+  width: 80%;
+}
+
+@keyframes detail_skeleton_pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}

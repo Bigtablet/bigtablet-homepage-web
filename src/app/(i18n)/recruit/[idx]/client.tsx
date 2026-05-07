@@ -4,12 +4,12 @@ import { useParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { useRecruitDetailQuery } from "src/features/recruit/query/recruit.query";
 import BackLink from "src/shared/ui/back-link";
-import { RecruitBenefits } from "./recruit-benefits";
-import { RecruitHeader } from "./recruit-header";
-import { RecruitMarkdownSection } from "./recruit-markdown-section";
-import { RecruitNotice } from "./recruit-notice";
-import { RecruitProcess } from "./recruit-process";
-import { RecruitRequestSection } from "./recruit-request-section";
+import { RecruitBenefits } from "./sections/recruit-benefits";
+import { RecruitHeader } from "./sections/recruit-header";
+import { RecruitMarkdownSection } from "./sections/recruit-markdown-section";
+import { RecruitNotice } from "./sections/recruit-notice";
+import { RecruitProcess } from "./sections/recruit-process";
+import { RecruitRequestSection } from "./sections/recruit-request-section";
 import styles from "./style.module.scss";
 import { toIdx } from "./utils";
 

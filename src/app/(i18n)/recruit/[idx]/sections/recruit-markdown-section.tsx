@@ -5,8 +5,8 @@
 
 import dynamic from "next/dynamic";
 import remarkBreaks from "remark-breaks";
-import { markdownComponents } from "./markdown-components";
-import styles from "./style.module.scss";
+import { markdownComponents } from "../markdown-components";
+import styles from "../style.module.scss";
 
 const ReactMarkdown = dynamic(() => import("react-markdown"), { ssr: false });
 

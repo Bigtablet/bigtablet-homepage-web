@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo } from "react";
-import { formatRelative } from "src/shared/libs/ui/date";
+import { formatDate } from "src/shared/libs/ui/date";
 import ImageThumb from "src/shared/ui/image-thumb";
 import styles from "./style.module.scss";
 
@@ -24,7 +24,7 @@ const NewsCard = ({
 	source,
 	priority = false,
 }: NewsCardProps) => {
-	const time = useMemo(() => formatRelative(createdAt, locale), [createdAt, locale]);
+	const time = useMemo(() => formatDate(createdAt, locale), [createdAt, locale]);
 
 	const imageSrc = useMemo(() => {
 		const trimmed = thumbnailImageUrl?.trim();
@@ -38,7 +38,7 @@ const NewsCard = ({
 				className={styles.news_card_thumb}
 				imgClassName={styles.news_card_img}
 				src={imageSrc ?? undefined}
-				alt=""
+				alt={title}
 				sizes="(max-width: 768px) 100vw, 33vw"
 				priority={priority}
 			/>

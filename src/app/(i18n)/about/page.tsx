@@ -1,25 +1,46 @@
-"use client";
-
-import { useMessages } from "next-intl";
+import { cookies } from "next/headers";
 import type { HistorySchema } from "src/entities/about/history/schema/history.schema";
+import { resolveLocale } from "src/shared/libs/locale";
 import History from "src/widgets/about/history";
 import Introduce from "src/widgets/about/introduce";
 import Team from "src/widgets/about/team";
+import { z } from "zod";
 
-type HistoryRawItem =
-	| string
-	| { title: string; id?: string; description?: string; dateLabel?: string };
+const historyItemSchema = z.union([
+	z.string(),
+	z.object({
+		title: z.string(),
+		id: z.string().optional(),
+		description: z.string().optional(),
+		dateLabel: z.string().optional(),
+	}),
+]);
 
-const About = () => {
-	const messages = useMessages() as Record<string, Record<string, unknown>>;
-	const historyByYear = ((messages?.about as Record<string, unknown>)?.history ?? {}) as Record<
-		string,
-		HistoryRawItem[]
-	>;
+const historyByYearSchema = z.record(z.string(), z.array(historyItemSchema));
+
+const About = async () => {
+	/**
+	 * (i18n) layout과 동일하게 NEXT_LOCALE 쿠키 기반으로 직접 import.
+	 * getMessages()는 middleware가 next-intl routing을 안 쓰는 환경에서
+	 * defaultLocale로 fallback되는 문제가 있음.
+	 */
+	const store = await cookies();
+	const locale = resolveLocale(store.get("NEXT_LOCALE")?.value);
+
+	let aboutHistory: unknown = {};
+	try {
+		const messages = (await import(`../../../../messages/${locale}.json`)).default;
+		aboutHistory = messages?.about?.history ?? {};
+	} catch {
+		aboutHistory = {};
+	}
+
+	const parsed = historyByYearSchema.safeParse(aboutHistory);
+	const historyByYear = parsed.success ? parsed.data : {};
 
 	const items: HistorySchema[] = Object.entries(historyByYear).flatMap(([year, list]) =>
-		(Array.isArray(list) ? list : []).map((it, idx) => {
-			const obj = typeof it === "string" ? { title: it } : it;
+		list.map((entry, idx) => {
+			const obj = typeof entry === "string" ? { title: entry } : entry;
 			const id = obj.id ?? `${year}-${String(idx + 1).padStart(2, "0")}`;
 			return {
 				id,

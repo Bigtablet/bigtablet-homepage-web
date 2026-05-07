@@ -10,6 +10,11 @@
     flex-direction: row-reverse;
   }
 
+  /* 인접한 introduce 끼리 padding-top 제거 — 4xl + 4xl 누적으로 갭 과대 */
+  & + .introduce {
+    padding-top: 0;
+  }
+
   @media (prefers-reduced-motion: reduce) {
     animation: none;
   }

@@ -1,48 +1,33 @@
-import { formatRelative } from "src/shared/libs/ui/date";
-import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import { formatDate } from "src/shared/libs/ui/date";
+import { describe, expect, it } from "vitest";
 
-describe("formatRelative", () => {
-	beforeEach(() => {
-		vi.useFakeTimers();
-		vi.setSystemTime(new Date("2026-03-11T12:00:00Z"));
-	});
-
-	afterEach(() => {
-		vi.useRealTimers();
-	});
-
+describe("formatDate", () => {
 	it("인자 없으면 빈 문자열 반환", () => {
-		expect(formatRelative(undefined, "ko")).toBe("");
-		expect(formatRelative("2026-03-11", undefined)).toBe("");
+		expect(formatDate(undefined, "ko")).toBe("");
+		expect(formatDate("2026-03-11", undefined)).toBe("");
 	});
 
-	it("30초 전 — 초 단위 (ko)", () => {
-		const dateStr = new Date(Date.now() - 30_000).toISOString();
-		const result = formatRelative(dateStr, "ko");
-		expect(result).toContain("초");
+	it("유효하지 않은 날짜는 빈 문자열 반환", () => {
+		expect(formatDate("not-a-date", "ko")).toBe("");
 	});
 
-	it("5분 전 — 분 단위 (ko)", () => {
-		const dateStr = new Date(Date.now() - 5 * 60_000).toISOString();
-		const result = formatRelative(dateStr, "ko");
-		expect(result).toContain("분");
+	it("ko 로케일 — 연도/월/일 포함", () => {
+		const result = formatDate("2026-03-11T12:00:00Z", "ko");
+		expect(result).toContain("2026");
+		expect(result).toMatch(/3월|03/);
+		expect(result).toContain("11");
 	});
 
-	it("3시간 전 — 시간 단위 (ko)", () => {
-		const dateStr = new Date(Date.now() - 3 * 3600_000).toISOString();
-		const result = formatRelative(dateStr, "ko");
-		expect(result).toContain("시간");
+	it("en 로케일 — 영문 월 표기 포함", () => {
+		const result = formatDate("2026-03-11T12:00:00Z", "en");
+		expect(result).toContain("Mar");
+		expect(result).toContain("2026");
 	});
 
-	it("5일 전 — 일 단위 (ko)", () => {
-		const dateStr = new Date(Date.now() - 5 * 86400_000).toISOString();
-		const result = formatRelative(dateStr, "ko");
-		expect(result).toContain("일");
-	});
-
-	it("en 로케일 지원", () => {
-		const dateStr = new Date(Date.now() - 2 * 86400_000).toISOString();
-		const result = formatRelative(dateStr, "en");
-		expect(result).toContain("day");
+	it("동일 입력은 동일 출력 (server/client hydration 일관성)", () => {
+		const dateStr = "2026-04-02T10:00:00Z";
+		const a = formatDate(dateStr, "ko");
+		const b = formatDate(dateStr, "ko");
+		expect(a).toBe(b);
 	});
 });

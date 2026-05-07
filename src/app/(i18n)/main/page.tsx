@@ -1,5 +1,3 @@
-"use client";
-
 import Banner from "src/widgets/main/banner";
 import Collaborations from "src/widgets/main/collaborations";
 import Problem from "src/widgets/main/problem";

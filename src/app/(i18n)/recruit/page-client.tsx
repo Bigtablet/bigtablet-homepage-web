@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import type { RecruitSearchFilters } from "src/entities/recruit/api/recruit.api";
@@ -9,6 +10,7 @@ import RequestList from "src/widgets/recruit/main/list";
 import styles from "./style.module.scss";
 
 const RecruitPageClient = () => {
+	const t = useTranslations("common");
 	const [filters, setFilters] = useState<RecruitSearchFilters>({
 		keyword: "",
 		job: "",
@@ -26,7 +28,7 @@ const RecruitPageClient = () => {
 						<ErrorFallback
 							reset={resetErrorBoundary}
 							backHref="/main"
-							backLabel="메인으로 돌아가기"
+							backLabel={t("backToMain")}
 						/>
 					)}
 					resetKeys={[filters]}

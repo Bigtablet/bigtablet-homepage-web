@@ -26,6 +26,9 @@ export const newsQueries = {
 					hasNext: items.length === size,
 				};
 			},
+			staleTime: 60_000,
+			gcTime: 300_000,
+			refetchOnWindowFocus: false,
 		}),
 };
 

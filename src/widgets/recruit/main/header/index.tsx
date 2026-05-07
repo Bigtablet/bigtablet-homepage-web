@@ -1,7 +1,7 @@
 "use client";
 
 import { Button, Select, type SelectOption, TextField } from "@bigtablet/design-system";
-import { memo, useMemo, useState } from "react";
+import { memo, useState } from "react";
 import type { RecruitSearchFilters } from "src/entities/recruit/api/recruit.api";
 import {
 	DEPARTMENTS,
@@ -11,14 +11,17 @@ import {
 	RECRUIT_TYPES,
 	recruitTypeLabel,
 } from "src/entities/recruit/constants/recruit.constants";
-import type {
-	DepartmentType,
-	EducationType,
-	RecruitType,
-} from "src/entities/recruit/schema/recruit.enum";
 import TalentFormModal from "src/features/talent/form/modal";
 
 import styles from "./style.module.scss";
+
+/* 정적 옵션 — 매 렌더 재생성 방지 위해 모듈 스코프 상수로 */
+const toOptions = <T extends string>(codes: readonly T[], getLabel: (code: T) => string) =>
+	codes.map<SelectOption>((code) => ({ value: code, label: getLabel(code) }));
+
+const DEPARTMENT_OPTIONS = toOptions(DEPARTMENTS, departmentLabel);
+const EDUCATION_OPTIONS = toOptions(EDUCATIONS, educationLabel);
+const RECRUIT_TYPE_OPTIONS = toOptions(RECRUIT_TYPES, recruitTypeLabel);
 
 interface Props {
 	filters: RecruitSearchFilters;
@@ -28,33 +31,6 @@ interface Props {
 const RecruitHeader = ({ filters, onChange }: Props) => {
 	const patch = (partial: Partial<RecruitSearchFilters>) => onChange({ ...filters, ...partial });
 	const [open, setOpen] = useState(false);
-
-	const departmentOptions: SelectOption[] = useMemo(
-		() =>
-			DEPARTMENTS.map((code: DepartmentType) => ({
-				value: code,
-				label: departmentLabel(code),
-			})),
-		[],
-	);
-
-	const educationOptions: SelectOption[] = useMemo(
-		() =>
-			EDUCATIONS.map((code: EducationType) => ({
-				value: code,
-				label: educationLabel(code),
-			})),
-		[],
-	);
-
-	const recruitTypeOptions: SelectOption[] = useMemo(
-		() =>
-			RECRUIT_TYPES.map((code: RecruitType) => ({
-				value: code,
-				label: recruitTypeLabel(code),
-			})),
-		[],
-	);
 
 	return (
 		<>
@@ -75,7 +51,7 @@ const RecruitHeader = ({ filters, onChange }: Props) => {
 
 					<Select
 						placeholder="직무"
-						options={departmentOptions}
+						options={DEPARTMENT_OPTIONS}
 						value={filters.job ?? null}
 						onChange={(value) => patch({ job: value ?? "" })}
 						size="sm"
@@ -84,7 +60,7 @@ const RecruitHeader = ({ filters, onChange }: Props) => {
 
 					<Select
 						placeholder="학력"
-						options={educationOptions}
+						options={EDUCATION_OPTIONS}
 						value={filters.education ?? null}
 						onChange={(value) => patch({ education: value ?? "" })}
 						size="sm"
@@ -93,7 +69,7 @@ const RecruitHeader = ({ filters, onChange }: Props) => {
 
 					<Select
 						placeholder="고용형태"
-						options={recruitTypeOptions}
+						options={RECRUIT_TYPE_OPTIONS}
 						value={filters.career ?? null}
 						onChange={(value) => patch({ career: value ?? "" })}
 						size="sm"

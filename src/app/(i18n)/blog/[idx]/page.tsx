@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { getBlogDetailApi } from "src/entities/blog/api/blog.api";
 import { blogQueries } from "src/features/blog/query/blog.query";
 import { createServerQueryClient } from "src/shared/libs/api/query/server-query-client";
+import { resolveLocale } from "src/shared/libs/locale";
 import BlogDetailClient from "./client";
 
 type PageProps = {
@@ -20,7 +21,7 @@ export const generateMetadata = async ({ params }: PageProps): Promise<Metadata>
 	try {
 		const blog = await getBlogDetailApi(idNum);
 		const store = await cookies();
-		const locale = store.get("NEXT_LOCALE")?.value === "en" ? "en" : "ko";
+		const locale = resolveLocale(store.get("NEXT_LOCALE")?.value);
 
 		const title = locale === "en" ? blog.titleEn : blog.titleKr;
 		const description = (locale === "en" ? blog.summaryEn : blog.summaryKr) ?? undefined;

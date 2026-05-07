@@ -83,6 +83,14 @@ label/domain
 - 요청을 받은 팀원은 Review 후 Approve 혹은 Comment 등으로 코드 리뷰를 성실히 수행
 - Approve가 내려지기 전에 해당 Pull Request는 병합하지 않음
 
+### 리뷰 반영 규칙 (⚠️ 필수)
+
+- **리뷰는 해당 PR이 열려 있는 브랜치에 직접 추가 커밋으로 반영**
+- 리뷰 반영용 별도 브랜치 / 별도 PR 생성 금지
+- **develop → main PR 의 리뷰도 동일** — `develop` 브랜치에 직접 커밋해 PR 자동 갱신
+- 리뷰 반영 커밋 메시지: `fix: address pr review — <짧은 요약>` (영문 소문자)
+- 예외: 리뷰 범위가 원 PR의 의도와 무관하게 커지면 별도 이슈로 분리
+
 ## Claude Workflow
 
 사용자가 기능 개발이나 수정을 요청하면 아래 워크플로우를 따릅니다.

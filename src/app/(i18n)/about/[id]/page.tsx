@@ -4,12 +4,12 @@ import { isMemberSlug } from "src/entities/about/util/member.util";
 import MemberDetailClient from "./client";
 
 type PageProps = {
-	params: { id: string };
+	params: Promise<{ id: string }>;
 };
 
 /** 멤버 상세 동적 메타데이터 */
 export const generateMetadata = async ({ params }: PageProps): Promise<Metadata> => {
-	const { id } = params;
+	const { id } = await params;
 	if (!isMemberSlug(id)) return {};
 
 	try {

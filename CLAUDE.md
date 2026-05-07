@@ -161,6 +161,7 @@ src/
   - 없음
   ```
 - **PR 제목 = 브랜치명** (설명문 아님, 예: `fix/detail-page-pagination`)
+- **리뷰 반영**: 해당 PR 브랜치에 직접 추가 커밋 (별도 브랜치 생성 금지). **develop → main PR 의 리뷰도 `develop` 에 직접 커밋**
 
 ### Release 규칙 (⚠️ 필수 준수)
 

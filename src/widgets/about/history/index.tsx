@@ -48,11 +48,12 @@ const History = ({ items }: Props) => {
 	const animateIn = useCallback(() => {
 		if (!contentRef.current) return;
 		const rows = contentRef.current.querySelectorAll(`.${styles.history_row}`);
-		gsap.fromTo(
-			contentRef.current,
-			{ opacity: 0 },
-			{ opacity: 1, duration: 0.32, ease: "power2.inOut" },
-		);
+		/* 컨테이너 자체는 inline opacity:0으로 mount 됨 — to로 fade-in (이미 from 상태가 JSX에 정의됨) */
+		gsap.to(contentRef.current, {
+			opacity: 1,
+			duration: 0.28,
+			ease: "power2.out",
+		});
 		gsap.fromTo(
 			rows,
 			{ opacity: 0, y: 6 },
@@ -61,24 +62,18 @@ const History = ({ items }: Props) => {
 				y: 0,
 				duration: 0.24,
 				ease: "power2.out",
-				stagger: 0.06,
-				delay: 0.1,
+				stagger: 0.05,
+				delay: 0.05,
 			},
 		);
 	}, []);
 
 	const handleYearChange = useCallback(
 		(year: number) => {
-			if (!contentRef.current || year === currentYear) return;
-
-			gsap.to(contentRef.current, {
-				opacity: 0,
-				duration: 0.2,
-				ease: "power2.in",
-				onComplete: () => {
-					setCurrentYear(year);
-				},
-			});
+			if (year === currentYear) return;
+			/* fade-out → swap → fade-in 사이클 제거. 즉시 swap + key 변경으로 fresh mount.
+			   새 컨테이너는 inline opacity:0으로 마운트되어 flash 없음. animateIn이 fade-in 담당. */
+			setCurrentYear(year);
 		},
 		[currentYear],
 	);
@@ -106,9 +101,14 @@ const History = ({ items }: Props) => {
 					))}
 				</div>
 
-				{/* 내용 */}
+				{/* 내용 — initial opacity:0으로 mount → animateIn에서 fade-in 처리 */}
 				{activeGroup && (
-					<div ref={contentRef} key={activeGroup.year} className={styles.history_right}>
+					<div
+						ref={contentRef}
+						key={activeGroup.year}
+						className={styles.history_right}
+						style={{ opacity: 0 }}
+					>
 						{activeGroup.list.map((historyItem) => (
 							<div key={historyItem.id} className={styles.history_row}>
 								<span className={styles.history_row_dot} aria-hidden />

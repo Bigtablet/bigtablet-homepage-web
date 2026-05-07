@@ -2,7 +2,7 @@
 
 import dynamic from "next/dynamic";
 import { notFound } from "next/navigation";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useEffect, useRef } from "react";
 import remarkGfm from "remark-gfm";
 
@@ -10,7 +10,8 @@ const ReactMarkdown = dynamic(() => import("react-markdown"), { ssr: false });
 
 import { useBlogViewMutation } from "src/features/blog/mutation/blog.mutation";
 import { useBlogDetailQuery } from "src/features/blog/query/blog.query";
-import { formatRelative } from "src/shared/libs/ui/date";
+import { isKorean } from "src/shared/libs/locale";
+import { formatDate } from "src/shared/libs/ui/date";
 import BackLink from "src/shared/ui/back-link";
 import ImageThumb from "src/shared/ui/image-thumb";
 
@@ -26,6 +27,8 @@ const BlogDetailClient = ({ idx }: Props) => {
 	 * - 렌더마다 Hook 순서를 고정하기 위함
 	 */
 	const locale = useLocale();
+	const t = useTranslations("common");
+	const tBlog = useTranslations("blog.detail");
 	const { data, isLoading, isError } = useBlogDetailQuery(idx);
 	const { mutate: incView } = useBlogViewMutation();
 	const firedRef = useRef(false);
@@ -62,13 +65,14 @@ const BlogDetailClient = ({ idx }: Props) => {
 	 */
 	if (!data) notFound();
 
-	const title = locale.startsWith("ko") ? data.titleKr : data.titleEn;
-	const content = locale.startsWith("ko") ? data.contentKr : data.contentEn;
-	const time = formatRelative(data.createdAt, locale);
+	const isKo = isKorean(locale);
+	const title = isKo ? data.titleKr : data.titleEn;
+	const content = isKo ? data.contentKr : data.contentEn;
+	const time = formatDate(data.createdAt, locale);
 
 	return (
 		<section className={styles.blog_detail}>
-			<BackLink href="/blog" label="블로그 목록" />
+			<BackLink href="/blog" label={t("backToBlog")} />
 
 			<article className={styles.blog_detail_body}>
 				<h1 className={styles.blog_detail_title}>{title}</h1>
@@ -77,7 +81,7 @@ const BlogDetailClient = ({ idx }: Props) => {
 					<span className={styles.blog_detail_time}>{time}</span>
 					<span className={styles.blog_detail_dot}>·</span>
 					<span className={styles.blog_detail_views}>
-						{(data.views ?? 0).toLocaleString()} views
+						{(data.views ?? 0).toLocaleString()} {tBlog("views")}
 					</span>
 				</div>
 

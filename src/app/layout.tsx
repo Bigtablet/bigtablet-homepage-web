@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { cookies } from "next/headers";
 import { NextIntlClientProvider } from "next-intl";
 import { Suspense } from "react";
+import { resolveLocale } from "src/shared/libs/locale";
 import RouteLoading from "src/shared/ui/route-loading";
 import Providers from "src/widgets/layout/provider";
 
@@ -16,8 +17,7 @@ export const dynamic = "force-dynamic";
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
 	const store = await cookies();
-	const value = store.get("NEXT_LOCALE")?.value?.toLowerCase();
-	const locale = (value === "en" ? "en" : "ko") as "en" | "ko";
+	const locale = resolveLocale(store.get("NEXT_LOCALE")?.value);
 
 	/**
 	 * 쿠키 기반으로 직접 messages 로드. (i18n) layout과 동일한 로직.

@@ -3,7 +3,41 @@
 		"backToHome": "Home",
 		"backToMain": "Back to Main",
 		"backToList": "Back to List",
-		"backToTeam": "Back to Team"
+		"backToListGeneric": "Back to List",
+		"backToTeam": "Back to Team",
+		"backToBlog": "Blog List",
+		"backToBlogList": "Back to Blog List",
+		"backToRecruit": "Recruit List",
+		"backToRecruitList": "Back to Recruit List",
+		"backToAboutTeam": "Back to Team Overview"
+	},
+	"error": {
+		"title": "Something went wrong",
+		"description": "An error occurred while loading this page.\nPlease try again in a moment.",
+		"retry": "Try again",
+		"globalDescription": "A temporary error occurred.\nPlease try again in a moment.",
+		"retryCooldown": "Retry in {seconds}s",
+		"retryDisabled": "Retry unavailable",
+		"retryProgress": "Retry {current}/{max}",
+		"retryExceeded": "Retry limit exceeded.\nPlease contact the administrator if the issue persists.",
+		"goHome": "Go to home",
+		"goBack": "Previous page",
+		"notFoundCode": "404",
+		"notFoundTitle": "Page not found",
+		"notFoundDescription": "The page you requested does not exist\nor has been moved."
+	},
+	"recruit": {
+		"detail": {
+			"loading": "Loading…",
+			"loadFailed": "Failed to load.",
+			"section": {
+				"company": "About the Organization",
+				"position": "About the Position",
+				"responsibility": "Key Responsibilities",
+				"qualification": "Qualifications",
+				"preferredQualification": "Preferred Qualifications"
+			}
+		}
 	},
 	"footer": {
 		"brand": "Bigtablet, Inc.",
@@ -363,7 +397,10 @@
 	},
 	"blog": {
 		"title": "Blog",
-		"empty": "No blog posts yet."
+		"empty": "No blog posts yet.",
+		"detail": {
+			"views": "views"
+		}
 	},
 	"cookie": {
 		"message": "This website uses cookies for a better experience.",

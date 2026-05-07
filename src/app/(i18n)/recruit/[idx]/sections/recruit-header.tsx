@@ -4,8 +4,8 @@
  */
 
 import type { RecruitCard } from "src/entities/recruit/schema/recruit.schema";
-import styles from "./style.module.scss";
-import { formatDate } from "./utils";
+import styles from "../style.module.scss";
+import { formatDate } from "../utils";
 
 /**
  * Props for RecruitHeader component.

@@ -4,7 +4,8 @@
   width: 100%;
   min-height: 0;
   position: relative;
-  overflow-x: hidden;
+  /* clip 사용 — hidden은 overflow-y를 auto로 강제해서 내부 스크롤 컨테이너 생성됨 */
+  overflow-x: clip;
   scroll-snap-type: y proximity;
   scroll-padding-top: 80px;
   -webkit-overflow-scrolling: touch;
@@ -18,7 +19,7 @@
   @include token.flex_center;
   width: 100%;
   max-width: 100%;
-  overflow-x: hidden;
+  overflow-x: clip;
 
   > * {
     max-width: 100%;

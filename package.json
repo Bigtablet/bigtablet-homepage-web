@@ -25,7 +25,7 @@
 		"@hookform/resolvers": "^5.2.2",
 		"@next/bundle-analyzer": "^16.2.5",
 		"@opentelemetry/api": "^1.9.1",
-		"@sentry/nextjs": "^10.51.0",
+		"@sentry/nextjs": "^10.52.0",
 		"@tanstack/react-query": "^5.99.0",
 		"@vercel/otel": "^2.1.2",
 		"axios": "^1.16.0",
@@ -35,12 +35,12 @@
 		"js-cookie": "^3.0.5",
 		"lucide-react": "^1.14.0",
 		"next": "^16.2.5",
-		"next-intl": "^4.11.0",
+		"next-intl": "^4.11.1",
 		"react": "^19.2.5",
 		"react-datepicker": "^9.1.0",
 		"react-dom": "^19.2.5",
 		"react-error-boundary": "^6.1.1",
-		"react-hook-form": "^7.72.1",
+		"react-hook-form": "^7.75.0",
 		"react-markdown": "^10.1.0",
 		"react-toastify": "^11.1.0",
 		"remark-breaks": "^4.0.0",
@@ -65,10 +65,10 @@
 		"@vitest/coverage-v8": "^4.1.4",
 		"babel-plugin-react-compiler": "^1.0.0",
 		"husky": "^9.1.7",
-		"jsdom": "^29.0.2",
+		"jsdom": "^29.1.1",
 		"msw": "^2.12.14",
 		"typescript": "^6.0.3",
-		"vite": "^8.0.8",
+		"vite": "^8.0.11",
 		"vitest": "^4.1.4"
 	},
 	"lint-staged": {
@@ -78,7 +78,8 @@
 	},
 	"pnpm": {
 		"overrides": {
-			"postcss@<8.5.10": "^8.5.10"
+			"postcss@<8.5.10": "^8.5.10",
+			"fast-uri@<3.1.2": "^3.1.2"
 		}
 	}
 }

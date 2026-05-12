@@ -112,6 +112,16 @@ export const handlers: HttpHandler[] = [
 		return HttpResponse.json({ status: 201, message: "ok" });
 	}),
 
+	// Email — 인증 코드 발송
+	http.post(`${BASE_URL}/auth/email`, () => {
+		return HttpResponse.json({ status: 200, message: "ok" });
+	}),
+
+	// Email — 인증 코드 확인
+	http.post(`${BASE_URL}/auth/email/check`, () => {
+		return HttpResponse.json({ status: 200, message: "verified" });
+	}),
+
 	// GCP — 업로드
 	http.post(`${BASE_URL}/gcp`, () => {
 		return HttpResponse.json({

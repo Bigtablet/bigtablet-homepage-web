@@ -16,7 +16,7 @@ const PolicyContent = ({ content }: Props) => {
 
 	return (
 		<div className={styles.policy}>
-			<BackLink href="/main" label={t("backToHome")} />
+			<BackLink href="/" label={t("backToHome")} />
 			<div className={styles.policy_body}>
 				<ReactMarkdown remarkPlugins={[remarkGfm]}>{content}</ReactMarkdown>
 			</div>

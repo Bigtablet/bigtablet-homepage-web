@@ -68,7 +68,7 @@ const Header = () => {
 	return (
 		<header className={`${styles.header} ${scrolled ? styles.scrolled : ""}`}>
 			<div className={styles.inner}>
-				<Link href="/main" onClick={closeMenu}>
+				<Link href="/" onClick={closeMenu}>
 					<Image
 						src="/images/logo/logo.png"
 						alt="Logo"

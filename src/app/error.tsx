@@ -54,7 +54,7 @@ const GlobalError = ({ error: _error, reset }: { error: Error; reset: () => void
 	}, [isCooling, isMaxRetry, reset]);
 
 	const handleHome = () => {
-		window.location.href = "/main";
+		window.location.href = "/";
 	};
 
 	const retryLabel = isCooling

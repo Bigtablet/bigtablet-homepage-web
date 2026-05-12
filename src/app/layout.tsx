@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 	description: "Bigtablet's Official Website",
 };
 
-export const dynamic = "force-dynamic";
+/* force-dynamic 제거 — cookies() 사용으로 next 가 자동 dynamic 처리. 명시 force는 정적 최적화 차단해 불필요. */
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
 	const store = await cookies();

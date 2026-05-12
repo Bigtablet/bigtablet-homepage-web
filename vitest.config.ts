@@ -25,12 +25,20 @@ export default defineConfig({
 				// 타입 선언 및 배럴
 				"src/**/*.d.ts",
 				"src/**/index.ts",
-				// Next.js 앱 라우터 (페이지, 레이아웃)
+				"src/**/type.ts",
+				"src/**/types.ts",
+				// Next.js 앱 라우터 (페이지, 레이아웃) + 인스트루멘테이션
 				"src/app/**",
-				// API 함수 (MSW 테스트 추가됨 — 커버리지 포함)
-				// React 컴포넌트 및 훅 (UI 테스트 불필요)
+				"src/instrumentation.ts",
+				// React 컴포넌트 및 훅 (UI 테스트는 e2e 가 담당)
 				"src/**/*.tsx",
 				"src/**/hooks/**",
+				// .ts 확장자로 만든 React 컴포넌트 (JSX는 안 쓰지만 createPortal 등 DOM 의존)
+				"src/shared/libs/ui/portal/portal.ts",
+				/* use-*.ts 훅은 비즈니스 로직 포함 → 커버리지 측정에 포함.
+				   아래 use-solution-modal.ts는 GSAP/raf/DOM rect 의존이 강해 renderHook으로도
+				   안정 테스트가 어려워 명시 exclude 유지. */
+				"src/widgets/main/solution/section/use-solution-modal.ts",
 				// mutation/query 훅
 				"src/**/mutation/**",
 				"src/**/query/**",

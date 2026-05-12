@@ -4,8 +4,16 @@ import { server } from "src/test/msw/server";
 import { describe, expect, it } from "vitest";
 
 describe("sendEmailApi", () => {
-	it("이메일 발송 시 서버 응답을 그대로 반환한다", async () => {
+	it("이메일 발송 시 올바른 주소를 전송하고 서버 응답을 반환한다", async () => {
+		let capturedBody: unknown;
+		server.use(
+			http.post("*/auth/email", async ({ request }) => {
+				capturedBody = await request.json();
+				return HttpResponse.json({ status: 200, message: "ok" });
+			}),
+		);
 		const result = await sendEmailApi("user@example.com");
+		expect(capturedBody).toEqual({ email: "user@example.com" });
 		expect(result).toEqual({ status: 200, message: "ok" });
 	});
 
@@ -16,8 +24,16 @@ describe("sendEmailApi", () => {
 });
 
 describe("checkEmailApi", () => {
-	it("인증 코드 확인 시 서버 응답을 반환한다", async () => {
+	it("인증 코드 확인 시 올바른 페이로드(email + authCode)를 전송한다", async () => {
+		let capturedBody: unknown;
+		server.use(
+			http.post("*/auth/email/check", async ({ request }) => {
+				capturedBody = await request.json();
+				return HttpResponse.json({ status: 200, message: "verified" });
+			}),
+		);
 		const result = await checkEmailApi("user@example.com", "123456");
+		expect(capturedBody).toEqual({ email: "user@example.com", authCode: "123456" });
 		expect(result).toEqual({ status: 200, message: "verified" });
 	});
 

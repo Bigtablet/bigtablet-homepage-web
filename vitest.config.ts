@@ -35,8 +35,10 @@ export default defineConfig({
 				"src/**/hooks/**",
 				// .ts 확장자로 만든 React 컴포넌트 (JSX는 안 쓰지만 createPortal 등 DOM 의존)
 				"src/shared/libs/ui/portal/portal.ts",
-				// hook 형 .ts 파일이 hooks/ 디렉토리 밖에 있는 케이스도 동일 취급
-				"src/**/use-*.ts",
+				/* use-*.ts 훅은 비즈니스 로직 포함 → 커버리지 측정에 포함.
+				   아래 use-solution-modal.ts는 GSAP/raf/DOM rect 의존이 강해 renderHook으로도
+				   안정 테스트가 어려워 명시 exclude 유지. */
+				"src/widgets/main/solution/section/use-solution-modal.ts",
 				// mutation/query 훅
 				"src/**/mutation/**",
 				"src/**/query/**",

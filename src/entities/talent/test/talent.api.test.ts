@@ -11,17 +11,31 @@ const validBody = {
 };
 
 describe("PostTalentApi", () => {
-	it("탤런트 등록 시 성공 응답을 반환한다", async () => {
+	it("탤런트 등록 시 올바른 페이로드를 전송하고 성공 응답을 반환한다", async () => {
+		let capturedBody: unknown;
+		server.use(
+			http.post("*/talent", async ({ request }) => {
+				capturedBody = await request.json();
+				return HttpResponse.json({ status: 201, message: "ok" });
+			}),
+		);
 		const result = await PostTalentApi(validBody);
+		expect(capturedBody).toEqual(validBody);
 		expect(result.status).toBe(201);
 		expect(result.message).toBe("ok");
 	});
 
-	it("etcUrl 포함 시에도 정상 등록된다", async () => {
-		const result = await PostTalentApi({
-			...validBody,
-			etcUrl: ["https://a.com", "https://b.com"],
-		});
+	it("etcUrl 포함 시 페이로드에 그대로 실려 전송된다", async () => {
+		let capturedBody: unknown;
+		server.use(
+			http.post("*/talent", async ({ request }) => {
+				capturedBody = await request.json();
+				return HttpResponse.json({ status: 201, message: "ok" });
+			}),
+		);
+		const payload = { ...validBody, etcUrl: ["https://a.com", "https://b.com"] };
+		const result = await PostTalentApi(payload);
+		expect(capturedBody).toEqual(payload);
 		expect(result.status).toBe(201);
 	});
 

@@ -78,8 +78,9 @@ const nextConfig = {
 				],
 			},
 			{
+				/* UUID 파일명은 불변 — 1년 immutable. 변경 시 새 UUID 발급해 cache-bust. */
 				source: "/media/:path*",
-				headers: [{ key: "Cache-Control", value: "public, max-age=604800" }],
+				headers: [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }],
 			},
 		];
 	},

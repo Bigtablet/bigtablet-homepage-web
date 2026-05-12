@@ -11,6 +11,34 @@
   color: token.$text_normal;
 }
 
+/* CSS animation으로 fade-up — GSAP scroll-reveal 대체. 페이지 로드 즉시 시작. */
+.problem_title,
+.problem_description {
+  animation: problem_fade_up 0.7s ease-out both;
+}
+
+.problem_description {
+  animation-delay: 0.15s;
+}
+
+@keyframes problem_fade_up {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .problem_title,
+  .problem_description {
+    animation: none;
+  }
+}
+
 .problem_title {
   @include token.heading_2;
   flex: 0 0 35%;

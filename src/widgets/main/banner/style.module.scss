@@ -15,12 +15,13 @@
 	inset: 0;
 	width: 100%;
 	height: 100%;
+	/* 자체 stacking context 생성 — 향후 내부 요소에 z-index가 추가되더라도 외부(banner_content 등)로 영향이 전파되는 것을 방지 */
+	isolation: isolate;
 }
 
-/* next/image fill 컨테이너 — 포스터가 LCP 후보로 즉시 paint. 비디오 위에 deferred load. */
+/* next/image fill — LCP 후보로 즉시 paint. DOM 순서 상 video 보다 먼저 → video 가 자연스럽게 그 위에 */
 .banner_poster {
 	object-fit: cover;
-	z-index: 0;
 }
 
 .banner_video_tag {
@@ -29,7 +30,6 @@
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
-	z-index: 1;
 }
 
 .banner_overlay {

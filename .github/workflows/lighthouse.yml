@@ -12,7 +12,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
   lighthouse:
@@ -41,14 +41,14 @@ jobs:
           temporaryPublicStorage: true
           artifactName: lighthouse-results-${{ matrix.preset }}
 
-      - name: Post Lighthouse report to commit
-        # tag push 시에만 commit comment 로 기록. workflow_dispatch 는 commit 컨텍스트 약함 → skip.
-        if: github.event_name == 'push'
+      - name: Write Lighthouse report to step summary
+        # Actions 탭의 run 페이지 "Summary" 에 표 출력 — workflow_dispatch 도 자연스럽게 포함.
         uses: actions/github-script@v7
         env:
           PRESET: ${{ matrix.preset }}
         with:
           script: |
+            const fs = require('fs');
             const results = ${{ steps.lhci.outputs.manifest }};
             const links = ${{ steps.lhci.outputs.links }};
             const preset = process.env.PRESET;
@@ -67,19 +67,15 @@ jobs:
               return `| [${path}](${link}) | ${emoji(perf)} ${s(perf)} | ${emoji(a11y)} ${s(a11y)} | ${emoji(bp)} ${s(bp)} | ${emoji(seo)} ${s(seo)} |`;
             });
 
-            const body = [
-              `### ⚡ Lighthouse Report — ${presetLabel} (release ${context.ref.replace('refs/tags/', '')})`,
+            const refName = context.ref.replace('refs/tags/', '');
+            const headerSuffix = context.eventName === 'push' ? ` (release ${refName})` : '';
+            const lines = [
+              `### ⚡ Lighthouse Report — ${presetLabel}${headerSuffix}`,
               '',
               '| Page | Performance | Accessibility | Best Practices | SEO |',
               '|------|:-----------:|:------------:|:--------------:|:---:|',
               ...rows,
               '',
-              '> Measured against https://bigtablet.com after release deploy',
-            ].join('\n');
-
-            await github.rest.repos.createCommitComment({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              commit_sha: context.sha,
-              body,
-            });
+              '> Measured against https://bigtablet.com',
+            ];
+            fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY, lines.join('\n') + '\n');

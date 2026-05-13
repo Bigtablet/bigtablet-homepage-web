@@ -14,6 +14,14 @@ const nextConfig = {
 	/* X-Powered-By: Next.js 헤더 제거 — 서버 기술 스택 정보 노출 방지 */
 	poweredByHeader: false,
 
+	experimental: {
+		/* CSS 청크 7개로 split 되어 모바일 throttle 에서 8.4s render-blocking 발생.
+		   strict 로 chunk 수 줄여 HTTP request waterfall 단축. */
+		cssChunking: "strict",
+		/* Critters 로 critical CSS inline + 나머지 defer — initial paint 차단 제거. */
+		inlineCss: true,
+	},
+
 	images: {
 		remotePatterns: [
 			{

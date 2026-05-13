@@ -57,7 +57,7 @@ const BlogPageClient = () => {
 		<AsyncBoundary
 			pendingFallback={<BlogListSkeleton />}
 			rejectedFallback={({ resetErrorBoundary }) => (
-				<ErrorFallback reset={resetErrorBoundary} backHref="/main" backLabel={t("backToMain")} />
+				<ErrorFallback reset={resetErrorBoundary} backHref="/" backLabel={t("backToMain")} />
 			)}
 		>
 			<BlogContent />

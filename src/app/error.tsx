@@ -54,7 +54,8 @@ const GlobalError = ({ error: _error, reset }: { error: Error; reset: () => void
 	}, [isCooling, isMaxRetry, reset]);
 
 	const handleHome = () => {
-		window.location.href = "/main";
+		/* replace 사용 — 에러 페이지가 히스토리에 남아 뒤로가기 시 루프 진입 방지 */
+		window.location.replace("/");
 	};
 
 	const retryLabel = isCooling

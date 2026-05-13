@@ -25,11 +25,7 @@ const RecruitPageClient = () => {
 			<div className={styles.recruit_page_list}>
 				<ErrorBoundary
 					fallbackRender={({ resetErrorBoundary }) => (
-						<ErrorFallback
-							reset={resetErrorBoundary}
-							backHref="/main"
-							backLabel={t("backToMain")}
-						/>
+						<ErrorFallback reset={resetErrorBoundary} backHref="/" backLabel={t("backToMain")} />
 					)}
 					resetKeys={[filters]}
 				>

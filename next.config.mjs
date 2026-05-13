@@ -94,7 +94,8 @@ const nextConfig = {
 	},
 
 	async redirects() {
-		return [{ source: "/", destination: "/main", permanent: true }];
+		/* / 가 직접 메인 페이지를 렌더 — /main 으로 리다이렉트하지 않음. /main 접근 시 / 로 308 */
+		return [{ source: "/main", destination: "/", permanent: true }];
 	},
 
 	sassOptions: {

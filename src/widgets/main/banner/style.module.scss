@@ -17,10 +17,19 @@
 	height: 100%;
 }
 
+/* next/image fill 컨테이너 — 포스터가 LCP 후보로 즉시 paint. 비디오 위에 deferred load. */
+.banner_poster {
+	object-fit: cover;
+	z-index: 0;
+}
+
 .banner_video_tag {
+	position: absolute;
+	inset: 0;
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
+	z-index: 1;
 }
 
 .banner_overlay {

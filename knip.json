@@ -1,10 +1,10 @@
 {
 	"$schema": "https://unpkg.com/knip@6/schema.json",
 	"entry": [
-		"src/app/**/{page,layout,loading,error,not-found,sitemap,robots,route}.{ts,tsx}",
+		"src/app/**/{page,layout,loading,error,not-found,sitemap,robots,route,template,default,global-error,icon,apple-icon,opengraph-image,twitter-image}.{ts,tsx,js,jsx}",
 		"src/app/global.css",
-		"src/test/**/*.{ts,tsx}",
-		"e2e/**/*.{ts,tsx}"
+		"src/test/**/*.{ts,tsx,js,jsx}",
+		"e2e/**/*.{ts,tsx,js,jsx}"
 	],
-	"project": ["src/**/*.{ts,tsx}", "e2e/**/*.{ts,tsx}"]
+	"project": ["src/**/*.{ts,tsx,js,jsx}", "e2e/**/*.{ts,tsx,js,jsx}"]
 }

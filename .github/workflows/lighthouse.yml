@@ -18,6 +18,10 @@ permissions:
 jobs:
   lighthouse:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        preset: [mobile, desktop]
     env:
       NEXT_PUBLIC_SERVER_URL: http://127.0.0.1:1
 
@@ -40,20 +44,28 @@ jobs:
       - name: Build
         run: pnpm build
 
-      - name: Run Lighthouse CI
+      - name: Run Lighthouse CI (${{ matrix.preset }})
         id: lhci
         uses: treosh/lighthouse-ci-action@v12
         with:
-          configPath: ./lighthouserc.json
+          configPath: ./lighthouserc.${{ matrix.preset }}.json
           uploadArtifacts: true
           temporaryPublicStorage: true
+          artifactName: lighthouse-results-${{ matrix.preset }}
 
       - name: Post Lighthouse report to PR
+        # PR 컨텍스트에서만 코멘트. workflow_dispatch 는 context.issue.number 없음 → skip.
+        if: github.event_name == 'pull_request'
         uses: actions/github-script@v7
+        env:
+          PRESET: ${{ matrix.preset }}
         with:
           script: |
             const results = ${{ steps.lhci.outputs.manifest }};
             const links = ${{ steps.lhci.outputs.links }};
+            const preset = process.env.PRESET;
+            const presetLabel = preset === 'mobile' ? '📱 Mobile' : '🖥 Desktop';
+            const marker = `<!-- lighthouse-report-${preset} -->`;
 
             const rows = results.map((r) => {
               const url = new URL(r.url);
@@ -69,7 +81,8 @@ jobs:
             });
 
             const body = [
-              '### ⚡ Lighthouse Report',
+              marker,
+              `### ⚡ Lighthouse Report — ${presetLabel}`,
               '',
               '| Page | Performance | Accessibility | Best Practices | SEO |',
               '|------|:-----------:|:------------:|:--------------:|:---:|',
@@ -84,7 +97,7 @@ jobs:
               issue_number: context.issue.number,
             });
 
-            const existing = comments.find((c) => c.body?.includes('### ⚡ Lighthouse Report'));
+            const existing = comments.find((c) => c.body?.includes(marker));
 
             if (existing) {
               await github.rest.issues.updateComment({

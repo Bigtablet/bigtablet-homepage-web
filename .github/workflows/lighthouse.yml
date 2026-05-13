@@ -1,14 +1,13 @@
 name: Lighthouse CI
 
-# 릴리스 후 prod 측정만 — PR 시점 측정은 의미 없음. prod 는 PR 코드 포함 안 하므로
-# PR-time Lighthouse 는 이전 릴리스 점수만 반복 측정. 트리거:
-#   1. tag push → 릴리스 직후 prod 재배포된 baseline 측정
-#   2. workflow_dispatch → 회귀 의심 시 수동 측정
-# 실사용자 perf 추적은 Sentry web-vitals RUM 으로 보완.
+# 릴리스 후 prod 측정 — workflow_run 으로 deploy.yml 완료 후 시작.
+# 추가로 polling 단계가 prod HTML 의 <meta name="build-sha"> 가 트리거 commit 과 일치할 때까지 대기.
+# 두 단계 모두 통과 후에야 lighthouse 가 실 prod 측정 → 이전 릴리스 점수 측정 risk 제거.
 on:
-  push:
-    tags:
-      - "*"
+  workflow_run:
+    workflows: ["Release CI/CD using GitHub Actions & Docker"]
+    types: [completed]
+    branches: [main]
   workflow_dispatch:
 
 permissions:
@@ -16,6 +15,8 @@ permissions:
 
 jobs:
   lighthouse:
+    # deploy 가 성공한 경우만 (실패 시 prod 안 바뀜 → 측정 의미 없음)
+    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -26,11 +27,23 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Wait for production deploy
-        # tag push 시 deploy.yml 이 Docker 이미지 빌드/푸시 → 별도 CD 가 prod 반영하는 데 시간 필요.
-        # 5분 대기 후 측정. 부족하면 workflow_dispatch 로 재실행.
-        if: github.event_name == 'push'
-        run: sleep 300
+      - name: Wait for production to serve new build SHA
+        # prod 의 <meta name="build-sha"> 값이 트리거된 commit SHA 와 일치할 때까지 polling.
+        # 10초 간격, 최대 5분. workflow_dispatch 는 SHA 모르므로 짧은 sleep 만.
+        if: github.event_name == 'workflow_run'
+        env:
+          EXPECTED_SHA: ${{ github.event.workflow_run.head_sha }}
+        run: |
+          for i in $(seq 1 30); do
+            ACTUAL=$(curl -sS https://bigtablet.com/ | grep -oE 'name="build-sha"[^>]*content="[^"]+"' | grep -oE 'content="[^"]+"' | sed 's/content="\(.*\)"/\1/')
+            echo "attempt $i: prod sha=$ACTUAL expected=$EXPECTED_SHA"
+            if [ "$ACTUAL" = "$EXPECTED_SHA" ]; then
+              echo "prod is on new build, proceeding"
+              exit 0
+            fi
+            sleep 10
+          done
+          echo "prod did not pick up new SHA in 5 minutes — measuring anyway, results may reflect old build" >&2
 
       - name: Run Lighthouse CI (${{ matrix.preset }})
         id: lhci
@@ -42,7 +55,7 @@ jobs:
           artifactName: lighthouse-results-${{ matrix.preset }}
 
       - name: Write Lighthouse report to step summary
-        # Actions 탭의 run 페이지 "Summary" 에 표 출력 — workflow_dispatch 도 자연스럽게 포함.
+        # Actions 탭의 run 페이지 "Summary" 에 표 출력.
         uses: actions/github-script@v7
         env:
           PRESET: ${{ matrix.preset }}
@@ -67,10 +80,8 @@ jobs:
               return `| [${path}](${link}) | ${emoji(perf)} ${s(perf)} | ${emoji(a11y)} ${s(a11y)} | ${emoji(bp)} ${s(bp)} | ${emoji(seo)} ${s(seo)} |`;
             });
 
-            const refName = context.ref.replace('refs/tags/', '');
-            const headerSuffix = context.eventName === 'push' ? ` (release ${refName})` : '';
             const lines = [
-              `### ⚡ Lighthouse Report — ${presetLabel}${headerSuffix}`,
+              `### ⚡ Lighthouse Report — ${presetLabel}`,
               '',
               '| Page | Performance | Accessibility | Best Practices | SEO |',
               '|------|:-----------:|:------------:|:--------------:|:---:|',

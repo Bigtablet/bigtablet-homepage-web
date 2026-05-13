@@ -38,6 +38,10 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 	return (
 		<html lang={locale} suppressHydrationWarning>
 			<head>
+				{/* 빌드된 git SHA — Lighthouse CI 가 prod 가 새 버전인지 polling 검증할 때 사용 */}
+				{process.env.NEXT_PUBLIC_BUILD_SHA ? (
+					<meta name="build-sha" content={process.env.NEXT_PUBLIC_BUILD_SHA} />
+				) : null}
 				<link rel="icon" href="/images/logo/favicon.png" />
 				<link
 					rel="preload"

@@ -4,11 +4,12 @@ import { Button } from "@bigtablet/design-system";
 import { ChevronDown } from "lucide-react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./style.module.scss";
 
 const VIDEO_SRC = "/media/6122c823-e40e-4d29-8855-4a64f0c7d881";
 const POSTER_SRC = "/images/banner-poster.webp";
+const VIDEO_DEFER_FALLBACK_MS = 500;
 
 /**
  * @component Banner
@@ -20,20 +21,21 @@ const POSTER_SRC = "/images/banner-poster.webp";
  */
 const Banner = () => {
 	const t = useTranslations("main.banner");
-	const videoRef = useRef<HTMLVideoElement | null>(null);
 	const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
 
 	useEffect(() => {
 		/* hydration 이후 idle 시점에 비디오 fetch 시작. requestIdleCallback 미지원 환경은 setTimeout fallback. */
 		const ric = (window as Window & { requestIdleCallback?: (cb: () => void) => number })
 			.requestIdleCallback;
-		const schedule = ric ?? ((cb: () => void) => setTimeout(cb, 500));
-		const id = schedule(() => setShouldLoadVideo(true));
-		return () => {
-			const cic = (window as Window & { cancelIdleCallback?: (id: number) => void })
-				.cancelIdleCallback;
-			if (cic && typeof id === "number") cic(id);
-		};
+		const cic = (window as Window & { cancelIdleCallback?: (id: number) => void })
+			.cancelIdleCallback;
+
+		if (ric && cic) {
+			const id = ric(() => setShouldLoadVideo(true));
+			return () => cic(id);
+		}
+		const timer = setTimeout(() => setShouldLoadVideo(true), VIDEO_DEFER_FALLBACK_MS);
+		return () => clearTimeout(timer);
 	}, []);
 
 	return (
@@ -49,7 +51,6 @@ const Banner = () => {
 					className={styles.banner_poster}
 				/>
 				<video
-					ref={videoRef}
 					className={styles.banner_video_tag}
 					poster={POSTER_SRC}
 					autoPlay

@@ -34,9 +34,10 @@ export const isKorean = (value?: string | null): boolean => resolveLocale(value)
  * const light = pickMessages(messages, { exclude: ["about"] });
  */
 export const pickMessages = <T extends Record<string, unknown>>(
-	messages: T,
+	messages: T | null | undefined,
 	{ exclude }: { exclude: readonly string[] },
 ): Partial<T> => {
+	if (!messages) return {} as Partial<T>;
 	const excludeSet = new Set(exclude);
 	const result: Record<string, unknown> = {};
 	for (const key of Object.keys(messages)) {

@@ -1,7 +1,7 @@
-import { cookies } from "next/headers";
 import { NextIntlClientProvider } from "next-intl";
+import { getLocale, getMessages } from "next-intl/server";
 import type { ReactNode } from "react";
-import { pickMessages, resolveLocale } from "src/shared/libs/locale";
+import { pickMessages } from "src/shared/libs/locale";
 import Footer from "src/shared/ui/footer";
 import Header from "src/shared/ui/header";
 import PageTransition from "src/shared/ui/page-transition";
@@ -13,8 +13,10 @@ import styles from "./layout.module.scss";
 const HEAVY_NAMESPACES = ["about"] as const;
 
 export default async function LocaleLayout({ children }: { children: ReactNode }) {
-	const locale = resolveLocale((await cookies()).get("NEXT_LOCALE")?.value);
-	const messages = (await import(`../../../messages/${locale}.json`)).default;
+	/* i18n/request.ts 가 NEXT_LOCALE 쿠키 기반으로 locale 결정 → getLocale/getMessages 가 올바른
+	   locale 의 messages 반환. 깊은 상대 import 도 불필요. */
+	const locale = await getLocale();
+	const messages = (await getMessages()) as Record<string, unknown>;
 	const lightMessages = pickMessages(messages, { exclude: HEAVY_NAMESPACES });
 
 	return (

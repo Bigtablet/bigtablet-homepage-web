@@ -1,7 +1,6 @@
-import { cookies } from "next/headers";
 import { NextIntlClientProvider } from "next-intl";
+import { getLocale, getMessages } from "next-intl/server";
 import type { HistorySchema } from "src/entities/about/history/schema/history.schema";
-import { resolveLocale } from "src/shared/libs/locale";
 import History from "src/widgets/about/history";
 import Introduce from "src/widgets/about/introduce";
 import Team from "src/widgets/about/team";
@@ -20,24 +19,11 @@ const historyItemSchema = z.union([
 const historyByYearSchema = z.record(z.string(), z.array(historyItemSchema));
 
 const About = async () => {
-	/**
-	 * (i18n) layout과 동일하게 NEXT_LOCALE 쿠키 기반으로 직접 import.
-	 * getMessages()는 middleware가 next-intl routing을 안 쓰는 환경에서
-	 * defaultLocale로 fallback되는 문제가 있음.
-	 */
-	const store = await cookies();
-	const locale = resolveLocale(store.get("NEXT_LOCALE")?.value);
-
-	let messages: Record<string, unknown> = {};
-	let aboutHistory: unknown = {};
-	try {
-		messages = (await import(`../../../../messages/${locale}.json`)).default;
-		const about = messages?.about as Record<string, unknown> | undefined;
-		aboutHistory = about?.history ?? {};
-	} catch {
-		messages = {};
-		aboutHistory = {};
-	}
+	/* i18n/request.ts 가 NEXT_LOCALE 쿠키 기반으로 locale 결정 → getMessages 가 올바른 messages 반환. */
+	const locale = await getLocale();
+	const messages = (await getMessages()) as Record<string, unknown>;
+	const about = messages?.about as Record<string, unknown> | undefined;
+	const aboutHistory = about?.history ?? {};
 
 	const parsed = historyByYearSchema.safeParse(aboutHistory);
 	const historyByYear = parsed.success ? parsed.data : {};

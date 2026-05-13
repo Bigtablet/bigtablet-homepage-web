@@ -15,7 +15,7 @@
 	inset: 0;
 	width: 100%;
 	height: 100%;
-	/* 자체 stacking context 생성 — 내부 layer(poster/video/overlay)들의 z-index가 외부로 bubble up 안 됨 */
+	/* 자체 stacking context 생성 — 향후 내부 요소에 z-index가 추가되더라도 외부(banner_content 등)로 영향이 전파되는 것을 방지 */
 	isolation: isolate;
 }
 

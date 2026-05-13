@@ -66,11 +66,16 @@ const ROUTES = {
 	"POST /talent": () => ({ status: 201, message: "ok" }),
 	"POST /auth/email": () => ({ status: 200, message: "ok" }),
 	"POST /auth/email/check": () => ({ status: 200, message: "verified" }),
-	"POST /gcp": () => ok("https://storage.googleapis.com/mock-file.pdf"),
+	"POST /gcp": () => ({
+		status: 201,
+		message: "ok",
+		data: "https://storage.googleapis.com/mock-file.pdf",
+	}),
 };
 
 const server = createServer((req, res) => {
-	const url = new URL(req.url ?? "/", `http://${req.headers.host}`);
+	/* Host 헤더 누락 케이스 — 고정 base 로 안전하게 pathname 만 파싱 */
+	const url = new URL(req.url ?? "/", "http://localhost");
 	const key = `${req.method} ${url.pathname}`;
 	const handler = ROUTES[key];
 
@@ -91,9 +96,11 @@ const server = createServer((req, res) => {
 		return;
 	}
 
-	res.statusCode = 200;
+	/* 응답 페이로드의 status 필드를 HTTP statusCode 로도 반영 — MSW handlers 와 일치 */
+	const result = handler();
+	res.statusCode = typeof result.status === "number" ? result.status : 200;
 	res.setHeader("Content-Type", "application/json");
-	res.end(JSON.stringify(handler()));
+	res.end(JSON.stringify(result));
 });
 
 server.listen(PORT, "0.0.0.0", () => {

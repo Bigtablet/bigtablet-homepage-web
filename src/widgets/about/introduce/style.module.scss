@@ -66,20 +66,24 @@
 }
 
 .introduce_image {
-  /* flex:1 이면 절반을 무조건 차지해 이미지가 작아도 빈 공간이 생김.
-     자연 폭 기반 + max-width로 제한 — 텍스트와 시각적으로 가까이 */
+  /* 정사각 슬롯을 고정해 이미지 로드 전에도 공간 예약 — 로드 직후 layout shift 차단.
+     flex:0 1 auto + max-width 로 텍스트와 자연스럽게 옆에 배치. */
   flex: 0 1 auto;
+  width: 100%;
   max-width: 360px;
+  aspect-ratio: 1 / 1;
   @include token.flex_center;
 }
 
+/* ImageThumb wrapper 가 fill 모드 — 부모 슬롯을 채움. img 자체는 contain. */
 .introduce_img {
-  max-width: 100%;
-  max-height: 420px;
-  width: auto;
-  height: auto;
-  object-fit: contain;
-  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: token.$radius_md;
+
+  :global(img) {
+    object-fit: contain;
+  }
 }
 
 @include token.mobile {
@@ -103,10 +107,7 @@
     width: 100%;
     max-width: 280px;
     margin: 0 auto;
-
-    .introduce_img {
-      max-height: 200px;
-    }
+    /* aspect-ratio: 1/1 은 데스크탑 규칙에서 상속 — 모바일도 정사각 슬롯 유지 */
   }
 
   .introduce_title {

@@ -117,8 +117,24 @@ jobs:
           name: nextjs-build
           path: .next/
 
-      - name: Install Playwright browsers
+      - name: Resolve Playwright version
+        id: playwright-version
+        run: echo "v=$(pnpm exec playwright --version | awk '{print $2}')" >> "$GITHUB_OUTPUT"
+
+      - name: Cache Playwright browsers
+        id: playwright-cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-${{ steps.playwright-version.outputs.v }}
+
+      - name: Install Playwright browsers (cache miss)
+        if: steps.playwright-cache.outputs.cache-hit != 'true'
         run: npx playwright install --with-deps chromium firefox
+
+      - name: Install Playwright deps only (cache hit)
+        if: steps.playwright-cache.outputs.cache-hit == 'true'
+        run: npx playwright install-deps chromium firefox
 
       - name: Run E2E tests
         run: pnpm e2e

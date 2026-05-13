@@ -11,6 +11,14 @@ import Providers from "src/widgets/layout/provider";
 export const metadata: Metadata = {
 	title: "Bigtablet",
 	description: "Bigtablet's Official Website",
+	/* Lighthouse CI 가 prod 가 새 빌드를 서빙하는지 polling 검증할 때 사용. Metadata API 의
+	   `other` 속성 → Next 가 <head> 에 <meta name="build-sha" content="..."> 삽입.
+	   조건부 field 만 추가해 미래 다른 `other` 필드와 충돌 안 함. */
+	other: {
+		...(process.env.NEXT_PUBLIC_BUILD_SHA && {
+			"build-sha": process.env.NEXT_PUBLIC_BUILD_SHA,
+		}),
+	},
 };
 
 /* force-dynamic 제거 — cookies() 사용으로 next 가 자동 dynamic 처리. 명시 force는 정적 최적화 차단해 불필요. */

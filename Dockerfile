@@ -23,6 +23,11 @@ RUN --mount=type=cache,target=/root/.local/share/pnpm/store \
 
 COPY . .
 
+# BUILD_SHA 는 매 커밋마다 변경되므로 pnpm install 레이어 뒤로 배치 — 의존성 캐시 보존.
+# 빌드 직전에 ARG/ENV 정의해 next build 만 영향받게 함.
+ARG BUILD_SHA
+ENV NEXT_PUBLIC_BUILD_SHA=${BUILD_SHA}
+
 RUN --mount=type=cache,target=/app/.next/cache \
     pnpm build
 RUN cp -r public .next/standalone/public

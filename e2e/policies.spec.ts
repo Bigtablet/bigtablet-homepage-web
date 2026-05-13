@@ -34,7 +34,7 @@ test.describe("policy pages - korean", () => {
 		const backLink = page.getByRole("link", { name: /홈/ });
 		await expect(backLink).toBeVisible({ timeout: 10_000 });
 		await backLink.click();
-		await expect(page).toHaveURL(/\/$/);
+		await expect(page).toHaveURL("/");
 	});
 });
 

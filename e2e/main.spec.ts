@@ -6,8 +6,8 @@ test.beforeEach(async ({ context, baseURL }) => {
 
 test.describe("main page", () => {
 	test("/main redirects to /", async ({ page }) => {
-		const response = await page.goto("/main");
-		expect(response?.url()).toMatch(/\/$/);
+		await page.goto("/main");
+		await expect(page).toHaveURL("/");
 	});
 
 	test("renders banner section with heading", async ({ page }) => {

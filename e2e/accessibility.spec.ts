@@ -3,7 +3,7 @@ import { expect, test } from "@playwright/test";
 
 /** API 의존 페이지(blog, news, recruit) 제외 — CI에서 API 미가용 시 렌더링 실패 */
 const pages = [
-	{ name: "main", path: "/main" },
+	{ name: "main", path: "/" },
 	{ name: "about", path: "/about" },
 	{ name: "privacy policy", path: "/policies/privacy" },
 	{ name: "terms", path: "/policies/terms" },

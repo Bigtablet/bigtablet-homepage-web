@@ -4,7 +4,7 @@ import { mockApiRoutes } from "./fixtures/mock-api";
 test.describe("header navigation", () => {
 	test.beforeEach(async ({ page }) => {
 		await mockApiRoutes(page);
-		await page.goto("/main");
+		await page.goto("/");
 	});
 
 	test("navigates to recruit page", async ({ page }) => {

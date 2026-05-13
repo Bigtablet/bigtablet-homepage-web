@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
+import { cookies } from "next/headers";
+import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import { isMemberSlug } from "src/entities/about/util/member.util";
+import { resolveLocale } from "src/shared/libs/locale";
 import MemberDetailClient from "./client";
 
 type PageProps = {
@@ -51,7 +54,22 @@ export const generateMetadata = async ({ params }: PageProps): Promise<Metadata>
 };
 
 const MemberDetailPage = async () => {
-	return <MemberDetailClient />;
+	/* about/[id]/client.tsx 가 about.team.members.* 를 사용 — layout 에서 빠진 about namespace 를
+	   여기서 nested provider 로 다시 제공. */
+	const store = await cookies();
+	const locale = resolveLocale(store.get("NEXT_LOCALE")?.value);
+	let messages: Record<string, unknown> = {};
+	try {
+		messages = (await import(`../../../../../messages/${locale}.json`)).default;
+	} catch {
+		messages = {};
+	}
+
+	return (
+		<NextIntlClientProvider locale={locale} messages={messages}>
+			<MemberDetailClient />
+		</NextIntlClientProvider>
+	);
 };
 
 export default MemberDetailPage;

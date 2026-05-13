@@ -1,4 +1,5 @@
 import { cookies } from "next/headers";
+import { NextIntlClientProvider } from "next-intl";
 import type { HistorySchema } from "src/entities/about/history/schema/history.schema";
 import { resolveLocale } from "src/shared/libs/locale";
 import History from "src/widgets/about/history";
@@ -27,11 +28,14 @@ const About = async () => {
 	const store = await cookies();
 	const locale = resolveLocale(store.get("NEXT_LOCALE")?.value);
 
+	let messages: Record<string, unknown> = {};
 	let aboutHistory: unknown = {};
 	try {
-		const messages = (await import(`../../../../messages/${locale}.json`)).default;
-		aboutHistory = messages?.about?.history ?? {};
+		messages = (await import(`../../../../messages/${locale}.json`)).default;
+		const about = messages?.about as Record<string, unknown> | undefined;
+		aboutHistory = about?.history ?? {};
 	} catch {
+		messages = {};
 		aboutHistory = {};
 	}
 
@@ -53,12 +57,14 @@ const About = async () => {
 	);
 
 	return (
-		<>
+		/* layout 에서 `about` namespace 를 제외했으므로 about 페이지에서만 full messages 로 다시 wrap.
+		   이 nested provider 의 children 에서 useTranslations("about.*") 가 동작. */
+		<NextIntlClientProvider locale={locale} messages={messages}>
 			<Introduce sectionKey="section1" />
 			<Introduce sectionKey="section2" reverse />
 			<History items={items} />
 			<Team />
-		</>
+		</NextIntlClientProvider>
 	);
 };
 

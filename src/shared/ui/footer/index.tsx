@@ -1,11 +1,16 @@
-"use client";
-
 import Link from "next/link";
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 import styles from "./style.module.scss";
 
-const Footer = () => {
-	const t = useTranslations("footer");
+/**
+ * @component Footer
+ *
+ * @description
+ * 사이트 공통 푸터. 클라이언트 이벤트 없으므로 server component 로 렌더 — hydration JS 미포함.
+ * 번역은 `getTranslations` 로 서버에서 직접 가져옴.
+ */
+const Footer = async () => {
+	const t = await getTranslations("footer");
 
 	return (
 		<footer className={styles.footer}>

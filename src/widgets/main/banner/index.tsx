@@ -28,14 +28,18 @@ const Banner = () => {
 
 	useEffect(() => {
 		if (isMobile) return;
-		/* hydration 이후 idle 시점에 비디오 fetch 시작. requestIdleCallback 미지원 환경은 setTimeout fallback. */
-		const ric = (window as Window & { requestIdleCallback?: (cb: () => void) => number })
-			.requestIdleCallback;
+		/* hydration 이후 idle 시점에 비디오 fetch 시작. requestIdleCallback 미지원 환경은 setTimeout fallback.
+		   timeout 옵션으로 메인 스레드가 계속 바빠도 비디오 로드가 무한 지연되지 않게 보장. */
+		const ric = (
+			window as Window & {
+				requestIdleCallback?: (cb: () => void, opts?: { timeout: number }) => number;
+			}
+		).requestIdleCallback;
 		const cic = (window as Window & { cancelIdleCallback?: (id: number) => void })
 			.cancelIdleCallback;
 
 		if (ric && cic) {
-			const id = ric(() => setShouldLoadVideo(true));
+			const id = ric(() => setShouldLoadVideo(true), { timeout: 2000 });
 			return () => cic(id);
 		}
 		const timer = setTimeout(() => setShouldLoadVideo(true), VIDEO_DEFER_FALLBACK_MS);

@@ -1,7 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
+import { useMediaQuery } from "src/shared/hooks/use-media-query";
 import styles from "./style.module.scss";
 
 interface CardProps {
@@ -13,26 +14,19 @@ interface CardProps {
 }
 
 /**
- * 카드 비디오 자동재생은 데스크탑에서만. 모바일은 poster 이미지만 렌더 — 5개 비디오 디코딩 비용 절감.
- * 모달 열면 모달 안에서만 비디오 재생.
+ * 카드 비디오 자동재생은 데스크탑에서만. 모바일+poster 있으면 poster 이미지만 렌더 — 5개 비디오 디코딩 비용 절감.
+ * 모바일이지만 poster 가 없는 edge case 는 video 렌더되며 IntersectionObserver 가 그대로 동작.
  */
 const MOBILE_QUERY = "(max-width: 768px)";
 
 const Card = ({ id, src, poster, label, onOpen }: CardProps) => {
 	const videoRef = useRef<HTMLVideoElement>(null);
-	const [isMobile, setIsMobile] = useState(false);
+	const isMobile = useMediaQuery(MOBILE_QUERY);
 	const openFromTarget = (el: HTMLElement) => onOpen(id, el.getBoundingClientRect());
 
 	useEffect(() => {
-		const mq = window.matchMedia(MOBILE_QUERY);
-		setIsMobile(mq.matches);
-		const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches);
-		mq.addEventListener("change", handler);
-		return () => mq.removeEventListener("change", handler);
-	}, []);
-
-	useEffect(() => {
-		if (isMobile) return;
+		/* videoRef.current 존재 여부만으로 가드 — Image 분기에선 ref 가 null 이라 자동 skip,
+		   poster 없는 mobile edge case 에선 video 렌더되어 IO 가 정상 동작. */
 		const video = videoRef.current;
 		if (!video) return;
 
@@ -49,7 +43,7 @@ const Card = ({ id, src, poster, label, onOpen }: CardProps) => {
 
 		observer.observe(video);
 		return () => observer.disconnect();
-	}, [isMobile]);
+	}, []);
 
 	return (
 		<button

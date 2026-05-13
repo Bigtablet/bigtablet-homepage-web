@@ -5,6 +5,7 @@ import { ChevronDown } from "lucide-react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
+import { useMediaQuery } from "src/shared/hooks/use-media-query";
 import styles from "./style.module.scss";
 
 const VIDEO_SRC = "/media/6122c823-e40e-4d29-8855-4a64f0c7d881";
@@ -23,15 +24,7 @@ const MOBILE_QUERY = "(max-width: 768px)";
 const Banner = () => {
 	const t = useTranslations("main.banner");
 	const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
-	const [isMobile, setIsMobile] = useState(false);
-
-	useEffect(() => {
-		const mq = window.matchMedia(MOBILE_QUERY);
-		setIsMobile(mq.matches);
-		const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches);
-		mq.addEventListener("change", handler);
-		return () => mq.removeEventListener("change", handler);
-	}, []);
+	const isMobile = useMediaQuery(MOBILE_QUERY);
 
 	useEffect(() => {
 		if (isMobile) return;

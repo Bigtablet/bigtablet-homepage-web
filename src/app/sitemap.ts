@@ -7,7 +7,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
 	return [
 		{
-			url: `${baseUrl}/main`,
+			url: `${baseUrl}/`,
 			lastModified: LAST_MODIFIED,
 			changeFrequency: "monthly",
 			priority: 1,

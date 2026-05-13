@@ -48,7 +48,6 @@ const BlogCard = ({ item, locale, href, priority = false }: Props) => {
 			href={href}
 			className={styles.blog_card}
 			aria-label={title ? `${title} 상세보기` : "블로그 상세보기"}
-			prefetch
 		>
 			<ImageThumb
 				className={styles.blog_card_thumb}

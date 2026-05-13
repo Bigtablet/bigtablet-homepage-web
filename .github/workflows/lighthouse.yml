@@ -1,59 +1,58 @@
 name: Lighthouse CI
 
-# 릴리스 전 main PR 에서만 실행. develop 사이클에선 비용 큼 → skip.
-# 문서/워크플로 전용 변경도 skip. 수동 트리거(workflow_dispatch) 가능.
+# 릴리스 후 prod 측정만 — PR 시점 측정은 의미 없음. prod 는 PR 코드 포함 안 하므로
+# PR-time Lighthouse 는 이전 릴리스 점수만 반복 측정. 트리거:
+#   1. tag push → 릴리스 직후 prod 재배포된 baseline 측정
+#   2. workflow_dispatch → 회귀 의심 시 수동 측정
+# 실사용자 perf 추적은 Sentry web-vitals RUM 으로 보완.
 on:
-  pull_request:
-    branches: [main]
-    paths-ignore:
-      - "**/*.md"
-      - ".github/**"
-      - ".claude/**"
+  push:
+    tags:
+      - "*"
   workflow_dispatch:
 
 permissions:
-  contents: read
-  pull-requests: write
+  contents: write
 
 jobs:
   lighthouse:
     runs-on: ubuntu-latest
-    env:
-      NEXT_PUBLIC_SERVER_URL: http://127.0.0.1:1
+    strategy:
+      fail-fast: false
+      matrix:
+        preset: [mobile, desktop]
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
+      - name: Wait for production deploy
+        # tag push 시 deploy.yml 이 Docker 이미지 빌드/푸시 → 별도 CD 가 prod 반영하는 데 시간 필요.
+        # 5분 대기 후 측정. 부족하면 workflow_dispatch 로 재실행.
+        if: github.event_name == 'push'
+        run: sleep 300
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 24
-          cache: pnpm
-
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
-
-      - name: Build
-        run: pnpm build
-
-      - name: Run Lighthouse CI
+      - name: Run Lighthouse CI (${{ matrix.preset }})
         id: lhci
         uses: treosh/lighthouse-ci-action@v12
         with:
-          configPath: ./lighthouserc.json
+          configPath: ./lighthouserc.${{ matrix.preset }}.json
           uploadArtifacts: true
           temporaryPublicStorage: true
+          artifactName: lighthouse-results-${{ matrix.preset }}
 
-      - name: Post Lighthouse report to PR
+      - name: Post Lighthouse report to commit
+        # tag push 시에만 commit comment 로 기록. workflow_dispatch 는 commit 컨텍스트 약함 → skip.
+        if: github.event_name == 'push'
         uses: actions/github-script@v7
+        env:
+          PRESET: ${{ matrix.preset }}
         with:
           script: |
             const results = ${{ steps.lhci.outputs.manifest }};
             const links = ${{ steps.lhci.outputs.links }};
+            const preset = process.env.PRESET;
+            const presetLabel = preset === 'mobile' ? '📱 Mobile' : '🖥 Desktop';
 
             const rows = results.map((r) => {
               const url = new URL(r.url);
@@ -69,35 +68,18 @@ jobs:
             });
 
             const body = [
-              '### ⚡ Lighthouse Report',
+              `### ⚡ Lighthouse Report — ${presetLabel} (release ${context.ref.replace('refs/tags/', '')})`,
               '',
               '| Page | Performance | Accessibility | Best Practices | SEO |',
               '|------|:-----------:|:------------:|:--------------:|:---:|',
               ...rows,
               '',
-              `> Results from Lighthouse CI on \`${context.sha.slice(0, 7)}\``,
+              '> Measured against https://bigtablet.com after release deploy',
             ].join('\n');
 
-            const { data: comments } = await github.rest.issues.listComments({
+            await github.rest.repos.createCommitComment({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              issue_number: context.issue.number,
+              commit_sha: context.sha,
+              body,
             });
-
-            const existing = comments.find((c) => c.body?.includes('### ⚡ Lighthouse Report'));
-
-            if (existing) {
-              await github.rest.issues.updateComment({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                comment_id: existing.id,
-                body,
-              });
-            } else {
-              await github.rest.issues.createComment({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number: context.issue.number,
-                body,
-              });
-            }

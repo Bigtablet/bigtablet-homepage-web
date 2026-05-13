@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { getMessages } from "next-intl/server";
+import { NextIntlClientProvider } from "next-intl";
+import { getLocale, getMessages } from "next-intl/server";
 import { isMemberSlug } from "src/entities/about/util/member.util";
 import MemberDetailClient from "./client";
 
@@ -51,7 +52,16 @@ export const generateMetadata = async ({ params }: PageProps): Promise<Metadata>
 };
 
 const MemberDetailPage = async () => {
-	return <MemberDetailClient />;
+	/* about/[id]/client.tsx 가 about.team.members.* 를 사용 — layout 에서 빠진 about namespace 를
+	   여기서 nested provider 로 다시 제공. generateMetadata 와 동일하게 getMessages 사용 → 일관성. */
+	const locale = await getLocale();
+	const messages = (await getMessages()) as Record<string, unknown>;
+
+	return (
+		<NextIntlClientProvider locale={locale} messages={messages}>
+			<MemberDetailClient />
+		</NextIntlClientProvider>
+	);
 };
 
 export default MemberDetailPage;

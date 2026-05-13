@@ -2,11 +2,16 @@
 
 import { AlertProvider, ToastProvider } from "@bigtablet/design-system";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import dynamic from "next/dynamic";
 import { type ReactNode, useMemo } from "react";
-import CookieConsent from "src/features/cookie-consent/ui";
 import { isHttpError } from "src/shared/libs/api/error";
 import { createMutationCache } from "src/shared/libs/api/query/mutation-cache";
 import ToastBridgeProvider from "src/shared/libs/api/toast/toast-bridge-provider";
+
+/* CookieConsent 는 초기 hydration 차단 요인 — dynamic + idle 마운트 컴포넌트로 분리해 LCP 이후로 미룸 */
+const DeferredCookieConsent = dynamic(() => import("src/features/cookie-consent/deferred"), {
+	ssr: false,
+});
 
 type Props = { children: ReactNode };
 
@@ -38,7 +43,7 @@ export default function Providers({ children }: Props) {
 				<QueryClientProvider client={queryClient}>
 					<ToastBridgeProvider />
 					{children}
-					<CookieConsent />
+					<DeferredCookieConsent />
 				</QueryClientProvider>
 			</ToastProvider>
 		</AlertProvider>

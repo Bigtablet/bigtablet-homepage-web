@@ -19,11 +19,11 @@ const NotFoundPage = () => {
 		if (window.history.length > 1) {
 			router.back();
 		} else {
-			router.replace("/main");
+			router.replace("/");
 		}
 	};
 
-	const handleHome = () => router.replace("/main");
+	const handleHome = () => router.replace("/");
 
 	return (
 		<Template align="center">

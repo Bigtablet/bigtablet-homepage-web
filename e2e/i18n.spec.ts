@@ -2,21 +2,21 @@ import { expect, test } from "@playwright/test";
 
 test.describe("internationalization", () => {
 	test("default locale renders korean content", async ({ page }) => {
-		await page.goto("/main");
+		await page.goto("/");
 		await expect(page.locator("main")).toBeVisible();
 		await expect(page.getByRole("link", { name: "About Us" })).toBeVisible();
 	});
 
 	test("korean locale renders korean navigation", async ({ page, context, baseURL }) => {
 		await context.addCookies([{ name: "NEXT_LOCALE", value: "ko", url: baseURL }]);
-		await page.goto("/main");
+		await page.goto("/");
 		await expect(page.locator("main")).toBeVisible();
 		await expect(page.locator("header")).toBeVisible();
 	});
 
 	test("english locale renders english navigation", async ({ page, context, baseURL }) => {
 		await context.addCookies([{ name: "NEXT_LOCALE", value: "en", url: baseURL }]);
-		await page.goto("/main");
+		await page.goto("/");
 		await expect(page.locator("main")).toBeVisible();
 		await expect(page.locator("header")).toBeVisible();
 	});

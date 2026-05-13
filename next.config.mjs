@@ -14,6 +14,14 @@ const nextConfig = {
 	/* X-Powered-By: Next.js 헤더 제거 — 서버 기술 스택 정보 노출 방지 */
 	poweredByHeader: false,
 
+	experimental: {
+		/* CSS 청크 7개로 split 되어 모바일 throttle 에서 8.4s render-blocking 발생.
+		   strict 로 chunk 수 줄여 HTTP request waterfall 단축. */
+		cssChunking: "strict",
+		/* Critters 로 critical CSS inline + 나머지 defer — initial paint 차단 제거. */
+		inlineCss: true,
+	},
+
 	images: {
 		remotePatterns: [
 			{
@@ -78,8 +86,9 @@ const nextConfig = {
 				],
 			},
 			{
+				/* UUID 파일명은 불변 — 1년 immutable. 변경 시 새 UUID 발급해 cache-bust. */
 				source: "/media/:path*",
-				headers: [{ key: "Cache-Control", value: "public, max-age=604800" }],
+				headers: [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }],
 			},
 		];
 	},
@@ -94,7 +103,8 @@ const nextConfig = {
 	},
 
 	async redirects() {
-		return [{ source: "/", destination: "/main", permanent: true }];
+		/* / 가 직접 메인 페이지를 렌더 — /main 으로 리다이렉트하지 않음. /main 접근 시 / 로 308 */
+		return [{ source: "/main", destination: "/", permanent: true }];
 	},
 
 	sassOptions: {

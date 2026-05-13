@@ -1,8 +1,12 @@
+import dynamic from "next/dynamic";
 import Banner from "src/widgets/main/banner";
-import Collaborations from "src/widgets/main/collaborations";
 import Problem from "src/widgets/main/problem";
-import Solution from "src/widgets/main/solution/section";
 import styles from "./style.module.scss";
+
+/* below-fold 위젯은 dynamic import — initial JS payload 절감.
+   Solution 은 modal/GSAP, Collaborations 는 로고 그리드. 둘 다 즉시 필요 없음. */
+const Solution = dynamic(() => import("src/widgets/main/solution/section"));
+const Collaborations = dynamic(() => import("src/widgets/main/collaborations"));
 
 const MainPage = () => {
 	return (

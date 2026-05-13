@@ -27,14 +27,14 @@ test.describe("policy pages - korean", () => {
 	}
 
 	test("policy page back link navigates to previous page", async ({ page }) => {
-		await page.goto("/main");
+		await page.goto("/");
 		await page.goto("/policies/privacy");
 		await expect(page.locator("main")).toBeVisible({ timeout: 10_000 });
 
 		const backLink = page.getByRole("link", { name: /홈/ });
 		await expect(backLink).toBeVisible({ timeout: 10_000 });
 		await backLink.click();
-		await expect(page).toHaveURL(/\/main/);
+		await expect(page).toHaveURL("/");
 	});
 });
 

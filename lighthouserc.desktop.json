@@ -2,15 +2,13 @@
 	"ci": {
 		"collect": {
 			"url": [
-				"http://localhost:3000/",
-				"http://localhost:3000/about",
-				"http://localhost:3000/blog",
-				"http://localhost:3000/news",
-				"http://localhost:3000/recruit",
-				"http://localhost:3000/policies/privacy"
+				"https://bigtablet.com/",
+				"https://bigtablet.com/about",
+				"https://bigtablet.com/blog",
+				"https://bigtablet.com/news",
+				"https://bigtablet.com/recruit",
+				"https://bigtablet.com/policies/privacy"
 			],
-			"startServerCommand": "pnpm start",
-			"startServerReadyPattern": "Ready in",
 			"numberOfRuns": 3,
 			"settings": {
 				"preset": "desktop"

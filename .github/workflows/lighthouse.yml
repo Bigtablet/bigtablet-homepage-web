@@ -2,6 +2,7 @@ name: Lighthouse CI
 
 # 릴리스 전 main PR 에서만 실행. develop 사이클에선 비용 큼 → skip.
 # 문서/워크플로 전용 변경도 skip. 수동 트리거(workflow_dispatch) 가능.
+# 측정 대상은 production URL (https://bigtablet.com) — CDN + 실 백엔드 환경에서 정직한 점수.
 on:
   pull_request:
     branches: [main]
@@ -22,43 +23,10 @@ jobs:
       fail-fast: false
       matrix:
         preset: [mobile, desktop]
-    env:
-      # 로컬 mock API 서버 — scripts/lighthouse-api-mock.mjs 가 4000번 포트에서 응답
-      NEXT_PUBLIC_SERVER_URL: http://127.0.0.1:4000
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 24
-          cache: pnpm
-
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
-
-      - name: Build
-        run: pnpm build
-
-      - name: Start mock API server
-        # background — lighthouse 가 페이지 SSR/렌더할 때 fetch 응답
-        run: |
-          node scripts/lighthouse-api-mock.mjs &
-          echo $! > /tmp/mock-api.pid
-          for i in 1 2 3 4 5 6 7 8 9 10; do
-            if curl -fs http://127.0.0.1:4000/blog/list > /dev/null; then
-              echo "mock api ready"
-              exit 0
-            fi
-            sleep 0.5
-          done
-          echo "mock api failed to start" >&2
-          exit 1
 
       - name: Run Lighthouse CI (${{ matrix.preset }})
         id: lhci
@@ -68,13 +36,6 @@ jobs:
           uploadArtifacts: true
           temporaryPublicStorage: true
           artifactName: lighthouse-results-${{ matrix.preset }}
-
-      - name: Stop mock API server
-        if: always()
-        run: |
-          if [ -f /tmp/mock-api.pid ]; then
-            kill "$(cat /tmp/mock-api.pid)" 2>/dev/null || true
-          fi
 
       - name: Post Lighthouse report to PR
         # PR 컨텍스트에서만 코멘트. workflow_dispatch 는 context.issue.number 없음 → skip.
@@ -111,7 +72,7 @@ jobs:
               '|------|:-----------:|:------------:|:--------------:|:---:|',
               ...rows,
               '',
-              `> Results from Lighthouse CI on \`${context.sha.slice(0, 7)}\``,
+              `> Results from Lighthouse CI on \`${context.sha.slice(0, 7)}\` against production`,
             ].join('\n');
 
             const { data: comments } = await github.rest.issues.listComments({

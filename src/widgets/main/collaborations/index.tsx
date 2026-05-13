@@ -6,8 +6,8 @@ import styles from "./style.module.scss";
 
 const logos = ["/images/collaborations/google.webp", "/images/collaborations/nvdia.webp"];
 
-/** 무한 스크롤용 복제 — 와이드 화면(4K 등)에서 트랙 절반이 뷰포트를 덮도록 충분히 반복 */
-const items = Array.from({ length: 12 }, (_, repeatIdx) =>
+/** 무한 스크롤용 복제 — 트랙 절반이 뷰포트를 덮을 만큼만 반복. 12 → 4로 축소해 이미지 디코딩 비용 절감. */
+const items = Array.from({ length: 4 }, (_, repeatIdx) =>
 	logos.map((src, logoIdx) => ({ src, key: `${repeatIdx}-${logoIdx}` })),
 ).flat();
 

@@ -39,7 +39,7 @@ const Footer = async () => {
 				<ul className={styles.footer_social} aria-label="social links">
 					<li>
 						<a
-							href="https://www.linkedin.com/company/bigtablet/posts/?feedView=all"
+							href="https://www.linkedin.com/company/bigtablet/"
 							target="_blank"
 							rel="noreferrer"
 							className={styles.footer_social_btn}

@@ -44,7 +44,7 @@
 		"react-markdown": "^10.1.0",
 		"remark-breaks": "^4.0.0",
 		"remark-gfm": "^4.0.1",
-		"sass": "^1.99.0",
+		"sass": "^1.100.0",
 		"zod": "^4.3.6"
 	},
 	"devDependencies": {

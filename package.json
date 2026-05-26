@@ -23,7 +23,7 @@
 	"dependencies": {
 		"@bigtablet/design-system": "1.22.0",
 		"@gsap/react": "^2.1.2",
-		"@hookform/resolvers": "^5.2.2",
+		"@hookform/resolvers": "^5.4.0",
 		"@next/bundle-analyzer": "^16.2.6",
 		"@opentelemetry/api": "^1.9.1",
 		"@sentry/nextjs": "^10.52.0",

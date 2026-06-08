@@ -27,6 +27,7 @@
 		"notFoundDescription": "요청하신 페이지가 존재하지 않거나\n잘못된 접근입니다."
 	},
 	"recruit": {
+		"empty": "등록된 채용 공고가 없습니다.",
 		"detail": {
 			"loading": "불러오는 중…",
 			"loadFailed": "불러오지 못했습니다.",

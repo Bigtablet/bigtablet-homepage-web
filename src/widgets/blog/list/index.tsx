@@ -1,6 +1,5 @@
 "use client";
 
-import { useTranslations } from "next-intl";
 import { useMemo } from "react";
 import type { BlogItem } from "src/entities/blog/schema/blog.schema";
 import useDeferredLoading from "src/shared/hooks/use-deferred-loading";
@@ -37,7 +36,6 @@ const BlogListSection = ({
 }: BlogListProps) => {
 	const flatItems = useMemo(() => items ?? [], [items]);
 	const showSkeleton = useDeferredLoading(isLoading);
-	const t = useTranslations("blog");
 	const skeletonKeys = useMemo(
 		() => Array.from({ length: pageSize }, (_, index) => `skeleton-${index}`),
 		[pageSize],
@@ -58,10 +56,6 @@ const BlogListSection = ({
 							/>
 						))}
 			</div>
-
-			{!isLoading && flatItems.length === 0 && (
-				<p className={styles.blog_list_empty}>{t("empty")}</p>
-			)}
 		</section>
 	);
 };

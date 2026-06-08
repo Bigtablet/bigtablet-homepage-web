@@ -5,10 +5,11 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
 import { useSuspenseBlogPageQuery } from "src/features/blog/query/blog.query";
 import AsyncBoundary from "src/shared/ui/async-boundary";
+import EmptyState from "src/shared/ui/empty-state";
 import ErrorFallback from "src/shared/ui/error-fallback";
+import ListPageLayout from "src/shared/ui/list-page-layout";
 import BlogListSection from "src/widgets/blog/list";
 import BlogListSkeleton from "src/widgets/blog/list/skeleton";
-import styles from "./style.module.scss";
 
 const DEFAULT_SIZE = 6;
 
@@ -17,6 +18,7 @@ const BlogContent = () => {
 	const pathname = usePathname();
 	const sp = useSearchParams();
 	const router = useRouter();
+	const t = useTranslations("blog");
 
 	const page = Math.max(1, Number(sp.get("page") ?? 1));
 	const size = Math.max(1, Number(sp.get("size") ?? DEFAULT_SIZE));
@@ -35,19 +37,25 @@ const BlogContent = () => {
 	};
 
 	return (
-		<div className={styles.blog_page}>
-			<BlogListSection
-				items={items}
-				locale={locale}
-				isLoading={false}
-				pageSize={size}
-				hrefBuilder={(item) => `${pathname}/${item.idx}`}
-			/>
+		<ListPageLayout>
+			{items.length === 0 ? (
+				<EmptyState message={t("empty")} />
+			) : (
+				<>
+					<BlogListSection
+						items={items}
+						locale={locale}
+						isLoading={false}
+						pageSize={size}
+						hrefBuilder={(item) => `${pathname}/${item.idx}`}
+					/>
 
-			{totalPages > 1 && (
-				<Pagination page={page} totalPages={totalPages} onChange={handlePageChange} />
+					{totalPages > 1 && (
+						<Pagination page={page} totalPages={totalPages} onChange={handlePageChange} />
+					)}
+				</>
 			)}
-		</div>
+		</ListPageLayout>
 	);
 };
 

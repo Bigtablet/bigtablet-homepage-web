@@ -5,9 +5,9 @@ import { useState } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import type { RecruitSearchFilters } from "src/entities/recruit/api/recruit.api";
 import ErrorFallback from "src/shared/ui/error-fallback";
+import ListPageLayout from "src/shared/ui/list-page-layout";
 import RecruitHeader from "src/widgets/recruit/main/header";
 import RequestList from "src/widgets/recruit/main/list";
-import styles from "./style.module.scss";
 
 const RecruitPageClient = () => {
 	const t = useTranslations("common");
@@ -19,20 +19,18 @@ const RecruitPageClient = () => {
 	});
 
 	return (
-		<section className={styles.recruit_page}>
+		<ListPageLayout>
 			<RecruitHeader filters={filters} onChange={setFilters} />
 
-			<div className={styles.recruit_page_list}>
-				<ErrorBoundary
-					fallbackRender={({ resetErrorBoundary }) => (
-						<ErrorFallback reset={resetErrorBoundary} backHref="/" backLabel={t("backToMain")} />
-					)}
-					resetKeys={[filters]}
-				>
-					<RequestList filters={filters} />
-				</ErrorBoundary>
-			</div>
-		</section>
+			<ErrorBoundary
+				fallbackRender={({ resetErrorBoundary }) => (
+					<ErrorFallback reset={resetErrorBoundary} backHref="/" backLabel={t("backToMain")} />
+				)}
+				resetKeys={[filters]}
+			>
+				<RequestList filters={filters} />
+			</ErrorBoundary>
+		</ListPageLayout>
 	);
 };
 

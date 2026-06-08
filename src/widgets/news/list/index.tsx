@@ -1,6 +1,5 @@
 "use client";
 
-import { useTranslations } from "next-intl";
 import { useMemo } from "react";
 import type { NewsItem } from "src/entities/news/schema/news.schema";
 import useDeferredLoading from "src/shared/hooks/use-deferred-loading";
@@ -28,7 +27,6 @@ interface NewsListProps {
  */
 const NewsListSection = ({ items, locale, isLoading, pageSize = 6 }: NewsListProps) => {
 	const showSkeleton = useDeferredLoading(isLoading);
-	const t = useTranslations("news");
 	const skeletonKeys = useMemo(
 		() => Array.from({ length: pageSize }, (_, index) => `skeleton-${index}`),
 		[pageSize],
@@ -55,8 +53,6 @@ const NewsListSection = ({ items, locale, isLoading, pageSize = 6 }: NewsListPro
 	return (
 		<section className={styles.news_list}>
 			<div className={styles.news_list_grid}>{renderList()}</div>
-
-			{!isLoading && items.length === 0 && <p className={styles.news_list_empty}>{t("empty")}</p>}
 		</section>
 	);
 };

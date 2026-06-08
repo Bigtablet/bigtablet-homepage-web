@@ -5,10 +5,11 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
 import { useSuspenseNewsPageQuery } from "src/features/news/query/news.query";
 import AsyncBoundary from "src/shared/ui/async-boundary";
+import EmptyState from "src/shared/ui/empty-state";
 import ErrorFallback from "src/shared/ui/error-fallback";
+import ListPageLayout from "src/shared/ui/list-page-layout";
 import NewsListSection from "src/widgets/news/list";
 import NewsListSkeleton from "src/widgets/news/list/skeleton";
-import styles from "./style.module.scss";
 
 const PAGE_SIZE = 6;
 
@@ -17,6 +18,7 @@ const NewsContent = () => {
 	const router = useRouter();
 	const pathname = usePathname();
 	const searchParams = useSearchParams();
+	const t = useTranslations("news");
 
 	const page = Math.max(1, Number(searchParams.get("page") ?? 1));
 
@@ -33,15 +35,19 @@ const NewsContent = () => {
 	};
 
 	return (
-		<section className={styles.news_page}>
-			<NewsListSection items={items} locale={locale} isLoading={false} pageSize={PAGE_SIZE} />
+		<ListPageLayout>
+			{items.length === 0 ? (
+				<EmptyState message={t("empty")} />
+			) : (
+				<>
+					<NewsListSection items={items} locale={locale} isLoading={false} pageSize={PAGE_SIZE} />
 
-			{totalPages > 1 && (
-				<div className={styles.news_page_pagination}>
-					<Pagination page={page} totalPages={totalPages} onChange={handleChangePage} />
-				</div>
+					{totalPages > 1 && (
+						<Pagination page={page} totalPages={totalPages} onChange={handleChangePage} />
+					)}
+				</>
 			)}
-		</section>
+		</ListPageLayout>
 	);
 };
 

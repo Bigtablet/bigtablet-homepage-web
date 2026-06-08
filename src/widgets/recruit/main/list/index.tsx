@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { memo, useMemo } from "react";
 import type { RecruitSearchFilters } from "src/entities/recruit/api/recruit.api";
 import type { RecruitCard } from "src/entities/recruit/schema/recruit.schema";
@@ -8,6 +9,7 @@ import {
 	useRecruitSearchQuery,
 } from "src/features/recruit/query/recruit.query";
 import useDeferredLoading from "src/shared/hooks/use-deferred-loading";
+import EmptyState from "src/shared/ui/empty-state";
 import { SkeletonList } from "src/shared/ui/skeleton/list";
 
 import styles from "./style.module.scss";
@@ -45,6 +47,7 @@ const RequestCard = memo(({ item }: { item: RecruitCard }) => {
 RequestCard.displayName = "RequestCard";
 
 const RequestList = ({ filters }: Props) => {
+	const t = useTranslations("recruit");
 	const allEmpty =
 		isEmpty(filters.keyword) &&
 		isEmpty(filters.job) &&
@@ -77,13 +80,9 @@ const RequestList = ({ filters }: Props) => {
 		<div className={styles.request_list}>
 			{showSkeleton && SKELETON_KEYS.map((key) => <SkeletonList key={key} />)}
 
-			{!isLoading && isError && <div className={styles.request_list_empty}>{error?.message}</div>}
+			{!isLoading && isError && <EmptyState message={error?.message ?? ""} />}
 
-			{!isLoading && !isError && data.length === 0 && (
-				<div className={styles.request_list_empty}>
-					<p>공고가 없습니다.</p>
-				</div>
-			)}
+			{!isLoading && !isError && data.length === 0 && <EmptyState message={t("empty")} />}
 
 			{!isLoading && !isError && data.map((item) => <RequestCard key={item.idx} item={item} />)}
 		</div>

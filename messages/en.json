@@ -27,6 +27,7 @@
 		"notFoundDescription": "The page you requested does not exist\nor has been moved."
 	},
 	"recruit": {
+		"empty": "No job postings yet.",
 		"detail": {
 			"loading": "Loading…",
 			"loadFailed": "Failed to load.",

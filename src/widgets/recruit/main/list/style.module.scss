@@ -1,23 +1,12 @@
 @use "@bigtablet/design-system/scss/token" as token;
 
+/* flex:1 — ListPageLayout 본문 잔여 높이를 채워 목록은 상단 고정, EmptyState는 중앙 정렬 */
 .request_list {
   @include token.flex_column;
+  flex: 1;
   width: 100%;
   margin: 0 auto;
   gap: token.$spacing_sm;
-}
-
-/* empty/loading 자체에 min-height — list 전체는 자연 높이 유지해 viewport 초과 방지 */
-.request_list_loading,
-.request_list_empty {
-  @include token.flex_column;
-  align-items: center;
-  justify-content: center;
-  min-height: 240px;
-  text-align: center;
-  font-size: token.$font_size_md;
-  color: token.$text_subtle;
-  padding: token.$spacing_2xl 0;
 }
 
 .request_item {

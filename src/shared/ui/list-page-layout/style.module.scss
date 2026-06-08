@@ -1,0 +1,18 @@
+@use "@bigtablet/design-system/scss/token" as token;
+
+.list_page {
+	@include token.flex_column;
+	align-items: center;
+	justify-content: flex-start; // 콘텐츠 상단 고정 — 데이터 개수와 무관하게 시작 위치 유지
+	flex: 1; // 가용 높이 채워 footer 하단 고정
+	gap: token.$spacing_3xl; // header↔list, list↔pagination 간 일관 간격
+	/* 유동폭 + 상한: 작은 화면은 90%를 채워 넓게, 큰 화면(>~1422px)은 1280으로 제한 */
+	width: min(90%, 1280px);
+	margin: 0 auto;
+	padding: token.$spacing_3xl 0 token.$spacing_5xl;
+
+	@include token.mobile {
+		gap: token.$spacing_xl;
+		padding: token.$spacing_xl 0 token.$spacing_3xl;
+	}
+}

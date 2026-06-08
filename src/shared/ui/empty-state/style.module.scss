@@ -1,0 +1,14 @@
+@use "@bigtablet/design-system/scss/token" as token;
+
+.empty_state {
+	@include token.flex_column;
+	align-items: center;
+	justify-content: center;
+	flex: 1;
+	width: 100%;
+	min-height: 240px; // flex 체인이 끊겨도 최소 높이 보장
+	@include token.body_regular;
+	font-size: token.$font_size_lg;
+	color: token.$text_subtle;
+	text-align: center;
+}

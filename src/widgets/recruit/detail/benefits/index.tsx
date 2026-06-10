@@ -3,7 +3,7 @@
  * Recruit benefits section component.
  */
 
-import { BENEFITS } from "../constants";
+import { BENEFITS } from "src/entities/recruit/constants/recruit-detail.constants";
 import styles from "../style.module.scss";
 
 /**

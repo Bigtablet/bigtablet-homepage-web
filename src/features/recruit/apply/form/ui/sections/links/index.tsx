@@ -27,7 +27,7 @@ export const LinksSection = ({ form }: Props) => {
 					type="url"
 					placeholder="https://github.com/..."
 					error={!!errors.attachment1}
-					helperText={errors.attachment1?.message as string}
+					supportingText={errors.attachment1?.message as string}
 					{...register("attachment1")}
 				/>
 				<TextField
@@ -35,7 +35,7 @@ export const LinksSection = ({ form }: Props) => {
 					type="url"
 					placeholder="https://www.notion.so/..."
 					error={!!errors.attachment2}
-					helperText={errors.attachment2?.message as string}
+					supportingText={errors.attachment2?.message as string}
 					{...register("attachment2")}
 				/>
 				<TextField
@@ -43,7 +43,7 @@ export const LinksSection = ({ form }: Props) => {
 					type="url"
 					placeholder="https://portfolio.site/..."
 					error={!!errors.attachment3}
-					helperText={errors.attachment3?.message as string}
+					supportingText={errors.attachment3?.message as string}
 					{...register("attachment3")}
 				/>
 			</div>

@@ -1,6 +1,6 @@
 "use client";
 
-import { Select, TextField } from "@bigtablet/design-system";
+import { Dropdown, TextField } from "@bigtablet/design-system";
 import { useEffect } from "react";
 import { Controller } from "react-hook-form";
 import { ApplyEducationLevel } from "src/entities/recruit/schema/recruit.schema";
@@ -44,12 +44,11 @@ export const EducationSection = ({ form }: Props) => {
 					control={control}
 					name="educationLevel"
 					render={({ field }) => (
-						<Select
+						<Dropdown
 							size="sm"
 							placeholder="최종 학력 선택"
 							value={field.value}
 							onChange={(v) => field.onChange(v)}
-							fullWidth
 							options={[
 								{ value: "GED", label: "검정고시" },
 								{ value: "HIGH_SCHOOL", label: "고등학교 졸업" },
@@ -65,7 +64,7 @@ export const EducationSection = ({ form }: Props) => {
 						size="sm"
 						placeholder="학교명"
 						error={!!errors.schoolName}
-						helperText={errors.schoolName?.message as string}
+						supportingText={errors.schoolName?.message as string}
 						{...register("schoolName")}
 					/>
 				)}
@@ -87,7 +86,7 @@ export const EducationSection = ({ form }: Props) => {
 								onChange={field.onChange}
 								placeholder="YYYY.MM"
 								error={!!errors.admissionYear}
-								helperText={errors.admissionYear?.message as string}
+								supportingText={errors.admissionYear?.message as string}
 							/>
 						)}
 					/>
@@ -105,7 +104,7 @@ export const EducationSection = ({ form }: Props) => {
 									onChange={field.onChange}
 									placeholder="입학년도"
 									error={!!errors.admissionYear}
-									helperText={errors.admissionYear?.message as string}
+									supportingText={errors.admissionYear?.message as string}
 								/>
 							)}
 						/>
@@ -119,7 +118,7 @@ export const EducationSection = ({ form }: Props) => {
 									onChange={field.onChange}
 									placeholder="졸업년도"
 									error={!!errors.graduationEnd}
-									helperText={errors.graduationEnd?.message as string}
+									supportingText={errors.graduationEnd?.message as string}
 								/>
 							)}
 						/>
@@ -129,7 +128,7 @@ export const EducationSection = ({ form }: Props) => {
 						size="sm"
 						placeholder="계열 (학과)"
 						error={!!errors.department}
-						helperText={errors.department?.message as string}
+						supportingText={errors.department?.message as string}
 						{...register("department")}
 					/>
 				</>

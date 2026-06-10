@@ -80,10 +80,10 @@ const GlobalError = ({ error: _error, reset }: { error: Error; reset: () => void
 				{isMaxRetry && <p className={styles.error_max}>{t("retryExceeded")}</p>}
 
 				<div className={styles.error_actions}>
-					<Button variant="primary" onClick={handleRetry} disabled={isCooling || isMaxRetry}>
+					<Button variant="filled" onClick={handleRetry} disabled={isCooling || isMaxRetry}>
 						{retryLabel}
 					</Button>
-					<Button variant="secondary" onClick={handleHome}>
+					<Button variant="tonal" onClick={handleHome}>
 						{t("goHome")}
 					</Button>
 				</div>

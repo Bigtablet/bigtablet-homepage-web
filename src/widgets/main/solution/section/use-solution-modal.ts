@@ -146,7 +146,7 @@ export const useSolutionModal = (products: Product[]) => {
 			body.style.left = prev.left;
 			body.style.right = prev.right;
 			body.style.width = prev.width;
-			window.scrollTo(0, scrollY);
+			window.scrollTo({ top: scrollY, behavior: "instant" as ScrollBehavior });
 		};
 	}, [isOpen]);
 

@@ -159,7 +159,7 @@ const TalentFormModal = ({ open, onClose }: Props) => {
 					/>
 
 					<div className={styles.actions}>
-						<Button variant="tonal" onClick={onClose} disabled={isFormBusy}>
+						<Button type="button" variant="tonal" onClick={onClose} disabled={isFormBusy}>
 							취소
 						</Button>
 						<Button variant="filled" type="submit" disabled={isFormBusy}>

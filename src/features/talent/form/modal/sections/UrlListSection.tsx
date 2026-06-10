@@ -52,6 +52,7 @@ export const UrlListSection = ({
 
 					{index > 0 && (
 						<Button
+							type="button"
 							variant="text"
 							danger
 							size="sm"
@@ -64,7 +65,13 @@ export const UrlListSection = ({
 				</div>
 			))}
 
-			<Button variant="tonal" size="sm" onClick={() => append("")} disabled={isFormBusy}>
+			<Button
+				type="button"
+				variant="tonal"
+				size="sm"
+				onClick={() => append("")}
+				disabled={isFormBusy}
+			>
 				+ URL 추가
 			</Button>
 		</div>

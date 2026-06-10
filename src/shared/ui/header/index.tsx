@@ -106,7 +106,8 @@ const Header = () => {
 					<Link href="/recruit" onClick={closeMenu}>
 						Recruit
 					</Link>
-					<fieldset className={styles.locale_switch} aria-label="Language">
+					{/* biome-ignore lint/a11y/useSemanticElements: 세그먼트 컨트롤 — <fieldset>은 legend 없이 일부 스크린리더가 라벨을 못 읽고 flex 컨테이너로 쓸 때 레이아웃 버그가 있어, role="group" + aria-label 패턴을 사용한다 */}
+					<div className={styles.locale_switch} role="group" aria-label="Language">
 						<button
 							type="button"
 							className={`${styles.locale_option} ${locale === "ko" ? styles.locale_option_active : ""}`}
@@ -123,7 +124,7 @@ const Header = () => {
 						>
 							EN
 						</button>
-					</fieldset>
+					</div>
 				</nav>
 
 				{menuOpen && (

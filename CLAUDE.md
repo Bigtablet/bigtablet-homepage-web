@@ -173,6 +173,7 @@ src/
   | `Hotfix` | 급히 수정/삭제/추가 되어야 할 이슈 |
   | `quality-report` | 코드 품질 리포트 |
   | `Suggestion` | 제안 / 의견 / 질문 |
+
 - **리뷰 반영**: 해당 PR 브랜치에 직접 추가 커밋 (별도 브랜치 생성 금지). **develop → main PR 의 리뷰도 `develop` 에 직접 커밋**
 - **리뷰 답글 멘션** (⚠️ 필수): 봇 리뷰 코멘트에 답글/스레드 처리 시 **해당 코멘트를 작성한 봇을 멘션**한다.
   - `gemini-code-assist` 가 단 리뷰 → 답글에 `@gemini-code-assist` 멘션

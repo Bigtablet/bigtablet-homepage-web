@@ -3,7 +3,7 @@
 /* 채용 상세 섹션 위젯 공용 스타일 — 섹션 간 공유 클래스(section/list/notice_text)가 있어 한 파일로 관리 */
 
 .recruit_detail_header {
-  margin-bottom: 28px; /* DS 토큰 부재(24/32 사이) — 헤더 하단 간격 */
+  margin-bottom: 28px; /* DS 토큰 부재(24/32 사이): 헤더 하단 간격 */
   border-bottom: 1px solid token.$color_border_subtle;
   padding-bottom: token.$spacing_16;
 }
@@ -31,7 +31,7 @@
 .chip {
   display: inline-flex;
   align-items: center;
-  height: 28px; /* DS 토큰 부재 — chip/datebar 높이 정렬용 고정값 */
+  height: 28px; /* DS 토큰 부재: chip/datebar 높이 정렬용 고정값 */
   padding: 0 token.$spacing_12;
   border-radius: token.$radius_full;
   background: token.$color_bg_solid;
@@ -47,7 +47,7 @@
   color: token.$color_text_caption;
   font-size: token.$font_size_14;
   white-space: nowrap;
-  height: 28px; /* DS 토큰 부재 — chip 과 동일 높이로 정렬 */
+  height: 28px; /* DS 토큰 부재: chip 과 동일 높이로 정렬 */
 }
 
 .recruit_detail_section {
@@ -75,8 +75,8 @@
 .recruit_detail_process {
   font-size: token.$font_size_16;
   color: token.$color_text_body;
-  letter-spacing: 0.02em;
-  word-spacing: 2px;
+  letter-spacing: 0.02em; /* DS 토큰 부재: 절차 텍스트 자간 미세 조정 */
+  word-spacing: 2px; /* DS 토큰 부재: 화살표 구분 가독성용 어절 간격 */
   white-space: pre-line;
 }
 

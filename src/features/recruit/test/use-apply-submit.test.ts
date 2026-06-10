@@ -114,12 +114,9 @@ describe("useApplySubmit", () => {
 
 			await act(() => result.current.onSubmit());
 
-			expect(mockMutateAsync).toHaveBeenCalledWith(
-				expect.objectContaining({ graduationYear: "2024" }),
-			);
-			expect(mockMutateAsync).toHaveBeenCalledWith(
-				expect.not.objectContaining({ graduationEnd: expect.anything() }),
-			);
+			const payload = mockMutateAsync.mock.calls[0]?.[0];
+			expect(payload).toMatchObject({ graduationYear: "2024" });
+			expect(payload).not.toHaveProperty("graduationEnd");
 		});
 
 		it("mutation 성공 시 success 토스트를 표시하고 /recruit으로 이동한다", async () => {

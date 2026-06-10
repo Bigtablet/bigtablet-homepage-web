@@ -22,7 +22,7 @@ const ApplyForm = ({ form, email, onSubmit }: ApplyFormProps) => {
 	const { showAlert } = useAlert();
 	const Toast = useToast();
 
-	/* 업로드 실패(파일 검증/네트워크) 시 toast 후 빈 문자열 반환 — 필드는 비워져 required 검증이 다시 안내 */
+	/* 업로드 실패(파일 검증/네트워크) 시 toast 표시 후 빈 문자열 반환. 핸들러는 빈 값이면 field 를 갱신하지 않아 기존 업로드 값을 보존한다. */
 	const safeUpload = async (file: File): Promise<string> => {
 		try {
 			return await upload(file);

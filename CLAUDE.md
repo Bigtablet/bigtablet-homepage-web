@@ -162,6 +162,10 @@ src/
   ```
 - **PR 제목 = 브랜치명** (설명문 아님, 예: `fix/detail-page-pagination`)
 - **리뷰 반영**: 해당 PR 브랜치에 직접 추가 커밋 (별도 브랜치 생성 금지). **develop → main PR 의 리뷰도 `develop` 에 직접 커밋**
+- **리뷰 답글 멘션** (⚠️ 필수): 봇 리뷰 코멘트에 답글/스레드 처리 시 **해당 코멘트를 작성한 봇을 멘션**한다.
+  - `gemini-code-assist` 가 단 리뷰 → 답글에 `@gemini-code-assist` 멘션
+  - `coderabbitai` 가 단 리뷰 → 답글에 `@coderabbitai` 멘션
+  - 멘션으로 봇이 재확인/재리뷰하도록 트리거한다. 답글은 한 줄로 "무엇을 바꿨는지(또는 왜 안 바꿨는지)" 명시 후 스레드 resolve.
 
 ### Release 규칙 (⚠️ 필수 준수)
 

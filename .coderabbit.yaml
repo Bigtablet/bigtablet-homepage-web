@@ -1,0 +1,90 @@
+# yaml-language-server: $schema=https://storage.googleapis.com/coderabbit_public_assets/schema.v2.json
+#
+# CodeRabbit 설정 — Bigtablet Homepage Web 컨벤션 기준.
+# 규칙 출처: CLAUDE.md, .claude/docs/{code-style,design-system,react-patterns,git-workflow}.md
+# 리뷰는 한국어, 머지 차단은 CI 게이트가 담당(코드래빗은 권고만).
+
+language: "ko-KR"
+
+tone_instructions: >-
+  한국어로 리뷰하라. 사실·근거 위주로 간결하게. 불필요한 인사·칭찬·동의 요청 같은
+  트래킹성 문구는 쓰지 마라. 코드/커밋 메시지/PR 제목 인용은 원문 그대로 둔다.
+
+early_access: false
+
+reviews:
+  profile: "chill" # Gemini 리뷰와 병행하므로 nitpick 폭주 방지. 더 깐깐히 원하면 "assertive".
+  request_changes_workflow: false # 코드래빗이 머지를 막지 않음 — CI/사람이 게이트.
+  high_level_summary: true
+  poem: false
+  review_status: true
+  collapse_walkthrough: false
+  changed_files_summary: true
+  sequence_diagrams: false
+
+  auto_review:
+    enabled: true
+    drafts: false # Draft PR 은 리뷰 안 함.
+    base_branches:
+      - "develop" # 일반 PR base — 기본 브랜치가 아니므로 명시해야 자동 리뷰됨.
+      - "main" # 릴리스 PR base
+
+  # 리뷰 대상에서 제외할 경로(생성물·락파일·빌드 산출물).
+  path_filters:
+    - "!**/pnpm-lock.yaml"
+    - "!**/.next/**"
+    - "!**/coverage/**"
+    - "!**/*.min.css"
+    - "!**/*.snap"
+    - "!**/node_modules/**"
+
+  path_instructions:
+    - path: "src/**/*.{ts,tsx}"
+      instructions: >-
+        FSD 레이어 의존 규칙을 강제하라. import 방향은 app → widgets → features →
+        entities → shared 단방향이다. 역방향 import(예: shared 가 entities 이상을
+        import)와 같은 레이어 간 peer-slice import(예: entities/A → entities/B)는 지적하라.
+        Query/Mutation 분리: useQuery/useSuspenseQuery 는 query/ 폴더, useMutation 은
+        mutation/ 폴더, 비즈니스 로직 훅(use-*.ts)은 model/ 폴더에 둔다.
+        모든 컴포넌트·함수에 JSDoc(@description) 이 있는지 확인하고 없으면 지적하라.
+        정적 JSX·데이터는 모듈 스코프로 hoist 되어 매 렌더 재생성되지 않게 하라.
+        2곳 이상 반복되는 로직은 util/hook 추출을 제안하라(중복 금지, 단일 출처 원칙).
+        i18n: 사용자 노출 문자열은 next-intl(useTranslations/getTranslations + messages/
+        {ko,en}.json)을 통해야 한다. JSX·placeholder·label 등에 하드코딩된 한국어/영어
+        문자열은 지적하라(에러 메시지 유틸 등 명백한 비노출 문자열은 예외).
+        async 서버 컴포넌트를 "use client" 트리 안에서 렌더하지 마라(getTranslations 등
+        서버 전용 API 가 클라이언트에서 깨진다).
+        인증·결제·데이터 변경 같은 critical API 호출은 반드시 await 하라 — fire-and-forget
+        (await 없는 비동기 호출)은 지적하라.
+        보안: 입력은 서버에서 검증하고, 출력은 인코딩해 XSS 를 막고, 민감정보를 클라이언트에
+        노출하지 마라.
+        React: 서버/클라이언트 컴포넌트 경계를 적절히 두고("use client" 남용 금지),
+        데이터 패칭은 React Query 패턴을, 로딩 상태는 skeleton UI 패턴을 따르라.
+        컴포넌트 파일명은 index.tsx 여야 한다.
+    - path: "src/**/*.module.scss"
+      instructions: >-
+        하드코딩된 값(색상·간격·radius·폰트 등)은 금지다. 반드시 디자인 시스템 토큰
+        (@bigtablet/design-system, 로컬 진입점 @use "ds-token" as token)을 써야 한다.
+        하드코딩 리터럴(#hex, px 매직넘버 등)을 발견하면 대응 토큰 사용을 제안하라.
+        단, 디자인 시스템 팔레트에 정확히 대응하는 토큰이 없는 브랜드 그라데이션·스크림
+        색상은 리터럴이 허용된다(주석으로 사유가 명시된 경우).
+        반응형은 token 의 compact/medium/expanded/large(또는 mobile/tablet/...) 믹스인을
+        써야 한다 — 매직넘버 media query 는 지적하라.
+        SCSS 클래스명은 snake_case 여야 한다.
+
+  tools:
+    biome:
+      enabled: true # 프로젝트 린터/포매터(biome 2.4.x)와 정합.
+    gitleaks:
+      enabled: true # 시크릿 유출 스캔.
+
+chat:
+  auto_reply: true
+
+knowledge_base:
+  code_guidelines:
+    enabled: true
+    filePatterns:
+      - "CLAUDE.md"
+      - ".claude/docs/**"
+      - "**/README.md"

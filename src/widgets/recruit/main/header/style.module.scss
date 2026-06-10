@@ -1,5 +1,11 @@
 @use "ds-token" as token;
 
+/* loading.tsx 에서 실물 헤더를 감싸는 래퍼 — 하이드레이션 전 입력 차단 (시각은 그대로 노출) */
+.recruit_header_loading {
+	width: 100%;
+	pointer-events: none;
+}
+
 .recruit_header {
 	@include token.flex_column;
 	width: 100%;
@@ -67,4 +73,21 @@
 .recruit_search_select {
 	width: auto;
 	min-width: 120px;
+}
+
+/* 모바일: 검색필드 풀폭(1행) → 드롭다운 3개 균등(1행) → 버튼 풀폭(1행) */
+@include token.compact {
+	.recruit_search_field {
+		flex: 1 1 100%;
+	}
+
+	.recruit_search_select {
+		flex: 1 1 0;
+		min-width: 0;
+	}
+
+	.recruit_search_button {
+		flex: 1 1 100%;
+		width: 100%;
+	}
 }

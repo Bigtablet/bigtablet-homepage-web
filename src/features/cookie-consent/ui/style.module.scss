@@ -1,30 +1,30 @@
-@use "@bigtablet/design-system/scss/token" as token;
+@use "ds-token" as token;
 
 .banner {
 	position: fixed;
-	bottom: token.$spacing_2xl;
-	right: token.$spacing_2xl;
-	z-index: token.$z_modal;
+	bottom: token.$spacing_24;
+	right: token.$spacing_24;
+	z-index: token.$z_level5;
 	width: 360px;
-	background: token.$color_background;
+	background: token.$color_bg_solid;
 	border-radius: token.$radius_lg;
-	box-shadow: token.$shadow_lg;
-	padding: token.$spacing_xl token.$spacing_2xl;
+	box-shadow: token.$elevation_level3;
+	padding: token.$spacing_20 token.$spacing_24;
 	@include token.flex_column;
-	gap: token.$spacing_lg;
+	gap: token.$spacing_16;
 	animation: slide_up token.$transition_base;
 }
 
 .message {
-	@include token.body_regular;
-	color: token.$text_strong;
-	line-height: token.$line_height_relaxed;
+	@include token.body_medium;
+	color: token.$color_text_heading;
+	line-height: 1.75;
 	/* 한글 단어 중간 줄바꿈 방지 */
 	word-break: keep-all;
 	overflow-wrap: break-word;
 
 	a {
-		color: token.$color_primary;
+		color: token.$color_brand_primary;
 		text-decoration: underline;
 		font-weight: token.$font_weight_medium;
 		transition: opacity token.$transition_fast;
@@ -38,18 +38,18 @@
 .actions {
 	display: flex;
 	justify-content: flex-end;
-	gap: token.$spacing_md;
+	gap: token.$spacing_12;
 }
 
 .button_accept {
-	padding: token.$spacing_sm token.$spacing_xl;
+	padding: token.$spacing_8 token.$spacing_20;
 	border-radius: token.$radius_md;
 	border: none;
 	cursor: pointer;
-	@include token.text_sm;
-	font-weight: token.$font_weight_semibold;
-	background: token.$color_background_primary;
-	color: token.$text_inverse;
+	@include token.body_small;
+	font-weight: token.$font_weight_semi_bold;
+	background: token.$color_base_navy_600;
+	color: token.$color_text_inverse;
 	transition:
 		opacity token.$transition_fast,
 		transform token.$transition_fast;
@@ -61,31 +61,31 @@
 }
 
 .button_decline {
-	padding: token.$spacing_sm token.$spacing_xl;
+	padding: token.$spacing_8 token.$spacing_20;
 	border-radius: token.$radius_md;
-	border: 1px solid token.$color_border_light;
+	border: 1px solid token.$color_border_subtle;
 	cursor: pointer;
-	@include token.text_sm;
+	@include token.body_small;
 	font-weight: token.$font_weight_medium;
 	background: transparent;
-	color: token.$text_subtle;
+	color: token.$color_text_caption;
 	transition:
 		background token.$transition_fast,
 		transform token.$transition_fast;
 
 	&:hover {
-		background: token.$color_background_secondary;
+		background: token.$color_bg_solid_dim;
 		transform: translateY(-1px);
 	}
 }
 
-@include token.mobile {
+@include token.compact {
 	.banner {
-		bottom: token.$spacing_md;
-		right: token.$spacing_md;
-		left: token.$spacing_md;
+		bottom: token.$spacing_12;
+		right: token.$spacing_12;
+		left: token.$spacing_12;
 		width: auto;
-		padding: token.$spacing_lg;
+		padding: token.$spacing_16;
 	}
 
 	.actions {

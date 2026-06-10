@@ -82,7 +82,7 @@ export const PortfolioSection = ({
 							placeholder="https://portfolio.example.com"
 							disabled={isFormBusy}
 							error={!!errors.portfolioUrl}
-							helperText={errors.portfolioUrl?.message}
+							supportingText={errors.portfolioUrl?.message}
 							fullWidth
 						/>
 					)}

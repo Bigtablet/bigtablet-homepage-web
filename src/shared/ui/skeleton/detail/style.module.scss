@@ -1,15 +1,15 @@
-@use "@bigtablet/design-system/scss/token" as token;
+@use "ds-token" as token;
 
 .detail_skeleton {
   @include token.flex_column;
   width: 100%;
-  gap: token.$spacing_md;
+  gap: token.$spacing_12;
   animation: detail_skeleton_pulse 1.5s ease-in-out infinite;
 }
 
 .detail_skeleton_line {
   height: 1rem;
-  background: token.$color_background_secondary;
+  background: token.$color_bg_solid_dim;
   border-radius: token.$radius_sm;
 }
 
@@ -21,20 +21,20 @@
 .meta {
   height: 0.875rem;
   width: 40%;
-  margin-bottom: token.$spacing_md;
+  margin-bottom: token.$spacing_12;
 }
 
 .detail_skeleton_thumb {
   width: 100%;
   aspect-ratio: 16 / 9;
-  background: token.$color_background_secondary;
+  background: token.$color_bg_solid_dim;
   border-radius: token.$radius_md;
-  margin-bottom: token.$spacing_lg;
+  margin-bottom: token.$spacing_16;
 }
 
 .detail_skeleton_body {
   @include token.flex_column;
-  gap: token.$spacing_sm;
+  gap: token.$spacing_8;
 }
 
 .short {

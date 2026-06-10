@@ -1,4 +1,4 @@
-@use "@bigtablet/design-system/scss/token" as token;
+@use "ds-token" as token;
 
 .problem {
   @include token.flex_between;
@@ -7,8 +7,8 @@
   max-width: 1200px;
   margin: 0 auto;
   white-space: pre-line;
-  gap: token.$spacing_2xl;
-  color: token.$text_normal;
+  gap: token.$spacing_24;
+  color: token.$color_text_body;
 }
 
 /* 기본은 invisible — IntersectionObserver 가 is_visible 부여하면 fade-up 시작.
@@ -40,38 +40,38 @@
 }
 
 .problem_title {
-  @include token.heading_2;
+  @include token.heading_medium_bold;
   flex: 0 0 35%;
-  font-size: token.$font_size_4xl;
-  color: token.$text_strong;
-  line-height: token.$line_height_snug;
+  font-size: token.$font_size_40;
+  color: token.$color_text_heading;
+  line-height: 1.3;
 }
 
 .problem_description {
-  @include token.body_medium;
+  @include token.body_medium_medium;
   flex: 0 0 55%;
-  font-size: token.$font_size_xl;
-  color: token.$text_normal;
-  line-height: token.$line_height_relaxed;
+  font-size: token.$font_size_20;
+  color: token.$color_text_body;
+  line-height: 1.75;
 }
 
-@include token.mobile {
+@include token.compact {
   .problem {
     @include token.flex_column;
     width: 88%;
     text-align: left;
-    gap: token.$spacing_xl;
+    gap: token.$spacing_20;
   }
 
   .problem_title {
-    font-size: token.$font_size_2xl;
-    line-height: token.$line_height_snug;
+    font-size: token.$font_size_24;
+    line-height: 1.3;
     flex: 0 0 auto;
   }
 
   .problem_description {
-    font-size: token.$font_size_lg;
-    line-height: token.$line_height_relaxed;
+    font-size: token.$font_size_18;
+    line-height: 1.75;
     flex: 0 0 auto;
   }
 }

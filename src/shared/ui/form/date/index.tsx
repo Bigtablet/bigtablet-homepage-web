@@ -14,7 +14,7 @@ type Props = {
 	placeholder?: string;
 	disabled?: boolean;
 	error?: boolean;
-	helperText?: string;
+	supportingText?: string;
 };
 
 const toDate = (value?: string) => {
@@ -53,7 +53,7 @@ const MonthPickerField = ({
 	placeholder,
 	disabled,
 	error,
-	helperText,
+	supportingText,
 }: Props) => {
 	return (
 		<div className={styles.month_picker}>
@@ -71,7 +71,7 @@ const MonthPickerField = ({
 						placeholder={placeholder ?? "YYYY.MM"}
 						size="sm"
 						error={error}
-						helperText={helperText}
+						supportingText={supportingText}
 					/>
 				}
 				className={styles.month_picker_input}

@@ -1,10 +1,11 @@
-@use "@bigtablet/design-system/scss/token" as token;
+@use "ds-token" as token;
 
 .profile {
   @include token.flex_column;
-  color: token.$text_normal;
-  gap: token.$spacing_sm;
-  padding: token.$spacing_lg;
+  color: token.$color_text_body;
+  gap: token.$spacing_8;
+  /* 상단 패딩 0 — 좌측 이미지 top을 우측 Q&A 카드 top과 정렬(좌우 배치 시) */
+  padding: 0 token.$spacing_16 token.$spacing_16;
 }
 
 .profile_image {
@@ -13,7 +14,7 @@
   aspect-ratio: 1 / 1.25;
   border-radius: token.$radius_md;
   overflow: hidden;
-  background: token.$color_background_secondary;
+  background: token.$color_bg_solid_dim;
 
   img {
     object-fit: cover;
@@ -26,13 +27,13 @@
 .profile_image_fallback {
   inline-size: 100%;
   block-size: 100%;
-  background: token.$color_border_light;
+  background: token.$color_border_subtle;
 }
 
 .profile_content {
   @include token.flex_column;
-  gap: token.$spacing_sm;
-  color: token.$text_strong;
+  gap: token.$spacing_8;
+  color: token.$color_text_heading;
 }
 
 .profile_info {
@@ -41,28 +42,28 @@
 }
 
 .profile_position {
-  @include token.body_medium;
-  font-size: token.$font_size_sm;
-  color: token.$text_subtle;
+  @include token.body_medium_medium;
+  font-size: token.$font_size_14;
+  color: token.$color_text_caption;
 }
 
 .profile_name {
-  @include token.heading_2;
-  font-size: token.$font_size_2xl;
-  color: token.$text_strong;
+  @include token.heading_medium_bold;
+  font-size: token.$font_size_24;
+  color: token.$color_text_heading;
 }
 
 .profile_description {
-  @include token.body_regular;
-  font-size: token.$font_size_md;
-  color: token.$text_normal;
-  line-height: token.$line_height_relaxed;
+  @include token.body_medium;
+  font-size: token.$font_size_16;
+  color: token.$color_text_body;
+  line-height: 1.75;
 }
 
 .profile_links {
   display: grid;
   grid-auto-flow: column;
-  gap: token.$spacing_sm;
+  gap: token.$spacing_8;
   justify-content: start;
 }
 
@@ -70,37 +71,37 @@
   inline-size: 28px;
   block-size: 28px;
   border-radius: token.$radius_sm;
-  background: token.$text_strong;
-  color: token.$text_inverse;
+  background: token.$color_text_heading;
+  color: token.$color_text_inverse;
   display: grid;
   place-items: center;
   text-decoration: none;
 
-  @include token.body_medium;
-  font-size: token.$font_size_xs;
+  @include token.body_medium_medium;
+  font-size: token.$font_size_12;
   transition: background token.$transition_base;
 
   &:hover {
-    background: token.$color_primary;
+    background: token.$color_brand_primary;
   }
 }
 
-@include token.mobile {
+@include token.compact {
   .profile {
-    padding: token.$spacing_md;
+    padding: token.$spacing_12;
   }
 
   .profile_name {
-    font-size: token.$font_size_xl;
+    font-size: token.$font_size_20;
   }
 
   .profile_description {
-    font-size: token.$font_size_base;
+    font-size: token.$font_size_15;
   }
 
   .profile_link {
     inline-size: 24px;
     block-size: 24px;
-    font-size: token.$font_size_xs;
+    font-size: token.$font_size_12;
   }
 }

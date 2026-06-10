@@ -25,7 +25,7 @@ const ErrorFallback = ({ reset, backHref, backLabel }: ErrorFallbackProps) => {
 			<p className={styles.error_fallback_desc}>{t("description")}</p>
 
 			<div className={styles.error_fallback_actions}>
-				<Button variant="primary" onClick={() => reset()}>
+				<Button variant="filled" onClick={() => reset()}>
 					{t("retry")}
 				</Button>
 

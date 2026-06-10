@@ -33,10 +33,10 @@ const NotFoundPage = () => {
 				<p className={styles.desc}>{t("notFoundDescription")}</p>
 
 				<div className={styles.actions}>
-					<Button variant="primary" onClick={handleHome}>
+					<Button variant="filled" onClick={handleHome}>
 						{t("goHome")}
 					</Button>
-					<Button variant="secondary" onClick={handleBack}>
+					<Button variant="tonal" onClick={handleBack}>
 						{t("goBack")}
 					</Button>
 				</div>

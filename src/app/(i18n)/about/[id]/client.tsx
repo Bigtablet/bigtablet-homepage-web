@@ -32,6 +32,10 @@ const MemberDetailClient = () => {
 
 	return (
 		<section className={styles.member_detail} aria-label="Team member detail">
+			<div className={styles.member_detail_top}>
+				<BackLink href="/about#team" label={t("common.backToTeam")} />
+			</div>
+
 			<div className={styles.member_detail_inner}>
 				<Profile
 					name={name}
@@ -42,8 +46,6 @@ const MemberDetailClient = () => {
 				/>
 				<Interview items={qaList} />
 			</div>
-
-			<BackLink href="/about#team" label={t("common.backToTeam")} />
 		</section>
 	);
 };

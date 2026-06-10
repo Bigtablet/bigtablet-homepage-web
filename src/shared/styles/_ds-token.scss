@@ -1,0 +1,91 @@
+// =============================================================================
+// DS 3.1 토큰 진입점 (로컬 shim)
+// -----------------------------------------------------------------------------
+// 문제: @bigtablet/design-system 의 scss/token 은 colors/elevation 서브모듈을
+//   @forward 하는데, 두 모듈은 top-level 에 `:root { --bt-* }` / `[data-theme="dark"]`
+//   CSS 를 emit 한다. CSS Modules(*.module.scss)는 모듈마다 별도 컴파일되어 매번
+//   재emit → (1) 48× 중복, (2) `[data-theme="dark"]` 가 "not pure" 빌드 에러.
+//   DS 3.1.1 에는 emit 을 끄는 !default 플래그가 없고, exports 가 서브패스를
+//   막아 colors 만 선택 제외할 수도 없다.
+//
+// 해법: CSS 를 emit 하지 않는 서브모듈(spacing/typography/... — 주석뿐인 layout/
+//   motion 포함)은 그대로 @forward 해 멤버를 노출하고, CSS 를 emit 하는
+//   colors/elevation 의 멤버만 var(--bt-*) 별칭으로 재선언한다(선언은 CSS 출력 0).
+//   실제 :root / [data-theme] 정의는 layout.tsx 의
+//   `import "@bigtablet/design-system/style.css"` 가 전역에서 한 번 공급한다.
+//
+// 서브모듈 직접 import 는 next.config.mjs sassOptions.includePaths 에 추가한
+//   DS dist/styles 경로(심링크)로 해석된다.
+// =============================================================================
+
+// ── CSS 를 emit 하지 않는 모듈 — 멤버 그대로 forward ─────────────────────────
+@forward "spacing";
+@forward "typography";
+@forward "radius";
+@forward "breakpoints";
+@forward "opacity";
+@forward "z-index";
+@forward "border-width";
+@forward "layout"; // top-level 은 주석뿐 (flex_*/hover_*/glass_* 믹스인)
+@forward "motion"; // top-level 은 주석뿐 ($transition_*/$ease_* 변수)
+
+// ── colors: :root emit 회피 위해 시맨틱 토큰을 var 별칭으로 재선언 ───────────
+// (이름/값은 DS colors/_index.scss 의 `$color_*: var(--bt-color-*)` 와 1:1 동일)
+$color_brand_primary: var(--bt-color-brand-primary);
+$color_brand_on_primary: var(--bt-color-brand-on-primary);
+$color_brand_primary_container: var(--bt-color-brand-primary-container);
+
+$color_text_heading: var(--bt-color-text-heading);
+$color_text_body: var(--bt-color-text-body);
+$color_text_caption: var(--bt-color-text-caption);
+$color_text_brand: var(--bt-color-text-brand);
+$color_text_inverse: var(--bt-color-text-inverse);
+$color_text_disabled: var(--bt-color-text-disabled);
+
+$color_bg_solid: var(--bt-color-bg-solid);
+$color_bg_solid_dim: var(--bt-color-bg-solid-dim);
+$color_bg_additive: var(--bt-color-bg-additive);
+$color_bg_disabled: var(--bt-color-bg-disabled);
+$color_bg_overlay: var(--bt-color-bg-overlay);
+$color_bg_inverse_surface: var(--bt-color-bg-inverse-surface);
+
+$color_border_default: var(--bt-color-border-default);
+$color_border_hover: var(--bt-color-border-hover);
+$color_border_subtle: var(--bt-color-border-subtle);
+$color_border_focus: var(--bt-color-border-focus);
+$color_border_disabled: var(--bt-color-border-disabled);
+
+$color_accent_default: var(--bt-color-accent-default);
+$color_accent_strong: var(--bt-color-accent-strong);
+$color_accent_light: var(--bt-color-accent-light);
+$color_accent_muted: var(--bt-color-accent-muted);
+$color_accent_subtle: var(--bt-color-accent-subtle);
+$color_accent_on_surface: var(--bt-color-accent-on-surface);
+
+$color_state_hover_on_light: var(--bt-color-state-hover-on-light);
+$color_state_pressed_on_light: var(--bt-color-state-pressed-on-light);
+$color_state_focus_on_light: var(--bt-color-state-focus-on-light);
+$color_state_hover_on_dark: var(--bt-color-state-hover-on-dark);
+$color_state_pressed_on_dark: var(--bt-color-state-pressed-on-dark);
+$color_state_focus_on_dark: var(--bt-color-state-focus-on-dark);
+
+$color_status_error: var(--bt-color-status-error);
+$color_status_success: var(--bt-color-status-success);
+$color_status_warning: var(--bt-color-status-warning);
+$color_status_info: var(--bt-color-status-info);
+
+// ── raw 팔레트: colors 를 @forward 하지 않으므로(=:root emit 회피) 코드에서
+//    직접 쓰는 $color_base_* 만 원본 값으로 재선언 (값은 DS 와 1:1 동일) ──────
+$color_base_navy_600: #47555e;
+$color_base_navy_900: #1f2630;
+$color_base_alpha_black_38: rgba(26, 26, 26, 0.38);
+$color_base_alpha_black_50: rgba(0, 0, 0, 0.5);
+$color_base_alpha_white_8: rgba(255, 255, 255, 0.08);
+$color_base_alpha_white_12: rgba(255, 255, 255, 0.12);
+
+// ── elevation: 동일 사유로 var 별칭 재선언 ──────────────────────────────────
+$elevation_level1: var(--bt-elevation-level1);
+$elevation_level2: var(--bt-elevation-level2);
+$elevation_level3: var(--bt-elevation-level3);
+$elevation_level4: var(--bt-elevation-level4);
+$elevation_level5: var(--bt-elevation-level5);

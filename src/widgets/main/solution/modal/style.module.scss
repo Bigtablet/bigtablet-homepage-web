@@ -17,6 +17,16 @@
 	@include token.expanded {
 		padding: 28px;
 	}
+
+	/* 모바일은 padding 을 줄여 모달(width:100%)이 화면을 거의 채우며 중앙 정렬되게 한다.
+	   (이전엔 padding 24 + 모달 94vw 가 충돌해 모달이 우측으로 넘쳐 좌측 정렬처럼 보였음) */
+	@include token.medium {
+		padding: token.$spacing_16;
+	}
+
+	@include token.compact {
+		padding: token.$spacing_16;
+	}
 }
 
 @keyframes solution_modal_backdrop_fade_in {
@@ -42,6 +52,15 @@
 	position: relative;
 	width: min(1120px, 94vw);
 	height: min(660px, 78vh);
+
+	/* 모바일은 backdrop padding 안쪽을 가득 채워 좌우 대칭 중앙 정렬 */
+	@include token.medium {
+		width: 100%;
+	}
+
+	@include token.compact {
+		width: 100%;
+	}
 	border-radius: token.$radius_xl;
 	/* nav 화살표가 모달 외부로 빠지므로 visible. 내부 panel 슬라이드는 content가 hidden 처리. */
 	overflow: visible;
@@ -166,12 +185,15 @@
 	display: grid;
 	grid-template-columns: 1fr 1.35fr;
 
+	/* 모바일은 좌우 배치 대신 상하 적층 — 비디오(상) + 텍스트(하) */
 	@include token.medium {
 		grid-template-columns: 1fr;
+		grid-template-rows: 45% 55%;
 	}
 
 	@include token.compact {
 		grid-template-columns: 1fr;
+		grid-template-rows: 45% 55%;
 	}
 }
 
@@ -235,12 +257,23 @@
 		z-index: 1;
 	}
 
+	/* 모바일은 비디오를 텍스트 위로(order) 노출 — 좌측 fade 는 상하 적층엔 부적합해 제거 */
 	@include token.medium {
-		display: none;
+		display: block;
+		order: -1;
+
+		&::before {
+			display: none;
+		}
 	}
 
 	@include token.compact {
-		display: none;
+		display: block;
+		order: -1;
+
+		&::before {
+			display: none;
+		}
 	}
 }
 

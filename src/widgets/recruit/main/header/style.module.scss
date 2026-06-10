@@ -1,5 +1,11 @@
 @use "ds-token" as token;
 
+/* loading.tsx 에서 실물 헤더를 감싸는 래퍼 — 하이드레이션 전 입력 차단 (시각은 그대로 노출) */
+.recruit_header_loading {
+	width: 100%;
+	pointer-events: none;
+}
+
 .recruit_header {
 	@include token.flex_column;
 	width: 100%;

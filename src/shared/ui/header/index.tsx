@@ -49,13 +49,16 @@ const Header = () => {
 		};
 	}, [menuOpen]);
 
-	const switchLocale = useCallback(() => {
-		const nextLocale = (locale === "en" ? "ko" : "en") as "ko" | "en";
-		document.cookie =
-			`NEXT_LOCALE=${nextLocale}; Path=/; Max-Age=31536000; SameSite=Lax` +
-			(process.env.NODE_ENV === "production" ? "; Secure" : "");
-		router.refresh();
-	}, [locale, router]);
+	const setLocale = useCallback(
+		(next: Locale) => {
+			if (next === locale) return;
+			document.cookie =
+				`NEXT_LOCALE=${next}; Path=/; Max-Age=31536000; SameSite=Lax` +
+				(process.env.NODE_ENV === "production" ? "; Secure" : "");
+			router.refresh();
+		},
+		[locale, router],
+	);
 
 	const toggleMenu = useCallback(() => {
 		setMenuOpen((previous) => !previous);
@@ -103,9 +106,25 @@ const Header = () => {
 					<Link href="/recruit" onClick={closeMenu}>
 						Recruit
 					</Link>
-					<button type="button" onClick={switchLocale} className={styles.locale_switch}>
-						{locale === "en" ? "한국어" : "English"}
-					</button>
+					{/* biome-ignore lint/a11y/useSemanticElements: 세그먼트 컨트롤 — <fieldset>은 legend 없이 일부 스크린리더가 라벨을 못 읽고 flex 컨테이너로 쓸 때 레이아웃 버그가 있어, role="group" + aria-label 패턴을 사용한다 */}
+					<div className={styles.locale_switch} role="group" aria-label="Language">
+						<button
+							type="button"
+							className={`${styles.locale_option} ${locale === "ko" ? styles.locale_option_active : ""}`}
+							onClick={() => setLocale("ko")}
+							aria-pressed={locale === "ko"}
+						>
+							KO
+						</button>
+						<button
+							type="button"
+							className={`${styles.locale_option} ${locale === "en" ? styles.locale_option_active : ""}`}
+							onClick={() => setLocale("en")}
+							aria-pressed={locale === "en"}
+						>
+							EN
+						</button>
+					</div>
 				</nav>
 
 				{menuOpen && (

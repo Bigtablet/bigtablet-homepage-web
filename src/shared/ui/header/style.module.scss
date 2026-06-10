@@ -153,34 +153,54 @@ $header_height_mobile: 64px;
 	}
 }
 
+/* KO | EN 세그먼트 토글 — 현재 언어를 하이라이트해 상태를 명확히 표시 */
 .locale_switch {
 	margin-left: clamp(token.$spacing_8, 2vw, token.$spacing_12);
-	padding: token.$spacing_4 token.$spacing_12;
+	display: inline-flex;
+	align-items: stretch;
+	gap: 2px;
+	padding: 2px;
 	border-radius: token.$radius_md;
 	border: 1px solid token.$color_border_default;
 	background: token.$color_bg_solid_dim;
-	cursor: pointer;
-	transition:
-		transform token.$transition_fast,
-		background token.$transition_base,
-		border-color token.$transition_base;
-
-	&:hover {
-		background: token.$color_bg_solid_dim;
-		transform: translateY(-1px);
-	}
-
-	&:active {
-		transform: translateY(0);
-	}
 
 	@include token.compact {
 		margin-left: 0;
 		margin-top: token.$spacing_24;
-		padding: token.$spacing_12 token.$spacing_16;
-		font-size: token.$font_size_15;
-		text-align: center;
+		align-self: center;
 	}
+}
+
+.locale_option {
+	border: none;
+	background: transparent;
+	color: token.$color_text_caption;
+	font-size: token.$font_size_13;
+	font-weight: token.$font_weight_medium;
+	letter-spacing: 0.02em;
+	padding: token.$spacing_4 token.$spacing_8;
+	border-radius: calc(token.$radius_md - 2px);
+	cursor: pointer;
+	transition:
+		background token.$transition_base,
+		color token.$transition_base;
+
+	&:hover {
+		color: token.$color_text_body;
+	}
+
+	@include token.compact {
+		padding: token.$spacing_8 token.$spacing_16;
+		font-size: token.$font_size_15;
+	}
+}
+
+.locale_option_active {
+	background: token.$color_bg_solid;
+	color: token.$color_text_heading;
+	font-weight: token.$font_weight_bold;
+	box-shadow: token.$elevation_level1;
+	cursor: default;
 }
 
 .overlay {

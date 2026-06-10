@@ -1,4 +1,4 @@
-@use "@bigtablet/design-system/scss/token" as token;
+@use "ds-token" as token;
 
 .main_content {
   width: 100%;
@@ -29,17 +29,19 @@
 %ground_base {
   @include token.flex_column;
   gap: clamp(80px, 10vw, 160px);
-  padding: clamp(60px, 8vw, 120px) 5vw;
+  padding: clamp(60px, 8vw, 120px) clamp(16px, 5vw, 80px); /* 유동 반응형 — DS spacing 토큰으로 clamp 표현 불가 */
   width: 100%;
 }
 
 .gradient {
   @extend %ground_base;
+  /* 브랜드 그라데이션 고정 색 — DS 3.1 팔레트에 정확 매칭이 없어 원본 hex 유지.
+     (codemod 이 hex 근접값으로 text_caption #888 등에 매핑하며 색조가 틀어졌던 것 복원) */
   background: linear-gradient(
                   180deg,
-                  token.$color_background_secondary 0%,
-                  token.$text_subtle 48%,
-                  token.$color_background_primary 100%
+                  #fafafa 0%,
+                  #6b7280 48%,
+                  token.$color_base_navy_600 100%
   );
 }
 
@@ -47,9 +49,9 @@
   @extend %ground_base;
   background: linear-gradient(
                   180deg,
-                  token.$color_background_primary 0%,
-                  token.$color_background_primary 15%,
-                  token.$color_background_dark 35%,
-                  token.$color_background_primary 100%
+                  token.$color_base_navy_600 0%,
+                  token.$color_base_navy_600 15%,
+                  #1e293b 35%,
+                  token.$color_base_navy_600 100%
   );
 }

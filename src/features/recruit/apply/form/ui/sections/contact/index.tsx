@@ -31,7 +31,7 @@ export const ContactSection = ({ form, email }: Props) => {
 					size="sm"
 					placeholder="홍길동"
 					error={!!errors.name}
-					helperText={errors.name?.message as string}
+					supportingText={errors.name?.message as string}
 					{...register("name")}
 				/>
 			</div>
@@ -51,7 +51,7 @@ export const ContactSection = ({ form, email }: Props) => {
 							onChangeAction={(value) => field.onChange(formatPhone010(value as string))}
 							value={field.value ?? ""}
 							error={!!errors.phoneNumber}
-							helperText={errors.phoneNumber?.message as string}
+							supportingText={errors.phoneNumber?.message as string}
 						/>
 					)}
 				/>
@@ -66,7 +66,7 @@ export const ContactSection = ({ form, email }: Props) => {
 						type="email"
 						placeholder="example@email.com"
 						error={!!errors.email}
-						helperText={errors.email?.message as string}
+						supportingText={errors.email?.message as string}
 						{...register("email")}
 					/>
 					<TextField
@@ -76,7 +76,7 @@ export const ContactSection = ({ form, email }: Props) => {
 						onChangeAction={(value) => email.setAuthCode(value as string)}
 					/>
 					<Button
-						variant="secondary"
+						variant="tonal"
 						onClick={email.send}
 						disabled={email.sendLoading || email.resendSec > 0}
 						size="sm"
@@ -89,7 +89,7 @@ export const ContactSection = ({ form, email }: Props) => {
 								: "전송"}
 					</Button>
 					<Button
-						variant="secondary"
+						variant="tonal"
 						onClick={email.verify}
 						disabled={email.checkLoading}
 						size="sm"
@@ -117,7 +117,7 @@ export const ContactSection = ({ form, email }: Props) => {
 					size="sm"
 					placeholder="서울특별시 중구 세종대로 110"
 					error={!!errors.address}
-					helperText={errors.address?.message as string}
+					supportingText={errors.address?.message as string}
 					{...register("address")}
 				/>
 				<TextField size="sm" placeholder="상세주소" {...register("addressDetail")} />

@@ -1,6 +1,6 @@
 "use client";
 
-import { Select } from "@bigtablet/design-system";
+import { Dropdown } from "@bigtablet/design-system";
 import { Controller } from "react-hook-form";
 import type { ApplyFormProps } from "src/features/recruit/apply/form/ui/type";
 import styles from "../../form-base.module.scss";
@@ -24,12 +24,11 @@ export const MilitarySection = ({ form }: Props) => {
 				control={control}
 				name="military"
 				render={({ field }) => (
-					<Select
+					<Dropdown
 						size="sm"
 						placeholder="병역 사항 선택"
 						value={field.value}
 						onChange={(v) => field.onChange(v)}
-						fullWidth
 						options={[
 							{ value: "", label: "병역 사항 선택", disabled: true },
 							{ value: "COMPLETED", label: "군필" },

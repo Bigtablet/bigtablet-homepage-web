@@ -1,21 +1,31 @@
-@use "@bigtablet/design-system/scss/token" as token;
+@use "ds-token" as token;
 
 .solution_modal_backdrop {
 	position: fixed;
 	inset: 0;
-	z-index: token.$z_modal;
+	z-index: token.$z_level5;
 	display: grid;
 	place-items: center;
-	padding: token.$spacing_2xl;
+	padding: token.$spacing_24;
 	/* 진한 백드롭 + blur — 뒤 콘텐츠 가독성 차단해 모달에 시선 집중 */
-	background: token.$color_overlay_strong;
+	background: rgba(0, 0, 0, 0.7);
 	backdrop-filter: blur(8px);
 	-webkit-backdrop-filter: blur(8px);
 	/* fade-in으로 backdrop-filter 잔상 방지 */
 	animation: solution_modal_backdrop_fade_in 200ms ease-out;
 
-	@include token.laptop {
-		padding: token.$spacing_3xl;
+	@include token.expanded {
+		padding: 28px;
+	}
+
+	/* 모바일은 padding 을 줄여 모달(width:100%)이 화면을 거의 채우며 중앙 정렬되게 한다.
+	   (이전엔 padding 24 + 모달 94vw 가 충돌해 모달이 우측으로 넘쳐 좌측 정렬처럼 보였음) */
+	@include token.medium {
+		padding: token.$spacing_16;
+	}
+
+	@include token.compact {
+		padding: token.$spacing_16;
 	}
 }
 
@@ -42,10 +52,19 @@
 	position: relative;
 	width: min(1120px, 94vw);
 	height: min(660px, 78vh);
+
+	/* 모바일은 backdrop padding 안쪽을 가득 채워 좌우 대칭 중앙 정렬 */
+	@include token.medium {
+		width: 100%;
+	}
+
+	@include token.compact {
+		width: 100%;
+	}
 	border-radius: token.$radius_xl;
 	/* nav 화살표가 모달 외부로 빠지므로 visible. 내부 panel 슬라이드는 content가 hidden 처리. */
 	overflow: visible;
-	background: token.$color_primary;
+	background: token.$color_brand_primary;
 	transform-origin: center center;
 	transform: translate(var(--from-dx, 0), var(--from-dy, 0)) scale(var(--from-sx, 1), var(--from-sy, 1));
 	opacity: 0;
@@ -72,8 +91,8 @@
 	background: rgba(0, 0, 0, 0.45);
 	backdrop-filter: blur(10px);
 	-webkit-backdrop-filter: blur(10px);
-	color: token.$text_inverse;
-	font-size: token.$font_size_2xl;
+	color: token.$color_text_inverse;
+	font-size: token.$font_size_24;
 	cursor: pointer;
 	transition:
 		background token.$transition_base,
@@ -87,16 +106,16 @@
 		transform: translateY(-50%) scale(0.96);
 	}
 
-	@include token.laptop {
+	@include token.expanded {
 		width: 56px;
 		height: 56px;
-		font-size: token.$font_size_3xl;
+		font-size: token.$font_size_32;
 	}
 
-	@include token.mobile {
+	@include token.compact {
 		width: 40px;
 		height: 40px;
-		font-size: token.$font_size_xl;
+		font-size: token.$font_size_20;
 	}
 }
 
@@ -104,33 +123,33 @@
 .solution_modal_nav_prev {
 	left: -64px;
 
-	@include token.laptop {
+	@include token.expanded {
 		left: -72px;
 	}
 
 	/* 모바일은 모달이 viewport 가득 차서 외부 공간 없음 — 안쪽 유지 */
-	@include token.tablet {
-		left: token.$spacing_xs;
+	@include token.medium {
+		left: token.$spacing_4;
 	}
 
-	@include token.mobile {
-		left: token.$spacing_xs;
+	@include token.compact {
+		left: token.$spacing_4;
 	}
 }
 
 .solution_modal_nav_next {
 	right: -64px;
 
-	@include token.laptop {
+	@include token.expanded {
 		right: -72px;
 	}
 
-	@include token.tablet {
-		right: token.$spacing_xs;
+	@include token.medium {
+		right: token.$spacing_4;
 	}
 
-	@include token.mobile {
-		right: token.$spacing_xs;
+	@include token.compact {
+		right: token.$spacing_4;
 	}
 }
 
@@ -166,12 +185,15 @@
 	display: grid;
 	grid-template-columns: 1fr 1.35fr;
 
-	@include token.tablet {
+	/* 모바일은 좌우 배치 대신 상하 적층 — 비디오(상) + 텍스트(하) */
+	@include token.medium {
 		grid-template-columns: 1fr;
+		grid-template-rows: 45% 55%;
 	}
 
-	@include token.mobile {
+	@include token.compact {
 		grid-template-columns: 1fr;
+		grid-template-rows: 45% 55%;
 	}
 }
 
@@ -185,37 +207,37 @@
 	/* safe center — 콘텐츠 길이가 컨테이너 초과 시 start로 fallback해 상단 잘림 방지 */
 	justify-content: safe center;
 	z-index: 2;
-	padding: clamp(token.$spacing_2xl, 4vw, token.$spacing_4xl);
-	gap: token.$spacing_lg;
-	color: token.$text_inverse;
+	padding: clamp(token.$spacing_24, 4vw, token.$spacing_32);
+	gap: token.$spacing_16;
+	color: token.$color_text_inverse;
 	overflow: auto;
-	line-height: token.$line_height_relaxed;
+	line-height: 1.75;
 	/* 우측 끝까지 단색 유지 — right panel의 fade와 자연스럽게 만나 라인 형성 안 함 */
-	background: token.$color_background_darkest;
+	background: #020617;
 }
 
 .solution_modal_title {
-	@include token.heading_2;
+	@include token.heading_medium_bold;
 	font-weight: token.$font_weight_bold;
 	letter-spacing: token.$letter_spacing_tight;
 	white-space: pre-line;
-	line-height: token.$line_height_tight;
+	line-height: 1.25;
 	margin: 0;
 }
 
 .solution_modal_desc {
-	@include token.body_regular;
-	color: token.$text_inverse;
+	@include token.body_medium;
+	color: token.$color_text_inverse;
 	opacity: 0.85;
 	white-space: pre-line;
 	margin: 0;
-	line-height: token.$line_height_relaxed;
+	line-height: 1.75;
 	max-width: 42ch;
 }
 
 .solution_modal_right {
 	position: relative;
-	background: token.$color_primary;
+	background: token.$color_brand_primary;
 	overflow: hidden;
 
 	/* 좌측 가장자리 → 영상으로 부드럽게 fade. left panel과 같은 색에서 시작해 경계 라인 제거. */
@@ -227,7 +249,7 @@
 		width: 240px;
 		background: linear-gradient(
 			to right,
-			token.$color_background_darkest 0%,
+			#020617 0%,
 			rgba(0, 0, 0, 0.5) 40%,
 			transparent 100%
 		);
@@ -235,12 +257,23 @@
 		z-index: 1;
 	}
 
-	@include token.tablet {
-		display: none;
+	/* 모바일은 비디오를 텍스트 위로(order) 노출 — 좌측 fade 는 상하 적층엔 부적합해 제거 */
+	@include token.medium {
+		display: block;
+		order: -1;
+
+		&::before {
+			display: none;
+		}
 	}
 
-	@include token.mobile {
-		display: none;
+	@include token.compact {
+		display: block;
+		order: -1;
+
+		&::before {
+			display: none;
+		}
 	}
 }
 

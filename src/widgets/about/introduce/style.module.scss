@@ -1,4 +1,4 @@
-@use "@bigtablet/design-system/scss/token" as token;
+@use "ds-token" as token;
 
 /**
  * 1080px 컨테이너 폭과 360px 이미지 폭은 디자인 결정으로, 토큰화된 spacing 범위(최대 48px)에
@@ -12,8 +12,8 @@
   width: min(1080px, 92%);
   margin: 0 auto;
   /* clamp로 viewport 기반 스케일 — 브레이크포인트별 gap/padding 재선언 없이 흡수 */
-  gap: clamp(token.$spacing_8xl, 6vw, calc(token.$spacing_8xl * 2));
-  padding-block: clamp(token.$spacing_4xl, 5vw, token.$spacing_5xl);
+  gap: clamp(token.$spacing_48, 6vw, calc(token.$spacing_48 * 2));
+  padding-block: clamp(token.$spacing_32, 5vw, 36px);
   animation: fade_in 0.6s ease both;
 
   &.introduce_reverse {
@@ -45,23 +45,23 @@
   flex: 1 1 0;
   min-width: 0;
   @include token.flex_column;
-  gap: token.$spacing_sm;
+  gap: token.$spacing_8;
   font-family: token.$font_family_primary;
 }
 
 .introduce_title {
-  @include token.heading_2;
-  font-size: token.$font_size_2xl;
-  color: token.$text_strong;
+  @include token.heading_medium_bold;
+  font-size: token.$font_size_24;
+  color: token.$color_text_heading;
   letter-spacing: token.$letter_spacing_tight;
-  line-height: token.$line_height_snug;
+  line-height: 1.3;
 }
 
 .introduce_desc {
-  @include token.body_medium;
-  font-size: token.$font_size_md;
-  color: token.$text_subtle;
-  line-height: token.$line_height_relaxed;
+  @include token.body_medium_medium;
+  font-size: token.$font_size_16;
+  color: token.$color_text_caption;
+  line-height: 1.75;
   white-space: pre-line;
 }
 
@@ -86,13 +86,13 @@
   }
 }
 
-@include token.mobile {
+@include token.compact {
   .introduce {
     @include token.flex_column;
     flex-direction: column-reverse;
     text-align: center;
-    gap: token.$spacing_lg;
-    padding: token.$spacing_2xl token.$spacing_lg;
+    gap: token.$spacing_16;
+    padding: token.$spacing_24 token.$spacing_16;
 
     &.introduce_reverse {
       flex-direction: column-reverse;
@@ -100,7 +100,7 @@
   }
 
   .introduce_text {
-    gap: token.$spacing_xs;
+    gap: token.$spacing_4;
   }
 
   .introduce_image {
@@ -111,11 +111,11 @@
   }
 
   .introduce_title {
-    font-size: token.$font_size_lg;
+    font-size: token.$font_size_18;
   }
 
   .introduce_desc {
-    font-size: token.$font_size_sm;
+    font-size: token.$font_size_14;
   }
 }
 
@@ -123,40 +123,40 @@
  * .introduce 기본 gap/padding-block은 clamp로 viewport에 따라 스케일하므로
  * 브레이크포인트별 재선언은 폰트 크기와 텍스트 내부 gap에 한정.
  */
-@include token.tablet {
+@include token.medium {
   .introduce_text {
-    gap: token.$spacing_md;
+    gap: token.$spacing_12;
   }
 
   .introduce_title {
-    font-size: token.$font_size_2xl;
+    font-size: token.$font_size_24;
   }
 
   .introduce_desc {
-    font-size: token.$font_size_md;
+    font-size: token.$font_size_16;
   }
 }
 
-@include token.laptop {
+@include token.expanded {
   .introduce_text {
-    gap: token.$spacing_lg;
+    gap: token.$spacing_16;
   }
 
   .introduce_title {
-    font-size: token.$font_size_3xl;
+    font-size: token.$font_size_32;
   }
 
   .introduce_desc {
-    font-size: token.$font_size_lg;
+    font-size: token.$font_size_18;
   }
 }
 
-@include token.desktop {
+@include token.large {
   .introduce_title {
-    font-size: token.$font_size_3xl;
+    font-size: token.$font_size_32;
   }
 
   .introduce_desc {
-    font-size: token.$font_size_lg;
+    font-size: token.$font_size_18;
   }
 }

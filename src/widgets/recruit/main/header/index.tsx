@@ -1,6 +1,6 @@
 "use client";
 
-import { Button, Select, type SelectOption, TextField } from "@bigtablet/design-system";
+import { Button, Dropdown, type DropdownOption, TextField } from "@bigtablet/design-system";
 import { memo, useState } from "react";
 import type { RecruitSearchFilters } from "src/entities/recruit/api/recruit.api";
 import {
@@ -17,7 +17,7 @@ import styles from "./style.module.scss";
 
 /* 정적 옵션 — 매 렌더 재생성 방지 위해 모듈 스코프 상수로 */
 const toOptions = <T extends string>(codes: readonly T[], getLabel: (code: T) => string) =>
-	codes.map<SelectOption>((code) => ({ value: code, label: getLabel(code) }));
+	codes.map<DropdownOption>((code) => ({ value: code, label: getLabel(code) }));
 
 const DEPARTMENT_OPTIONS = toOptions(DEPARTMENTS, departmentLabel);
 const EDUCATION_OPTIONS = toOptions(EDUCATIONS, educationLabel);
@@ -49,7 +49,7 @@ const RecruitHeader = ({ filters, onChange }: Props) => {
 						className={styles.recruit_search_field}
 					/>
 
-					<Select
+					<Dropdown
 						placeholder="직무"
 						options={DEPARTMENT_OPTIONS}
 						value={filters.job ?? null}
@@ -58,7 +58,7 @@ const RecruitHeader = ({ filters, onChange }: Props) => {
 						className={styles.recruit_search_select}
 					/>
 
-					<Select
+					<Dropdown
 						placeholder="학력"
 						options={EDUCATION_OPTIONS}
 						value={filters.education ?? null}
@@ -67,7 +67,7 @@ const RecruitHeader = ({ filters, onChange }: Props) => {
 						className={styles.recruit_search_select}
 					/>
 
-					<Select
+					<Dropdown
 						placeholder="고용형태"
 						options={RECRUIT_TYPE_OPTIONS}
 						value={filters.career ?? null}
@@ -76,7 +76,7 @@ const RecruitHeader = ({ filters, onChange }: Props) => {
 						className={styles.recruit_search_select}
 					/>
 
-					<Button variant="primary" size="sm" width="auto" onClick={() => setOpen(true)}>
+					<Button variant="filled" size="sm" onClick={() => setOpen(true)}>
 						인재풀 등록하기
 					</Button>
 				</div>

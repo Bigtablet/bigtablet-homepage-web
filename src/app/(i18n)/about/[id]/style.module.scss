@@ -1,37 +1,42 @@
-@use "@bigtablet/design-system/scss/token" as token;
+@use "ds-token" as token;
 
 .member_detail {
-  color: token.$text_inverse;
-  padding-block: token.$spacing_2xl token.$spacing_3xl;
-  padding-inline: token.$spacing_md;
+  color: token.$color_text_inverse;
+  padding-block: token.$spacing_24 28px;
+  padding-inline: token.$spacing_12;
   display: grid;
   place-items: center;
-  row-gap: token.$spacing_md;
+  row-gap: token.$spacing_12;
+
+  &_top {
+    inline-size: min(1100px, 92vw);
+    margin-bottom: token.$spacing_8;
+  }
 
   &_inner {
     inline-size: min(1100px, 92vw);
     display: grid;
     grid-template-columns: 360px 1fr;
-    column-gap: token.$spacing_2xl;
+    column-gap: token.$spacing_24;
     align-items: start;
   }
 
 }
 
-@include token.mobile {
+@include token.compact {
   .member_detail {
     &_inner {
       grid-template-columns: 1fr;
-      row-gap: token.$spacing_lg;
+      row-gap: token.$spacing_16;
     }
   }
 }
 
-@include token.tablet {
+@include token.medium {
   .member_detail {
     &_inner {
       grid-template-columns: 1fr;
-      row-gap: token.$spacing_lg;
+      row-gap: token.$spacing_16;
     }
   }
 }

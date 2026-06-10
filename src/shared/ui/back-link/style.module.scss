@@ -1,23 +1,23 @@
-@use "@bigtablet/design-system/scss/token" as token;
+@use "ds-token" as token;
 
 .back_link {
-	@include token.body_medium;
+	@include token.body_medium_medium;
 	appearance: none;
 	font: inherit;
 	cursor: pointer;
 	display: inline-flex;
 	align-items: center;
 	align-self: flex-start;
-	gap: token.$spacing_xs;
-	font-size: token.$font_size_sm;
-	color: token.$text_strong;
-	background: token.$color_background;
-	padding: token.$spacing_sm token.$spacing_md;
+	gap: token.$spacing_4;
+	font-size: token.$font_size_14;
+	color: token.$color_text_heading;
+	background: token.$color_bg_solid;
+	padding: token.$spacing_8 token.$spacing_12;
 	border-radius: token.$radius_md;
-	border: 1px solid token.$color_border;
+	border: 1px solid token.$color_border_default;
 	transition: background token.$transition_base;
 
 	&:hover {
-		background: token.$color_background_secondary;
+		background: token.$color_bg_solid_dim;
 	}
 }

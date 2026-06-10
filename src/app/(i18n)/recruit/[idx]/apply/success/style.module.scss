@@ -1,20 +1,20 @@
-@use "@bigtablet/design-system/scss/token" as token;
+@use "ds-token" as token;
 
 .success {
-  @include token.flex-column-center;
+  @include token.flex_column_center;
   flex: 1 0 auto;
-  gap: token.$spacing_xl;
-  padding: token.$spacing_3xl;
+  gap: token.$spacing_20;
+  padding: 28px; /* DS 3.1 spacing: 24/32 사이 28px 토큰 없음 */
   text-align: center;
 }
 
 .success_title {
-  @include token.heading-2;
-  color: token.$text_strong;
+  @include token.heading_medium_bold;
+  color: token.$color_text_heading;
 }
 
 .success_text {
-  @include token.body-regular;
-  color: token.$text_normal;
-  line-height: token.$line_height_relaxed;
+  @include token.body_medium;
+  color: token.$color_text_body;
+  line-height: 1.75; /* DS 3.1 line-height 토큰은 px 단위 — 비율 유지가 더 유연 */
 }

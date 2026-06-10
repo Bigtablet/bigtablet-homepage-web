@@ -117,6 +117,39 @@ export const useSolutionModal = (products: Product[]) => {
 		return () => window.removeEventListener("keydown", onKey);
 	}, [activeId, closeNow, go]);
 
+	/* 모달 열림 동안 배경 스크롤 잠금 — position:fixed 로 body 를 고정한다.
+	   (html overflow:hidden 은 backdrop-filter 의 배경 캡처를 깨 모달 뒷배경이
+	   사라지는 버그가 있어 사용하지 않음. body 만 overflow:hidden 은 스크롤러가
+	   <html> 이라 잠기지 않음.)
+	   activeId 가 아니라 isOpen 으로 키잉 — 슬라이드(다음/이전)로 activeId 가
+	   바뀔 때 scrollY 를 재캡처(=0)해 닫을 때 최상단으로 튀는 것을 방지. */
+	const isOpen = activeId !== null;
+	useEffect(() => {
+		if (!isOpen) return;
+		const body = document.body;
+		const scrollY = window.scrollY;
+		const prev = {
+			position: body.style.position,
+			top: body.style.top,
+			left: body.style.left,
+			right: body.style.right,
+			width: body.style.width,
+		};
+		body.style.position = "fixed";
+		body.style.top = `-${scrollY}px`;
+		body.style.left = "0";
+		body.style.right = "0";
+		body.style.width = "100%";
+		return () => {
+			body.style.position = prev.position;
+			body.style.top = prev.top;
+			body.style.left = prev.left;
+			body.style.right = prev.right;
+			body.style.width = prev.width;
+			window.scrollTo({ top: scrollY, behavior: "instant" as ScrollBehavior });
+		};
+	}, [isOpen]);
+
 	/* 언마운트 시 잔여 타이머 정리 — modal 닫힌 뒤에 setActiveId가 다시 깨우지 않도록 */
 	useEffect(() => {
 		return () => {

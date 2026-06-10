@@ -108,7 +108,14 @@ const nextConfig = {
 	},
 
 	sassOptions: {
-		includePaths: ["./src/shared/styles"],
+		/* DS 3.1 dist/styles 를 load path 에 추가 — package exports 가 scss/token 외
+		   서브패스를 막아(ERR_PACKAGE_PATH_NOT_EXPORTED) 직접 import 불가하므로,
+		   심링크 경로를 직접 노출해 _ds-token.scss 가 개별 서브모듈(spacing 등)을
+		   @forward 할 수 있게 한다. 우리 src/shared/styles 가 우선(같은 이름이면 먼저 매치).
+		   modern Sass API 는 loadPaths 를 사용(includePaths 는 legacy 라 무시됨) —
+		   둘 다 지정해 sass-loader api 버전과 무관하게 동작. */
+		loadPaths: ["./src/shared/styles", "./node_modules/@bigtablet/design-system/dist/styles"],
+		includePaths: ["./src/shared/styles", "./node_modules/@bigtablet/design-system/dist/styles"],
 	},
 };
 

@@ -60,7 +60,10 @@ reviews:
         노출하지 마라.
         React: 서버/클라이언트 컴포넌트 경계를 적절히 두고("use client" 남용 금지),
         데이터 패칭은 React Query 패턴을, 로딩 상태는 skeleton UI 패턴을 따르라.
-        컴포넌트 파일명은 index.tsx 여야 한다.
+        컴포넌트 파일명은 index.tsx 여야 한다 — 단, Next.js App Router 예약 파일
+        (page.tsx, layout.tsx, loading.tsx, error.tsx, not-found.tsx, route.ts,
+        sitemap.ts, robots.ts)과 라우트 전용 클라이언트 분리 파일(*client.tsx,
+        page-client.tsx)은 예외이니 지적하지 마라.
     - path: "src/**/*.module.scss"
       instructions: >-
         하드코딩된 값(색상·간격·radius·폰트 등)은 금지다. 반드시 디자인 시스템 토큰
@@ -68,7 +71,7 @@ reviews:
         하드코딩 리터럴(#hex, px 매직넘버 등)을 발견하면 대응 토큰 사용을 제안하라.
         단, 디자인 시스템 팔레트에 정확히 대응하는 토큰이 없는 브랜드 그라데이션·스크림
         색상은 리터럴이 허용된다(주석으로 사유가 명시된 경우).
-        반응형은 token 의 compact/medium/expanded/large(또는 mobile/tablet/...) 믹스인을
+        반응형은 token 의 compact/medium/expanded/large 믹스인(@include token.compact 등)을
         써야 한다 — 매직넘버 media query 는 지적하라.
         SCSS 클래스명은 snake_case 여야 한다.
 

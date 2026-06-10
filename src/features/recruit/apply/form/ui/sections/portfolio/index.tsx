@@ -36,7 +36,7 @@ export const PortfolioSection = ({ form, upload, isUploading }: Props) => {
 							onFiles={async (file) => {
 								if (!file) return field.onChange("");
 								const url = await upload(file);
-								field.onChange(url);
+								if (url) field.onChange(url);
 							}}
 						/>
 					)}
@@ -61,7 +61,7 @@ export const PortfolioSection = ({ form, upload, isUploading }: Props) => {
 							onFiles={async (file) => {
 								if (!file) return field.onChange("");
 								const url = await upload(file);
-								field.onChange(url);
+								if (url) field.onChange(url);
 							}}
 						/>
 					)}

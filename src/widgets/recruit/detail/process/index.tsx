@@ -3,7 +3,7 @@
  * Recruit hiring process section component.
  */
 
-import { HIRING_PROCESS } from "../constants";
+import { HIRING_PROCESS } from "src/entities/recruit/constants/recruit-detail.constants";
 import styles from "../style.module.scss";
 
 /**

@@ -1,0 +1,28 @@
+@use "ds-token" as token;
+
+.markdown_text {
+  font-size: token.$font_size_16;
+  color: token.$color_text_body;
+  line-height: 1.75;
+  white-space: pre-line;
+}
+
+.markdown_list,
+.markdown_list ul,
+.markdown_list ol {
+  padding-left: token.$spacing_20;
+}
+
+.markdown_list ul {
+  list-style-type: disc;
+}
+
+.markdown_list ol {
+  list-style-type: decimal;
+}
+
+.markdown_list li {
+  font-size: token.$font_size_16;
+  line-height: 1.75;
+  color: token.$color_text_body;
+}

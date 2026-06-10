@@ -36,7 +36,7 @@ export const ProfileSection = ({ form, upload, isUploading }: Props) => {
 								return;
 							}
 							const url = await upload(file);
-							field.onChange(url);
+							if (url) field.onChange(url);
 						}}
 					/>
 				)}

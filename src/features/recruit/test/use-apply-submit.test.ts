@@ -100,10 +100,23 @@ describe("useApplySubmit", () => {
 			expect(mockMutateAsync).toHaveBeenCalledWith(
 				expect.objectContaining({
 					schoolName: "",
-					graduationEnd: "",
+					graduationYear: "",
 					department: "",
 				}),
 			);
+		});
+
+		it("폼 필드 graduationEnd 를 API 계약 필드 graduationYear 로 매핑해 전송한다", async () => {
+			mockMutateAsync.mockResolvedValue(undefined);
+			const form = makeMockForm();
+
+			const { result } = renderHook(() => useApplySubmit({ form, jobId: 1, emailVerified: true }));
+
+			await act(() => result.current.onSubmit());
+
+			const payload = mockMutateAsync.mock.calls[0]?.[0];
+			expect(payload).toMatchObject({ graduationYear: "2024" });
+			expect(payload).not.toHaveProperty("graduationEnd");
 		});
 
 		it("mutation 성공 시 success 토스트를 표시하고 /recruit으로 이동한다", async () => {

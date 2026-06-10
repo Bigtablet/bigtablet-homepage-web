@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { memo, useMemo } from "react";
 import type { RecruitSearchFilters } from "src/entities/recruit/api/recruit.api";
 import type { RecruitCard } from "src/entities/recruit/schema/recruit.schema";
@@ -27,7 +28,7 @@ const isEmpty = (value?: string) => value === "" || value === undefined;
  */
 const RequestCard = memo(({ item }: { item: RecruitCard }) => {
 	return (
-		<a className={styles.request_item} href={`/recruit/${item.idx}`}>
+		<Link className={styles.request_item} href={`/recruit/${item.idx}`}>
 			<div className={styles.request_item_left}>
 				<div className={styles.request_item_title}>{item.title}</div>
 				<div className={styles.request_item_tags}>
@@ -39,7 +40,7 @@ const RequestCard = memo(({ item }: { item: RecruitCard }) => {
 				</div>
 			</div>
 			{item.dday && <div className={styles.request_item_dday}>{item.dday}</div>}
-		</a>
+		</Link>
 	);
 });
 RequestCard.displayName = "RequestCard";

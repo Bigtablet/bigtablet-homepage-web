@@ -1,0 +1,176 @@
+@use "ds-token" as token;
+
+/* 채용 상세 섹션 위젯 공용 스타일 — 섹션 간 공유 클래스(section/list/notice_text)가 있어 한 파일로 관리 */
+
+.recruit_detail_header {
+  margin-bottom: 28px; /* DS 토큰 부재(24/32 사이): 헤더 하단 간격 */
+  border-bottom: 1px solid token.$color_border_subtle;
+  padding-bottom: token.$spacing_16;
+}
+
+.recruit_detail_title {
+  @include token.heading_medium_bold;
+  font-size: token.$font_size_32;
+  color: token.$color_text_heading;
+  margin: 0 0 token.$spacing_16;
+}
+
+.recruit_detail_meta {
+  @include token.flex_between;
+  align-items: center;
+  gap: token.$spacing_12;
+  flex-wrap: wrap;
+}
+
+.recruit_detail_chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: token.$spacing_8;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  height: 28px; /* DS 토큰 부재: chip/datebar 높이 정렬용 고정값 */
+  padding: 0 token.$spacing_12;
+  border-radius: token.$radius_full;
+  background: token.$color_bg_solid;
+  border: 1px solid token.$color_border_default;
+  color: token.$color_text_body;
+  font-size: token.$font_size_14;
+  white-space: nowrap;
+}
+
+.recruit_detail_datebar {
+  display: inline-flex;
+  align-items: center;
+  color: token.$color_text_caption;
+  font-size: token.$font_size_14;
+  white-space: nowrap;
+  height: 28px; /* DS 토큰 부재: chip 과 동일 높이로 정렬 */
+}
+
+.recruit_detail_section {
+  margin-bottom: token.$spacing_32;
+}
+
+.recruit_detail_section h2 {
+  @include token.heading_small_bold;
+  font-size: token.$font_size_20;
+  color: token.$color_text_body;
+  margin: 0 0 token.$spacing_12;
+}
+
+.recruit_detail_list {
+  padding-left: token.$spacing_20;
+  list-style-type: disc;
+}
+
+.recruit_detail_list li {
+  font-size: token.$font_size_16;
+  line-height: 1.75;
+  color: token.$color_text_body;
+}
+
+.recruit_detail_process {
+  font-size: token.$font_size_16;
+  color: token.$color_text_body;
+  letter-spacing: 0.02em; /* DS 토큰 부재: 절차 텍스트 자간 미세 조정 */
+  word-spacing: 2px; /* DS 토큰 부재: 화살표 구분 가독성용 어절 간격 */
+  white-space: pre-line;
+}
+
+.recruit_detail_notice {
+  margin-bottom: token.$spacing_32;
+  padding: token.$spacing_20;
+  border-radius: token.$radius_lg;
+  background: token.$color_bg_solid_dim;
+  border: 1px solid token.$color_border_subtle;
+}
+
+.recruit_detail_notice_title {
+  @include token.heading_small_bold;
+  font-size: token.$font_size_18;
+  color: token.$color_text_heading;
+  margin: 0 0 token.$spacing_8;
+}
+
+.recruit_detail_notice_text {
+  @include token.body_medium;
+  font-size: token.$font_size_14;
+  color: token.$color_text_body;
+  line-height: 1.75;
+  margin: 0 0 token.$spacing_8;
+}
+
+.recruit_detail_notice_list {
+  margin: 0 0 token.$spacing_8;
+  padding-left: token.$spacing_20;
+  list-style-type: disc;
+}
+
+.recruit_detail_notice_list li {
+  @include token.body_medium;
+  font-size: token.$font_size_14;
+  color: token.$color_text_body;
+  line-height: 1.75;
+}
+
+.recruit_detail_request {
+  @include token.flex_column;
+  @include token.flex_center;
+  gap: token.$spacing_24;
+  padding-top: token.$spacing_24;
+  border-top: 1px solid token.$color_border_subtle;
+
+  &_button {
+    width: 100%;
+  }
+}
+
+.recruit_detail_request p {
+  @include token.body_medium;
+  font-size: token.$font_size_16;
+  color: token.$color_text_body;
+  text-align: center;
+}
+
+@include token.compact {
+  .recruit_detail_title {
+    font-size: token.$font_size_24;
+  }
+
+  .recruit_detail_meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: token.$spacing_8;
+  }
+
+  .chip {
+    height: auto;
+    min-height: 24px;
+    padding: token.$spacing_4 token.$spacing_8;
+    white-space: normal;
+  }
+
+  .recruit_detail_datebar {
+    justify-content: flex-end;
+    width: 100%;
+    white-space: normal;
+    height: auto;
+    line-height: 1.75;
+  }
+
+  .recruit_detail_section h2 {
+    font-size: token.$font_size_18;
+    line-height: 1.3;
+  }
+
+  .recruit_detail_notice {
+    padding: token.$spacing_16;
+  }
+
+  .recruit_detail_request p {
+    font-size: token.$font_size_15;
+  }
+}

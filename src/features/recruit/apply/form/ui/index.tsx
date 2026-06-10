@@ -1,6 +1,6 @@
 "use client";
 
-import { Button, useAlert } from "@bigtablet/design-system";
+import { Button, useAlert, useToast } from "@bigtablet/design-system";
 import { ContactSection } from "src/features/recruit/apply/form/ui/sections/contact";
 import { EducationSection } from "src/features/recruit/apply/form/ui/sections/education";
 import { LinksSection } from "src/features/recruit/apply/form/ui/sections/links";
@@ -8,6 +8,7 @@ import { MilitarySection } from "src/features/recruit/apply/form/ui/sections/mil
 import { PortfolioSection } from "src/features/recruit/apply/form/ui/sections/portfolio";
 import { ProfileSection } from "src/features/recruit/apply/form/ui/sections/profile";
 import { useUpload } from "src/features/upload/model/use-upload";
+import { getErrorMessage } from "src/shared/libs/api/axios/error/error.util";
 import styles from "./style.module.scss";
 import type { ApplyFormProps } from "./type";
 
@@ -19,6 +20,17 @@ const ApplyForm = ({ form, email, onSubmit }: ApplyFormProps) => {
 
 	const { upload, isPending: isUploading } = useUpload();
 	const { showAlert } = useAlert();
+	const Toast = useToast();
+
+	/* 업로드 실패(파일 검증/네트워크) 시 toast 표시 후 빈 문자열 반환. 핸들러는 빈 값이면 field 를 갱신하지 않아 기존 업로드 값을 보존한다. */
+	const safeUpload = async (file: File): Promise<string> => {
+		try {
+			return await upload(file);
+		} catch (e: unknown) {
+			Toast.error(getErrorMessage(e, "파일 업로드에 실패했습니다."));
+			return "";
+		}
+	};
 
 	const handleSubmitWithConfirm = () => {
 		showAlert({
@@ -36,7 +48,7 @@ const ApplyForm = ({ form, email, onSubmit }: ApplyFormProps) => {
 			<div className={styles.apply_grid}>
 				<div className={styles.apply_left}>
 					<ContactSection form={form} email={email} />
-					<PortfolioSection form={form} upload={upload} isUploading={isUploading} />
+					<PortfolioSection form={form} upload={safeUpload} isUploading={isUploading} />
 					<EducationSection form={form} />
 					<MilitarySection form={form} />
 					<LinksSection form={form} />
@@ -61,7 +73,7 @@ const ApplyForm = ({ form, email, onSubmit }: ApplyFormProps) => {
 				</div>
 
 				<div className={styles.apply_right}>
-					<ProfileSection form={form} upload={upload} isUploading={isUploading} />
+					<ProfileSection form={form} upload={safeUpload} isUploading={isUploading} />
 				</div>
 			</div>
 		</form>

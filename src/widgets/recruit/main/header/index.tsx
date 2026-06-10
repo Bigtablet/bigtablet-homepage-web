@@ -1,6 +1,7 @@
 "use client";
 
 import { Button, Dropdown, type DropdownOption, TextField } from "@bigtablet/design-system";
+import { useTranslations } from "next-intl";
 import { memo, useState } from "react";
 import type { RecruitSearchFilters } from "src/entities/recruit/api/recruit.api";
 import {
@@ -29,6 +30,7 @@ interface Props {
 }
 
 const RecruitHeader = ({ filters, onChange }: Props) => {
+	const t = useTranslations("recruit");
 	const patch = (partial: Partial<RecruitSearchFilters>) => onChange({ ...filters, ...partial });
 	const [open, setOpen] = useState(false);
 
@@ -36,13 +38,13 @@ const RecruitHeader = ({ filters, onChange }: Props) => {
 		<>
 			<header className={styles.recruit_header}>
 				<div className={styles.recruit_header_text}>
-					<h2>픽셀 너머의 세상을 향해</h2>
-					<p>빅태블릿의 여정을 함께하실 파트너 분들을 모집합니다.</p>
+					<h2>{t("header.title")}</h2>
+					<p>{t("header.description")}</p>
 				</div>
 
 				<div className={styles.recruit_search}>
 					<TextField
-						placeholder="직무 혹은 공고 이름으로 검색하실 수 있습니다."
+						placeholder={t("header.searchPlaceholder")}
 						value={filters.keyword ?? ""}
 						onChangeAction={(value) => patch({ keyword: value })}
 						size="sm"
@@ -50,7 +52,7 @@ const RecruitHeader = ({ filters, onChange }: Props) => {
 					/>
 
 					<Dropdown
-						placeholder="직무"
+						placeholder={t("header.filterJob")}
 						options={DEPARTMENT_OPTIONS}
 						value={filters.job ?? null}
 						onChange={(value) => patch({ job: value ?? "" })}
@@ -59,7 +61,7 @@ const RecruitHeader = ({ filters, onChange }: Props) => {
 					/>
 
 					<Dropdown
-						placeholder="학력"
+						placeholder={t("header.filterEducation")}
 						options={EDUCATION_OPTIONS}
 						value={filters.education ?? null}
 						onChange={(value) => patch({ education: value ?? "" })}
@@ -68,7 +70,7 @@ const RecruitHeader = ({ filters, onChange }: Props) => {
 					/>
 
 					<Dropdown
-						placeholder="고용형태"
+						placeholder={t("header.filterCareer")}
 						options={RECRUIT_TYPE_OPTIONS}
 						value={filters.career ?? null}
 						onChange={(value) => patch({ career: value ?? "" })}
@@ -76,8 +78,13 @@ const RecruitHeader = ({ filters, onChange }: Props) => {
 						className={styles.recruit_search_select}
 					/>
 
-					<Button variant="filled" size="sm" onClick={() => setOpen(true)}>
-						인재풀 등록하기
+					<Button
+						variant="filled"
+						size="sm"
+						className={styles.recruit_search_button}
+						onClick={() => setOpen(true)}
+					>
+						{t("header.registerTalent")}
 					</Button>
 				</div>
 

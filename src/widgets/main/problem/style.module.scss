@@ -8,7 +8,7 @@
   margin: 0 auto;
   white-space: pre-line;
   gap: token.$spacing_24;
-  color: token.$color_text_body;
+  color: token.$color_text_heading;
 }
 
 /* 기본은 invisible — IntersectionObserver 가 is_visible 부여하면 fade-up 시작.
@@ -51,7 +51,8 @@
   @include token.body_medium_medium;
   flex: 0 0 55%;
   font-size: token.$font_size_20;
-  color: token.$color_text_body;
+  /* gradient 배경이 #fafafa → #6b7280 으로 어두워짐 — $color_text_body(#666)는 대비 불충분. heading 토큰 사용 */
+  color: token.$color_text_heading;
   line-height: 1.75;
 }
 

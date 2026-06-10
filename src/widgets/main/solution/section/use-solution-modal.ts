@@ -117,6 +117,21 @@ export const useSolutionModal = (products: Product[]) => {
 		return () => window.removeEventListener("keydown", onKey);
 	}, [activeId, closeNow, go]);
 
+	/* 모달 열림 동안 배경 스크롤 잠금 — 이 앱의 스크롤 컨테이너는 <html> 이므로
+	   body 만으론 부족, documentElement+body 둘 다 잠그고 닫힐 때 복원 */
+	useEffect(() => {
+		if (!activeId) return;
+		const html = document.documentElement;
+		const prevHtml = html.style.overflow;
+		const prevBody = document.body.style.overflow;
+		html.style.overflow = "hidden";
+		document.body.style.overflow = "hidden";
+		return () => {
+			html.style.overflow = prevHtml;
+			document.body.style.overflow = prevBody;
+		};
+	}, [activeId]);
+
 	/* 언마운트 시 잔여 타이머 정리 — modal 닫힌 뒤에 setActiveId가 다시 깨우지 않도록 */
 	useEffect(() => {
 		return () => {

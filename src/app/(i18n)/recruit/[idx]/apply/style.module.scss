@@ -3,7 +3,7 @@
 .apply {
   @include token.flex_column_center;
   width: 100%;
-  padding: token.$spacing_20 0 36px; /* DS 3.1 spacing: 24/32/40 사이 36px 토큰 없음 */
+  padding: token.$spacing_20 0 token.$spacing_32;
   border-top: 1px solid token.$color_border_default;
   align-items: center;
 }

@@ -49,13 +49,16 @@ const Header = () => {
 		};
 	}, [menuOpen]);
 
-	const switchLocale = useCallback(() => {
-		const nextLocale = (locale === "en" ? "ko" : "en") as "ko" | "en";
-		document.cookie =
-			`NEXT_LOCALE=${nextLocale}; Path=/; Max-Age=31536000; SameSite=Lax` +
-			(process.env.NODE_ENV === "production" ? "; Secure" : "");
-		router.refresh();
-	}, [locale, router]);
+	const setLocale = useCallback(
+		(next: Locale) => {
+			if (next === locale) return;
+			document.cookie =
+				`NEXT_LOCALE=${next}; Path=/; Max-Age=31536000; SameSite=Lax` +
+				(process.env.NODE_ENV === "production" ? "; Secure" : "");
+			router.refresh();
+		},
+		[locale, router],
+	);
 
 	const toggleMenu = useCallback(() => {
 		setMenuOpen((previous) => !previous);
@@ -103,9 +106,24 @@ const Header = () => {
 					<Link href="/recruit" onClick={closeMenu}>
 						Recruit
 					</Link>
-					<button type="button" onClick={switchLocale} className={styles.locale_switch}>
-						{locale === "en" ? "한국어" : "English"}
-					</button>
+					<fieldset className={styles.locale_switch} aria-label="Language">
+						<button
+							type="button"
+							className={`${styles.locale_option} ${locale === "ko" ? styles.locale_option_active : ""}`}
+							onClick={() => setLocale("ko")}
+							aria-pressed={locale === "ko"}
+						>
+							KO
+						</button>
+						<button
+							type="button"
+							className={`${styles.locale_option} ${locale === "en" ? styles.locale_option_active : ""}`}
+							onClick={() => setLocale("en")}
+							aria-pressed={locale === "en"}
+						>
+							EN
+						</button>
+					</fieldset>
 				</nav>
 
 				{menuOpen && (

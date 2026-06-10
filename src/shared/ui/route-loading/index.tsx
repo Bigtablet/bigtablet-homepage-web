@@ -28,6 +28,11 @@ const RouteLoading = () => {
 		}
 	}, []);
 
+	const clearLoading = useCallback(() => {
+		cancelShowTimer();
+		setIsLoading(false);
+	}, [cancelShowTimer]);
+
 	const handleStart = useCallback(() => {
 		cancelShowTimer();
 		showTimerRef.current = setTimeout(() => {
@@ -39,9 +44,21 @@ const RouteLoading = () => {
 	useEffect(() => {
 		void pathname;
 		void searchParams;
-		cancelShowTimer();
-		setIsLoading(false);
-	}, [pathname, searchParams, cancelShowTimer]);
+		clearLoading();
+	}, [pathname, searchParams, clearLoading]);
+
+	/**
+	 * bfcache(뒤로/앞으로가기 복원) 케이스: 복원 시 pathname effect가 재실행되지
+	 * 않아 로딩바가 fallback(LOADING_TIMEOUT)까지 떠 있었음. pageshow.persisted로
+	 * 복원을 즉시 감지해 로딩을 해제한다.
+	 */
+	useEffect(() => {
+		const handlePageShow = (event: PageTransitionEvent) => {
+			if (event.persisted) clearLoading();
+		};
+		window.addEventListener("pageshow", handlePageShow);
+		return () => window.removeEventListener("pageshow", handlePageShow);
+	}, [clearLoading]);
 
 	/**
 	 * 안전장치: bfcache 복원 등으로 pathname effect가 재실행되지 않는 경우

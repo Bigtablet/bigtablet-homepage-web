@@ -1,16 +1,20 @@
+"use client";
+
 import Link from "next/link";
-import { getTranslations } from "next-intl/server";
+import { useTranslations } from "next-intl";
 import styles from "./style.module.scss";
 
 /**
  * @component Footer
  *
  * @description
- * 사이트 공통 푸터. 클라이언트 이벤트 없으므로 server component 로 렌더 — hydration JS 미포함.
- * 번역은 `getTranslations` 로 서버에서 직접 가져옴.
+ * 사이트 공통 푸터. client 컴포넌트 — server layout(서버 트리)뿐 아니라
+ * "use client" 인 Template(error/not-found 페이지) 안에서도 렌더되어야 하므로
+ * `useTranslations`(client hook) 사용. 부모의 NextIntlClientProvider 에 footer 메시지 포함.
+ * (이전엔 async server + getTranslations 라 client 트리에서 렌더 시 크래시했음)
  */
-const Footer = async () => {
-	const t = await getTranslations("footer");
+const Footer = () => {
+	const t = useTranslations("footer");
 
 	return (
 		<footer className={styles.footer}>

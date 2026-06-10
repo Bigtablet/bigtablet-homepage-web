@@ -1,7 +1,32 @@
 @use "ds-token" as token;
 
+/* 실제 RequestCard(.request_item) 프레임을 그대로 미러링 — 스켈레톤도 카드 형태 유지 */
+.request_item {
+  @include token.flex_between;
+  align-items: flex-start;
+  border: 1px solid token.$color_border_default;
+  border-radius: token.$radius_lg;
+  background: token.$color_bg_solid;
+  padding: token.$spacing_16 token.$spacing_20;
+}
+
 .request_item.skeleton {
   pointer-events: none;
+}
+
+.request_item_left {
+  @include token.flex_column;
+  gap: token.$spacing_12;
+}
+
+.request_item_tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: token.$spacing_4;
+}
+
+.request_item_dday {
+  white-space: nowrap;
 }
 
 .skeleton_title {
@@ -47,6 +72,15 @@
   );
   background-size: 400% 100%;
   animation: skeleton_shimmer 1.2s ease-in-out infinite;
+}
+
+@include token.compact {
+  .request_item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: token.$spacing_8;
+    padding: token.$spacing_12 token.$spacing_16;
+  }
 }
 
 @keyframes skeleton_shimmer {

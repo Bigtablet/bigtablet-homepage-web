@@ -76,7 +76,12 @@ const RecruitHeader = ({ filters, onChange }: Props) => {
 						className={styles.recruit_search_select}
 					/>
 
-					<Button variant="filled" size="sm" onClick={() => setOpen(true)}>
+					<Button
+						variant="filled"
+						size="sm"
+						className={styles.recruit_search_button}
+						onClick={() => setOpen(true)}
+					>
 						인재풀 등록하기
 					</Button>
 				</div>

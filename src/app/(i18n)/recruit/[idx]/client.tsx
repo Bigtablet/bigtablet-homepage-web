@@ -2,16 +2,16 @@
 
 import { useParams } from "next/navigation";
 import { useTranslations } from "next-intl";
+import { toIdx } from "src/entities/recruit/util/format";
 import { useRecruitDetailQuery } from "src/features/recruit/query/recruit.query";
 import BackLink from "src/shared/ui/back-link";
-import { RecruitBenefits } from "./sections/recruit-benefits";
-import { RecruitHeader } from "./sections/recruit-header";
-import { RecruitMarkdownSection } from "./sections/recruit-markdown-section";
-import { RecruitNotice } from "./sections/recruit-notice";
-import { RecruitProcess } from "./sections/recruit-process";
-import { RecruitRequestSection } from "./sections/recruit-request-section";
+import { RecruitBenefits } from "src/widgets/recruit/detail/benefits";
+import { RecruitHeader } from "src/widgets/recruit/detail/header";
+import { RecruitMarkdownSection } from "src/widgets/recruit/detail/markdown-section";
+import { RecruitNotice } from "src/widgets/recruit/detail/notice";
+import { RecruitProcess } from "src/widgets/recruit/detail/process";
+import { RecruitRequestSection } from "src/widgets/recruit/detail/request";
 import styles from "./style.module.scss";
-import { toIdx } from "./utils";
 
 const RecruitDetailClient = () => {
 	const { idx } = useParams<{ locale: string; idx: string }>();

@@ -1,4 +1,4 @@
-import { formatDate, toIdx } from "src/app/(i18n)/recruit/[idx]/utils";
+import { formatDate, toIdx } from "src/entities/recruit/util/format";
 import { describe, expect, it } from "vitest";
 
 describe("toIdx", () => {

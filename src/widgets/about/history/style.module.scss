@@ -1,4 +1,4 @@
-@use "@bigtablet/design-system/scss/token" as token;
+@use "ds-token" as token;
 
 .history {
 	--container-width: 1200px;
@@ -6,7 +6,7 @@
 	--left-col: 172px;
 
 	width: 100%;
-	background: token.$color_background_primary;
+	background: token.$color_base_navy_600;
 	position: relative;
 	padding-block: clamp(36px, 7vh, 72px);
 
@@ -17,7 +17,7 @@
 		bottom: 0;
 		left: calc(50vw - var(--container-max) / 2 + var(--left-col) / 2);
 		width: 2px;
-		background: token.$text_inverse;
+		background: token.$color_text_inverse;
 		border-radius: 1px;
 	}
 }
@@ -28,64 +28,64 @@
 	margin: 0 auto;
 	display: grid;
 	grid-template-columns: var(--left-col) 1fr;
-	column-gap: token.$spacing_4xl;
+	column-gap: token.$spacing_32;
 	align-items: start;
 }
 
 .history_years {
 	@include token.flex_column;
-	gap: token.$spacing_xs;
+	gap: token.$spacing_4;
 	position: sticky;
 	top: 96px;
 	z-index: 2;
 }
 
 .history_year_item {
-	@include token.body_medium;
+	@include token.body_medium_medium;
 	/* 폰트 크기 고정 — active 시 color + scale만 변경해 layout shift 제거.
 	   font-weight는 transition 대상에서 제외 — 가변 폰트 아니면 즉시 flip이라 부드럽지 않음 */
-	font-size: token.$font_size_lg;
+	font-size: token.$font_size_18;
 	font-weight: token.$font_weight_regular;
 	background: transparent;
 	border: none;
 	padding: 0;
 	text-align: left;
-	color: token.$color_glass_border;
+	color: token.$color_base_alpha_white_12;
 	cursor: pointer;
 	transform-origin: left center;
 	transition: color token.$transition_base, transform token.$transition_base;
 
 	&:hover {
-		color: token.$text_inverse;
+		color: token.$color_text_inverse;
 	}
 
 	&.is_active {
 		font-weight: token.$font_weight_bold;
-		color: token.$text_inverse;
+		color: token.$color_text_inverse;
 		transform: scale(1.15);
 	}
 }
 
 .history_right {
 	@include token.flex_column;
-	gap: token.$spacing_sm;
+	gap: token.$spacing_8;
 	transition: all token.$transition_slow;
 }
 
 .history_row {
 	display: grid;
 	grid-template-columns: 18px 1fr;
-	column-gap: token.$spacing_sm;
+	column-gap: token.$spacing_8;
 	transition: all token.$transition_base;
 }
 
 .history_row_dot {
 	width: 5px;
 	height: 5px;
-	margin-top: token.$spacing_xs;
+	margin-top: token.$spacing_4;
 	border-radius: token.$radius_full;
-	background: token.$text_inverse;
-	box-shadow: 0 0 0 2px token.$color_glass_light;
+	background: token.$color_text_inverse;
+	box-shadow: 0 0 0 2px token.$color_base_alpha_white_8;
 }
 
 .history_row_body {
@@ -94,45 +94,46 @@
 }
 
 .history_row_title {
-	@include token.heading_3;
-	font-size: token.$font_size_base;
-	color: token.$text_inverse;
+	@include token.heading_small_bold;
+	font-size: token.$font_size_15;
+	color: token.$color_text_inverse;
 }
 
 .history_row_desc {
-	@include token.body_regular;
-	font-size: token.$font_size_sm;
-	color: token.$color_glass_border;
-	line-height: token.$line_height_relaxed;
+	@include token.body_medium;
+	font-size: token.$font_size_14;
+	color: token.$color_base_alpha_white_12;
+	line-height: 1.75;
 }
 
-@include token.tablet {
+@include token.medium {
 	.history {
 		--left-col: 140px;
-		padding-block: token.$spacing_6xl;
+		padding-block: token.$spacing_40;
 	}
 
 	.history_grid {
-		column-gap: token.$spacing_xl;
+		column-gap: token.$spacing_20;
 	}
 
 	.history_year_item {
-		font-size: token.$font_size_sm;
+		font-size: token.$font_size_14;
 	}
 
 	.history_row_title {
-		font-size: token.$font_size_base;
+		font-size: token.$font_size_15;
 	}
 
 	.history_row_desc {
-		font-size: token.$font_size_sm;
+		font-size: token.$font_size_14;
 	}
 }
 
-@include token.mobile {
+@include token.compact {
 	.history {
 		--left-col: 100px;
-		padding-block: token.$spacing_3xl;
+		/* 짧은 다크 스트립처럼 보이지 않도록 세로 호흡 확보 — 의도된 섹션으로 인식 */
+		padding-block: clamp(48px, 9vh, 80px);
 
 		&::before {
 			display: none;
@@ -141,7 +142,8 @@
 
 	.history_grid {
 		grid-template-columns: 1fr;
-		row-gap: token.$spacing_md;
+		/* 연도 바와 본문 사이 분리 — 크램프된 스트립 느낌 제거 */
+		row-gap: token.$spacing_20;
 	}
 
 	.history_years {
@@ -149,12 +151,14 @@
 		top: 64px;
 		width: 100%;
 		flex-direction: row;
-		gap: token.$spacing_xs;
+		gap: token.$spacing_4;
 		overflow-x: auto;
-		padding: token.$spacing_sm token.$spacing_lg;
+		padding: token.$spacing_8 token.$spacing_16 token.$spacing_12;
+		/* 데스크탑 세로 타임라인의 가로 대응 — 연도 바를 본문과 구분 */
+		border-bottom: 1px solid token.$color_base_alpha_white_12;
 		scrollbar-width: none;
 		-ms-overflow-style: none;
-		background: token.$color_background_primary;
+		background: token.$color_base_navy_600;
 
 		&::-webkit-scrollbar {
 			display: none;
@@ -163,38 +167,40 @@
 
 	.history_year_item {
 		flex-shrink: 0;
-		padding: token.$spacing_sm token.$spacing_md;
-		border-radius: token.$radius_md;
-		/* 모바일도 font-size 고정 — active는 background + scale로 강조해 layout shift 제거 */
-		font-size: token.$font_size_sm;
-		background: token.$color_glass_light;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		/* 탭 영역 확보(36px)하되 데스크탑과 동일한 텍스트 탭 스타일 유지 —
+		   회색 pill(=비활성 버튼처럼 보임) 대신 투명 배경 + color/weight로 상태 표현 */
+		min-height: 36px;
+		padding: token.$spacing_4 token.$spacing_8;
+		font-size: token.$font_size_16;
 
 		&.is_active {
-			background: token.$color_glass_border;
 			transform: scale(1.08);
 		}
 	}
 
 	.history_right {
-		padding: 0 token.$spacing_lg;
+		padding: 0 token.$spacing_16;
 	}
 
 	.history_row {
 		grid-template-columns: 14px 1fr;
-		column-gap: token.$spacing_sm;
+		column-gap: token.$spacing_8;
 	}
 
 	.history_row_dot {
-		margin-top: token.$spacing_xs;
+		margin-top: token.$spacing_4;
 		width: 5px;
 		height: 5px;
 	}
 
 	.history_row_title {
-		font-size: token.$font_size_sm;
+		font-size: token.$font_size_14;
 	}
 
 	.history_row_desc {
-		font-size: token.$font_size_xs;
+		font-size: token.$font_size_12;
 	}
 }

@@ -1,22 +1,22 @@
-@use "@bigtablet/design-system/scss/token" as token;
+@use "ds-token" as token;
 
 .collabs {
 	@include token.flex_column;
-	padding: token.$spacing_xl 0 token.$spacing_md;
-	color: token.$text_inverse;
-	gap: token.$spacing_3xl;
+	padding: token.$spacing_20 0 token.$spacing_12;
+	color: token.$color_text_inverse;
+	gap: 28px;
 }
 
 .collabs_title {
 	text-align: center;
-	font-size: token.$font_size_3xl;
-	color: token.$text_inverse;
+	font-size: token.$font_size_32;
+	color: token.$color_text_inverse;
 }
 
 .collabs_viewport {
 	position: relative;
 	overflow: hidden;
-	padding-block: token.$spacing_md;
+	padding-block: token.$spacing_12;
 	width: 100%;
 }
 
@@ -55,11 +55,11 @@
 	@include token.flex_center;
 	width: clamp(200px, 18vw, 280px);
 	height: clamp(64px, 6vw, 88px);
-	margin-right: token.$spacing_2xl;
+	margin-right: token.$spacing_24;
 	border-radius: token.$radius_lg;
-	background: token.$color_background;
-	box-shadow: token.$shadow_sm;
-	padding: token.$spacing_md token.$spacing_lg;
+	background: token.$color_bg_solid;
+	box-shadow: token.$elevation_level1;
+	padding: token.$spacing_12 token.$spacing_16;
 	overflow: hidden;
 	transition:
 		transform token.$transition_fast,
@@ -74,19 +74,19 @@
 	}
 }
 
-@include token.mobile {
+@include token.compact {
 	.collabs {
-		gap: token.$spacing_xl;
+		gap: token.$spacing_20;
 	}
 
 	.collabs_title {
-		font-size: token.$font_size_xl;
+		font-size: token.$font_size_20;
 	}
 
 	.collabs_card {
 		width: 180px;
 		height: 56px;
-		margin-right: token.$spacing_lg;
-		padding: token.$spacing_sm token.$spacing_md;
+		margin-right: token.$spacing_16;
+		padding: token.$spacing_8 token.$spacing_12;
 	}
 }

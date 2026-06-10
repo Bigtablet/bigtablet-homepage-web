@@ -1,50 +1,77 @@
-@use "@bigtablet/design-system/scss/token" as token;
+@use "ds-token" as token;
 
 .policy {
-	padding: token.$spacing_5xl 0;
+	padding: 36px 0;
 	@include token.flex_column;
 	max-width: 1200px;
 	width: 100%;
-	gap: token.$spacing_2xl;
+	gap: token.$spacing_24;
 	margin: 0 auto;
 }
 
 .policy_body {
 	@include token.flex_column;
-	gap: token.$spacing_2xl;
+	gap: token.$spacing_24;
 
 	h1 {
-		@include token.heading_1;
-		font-size: token.$font_size_4xl;
-		color: token.$text_strong;
+		@include token.display_small_bold;
+		font-size: token.$font_size_40;
+		color: token.$color_text_heading;
 	}
 
 	h2 {
-		@include token.heading_2;
-		font-size: token.$font_size_2xl;
-		color: token.$text_normal;
+		@include token.heading_medium_bold;
+		font-size: token.$font_size_24;
+		color: token.$color_text_body;
 	}
 
 	p {
-		@include token.body_regular;
-		font-size: token.$font_size_md;
-		color: token.$text_normal;
-		line-height: token.$line_height_relaxed;
+		@include token.body_medium;
+		font-size: token.$font_size_16;
+		color: token.$color_text_body;
+		line-height: 1.75;
 	}
 
 	a {
-		color: token.$color_primary;
+		color: token.$color_brand_primary;
 		text-decoration: underline;
 	}
 
 	ul, ol {
-		padding-left: token.$spacing_xl;
+		padding-left: token.$spacing_20;
 
 		li {
-			@include token.body_regular;
-			font-size: token.$font_size_md;
-			color: token.$text_normal;
-			line-height: token.$line_height_relaxed;
+			@include token.body_medium;
+			font-size: token.$font_size_16;
+			color: token.$color_text_body;
+			line-height: 1.75;
+		}
+	}
+}
+
+@include token.compact {
+	.policy {
+		padding: 28px token.$spacing_12;
+		gap: token.$spacing_20;
+	}
+
+	.policy_body {
+		gap: token.$spacing_20;
+
+		h1 {
+			font-size: token.$font_size_24;
+		}
+
+		h2 {
+			font-size: token.$font_size_18;
+		}
+
+		p, ul li, ol li {
+			font-size: token.$font_size_14;
+		}
+
+		ul, ol {
+			padding-left: token.$spacing_16;
 		}
 	}
 }

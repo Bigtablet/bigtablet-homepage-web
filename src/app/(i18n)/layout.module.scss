@@ -1,11 +1,11 @@
-@use "@bigtablet/design-system/scss/token" as token;
+@use "ds-token" as token;
 
 .layout {
     display: flex;
     flex-direction: column;
     min-height: 100dvh;
-    background-color: token.$color_background_secondary;
-    color: token.$text_normal;
+    background-color: token.$color_bg_solid_dim;
+    color: token.$color_text_body;
 }
 
 /* sticky footer — main이 남는 공간 모두 차지해 footer를 viewport 하단으로 밀어냄 */

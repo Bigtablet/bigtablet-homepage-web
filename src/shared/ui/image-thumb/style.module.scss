@@ -1,4 +1,4 @@
-@use "@bigtablet/design-system/scss/token" as token;
+@use "ds-token" as token;
 
 .thumb {
   position: relative;
@@ -7,7 +7,7 @@
 
 /* 로딩 중 — base 회색 위에 밝은 sweep band가 좌→우로 흐름 */
 .thumb_loading {
-  background-color: token.$color_background_muted;
+  background-color: token.$color_bg_solid_dim;
   background-image: linear-gradient(
     100deg,
     transparent 20%,
@@ -44,14 +44,14 @@
 .thumb_fallback {
   background: linear-gradient(
     135deg,
-    token.$color_background_secondary 0%,
-    token.$color_background 100%
+    token.$color_bg_solid_dim 0%,
+    token.$color_bg_solid 100%
   );
   display: flex;
   align-items: center;
   justify-content: center;
-  color: token.$text_subtle;
-  font-size: token.$font_size_sm;
+  color: token.$color_text_caption;
+  font-size: token.$font_size_14;
   animation: none;
 }
 

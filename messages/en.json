@@ -27,6 +27,15 @@
 		"notFoundDescription": "The page you requested does not exist\nor has been moved."
 	},
 	"recruit": {
+		"header": {
+			"title": "Toward a World Beyond Pixels",
+			"description": "We're looking for partners to join Bigtablet on our journey.",
+			"searchPlaceholder": "Search by job or posting title",
+			"filterJob": "Job",
+			"filterEducation": "Education",
+			"filterCareer": "Employment Type",
+			"registerTalent": "Join Talent Pool"
+		},
 		"detail": {
 			"loading": "Loading…",
 			"loadFailed": "Failed to load.",

@@ -27,6 +27,15 @@
 		"notFoundDescription": "요청하신 페이지가 존재하지 않거나\n잘못된 접근입니다."
 	},
 	"recruit": {
+		"header": {
+			"title": "픽셀 너머의 세상을 향해",
+			"description": "빅태블릿의 여정을 함께하실 파트너 분들을 모집합니다.",
+			"searchPlaceholder": "직무 혹은 공고 이름으로 검색하실 수 있습니다",
+			"filterJob": "직무",
+			"filterEducation": "학력",
+			"filterCareer": "고용형태",
+			"registerTalent": "인재풀 등록하기"
+		},
 		"detail": {
 			"loading": "불러오는 중…",
 			"loadFailed": "불러오지 못했습니다.",

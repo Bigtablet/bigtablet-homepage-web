@@ -43,7 +43,7 @@
 	@include token.flex_center;
 	position: relative;
 	height: 100%;
-	gap: 28px;
+	gap: 28px; /* DS 3.1 spacing: 24/32 사이 28px 토큰 없음 */
 	color: token.$color_text_inverse;
 	text-align: center;
 	padding-inline: token.$spacing_20;
@@ -98,7 +98,7 @@
 	flex-direction: column;
 	align-items: center;
 	gap: token.$spacing_4;
-	color: rgba(255, 255, 255, 0.5);
+	color: rgba(255, 255, 255, 0.5); /* _ds-token.scss 에 alpha-white-50 토큰 없음 — 스크림 반투명 */
 	font-size: token.$font_size_12;
 	animation: bounce_scroll 2s ease-in-out infinite;
 }

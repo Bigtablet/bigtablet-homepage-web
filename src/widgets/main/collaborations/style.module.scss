@@ -4,7 +4,7 @@
 	@include token.flex_column;
 	padding: token.$spacing_20 0 token.$spacing_12;
 	color: token.$color_text_inverse;
-	gap: 28px;
+	gap: 28px; /* DS 3.1 spacing: 24/32 사이 28px 토큰 없음 */
 }
 
 .collabs_title {

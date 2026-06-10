@@ -8,7 +8,7 @@
   border: 1px solid token.$color_border_default;
   border-radius: token.$radius_xl;
   box-shadow: token.$elevation_level1;
-  padding: token.$spacing_32 28px;
+  padding: token.$spacing_32 28px; /* DS 3.1 spacing: 24/32 사이 28px 토큰 없음 */
 }
 
 .apply_grid {

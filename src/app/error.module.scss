@@ -4,7 +4,7 @@
 	@include token.flex_column;
 	@include token.flex_center;
 	gap: token.$spacing_12;
-	padding: 28px token.$spacing_16;
+	padding: 28px token.$spacing_16; /* DS 3.1 spacing: 24/32 사이 28px 토큰 없음 */
 	text-align: center;
 }
 

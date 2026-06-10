@@ -29,7 +29,7 @@
 %ground_base {
   @include token.flex_column;
   gap: clamp(80px, 10vw, 160px);
-  padding: clamp(60px, 8vw, 120px) clamp(16px, 5vw, 80px);
+  padding: clamp(60px, 8vw, 120px) clamp(16px, 5vw, 80px); /* 유동 반응형 — DS spacing 토큰으로 clamp 표현 불가 */
   width: 100%;
 }
 

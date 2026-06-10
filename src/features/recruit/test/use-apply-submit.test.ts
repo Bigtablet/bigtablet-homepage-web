@@ -100,9 +100,25 @@ describe("useApplySubmit", () => {
 			expect(mockMutateAsync).toHaveBeenCalledWith(
 				expect.objectContaining({
 					schoolName: "",
-					graduationEnd: "",
+					graduationYear: "",
 					department: "",
 				}),
+			);
+		});
+
+		it("폼 필드 graduationEnd 를 API 계약 필드 graduationYear 로 매핑해 전송한다", async () => {
+			mockMutateAsync.mockResolvedValue(undefined);
+			const form = makeMockForm();
+
+			const { result } = renderHook(() => useApplySubmit({ form, jobId: 1, emailVerified: true }));
+
+			await act(() => result.current.onSubmit());
+
+			expect(mockMutateAsync).toHaveBeenCalledWith(
+				expect.objectContaining({ graduationYear: "2024" }),
+			);
+			expect(mockMutateAsync).toHaveBeenCalledWith(
+				expect.not.objectContaining({ graduationEnd: expect.anything() }),
 			);
 		});
 

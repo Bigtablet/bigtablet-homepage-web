@@ -4,6 +4,7 @@ import { useToast } from "@bigtablet/design-system";
 import { useRouter } from "next/navigation";
 import type { FieldErrors, UseFormReturn } from "react-hook-form";
 import type { ApplyFormValues } from "src/features/recruit/apply/form/model/apply.schema";
+import { toRecruitRequest } from "src/features/recruit/apply/form/model/apply.util";
 import { useRecruitApplyMutation } from "src/features/recruit/mutation/recruit.mutation";
 
 type Params = {
@@ -22,14 +23,9 @@ export const useApplySubmit = ({ form, jobId, emailVerified }: Params) => {
 			Toast.warning("이메일 인증을 완료해주세요.");
 			return;
 		}
-		if (values.educationLevel === "GED") {
-			values.schoolName = "";
-			values.graduationEnd = "";
-			values.department = "";
-		}
 
 		try {
-			await mutation.mutateAsync({ ...values, jobId });
+			await mutation.mutateAsync(toRecruitRequest(values, jobId));
 			Toast.success("지원이 완료되었습니다.");
 			router.push("/recruit");
 		} catch (_error) {

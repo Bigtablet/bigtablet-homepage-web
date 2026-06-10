@@ -1,6 +1,6 @@
 "use client";
 
-import { AlertProvider, ToastProvider } from "@bigtablet/design-system";
+import { AlertProvider, ThemeProvider, ToastProvider } from "@bigtablet/design-system";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import dynamic from "next/dynamic";
 import { type ReactNode, useMemo } from "react";
@@ -38,14 +38,18 @@ export default function Providers({ children }: Props) {
 	);
 
 	return (
-		<AlertProvider>
-			<ToastProvider>
-				<QueryClientProvider client={queryClient}>
-					<ToastBridgeProvider />
-					{children}
-					<DeferredCookieConsent />
-				</QueryClientProvider>
-			</ToastProvider>
-		</AlertProvider>
+		/* defaultMode="light" 고정 — DS 3.1 토큰/테마 인프라는 도입하되, 현 사이트는
+		   라이트 기반(특정 섹션만 다크)이라 system/dark 자동 전환은 추후 다크 대응 후 활성화 */
+		<ThemeProvider defaultMode="light">
+			<AlertProvider>
+				<ToastProvider>
+					<QueryClientProvider client={queryClient}>
+						<ToastBridgeProvider />
+						{children}
+						<DeferredCookieConsent />
+					</QueryClientProvider>
+				</ToastProvider>
+			</AlertProvider>
+		</ThemeProvider>
 	);
 }

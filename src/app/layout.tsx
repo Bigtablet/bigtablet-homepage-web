@@ -1,4 +1,4 @@
-import "src/app/global.css";
+import "@bigtablet/design-system/style.css";
 import "./global.css";
 import type { Metadata } from "next";
 import { cookies } from "next/headers";

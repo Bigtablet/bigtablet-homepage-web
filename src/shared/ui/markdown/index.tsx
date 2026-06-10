@@ -6,9 +6,18 @@
 import type React from "react";
 import styles from "./style.module.scss";
 
+/** 주입된 className 을 잃지 않도록 스타일 클래스와 병합한다. */
+const cx = (...classes: (string | undefined)[]) => classes.filter(Boolean).join(" ");
+
 export const markdownComponents = {
-	p: (props: React.ComponentProps<"p">) => <p {...props} className={styles.markdown_text} />,
-	ul: (props: React.ComponentProps<"ul">) => <ul {...props} className={styles.markdown_list} />,
-	ol: (props: React.ComponentProps<"ol">) => <ol {...props} className={styles.markdown_list} />,
+	p: ({ className, ...props }: React.ComponentProps<"p">) => (
+		<p {...props} className={cx(styles.markdown_text, className)} />
+	),
+	ul: ({ className, ...props }: React.ComponentProps<"ul">) => (
+		<ul {...props} className={cx(styles.markdown_list, className)} />
+	),
+	ol: ({ className, ...props }: React.ComponentProps<"ol">) => (
+		<ol {...props} className={cx(styles.markdown_list, className)} />
+	),
 	li: (props: React.ComponentProps<"li">) => <li {...props} />,
 };

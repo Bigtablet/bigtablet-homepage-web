@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getMessages } from "next-intl/server";
 import { isMemberSlug } from "src/entities/about/util/member.util";
-import MemberDetailClient from "./client";
+import MemberDetailClient from "./page-client";
 
 type PageProps = {
 	params: Promise<{ id: string }>;

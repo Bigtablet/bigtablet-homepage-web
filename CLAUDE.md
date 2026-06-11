@@ -130,6 +130,7 @@ src/
 - Naming: UpperCamelCase (components), snake_case (SCSS classes)
 - Comments: Only where necessary, Korean (English when needed)
 - Control flow: 3+ conditions → `switch`, Early return pattern
+- Route client delegate: 서버 `page.tsx` 가 위임하는 `"use client"` 컴포넌트는 같은 폴더에 **`page-client.tsx`** 로 둔다 (목록/상세 라우트 공통, `client.tsx` 금지)
 
 ### Styling Summary
 

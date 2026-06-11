@@ -6,7 +6,7 @@ import { getBlogDetailApi } from "src/entities/blog/api/blog.api";
 import { blogQueries } from "src/features/blog/query/blog.query";
 import { createServerQueryClient } from "src/shared/libs/api/query/server-query-client";
 import { resolveLocale } from "src/shared/libs/locale";
-import BlogDetailClient from "./client";
+import BlogDetailClient from "./page-client";
 
 type PageProps = {
 	params: Promise<{ idx: string }>;

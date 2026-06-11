@@ -101,15 +101,18 @@ label/domain
 
 | 템플릿 | 제목 접두사 | 라벨 | 섹션 |
 | --- | --- | --- | --- |
-| Bug Report | `[BUG] ` | `Bug` | 버그 개요 / 버그 내용 / 재현 경로 / TO DO |
-| Feature Request | `[FEATURE] ` | `Feature` | 기능 개요 / 세부 기능 / 기능 플로우 / TO DO |
-| Task | `[TASK] ` | `Fix` | 작업 개요 / TO DO / 전달할 추가 이슈 |
+| Bug Report | `[BUG]` | `Bug` | 버그 개요 / 버그 내용 / 재현 경로 / TO DO |
+| Feature Request | `[FEATURE]` | `Feature` | 기능 개요 / 세부 기능 / 기능 플로우 / TO DO |
+| Task | `[TASK]` | `Fix` | 작업 개요 / TO DO / 전달할 추가 이슈 |
+
+제목은 접두사 뒤에 공백 한 칸을 두고 설명을 붙입니다. 예: `[TASK] 작업 설명`
 
 dev 워크플로우의 일반 작업 이슈는 보통 **Task** 템플릿을 사용합니다.
 
 ```bash
 gh issue create --title "[TASK] 작업 설명" --label "Fix" --body "$(cat <<'EOF'
 ## 작업 개요
+(작업 목적을 한 줄로 요약)
 
 ## TO DO
 - [ ] 작업1
@@ -180,7 +183,7 @@ EOF
 
 PR 제목은 브랜치명과 동일하며, 본문은 아래 양식을 사용합니다. `작업한 내용`은 `- [x]` (완료 체크박스).
 
-```
+```markdown
 ## 제목
 브랜치명
 

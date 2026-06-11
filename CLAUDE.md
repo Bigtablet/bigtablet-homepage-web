@@ -152,7 +152,7 @@ src/
   5. PR에 `Closes #이슈번호` 추가
 - **Issue 본문**: 조직 공용 템플릿(`[BUG]`/`[FEATURE]`/`[TASK]`) 섹션을 그대로 사용. 자의적 변경 금지. 템플릿별 제목 접두사·라벨·섹션은 [git-workflow.md](.claude/docs/git-workflow.md) 참조
 - **PR 본문 템플릿** (자의적 변경 금지):
-  ```
+  ```markdown
   ## 제목
   브랜치명
 

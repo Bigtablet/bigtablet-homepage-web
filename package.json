@@ -24,7 +24,7 @@
 		"@bigtablet/design-system": "3.2.2",
 		"@gsap/react": "^2.1.2",
 		"@hookform/resolvers": "^5.4.0",
-		"@next/bundle-analyzer": "^16.2.6",
+		"@next/bundle-analyzer": "^16.2.9",
 		"@opentelemetry/api": "^1.9.1",
 		"@sentry/nextjs": "^10.58.0",
 		"@vercel/otel": "^2.1.2",

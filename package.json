@@ -62,7 +62,7 @@
 		"babel-plugin-react-compiler": "^1.0.0",
 		"husky": "^9.1.7",
 		"jsdom": "^29.1.1",
-		"knip": "^6.12.2",
+		"knip": "^6.17.1",
 		"msw": "^2.14.6",
 		"sass": "^1.100.0",
 		"typescript": "^6.0.3",

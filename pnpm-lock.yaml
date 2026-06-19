@@ -13,8 +13,8 @@ importers:
   .:
     dependencies:
       '@bigtablet/design-system':
-        specifier: 3.1.1
-        version: 3.1.1(lucide-react@1.17.0(react@19.2.6))(next@16.2.6(@babel/core@7.29.0)(@opentelemetry/api@1.9.1)(@playwright/test@1.60.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(sass@1.100.0))(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
+        specifier: 3.2.2
+        version: 3.2.2(lucide-react@1.17.0(react@19.2.6))(next@16.2.6(@babel/core@7.29.0)(@opentelemetry/api@1.9.1)(@playwright/test@1.60.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(sass@1.100.0))(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
       '@gsap/react':
         specifier: ^2.1.2
         version: 2.1.2(gsap@3.15.0)(react@19.2.6)
@@ -277,8 +277,8 @@ packages:
     resolution: {integrity: sha512-6zABk/ECA/QYSCQ1NGiVwwbQerUCZ+TQbp64Q3AgmfNvurHH0j8TtXa1qbShXA6qqkpAj4V5W8pP6mLe1mcMqA==}
     engines: {node: '>=18'}
 
-  '@bigtablet/design-system@3.1.1':
-    resolution: {integrity: sha512-kKmr3RbHlZMPJ4In7SBmczAKmWf0Mhgjpx/hhavWXyvRJoRGw/8V7sS4rITrigg71gvt+jUlUZRa53aQowA8TQ==}
+  '@bigtablet/design-system@3.2.2':
+    resolution: {integrity: sha512-8CXGUn4RguCmYTe09FoA/m5+uqg5mFJqJb/0rR5gPty4KWBtsgY9cxZspYQovKR9pMm1X7ngqNRXl1lvo2RF7w==}
     peerDependencies:
       lucide-react: '>=0.552.0'
       next: '>=16'
@@ -4283,7 +4283,7 @@ snapshots:
 
   '@bcoe/v8-coverage@1.0.2': {}
 
-  '@bigtablet/design-system@3.1.1(lucide-react@1.17.0(react@19.2.6))(next@16.2.6(@babel/core@7.29.0)(@opentelemetry/api@1.9.1)(@playwright/test@1.60.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(sass@1.100.0))(react-dom@19.2.6(react@19.2.6))(react@19.2.6)':
+  '@bigtablet/design-system@3.2.2(lucide-react@1.17.0(react@19.2.6))(next@16.2.6(@babel/core@7.29.0)(@opentelemetry/api@1.9.1)(@playwright/test@1.60.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(sass@1.100.0))(react-dom@19.2.6(react@19.2.6))(react@19.2.6)':
     dependencies:
       '@react-spring/web': 10.1.0(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
       lucide-react: 1.17.0(react@19.2.6)

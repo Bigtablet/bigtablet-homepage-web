@@ -21,7 +21,7 @@
 		"prepare": "husky"
 	},
 	"dependencies": {
-		"@bigtablet/design-system": "3.1.1",
+		"@bigtablet/design-system": "3.2.2",
 		"@gsap/react": "^2.1.2",
 		"@hookform/resolvers": "^5.4.0",
 		"@next/bundle-analyzer": "^16.2.6",

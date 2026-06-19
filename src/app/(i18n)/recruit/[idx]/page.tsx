@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { getRecruitDetailApi } from "src/entities/recruit/api/recruit.api";
 import { recruitQueries } from "src/features/recruit/query/recruit.query";
 import { createServerQueryClient } from "src/shared/libs/api/query/server-query-client";
-import RecruitDetailClient from "./client";
+import RecruitDetailClient from "./page-client";
 
 type PageProps = {
 	params: Promise<{ idx: string }>;

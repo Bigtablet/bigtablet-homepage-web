@@ -130,6 +130,7 @@ src/
 - Naming: UpperCamelCase (components), snake_case (SCSS classes)
 - Comments: Only where necessary, Korean (English when needed)
 - Control flow: 3+ conditions → `switch`, Early return pattern
+- Route client delegate: 서버 `page.tsx` 가 위임하는 `"use client"` 컴포넌트는 같은 폴더에 **`page-client.tsx`** 로 둔다 (목록/상세 라우트 공통, `client.tsx` 금지)
 
 ### Styling Summary
 
@@ -144,18 +145,19 @@ src/
 - **브랜치**: `label/domain` (예: `feat/member-table`)
 - **브랜치 라벨**: `feat`, `fix`, `bug`, `chore`, `test`, `style`, `docs`, `config`, `delete`, `note`, `etc` (이 목록에 없는 라벨 사용 금지)
 - **PR/Issue 워크플로우** (순서 필수):
-  1. Issue 생성 (title = 브랜치명)
+  1. Issue 생성 (조직 공용 템플릿 사용: 제목 `[BUG]`/`[FEATURE]`/`[TASK]` + 설명, 라벨 `Bug`/`Feature`/`Fix`)
   2. Branch 생성
   3. 구현 + 커밋 (영문)
   4. PR 생성 (title = 브랜치명, base = `develop`)
   5. PR에 `Closes #이슈번호` 추가
-- **PR/Issue 본문 템플릿** (자의적 변경 금지):
-  ```
+- **Issue 본문**: 조직 공용 템플릿(`[BUG]`/`[FEATURE]`/`[TASK]`) 섹션을 그대로 사용. 자의적 변경 금지. 템플릿별 제목 접두사·라벨·섹션은 [git-workflow.md](.claude/docs/git-workflow.md) 참조
+- **PR 본문 템플릿** (자의적 변경 금지):
+  ```markdown
   ## 제목
-  브랜치명 (PR) 또는 작업 설명 (Issue)
+  브랜치명
 
   ## 작업한 내용
-  - [x] 작업1 (PR) 또는 - [ ] 작업1 (Issue)
+  - [x] 작업1
 
   ## 전달할 추가 이슈
   - 없음

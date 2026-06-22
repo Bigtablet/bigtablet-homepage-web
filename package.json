@@ -39,7 +39,7 @@
 		"react-datepicker": "^9.1.0",
 		"react-dom": "^19.2.6",
 		"react-error-boundary": "^6.1.2",
-		"react-hook-form": "^7.78.0",
+		"react-hook-form": "^7.80.0",
 		"react-markdown": "^10.1.0",
 		"remark-breaks": "^4.0.0",
 		"remark-gfm": "^4.0.1",

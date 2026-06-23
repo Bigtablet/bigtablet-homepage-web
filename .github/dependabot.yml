@@ -13,6 +13,14 @@ updates:
       - dependencies
     commit-message:
       prefix: "config"
+    groups:
+      # react 계열은 버전이 같이 가야 하므로 한 PR로 묶음 (react-dom 누락 방지)
+      react:
+        patterns:
+          - "react"
+          - "react-dom"
+          - "@types/react"
+          - "@types/react-dom"
     ignore:
       # major 버전 업은 수동으로 검토
       - dependency-name: "*"

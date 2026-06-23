@@ -12,8 +12,8 @@ const base = {
 	profileImage: "https://example.com/image.png",
 	educationLevel: "BACHELOR" as const,
 	schoolName: "서울대학교",
-	admissionYear: "2020",
-	graduationEnd: "2024",
+	admissionYear: "2020-03",
+	graduationEnd: "2024-02",
 	department: "컴퓨터공학",
 	military: "NOT_APPLICABLE" as const,
 	attachment1: "",
@@ -97,9 +97,25 @@ describe("applySchema", () => {
 	it("졸업년도가 입학년도보다 이전이면 실패", () => {
 		const result = applySchema.safeParse({
 			...base,
-			admissionYear: "2024",
-			graduationEnd: "2020",
+			admissionYear: "2024-03",
+			graduationEnd: "2020-05",
 		});
 		expect(result.success).toBe(false);
+	});
+
+	/* MonthPickerField 실제 출력 포맷("YYYY-MM") 기준 교차검증. 과거 Number() 파싱은 NaN으로 죽어 있었음 */
+	it('"YYYY-MM" 졸업이 입학보다 이전이면 실패', () => {
+		const result = applySchema.safeParse({
+			...base,
+			admissionYear: "2024-03",
+			graduationEnd: "2022-05",
+		});
+		expect(result.success).toBe(false);
+	});
+
+	it('"YYYY-MM" 졸업이 입학 이후면 통과', () => {
+		expect(() =>
+			applySchema.parse({ ...base, admissionYear: "2020-03", graduationEnd: "2024-02" }),
+		).not.toThrow();
 	});
 });

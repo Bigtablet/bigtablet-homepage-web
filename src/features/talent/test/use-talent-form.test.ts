@@ -154,7 +154,7 @@ describe("useTalentForm", () => {
 			);
 		});
 
-		it("빈 문자열 portfolioUrl은 그대로 빈 문자열로 유지한다", async () => {
+		it("빈 portfolioUrl은 검증(zodResolver)에 막혀 제출되지 않는다", async () => {
 			mockCreateTalent.mockResolvedValue(undefined);
 			const { result } = renderHook(() => useTalentForm({ onClose }));
 			fillBaseForm(result, { portfolioUrl: "" });
@@ -163,7 +163,8 @@ describe("useTalentForm", () => {
 				await result.current.handleSubmit();
 			});
 
-			expect(mockCreateTalent).toHaveBeenCalledWith(expect.objectContaining({ portfolioUrl: "" }));
+			expect(mockCreateTalent).not.toHaveBeenCalled();
+			expect(result.current.form.getFieldState("portfolioUrl").error).toBeDefined();
 		});
 
 		it("이미 https://가 있는 URL은 그대로 유지한다", async () => {

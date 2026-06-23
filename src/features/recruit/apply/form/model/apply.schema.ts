@@ -84,8 +84,14 @@ export const applySchema = baseSchema.superRefine((data, ctx) => {
 		}
 	}
 
-	/* "YYYY-MM"은 zero-pad 포맷이라 사전순 비교가 시간순과 일치 */
-	if (data.admissionYear && data.graduationEnd && data.graduationEnd < data.admissionYear) {
+	/* 입력원(MonthPickerField)이 zero-pad "YYYY-MM"만 내보내므로 그 형식일 때만 사전순=시간순 비교.
+	   형식 미보장 값은 비교를 건너뛰어 오검증을 막는다 */
+	const ym = /^\d{4}-\d{2}$/;
+	if (
+		ym.test(data.admissionYear) &&
+		ym.test(data.graduationEnd) &&
+		data.graduationEnd < data.admissionYear
+	) {
 		ctx.addIssue({
 			code: "custom",
 			path: ["graduationEnd"],

@@ -99,6 +99,19 @@ describe("proxy", () => {
 			expect(mockNext).toHaveBeenCalled();
 			expect(mockRedirect).not.toHaveBeenCalled();
 		});
+
+		it("요청헤더에 CSP를 설정해 Next가 스크립트에 nonce를 부착하게 한다", () => {
+			proxy(makeRequest("/about"));
+
+			const opts = mockNext.mock.calls[0]?.[0] as { request: { headers: Headers } } | undefined;
+			const requestCsp = opts?.request.headers.get("Content-Security-Policy");
+			const nonce = opts?.request.headers.get("x-nonce");
+
+			expect(nonce).toBeTruthy();
+			expect(requestCsp).toContain(`'nonce-${nonce}'`);
+			// 응답헤더 CSP와 동일 nonce 사용
+			expect(mockNextHeaders.get("Content-Security-Policy")).toBe(requestCsp);
+		});
 	});
 
 	describe("locale cookie", () => {

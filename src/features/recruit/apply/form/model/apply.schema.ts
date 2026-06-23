@@ -56,9 +56,6 @@ const baseSchema = z.object({
 export const applySchema = baseSchema.superRefine((data, ctx) => {
 	const isGed = data.educationLevel === "GED";
 
-	const admission = Number(data.admissionYear);
-	const graduation = Number(data.graduationEnd);
-
 	if (isGed) {
 		if (!data.admissionYear) {
 			ctx.addIssue({
@@ -87,7 +84,8 @@ export const applySchema = baseSchema.superRefine((data, ctx) => {
 		}
 	}
 
-	if (!Number.isNaN(admission) && !Number.isNaN(graduation) && graduation < admission) {
+	/* "YYYY-MM"은 zero-pad 포맷이라 사전순 비교가 시간순과 일치 */
+	if (data.admissionYear && data.graduationEnd && data.graduationEnd < data.admissionYear) {
 		ctx.addIssue({
 			code: "custom",
 			path: ["graduationEnd"],

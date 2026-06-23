@@ -3,7 +3,7 @@
 import { AlertProvider, ThemeProvider, ToastProvider } from "@bigtablet/design-system";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import dynamic from "next/dynamic";
-import { type ReactNode, useMemo } from "react";
+import { type ReactNode, useState } from "react";
 import { isHttpError } from "src/shared/libs/api/error";
 import { createMutationCache } from "src/shared/libs/api/query/mutation-cache";
 import ToastBridgeProvider from "src/shared/libs/api/toast/toast-bridge-provider";
@@ -16,7 +16,8 @@ const DeferredCookieConsent = dynamic(() => import("src/features/cookie-consent/
 type Props = { children: ReactNode };
 
 export default function Providers({ children }: Props) {
-	const queryClient = useMemo(
+	/* useState 지연 초기화. useMemo는 React가 폐기 가능해 캐시 유실 위험 */
+	const [queryClient] = useState(
 		() =>
 			new QueryClient({
 				mutationCache: createMutationCache(),
@@ -34,7 +35,6 @@ export default function Providers({ children }: Props) {
 					},
 				},
 			}),
-		[],
 	);
 
 	return (

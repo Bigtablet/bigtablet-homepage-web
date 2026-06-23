@@ -79,9 +79,9 @@ const History = ({ items }: Props) => {
 	);
 
 	useEffect(() => {
-		if (activeGroup) {
-			requestAnimationFrame(animateIn);
-		}
+		if (!activeGroup) return;
+		const id = requestAnimationFrame(animateIn);
+		return () => cancelAnimationFrame(id);
 	}, [activeGroup, animateIn]);
 
 	return (

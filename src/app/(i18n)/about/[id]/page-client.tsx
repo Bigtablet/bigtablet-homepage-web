@@ -9,6 +9,10 @@ import { QaList } from "src/widgets/about/member/model/use-qa-list";
 import Profile from "src/widgets/about/member/profile";
 import styles from "./style.module.scss";
 
+/**
+ * @description about/[id] 팀 멤버 상세 페이지의 클라이언트 렌더링 컴포넌트.
+ * URL 파라미터(id)로 멤버를 식별하고 프로필·인터뷰를 렌더한다.
+ */
 const MemberDetailClient = () => {
 	const { id } = useParams<{ id: string }>();
 	const t = useTranslations();

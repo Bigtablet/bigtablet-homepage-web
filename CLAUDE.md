@@ -182,6 +182,25 @@ src/
   - `coderabbitai` 가 단 리뷰 → 답글에 `@coderabbitai` 멘션
   - 멘션으로 봇이 재확인/재리뷰하도록 트리거한다. 답글은 한 줄로 "무엇을 바꿨는지(또는 왜 안 바꿨는지)" 명시 후 스레드 resolve.
 
+### Jira 티켓 규칙 (⚠️ 필수 준수)
+
+작업을 Jira에 등록할 때 (Atlassian MCP 사용, cloud `bigtablet.atlassian.net`):
+
+- **프로젝트**: `DEV` (개발팀)
+- **부모 에픽**: 이 repo 작업은 **반드시 `DEV-388` (공식 홈페이지) 에픽 하위**로 생성한다 (`parent: { key: "DEV-388" }`). 다른 에픽(예: `DEV-37` Nottiv) 사용 금지.
+- **담당자(assignee)**: **작업자 본인**으로 지정한다 (`atlassianUserInfo`로 accountId 조회 후 `assignee`). 미지정 금지.
+- **제목 접두사**: `[WEB]` (`[BUG]`/`[TASK]` 아님 — GitHub 이슈 접두사와 다름). 예: `[WEB] 작업 설명`
+- **이슈 타입**: `작업` (Task)
+- **필드 4종 필수**:
+  | 필드 | Jira 필드 | 내용 |
+  | --- | --- | --- |
+  | 설명 | `description` | 작업 목적/배경 요약 |
+  | 기존안 | `customfield_10229` (ADF) | 변경 전 상태/문제 |
+  | 수정안 | `customfield_10230` (ADF) | 적용한 해결책 + 검증 + branch/PR |
+  | 시작 날짜 | `customfield_10015` (`YYYY-MM-DD`) | **커밋 첫 날짜** (`git log`로 확인) |
+- **기존안/수정안은 ADF 포맷 필수** (plain string 거부됨): `{"type":"doc","version":1,"content":[{"type":"paragraph","content":[{"type":"text","text":"..."}]}]}`. 코드 예시는 `codeBlock` 노드 사용 가능.
+- **생성 전 중복 검색 (⚠️ 필수)**: `searchJiraIssuesUsingJql`로 동일/유사 티켓이 이미 있는지 확인 후 생성한다. 무지성 일괄 생성 금지.
+
 ### Release 규칙 (⚠️ 필수 준수)
 
 - **태그 형식: `X.Y.Z`** — `v` 접두사 절대 사용 금지 (예: `1.9.0` ✅, `v1.9.0` ❌)

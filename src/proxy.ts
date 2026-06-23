@@ -42,18 +42,21 @@ export function proxy(request: NextRequest) {
 		return NextResponse.redirect(to, 308);
 	}
 
-	// CSP nonce 생성
+	// CSP nonce 생성 및 정책 빌드 (요청·응답 양쪽에 동일 정책 적용)
 	const nonce = Buffer.from(crypto.randomUUID()).toString("base64");
+	const csp = buildCsp(nonce);
 
 	const requestHeaders = new Headers(request.headers);
 	requestHeaders.set("x-nonce", nonce);
+	/* 요청헤더에 CSP가 있어야 Next가 nonce를 프레임워크 스크립트에 자동 부착한다 (strict-dynamic 동작 조건) */
+	requestHeaders.set("Content-Security-Policy", csp);
 
 	const response = NextResponse.next({ request: { headers: requestHeaders } });
 	/**
 	 * 운영에서는 CSP 강제(enforce). report-only는 검사기에서 high로 평가됨.
 	 * 깨지는 inline script/style이 발견되면 nonce 부여 또는 정책 완화로 대응.
 	 */
-	response.headers.set("Content-Security-Policy", buildCsp(nonce));
+	response.headers.set("Content-Security-Policy", csp);
 
 	// locale 쿠키 자동 설정
 	if (!request.cookies.has(LOCALE_COOKIE_KEY)) {

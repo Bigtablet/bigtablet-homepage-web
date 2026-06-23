@@ -197,9 +197,9 @@ src/
   | 설명 | `description` | 작업 목적/배경 요약 |
   | 기존안 | `customfield_10229` (ADF) | 변경 전 상태/문제 |
   | 수정안 | `customfield_10230` (ADF) | 적용한 해결책 + 검증 + branch/PR |
-  | 시작 날짜 | `customfield_10015` (`YYYY-MM-DD`) | **커밋 첫 날짜** (`git log`로 확인) |
+  | 시작 날짜 | `customfield_10015` (`YYYY-MM-DD`) | **작업 브랜치의 첫 커밋 날짜** (`git log`로 확인) |
 - **기존안/수정안은 ADF 포맷 필수** (plain string 거부됨): `{"type":"doc","version":1,"content":[{"type":"paragraph","content":[{"type":"text","text":"..."}]}]}`. 코드 예시는 `codeBlock` 노드 사용 가능.
-- **생성 전 중복 검색 (⚠️ 필수)**: `searchJiraIssuesUsingJql`로 동일/유사 티켓이 이미 있는지 확인 후 생성한다. 무지성 일괄 생성 금지.
+- **생성 전 중복 검색 (⚠️ 필수)**: `searchJiraIssuesUsingJql`로 동일/유사 티켓이 이미 있는지 확인 후 생성한다. 무분별한 일괄 생성 금지.
 
 ### 완료 기준 (Definition of Done) (⚠️ 필수 준수)
 

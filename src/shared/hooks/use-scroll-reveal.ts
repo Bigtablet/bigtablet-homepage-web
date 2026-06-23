@@ -2,7 +2,7 @@
 
 import { useGSAP } from "@gsap/react";
 import { useRef } from "react";
-import { useReducedMotion } from "src/shared/hooks/use-reduced-motion";
+import { useMediaQuery } from "src/shared/hooks/use-media-query";
 import { gsap } from "src/shared/libs/gsap";
 
 type Variant = "fade-up" | "fade-in" | "slide-left" | "slide-right";
@@ -40,7 +40,7 @@ export const useScrollReveal = <T extends HTMLElement = HTMLDivElement>(
 	options: ScrollRevealOptions = {},
 ) => {
 	const containerRef = useRef<T>(null);
-	const prefersReduced = useReducedMotion();
+	const prefersReduced = useMediaQuery("(prefers-reduced-motion: reduce)");
 
 	const {
 		variant = "fade-up",

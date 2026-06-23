@@ -1,9 +1,8 @@
 "use client";
 
-import { notFound } from "next/navigation";
+import { notFound, useParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { isMemberSlug } from "src/entities/about/util/member.util";
-import { BigtabletParams } from "src/shared/hooks/next";
 import BackLink from "src/shared/ui/back-link";
 import Interview from "src/widgets/about/member/interview";
 import { QaList } from "src/widgets/about/member/model/use-qa-list";
@@ -11,7 +10,7 @@ import Profile from "src/widgets/about/member/profile";
 import styles from "./style.module.scss";
 
 const MemberDetailClient = () => {
-	const { id } = BigtabletParams<{ id: string }>();
+	const { id } = useParams<{ id: string }>();
 	const t = useTranslations();
 
 	if (!isMemberSlug(id)) return notFound();

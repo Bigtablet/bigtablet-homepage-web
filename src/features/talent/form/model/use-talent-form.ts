@@ -1,9 +1,14 @@
 "use client";
 
 import { useToast } from "@bigtablet/design-system";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
-import { useFieldArray, useForm } from "react-hook-form";
-import type { PostTalent, PostTalentFormValues } from "src/entities/talent/schema/talent.schema";
+import { type Resolver, useFieldArray, useForm } from "react-hook-form";
+import {
+	type PostTalent,
+	type PostTalentFormValues,
+	postTalentSchema,
+} from "src/entities/talent/schema/talent.schema";
 import { useTalentMutation } from "src/features/talent/mutation/talent.mutation";
 import { useUploadMutation } from "src/features/upload/mutation/upload.mutation";
 import { getErrorMessage } from "src/shared/libs/api/axios/error/error.util";
@@ -29,6 +34,7 @@ export const useTalentForm = ({ onClose }: UseTalentFormParams) => {
 	const [portfolioMode, setPortfolioMode] = useState<PortfolioMode>("link");
 
 	const form = useForm<PostTalentFormValues>({
+		resolver: zodResolver(postTalentSchema) as Resolver<PostTalentFormValues>,
 		defaultValues: {
 			email: "",
 			name: "",

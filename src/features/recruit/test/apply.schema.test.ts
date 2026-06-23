@@ -102,4 +102,20 @@ describe("applySchema", () => {
 		});
 		expect(result.success).toBe(false);
 	});
+
+	/* MonthPickerField 실제 출력 포맷("YYYY-MM") 기준 교차검증. 과거 Number() 파싱은 NaN으로 죽어 있었음 */
+	it('"YYYY-MM" 졸업이 입학보다 이전이면 실패', () => {
+		const result = applySchema.safeParse({
+			...base,
+			admissionYear: "2024-03",
+			graduationEnd: "2022-05",
+		});
+		expect(result.success).toBe(false);
+	});
+
+	it('"YYYY-MM" 졸업이 입학 이후면 통과', () => {
+		expect(() =>
+			applySchema.parse({ ...base, admissionYear: "2020-03", graduationEnd: "2024-02" }),
+		).not.toThrow();
+	});
 });

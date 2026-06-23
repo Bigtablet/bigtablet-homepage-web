@@ -80,8 +80,9 @@ const History = ({ items }: Props) => {
 
 	useEffect(() => {
 		if (!activeGroup) return;
-		const id = requestAnimationFrame(animateIn);
-		return () => cancelAnimationFrame(id);
+		/* gsap.context로 스코프. 언마운트/연도 전환 시 revert로 생성된 트윈을 전부 정리 */
+		const ctx = gsap.context(animateIn, contentRef);
+		return () => ctx.revert();
 	}, [activeGroup, animateIn]);
 
 	return (

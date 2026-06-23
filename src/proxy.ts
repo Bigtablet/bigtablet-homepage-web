@@ -43,7 +43,8 @@ export function proxy(request: NextRequest) {
 	}
 
 	// CSP nonce 생성 및 정책 빌드 (요청·응답 양쪽에 동일 정책 적용)
-	const nonce = Buffer.from(crypto.randomUUID()).toString("base64");
+	// btoa 사용: Edge Runtime 표준 Web API (Node Buffer 비의존). UUID는 ASCII라 동일 결과
+	const nonce = btoa(crypto.randomUUID());
 	const csp = buildCsp(nonce);
 
 	const requestHeaders = new Headers(request.headers);

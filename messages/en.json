@@ -71,7 +71,7 @@
 			"items": {
 				"1": {
 					"stat": "Antler Cohort 8",
-					"desc": "Global accelerator · U.S. entity"
+					"desc": "Global accelerator"
 				},
 				"2": {
 					"stat": "4 patents",
@@ -174,7 +174,7 @@
 				"2": {
 					"k": "BACKED",
 					"title": "Globally backed",
-					"desc": "Antler Cohort 8 · Plug and Play (U.S. entity)."
+					"desc": "Antler Cohort 8 · Plug and Play."
 				},
 				"3": {
 					"k": "IP · STD",

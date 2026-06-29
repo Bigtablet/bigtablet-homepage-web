@@ -73,7 +73,7 @@
 			"items": {
 				"1": {
 					"stat": "Antler Cohort 8",
-					"desc": "글로벌 액셀러레이터 · 미국법인"
+					"desc": "글로벌 액셀러레이터"
 				},
 				"2": {
 					"stat": "등록특허 4건",
@@ -176,7 +176,7 @@
 				"2": {
 					"k": "BACKED",
 					"title": "글로벌 액셀러레이터",
-					"desc": "Antler Cohort 8 · Plug and Play(미국법인)."
+					"desc": "Antler Cohort 8 · Plug and Play."
 				},
 				"3": {
 					"k": "IP · STD",

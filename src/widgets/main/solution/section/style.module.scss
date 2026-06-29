@@ -16,6 +16,23 @@
 	white-space: pre-line;
 }
 
+.solution_subtitle {
+	@include token.body_medium_medium;
+	font-size: token.$font_size_18;
+	line-height: 1.7;
+	color: rgba(255, 255, 255, 0.78);
+	text-align: center;
+	max-width: 760px;
+	margin: -8px auto 0;
+}
+
+@include token.medium {
+	.solution_subtitle {
+		font-size: token.$font_size_16;
+		max-width: 88%;
+	}
+}
+
 .solution_grid {
 	display: flex;
 	flex-wrap: wrap;

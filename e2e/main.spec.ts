@@ -18,7 +18,12 @@ test.describe("main page", () => {
 
 	test("renders solution section", async ({ page }) => {
 		await page.goto("/");
-		await expect(page.getByText("솔루션 개요")).toBeVisible({ timeout: 10_000 });
+		await expect(page.getByText("하나의 엔진, 모든 현장")).toBeVisible({ timeout: 10_000 });
+	});
+
+	test("renders trust strip with proof points", async ({ page }) => {
+		await page.goto("/");
+		await expect(page.getByText("MPEG 국제표준 기여")).toBeVisible({ timeout: 10_000 });
 	});
 
 	test("renders partner section", async ({ page }) => {

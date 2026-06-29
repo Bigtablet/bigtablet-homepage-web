@@ -33,6 +33,14 @@
   width: 100%;
 }
 
+.trust_bg {
+  @include token.flex_center;
+  width: 100%;
+  padding: clamp(40px, 6vw, 72px) clamp(16px, 5vw, 80px);
+  /* gradient 상단(#fafafa)과 동일 — 다크 배너에서 라이트 그라운드로 매끈하게 전환 */
+  background: #fafafa;
+}
+
 .gradient {
   @extend %ground_base;
   /* 브랜드 그라데이션 고정 색 — DS 3.1 팔레트에 정확 매칭이 없어 원본 hex 유지.

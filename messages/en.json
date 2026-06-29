@@ -63,42 +63,128 @@
 	"main": {
 		"banner": {
 			"title": "Vision Beyond Pixels",
-			"description": "Our service goes beyond video analysis \nto create real value. \n\nWith AI-powered technology, we deliver \ninstant solutions for theft prevention, \nindustrial safety, and marketing optimization. \n\nUnlike conventional services that take about \ntwo weeks to analyze, our patented technology \ncompresses video by up to 97%, \nenabling real-time response.",
-			"button": "Get Started"
+			"description": "Cameras are already everywhere — in stores, factories, and on-site.\nWe build the AI that understands that footage in real time and reads what happened, and why.\n\nAt its core is VCM, our original video-coding technology that shrinks machine-bound video by up to 97% — contributed directly to the MPEG international standard.\n\nSo analysis that used to take two weeks now runs in real time, on the cameras you already have.",
+			"button": "Get in touch"
+		},
+		"trust": {
+			"title": "Validated by the field",
+			"items": {
+				"1": {
+					"stat": "7.6x in 3 years",
+					"desc": "Revenue (SI/services/R&D) · profitable 3 years"
+				},
+				"2": {
+					"stat": "4 patents",
+					"desc": "Original video-coding IP"
+				},
+				"3": {
+					"stat": "MPEG standard",
+					"desc": "ISO/IEC JTC1/SC29/WG4"
+				},
+				"4": {
+					"stat": "Minister's Award",
+					"desc": "Korea SMEs & Startups"
+				},
+				"5": {
+					"stat": "NVIDIA Inception",
+					"desc": "Google for Startups · Plug and Play"
+				},
+				"6": {
+					"stat": "Hanwha Vision",
+					"desc": "Dell · HPE · TP-LINK"
+				}
+			}
 		},
 		"problem": {
-			"title": "The Challenge\n We Address",
-			"description": "As offline stores regain attention and experiential spaces expand, theft has become a growing concern.\n\nTraditional RFID tags and video surveillance solutions often face high costs and frequent malfunctions, limiting their effectiveness.\n\nTo address this, we developed a patented real-time AI video analysis technology.\n\nBy applying neural network–based video compression, we process high-resolution data efficiently and deliver real-time insights into customer flow, interests, and behavior patterns."
+			"title": "Plenty of cameras.\nNo one watching.",
+			"description": "Stores and factories are full of cameras, but no one can watch everything — theft, accidents, and opportunities slip by.\n\nConventional video AI is heavy, so it's expensive and slow — analysis often takes two weeks. Dedicated hardware and RFID add cost and failures.\n\nSo we started from the technology that makes video light."
 		},
 		"solution": {
-			"title": "Solution OverView",
+			"title": "One engine, every site",
+			"subtitle": "The same video-understanding engine reads customers and stops theft in stores, and keeps workers safe and entrances monitored on-site.",
 			"product": {
 				"1": {
 					"cardTitle": "Retail Analytics",
 					"title": "Retail Analytics",
-					"description": "Analyze customer movement, dwell time, and product interests to optimize store operations and boost sales."
+					"description": "Read customer flow, dwell time, and interest from your existing store cameras to optimize operations and sales."
 				},
 				"2": {
 					"cardTitle": "Retail Security",
 					"title": "Retail Security",
-					"description": "Prevent theft using RFID tags, CCTV, and security gates, with real-time detection of suspicious activity."
+					"description": "No extra hardware — your store cameras detect and alert theft the moment it happens, not after."
 				},
 				"3": {
-					"cardTitle": "Smart Factory Safety",
-					"title": "Smart Factory Safety",
-					"description": "Detect and respond to risks in factories using sensors and AI."
+					"cardTitle": "Smart\n Factory\n Safety",
+					"title": "Smart Factory & Field Safety",
+					"description": "Detect risky behavior and anomalies in real time to prevent accidents before they happen."
 				},
 				"4": {
-					"cardTitle": "Parking Control System",
-					"title": "Parking Control System",
-					"description": "Smart parking management with license plate recognition and barriers."
+					"cardTitle": "Intelligent\n Surveillance",
+					"title": "Intelligent Video Surveillance",
+					"description": "Monitor entry, parking, and re-identification on your existing CCTV, all on one screen."
 				},
 				"5": {
-					"cardTitle": "Marketing Optimization",
+					"cardTitle": "Marketing\n Optimization",
 					"title": "Marketing Optimization",
-					"description": "Utilize real-time insights to enhance customer engagement and improve marketing strategies."
+					"description": "Turn the same engine's real-time insight into higher engagement and conversion."
 				}
 			}
+		},
+		"moat": {
+			"title": "Why video AI is expensive —\nbecause video is heavy.",
+			"description": "We compress machine-bound video by up to 97%. Without expensive dedicated hardware, we analyze many streams at once in real time, even on low-spec setups.\n\nThis compression (VCM) was contributed directly to the MPEG international standard and is protected by original video-coding patents. Both our CEO and CTO are TTA standards experts.",
+			"compare": {
+				"head": {
+					"feature": "",
+					"legacy": "Conventional video AI",
+					"us": "Bigtablet"
+				},
+				"rows": {
+					"1": {
+						"feature": "Hardware",
+						"legacy": "Dedicated, costly",
+						"us": "Your existing cameras"
+					},
+					"2": {
+						"feature": "Analysis",
+						"legacy": "~2 weeks",
+						"us": "Real time"
+					},
+					"3": {
+						"feature": "Concurrency",
+						"legacy": "Cost-prohibitive",
+						"us": "Many streams, low-spec"
+					},
+					"4": {
+						"feature": "Defensibility",
+						"legacy": "Generic models",
+						"us": "VCM patents · MPEG standard"
+					}
+				}
+			}
+		},
+		"proof": {
+			"title": "Already in the field. Already in revenue.",
+			"description": "We built the on-site infrastructure for a tier-1 auto-parts supplier, and revenue has grown 7.6x over three profitable years.",
+			"revenue": {
+				"caption": "Revenue (SI/services/R&D basis), in 100M KRW",
+				"y2022": "1.1",
+				"y2023": "4.3",
+				"y2024": "7.0",
+				"y2025": "8.0"
+			},
+			"stat": {
+				"value": "7.6x",
+				"label": "3-year revenue growth"
+			},
+			"partners": {
+				"label": "Technology partners",
+				"value": "Hanwha Vision · Dell · HPE · TP-LINK"
+			}
+		},
+		"company": {
+			"title": "The people who write the standards\nare the ones changing the field.",
+			"description": "Founded in 2022. HQ in Daegu, a Seoul office in Pangyo, and a U.S. entity in Sunnyvale (Plug and Play Tech Center).\nA full-stack engineering team that builds and operates everything from video AI to internal systems.\nMPEG VCM standard contribution · NVIDIA Inception · Google for Startups · Minister's Award."
 		},
 		"collaboration": {
 			"title": "Partners"

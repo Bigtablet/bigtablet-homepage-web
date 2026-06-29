@@ -56,6 +56,7 @@ const SolutionSection = () => {
 			<p id="solution_title" className={styles.solution_title}>
 				{t("title")}
 			</p>
+			<p className={styles.solution_subtitle}>{t("subtitle")}</p>
 
 			<div className={styles.solution_grid}>
 				{products.map(({ id, src, poster }) => (

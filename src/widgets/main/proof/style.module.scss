@@ -1,0 +1,157 @@
+@use "ds-token" as token;
+
+.proof {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: clamp(40px, 6vw, 72px);
+	width: 88%;
+	max-width: 1100px;
+	margin: 0 auto;
+	align-items: center;
+	color: token.$color_text_inverse;
+	/* 진입 전 invisible — is_visible 부여 시 fade-up */
+	opacity: 0;
+	transform: translateY(40px);
+	transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+}
+
+.is_visible.proof {
+	opacity: 1;
+	transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.proof {
+		opacity: 1;
+		transform: none;
+		transition: none;
+	}
+}
+
+@include token.expanded {
+	.proof {
+		grid-template-columns: 1.1fr 0.9fr;
+	}
+}
+
+.proof_copy {
+	@include token.flex_column;
+	gap: token.$spacing_20;
+}
+
+.proof_title {
+	@include token.heading_medium_bold;
+	font-size: clamp(token.$font_size_24, 4vw, token.$font_size_40);
+	line-height: 1.3;
+	color: token.$color_text_inverse;
+}
+
+.proof_description {
+	@include token.body_medium_medium;
+	font-size: token.$font_size_18;
+	line-height: 1.8;
+	color: rgba(255, 255, 255, 0.82);
+}
+
+.proof_highlight {
+	@include token.flex_column;
+	gap: token.$spacing_4;
+	margin-top: token.$spacing_8;
+}
+
+.proof_stat_value {
+	@include token.heading_medium_bold;
+	font-size: clamp(token.$font_size_40, 7vw, 64px);
+	line-height: 1;
+	color: token.$color_text_inverse;
+}
+
+.proof_stat_label {
+	@include token.body_medium_medium;
+	font-size: token.$font_size_14;
+	color: rgba(255, 255, 255, 0.6);
+}
+
+.proof_partners {
+	@include token.flex_column;
+	gap: token.$spacing_4;
+	margin-top: token.$spacing_8;
+}
+
+.proof_partners_label {
+	font-size: token.$font_size_13;
+	letter-spacing: 0.04em;
+	color: rgba(255, 255, 255, 0.5);
+}
+
+.proof_partners_value {
+	font-size: token.$font_size_16;
+	font-weight: 600;
+	color: token.$color_text_inverse;
+}
+
+/* CSS 막대그래프 — 외부 차트 의존성 없음 */
+.proof_chart {
+	margin: 0;
+	width: 100%;
+}
+
+.proof_bars {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	align-items: end;
+	gap: clamp(12px, 2vw, 28px);
+	height: 240px;
+	padding: token.$spacing_16;
+	border: 1px solid rgba(255, 255, 255, 0.14);
+	border-radius: 16px;
+	background: rgba(255, 255, 255, 0.04);
+}
+
+.proof_bar_col {
+	@include token.flex_column;
+	justify-content: flex-end;
+	align-items: center;
+	gap: token.$spacing_8;
+	height: 100%;
+}
+
+.proof_bar {
+	width: clamp(28px, 5vw, 52px);
+	height: var(--bar-h, 0%);
+	min-height: 6px;
+	border-radius: 8px 8px 0 0;
+	background: linear-gradient(180deg, #ffffff 0%, rgba(255, 255, 255, 0.55) 100%);
+	transform: scaleY(0);
+	transform-origin: bottom;
+	transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.is_visible .proof_bar {
+	transform: scaleY(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.proof_bar {
+		transform: scaleY(1);
+		transition: none;
+	}
+}
+
+.proof_bar_value {
+	font-size: token.$font_size_14;
+	font-weight: 700;
+	color: token.$color_text_inverse;
+}
+
+.proof_bar_year {
+	font-size: token.$font_size_13;
+	color: rgba(255, 255, 255, 0.6);
+}
+
+.proof_caption {
+	margin-top: token.$spacing_12;
+	font-size: token.$font_size_12;
+	text-align: center;
+	color: rgba(255, 255, 255, 0.5);
+}

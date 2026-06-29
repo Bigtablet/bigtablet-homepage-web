@@ -89,11 +89,11 @@
 				},
 				"5": {
 					"stat": "NVIDIA Inception",
-					"desc": "Google for Startups · Plug and Play"
+					"desc": "GPU·기술 파트너 프로그램"
 				},
 				"6": {
-					"stat": "한화비전 파트너",
-					"desc": "Dell · HPE · TP-LINK"
+					"stat": "Google for Startups",
+					"desc": "Cloud Program"
 				}
 			}
 		},
@@ -176,7 +176,7 @@
 				"2": {
 					"k": "BACKED",
 					"title": "글로벌 액셀러레이터",
-					"desc": "Antler Cohort 8 · NVIDIA Inception · Plug and Play(미국법인)."
+					"desc": "Antler Cohort 8 · Plug and Play(미국법인)."
 				},
 				"3": {
 					"k": "IP · STD",
@@ -184,9 +184,9 @@
 					"desc": "MPEG 직접 기여(m70552) · 등록특허 4건 · CEO·CTO TTA 표준 전문위원."
 				},
 				"4": {
-					"k": "PARTNERS",
-					"title": "기술 파트너",
-					"desc": "한화비전 · Dell · HPE · TP-LINK"
+					"k": "PROGRAMS",
+					"title": "글로벌 프로그램",
+					"desc": "NVIDIA Inception · Google for Startups Cloud"
 				}
 			},
 			"note": "정부 R&D·현장 실증 등 비희석 자금으로 자본 효율적으로 성장하고 있습니다."

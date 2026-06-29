@@ -87,11 +87,11 @@
 				},
 				"5": {
 					"stat": "NVIDIA Inception",
-					"desc": "Google for Startups · Plug and Play"
+					"desc": "GPU & tech program"
 				},
 				"6": {
-					"stat": "Hanwha Vision",
-					"desc": "Dell · HPE · TP-LINK"
+					"stat": "Google for Startups",
+					"desc": "Cloud Program"
 				}
 			}
 		},
@@ -174,7 +174,7 @@
 				"2": {
 					"k": "BACKED",
 					"title": "Globally backed",
-					"desc": "Antler Cohort 8 · NVIDIA Inception · Plug and Play (U.S. entity)."
+					"desc": "Antler Cohort 8 · Plug and Play (U.S. entity)."
 				},
 				"3": {
 					"k": "IP · STD",
@@ -182,9 +182,9 @@
 					"desc": "MPEG contribution (m70552) · 4 patents · CEO & CTO are TTA standards experts."
 				},
 				"4": {
-					"k": "PARTNERS",
-					"title": "Technology partners",
-					"desc": "Hanwha Vision · Dell · HPE · TP-LINK"
+					"k": "PROGRAMS",
+					"title": "Global programs",
+					"desc": "NVIDIA Inception · Google for Startups Cloud"
 				}
 			},
 			"note": "Built on non-dilutive capital — government R&D and field deployments — capital-efficient by design."

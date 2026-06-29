@@ -70,8 +70,8 @@
 			"title": "Validated by the field",
 			"items": {
 				"1": {
-					"stat": "7.6x in 3 years",
-					"desc": "Revenue (SI/services/R&D) · profitable 3 years"
+					"stat": "Antler Cohort 8",
+					"desc": "Global accelerator · U.S. entity"
 				},
 				"2": {
 					"stat": "4 patents",
@@ -164,23 +164,30 @@
 			}
 		},
 		"proof": {
-			"title": "Already in the field. Already in revenue.",
-			"description": "We built the on-site infrastructure for a tier-1 auto-parts supplier, and revenue has grown 7.6x over three profitable years.",
-			"revenue": {
-				"caption": "Revenue (SI/services/R&D basis), in 100M KRW",
-				"y2022": "1.1",
-				"y2023": "4.3",
-				"y2024": "7.0",
-				"y2025": "8.0"
+			"title": "Proven in the field,\nrecognized by the standard.",
+			"items": {
+				"1": {
+					"k": "FIELD",
+					"title": "Field deployment",
+					"desc": "We build and operate on-site infrastructure for a tier-1 auto-parts supplier."
+				},
+				"2": {
+					"k": "BACKED",
+					"title": "Globally backed",
+					"desc": "Antler Cohort 8 · NVIDIA Inception · Plug and Play (U.S. entity)."
+				},
+				"3": {
+					"k": "IP · STD",
+					"title": "Standard & IP",
+					"desc": "MPEG contribution (m70552) · 4 patents · CEO & CTO are TTA standards experts."
+				},
+				"4": {
+					"k": "PARTNERS",
+					"title": "Technology partners",
+					"desc": "Hanwha Vision · Dell · HPE · TP-LINK"
+				}
 			},
-			"stat": {
-				"value": "7.6x",
-				"label": "3-year revenue growth"
-			},
-			"partners": {
-				"label": "Technology partners",
-				"value": "Hanwha Vision · Dell · HPE · TP-LINK"
-			}
+			"note": "Bootstrapped to three profitable years on non-dilutive capital (R&D + field) — capital-efficient by design."
 		},
 		"company": {
 			"title": "The people who write the standards\nare the ones changing the field.",

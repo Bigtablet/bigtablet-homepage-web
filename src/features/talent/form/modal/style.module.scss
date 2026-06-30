@@ -1,145 +1,145 @@
 @use "ds-token" as token;
 
 .modal_overlay {
-  position: fixed;
-  inset: 0;
-  background: token.$color_bg_overlay;
-  z-index: token.$z_level5; /* DS: z_toast > z_modal이므로 toast가 모달 위에 표시됨 */
-  @include token.flex_center;
-  backdrop-filter: blur(6px);
+	position: fixed;
+	inset: 0;
+	background: token.$color_bg_overlay;
+	z-index: token.$z_level5; /* DS: z_toast > z_modal이므로 toast가 모달 위에 표시됨 */
+	@include token.flex_center;
+	backdrop-filter: blur(6px);
 }
 
 .modal_content {
-  width: 420px;
-  max-height: 80vh;
-  overflow-y: auto;
-  background: token.$color_bg_solid;
-  border-radius: token.$radius_lg;
-  box-shadow: token.$elevation_level3;
-  padding: 28px;
-  animation: fade_in token.$transition_base;
+	width: 420px;
+	max-height: 80vh;
+	overflow-y: auto;
+	background: token.$color_bg_solid;
+	border-radius: token.$radius_lg;
+	box-shadow: token.$elevation_level3;
+	padding: 28px;
+	animation: fade_in token.$transition_base;
 
-  h2 {
-    @include token.heading_small_bold;
-    color: token.$color_text_heading;
-    margin-bottom: token.$spacing_24;
-  }
+	h2 {
+		@include token.heading_small_bold;
+		color: token.$color_text_heading;
+		margin-bottom: token.$spacing_24;
+	}
 }
 
 .form {
-  @include token.flex_column;
-  gap: token.$spacing_20;
+	@include token.flex_column;
+	gap: token.$spacing_20;
 }
 
 .portfolio {
-  @include token.flex_column;
-  gap: token.$spacing_8;
-  @include token.body_medium;
-  color: token.$color_text_heading;
+	@include token.flex_column;
+	gap: token.$spacing_8;
+	@include token.body_medium;
+	color: token.$color_text_heading;
 }
 
 .portfolio_header {
-  @include token.flex_between;
-  align-items: center;
-  gap: token.$spacing_12;
+	@include token.flex_between;
+	align-items: center;
+	gap: token.$spacing_12;
 
-  span {
-    @include token.body_medium_medium;
-    color: token.$color_text_heading;
-  }
+	span {
+		@include token.body_medium_medium;
+		color: token.$color_text_heading;
+	}
 }
 
 .portfolio_toggle {
-  display: inline-flex;
-  align-items: center;
-  gap: token.$spacing_4;
-  padding: token.$spacing_4;
-  border-radius: token.$radius_full;
-  background: token.$color_bg_solid_dim;
-  border: 1px solid token.$color_border_subtle;
+	display: inline-flex;
+	align-items: center;
+	gap: token.$spacing_4;
+	padding: token.$spacing_4;
+	border-radius: token.$radius_full;
+	background: token.$color_bg_solid_dim;
+	border: 1px solid token.$color_border_subtle;
 }
 
 .portfolio_toggle_button {
-  padding: token.$spacing_4 token.$spacing_12;
-  border-radius: token.$radius_full;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  @include token.body_small;
-  color: token.$color_text_caption;
-  transition: token.$transition_base;
+	padding: token.$spacing_4 token.$spacing_12;
+	border-radius: token.$radius_full;
+	background: transparent;
+	border: none;
+	cursor: pointer;
+	@include token.body_small;
+	color: token.$color_text_caption;
+	transition: token.$transition_base;
 
-  &:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-  }
+	&:disabled {
+		opacity: 0.5;
+		cursor: not-allowed;
+	}
 
-  &:hover:not(:disabled) {
-    background: token.$color_bg_solid_dim;
-  }
+	&:hover:not(:disabled) {
+		background: token.$color_bg_solid_dim;
+	}
 }
 
 .portfolio_toggle_active {
-  padding: token.$spacing_4 token.$spacing_12;
-  border-radius: token.$radius_full;
-  border: none;
-  cursor: pointer;
-  @include token.body_small;
-  transition: token.$transition_base;
-  background: token.$color_bg_solid_dim;
-  color: token.$color_brand_primary;
+	padding: token.$spacing_4 token.$spacing_12;
+	border-radius: token.$radius_full;
+	border: none;
+	cursor: pointer;
+	@include token.body_small;
+	transition: token.$transition_base;
+	background: token.$color_bg_solid_dim;
+	color: token.$color_brand_primary;
 
-  &:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-  }
+	&:disabled {
+		opacity: 0.5;
+		cursor: not-allowed;
+	}
 }
 
 .portfolio_file {
-  margin-top: token.$spacing_8;
-  @include token.flex_column;
-  gap: token.$spacing_4;
+	margin-top: token.$spacing_8;
+	@include token.flex_column;
+	gap: token.$spacing_4;
 }
 
 .helper {
-  @include token.body_small;
-  color: token.$color_text_caption;
+	@include token.body_small;
+	color: token.$color_text_caption;
 }
 
 .portfolio_error {
-  @include token.body_small;
-  color: token.$color_status_error;
+	@include token.body_small;
+	color: token.$color_status_error;
 }
 
 .urls {
-  @include token.flex_column;
-  gap: token.$spacing_12;
+	@include token.flex_column;
+	gap: token.$spacing_12;
 
-  span {
-    @include token.body_small;
-    color: token.$color_text_caption;
-  }
+	span {
+		@include token.body_small;
+		color: token.$color_text_caption;
+	}
 
-  .url_row {
-    @include token.flex_column;
-    gap: token.$spacing_4;
-    align-items: flex-end;
-  }
+	.url_row {
+		@include token.flex_column;
+		gap: token.$spacing_4;
+		align-items: flex-end;
+	}
 }
 
 .actions {
-  @include token.flex_right;
-  gap: token.$spacing_16;
-  margin-top: token.$spacing_20;
+	@include token.flex_right;
+	gap: token.$spacing_16;
+	margin-top: token.$spacing_20;
 }
 
 @keyframes fade_in {
-  from {
-    opacity: 0;
-    transform: scale(0.96);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
+	from {
+		opacity: 0;
+		transform: scale(0.96);
+	}
+	to {
+		opacity: 1;
+		transform: scale(1);
+	}
 }

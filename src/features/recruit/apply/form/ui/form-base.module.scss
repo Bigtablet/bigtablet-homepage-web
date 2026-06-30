@@ -2,54 +2,53 @@
 
 /* field */
 .field {
-  @include token.flex_column;
-  gap: token.$spacing_8;
+	@include token.flex_column;
+	gap: token.$spacing_8;
 
-  .field_label {
-    @include token.body_medium_medium;
-    font-size: token.$font_size_14;
-    color: token.$color_text_heading;
-  }
+	.field_label {
+		@include token.body_medium_medium;
+		font-size: token.$font_size_14;
+		color: token.$color_text_heading;
+	}
 }
 
 /* profile / section wrapper */
 .profile {
-  @include token.flex_column;
-  gap: token.$spacing_8;
-  width: 100%;
+	@include token.flex_column;
+	gap: token.$spacing_8;
+	width: 100%;
 }
-
 
 /* help / sub / error */
 .help {
-  font-size: token.$font_size_12;
-  color: token.$color_text_caption;
+	font-size: token.$font_size_12;
+	color: token.$color_text_caption;
 }
 
 .sub {
-  font-size: token.$font_size_12;
-  color: token.$color_text_caption;
-  margin-left: token.$spacing_4;
+	font-size: token.$font_size_12;
+	color: token.$color_text_caption;
+	margin-left: token.$spacing_4;
 }
 
 .error {
-  font-size: token.$font_size_12;
-  color: token.$color_status_error;
+	font-size: token.$font_size_12;
+	color: token.$color_status_error;
 }
 
 /* row / stack */
 .row {
-  width: 100%;
-  display: grid;
-  gap: token.$spacing_8;
+	width: 100%;
+	display: grid;
+	gap: token.$spacing_8;
 
-  > * {
-    min-width: 0;
-  }
+	> * {
+		min-width: 0;
+	}
 }
 
 .stack {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: token.$spacing_8;
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: token.$spacing_8;
 }

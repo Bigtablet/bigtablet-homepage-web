@@ -1,14 +1,14 @@
 @use "ds-token" as token;
 
 .news_page {
-  @include token.flex_column;
-  width: 100%;
-  padding: 28px 0 36px;
-  justify-content: center;
+	@include token.flex_column;
+	width: 100%;
+	padding: 28px 0 36px;
+	justify-content: center;
 }
 
 .news_page_pagination {
-  display: flex;
-  justify-content: center;
-  margin-top: 28px;
+	display: flex;
+	justify-content: center;
+	margin-top: 28px;
 }

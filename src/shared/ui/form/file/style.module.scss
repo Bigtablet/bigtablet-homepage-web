@@ -1,79 +1,79 @@
 @use "ds-token" as token;
 
 .file {
-  display: flex;
-  gap: token.$spacing_8;
-  align-items: center;
-  position: relative;
+	display: flex;
+	gap: token.$spacing_8;
+	align-items: center;
+	position: relative;
 }
 
 .file_control {
-  display: flex;
-  gap: token.$spacing_8;
-  align-items: center;
-  position: relative;
+	display: flex;
+	gap: token.$spacing_8;
+	align-items: center;
+	position: relative;
 }
 
 .file_input {
-  position: absolute;
-  inset: 0;
-  opacity: 0;
-  cursor: pointer;
+	position: absolute;
+	inset: 0;
+	opacity: 0;
+	cursor: pointer;
 }
 
 .file_label {
-  border: 1px solid token.$color_border_default;
-  border-radius: token.$radius_md;
-  background: token.$color_bg_solid;
-  padding: token.$spacing_8 token.$spacing_16;
-  color: token.$color_text_body;
-  font-size: token.$font_size_14;
-  transition: border-color token.$transition_base, background token.$transition_base;
-  cursor: pointer;
+	border: 1px solid token.$color_border_default;
+	border-radius: token.$radius_md;
+	background: token.$color_bg_solid;
+	padding: token.$spacing_8 token.$spacing_16;
+	color: token.$color_text_body;
+	font-size: token.$font_size_14;
+	transition: border-color token.$transition_base, background token.$transition_base;
+	cursor: pointer;
 
-  &:hover {
-    border-color: token.$color_border_subtle;
-  }
+	&:hover {
+		border-color: token.$color_border_subtle;
+	}
 }
 
 .file_name {
-  font-size: token.$font_size_14;
-  color: token.$color_text_caption;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+	font-size: token.$font_size_14;
+	color: token.$color_text_caption;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 .file_row {
-  display: flex;
-  justify-content: flex-start;
+	display: flex;
+	justify-content: flex-start;
 }
 
 .file_column {
-  @include token.flex_column;
-  align-items: flex-start;
-  gap: token.$spacing_8;
+	@include token.flex_column;
+	align-items: flex-start;
+	gap: token.$spacing_8;
 }
 
 .file_column .file_control {
-  align-items: center;
+	align-items: center;
 }
 
 .file_preview {
-  width: 100%;
-  max-width: 260px;
-  aspect-ratio: 3 / 4;
-  border-radius: token.$radius_xl;
-  border: 1px dashed token.$color_border_default;
-  background: token.$color_bg_solid_dim;
-  overflow: hidden;
-  display: grid;
-  place-items: center;
+	width: 100%;
+	max-width: 260px;
+	aspect-ratio: 3 / 4;
+	border-radius: token.$radius_xl;
+	border: 1px dashed token.$color_border_default;
+	background: token.$color_bg_solid_dim;
+	overflow: hidden;
+	display: grid;
+	place-items: center;
 
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
+	img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		display: block;
+	}
 }

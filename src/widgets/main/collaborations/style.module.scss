@@ -61,9 +61,7 @@
 	box-shadow: token.$elevation_level1;
 	padding: token.$spacing_12 token.$spacing_16;
 	overflow: hidden;
-	transition:
-		transform token.$transition_fast,
-		box-shadow token.$transition_base;
+	transition: transform token.$transition_fast, box-shadow token.$transition_base;
 
 	img {
 		display: block;

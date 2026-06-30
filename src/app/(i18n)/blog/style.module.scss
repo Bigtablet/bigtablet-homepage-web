@@ -1,43 +1,43 @@
 @use "ds-token" as token;
 
 .blog_page {
-  width: 100%;
-  padding: token.$spacing_24 0 28px;
+	width: 100%;
+	padding: token.$spacing_24 0 28px;
 }
 
 .blog_page_title {
-  @include token.heading_medium_bold;
-  font-size: token.$font_size_24;
-  margin-bottom: token.$spacing_24;
-  color: token.$color_text_heading;
-  text-align: center;
+	@include token.heading_medium_bold;
+	font-size: token.$font_size_24;
+	margin-bottom: token.$spacing_24;
+	color: token.$color_text_heading;
+	text-align: center;
 }
 
 .blog_page_grid {
-  display: grid;
-  grid-template-columns: repeat(1, minmax(0, 1fr));
-  gap: token.$spacing_20;
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
+	display: grid;
+	grid-template-columns: repeat(1, minmax(0, 1fr));
+	gap: token.$spacing_20;
+	width: 100%;
+	max-width: 1200px;
+	margin: 0 auto;
 
-  @include token.medium {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
+	@include token.medium {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
 
-  @include token.expanded {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
+	@include token.expanded {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+	}
 }
 
 .blog_page_sentinel {
-  height: 1px;
+	height: 1px;
 }
 
 .blog_page_empty {
-  @include token.body_medium;
-  font-size: token.$font_size_18;
-  margin-top: token.$spacing_24;
-  color: token.$color_text_caption;
-  text-align: center;
+	@include token.body_medium;
+	font-size: token.$font_size_18;
+	margin-top: token.$spacing_24;
+	color: token.$color_text_caption;
+	text-align: center;
 }

@@ -1,47 +1,47 @@
 @use "ds-token" as token;
 
 .news_list {
-  @include token.flex_column;
-  width: 100%;
-  flex: 1;
-  padding: token.$spacing_20 0;
-  align-items: center;
+	@include token.flex_column;
+	width: 100%;
+	flex: 1;
+	padding: token.$spacing_20 0;
+	align-items: center;
 }
 
 .news_list_grid {
-  width: 100%;
-  max-width: 1200px;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 384px));
-  gap: token.$spacing_20;
-  justify-content: start;
+	width: 100%;
+	max-width: 1200px;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(280px, 384px));
+	gap: token.$spacing_20;
+	justify-content: start;
 }
 
 .news_list_empty {
-  @include token.flex_column;
-  align-items: center;
-  justify-content: center;
-  flex: 1;
-  min-height: 240px;
-  width: 100%;
-  @include token.body_medium;
-  font-size: token.$font_size_18;
-  color: token.$color_text_caption;
-  text-align: center;
+	@include token.flex_column;
+	align-items: center;
+	justify-content: center;
+	flex: 1;
+	min-height: 240px;
+	width: 100%;
+	@include token.body_medium;
+	font-size: token.$font_size_18;
+	color: token.$color_text_caption;
+	text-align: center;
 }
 
 @include token.compact {
-  .news_list {
-    padding: token.$spacing_16 0;
-  }
+	.news_list {
+		padding: token.$spacing_16 0;
+	}
 
-  .news_list_grid {
-    grid-template-columns: 1fr;
-    gap: token.$spacing_16;
-    padding: 0 token.$spacing_12;
-  }
+	.news_list_grid {
+		grid-template-columns: 1fr;
+		gap: token.$spacing_16;
+		padding: 0 token.$spacing_12;
+	}
 
-  .news_list_empty {
-    font-size: token.$font_size_16;
-  }
+	.news_list_empty {
+		font-size: token.$font_size_16;
+	}
 }

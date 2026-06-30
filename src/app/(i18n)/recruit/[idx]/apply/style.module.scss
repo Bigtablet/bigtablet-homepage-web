@@ -1,19 +1,19 @@
 @use "ds-token" as token;
 
 .apply {
-  @include token.flex_column_center;
-  width: 100%;
-  padding: token.$spacing_20 0 token.$spacing_32;
-  border-top: 1px solid token.$color_border_default;
-  align-items: center;
+	@include token.flex_column_center;
+	width: 100%;
+	padding: token.$spacing_20 0 token.$spacing_32;
+	border-top: 1px solid token.$color_border_default;
+	align-items: center;
 }
 
 .apply_title {
-  @include token.heading_medium_bold;
-  font-size: token.$font_size_24;
-  color: token.$color_text_heading;
-  width: 100%;
-  max-width: 880px;
-  margin: 0 auto token.$spacing_16 auto;
-  text-align: left;
+	@include token.heading_medium_bold;
+	font-size: token.$font_size_24;
+	color: token.$color_text_heading;
+	width: 100%;
+	max-width: 880px;
+	margin: 0 auto token.$spacing_16 auto;
+	text-align: left;
 }

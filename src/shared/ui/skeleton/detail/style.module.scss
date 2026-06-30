@@ -1,56 +1,56 @@
 @use "ds-token" as token;
 
 .detail_skeleton {
-  @include token.flex_column;
-  width: 100%;
-  gap: token.$spacing_12;
-  animation: detail_skeleton_pulse 1.5s ease-in-out infinite;
+	@include token.flex_column;
+	width: 100%;
+	gap: token.$spacing_12;
+	animation: detail_skeleton_pulse 1.5s ease-in-out infinite;
 }
 
 .detail_skeleton_line {
-  height: 1rem;
-  background: token.$color_bg_solid_dim;
-  border-radius: token.$radius_sm;
+	height: 1rem;
+	background: token.$color_bg_solid_dim;
+	border-radius: token.$radius_sm;
 }
 
 .title {
-  height: 2.25rem;
-  width: 70%;
+	height: 2.25rem;
+	width: 70%;
 }
 
 .meta {
-  height: 0.875rem;
-  width: 40%;
-  margin-bottom: token.$spacing_12;
+	height: 0.875rem;
+	width: 40%;
+	margin-bottom: token.$spacing_12;
 }
 
 .detail_skeleton_thumb {
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  background: token.$color_bg_solid_dim;
-  border-radius: token.$radius_md;
-  margin-bottom: token.$spacing_16;
+	width: 100%;
+	aspect-ratio: 16 / 9;
+	background: token.$color_bg_solid_dim;
+	border-radius: token.$radius_md;
+	margin-bottom: token.$spacing_16;
 }
 
 .detail_skeleton_body {
-  @include token.flex_column;
-  gap: token.$spacing_8;
+	@include token.flex_column;
+	gap: token.$spacing_8;
 }
 
 .short {
-  width: 55%;
+	width: 55%;
 }
 
 .medium {
-  width: 80%;
+	width: 80%;
 }
 
 @keyframes detail_skeleton_pulse {
-  0%,
-  100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.5;
-  }
+	0%,
+	100% {
+		opacity: 1;
+	}
+	50% {
+		opacity: 0.5;
+	}
 }

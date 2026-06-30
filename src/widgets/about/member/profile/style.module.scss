@@ -1,107 +1,107 @@
 @use "ds-token" as token;
 
 .profile {
-  @include token.flex_column;
-  color: token.$color_text_body;
-  gap: token.$spacing_8;
-  /* 상단 패딩 0 — 좌측 이미지 top을 우측 Q&A 카드 top과 정렬(좌우 배치 시) */
-  padding: 0 token.$spacing_16 token.$spacing_16;
+	@include token.flex_column;
+	color: token.$color_text_body;
+	gap: token.$spacing_8;
+	/* 상단 패딩 0 — 좌측 이미지 top을 우측 Q&A 카드 top과 정렬(좌우 배치 시) */
+	padding: 0 token.$spacing_16 token.$spacing_16;
 }
 
 .profile_image {
-  position: relative;
-  inline-size: 100%;
-  aspect-ratio: 1 / 1.25;
-  border-radius: token.$radius_md;
-  overflow: hidden;
-  background: token.$color_bg_solid_dim;
+	position: relative;
+	inline-size: 100%;
+	aspect-ratio: 1 / 1.25;
+	border-radius: token.$radius_md;
+	overflow: hidden;
+	background: token.$color_bg_solid_dim;
 
-  img {
-    object-fit: cover;
-    width: 100%;
-    height: 100%;
-    display: block;
-  }
+	img {
+		object-fit: cover;
+		width: 100%;
+		height: 100%;
+		display: block;
+	}
 }
 
 .profile_image_fallback {
-  inline-size: 100%;
-  block-size: 100%;
-  background: token.$color_border_subtle;
+	inline-size: 100%;
+	block-size: 100%;
+	background: token.$color_border_subtle;
 }
 
 .profile_content {
-  @include token.flex_column;
-  gap: token.$spacing_8;
-  color: token.$color_text_heading;
+	@include token.flex_column;
+	gap: token.$spacing_8;
+	color: token.$color_text_heading;
 }
 
 .profile_info {
-  display: grid;
-  row-gap: 4px;
+	display: grid;
+	row-gap: 4px;
 }
 
 .profile_position {
-  @include token.body_medium_medium;
-  font-size: token.$font_size_14;
-  color: token.$color_text_caption;
+	@include token.body_medium_medium;
+	font-size: token.$font_size_14;
+	color: token.$color_text_caption;
 }
 
 .profile_name {
-  @include token.heading_medium_bold;
-  font-size: token.$font_size_24;
-  color: token.$color_text_heading;
+	@include token.heading_medium_bold;
+	font-size: token.$font_size_24;
+	color: token.$color_text_heading;
 }
 
 .profile_description {
-  @include token.body_medium;
-  font-size: token.$font_size_16;
-  color: token.$color_text_body;
-  line-height: 1.75;
+	@include token.body_medium;
+	font-size: token.$font_size_16;
+	color: token.$color_text_body;
+	line-height: 1.75;
 }
 
 .profile_links {
-  display: grid;
-  grid-auto-flow: column;
-  gap: token.$spacing_8;
-  justify-content: start;
+	display: grid;
+	grid-auto-flow: column;
+	gap: token.$spacing_8;
+	justify-content: start;
 }
 
 .profile_link {
-  inline-size: 28px;
-  block-size: 28px;
-  border-radius: token.$radius_sm;
-  background: token.$color_text_heading;
-  color: token.$color_text_inverse;
-  display: grid;
-  place-items: center;
-  text-decoration: none;
+	inline-size: 28px;
+	block-size: 28px;
+	border-radius: token.$radius_sm;
+	background: token.$color_text_heading;
+	color: token.$color_text_inverse;
+	display: grid;
+	place-items: center;
+	text-decoration: none;
 
-  @include token.body_medium_medium;
-  font-size: token.$font_size_12;
-  transition: background token.$transition_base;
+	@include token.body_medium_medium;
+	font-size: token.$font_size_12;
+	transition: background token.$transition_base;
 
-  &:hover {
-    background: token.$color_brand_primary;
-  }
+	&:hover {
+		background: token.$color_brand_primary;
+	}
 }
 
 @include token.compact {
-  .profile {
-    padding: token.$spacing_12;
-  }
+	.profile {
+		padding: token.$spacing_12;
+	}
 
-  .profile_name {
-    font-size: token.$font_size_20;
-  }
+	.profile_name {
+		font-size: token.$font_size_20;
+	}
 
-  .profile_description {
-    font-size: token.$font_size_15;
-  }
+	.profile_description {
+		font-size: token.$font_size_15;
+	}
 
-  .profile_link {
-    inline-size: 24px;
-    block-size: 24px;
-    font-size: token.$font_size_12;
-  }
+	.profile_link {
+		inline-size: 24px;
+		block-size: 24px;
+		font-size: token.$font_size_12;
+	}
 }

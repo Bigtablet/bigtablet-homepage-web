@@ -50,9 +50,7 @@
 	font-weight: token.$font_weight_semi_bold;
 	background: token.$color_base_navy_600;
 	color: token.$color_text_inverse;
-	transition:
-		opacity token.$transition_fast,
-		transform token.$transition_fast;
+	transition: opacity token.$transition_fast, transform token.$transition_fast;
 
 	&:hover {
 		opacity: 0.9;
@@ -69,9 +67,7 @@
 	font-weight: token.$font_weight_medium;
 	background: transparent;
 	color: token.$color_text_caption;
-	transition:
-		background token.$transition_fast,
-		transform token.$transition_fast;
+	transition: background token.$transition_fast, transform token.$transition_fast;
 
 	&:hover {
 		background: token.$color_bg_solid_dim;

@@ -720,9 +720,7 @@ const BgFx = ({ variant, opacity = 0.6, className }: BgFxProps) => {
 		};
 	}, [variant]);
 
-	return (
-		<canvas ref={ref} className={`${styles.fx} ${className ?? ""}`} style={{ opacity }} />
-	);
+	return <canvas ref={ref} className={`${styles.fx} ${className ?? ""}`} style={{ opacity }} />;
 };
 
 export default BgFx;

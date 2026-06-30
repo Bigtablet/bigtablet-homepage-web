@@ -37,7 +37,8 @@
 		text-decoration: underline;
 	}
 
-	ul, ol {
+	ul,
+	ol {
 		padding-left: token.$spacing_20;
 
 		li {
@@ -66,11 +67,14 @@
 			font-size: token.$font_size_18;
 		}
 
-		p, ul li, ol li {
+		p,
+		ul li,
+		ol li {
 			font-size: token.$font_size_14;
 		}
 
-		ul, ol {
+		ul,
+		ol {
 			padding-left: token.$spacing_16;
 		}
 	}

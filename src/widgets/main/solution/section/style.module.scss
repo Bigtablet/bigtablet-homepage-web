@@ -49,8 +49,11 @@
 	/* 진입 전 좌/우 + 아래로 오프셋 — is_visible 시 시차 슬라이드인 */
 	opacity: 0;
 	transform: translateY(16px);
-	transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1),
-		box-shadow 0.2s ease, border-color 0.2s ease;
+	transition:
+		opacity 0.7s ease,
+		transform 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+		box-shadow 0.2s ease,
+		border-color 0.2s ease;
 }
 
 .from_left {

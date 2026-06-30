@@ -1,98 +1,98 @@
 @use "ds-token" as token;
 
 .blog_card {
-  @include token.flex_column;
-  background: token.$color_bg_solid;
-  border: 1px solid token.$color_border_default;
-  border-radius: token.$radius_lg;
-  padding: token.$spacing_12;
-  text-decoration: none;
-  color: token.$color_text_body;
-  height: 100%;
-  cursor: pointer;
-  @include token.hover_lift(-4px, token.$elevation_level4);
+	@include token.flex_column;
+	background: token.$color_bg_solid;
+	border: 1px solid token.$color_border_default;
+	border-radius: token.$radius_lg;
+	padding: token.$spacing_12;
+	text-decoration: none;
+	color: token.$color_text_body;
+	height: 100%;
+	cursor: pointer;
+	@include token.hover_lift(-4px, token.$elevation_level4);
 
-  &:hover {
-    background: token.$color_bg_solid_dim;
-    border-color: token.$color_border_hover;
-  }
+	&:hover {
+		background: token.$color_bg_solid_dim;
+		border-color: token.$color_border_hover;
+	}
 }
 
 .blog_card_thumb {
-  width: 100%;
-  aspect-ratio: 4 / 3;
-  border-radius: token.$radius_md;
-  border: 1px solid token.$color_border_default;
+	width: 100%;
+	aspect-ratio: 4 / 3;
+	border-radius: token.$radius_md;
+	border: 1px solid token.$color_border_default;
 
-  img {
-    object-fit: cover;
-    width: 100%;
-    height: 100%;
-    display: block;
-  }
+	img {
+		object-fit: cover;
+		width: 100%;
+		height: 100%;
+		display: block;
+	}
 }
 
 .blog_card_meta {
-  display: flex;
-  align-items: center;
-  gap: token.$spacing_4;
-  margin-top: token.$spacing_8;
-  color: token.$color_text_caption;
-  font-size: token.$font_size_12;
+	display: flex;
+	align-items: center;
+	gap: token.$spacing_4;
+	margin-top: token.$spacing_8;
+	color: token.$color_text_caption;
+	font-size: token.$font_size_12;
 }
 
 .blog_card_time {
-  @include token.body_medium;
+	@include token.body_medium;
 }
 
 .blog_card_dot {
-  opacity: 0.6;
+	opacity: 0.6;
 }
 
 .blog_card_views {
-  font-size: token.$font_size_14;
-  font-weight: token.$font_weight_regular;
+	font-size: token.$font_size_14;
+	font-weight: token.$font_weight_regular;
 }
 
 .blog_card_title {
-  @include token.heading_small_bold;
-  font-size: token.$font_size_16;
-  margin-top: token.$spacing_8;
-  color: token.$color_text_heading;
-  word-break: keep-all;
-  overflow-wrap: break-word;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
+	@include token.heading_small_bold;
+	font-size: token.$font_size_16;
+	margin-top: token.$spacing_8;
+	color: token.$color_text_heading;
+	word-break: keep-all;
+	overflow-wrap: break-word;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
 }
 
 .blog_card_excerpt {
-  @include token.body_medium;
-  font-size: token.$font_size_14;
-  margin-top: token.$spacing_4;
-  color: token.$color_text_caption;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
+	@include token.body_medium;
+	font-size: token.$font_size_14;
+	margin-top: token.$spacing_4;
+	color: token.$color_text_caption;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
 }
 
 @include token.compact {
-  .blog_card {
-    padding: token.$spacing_8;
-  }
+	.blog_card {
+		padding: token.$spacing_8;
+	}
 
-  .blog_card_title {
-    font-size: token.$font_size_14;
-    -webkit-line-clamp: 3;
-  }
+	.blog_card_title {
+		font-size: token.$font_size_14;
+		-webkit-line-clamp: 3;
+	}
 
-  .blog_card_excerpt {
-    font-size: token.$font_size_12;
-  }
+	.blog_card_excerpt {
+		font-size: token.$font_size_12;
+	}
 
-  .blog_card_meta {
-    font-size: token.$font_size_12;
-  }
+	.blog_card_meta {
+		font-size: token.$font_size_12;
+	}
 }

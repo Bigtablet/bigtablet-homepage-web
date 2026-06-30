@@ -181,9 +181,7 @@ $header_height_mobile: 64px;
 	padding: token.$spacing_4 token.$spacing_8;
 	border-radius: calc(token.$radius_md - 2px);
 	cursor: pointer;
-	transition:
-		background token.$transition_base,
-		color token.$transition_base;
+	transition: background token.$transition_base, color token.$transition_base;
 
 	&:hover {
 		color: token.$color_text_body;

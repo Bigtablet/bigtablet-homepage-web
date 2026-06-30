@@ -1,44 +1,44 @@
 @use "ds-token" as token;
 
 .card_skeleton {
-  @include token.flex_column;
-  border: 1px solid token.$color_border_default;
-  border-radius: token.$radius_lg;
-  overflow: hidden;
-  background: token.$color_bg_solid;
-  animation: card_skeleton_pulse 1.5s ease-in-out infinite;
+	@include token.flex_column;
+	border: 1px solid token.$color_border_default;
+	border-radius: token.$radius_lg;
+	overflow: hidden;
+	background: token.$color_bg_solid;
+	animation: card_skeleton_pulse 1.5s ease-in-out infinite;
 }
 
 .card_skeleton_thumb {
-  width: 100%;
-  aspect-ratio: 4 / 3;
-  background: token.$color_bg_solid_dim;
+	width: 100%;
+	aspect-ratio: 4 / 3;
+	background: token.$color_bg_solid_dim;
 }
 
 .card_skeleton_text {
-  padding: token.$spacing_12;
-  display: flex;
-  flex-direction: column;
-  gap: token.$spacing_8;
+	padding: token.$spacing_12;
+	display: flex;
+	flex-direction: column;
+	gap: token.$spacing_8;
 }
 
 .card_skeleton_line {
-  height: 0.75rem;
-  background: token.$color_bg_solid_dim;
-  border-radius: token.$radius_sm;
+	height: 0.75rem;
+	background: token.$color_bg_solid_dim;
+	border-radius: token.$radius_sm;
 }
 
 .short {
-  width: 60%;
+	width: 60%;
 }
 
 @keyframes card_skeleton_pulse {
-  0%,
-  100% {
-    opacity: 1;
-  }
+	0%,
+	100% {
+		opacity: 1;
+	}
 
-  50% {
-    opacity: 0.5;
-  }
+	50% {
+		opacity: 0.5;
+	}
 }

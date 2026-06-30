@@ -1,65 +1,61 @@
 @use "ds-token" as token;
 
 .thumb {
-  position: relative;
-  overflow: hidden;
+	position: relative;
+	overflow: hidden;
 }
 
 /* 로딩 중 — base 회색 위에 밝은 sweep band가 좌→우로 흐름 */
 .thumb_loading {
-  background-color: token.$color_bg_solid_dim;
-  background-image: linear-gradient(
-    100deg,
-    transparent 20%,
-    rgba(255, 255, 255, 0.55) 50%,
-    transparent 80%
-  );
-  background-repeat: no-repeat;
-  background-size: 220% 100%;
-  background-position: -120% 0;
-  animation: thumb_shimmer 1.4s ease-in-out infinite;
+	background-color: token.$color_bg_solid_dim;
+	background-image: linear-gradient(
+		100deg,
+		transparent 20%,
+		rgba(255, 255, 255, 0.55) 50%,
+		transparent 80%
+	);
+	background-repeat: no-repeat;
+	background-size: 220% 100%;
+	background-position: -120% 0;
+	animation: thumb_shimmer 1.4s ease-in-out infinite;
 
-  img {
-    opacity: 0;
-    transition: opacity 0.3s ease-out;
-  }
+	img {
+		opacity: 0;
+		transition: opacity 0.3s ease-out;
+	}
 
-  @media (prefers-reduced-motion: reduce) {
-    animation: none;
-  }
+	@media (prefers-reduced-motion: reduce) {
+		animation: none;
+	}
 }
 
 /* 로드 완료 — 이미지 fade-in, shimmer 제거 */
 .thumb_loaded {
-  background: transparent;
-  animation: none;
+	background: transparent;
+	animation: none;
 
-  img {
-    opacity: 1;
-    transition: opacity 0.3s ease-out;
-  }
+	img {
+		opacity: 1;
+		transition: opacity 0.3s ease-out;
+	}
 }
 
 /* 이미지 없음 / 에러 — 잔잔한 그래디언트 placeholder */
 .thumb_fallback {
-  background: linear-gradient(
-    135deg,
-    token.$color_bg_solid_dim 0%,
-    token.$color_bg_solid 100%
-  );
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: token.$color_text_caption;
-  font-size: token.$font_size_14;
-  animation: none;
+	background: linear-gradient(135deg, token.$color_bg_solid_dim 0%, token.$color_bg_solid 100%);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: token.$color_text_caption;
+	font-size: token.$font_size_14;
+	animation: none;
 }
 
 @keyframes thumb_shimmer {
-  0% {
-    background-position: -120% 0;
-  }
-  100% {
-    background-position: 220% 0;
-  }
+	0% {
+		background-position: -120% 0;
+	}
+	100% {
+		background-position: 220% 0;
+	}
 }

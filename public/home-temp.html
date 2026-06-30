@@ -3,8 +3,9 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Bigtablet — 영상을 이해하는 AI · VCM 원천기술</title>
-<meta name="description" content="기존 카메라 영상을 실시간으로 이해하는 AI 엔진. VCM 영상 경량화 원천기술 — MPEG 국제표준 직접 기여, 등록특허 4건." />
+<title>Bigtablet, 영상을 이해하는 AI · VCM 원천기술</title>
+<meta name="description" content="기존 카메라 영상을 실시간으로 이해하는 AI 엔진. VCM 영상 경량화 원천기술, MPEG 국제표준 직접 기여, 등록특허 4건." />
+<link rel="icon" href="/images/logo/favicon.png" />
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -60,7 +61,7 @@
   .has-fx{position:relative;overflow:hidden}
   .bgfx{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;opacity:.6}
   .has-fx > .wrap{position:relative;z-index:1}
-  /* 배포 카드 — 좌/우 시차 슬라이드인 + 강조 */
+  /* 배포 카드, 좌/우 시차 슬라이드인 + 강조 */
   .dep-grid.reveal{opacity:1;transform:none}
   .dep-grid .dep-card{opacity:0;transform:translateY(16px);transition:opacity .7s ease,transform .7s cubic-bezier(.22,1,.36,1)}
   .dep-card.from-left{transform:translateX(-48px)}
@@ -74,7 +75,7 @@
   .dep-no{font-family:var(--mono);font-size:14px;font-weight:700;color:#aab0b6}
   .dep-badge{display:inline-block;margin:8px 0 6px;font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:#2f8577}
   @media(prefers-reduced-motion:reduce){.dep-grid .dep-card{opacity:1!important;transform:none!important}}
-  /* 회사 설명 — 한 줄씩 시차 등장 */
+  /* 회사 설명, 한 줄씩 시차 등장 */
   .co-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:16px}
   .co-list.reveal{opacity:1;transform:none}
   .co-item{position:relative;padding-left:24px;font-size:clamp(15px,1.4vw,18px);line-height:1.55;color:var(--t2);opacity:0;transform:translateX(22px);transition:opacity .55s ease,transform .55s cubic-bezier(.22,1,.36,1)}
@@ -111,7 +112,8 @@
   .lead{font-size:clamp(16px,1.4vw,19px);line-height:1.85;color:var(--t2)}
   .center{text-align:center}
   .sub-c{max-width:62ch;margin:14px auto 0;color:var(--t3);font-size:clamp(15px,1.4vw,18px);line-height:1.7}
-  .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease-out,transform .7s ease-out}
+  /* CF가 인라인 JS를 변조해 reveal observer가 안 돌 수 있어 기본 visible. JS 돌면 .in도 동일 상태라 무해 */
+  .reveal{opacity:1;transform:none;transition:opacity .7s ease-out,transform .7s ease-out}
   .reveal.in{opacity:1;transform:none}
 
   /* HOW IT WORKS pipeline */
@@ -189,8 +191,6 @@
 </style>
 </head>
 <body>
-<div class="note" data-ko>TEMPORARY PREVIEW · 검토 후 bigtablet.com 반영 예정</div>
-<div class="note" data-en>TEMPORARY PREVIEW · pending review before bigtablet.com</div>
 
 <header>
   <div class="wrap nav">
@@ -214,10 +214,10 @@
   <div class="wrap">
     <p class="ey" data-ko>영상을 이해하는 AI · VCM 원천기술</p>
     <p class="ey" data-en>VIDEO-UNDERSTANDING AI · VCM IP</p>
-    <h1 class="hero-t" data-ko>현장의 영상을,\n<span class="hl">실시간으로 이해하는</span> AI</h1>
-    <h1 class="hero-t" data-en>The AI that understands\n<span class="hl">what your cameras see</span></h1>
-    <p class="hero-sub" data-ko>기존 카메라 영상을 실시간으로 이해해 '무슨 일이, 왜' 일어났는지 읽어냅니다. 핵심은 영상을 기계 분석용으로 최대 97% 경량화하는 VCM 원천기술 — MPEG 국제표준에 직접 기여했습니다.</p>
-    <p class="hero-sub" data-en>We understand your existing camera footage in real time — what happened, and why. At its core is VCM, our original technology that shrinks machine-bound video by up to 97%, contributed directly to the MPEG international standard.</p>
+    <h1 class="hero-t" data-ko>현장의 영상을,<br><span class="hl">실시간으로 이해하는</span> AI</h1>
+    <h1 class="hero-t" data-en>The AI that understands<br><span class="hl">what your cameras see</span></h1>
+    <p class="hero-sub" data-ko>기존 카메라 영상을 실시간으로 이해해 '무슨 일이, 왜' 일어났는지 읽어냅니다. 핵심은 영상을 기계 분석용으로 최대 97% 경량화하는 VCM 원천기술, MPEG 국제표준에 직접 기여했습니다.</p>
+    <p class="hero-sub" data-en>We understand your existing camera footage in real time, what happened, and why. At its core is VCM, our original technology that shrinks machine-bound video by up to 97%, contributed directly to the MPEG international standard.</p>
     <div class="hero-cta">
       <a class="btn btn-fill" href="#contact" data-ko>데모 신청 →</a>
       <a class="btn btn-fill" href="#contact" data-en>Request a demo →</a>
@@ -254,17 +254,17 @@
   <div class="wrap two reveal">
     <div>
       <p class="ey" data-ko>문제</p><p class="ey" data-en>THE PROBLEM</p>
-      <h2 class="sec pre" style="margin-top:14px" data-ko>카메라는 많은데,\n보는 사람은 없습니다</h2>
-      <h2 class="sec pre" style="margin-top:14px" data-en>Plenty of cameras.\nNo one watching.</h2>
+      <h2 class="sec pre" style="margin-top:14px" data-ko>카메라는 많은데,<br>보는 사람은 없습니다</h2>
+      <h2 class="sec pre" style="margin-top:14px" data-en>Plenty of cameras.<br>No one watching.</h2>
     </div>
     <p class="lead pre" data-ko>매장과 공장엔 이미 카메라가 깔려 있지만, 도난·사고·기회는 사람이 다 보지 못합니다.
 
-기존 영상 AI는 영상이 무거워 비싸고 느립니다 — 분석에 보통 2주. 전용 장비나 RFID는 비용과 오작동 부담이 큽니다.
+기존 영상 AI는 영상이 무거워 비싸고 느립니다, 분석에 보통 2주. 전용 장비나 RFID는 비용과 오작동 부담이 큽니다.
 
 그래서 우리는 영상을 가볍게 만드는 원천기술부터 시작했습니다.</p>
-    <p class="lead pre" data-en>Stores and factories are full of cameras, but no one can watch everything — theft, accidents, and opportunities slip by.
+    <p class="lead pre" data-en>Stores and factories are full of cameras, but no one can watch everything, theft, accidents, and opportunities slip by.
 
-Conventional video AI is heavy, so it's expensive and slow — often two weeks per analysis. Dedicated hardware and RFID add cost and failures.
+Conventional video AI is heavy, so it's expensive and slow, often two weeks per analysis. Dedicated hardware and RFID add cost and failures.
 
 So we started from the technology that makes video light.</p>
   </div>
@@ -286,21 +286,21 @@ So we started from the technology that makes video light.</p>
         <div class="n">01 · INPUT</div>
         <h3 data-ko>기존 카메라</h3><h3 data-en>Existing cameras</h3>
         <p data-ko>매장 CCTV, 공장 카메라 그대로. 별도 전용 장비가 필요 없습니다.</p>
-        <p data-en>Your store CCTV and factory cameras — no dedicated hardware.</p>
+        <p data-en>Your store CCTV and factory cameras, no dedicated hardware.</p>
         <div class="tag" data-ko>any RTSP · CCTV</div><div class="tag" data-en>any RTSP · CCTV</div>
       </div>
       <div class="step key">
         <div class="n">02 · VCM</div>
         <h3 data-ko>영상 경량화</h3><h3 data-en>Video compression</h3>
         <p data-ko>기계 분석용으로 최대 97% 경량화. 무거운 영상을 가볍게 만들어 실시간을 가능하게 합니다.</p>
-        <p data-en>Up to 97% lighter for machines — turning heavy video into real-time-ready streams.</p>
+        <p data-en>Up to 97% lighter for machines, turning heavy video into real-time-ready streams.</p>
         <div class="tag">8.0MB → 0.8MB · MPEG 표준 기여</div>
       </div>
       <div class="step">
         <div class="n">03 · ENGINE</div>
         <h3 data-ko>영상이해 엔진</h3><h3 data-en>Understanding engine</h3>
         <p data-ko>동선·체류·동일인물·이상행동을 실시간으로 읽고, 무슨 일이 왜 일어났는지 설명합니다.</p>
-        <p data-en>Reads flow, dwell, re-ID, and anomalies in real time — and explains what happened, and why.</p>
+        <p data-en>Reads flow, dwell, re-ID, and anomalies in real time, and explains what happened, and why.</p>
         <div class="tag" data-ko>동선 · 동일인 · 이상 · 원인</div><div class="tag" data-en>flow · re-ID · anomaly · cause</div>
       </div>
       <div class="step">
@@ -321,12 +321,12 @@ So we started from the technology that makes video light.</p>
       <p class="ey" data-ko>배포 현장</p><p class="ey" data-en>DEPLOYMENTS</p>
       <h2 class="sec" style="margin-top:14px" data-ko>한 엔진이 배포되는 곳</h2>
       <h2 class="sec" style="margin-top:14px" data-en>Where the one engine runs</h2>
-      <p class="sub-c" data-ko>같은 엔진이 매장에선 영상으로 고객을 분석해 사람을 인식하고, 공장에선 작업자와 제품을 함께 보며 불량을 잡아냅니다 — 실제로 해온 두 현장.</p>
-      <p class="sub-c" data-en>The same engine recognizes people from store video, and on the factory floor it watches workers and products to catch defects — two fields we've actually delivered.</p>
+      <p class="sub-c" data-ko>같은 엔진이 매장에선 영상으로 고객을 분석해 사람을 인식하고, 공장에선 작업자와 제품을 함께 보며 불량을 잡아냅니다, 실제로 해온 두 현장.</p>
+      <p class="sub-c" data-en>The same engine recognizes people from store video, and on the factory floor it watches workers and products to catch defects, two fields we've actually delivered.</p>
     </div>
     <div class="dep-grid reveal">
-      <div class="dep-card from-left"><div class="dep-top"><span class="ic">RETAIL</span><span class="dep-no">01</span></div><span class="dep-badge" data-ko>✓ 실제 레퍼런스</span><span class="dep-badge" data-en>✓ proven reference</span><h3 data-ko>리테일 · 고객 인식</h3><h3 data-en>Retail · People recognition</h3><p data-ko>기존 매장 카메라 영상에서 고객을 분석해 사람을 인식합니다 — 동선·체류·재방문·관심까지 자동으로.</p><p data-en>Analyzes store-camera video to recognize people — flow, dwell, revisits, and interest, automatically.</p></div>
-      <div class="dep-card from-right"><div class="dep-top"><span class="ic">FACTORY</span><span class="dep-no">02</span></div><span class="dep-badge" data-ko>✓ 실제 레퍼런스</span><span class="dep-badge" data-en>✓ proven reference</span><h3 data-ko>스마트팩토리 · 불량 인식</h3><h3 data-en>Factory · Defect detection</h3><p data-ko>공장 영상에서 작업자와 제품을 함께 보고 불량을 인식합니다 — 비전 불량검출로 검증된 레퍼런스.</p><p data-en>Watches workers and products in factory video to recognize defects — a proven vision-inspection reference.</p></div>
+      <div class="dep-card from-left"><div class="dep-top"><span class="ic">RETAIL</span><span class="dep-no">01</span></div><span class="dep-badge" data-ko>✓ 실제 레퍼런스</span><span class="dep-badge" data-en>✓ proven reference</span><h3 data-ko>리테일 · 고객 인식</h3><h3 data-en>Retail · People recognition</h3><p data-ko>기존 매장 카메라 영상에서 고객을 분석해 사람을 인식합니다, 동선·체류·재방문·관심까지 자동으로.</p><p data-en>Analyzes store-camera video to recognize people, flow, dwell, revisits, and interest, automatically.</p></div>
+      <div class="dep-card from-right"><div class="dep-top"><span class="ic">FACTORY</span><span class="dep-no">02</span></div><span class="dep-badge" data-ko>✓ 실제 레퍼런스</span><span class="dep-badge" data-en>✓ proven reference</span><h3 data-ko>스마트팩토리 · 불량 인식</h3><h3 data-en>Factory · Defect detection</h3><p data-ko>공장 영상에서 작업자와 제품을 함께 보고 불량을 인식합니다, 비전 불량검출로 검증된 레퍼런스.</p><p data-en>Watches workers and products in factory video to recognize defects, a proven vision-inspection reference.</p></div>
     </div>
     <p class="dep-note" data-ko>// 같은 코어 엔진 · 현장별 설정만 다름</p>
     <p class="dep-note" data-en>// same core engine · only the configuration differs</p>
@@ -338,8 +338,8 @@ So we started from the technology that makes video light.</p>
   <canvas class="bgfx" data-fx="frames" aria-hidden="true"></canvas>
   <div class="wrap reveal">
     <p class="ey" data-ko>기술 해자</p><p class="ey" data-en>THE MOAT</p>
-    <h2 class="sec pre" style="margin-top:14px" data-ko>영상 AI가 비싼 진짜 이유 —\n영상이 무겁기 때문입니다</h2>
-    <h2 class="sec pre" style="margin-top:14px" data-en>Why video AI is expensive —\nbecause video is heavy.</h2>
+    <h2 class="sec pre" style="margin-top:14px" data-ko>영상 AI가 비싼 진짜 이유 -<br>영상이 무겁기 때문입니다</h2>
+    <h2 class="sec pre" style="margin-top:14px" data-en>Why video AI is expensive -<br>because video is heavy.</h2>
     <p class="lead pre" style="margin-top:20px;max-width:74ch" data-ko>우리는 영상을 기계 분석용으로 최대 97% 경량화합니다(8.0MB → 0.8MB). 전용 고가 장비 없이, 기존 카메라와 저사양 환경에서도 여러 대를 동시에 실시간 분석합니다.
 
 이 압축 기술(VCM)은 MPEG 국제표준에 직접 기여했고, 영상부호화 원천특허로 보호됩니다. CEO·CTO 모두 TTA 표준 전문위원입니다.</p>
@@ -368,15 +368,15 @@ This compression (VCM) was contributed directly to the MPEG international standa
   <div class="wrap">
     <div class="center reveal">
       <p class="ey" data-ko>검증 & 모멘텀</p><p class="ey" data-en>VALIDATION &amp; MOMENTUM</p>
-      <h2 class="sec pre" style="margin-top:14px" data-ko>현장에서 쓰이고,\n표준이 인정했습니다</h2>
-      <h2 class="sec pre" style="margin-top:14px" data-en>Proven in the field,\nrecognized by the standard.</h2>
+      <h2 class="sec pre" style="margin-top:14px" data-ko>현장에서 쓰이고,<br>표준이 인정했습니다</h2>
+      <h2 class="sec pre" style="margin-top:14px" data-en>Proven in the field,<br>recognized by the standard.</h2>
     </div>
     <div class="pipe reveal">
       <div class="step">
         <div class="n">FIELD</div>
         <h3 data-ko>현장 실증</h3><h3 data-en>Field deployment</h3>
         <p data-ko>자동차부품 1차벤더의 현장 인프라를 구축·운영. 보조금이 아닌 실수요로.</p>
-        <p data-en>Built and run on-site infrastructure for a tier-1 auto-parts supplier — real demand, not grants.</p>
+        <p data-en>Built and run on-site infrastructure for a tier-1 auto-parts supplier, real demand, not grants.</p>
       </div>
       <div class="step key">
         <div class="n">BACKED</div>
@@ -396,8 +396,8 @@ This compression (VCM) was contributed directly to the MPEG international standa
         <p>NVIDIA Inception · Google for Startups Cloud</p>
       </div>
     </div>
-    <p class="dep-note" style="color:var(--t3)" data-ko>// 비희석 자금(정부 R&D · 현장 실증) 기반 — 자본 효율적으로 성장</p>
-    <p class="dep-note" style="color:var(--t3)" data-en>// non-dilutive capital (R&D + field) — capital-efficient by design</p>
+    <p class="dep-note" style="color:var(--t3)" data-ko>// 비희석 자금(정부 R&D · 현장 실증) 기반, 자본 효율적으로 성장</p>
+    <p class="dep-note" style="color:var(--t3)" data-en>// non-dilutive capital (R&D + field), capital-efficient by design</p>
   </div>
 </section>
 
@@ -406,13 +406,13 @@ This compression (VCM) was contributed directly to the MPEG international standa
   <div class="wrap two reveal">
     <div>
       <p class="ey" data-ko>회사</p><p class="ey" data-en>COMPANY</p>
-      <h2 class="sec pre" style="margin-top:14px" data-ko>표준을 만드는 사람들이,\n현장을 바꿉니다</h2>
-      <h2 class="sec pre" style="margin-top:14px" data-en>The people who write the standards\nchange the field.</h2>
+      <h2 class="sec pre" style="margin-top:14px" data-ko>표준을 만드는 사람들이,<br>현장을 바꿉니다</h2>
+      <h2 class="sec pre" style="margin-top:14px" data-en>The people who write the standards<br>change the field.</h2>
     </div>
     <ul class="co-list reveal">
       <li class="co-item"><span data-ko>2022년 설립 · 대구 본사</span><span data-en>Founded 2022 · HQ in Daegu</span></li>
       <li class="co-item"><span data-ko>서울 판교 · 미국 법인 (Sunnyvale · Plug and Play)</span><span data-en>Seoul Pangyo · U.S. entity (Sunnyvale · Plug and Play)</span></li>
-      <li class="co-item"><span data-ko>영상 AI부터 운영 시스템까지 직접 구축·운영하는 풀스택 팀</span><span data-en>A full-stack team — from video AI to internal systems</span></li>
+      <li class="co-item"><span data-ko>영상 AI부터 운영 시스템까지 직접 구축·운영하는 풀스택 팀</span><span data-en>A full-stack team, from video AI to internal systems</span></li>
       <li class="co-item"><span data-ko>MPEG VCM 국제표준 기여 · CEO·CTO TTA 표준 전문위원</span><span data-en>MPEG VCM standard contribution · CEO &amp; CTO, TTA experts</span></li>
       <li class="co-item"><span data-ko>NVIDIA Inception · Google for Startups · 중기부 장관표창</span><span data-en>NVIDIA Inception · Google for Startups · Minister's Award</span></li>
     </ul>
@@ -425,8 +425,8 @@ This compression (VCM) was contributed directly to the MPEG international standa
   <div class="wrap reveal">
     <h2 data-ko>기존 카메라로, 지금 시작하세요</h2>
     <h2 data-en>Start with the cameras you already have</h2>
-    <p data-ko>현장 영상 하나로 30초 만에 무엇이 보이는지 — 데모로 확인하세요.</p>
-    <p data-en>See what one stream reveals in 30 seconds — book a demo.</p>
+    <p data-ko>현장 영상 하나로 30초 만에 무엇이 보이는지, 데모로 확인하세요.</p>
+    <p data-en>See what one stream reveals in 30 seconds, book a demo.</p>
     <div class="hero-cta">
       <a class="btn btn-fill" href="mailto:biz@bigtablet.com" data-ko>데모 신청 →</a>
       <a class="btn btn-fill" href="mailto:biz@bigtablet.com" data-en>Request a demo →</a>
@@ -465,7 +465,7 @@ This compression (VCM) was contributed directly to the MPEG international standa
   // 스크롤 리빌
   var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.16});
   document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
-  // 히어로 비전 네트워크 — 노드/연결선 + 탐지 박스(컴퓨터비전 모션그래픽)
+  // 히어로 비전 네트워크, 노드/연결선 + 탐지 박스(컴퓨터비전 모션그래픽)
   (function(){
     var c=document.getElementById('fx'); if(!c||!c.getContext) return;
     var ctx=c.getContext('2d');
@@ -490,7 +490,7 @@ This compression (VCM) was contributed directly to the MPEG international standa
     document.addEventListener('visibilitychange',function(){if(document.hidden)cancelAnimationFrame(raf);else if(!reduce)raf=requestAnimationFrame(loop);});
   })();
 
-  // 섹션 배경 모션그래픽 — people / processor / frames (뷰포트 진입 시에만 구동)
+  // 섹션 배경 모션그래픽, people / processor / frames (뷰포트 진입 시에만 구동)
   (function(){
     var ACC='79,209,197';
     var reduce=!!(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches);
@@ -617,7 +617,7 @@ This compression (VCM) was contributed directly to the MPEG international standa
     document.querySelectorAll('canvas.bgfx[data-fx]').forEach(setup);
   })();
 
-  // 매출 막대 (현재 미사용 — 요소 있을 때만)
+  // 매출 막대 (현재 미사용, 요소 있을 때만)
   var bars=document.getElementById('bars');
   if(bars){
     function fill(){bars.querySelectorAll('.bar').forEach(function(b){b.style.height=b.getAttribute('data-h');b.style.transform='scaleY(1)';});}

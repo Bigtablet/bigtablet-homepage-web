@@ -1,44 +1,44 @@
 @use "ds-token" as token;
 
 .error_fallback {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	min-height: 50vh;
-	padding: 28px token.$spacing_20;
-	text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 50vh;
+    padding: 28px token.$spacing_20;
+    text-align: center;
 }
 
 .error_fallback_title {
-	font-size: token.$font_size_24;
-	font-weight: token.$font_weight_bold;
-	color: token.$color_text_heading;
-	margin-bottom: token.$spacing_12;
+    font-size: token.$font_size_24;
+    font-weight: token.$font_weight_bold;
+    color: token.$color_text_heading;
+    margin-bottom: token.$spacing_12;
 }
 
 .error_fallback_desc {
-	font-size: token.$font_size_16;
-	color: token.$color_text_body;
-	line-height: 1.5;
-	margin-bottom: token.$spacing_24;
-	white-space: pre-line;
+    font-size: token.$font_size_16;
+    color: token.$color_text_body;
+    line-height: 1.5;
+    margin-bottom: token.$spacing_24;
+    white-space: pre-line;
 }
 
 .error_fallback_actions {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	gap: token.$spacing_16;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: token.$spacing_16;
 }
 
 .error_fallback_back {
-	font-size: token.$font_size_14;
-	color: token.$color_text_caption;
-	text-decoration: underline;
-	transition: color token.$transition_base;
+    font-size: token.$font_size_14;
+    color: token.$color_text_caption;
+    text-decoration: underline;
+    transition: color token.$transition_base;
 
-	&:hover {
-		color: token.$color_text_heading;
-	}
+    &:hover {
+        color: token.$color_text_heading;
+    }
 }

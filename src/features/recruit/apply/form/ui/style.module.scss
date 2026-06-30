@@ -1,74 +1,74 @@
 @use "ds-token" as token;
 
 .apply_form {
-	width: 100%;
-	max-width: 880px;
-	margin: 0 auto;
-	background: token.$color_bg_solid;
-	border: 1px solid token.$color_border_default;
-	border-radius: token.$radius_xl;
-	box-shadow: token.$elevation_level1;
-	padding: token.$spacing_32 28px; /* DS 3.1 spacing: 24/32 사이 28px 토큰 없음 */
+  width: 100%;
+  max-width: 880px;
+  margin: 0 auto;
+  background: token.$color_bg_solid;
+  border: 1px solid token.$color_border_default;
+  border-radius: token.$radius_xl;
+  box-shadow: token.$elevation_level1;
+  padding: token.$spacing_32 28px; /* DS 3.1 spacing: 24/32 사이 28px 토큰 없음 */
 }
 
 .apply_grid {
-	display: flex;
-	gap: token.$spacing_32;
+  display: flex;
+  gap: token.$spacing_32;
 }
 
 .apply_left {
-	@include token.flex_column;
-	gap: token.$spacing_20;
+  @include token.flex_column;
+  gap: token.$spacing_20;
 }
 
 .apply_right {
-	@include token.flex_column;
-	width: 30%;
-	gap: token.$spacing_16;
-	align-items: flex-start;
-	text-align: left;
+  @include token.flex_column;
+  width: 30%;
+  gap: token.$spacing_16;
+  align-items: flex-start;
+  text-align: left;
 }
 
 .apply_submit {
-	margin-top: token.$spacing_20;
+  margin-top: token.$spacing_20;
 }
 
 .apply_footer {
-	@include token.body_medium;
-	font-size: token.$font_size_12;
-	text-align: center;
-	color: token.$color_text_caption;
-	margin-top: token.$spacing_8;
+  @include token.body_medium;
+  font-size: token.$font_size_12;
+  text-align: center;
+  color: token.$color_text_caption;
+  margin-top: token.$spacing_8;
 
-	a {
-		color: token.$color_brand_primary;
-		text-decoration: underline;
-	}
+  a {
+    color: token.$color_brand_primary;
+    text-decoration: underline;
+  }
 }
 
 .form_error {
-	margin-top: token.$spacing_8;
-	font-size: token.$font_size_14;
-	color: token.$color_status_error;
+  margin-top: token.$spacing_8;
+  font-size: token.$font_size_14;
+  color: token.$color_status_error;
 }
 
 @include token.compact {
-	.apply_form {
-		padding: token.$spacing_24 token.$spacing_12;
-		border-radius: token.$radius_lg;
-	}
+  .apply_form {
+    padding: token.$spacing_24 token.$spacing_12;
+    border-radius: token.$radius_lg;
+  }
 
-	.apply_grid {
-		flex-direction: column;
-		gap: token.$spacing_24;
-	}
+  .apply_grid {
+    flex-direction: column;
+    gap: token.$spacing_24;
+  }
 
-	.apply_left {
-		gap: token.$spacing_16;
-	}
+  .apply_left {
+    gap: token.$spacing_16;
+  }
 
-	.apply_right {
-		width: 100%;
-		gap: token.$spacing_12;
-	}
+  .apply_right {
+    width: 100%;
+    gap: token.$spacing_12;
+  }
 }

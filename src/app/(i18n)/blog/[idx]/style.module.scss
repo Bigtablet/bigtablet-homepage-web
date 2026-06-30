@@ -1,128 +1,128 @@
 @use "ds-token" as token;
 
 .blog_detail {
-	width: 100%;
-	padding: token.$spacing_24 0 28px;
-	max-width: 960px;
-	margin: 0 auto;
-	color: token.$color_text_body;
+  width: 100%;
+  padding: token.$spacing_24 0 28px;
+  max-width: 960px;
+  margin: 0 auto;
+  color: token.$color_text_body;
 
-	&_loading,
-	&_empty {
-		@include token.body_medium;
-		font-size: token.$font_size_14;
-		color: token.$color_text_caption;
-		text-align: center;
-		margin-top: token.$spacing_24;
-	}
+  &_loading,
+  &_empty {
+    @include token.body_medium;
+    font-size: token.$font_size_14;
+    color: token.$color_text_caption;
+    text-align: center;
+    margin-top: token.$spacing_24;
+  }
 
-	&_body {
-		width: 100%;
-	}
+  &_body {
+    width: 100%;
+  }
 
-	&_title {
-		@include token.heading_medium_bold;
-		font-size: token.$font_size_24;
-		color: token.$color_text_heading;
-		margin-bottom: token.$spacing_8;
-	}
+  &_title {
+    @include token.heading_medium_bold;
+    font-size: token.$font_size_24;
+    color: token.$color_text_heading;
+    margin-bottom: token.$spacing_8;
+  }
 
-	&_meta {
-		display: flex;
-		align-items: center;
-		gap: token.$spacing_8;
-		color: token.$color_text_caption;
-		font-size: token.$font_size_12;
-		margin-bottom: token.$spacing_12;
-	}
+  &_meta {
+    display: flex;
+    align-items: center;
+    gap: token.$spacing_8;
+    color: token.$color_text_caption;
+    font-size: token.$font_size_12;
+    margin-bottom: token.$spacing_12;
+  }
 
-	&_time {
-		@include token.body_medium;
-	}
+  &_time {
+    @include token.body_medium;
+  }
 
-	&_dot {
-		opacity: 0.6;
-	}
+  &_dot {
+    opacity: 0.6;
+  }
 
-	&_views {
-		@include token.body_medium_medium;
-	}
+  &_views {
+    @include token.body_medium_medium;
+  }
 
-	&_hero {
-		width: 100%;
-		aspect-ratio: 16 / 9;
-		border-radius: token.$radius_lg;
-		border: 1px solid token.$color_border_default;
-		margin: token.$spacing_16 0 token.$spacing_20;
+  &_hero {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: token.$radius_lg;
+    border: 1px solid token.$color_border_default;
+    margin: token.$spacing_16 0 token.$spacing_20;
 
-		img {
-			object-fit: cover;
-			width: 100%;
-			height: 100%;
-			display: block;
-		}
-	}
+    img {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+  }
 
-	&_content {
-		@include token.body_medium;
-		font-size: token.$font_size_16;
-		color: token.$color_text_body;
-		white-space: pre-wrap;
+  &_content {
+    @include token.body_medium;
+    font-size: token.$font_size_16;
+    color: token.$color_text_body;
+    white-space: pre-wrap;
 
-		h1,
-		h2,
-		h3 {
-			margin-top: token.$spacing_24;
-			margin-bottom: token.$spacing_12;
-			font-weight: token.$font_weight_bold;
-			color: token.$color_text_heading;
-		}
+    h1,
+    h2,
+    h3 {
+      margin-top: token.$spacing_24;
+      margin-bottom: token.$spacing_12;
+      font-weight: token.$font_weight_bold;
+      color: token.$color_text_heading;
+    }
 
-		p {
-			margin-bottom: token.$spacing_16;
-		}
+    p {
+      margin-bottom: token.$spacing_16;
+    }
 
-		img {
-			display: block;
-			max-width: 100%;
-			height: auto;
-			border-radius: token.$radius_md;
-			margin: token.$spacing_24 auto;
-			border: 1px solid token.$color_border_default;
-		}
-	}
+    img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+      border-radius: token.$radius_md;
+      margin: token.$spacing_24 auto;
+      border: 1px solid token.$color_border_default;
+    }
+  }
 
-	@include token.compact {
-		padding: token.$spacing_20 token.$spacing_12 28px;
+  @include token.compact {
+    padding: token.$spacing_20 token.$spacing_12 28px;
 
-		&_title {
-			font-size: token.$font_size_20;
-		}
+    &_title {
+      font-size: token.$font_size_20;
+    }
 
-		&_meta {
-			flex-wrap: wrap;
-			font-size: token.$font_size_12;
-			margin-bottom: token.$spacing_8;
-		}
+    &_meta {
+      flex-wrap: wrap;
+      font-size: token.$font_size_12;
+      margin-bottom: token.$spacing_8;
+    }
 
-		&_hero {
-			aspect-ratio: 4 / 3;
-			margin: token.$spacing_12 0 token.$spacing_16;
-		}
+    &_hero {
+      aspect-ratio: 4 / 3;
+      margin: token.$spacing_12 0 token.$spacing_16;
+    }
 
-		&_content {
-			font-size: token.$font_size_14;
+    &_content {
+      font-size: token.$font_size_14;
 
-			h1,
-			h2,
-			h3 {
-				margin-top: token.$spacing_20;
-				margin-bottom: token.$spacing_8;
-			}
+      h1,
+      h2,
+      h3 {
+        margin-top: token.$spacing_20;
+        margin-bottom: token.$spacing_8;
+      }
 
-			p {
-				margin-bottom: token.$spacing_12;
-			}
-		}
-	}
+      p {
+        margin-bottom: token.$spacing_12;
+      }
+    }
+  }
 }

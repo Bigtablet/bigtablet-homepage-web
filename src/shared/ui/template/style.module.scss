@@ -1,24 +1,24 @@
 @use "ds-token" as token;
 
 .template {
-	@include token.flex_column;
-	min-height: 100svh;
-	background-color: token.$color_bg_solid_dim;
-	color: token.$color_text_body;
+  @include token.flex_column;
+  min-height: 100svh;
+  background-color: token.$color_bg_solid_dim;
+  color: token.$color_text_body;
 }
 
 .template_main {
-	@include token.flex_column;
-	width: 100%;
-	flex: 1 0 auto;
-	align-items: center;
-	overflow: visible;
+  @include token.flex_column;
+  width: 100%;
+  flex: 1 0 auto;
+  align-items: center;
+  overflow: visible;
 }
 
 .template_main_top {
-	justify-content: flex-start;
+  justify-content: flex-start;
 }
 
 .template_main_center {
-	justify-content: center;
+  justify-content: center;
 }

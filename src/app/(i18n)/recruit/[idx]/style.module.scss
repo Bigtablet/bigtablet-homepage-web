@@ -3,23 +3,23 @@
 /* 페이지 셸 스타일만 유지 — 섹션 스타일은 src/widgets/recruit/detail/style.module.scss 로 이동 */
 
 .recruit_detail {
-	width: 100%;
-	max-width: 960px;
-	margin: 0 auto;
-	padding: 36px token.$spacing_20;
-	color: token.$color_text_body;
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 36px token.$spacing_20;
+  color: token.$color_text_body;
 }
 
 .recruit_detail_loading,
 .recruit_detail_error {
-	text-align: center;
-	font-size: token.$font_size_16;
-	color: token.$color_text_caption;
-	padding: 36px 0;
+  text-align: center;
+  font-size: token.$font_size_16;
+  color: token.$color_text_caption;
+  padding: 36px 0;
 }
 
 @include token.compact {
-	.recruit_detail {
-		padding: token.$spacing_32 token.$spacing_12;
-	}
+  .recruit_detail {
+    padding: token.$spacing_32 token.$spacing_12;
+  }
 }

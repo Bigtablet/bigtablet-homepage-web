@@ -22,5 +22,7 @@
 .visible {
 	opacity: 1;
 	transform: translateY(0);
-	transition: opacity 200ms ease-out, transform 200ms ease-out;
+	transition:
+		opacity 200ms ease-out,
+		transform 200ms ease-out;
 }

@@ -4,63 +4,63 @@
 }
 
 .interview_scroll {
-	max-block-size: calc(100vh - 32px - 40px);
-	overflow-y: auto;
-	display: grid;
-	row-gap: token.$spacing_12;
-	padding-inline-end: token.$spacing_4;
+  max-block-size: calc(100vh - 32px - 40px);
+  overflow-y: auto;
+  display: grid;
+  row-gap: token.$spacing_12;
+  padding-inline-end: token.$spacing_4;
 }
 
 .interview_empty {
-	@include token.body_medium;
-	font-size: token.$font_size_14;
-	color: token.$color_text_caption;
+  @include token.body_medium;
+  font-size: token.$font_size_14;
+  color: token.$color_text_caption;
 }
 
 .qa {
-	background: token.$color_bg_solid;
-	color: token.$color_text_body;
-	border: 1px solid token.$color_border_default;
-	border-radius: token.$radius_lg;
-	padding: token.$spacing_16;
-	display: grid;
-	row-gap: token.$spacing_8;
+  background: token.$color_bg_solid;
+  color: token.$color_text_body;
+  border: 1px solid token.$color_border_default;
+  border-radius: token.$radius_lg;
+  padding: token.$spacing_16;
+  display: grid;
+  row-gap: token.$spacing_8;
 }
 
 .qa_q {
-	@include token.heading_small_bold;
-	font-size: token.$font_size_20;
-	color: token.$color_text_heading;
-	margin: 0 0 token.$spacing_4 0;
+  @include token.heading_small_bold;
+  font-size: token.$font_size_20;
+  color: token.$color_text_heading;
+  margin: 0 0 token.$spacing_4 0;
 }
 
 .qa_a {
-	@include token.body_medium;
-	font-size: token.$font_size_16;
-	color: token.$color_text_body;
-	white-space: pre-line;
-	line-height: 1.75;
+  @include token.body_medium;
+  font-size: token.$font_size_16;
+  color: token.$color_text_body;
+  white-space: pre-line;
+  line-height: 1.75;
 }
 
 /* mobile */
 @include token.compact {
-	.interview_scroll {
-		/* 데스크탑은 프로필 고정 + Q&A 독립 스크롤(좌우 배치).
+  .interview_scroll {
+    /* 데스크탑은 프로필 고정 + Q&A 독립 스크롤(좌우 배치).
        모바일은 1컬럼이라 중첩 스크롤 박스 제거 — 페이지 흐름에 자연스럽게 */
-		max-block-size: none;
-		overflow-y: visible;
-	}
+    max-block-size: none;
+    overflow-y: visible;
+  }
 
-	.qa {
-		border-radius: token.$radius_md;
-		padding: token.$spacing_12;
-	}
+  .qa {
+    border-radius: token.$radius_md;
+    padding: token.$spacing_12;
+  }
 
-	.qa_q {
-		font-size: token.$font_size_18;
-	}
+  .qa_q {
+    font-size: token.$font_size_18;
+  }
 
-	.qa_a {
-		font-size: token.$font_size_15;
-	}
+  .qa_a {
+    font-size: token.$font_size_15;
+  }
 }

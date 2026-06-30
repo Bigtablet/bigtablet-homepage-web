@@ -89,7 +89,9 @@
 	display: grid;
 	place-items: center;
 	color: token.$color_text_inverse;
-	transition: transform token.$transition_fast, background token.$transition_fast;
+	transition:
+		transform token.$transition_fast,
+		background token.$transition_fast;
 
 	&:hover {
 		transform: translateY(-2px);

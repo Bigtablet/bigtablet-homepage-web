@@ -5,118 +5,118 @@
  * 맞지 않아 px를 직접 사용. clamp의 min/max는 가능한 곳에서 spacing 토큰으로 대체.
  */
 .introduce {
-	display: flex;
-	align-items: center;
-	/* 좌우 8vw padding + flex_between + flex:1 양쪽이 합쳐져 시각 간격이 과하게 벌어졌음.
+  display: flex;
+  align-items: center;
+  /* 좌우 8vw padding + flex_between + flex:1 양쪽이 합쳐져 시각 간격이 과하게 벌어졌음.
      max-width 컨테이너 + 양쪽 자연 폭으로 제한해 텍스트와 이미지가 적절히 가깝게. */
-	width: min(1080px, 92%);
-	margin: 0 auto;
-	/* clamp로 viewport 기반 스케일 — 브레이크포인트별 gap/padding 재선언 없이 흡수 */
-	gap: clamp(token.$spacing_48, 6vw, calc(token.$spacing_48 * 2));
-	padding-block: clamp(token.$spacing_32, 5vw, 36px);
-	animation: fade_in 0.6s ease both;
+  width: min(1080px, 92%);
+  margin: 0 auto;
+  /* clamp로 viewport 기반 스케일 — 브레이크포인트별 gap/padding 재선언 없이 흡수 */
+  gap: clamp(token.$spacing_48, 6vw, calc(token.$spacing_48 * 2));
+  padding-block: clamp(token.$spacing_32, 5vw, 36px);
+  animation: fade_in 0.6s ease both;
 
-	&.introduce_reverse {
-		flex-direction: row-reverse;
-	}
+  &.introduce_reverse {
+    flex-direction: row-reverse;
+  }
 
-	/* 인접한 introduce 끼리 padding-top 제거 — 4xl + 4xl 누적으로 갭 과대 */
-	& + .introduce {
-		padding-top: 0;
-	}
+  /* 인접한 introduce 끼리 padding-top 제거 — 4xl + 4xl 누적으로 갭 과대 */
+  & + .introduce {
+    padding-top: 0;
+  }
 
-	@media (prefers-reduced-motion: reduce) {
-		animation: none;
-	}
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
 }
 
 @keyframes fade_in {
-	from {
-		opacity: 0;
-		translate: 0 12px;
-	}
-	to {
-		opacity: 1;
-		translate: 0 0;
-	}
+  from {
+    opacity: 0;
+    translate: 0 12px;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
 }
 
 .introduce_text {
-	flex: 1 1 0;
-	min-width: 0;
-	@include token.flex_column;
-	gap: token.$spacing_8;
-	font-family: token.$font_family_primary;
+  flex: 1 1 0;
+  min-width: 0;
+  @include token.flex_column;
+  gap: token.$spacing_8;
+  font-family: token.$font_family_primary;
 }
 
 .introduce_title {
-	@include token.heading_medium_bold;
-	font-size: token.$font_size_24;
-	color: token.$color_text_heading;
-	letter-spacing: token.$letter_spacing_tight;
-	line-height: 1.3;
+  @include token.heading_medium_bold;
+  font-size: token.$font_size_24;
+  color: token.$color_text_heading;
+  letter-spacing: token.$letter_spacing_tight;
+  line-height: 1.3;
 }
 
 .introduce_desc {
-	@include token.body_medium_medium;
-	font-size: token.$font_size_16;
-	color: token.$color_text_caption;
-	line-height: 1.75;
-	white-space: pre-line;
+  @include token.body_medium_medium;
+  font-size: token.$font_size_16;
+  color: token.$color_text_caption;
+  line-height: 1.75;
+  white-space: pre-line;
 }
 
 .introduce_image {
-	/* 정사각 슬롯을 고정해 이미지 로드 전에도 공간 예약 — 로드 직후 layout shift 차단.
+  /* 정사각 슬롯을 고정해 이미지 로드 전에도 공간 예약 — 로드 직후 layout shift 차단.
      flex:0 1 auto + max-width 로 텍스트와 자연스럽게 옆에 배치. */
-	flex: 0 1 auto;
-	width: 100%;
-	max-width: 360px;
-	aspect-ratio: 1 / 1;
-	@include token.flex_center;
+  flex: 0 1 auto;
+  width: 100%;
+  max-width: 360px;
+  aspect-ratio: 1 / 1;
+  @include token.flex_center;
 }
 
 /* ImageThumb wrapper 가 fill 모드 — 부모 슬롯을 채움. img 자체는 contain. */
 .introduce_img {
-	width: 100%;
-	height: 100%;
-	border-radius: token.$radius_md;
+  width: 100%;
+  height: 100%;
+  border-radius: token.$radius_md;
 
-	:global(img) {
-		object-fit: contain;
-	}
+  :global(img) {
+    object-fit: contain;
+  }
 }
 
 @include token.compact {
-	.introduce {
-		@include token.flex_column;
-		flex-direction: column-reverse;
-		text-align: center;
-		gap: token.$spacing_16;
-		padding: token.$spacing_24 token.$spacing_16;
+  .introduce {
+    @include token.flex_column;
+    flex-direction: column-reverse;
+    text-align: center;
+    gap: token.$spacing_16;
+    padding: token.$spacing_24 token.$spacing_16;
 
-		&.introduce_reverse {
-			flex-direction: column-reverse;
-		}
-	}
+    &.introduce_reverse {
+      flex-direction: column-reverse;
+    }
+  }
 
-	.introduce_text {
-		gap: token.$spacing_4;
-	}
+  .introduce_text {
+    gap: token.$spacing_4;
+  }
 
-	.introduce_image {
-		width: 100%;
-		max-width: 280px;
-		margin: 0 auto;
-		/* aspect-ratio: 1/1 은 데스크탑 규칙에서 상속 — 모바일도 정사각 슬롯 유지 */
-	}
+  .introduce_image {
+    width: 100%;
+    max-width: 280px;
+    margin: 0 auto;
+    /* aspect-ratio: 1/1 은 데스크탑 규칙에서 상속 — 모바일도 정사각 슬롯 유지 */
+  }
 
-	.introduce_title {
-		font-size: token.$font_size_18;
-	}
+  .introduce_title {
+    font-size: token.$font_size_18;
+  }
 
-	.introduce_desc {
-		font-size: token.$font_size_14;
-	}
+  .introduce_desc {
+    font-size: token.$font_size_14;
+  }
 }
 
 /**
@@ -124,39 +124,39 @@
  * 브레이크포인트별 재선언은 폰트 크기와 텍스트 내부 gap에 한정.
  */
 @include token.medium {
-	.introduce_text {
-		gap: token.$spacing_12;
-	}
+  .introduce_text {
+    gap: token.$spacing_12;
+  }
 
-	.introduce_title {
-		font-size: token.$font_size_24;
-	}
+  .introduce_title {
+    font-size: token.$font_size_24;
+  }
 
-	.introduce_desc {
-		font-size: token.$font_size_16;
-	}
+  .introduce_desc {
+    font-size: token.$font_size_16;
+  }
 }
 
 @include token.expanded {
-	.introduce_text {
-		gap: token.$spacing_16;
-	}
+  .introduce_text {
+    gap: token.$spacing_16;
+  }
 
-	.introduce_title {
-		font-size: token.$font_size_32;
-	}
+  .introduce_title {
+    font-size: token.$font_size_32;
+  }
 
-	.introduce_desc {
-		font-size: token.$font_size_18;
-	}
+  .introduce_desc {
+    font-size: token.$font_size_18;
+  }
 }
 
 @include token.large {
-	.introduce_title {
-		font-size: token.$font_size_32;
-	}
+  .introduce_title {
+    font-size: token.$font_size_32;
+  }
 
-	.introduce_desc {
-		font-size: token.$font_size_18;
-	}
+  .introduce_desc {
+    font-size: token.$font_size_18;
+  }
 }

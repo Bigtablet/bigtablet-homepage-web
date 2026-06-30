@@ -2,127 +2,116 @@
 
 .banner {
 	position: relative;
-	width: 100%;
-	height: 95vh;
 	overflow: hidden;
-	white-space: pre-line;
+	width: 100%;
+	min-height: 92vh;
+	display: flex;
+	align-items: center;
 	color: token.$color_text_inverse;
-	background: token.$color_bg_solid;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+	/* 임시 디자인 히어로 — 라디얼 글로우 + 대각 그라데이션 다크 그라운드 */
+	background:
+		radial-gradient(1200px 680px at 78% -8%, rgba(79, 209, 197, 0.06), transparent 60%),
+		radial-gradient(900px 520px at -5% 108%, rgba(122, 162, 255, 0.07), transparent 58%),
+		linear-gradient(165deg, #06080b 0%, #0a0e14 55%, #0e141c 100%);
 }
 
-.banner_video {
-	position: absolute;
-	inset: 0;
-	width: 100%;
-	height: 100%;
-	/* 자체 stacking context 생성 — 향후 내부 요소에 z-index가 추가되더라도 외부(banner_content 등)로 영향이 전파되는 것을 방지 */
-	isolation: isolate;
-}
-
-/* next/image fill — LCP 후보로 즉시 paint. DOM 순서 상 video 보다 먼저 → video 가 자연스럽게 그 위에 */
-.banner_poster {
-	object-fit: cover;
-}
-
-.banner_video_tag {
-	position: absolute;
-	inset: 0;
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
-}
-
-.banner_overlay {
-	position: absolute;
-	inset: 0;
-	background: token.$color_bg_overlay;
+.banner_fx {
+	/* BgFx 캔버스 — 콘텐츠 뒤 */
+	z-index: 0;
 }
 
 .banner_content {
-	@include token.flex_column;
-	@include token.flex_center;
 	position: relative;
-	height: 100%;
-	gap: 28px; /* DS 3.1 spacing: 24/32 사이 28px 토큰 없음 */
-	color: token.$color_text_inverse;
-	text-align: center;
-	padding-inline: token.$spacing_20;
+	z-index: 1;
+	width: 100%;
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: clamp(72px, 11vw, 128px) clamp(20px, 5vw, 52px) clamp(60px, 9vw, 108px);
+	white-space: pre-line;
 }
 
 .banner_title {
-	@include token.display_small_bold;
-	font-size: clamp(token.$font_size_32, 5vw, token.$font_size_40);
-	line-height: 1.25;
+	@include token.heading_medium_bold;
+	margin-top: token.$spacing_20;
+	font-size: clamp(34px, 5.8vw, 66px);
+	line-height: 1.1;
+	font-weight: 800;
+	letter-spacing: -0.022em;
+	max-width: 15ch;
 	color: token.$color_text_inverse;
-	animation: fade_up 0.8s ease-out both;
+}
+
+.banner_title_hl {
+	background: linear-gradient(90deg, #ffffff, #d4dbe2);
+	background-clip: text;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
 }
 
 .banner_description {
 	@include token.body_medium_medium;
-	font-size: clamp(token.$font_size_16, 2vw, token.$font_size_20);
-	color: token.$color_text_inverse;
-	opacity: 0.9;
-	animation: fade_up 0.6s ease-out 0.3s both;
+	margin-top: token.$spacing_24;
+	font-size: clamp(token.$font_size_16, 1.5vw, token.$font_size_20);
+	color: rgba(255, 255, 255, 0.78);
+	max-width: 58ch;
+	line-height: 1.8;
 }
 
 .banner_cta {
-	display: inline-block;
-	animation: fade_up 0.5s ease-out 0.5s both;
-}
-
-@keyframes fade_up {
-	from {
-		opacity: 0;
-		transform: translateY(30px);
-	}
-	to {
-		opacity: 1;
-		transform: translateY(0);
-	}
-}
-
-@media (prefers-reduced-motion: reduce) {
-	.banner_title,
-	.banner_description,
-	.banner_cta {
-		animation: none;
-	}
-}
-
-.banner_scroll_indicator {
-	position: absolute;
-	bottom: token.$spacing_24;
-	left: 50%;
-	transform: translateX(-50%);
 	display: flex;
-	flex-direction: column;
+	gap: token.$spacing_12;
+	flex-wrap: wrap;
 	align-items: center;
-	gap: token.$spacing_4;
-	color: rgba(255, 255, 255, 0.5); /* _ds-token.scss 에 alpha-white-50 토큰 없음 — 스크림 반투명 */
-	font-size: token.$font_size_12;
-	animation: bounce_scroll 2s ease-in-out infinite;
+	margin-top: token.$spacing_32;
+	white-space: normal;
 }
 
-@keyframes bounce_scroll {
-	0%, 100% {
-		transform: translateX(-50%) translateY(0);
-	}
-	50% {
-		transform: translateX(-50%) translateY(8px);
-	}
+.banner_secondary {
+	display: inline-flex;
+	align-items: center;
+	gap: token.$spacing_8;
+	border: 1px solid rgba(255, 255, 255, 0.26);
+	border-radius: 11px;
+	padding: 12px 20px;
+	font-size: token.$font_size_14;
+	font-weight: 600;
+	color: token.$color_text_inverse;
+	transition: background 0.18s ease, border-color 0.18s ease;
+}
+
+.banner_secondary:hover {
+	background: rgba(255, 255, 255, 0.07);
+	border-color: rgba(255, 255, 255, 0.4);
+}
+
+.banner_specs {
+	display: flex;
+	flex-wrap: wrap;
+	gap: token.$spacing_8;
+	margin-top: clamp(28px, 4vw, 34px);
+	list-style: none;
+	padding: 0;
+	white-space: normal;
+}
+
+.banner_spec {
+	font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+	font-size: token.$font_size_12;
+	color: rgba(255, 255, 255, 0.52);
+	border: 1px solid rgba(255, 255, 255, 0.1);
+	border-radius: 8px;
+	padding: 7px 11px;
+	background: rgba(255, 255, 255, 0.02);
+}
+
+.banner_spec b {
+	color: #4fd1c5;
+	font-weight: 500;
 }
 
 @include token.compact {
 	.banner {
-		height: 80vh;
-	}
-
-	.banner_content {
-		gap: token.$spacing_24;
-		padding-inline: token.$spacing_16;
-	}
-
-	.banner_scroll_indicator {
-		bottom: token.$spacing_16;
+		min-height: 88vh;
 	}
 }

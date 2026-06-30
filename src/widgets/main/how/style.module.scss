@@ -1,37 +1,36 @@
 @use "ds-token" as token;
 
-.proof {
+.how {
 	position: relative;
 	overflow: hidden;
 	width: 100%;
 	color: token.$color_text_inverse;
 }
 
-.proof_inner {
+.how_inner {
 	position: relative;
 	z-index: 1;
 	width: 88%;
-	max-width: 1100px;
+	max-width: 1200px;
 	margin: 0 auto;
 }
 
-.proof_head {
+.how_head {
 	@include token.flex_column;
 	align-items: center;
 	gap: token.$spacing_12;
 	text-align: center;
-	white-space: pre-line;
 	opacity: 0;
 	transform: translateY(26px);
 	transition: opacity 0.7s ease-out, transform 0.7s ease-out;
 }
 
-.is_visible .proof_head {
+.is_visible .how_head {
 	opacity: 1;
 	transform: none;
 }
 
-.proof_title {
+.how_title {
 	@include token.heading_medium_bold;
 	font-size: clamp(token.$font_size_24, 3.7vw, token.$font_size_40);
 	line-height: 1.22;
@@ -39,7 +38,15 @@
 	color: token.$color_text_inverse;
 }
 
-.proof_tiles {
+.how_subtitle {
+	max-width: 62ch;
+	margin: 0 auto;
+	font-size: clamp(token.$font_size_15, 1.4vw, token.$font_size_18);
+	line-height: 1.7;
+	color: rgba(255, 255, 255, 0.52);
+}
+
+.how_pipe {
 	display: grid;
 	grid-template-columns: 1fr;
 	gap: token.$spacing_12;
@@ -51,21 +58,21 @@
 	transition: opacity 0.7s ease-out 0.1s, transform 0.7s ease-out 0.1s;
 }
 
-.is_visible .proof_tiles {
+.is_visible .how_pipe {
 	opacity: 1;
 	transform: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
-	.proof_head,
-	.proof_tiles {
+	.how_head,
+	.how_pipe {
 		opacity: 1;
 		transform: none;
 		transition: none;
 	}
 }
 
-.proof_tile {
+.how_step {
 	@include token.flex_column;
 	gap: token.$spacing_8;
 	border: 1px solid rgba(255, 255, 255, 0.1);
@@ -74,40 +81,41 @@
 	background: linear-gradient(180deg, #10151d, #0b0f15);
 }
 
-.proof_tile_key {
+.how_step_key {
 	border-color: rgba(79, 209, 197, 0.4);
 	background: linear-gradient(180deg, rgba(79, 209, 197, 0.08), #0b0f15);
 }
 
-.proof_tile_n {
+.how_step_n {
 	font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
 	font-size: token.$font_size_12;
 	letter-spacing: 0.1em;
 	color: #4fd1c5;
 }
 
-.proof_tile_title {
+.how_step_title {
 	font-size: token.$font_size_16;
 	font-weight: 700;
 	color: token.$color_text_inverse;
 }
 
-.proof_tile_desc {
+.how_step_desc {
 	font-size: token.$font_size_13;
-	line-height: 1.6;
 	color: rgba(255, 255, 255, 0.52);
+	line-height: 1.6;
 }
 
-.proof_note {
-	margin-top: clamp(20px, 3vw, 26px);
+.how_step_tag {
+	margin-top: token.$spacing_8;
+	padding-top: token.$spacing_8;
+	border-top: 1px solid rgba(255, 255, 255, 0.1);
 	font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
 	font-size: token.$font_size_12;
-	text-align: center;
-	color: rgba(255, 255, 255, 0.52);
+	color: rgba(255, 255, 255, 0.78);
 }
 
 @include token.medium {
-	.proof_tiles {
+	.how_pipe {
 		grid-template-columns: repeat(4, 1fr);
 	}
 }

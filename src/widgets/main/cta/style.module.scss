@@ -1,0 +1,75 @@
+@use "ds-token" as token;
+
+.cta {
+	position: relative;
+	overflow: hidden;
+	width: 100%;
+	text-align: center;
+	color: token.$color_text_inverse;
+}
+
+.cta_inner {
+	position: relative;
+	z-index: 1;
+	@include token.flex_column;
+	align-items: center;
+	gap: token.$spacing_16;
+	width: 88%;
+	max-width: 1100px;
+	margin: 0 auto;
+	opacity: 0;
+	transform: translateY(26px);
+	transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+}
+
+.is_visible .cta_inner {
+	opacity: 1;
+	transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.cta_inner {
+		opacity: 1;
+		transform: none;
+		transition: none;
+	}
+}
+
+.cta_title {
+	@include token.heading_medium_bold;
+	font-size: clamp(token.$font_size_24, 3.6vw, token.$font_size_40);
+	line-height: 1.2;
+	letter-spacing: -0.02em;
+	color: token.$color_text_inverse;
+}
+
+.cta_description {
+	font-size: token.$font_size_16;
+	color: rgba(255, 255, 255, 0.78);
+}
+
+.cta_actions {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	gap: token.$spacing_12;
+	margin-top: token.$spacing_12;
+}
+
+.cta_email {
+	display: inline-flex;
+	align-items: center;
+	border: 1px solid rgba(255, 255, 255, 0.26);
+	border-radius: 11px;
+	padding: 12px 20px;
+	font-size: token.$font_size_14;
+	font-weight: 600;
+	color: token.$color_text_inverse;
+	transition: background 0.18s ease, border-color 0.18s ease;
+}
+
+.cta_email:hover {
+	background: rgba(255, 255, 255, 0.07);
+	border-color: rgba(255, 255, 255, 0.4);
+}

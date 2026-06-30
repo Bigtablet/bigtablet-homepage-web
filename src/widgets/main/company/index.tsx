@@ -2,14 +2,17 @@
 
 import { useTranslations } from "next-intl";
 import { useReveal } from "src/shared/hooks/use-reveal";
+import Eyebrow from "src/shared/ui/eyebrow";
 import styles from "./style.module.scss";
+
+const ITEM_IDS = ["1", "2", "3", "4", "5"] as const;
 
 /**
  * @component Company
  *
  * @description
- * 회사·팀 섹션 — "표준을 만드는 사람들이, 현장을 바꿉니다".
- * 설립연도·거점·MPEG 표준 기여 중심의 성숙한 톤(스타트업 색채·창업 스토리 배제 — 레드라인).
+ * 회사 섹션 — "표준을 만드는 사람들이, 현장을 바꿉니다".
+ * 우측 컬럼은 5개 짧은 항목이 한 줄씩 시차 등장하는 리스트.
  */
 const Company = () => {
 	const t = useTranslations("main.company");
@@ -21,10 +24,20 @@ const Company = () => {
 			className={`${styles.company} ${visible ? styles.is_visible : ""}`}
 			aria-labelledby="company_title"
 		>
-			<h2 id="company_title" className={styles.company_title}>
-				{t("title")}
-			</h2>
-			<p className={styles.company_description}>{t("description")}</p>
+			<div className={styles.company_head}>
+				<Eyebrow>{t("eyebrow")}</Eyebrow>
+				<h2 id="company_title" className={styles.company_title}>
+					{t("title")}
+				</h2>
+			</div>
+
+			<ul className={styles.company_list}>
+				{ITEM_IDS.map((id) => (
+					<li key={id} className={styles.company_item}>
+						{t(`items.${id}`)}
+					</li>
+				))}
+			</ul>
 		</section>
 	);
 };

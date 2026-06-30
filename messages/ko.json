@@ -64,24 +64,45 @@
 	},
 	"main": {
 		"banner": {
-			"title": "Vision Beyond Pixels",
-			"description": "매장·공장·현장에 이미 깔린 카메라.\n그 영상을 실시간으로 이해해 '무슨 일이, 왜' 일어났는지 읽어내는 AI입니다.\n\n핵심은 영상을 기계 분석용으로 최대 97% 경량화하는 VCM 원천기술 —\nMPEG 국제표준에 직접 기여했습니다.\n\n보통 2주 걸리던 분석을, 기존 카메라 그대로, 실시간으로.",
-			"button": "도입 상담"
+			"eyebrow": "영상을 이해하는 AI · VCM 원천기술",
+			"title": "현장의 영상을,\n실시간으로 이해하는 AI",
+			"titleHighlight": "실시간으로 이해하는",
+			"description": "기존 카메라 영상을 실시간으로 이해해 '무슨 일이, 왜' 일어났는지 읽어냅니다. 핵심은 영상을 기계 분석용으로 최대 97% 경량화하는 VCM 원천기술 — MPEG 국제표준에 직접 기여했습니다.",
+			"button": "데모 신청",
+			"secondary": "작동 원리 보기",
+			"specs": {
+				"1": {
+					"label": "VCM",
+					"value": "8.0MB → 0.8MB"
+				},
+				"2": {
+					"label": "MPEG",
+					"value": "표준 기여"
+				},
+				"3": {
+					"label": "등록특허",
+					"value": "4건"
+				},
+				"4": {
+					"label": "분석 2주 →",
+					"value": "실시간"
+				}
+			}
 		},
 		"trust": {
 			"title": "외부가 검증한 기술력",
 			"items": {
 				"1": {
-					"stat": "매출 3년 7.6배",
-					"desc": "SI·용역·과제 매출 기준 · 3년 연속 흑자"
+					"stat": "Antler Cohort 8",
+					"desc": "글로벌 액셀러레이터"
 				},
 				"2": {
 					"stat": "등록특허 4건",
 					"desc": "영상부호화(VCM) 원천특허"
 				},
 				"3": {
-					"stat": "MPEG 국제표준 기여",
-					"desc": "ISO/IEC JTC1/SC29/WG4"
+					"stat": "MPEG",
+					"desc": "국제표준 직접 기여 · ISO/IEC"
 				},
 				"4": {
 					"stat": "중기부 장관표창",
@@ -89,57 +110,80 @@
 				},
 				"5": {
 					"stat": "NVIDIA Inception",
-					"desc": "Google for Startups · Plug and Play"
+					"desc": "GPU·기술 파트너 프로그램"
 				},
 				"6": {
-					"stat": "한화비전 파트너",
-					"desc": "Dell · HPE · TP-LINK"
+					"stat": "Google for Startups",
+					"desc": "Cloud Program"
 				}
 			}
 		},
 		"problem": {
+			"eyebrow": "문제",
 			"title": "카메라는 많은데,\n보는 사람은 없습니다",
-			"description": "매장과 공장엔 이미 카메라가 깔려 있지만, 도난·사고·기회는 사람이 다 보지 못합니다.\n\n기존 영상 AI는 영상이 무거워 비싸고 느립니다 — 분석에 보통 2주.\n전용 장비나 RFID는 비용과 오작동 부담이 큽니다.\n\n그래서 우리는 영상을 가볍게 만드는 원천기술부터 시작했습니다."
+			"description": "매장과 공장엔 이미 카메라가 깔려 있지만, 도난·사고·기회는 사람이 다 보지 못합니다.\n\n기존 영상 AI는 영상이 무거워 비싸고 느립니다 — 분석에 보통 2주. 전용 장비나 RFID는 비용과 오작동 부담이 큽니다.\n\n그래서 우리는 영상을 가볍게 만드는 원천기술부터 시작했습니다."
 		},
-		"solution": {
-			"title": "하나의 엔진, 모든 현장",
-			"subtitle": "같은 영상이해 엔진이 매장에선 고객을 읽고 도난을 막고, 공장·현장에선 안전을 지키고 출입을 관제합니다.",
-			"product": {
+		"how": {
+			"eyebrow": "작동 원리 · 하나의 엔진",
+			"title": "제품은 '서비스'가 아니라 엔진입니다",
+			"subtitle": "기존 카메라에서 들어온 영상을 VCM으로 가볍게 만들고, 하나의 엔진이 실시간으로 이해해 결과를 내보냅니다.",
+			"steps": {
 				"1": {
-					"cardTitle": "리테일 분석",
-					"title": "리테일 분석",
-					"description": "기존 매장 카메라로 고객의 동선·체류·관심을 자동으로 읽어\n매장 운영과 매출을 최적화합니다."
+					"n": "01 · INPUT",
+					"title": "기존 카메라",
+					"description": "매장 CCTV, 공장 카메라 그대로. 별도 전용 장비가 필요 없습니다.",
+					"tag": "any RTSP · CCTV"
 				},
 				"2": {
-					"cardTitle": "리테일 보안",
-					"title": "리테일 보안",
-					"description": "별도 장비 없이 매장 카메라 그대로, 도난을\n사후가 아니라 그 순간 실시간으로 감지·알림합니다."
+					"n": "02 · VCM",
+					"title": "영상 경량화",
+					"description": "기계 분석용으로 최대 97% 경량화. 무거운 영상을 가볍게 만들어 실시간을 가능하게 합니다.",
+					"tag": "8.0MB → 0.8MB · MPEG 표준 기여"
 				},
 				"3": {
-					"cardTitle": "스마트\n 팩토리\n 안전",
-					"title": "스마트팩토리·현장 안전",
-					"description": "작업자의 위험 행동과 이상 상황을 영상으로\n실시간 탐지해 사고를 앞서 막습니다."
+					"n": "03 · ENGINE",
+					"title": "영상이해 엔진",
+					"description": "동선·체류·동일인물·이상행동을 실시간으로 읽고, 무슨 일이 왜 일어났는지 설명합니다.",
+					"tag": "동선 · 동일인 · 이상 · 원인"
 				},
 				"4": {
-					"cardTitle": "지능형\n 영상관제",
-					"title": "지능형 영상관제",
-					"description": "출입·주차·동일인물을 기존 CCTV 그대로\n한 화면에서 실시간으로 관제합니다."
+					"n": "04 · OUTPUT",
+					"title": "실시간 결과",
+					"description": "그 순간 감지·알림하고, 운영에 바로 쓰는 인사이트로 내보냅니다.",
+					"tag": "실시간 알림 · 인사이트"
+				}
+			}
+		},
+		"solution": {
+			"eyebrow": "배포 현장",
+			"title": "한 엔진이 배포되는 곳",
+			"subtitle": "같은 엔진이 매장에선 영상으로 고객을 분석해 사람을 인식하고, 공장에선 작업자와 제품을 함께 보며 불량을 잡아냅니다 — 실제로 해온 두 현장.",
+			"badge": "✓ 실제 레퍼런스",
+			"note": "같은 코어 엔진 · 현장별 설정만 다름",
+			"cards": {
+				"1": {
+					"tag": "RETAIL",
+					"no": "01",
+					"title": "리테일 · 고객 인식",
+					"description": "기존 매장 카메라 영상에서 고객을 분석해 사람을 인식합니다 — 동선·체류·재방문·관심까지 자동으로."
 				},
-				"5": {
-					"cardTitle": "마케팅\n 최적화",
-					"title": "마케팅 최적화",
-					"description": "같은 엔진의 실시간 인사이트로\n고객 참여와 전환을 끌어올립니다."
+				"2": {
+					"tag": "FACTORY",
+					"no": "02",
+					"title": "스마트팩토리 · 불량 인식",
+					"description": "공장 영상에서 작업자와 제품을 함께 보고 불량을 인식합니다 — 비전 불량검출로 검증된 레퍼런스."
 				}
 			}
 		},
 		"moat": {
+			"eyebrow": "기술 해자",
 			"title": "영상 AI가 비싼 진짜 이유 —\n영상이 무겁기 때문입니다",
-			"description": "우리는 영상을 기계 분석용으로 최대 97% 경량화합니다.\n전용 고가 장비 없이, 기존 카메라와 저사양 환경에서도 여러 대를 동시에 실시간 분석합니다.\n\n이 압축 기술(VCM)은 MPEG 국제표준에 직접 기여했고, 영상부호화 원천특허로 보호됩니다.\nCEO·CTO 모두 TTA 표준 전문위원입니다.",
+			"description": "우리는 영상을 기계 분석용으로 최대 97% 경량화합니다(8.0MB → 0.8MB). 전용 고가 장비 없이, 기존 카메라와 저사양 환경에서도 여러 대를 동시에 실시간 분석합니다.\n\n이 압축 기술(VCM)은 MPEG 국제표준에 직접 기여했고, 영상부호화 원천특허로 보호됩니다. CEO·CTO 모두 TTA 표준 전문위원입니다.",
 			"compare": {
 				"head": {
 					"feature": "구분",
 					"legacy": "일반 영상 AI",
-					"us": "빅태블릿"
+					"us": "Bigtablet"
 				},
 				"rows": {
 					"1": {
@@ -166,27 +210,48 @@
 			}
 		},
 		"proof": {
-			"title": "이미 현장에서, 이미 매출로",
-			"description": "자동차부품 1차벤더의 현장 인프라를 구축했고, 매출은 3년 연속 흑자 위에서 7.6배 성장했습니다.",
-			"revenue": {
-				"caption": "SI·용역·과제 매출 기준 (단위: 억 원)",
-				"y2022": "1.1",
-				"y2023": "4.3",
-				"y2024": "7.0",
-				"y2025": "8.0"
-			},
-			"stat": {
-				"value": "7.6배",
-				"label": "3년 매출 성장"
-			},
-			"partners": {
-				"label": "기술 파트너",
-				"value": "한화비전 · Dell · HPE · TP-LINK"
+			"eyebrow": "검증 & 모멘텀",
+			"title": "현장에서 쓰이고,\n표준이 인정했습니다",
+			"note": "비희석 자금(정부 R&D · 현장 실증) 기반 — 자본 효율적으로 성장",
+			"tiles": {
+				"1": {
+					"n": "FIELD",
+					"title": "현장 실증",
+					"description": "자동차부품 1차벤더의 현장 인프라를 구축·운영. 보조금이 아닌 실수요로."
+				},
+				"2": {
+					"n": "BACKED",
+					"title": "글로벌 액셀러레이터",
+					"description": "Antler Cohort 8 · Plug and Play."
+				},
+				"3": {
+					"n": "IP · STD",
+					"title": "국제표준 · 특허",
+					"description": "MPEG 국제표준 직접 기여 · 등록특허 4건 · CEO·CTO TTA 표준 전문위원."
+				},
+				"4": {
+					"n": "PROGRAMS",
+					"title": "글로벌 프로그램",
+					"description": "NVIDIA Inception · Google for Startups Cloud"
+				}
 			}
 		},
 		"company": {
+			"eyebrow": "회사",
 			"title": "표준을 만드는 사람들이,\n현장을 바꿉니다",
-			"description": "2022년 설립. 대구 본사, 서울 판교, 미국 법인(Sunnyvale, Plug and Play Tech Center).\n영상 AI부터 운영 시스템까지 직접 구축·운영하는 풀스택 엔지니어링 팀입니다.\nMPEG VCM 국제표준 기여 · NVIDIA Inception · Google for Startups · 중기부 장관표창."
+			"items": {
+				"1": "2022년 설립 · 대구 본사",
+				"2": "서울 판교 · 미국 법인 (Sunnyvale · Plug and Play)",
+				"3": "영상 AI부터 운영 시스템까지 직접 구축·운영하는 풀스택 팀",
+				"4": "MPEG VCM 국제표준 기여 · CEO·CTO TTA 표준 전문위원",
+				"5": "NVIDIA Inception · Google for Startups · 중기부 장관표창"
+			}
+		},
+		"cta": {
+			"title": "기존 카메라로, 지금 시작하세요",
+			"description": "현장 영상 하나로 30초 만에 무엇이 보이는지 — 데모로 확인하세요.",
+			"button": "데모 신청",
+			"email": "biz@bigtablet.com"
 		},
 		"collaboration": {
 			"title": "파트너사"

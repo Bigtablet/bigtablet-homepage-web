@@ -1,65 +1,53 @@
 @use "ds-token" as token;
 
 .main_content {
-  width: 100%;
-  min-height: 0;
-  position: relative;
-  /* clip 사용 — hidden은 overflow-y를 auto로 강제해서 내부 스크롤 컨테이너 생성됨 */
-  overflow-x: clip;
-  scroll-snap-type: y proximity;
-  scroll-padding-top: 80px;
-  -webkit-overflow-scrolling: touch;
+	width: 100%;
+	min-height: 0;
+	position: relative;
+	/* clip 사용 — hidden은 overflow-y를 auto로 강제해서 내부 스크롤 컨테이너 생성됨 */
+	overflow-x: clip;
 
-  * {
-    box-sizing: border-box;
-  }
+	* {
+		box-sizing: border-box;
+	}
 }
 
-.snap {
-  @include token.flex_center;
-  width: 100%;
-  max-width: 100%;
-  overflow-x: clip;
-
-  > * {
-    max-width: 100%;
-  }
-}
-
+/* 다크 그라운드 — 여러 섹션을 세로로 쌓는 공통 패딩/간격 */
 %ground_base {
-  @include token.flex_column;
-  gap: clamp(80px, 10vw, 160px);
-  padding: clamp(60px, 8vw, 120px) clamp(16px, 5vw, 80px); /* 유동 반응형 — DS spacing 토큰으로 clamp 표현 불가 */
-  width: 100%;
+	@include token.flex_column;
+	gap: clamp(80px, 10vw, 160px);
+	padding: clamp(76px, 10vw, 134px) clamp(16px, 5vw, 80px);
+	width: 100%;
 }
 
-.trust_bg {
-  @include token.flex_center;
-  width: 100%;
-  padding: clamp(40px, 6vw, 72px) clamp(16px, 5vw, 80px);
-  /* gradient 상단(#fafafa)과 동일 — 다크 배너에서 라이트 그라운드로 매끈하게 전환 */
-  background: #fafafa;
+/* TRUST 밴드 — 히어로 직후 다크 띠 (#0c1016) */
+.trust_band {
+	width: 100%;
+	padding: clamp(30px, 4.5vw, 50px) clamp(16px, 5vw, 52px);
+	background: #0c1016;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.gradient {
-  @extend %ground_base;
-  /* 브랜드 그라데이션 고정 색 — DS 3.1 팔레트에 정확 매칭이 없어 원본 hex 유지.
-     (codemod 이 hex 근접값으로 text_caption #888 등에 매핑하며 색조가 틀어졌던 것 복원) */
-  background: linear-gradient(
-                  180deg,
-                  #fafafa 0%,
-                  #6b7280 48%,
-                  token.$color_base_navy_600 100%
-  );
+/* PROBLEM/HOW/MOAT/VALIDATION/COMPANY 다크 그라운드 — 라이트 텍스트 + 캔버스 */
+.dark_ground {
+	@extend %ground_base;
+	background: linear-gradient(180deg, #0e151d 0%, #0a0f15 100%);
+	border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.collab_bg {
-  @extend %ground_base;
-  background: linear-gradient(
-                  180deg,
-                  token.$color_base_navy_600 0%,
-                  token.$color_base_navy_600 15%,
-                  #1e293b 35%,
-                  token.$color_base_navy_600 100%
-  );
+/* DEPLOYMENTS — 라이트 그라운드 */
+.light_ground {
+	@extend %ground_base;
+	background: #f5f7f9;
+	color: token.$color_text_heading;
+}
+
+/* CTA 밴드 — 다크 + 라디얼 글로우 */
+.cta_band {
+	width: 100%;
+	padding: clamp(76px, 10vw, 134px) clamp(16px, 5vw, 80px);
+	background:
+		radial-gradient(800px 400px at 50% 0%, rgba(79, 209, 197, 0.1), transparent 60%),
+		#0c1016;
+	border-top: 1px solid rgba(255, 255, 255, 0.1);
 }

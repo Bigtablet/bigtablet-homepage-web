@@ -1,78 +1,75 @@
 @use "ds-token" as token;
 
 .problem {
-  @include token.flex_between;
-  align-items: flex-start;
-  width: 80%;
-  max-width: 1200px;
-  margin: 0 auto;
-  white-space: pre-line;
-  gap: token.$spacing_24;
-  color: token.$color_text_heading;
+	position: relative;
+	overflow: hidden;
+	width: 100%;
+	color: token.$color_text_inverse;
 }
 
-/* 기본은 invisible — IntersectionObserver 가 is_visible 부여하면 fade-up 시작.
-   below-fold 섹션이라 스크롤로 진입한 순간 reveal 효과 유지. */
-.problem_title,
+.problem_inner {
+	position: relative;
+	z-index: 1;
+	display: grid;
+	grid-template-columns: 1fr;
+	align-items: flex-start;
+	width: 88%;
+	max-width: 1200px;
+	margin: 0 auto;
+	white-space: pre-line;
+	gap: token.$spacing_24;
+}
+
+.problem_head {
+	@include token.flex_column;
+	gap: token.$spacing_12;
+}
+
+/* 기본은 invisible — IntersectionObserver 가 is_visible 부여하면 fade-up 시작. */
+.problem_head,
 .problem_description {
-  opacity: 0;
-  transform: translateY(40px);
-  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+	opacity: 0;
+	transform: translateY(40px);
+	transition: opacity 0.7s ease-out, transform 0.7s ease-out;
 }
 
-.is_visible .problem_title,
+.is_visible .problem_head,
 .is_visible .problem_description {
-  opacity: 1;
-  transform: translateY(0);
+	opacity: 1;
+	transform: translateY(0);
 }
 
 .is_visible .problem_description {
-  transition-delay: 0.15s;
+	transition-delay: 0.15s;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .problem_title,
-  .problem_description {
-    opacity: 1;
-    transform: none;
-    transition: none;
-  }
+	.problem_head,
+	.problem_description {
+		opacity: 1;
+		transform: none;
+		transition: none;
+	}
 }
 
 .problem_title {
-  @include token.heading_medium_bold;
-  flex: 0 0 35%;
-  font-size: token.$font_size_40;
-  color: token.$color_text_heading;
-  line-height: 1.3;
+	@include token.heading_medium_bold;
+	font-size: clamp(token.$font_size_24, 3.7vw, token.$font_size_40);
+	color: token.$color_text_inverse;
+	line-height: 1.22;
+	letter-spacing: -0.018em;
 }
 
 .problem_description {
-  @include token.body_medium_medium;
-  flex: 0 0 55%;
-  font-size: token.$font_size_20;
-  /* gradient 배경이 #fafafa → #6b7280 으로 어두워짐 — $color_text_body(#666)는 대비 불충분. heading 토큰 사용 */
-  color: token.$color_text_heading;
-  line-height: 1.75;
+	@include token.body_medium_medium;
+	font-size: clamp(token.$font_size_16, 1.4vw, token.$font_size_18);
+	color: rgba(255, 255, 255, 0.78);
+	line-height: 1.85;
 }
 
-@include token.compact {
-  .problem {
-    @include token.flex_column;
-    width: 88%;
-    text-align: left;
-    gap: token.$spacing_20;
-  }
-
-  .problem_title {
-    font-size: token.$font_size_24;
-    line-height: 1.3;
-    flex: 0 0 auto;
-  }
-
-  .problem_description {
-    font-size: token.$font_size_18;
-    line-height: 1.75;
-    flex: 0 0 auto;
-  }
+@include token.expanded {
+	.problem_inner {
+		grid-template-columns: 1.05fr 0.95fr;
+		gap: clamp(28px, 4vw, 56px);
+	}
 }

@@ -1,25 +1,33 @@
 @use "ds-token" as token;
 
 .moat {
+	position: relative;
+	overflow: hidden;
+	width: 100%;
+	color: token.$color_text_inverse;
+}
+
+.moat_inner {
 	@include token.flex_column;
+	position: relative;
+	z-index: 1;
 	width: 88%;
 	max-width: 1100px;
 	margin: 0 auto;
 	gap: clamp(32px, 5vw, 56px);
-	color: token.$color_text_inverse;
 	/* 진입 전 invisible — is_visible 부여 시 fade-up */
 	opacity: 0;
 	transform: translateY(40px);
 	transition: opacity 0.7s ease-out, transform 0.7s ease-out;
 }
 
-.is_visible.moat {
+.is_visible .moat_inner {
 	opacity: 1;
 	transform: translateY(0);
 }
 
 @media (prefers-reduced-motion: reduce) {
-	.moat {
+	.moat_inner {
 		opacity: 1;
 		transform: none;
 		transition: none;

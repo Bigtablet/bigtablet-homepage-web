@@ -62,24 +62,45 @@
 	},
 	"main": {
 		"banner": {
-			"title": "Vision Beyond Pixels",
-			"description": "Cameras are already everywhere — in stores, factories, and on-site.\nWe build the AI that understands that footage in real time and reads what happened, and why.\n\nAt its core is VCM, our original video-coding technology that shrinks machine-bound video by up to 97% — contributed directly to the MPEG international standard.\n\nSo analysis that used to take two weeks now runs in real time, on the cameras you already have.",
-			"button": "Get in touch"
+			"eyebrow": "VIDEO-UNDERSTANDING AI · VCM IP",
+			"title": "The AI that understands\nwhat your cameras see",
+			"titleHighlight": "what your cameras see",
+			"description": "We understand your existing camera footage in real time — what happened, and why. At its core is VCM, our original technology that shrinks machine-bound video by up to 97%, contributed directly to the MPEG international standard.",
+			"button": "Request a demo",
+			"secondary": "How it works",
+			"specs": {
+				"1": {
+					"label": "VCM",
+					"value": "8.0MB → 0.8MB"
+				},
+				"2": {
+					"label": "MPEG",
+					"value": "표준 기여"
+				},
+				"3": {
+					"label": "",
+					"value": "4 patents"
+				},
+				"4": {
+					"label": "2 weeks →",
+					"value": "real time"
+				}
+			}
 		},
 		"trust": {
-			"title": "Validated by the field",
+			"title": "VALIDATED BY THE FIELD",
 			"items": {
 				"1": {
-					"stat": "7.6x in 3 years",
-					"desc": "Revenue (SI/services/R&D) · profitable 3 years"
+					"stat": "Antler Cohort 8",
+					"desc": "Global accelerator"
 				},
 				"2": {
 					"stat": "4 patents",
 					"desc": "Original video-coding IP"
 				},
 				"3": {
-					"stat": "MPEG standard",
-					"desc": "ISO/IEC JTC1/SC29/WG4"
+					"stat": "MPEG",
+					"desc": "Standard contribution · ISO/IEC"
 				},
 				"4": {
 					"stat": "Minister's Award",
@@ -87,55 +108,78 @@
 				},
 				"5": {
 					"stat": "NVIDIA Inception",
-					"desc": "Google for Startups · Plug and Play"
+					"desc": "GPU & tech program"
 				},
 				"6": {
-					"stat": "Hanwha Vision",
-					"desc": "Dell · HPE · TP-LINK"
+					"stat": "Google for Startups",
+					"desc": "Cloud Program"
 				}
 			}
 		},
 		"problem": {
+			"eyebrow": "THE PROBLEM",
 			"title": "Plenty of cameras.\nNo one watching.",
-			"description": "Stores and factories are full of cameras, but no one can watch everything — theft, accidents, and opportunities slip by.\n\nConventional video AI is heavy, so it's expensive and slow — analysis often takes two weeks. Dedicated hardware and RFID add cost and failures.\n\nSo we started from the technology that makes video light."
+			"description": "Stores and factories are full of cameras, but no one can watch everything — theft, accidents, and opportunities slip by.\n\nConventional video AI is heavy, so it's expensive and slow — often two weeks per analysis. Dedicated hardware and RFID add cost and failures.\n\nSo we started from the technology that makes video light."
 		},
-		"solution": {
-			"title": "One engine, every site",
-			"subtitle": "The same video-understanding engine reads customers and stops theft in stores, and keeps workers safe and entrances monitored on-site.",
-			"product": {
+		"how": {
+			"eyebrow": "HOW IT WORKS · ONE ENGINE",
+			"title": "The product is an engine, not a service",
+			"subtitle": "Footage from your existing cameras is made light by VCM, then one engine understands it in real time and delivers results.",
+			"steps": {
 				"1": {
-					"cardTitle": "Retail Analytics",
-					"title": "Retail Analytics",
-					"description": "Read customer flow, dwell time, and interest from your existing store cameras to optimize operations and sales."
+					"n": "01 · INPUT",
+					"title": "Existing cameras",
+					"description": "Your store CCTV and factory cameras — no dedicated hardware.",
+					"tag": "any RTSP · CCTV"
 				},
 				"2": {
-					"cardTitle": "Retail Security",
-					"title": "Retail Security",
-					"description": "No extra hardware — your store cameras detect and alert theft the moment it happens, not after."
+					"n": "02 · VCM",
+					"title": "Video compression",
+					"description": "Up to 97% lighter for machines — turning heavy video into real-time-ready streams.",
+					"tag": "8.0MB → 0.8MB · MPEG 표준 기여"
 				},
 				"3": {
-					"cardTitle": "Smart\n Factory\n Safety",
-					"title": "Smart Factory & Field Safety",
-					"description": "Detect risky behavior and anomalies in real time to prevent accidents before they happen."
+					"n": "03 · ENGINE",
+					"title": "Understanding engine",
+					"description": "Reads flow, dwell, re-ID, and anomalies in real time — and explains what happened, and why.",
+					"tag": "flow · re-ID · anomaly · cause"
 				},
 				"4": {
-					"cardTitle": "Intelligent\n Surveillance",
-					"title": "Intelligent Video Surveillance",
-					"description": "Monitor entry, parking, and re-identification on your existing CCTV, all on one screen."
+					"n": "04 · OUTPUT",
+					"title": "Real-time output",
+					"description": "Detect and alert the moment it happens, delivered as insight you can act on.",
+					"tag": "alerts · insight"
+				}
+			}
+		},
+		"solution": {
+			"eyebrow": "DEPLOYMENTS",
+			"title": "Where the one engine runs",
+			"subtitle": "The same engine recognizes people from store video, and on the factory floor it watches workers and products to catch defects — two fields we've actually delivered.",
+			"badge": "✓ proven reference",
+			"note": "same core engine · only the configuration differs",
+			"cards": {
+				"1": {
+					"tag": "RETAIL",
+					"no": "01",
+					"title": "Retail · People recognition",
+					"description": "Analyzes store-camera video to recognize people — flow, dwell, revisits, and interest, automatically."
 				},
-				"5": {
-					"cardTitle": "Marketing\n Optimization",
-					"title": "Marketing Optimization",
-					"description": "Turn the same engine's real-time insight into higher engagement and conversion."
+				"2": {
+					"tag": "FACTORY",
+					"no": "02",
+					"title": "Factory · Defect detection",
+					"description": "Watches workers and products in factory video to recognize defects — a proven vision-inspection reference."
 				}
 			}
 		},
 		"moat": {
+			"eyebrow": "THE MOAT",
 			"title": "Why video AI is expensive —\nbecause video is heavy.",
-			"description": "We compress machine-bound video by up to 97%. Without expensive dedicated hardware, we analyze many streams at once in real time, even on low-spec setups.\n\nThis compression (VCM) was contributed directly to the MPEG international standard and is protected by original video-coding patents. Both our CEO and CTO are TTA standards experts.",
+			"description": "We compress machine-bound video by up to 97% (8.0MB → 0.8MB). Without expensive dedicated hardware, we analyze many streams at once in real time, even on low-spec setups.\n\nThis compression (VCM) was contributed directly to the MPEG international standard and is protected by original video-coding patents. Both our CEO and CTO are TTA standards experts.",
 			"compare": {
 				"head": {
-					"feature": "",
+					"feature": " ",
 					"legacy": "Conventional video AI",
 					"us": "Bigtablet"
 				},
@@ -164,27 +208,48 @@
 			}
 		},
 		"proof": {
-			"title": "Already in the field. Already in revenue.",
-			"description": "We built the on-site infrastructure for a tier-1 auto-parts supplier, and revenue has grown 7.6x over three profitable years.",
-			"revenue": {
-				"caption": "Revenue (SI/services/R&D basis), in 100M KRW",
-				"y2022": "1.1",
-				"y2023": "4.3",
-				"y2024": "7.0",
-				"y2025": "8.0"
-			},
-			"stat": {
-				"value": "7.6x",
-				"label": "3-year revenue growth"
-			},
-			"partners": {
-				"label": "Technology partners",
-				"value": "Hanwha Vision · Dell · HPE · TP-LINK"
+			"eyebrow": "VALIDATION & MOMENTUM",
+			"title": "Proven in the field,\nrecognized by the standard.",
+			"note": "non-dilutive capital (R&D + field) — capital-efficient by design",
+			"tiles": {
+				"1": {
+					"n": "FIELD",
+					"title": "Field deployment",
+					"description": "Built and run on-site infrastructure for a tier-1 auto-parts supplier — real demand, not grants."
+				},
+				"2": {
+					"n": "BACKED",
+					"title": "Globally backed",
+					"description": "Antler Cohort 8 · Plug and Play."
+				},
+				"3": {
+					"n": "IP · STD",
+					"title": "Standard & IP",
+					"description": "MPEG standard contribution · 4 patents · CEO & CTO are TTA standards experts."
+				},
+				"4": {
+					"n": "PROGRAMS",
+					"title": "Global programs",
+					"description": "NVIDIA Inception · Google for Startups Cloud"
+				}
 			}
 		},
 		"company": {
-			"title": "The people who write the standards\nare the ones changing the field.",
-			"description": "Founded in 2022. HQ in Daegu, a Seoul office in Pangyo, and a U.S. entity in Sunnyvale (Plug and Play Tech Center).\nA full-stack engineering team that builds and operates everything from video AI to internal systems.\nMPEG VCM standard contribution · NVIDIA Inception · Google for Startups · Minister's Award."
+			"eyebrow": "COMPANY",
+			"title": "The people who write the standards\nchange the field.",
+			"items": {
+				"1": "Founded 2022 · HQ in Daegu",
+				"2": "Seoul Pangyo · U.S. entity (Sunnyvale · Plug and Play)",
+				"3": "A full-stack team — from video AI to internal systems",
+				"4": "MPEG VCM standard contribution · CEO & CTO, TTA experts",
+				"5": "NVIDIA Inception · Google for Startups · Minister's Award"
+			}
+		},
+		"cta": {
+			"title": "Start with the cameras you already have",
+			"description": "See what one stream reveals in 30 seconds — book a demo.",
+			"button": "Request a demo",
+			"email": "biz@bigtablet.com"
 		},
 		"collaboration": {
 			"title": "Partners"

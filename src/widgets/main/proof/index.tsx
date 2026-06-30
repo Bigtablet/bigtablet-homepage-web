@@ -1,29 +1,24 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import type { CSSProperties } from "react";
 import { useReveal } from "src/shared/hooks/use-reveal";
+import BgFx from "src/shared/ui/bg-fx";
+import Eyebrow from "src/shared/ui/eyebrow";
 import styles from "./style.module.scss";
 
-const YEARS = ["2022", "2023", "2024", "2025"] as const;
+const TILE_IDS = ["1", "2", "3", "4"] as const;
 
 /**
- * @component Proof
+ * @component Proof (Validation & Momentum)
  *
  * @description
- * 트랙션 섹션 — "이미 현장에서, 이미 매출로".
- * 매출 추이를 CSS 막대그래프(외부 차트 의존성 없음)로, 값은 i18n 카피에서 파싱한다.
- * 매출은 'SI·용역·과제 기준' 라벨을 캡션에 명시 — recurring/ARR 오인 방지(레드라인 준수).
+ * "검증 & 모멘텀" — 시드 단계 신호를 4타일로 보여준다(매출 막대 제거).
+ * FIELD 현장실증 / BACKED Antler·Plug and Play / IP·STD / PROGRAMS.
+ * 자본 효율성은 한 줄 노트로만. 다크 그라운드 위 BgFx(signals) 배경.
  */
 const Proof = () => {
 	const t = useTranslations("main.proof");
 	const { ref, visible } = useReveal<HTMLElement>();
-
-	const bars = YEARS.map((year) => {
-		const value = Number.parseFloat(t(`revenue.y${year}`));
-		return { year, value: Number.isFinite(value) ? value : 0 };
-	});
-	const peak = Math.max(...bars.map((b) => b.value), 1);
 
 	return (
 		<section
@@ -31,38 +26,31 @@ const Proof = () => {
 			className={`${styles.proof} ${visible ? styles.is_visible : ""}`}
 			aria-labelledby="proof_title"
 		>
-			<div className={styles.proof_copy}>
-				<h2 id="proof_title" className={styles.proof_title}>
-					{t("title")}
-				</h2>
-				<p className={styles.proof_description}>{t("description")}</p>
+			<BgFx variant="signals" />
 
-				<div className={styles.proof_highlight}>
-					<strong className={styles.proof_stat_value}>{t("stat.value")}</strong>
-					<span className={styles.proof_stat_label}>{t("stat.label")}</span>
+			<div className={styles.proof_inner}>
+				<div className={styles.proof_head}>
+					<Eyebrow>{t("eyebrow")}</Eyebrow>
+					<h2 id="proof_title" className={styles.proof_title}>
+						{t("title")}
+					</h2>
 				</div>
 
-				<p className={styles.proof_partners}>
-					<span className={styles.proof_partners_label}>{t("partners.label")}</span>
-					<span className={styles.proof_partners_value}>{t("partners.value")}</span>
-				</p>
-			</div>
-
-			<figure className={styles.proof_chart}>
-				<div className={styles.proof_bars} role="img" aria-label={t("revenue.caption")}>
-					{bars.map(({ year, value }) => (
-						<div key={year} className={styles.proof_bar_col}>
-							<span className={styles.proof_bar_value}>{value}</span>
-							<div
-								className={styles.proof_bar}
-								style={{ "--bar-h": `${(value / peak) * 100}%` } as CSSProperties}
-							/>
-							<span className={styles.proof_bar_year}>{year}</span>
-						</div>
+				<ol className={styles.proof_tiles}>
+					{TILE_IDS.map((id) => (
+						<li
+							key={id}
+							className={`${styles.proof_tile} ${id === "2" ? styles.proof_tile_key : ""}`}
+						>
+							<span className={styles.proof_tile_n}>{t(`tiles.${id}.n`)}</span>
+							<h3 className={styles.proof_tile_title}>{t(`tiles.${id}.title`)}</h3>
+							<p className={styles.proof_tile_desc}>{t(`tiles.${id}.description`)}</p>
+						</li>
 					))}
-				</div>
-				<figcaption className={styles.proof_caption}>{t("revenue.caption")}</figcaption>
-			</figure>
+				</ol>
+
+				<p className={styles.proof_note}>{t("note")}</p>
+			</div>
 		</section>
 	);
 };

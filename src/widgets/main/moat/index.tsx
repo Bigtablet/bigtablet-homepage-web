@@ -2,6 +2,8 @@
 
 import { useTranslations } from "next-intl";
 import { useReveal } from "src/shared/hooks/use-reveal";
+import BgFx from "src/shared/ui/bg-fx";
+import Eyebrow from "src/shared/ui/eyebrow";
 import styles from "./style.module.scss";
 
 const ROW_IDS = ["1", "2", "3", "4"] as const;
@@ -24,39 +26,44 @@ const Moat = () => {
 			className={`${styles.moat} ${visible ? styles.is_visible : ""}`}
 			aria-labelledby="moat_title"
 		>
-			<div className={styles.moat_copy}>
-				<h2 id="moat_title" className={styles.moat_title}>
-					{t("title")}
-				</h2>
-				<p className={styles.moat_description}>{t("description")}</p>
-			</div>
+			<BgFx variant="frames" />
 
-			<table className={styles.moat_compare}>
-				<thead>
-					<tr>
-						<th scope="col" className={styles.moat_th_feature}>
-							{t("compare.head.feature")}
-						</th>
-						<th scope="col" className={styles.moat_th_legacy}>
-							{t("compare.head.legacy")}
-						</th>
-						<th scope="col" className={styles.moat_th_us}>
-							{t("compare.head.us")}
-						</th>
-					</tr>
-				</thead>
-				<tbody>
-					{ROW_IDS.map((id) => (
-						<tr key={id}>
-							<th scope="row" className={styles.moat_td_feature}>
-								{t(`compare.rows.${id}.feature`)}
+			<div className={styles.moat_inner}>
+				<div className={styles.moat_copy}>
+					<Eyebrow>{t("eyebrow")}</Eyebrow>
+					<h2 id="moat_title" className={styles.moat_title}>
+						{t("title")}
+					</h2>
+					<p className={styles.moat_description}>{t("description")}</p>
+				</div>
+
+				<table className={styles.moat_compare}>
+					<thead>
+						<tr>
+							<th scope="col" className={styles.moat_th_feature}>
+								{t("compare.head.feature")}
 							</th>
-							<td className={styles.moat_td_legacy}>{t(`compare.rows.${id}.legacy`)}</td>
-							<td className={styles.moat_td_us}>{t(`compare.rows.${id}.us`)}</td>
+							<th scope="col" className={styles.moat_th_legacy}>
+								{t("compare.head.legacy")}
+							</th>
+							<th scope="col" className={styles.moat_th_us}>
+								{t("compare.head.us")}
+							</th>
 						</tr>
-					))}
-				</tbody>
-			</table>
+					</thead>
+					<tbody>
+						{ROW_IDS.map((id) => (
+							<tr key={id}>
+								<th scope="row" className={styles.moat_td_feature}>
+									{t(`compare.rows.${id}.feature`)}
+								</th>
+								<td className={styles.moat_td_legacy}>{t(`compare.rows.${id}.legacy`)}</td>
+								<td className={styles.moat_td_us}>{t(`compare.rows.${id}.us`)}</td>
+							</tr>
+						))}
+					</tbody>
+				</table>
+			</div>
 		</section>
 	);
 };

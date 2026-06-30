@@ -1,72 +1,91 @@
 @use "ds-token" as token;
 
 .company {
-	@include token.flex_between;
+	display: grid;
+	grid-template-columns: 1fr;
 	align-items: flex-start;
 	width: 80%;
 	max-width: 1100px;
 	margin: 0 auto;
-	white-space: pre-line;
-	gap: token.$spacing_24;
+	gap: clamp(28px, 4vw, 56px);
 	color: token.$color_text_inverse;
 }
 
-.company_title,
-.company_description {
+.company_head {
+	@include token.flex_column;
+	gap: token.$spacing_12;
+	white-space: pre-line;
 	opacity: 0;
 	transform: translateY(40px);
 	transition: opacity 0.7s ease-out, transform 0.7s ease-out;
 }
 
-.is_visible .company_title,
-.is_visible .company_description {
+.is_visible .company_head {
 	opacity: 1;
 	transform: translateY(0);
 }
 
-.is_visible .company_description {
-	transition-delay: 0.15s;
-}
-
 @media (prefers-reduced-motion: reduce) {
-	.company_title,
-	.company_description {
-		opacity: 1;
-		transform: none;
+	.company_head,
+	.company_item {
+		opacity: 1 !important;
+		transform: none !important;
 		transition: none;
 	}
 }
 
 .company_title {
 	@include token.heading_medium_bold;
-	flex: 0 0 38%;
-	font-size: token.$font_size_32;
+	font-size: clamp(token.$font_size_24, 3vw, token.$font_size_32);
 	line-height: 1.3;
+	letter-spacing: -0.018em;
 	color: token.$color_text_inverse;
 }
 
-.company_description {
-	@include token.body_medium_medium;
-	flex: 0 0 54%;
-	font-size: token.$font_size_18;
-	line-height: 1.8;
-	color: rgba(255, 255, 255, 0.82);
+.company_list {
+	@include token.flex_column;
+	gap: token.$spacing_16;
+	list-style: none;
+	margin: 0;
+	padding: 0;
 }
 
-@include token.compact {
+/* 한 줄씩 시차 등장 — is_visible 부여 후 nth-child 딜레이로 순차 슬라이드인 */
+.company_item {
+	position: relative;
+	padding-left: 24px;
+	font-size: clamp(token.$font_size_15, 1.4vw, token.$font_size_18);
+	line-height: 1.55;
+	color: rgba(255, 255, 255, 0.78);
+	opacity: 0;
+	transform: translateX(22px);
+	transition: opacity 0.55s ease, transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.company_item::before {
+	content: "";
+	position: absolute;
+	left: 0;
+	top: 0.66em;
+	width: 11px;
+	height: 2px;
+	border-radius: 2px;
+	background: #4fd1c5;
+}
+
+.is_visible .company_item {
+	opacity: 1;
+	transform: none;
+}
+
+@for $i from 1 through 5 {
+	.is_visible .company_item:nth-child(#{$i}) {
+		transition-delay: #{0.05 + 0.14 * ($i - 1)}s;
+	}
+}
+
+@include token.expanded {
 	.company {
-		@include token.flex_column;
-		width: 88%;
-		gap: token.$spacing_20;
-	}
-
-	.company_title {
-		font-size: token.$font_size_24;
-		flex: 0 0 auto;
-	}
-
-	.company_description {
-		font-size: token.$font_size_16;
-		flex: 0 0 auto;
+		grid-template-columns: 1fr 1fr;
 	}
 }

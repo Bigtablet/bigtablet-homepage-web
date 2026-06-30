@@ -1,0 +1,23 @@
+@use "ds-token" as token;
+
+/* 임시 디자인 .ey — 모노 대문자, 자간 넓힘, muted grey #8a939d, 앞쪽 청록 대시 */
+.eyebrow {
+	display: inline-flex;
+	align-items: center;
+	font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+	font-size: token.$font_size_12;
+	font-weight: 500;
+	letter-spacing: 0.22em;
+	text-transform: uppercase;
+	color: #8a939d;
+}
+
+.eyebrow::before {
+	content: "";
+	display: inline-block;
+	width: 16px;
+	height: 1px;
+	margin-right: 11px;
+	background: #4fd1c5;
+	opacity: 0.8;
+}

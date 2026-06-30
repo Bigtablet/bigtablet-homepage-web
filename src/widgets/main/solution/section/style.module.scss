@@ -2,84 +2,143 @@
 
 .solution {
 	@include token.flex_column;
-	@include token.flex_center;
-	width: 100%;
-	gap: 28px;
-	color: token.$color_text_inverse;
+	align-items: center;
+	width: 88%;
+	max-width: 1100px;
+	margin: 0 auto;
+	gap: clamp(34px, 4vw, 52px);
+	color: token.$color_text_heading;
+}
+
+.solution_head {
+	@include token.flex_column;
+	align-items: center;
+	gap: token.$spacing_12;
+	text-align: center;
 }
 
 .solution_title {
 	@include token.heading_medium_bold;
-	font-size: clamp(token.$font_size_24, 4vw, token.$font_size_40);
-	color: token.$color_text_inverse;
-	text-align: center;
-	white-space: pre-line;
+	font-size: clamp(token.$font_size_24, 3.7vw, token.$font_size_40);
+	line-height: 1.22;
+	letter-spacing: -0.018em;
+	color: token.$color_text_heading;
 }
 
 .solution_subtitle {
-	@include token.body_medium_medium;
-	font-size: token.$font_size_18;
+	max-width: 62ch;
+	font-size: clamp(token.$font_size_15, 1.4vw, token.$font_size_18);
 	line-height: 1.7;
-	color: rgba(255, 255, 255, 0.78);
-	text-align: center;
-	max-width: 760px;
-	margin: -8px auto 0;
-}
-
-@include token.medium {
-	.solution_subtitle {
-		font-size: token.$font_size_16;
-		max-width: 88%;
-	}
+	color: token.$color_text_caption;
 }
 
 .solution_grid {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
-	gap: token.$spacing_20;
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: token.$spacing_16;
 	width: 100%;
-	max-width: 1600px;
-	margin: 0 auto;
-	padding: 0 token.$spacing_20;
 }
 
-@include token.large {
-	.solution_grid {
-		display: grid;
-		grid-template-columns: repeat(5, 1fr);
+.dep_card {
+	@include token.flex_column;
+	gap: token.$spacing_4;
+	border: 1px solid #e6e9ec;
+	border-radius: 18px;
+	padding: clamp(26px, 3vw, 38px);
+	background: #ffffff;
+	/* 진입 전 좌/우 + 아래로 오프셋 — is_visible 시 시차 슬라이드인 */
+	opacity: 0;
+	transform: translateY(16px);
+	transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+		box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.from_left {
+	transform: translateX(-48px);
+}
+
+.from_right {
+	transform: translateX(48px);
+}
+
+.is_visible .dep_card {
+	opacity: 1;
+	transform: translateY(0);
+}
+
+.is_visible .from_right {
+	transition-delay: 0.34s;
+}
+
+.is_visible .dep_card:hover {
+	transform: translateY(-4px);
+	box-shadow: 0 20px 44px rgba(15, 23, 42, 0.09);
+	border-color: #d2d7dc;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.dep_card {
+		opacity: 1;
+		transform: none;
+		transition: none;
 	}
 }
 
-@include token.expanded {
-	.solution_title {
-		font-size: token.$font_size_32;
-	}
+.dep_top {
+	@include token.flex_between;
+	align-items: center;
+	margin-bottom: token.$spacing_4;
+}
 
-	.solution_grid {
-		display: grid;
-		grid-template-columns: repeat(5, 1fr);
-	}
+.dep_tag {
+	font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+	font-size: token.$font_size_12;
+	font-weight: 700;
+	letter-spacing: 0.04em;
+	color: #0b0d11;
+	background: #eef1f4;
+	border-radius: 7px;
+	padding: 4px 9px;
+}
+
+.dep_no {
+	font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+	font-size: token.$font_size_14;
+	font-weight: 700;
+	color: #aab0b6;
+}
+
+.dep_badge {
+	font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+	font-size: token.$font_size_12;
+	font-weight: 700;
+	letter-spacing: 0.09em;
+	text-transform: uppercase;
+	color: #2f8577;
+	margin: token.$spacing_8 0 token.$spacing_4;
+}
+
+.dep_card_title {
+	font-size: clamp(token.$font_size_18, 2.2vw, token.$font_size_20);
+	font-weight: 700;
+	color: token.$color_text_heading;
+}
+
+.dep_card_desc {
+	font-size: token.$font_size_14;
+	color: #55606b;
+	line-height: 1.65;
+}
+
+.dep_note {
+	font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+	font-size: token.$font_size_12;
+	text-align: center;
+	color: token.$color_text_caption;
 }
 
 @include token.medium {
-	.solution {
-		gap: token.$spacing_24;
-	}
-
-	.solution_title {
-		font-size: token.$font_size_24;
-	}
-
 	.solution_grid {
-		gap: token.$spacing_16;
-		padding: 0 token.$spacing_16;
-	}
-}
-
-@include token.compact {
-	.solution_grid {
-		gap: token.$spacing_12;
-		padding: 0 token.$spacing_12;
+		grid-template-columns: repeat(2, 1fr);
 	}
 }

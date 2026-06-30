@@ -1,99 +1,67 @@
-"use client";
-
 import { Button } from "@bigtablet/design-system";
-import { ChevronDown } from "lucide-react";
-import Image from "next/image";
 import { useTranslations } from "next-intl";
-import { useEffect, useState } from "react";
-import { useMediaQuery } from "src/shared/hooks/use-media-query";
+import BgFx from "src/shared/ui/bg-fx";
+import Eyebrow from "src/shared/ui/eyebrow";
 import styles from "./style.module.scss";
 
-const VIDEO_SRC = "/media/6122c823-e40e-4d29-8855-4a64f0c7d881";
-const POSTER_SRC = "/images/banner-poster.webp";
-const VIDEO_DEFER_FALLBACK_MS = 500;
-const MOBILE_QUERY = "(max-width: 768px)";
+const SPEC_IDS = ["1", "2", "3", "4"] as const;
 
 /**
  * @component Banner
  *
  * @description
- * 메인 페이지 상단 히어로 배너.
- * LCP 최적화 — 포스터를 next/image priority 로 즉시 렌더, 동영상은 hydration 이후 idle 시점에 src 부여.
- * 모바일에서는 비디오 자체를 렌더하지 않음 — poster 만으로 충분하고 디코딩/네트워크 비용 큼.
+ * 메인 페이지 상단 히어로 배너. 임시 디자인 풀 이식 —
+ * 동영상 대신 BgFx(vision) 캔버스 모션그래픽을 배경에 깔고, 그 위에 히어로 카피를 올린다.
+ * eyebrow + 하이라이트 헤드라인 + 서브 + 스펙 칩.
  */
 const Banner = () => {
 	const t = useTranslations("main.banner");
-	const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
-	const isMobile = useMediaQuery(MOBILE_QUERY);
-
-	useEffect(() => {
-		if (isMobile) return;
-		/* hydration 이후 idle 시점에 비디오 fetch 시작. requestIdleCallback 미지원 환경은 setTimeout fallback.
-		   timeout 옵션으로 메인 스레드가 계속 바빠도 비디오 로드가 무한 지연되지 않게 보장. */
-		const ric = (
-			window as Window & {
-				requestIdleCallback?: (cb: () => void, opts?: { timeout: number }) => number;
-			}
-		).requestIdleCallback;
-		const cic = (window as Window & { cancelIdleCallback?: (id: number) => void })
-			.cancelIdleCallback;
-
-		if (ric && cic) {
-			const id = ric(() => setShouldLoadVideo(true), { timeout: 2000 });
-			return () => cic(id);
-		}
-		const timer = setTimeout(() => setShouldLoadVideo(true), VIDEO_DEFER_FALLBACK_MS);
-		return () => clearTimeout(timer);
-	}, [isMobile]);
+	const title = t("title");
+	const highlight = t("titleHighlight");
+	const [before, after] = title.includes(highlight)
+		? [
+				title.slice(0, title.indexOf(highlight)),
+				title.slice(title.indexOf(highlight) + highlight.length),
+			]
+		: [title, ""];
 
 	return (
 		<section className={styles.banner} aria-labelledby="banner_title">
-			<div className={styles.banner_video}>
-				{/* poster — LCP candidate, next/image priority 로 즉시 렌더. 모바일에선 단독 사용. */}
-				<Image
-					src={POSTER_SRC}
-					alt=""
-					fill
-					priority
-					sizes="100vw"
-					className={styles.banner_poster}
-				/>
-				{!isMobile && (
-					<video
-						className={styles.banner_video_tag}
-						poster={POSTER_SRC}
-						autoPlay
-						loop
-						muted
-						playsInline
-						preload="none"
-						/* 일정 시점 이후에만 src 부여 — 그 전엔 비디오 fetch 안 일어남 */
-						{...(shouldLoadVideo ? { src: VIDEO_SRC } : {})}
-					/>
-				)}
-				<div className={styles.banner_overlay} />
-			</div>
+			<BgFx variant="vision" opacity={0.95} className={styles.banner_fx} />
 
 			<div className={styles.banner_content}>
+				<Eyebrow>{t("eyebrow")}</Eyebrow>
+
 				<h1 id="banner_title" className={styles.banner_title}>
-					{t("title")}
+					{before}
+					<span className={styles.banner_title_hl}>{highlight}</span>
+					{after}
 				</h1>
+
 				<p className={styles.banner_description}>{t("description")}</p>
 
-				<a
-					className={styles.banner_cta}
-					href="https://docs.google.com/forms/d/e/1FAIpQLSd0on7yADoLSWYFN0it0LtCii7ov1yLwIpM91lR66vtHtaEuQ/viewform"
-					target="_blank"
-					rel="noopener noreferrer"
-				>
-					<Button variant="filled" size="lg">
-						{t("button")}
-					</Button>
-				</a>
-			</div>
+				<div className={styles.banner_cta}>
+					<a
+						href="https://docs.google.com/forms/d/e/1FAIpQLSd0on7yADoLSWYFN0it0LtCii7ov1yLwIpM91lR66vtHtaEuQ/viewform"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						<Button variant="filled" size="lg">
+							{t("button")}
+						</Button>
+					</a>
+					<a className={styles.banner_secondary} href="#how">
+						{t("secondary")}
+					</a>
+				</div>
 
-			<div className={styles.banner_scroll_indicator} aria-hidden="true">
-				<ChevronDown size={20} />
+				<ul className={styles.banner_specs}>
+					{SPEC_IDS.map((id) => (
+						<li key={id} className={styles.banner_spec}>
+							{t(`specs.${id}.label`)} <b>{t(`specs.${id}.value`)}</b>
+						</li>
+					))}
+				</ul>
 			</div>
 		</section>
 	);

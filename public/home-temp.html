@@ -1,0 +1,630 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Bigtablet — 영상을 이해하는 AI · VCM 원천기술</title>
+<meta name="description" content="기존 카메라 영상을 실시간으로 이해하는 AI 엔진. VCM 영상 경량화 원천기술 — MPEG 국제표준 직접 기여, 등록특허 4건." />
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" />
+<style>
+  :root{
+    --bg:#07090d; --bg2:#0c1016; --panel:#10151d; --navy:#161f2b; --line:rgba(255,255,255,.10);
+    --ink:#0e1116; --paper:#ffffff; --dim:#f5f7f9; --muted:#7c8794;
+    --t1:#ffffff; --t2:rgba(255,255,255,.78); --t3:rgba(255,255,255,.52);
+    --acc:#4fd1c5; --acc2:#7aa2ff; --maxw:1200px;
+    --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+    --sans:"Pretendard",-apple-system,BlinkMacSystemFont,system-ui,"Segoe UI",sans-serif;
+    font-synthesis:none;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--sans);color:var(--t1);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 clamp(20px,5vw,52px)}
+  .pre{white-space:pre-line}
+  .mono{font-family:var(--mono);letter-spacing:-.01em}
+  .ey{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:#8a939d;display:inline-flex;align-items:center}
+  .ey::before{content:"";display:inline-block;width:16px;height:1px;background:var(--acc);opacity:.8;margin-right:11px}
+
+  .btn{display:inline-flex;align-items:center;gap:8px;border-radius:11px;font-weight:600;font-size:14px;padding:12px 20px;cursor:pointer;transition:.18s;border:1px solid transparent;font-family:var(--sans)}
+  .btn-fill{background:#fff;color:#0b0d11}
+  .btn-fill:hover{transform:translateY(-1px);box-shadow:0 10px 30px rgba(122,162,255,.25)}
+  .btn-ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.26)}
+  .btn-ghost:hover{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.4)}
+
+  /* header */
+  header{position:sticky;top:0;z-index:60;backdrop-filter:saturate(160%) blur(14px);background:rgba(7,9,13,.7);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .logo{font-weight:800;letter-spacing:.18em;font-size:15px}
+  .logo span{color:var(--acc)}
+  .nav-right{display:flex;align-items:center;gap:14px}
+  .lang{display:flex;border:1px solid rgba(255,255,255,.2);border-radius:999px;overflow:hidden;font-family:var(--mono);font-size:11px;font-weight:500}
+  .lang button{background:transparent;color:var(--t3);border:0;padding:6px 11px;cursor:pointer;font:inherit}
+  .lang button.on{background:#fff;color:#0b0d11}
+
+  /* hero */
+  .hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line);
+    background:radial-gradient(1200px 680px at 78% -8%,rgba(79,209,197,.06),transparent 60%),
+              radial-gradient(900px 520px at -5% 108%,rgba(122,162,255,.07),transparent 58%),
+              linear-gradient(165deg,#06080b 0%,#0a0e14 55%,#0e141c 100%)}
+  .grid-bg{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);background-size:46px 46px;mask-image:radial-gradient(1000px 600px at 70% 0%,#000,transparent 75%);pointer-events:none}
+  .fx{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.95}
+  .glow{position:absolute;width:46vw;max-width:660px;aspect-ratio:1;border-radius:50%;top:-14%;right:2%;pointer-events:none;
+    background:radial-gradient(circle,rgba(79,209,197,.09),rgba(122,162,255,.05) 45%,transparent 66%);filter:blur(48px);animation:drift 18s ease-in-out infinite}
+  @keyframes drift{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-7%,9%) scale(1.14)}}
+  @media(prefers-reduced-motion:reduce){.glow{animation:none}}
+  .has-fx{position:relative;overflow:hidden}
+  .bgfx{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;opacity:.6}
+  .has-fx > .wrap{position:relative;z-index:1}
+  /* 배포 카드 — 좌/우 시차 슬라이드인 + 강조 */
+  .dep-grid.reveal{opacity:1;transform:none}
+  .dep-grid .dep-card{opacity:0;transform:translateY(16px);transition:opacity .7s ease,transform .7s cubic-bezier(.22,1,.36,1)}
+  .dep-card.from-left{transform:translateX(-48px)}
+  .dep-card.from-right{transform:translateX(48px)}
+  .dep-grid.in .dep-card{opacity:1;transform:translateY(0)}
+  .dep-grid.in .dep-card.from-right{transition-delay:.34s}
+  .dep-grid.in .dep-card:hover{transform:translateY(-4px)}
+  .dep-card{padding:clamp(26px,3vw,38px)}
+  .dep-card h3{font-size:clamp(19px,2.2vw,22px)}
+  .dep-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:4px}
+  .dep-no{font-family:var(--mono);font-size:14px;font-weight:700;color:#aab0b6}
+  .dep-badge{display:inline-block;margin:8px 0 6px;font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:#2f8577}
+  @media(prefers-reduced-motion:reduce){.dep-grid .dep-card{opacity:1!important;transform:none!important}}
+  /* 회사 설명 — 한 줄씩 시차 등장 */
+  .co-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:16px}
+  .co-list.reveal{opacity:1;transform:none}
+  .co-item{position:relative;padding-left:24px;font-size:clamp(15px,1.4vw,18px);line-height:1.55;color:var(--t2);opacity:0;transform:translateX(22px);transition:opacity .55s ease,transform .55s cubic-bezier(.22,1,.36,1)}
+  .co-item::before{content:"";position:absolute;left:0;top:.66em;width:11px;height:2px;border-radius:2px;background:var(--acc)}
+  .co-list.in .co-item{opacity:1;transform:none}
+  .co-list.in .co-item:nth-child(1){transition-delay:.05s}
+  .co-list.in .co-item:nth-child(2){transition-delay:.19s}
+  .co-list.in .co-item:nth-child(3){transition-delay:.33s}
+  .co-list.in .co-item:nth-child(4){transition-delay:.47s}
+  .co-list.in .co-item:nth-child(5){transition-delay:.61s}
+  @media(prefers-reduced-motion:reduce){.co-item{opacity:1!important;transform:none!important}}
+  .hero .wrap{position:relative;padding-top:clamp(72px,11vw,128px);padding-bottom:clamp(60px,9vw,108px)}
+  h1.hero-t{font-size:clamp(34px,5.8vw,66px);line-height:1.1;font-weight:800;margin:20px 0 0;letter-spacing:-.022em;max-width:15ch}
+  .hero-t .hl{background:linear-gradient(90deg,#fff,#d4dbe2);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .hero-sub{margin-top:22px;font-size:clamp(16px,1.5vw,19px);color:var(--t2);max-width:58ch;line-height:1.8}
+  .hero-cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:32px}
+  .spec{margin-top:34px;display:flex;flex-wrap:wrap;gap:10px}
+  .spec span{font-family:var(--mono);font-size:12px;color:var(--t3);border:1px solid var(--line);border-radius:8px;padding:7px 11px;background:rgba(255,255,255,.02)}
+  .spec b{color:var(--acc);font-weight:500}
+
+  /* trust ticker */
+  .trust{border-bottom:1px solid var(--line);background:var(--bg2)}
+  .trust .wrap{padding:clamp(30px,4.5vw,50px) clamp(20px,5vw,52px)}
+  .trust h2{font-family:var(--mono);text-align:center;font-size:11px;letter-spacing:.2em;color:var(--t3);font-weight:500;margin-bottom:24px;text-transform:uppercase}
+  .tg{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  .tc{border:1px solid var(--line);border-radius:14px;padding:18px 14px;text-align:center;background:rgba(255,255,255,.025);transition:.2s}
+  .tc:hover{border-color:rgba(255,255,255,.22);background:rgba(255,255,255,.03)}
+  .tc .s{display:block;font-weight:700;font-size:clamp(14px,1.5vw,17px);line-height:1.3}
+  .tc .d{display:block;margin-top:7px;font-size:11.5px;color:var(--t3);line-height:1.5}
+
+  /* generic section */
+  .pad{padding:clamp(76px,10vw,134px) 0}
+  h2.sec{font-size:clamp(27px,3.7vw,44px);line-height:1.22;font-weight:800;letter-spacing:-.018em}
+  .lead{font-size:clamp(16px,1.4vw,19px);line-height:1.85;color:var(--t2)}
+  .center{text-align:center}
+  .sub-c{max-width:62ch;margin:14px auto 0;color:var(--t3);font-size:clamp(15px,1.4vw,18px);line-height:1.7}
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease-out,transform .7s ease-out}
+  .reveal.in{opacity:1;transform:none}
+
+  /* HOW IT WORKS pipeline */
+  .how{background:var(--bg);border-top:1px solid var(--line)}
+  .pipe{display:grid;grid-template-columns:1fr;gap:14px;margin-top:clamp(36px,4vw,56px);position:relative}
+  .step{border:1px solid var(--line);border-radius:16px;padding:22px;background:linear-gradient(180deg,var(--panel),#0b0f15);position:relative}
+  .step .n{font-family:var(--mono);font-size:11px;color:var(--acc);letter-spacing:.1em}
+  .step h3{font-size:17px;font-weight:700;margin:9px 0 7px}
+  .step p{font-size:13.5px;color:var(--t3);line-height:1.6}
+  .step .tag{font-family:var(--mono);font-size:11px;color:var(--t2);margin-top:11px;border-top:1px solid var(--line);padding-top:10px}
+  .step.key{border-color:rgba(79,209,197,.4);background:linear-gradient(180deg,rgba(79,209,197,.08),#0b0f15)}
+  .step.key .n{color:var(--acc)}
+  .arrow{display:none}
+
+  /* deployments */
+  .dep{background:var(--dim);color:var(--ink)}
+  .dep .sub-c{color:var(--muted)}
+  .dep-grid{display:grid;grid-template-columns:1fr;gap:14px;margin-top:clamp(34px,4vw,52px)}
+  .dep-card{border:1px solid #e6e9ec;border-radius:18px;padding:26px;background:#fff;transition:.2s}
+  .dep-card:hover{transform:translateY(-3px);box-shadow:0 20px 44px rgba(15,23,42,.09);border-color:#d2d7dc}
+  .dep-card .ic{font-family:var(--mono);font-size:11px;font-weight:700;color:#0b0d11;background:#eef1f4;border-radius:7px;padding:4px 9px;display:inline-block;letter-spacing:.04em}
+  .dep-card h3{font-size:18.5px;font-weight:700;margin:13px 0 8px}
+  .dep-card p{font-size:14px;color:#55606b;line-height:1.65}
+  .dep-note{font-family:var(--mono);text-align:center;margin-top:26px;font-size:12px;color:var(--muted)}
+
+  /* moat */
+  .dark{background:linear-gradient(180deg,#0e151d 0%,#0a0f15 100%);border-top:1px solid var(--line)}
+  .two{display:grid;grid-template-columns:1fr;gap:clamp(28px,4vw,56px);align-items:start}
+  table.cmp{width:100%;border-collapse:collapse;margin-top:clamp(28px,4vw,44px);font-size:15px}
+  table.cmp th,table.cmp td{padding:clamp(12px,1.6vw,18px);border-bottom:1px solid var(--line);text-align:left;vertical-align:middle}
+  table.cmp thead th{font-family:var(--mono);font-size:12px;color:var(--t3);font-weight:500;border-bottom-color:rgba(255,255,255,.24)}
+  .cmp .feat{width:22%;color:var(--t3);font-weight:600}
+  .cmp .legacy{width:39%;color:var(--t3)}
+  .cmp .us{width:39%;color:#fff;font-weight:600;background:rgba(79,209,197,.06)}
+
+  /* proof */
+  .proof-grid{display:grid;grid-template-columns:1fr;gap:clamp(36px,5vw,64px);align-items:center}
+  .bars{display:grid;grid-template-columns:repeat(4,1fr);align-items:end;gap:clamp(14px,2.5vw,30px);height:230px;padding:20px;border:1px solid var(--line);border-radius:18px;background:rgba(255,255,255,.03)}
+  .bcol{display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:8px;height:100%}
+  .bval{font-family:var(--mono);font-size:14px;font-weight:700}
+  .bar{width:clamp(26px,5vw,50px);border-radius:8px 8px 0 0;background:linear-gradient(180deg,var(--acc),rgba(122,162,255,.5));transform:scaleY(0);transform-origin:bottom;transition:transform 1s cubic-bezier(.22,1,.36,1)}
+  .byr{font-family:var(--mono);font-size:12px;color:var(--t3)}
+  .cap{font-family:var(--mono);margin-top:12px;text-align:center;font-size:11px;color:var(--t3)}
+  .big-stat{font-size:clamp(46px,7vw,70px);font-weight:800;line-height:1;letter-spacing:-.02em}
+  .big-lab{font-size:14px;color:var(--t3);margin-top:4px}
+  .ptn{margin-top:26px}
+  .ptn .l{font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--t3);text-transform:uppercase}
+  .ptn .v{font-size:16px;font-weight:600;margin-top:5px}
+
+  /* cta band */
+  .cta-band{background:radial-gradient(800px 400px at 50% 0%,rgba(79,209,197,.10),transparent 60%),var(--bg2);border-top:1px solid var(--line);text-align:center}
+  .cta-band h2{font-size:clamp(26px,3.6vw,40px);font-weight:800;letter-spacing:-.02em}
+  .cta-band p{color:var(--t2);margin-top:14px;font-size:16px}
+  .cta-band .hero-cta{justify-content:center;margin-top:28px}
+
+  /* footer */
+  footer{background:#05070a;color:var(--t3);font-size:13px;border-top:1px solid var(--line)}
+  footer .wrap{padding:46px 0 54px;display:flex;flex-wrap:wrap;gap:24px;justify-content:space-between}
+  footer b{color:#fff;font-weight:800;letter-spacing:.16em}
+  footer b span{color:var(--acc)}
+  footer .r{text-align:right}
+
+  .note{background:#11161d;border-bottom:1px solid var(--line);color:var(--t3);font-family:var(--mono);font-size:11.5px;text-align:center;padding:8px 16px;letter-spacing:.02em}
+
+  @media(min-width:640px){.tg{grid-template-columns:repeat(3,1fr)}.dep-grid{grid-template-columns:repeat(2,1fr)}.pipe{grid-template-columns:repeat(4,1fr)}}
+  @media(min-width:1000px){
+    .tg{grid-template-columns:repeat(6,1fr)}
+    .two{grid-template-columns:1.05fr .95fr}
+    .proof-grid{grid-template-columns:1.05fr .95fr}
+  }
+  [data-en]{display:none}
+  body.en [data-ko]{display:none}
+  body.en [data-en]{display:revert}
+  @media(prefers-reduced-motion:reduce){.bar{transition:none!important}.reveal{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="note" data-ko>TEMPORARY PREVIEW · 검토 후 bigtablet.com 반영 예정</div>
+<div class="note" data-en>TEMPORARY PREVIEW · pending review before bigtablet.com</div>
+
+<header>
+  <div class="wrap nav">
+    <div class="logo">BIG<span>TABLET</span></div>
+    <div class="nav-right">
+      <div class="lang" role="group" aria-label="language">
+        <button id="ko" class="on" onclick="setLang('ko')">KO</button>
+        <button id="en" onclick="setLang('en')">EN</button>
+      </div>
+      <a class="btn btn-ghost" href="#contact" data-ko>데모 신청</a>
+      <a class="btn btn-ghost" href="#contact" data-en>Request a demo</a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="grid-bg"></div>
+  <canvas class="fx" id="fx" aria-hidden="true"></canvas>
+  <div class="glow" aria-hidden="true"></div>
+  <div class="wrap">
+    <p class="ey" data-ko>영상을 이해하는 AI · VCM 원천기술</p>
+    <p class="ey" data-en>VIDEO-UNDERSTANDING AI · VCM IP</p>
+    <h1 class="hero-t" data-ko>현장의 영상을,\n<span class="hl">실시간으로 이해하는</span> AI</h1>
+    <h1 class="hero-t" data-en>The AI that understands\n<span class="hl">what your cameras see</span></h1>
+    <p class="hero-sub" data-ko>기존 카메라 영상을 실시간으로 이해해 '무슨 일이, 왜' 일어났는지 읽어냅니다. 핵심은 영상을 기계 분석용으로 최대 97% 경량화하는 VCM 원천기술 — MPEG 국제표준에 직접 기여했습니다.</p>
+    <p class="hero-sub" data-en>We understand your existing camera footage in real time — what happened, and why. At its core is VCM, our original technology that shrinks machine-bound video by up to 97%, contributed directly to the MPEG international standard.</p>
+    <div class="hero-cta">
+      <a class="btn btn-fill" href="#contact" data-ko>데모 신청 →</a>
+      <a class="btn btn-fill" href="#contact" data-en>Request a demo →</a>
+      <a class="btn btn-ghost" href="#how" data-ko>작동 원리 보기</a>
+      <a class="btn btn-ghost" href="#how" data-en>How it works</a>
+    </div>
+    <div class="spec">
+      <span data-ko>VCM <b>8.0MB → 0.8MB</b></span><span data-en>VCM <b>8.0MB → 0.8MB</b></span>
+      <span>MPEG <b>표준 기여</b></span>
+      <span data-ko>등록특허 <b>4건</b></span><span data-en><b>4</b> patents</span>
+      <span data-ko>분석 2주 → <b>실시간</b></span><span data-en>2 weeks → <b>real time</b></span>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST -->
+<section class="trust">
+  <div class="wrap">
+    <h2 data-ko>외부가 검증한 기술력</h2><h2 data-en>VALIDATED BY THE FIELD</h2>
+    <div class="tg">
+      <div class="tc"><span class="s">Antler Cohort 8</span><span class="d" data-ko>글로벌 액셀러레이터</span><span class="d" data-en>Global accelerator</span></div>
+      <div class="tc"><span class="s" data-ko>등록특허 4건</span><span class="s" data-en>4 patents</span><span class="d" data-ko>영상부호화(VCM) 원천특허</span><span class="d" data-en>Original video-coding IP</span></div>
+      <div class="tc"><span class="s">MPEG</span><span class="d" data-ko>국제표준 직접 기여 · ISO/IEC</span><span class="d" data-en>Standard contribution · ISO/IEC</span></div>
+      <div class="tc"><span class="s" data-ko>중기부 장관표창</span><span class="s" data-en>Minister's Award</span><span class="d" data-ko>중소벤처기업부</span><span class="d" data-en>Korea SMEs &amp; Startups</span></div>
+      <div class="tc"><span class="s">NVIDIA Inception</span><span class="d" data-ko>GPU·기술 파트너 프로그램</span><span class="d" data-en>GPU &amp; tech program</span></div>
+      <div class="tc"><span class="s">Google for Startups</span><span class="d">Cloud Program</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section class="pad has-fx" style="background:var(--bg)">
+  <canvas class="bgfx" data-fx="people" aria-hidden="true"></canvas>
+  <div class="wrap two reveal">
+    <div>
+      <p class="ey" data-ko>문제</p><p class="ey" data-en>THE PROBLEM</p>
+      <h2 class="sec pre" style="margin-top:14px" data-ko>카메라는 많은데,\n보는 사람은 없습니다</h2>
+      <h2 class="sec pre" style="margin-top:14px" data-en>Plenty of cameras.\nNo one watching.</h2>
+    </div>
+    <p class="lead pre" data-ko>매장과 공장엔 이미 카메라가 깔려 있지만, 도난·사고·기회는 사람이 다 보지 못합니다.
+
+기존 영상 AI는 영상이 무거워 비싸고 느립니다 — 분석에 보통 2주. 전용 장비나 RFID는 비용과 오작동 부담이 큽니다.
+
+그래서 우리는 영상을 가볍게 만드는 원천기술부터 시작했습니다.</p>
+    <p class="lead pre" data-en>Stores and factories are full of cameras, but no one can watch everything — theft, accidents, and opportunities slip by.
+
+Conventional video AI is heavy, so it's expensive and slow — often two weeks per analysis. Dedicated hardware and RFID add cost and failures.
+
+So we started from the technology that makes video light.</p>
+  </div>
+</section>
+
+<!-- HOW IT WORKS (product mechanism) -->
+<section id="how" class="how pad has-fx">
+  <canvas class="bgfx" data-fx="processor" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <div class="center reveal">
+      <p class="ey" data-ko>작동 원리 · 하나의 엔진</p><p class="ey" data-en>HOW IT WORKS · ONE ENGINE</p>
+      <h2 class="sec" style="margin-top:14px" data-ko>제품은 '서비스'가 아니라 엔진입니다</h2>
+      <h2 class="sec" style="margin-top:14px" data-en>The product is an engine, not a service</h2>
+      <p class="sub-c" data-ko>기존 카메라에서 들어온 영상을 VCM으로 가볍게 만들고, 하나의 엔진이 실시간으로 이해해 결과를 내보냅니다.</p>
+      <p class="sub-c" data-en>Footage from your existing cameras is made light by VCM, then one engine understands it in real time and delivers results.</p>
+    </div>
+    <div class="pipe reveal">
+      <div class="step">
+        <div class="n">01 · INPUT</div>
+        <h3 data-ko>기존 카메라</h3><h3 data-en>Existing cameras</h3>
+        <p data-ko>매장 CCTV, 공장 카메라 그대로. 별도 전용 장비가 필요 없습니다.</p>
+        <p data-en>Your store CCTV and factory cameras — no dedicated hardware.</p>
+        <div class="tag" data-ko>any RTSP · CCTV</div><div class="tag" data-en>any RTSP · CCTV</div>
+      </div>
+      <div class="step key">
+        <div class="n">02 · VCM</div>
+        <h3 data-ko>영상 경량화</h3><h3 data-en>Video compression</h3>
+        <p data-ko>기계 분석용으로 최대 97% 경량화. 무거운 영상을 가볍게 만들어 실시간을 가능하게 합니다.</p>
+        <p data-en>Up to 97% lighter for machines — turning heavy video into real-time-ready streams.</p>
+        <div class="tag">8.0MB → 0.8MB · MPEG 표준 기여</div>
+      </div>
+      <div class="step">
+        <div class="n">03 · ENGINE</div>
+        <h3 data-ko>영상이해 엔진</h3><h3 data-en>Understanding engine</h3>
+        <p data-ko>동선·체류·동일인물·이상행동을 실시간으로 읽고, 무슨 일이 왜 일어났는지 설명합니다.</p>
+        <p data-en>Reads flow, dwell, re-ID, and anomalies in real time — and explains what happened, and why.</p>
+        <div class="tag" data-ko>동선 · 동일인 · 이상 · 원인</div><div class="tag" data-en>flow · re-ID · anomaly · cause</div>
+      </div>
+      <div class="step">
+        <div class="n">04 · OUTPUT</div>
+        <h3 data-ko>실시간 결과</h3><h3 data-en>Real-time output</h3>
+        <p data-ko>그 순간 감지·알림하고, 운영에 바로 쓰는 인사이트로 내보냅니다.</p>
+        <p data-en>Detect and alert the moment it happens, delivered as insight you can act on.</p>
+        <div class="tag" data-ko>실시간 알림 · 인사이트</div><div class="tag" data-en>alerts · insight</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEPLOYMENTS (one engine, many surfaces) -->
+<section class="dep pad">
+  <div class="wrap">
+    <div class="center reveal">
+      <p class="ey" data-ko>배포 현장</p><p class="ey" data-en>DEPLOYMENTS</p>
+      <h2 class="sec" style="margin-top:14px" data-ko>한 엔진이 배포되는 곳</h2>
+      <h2 class="sec" style="margin-top:14px" data-en>Where the one engine runs</h2>
+      <p class="sub-c" data-ko>같은 엔진이 매장에선 영상으로 고객을 분석해 사람을 인식하고, 공장에선 작업자와 제품을 함께 보며 불량을 잡아냅니다 — 실제로 해온 두 현장.</p>
+      <p class="sub-c" data-en>The same engine recognizes people from store video, and on the factory floor it watches workers and products to catch defects — two fields we've actually delivered.</p>
+    </div>
+    <div class="dep-grid reveal">
+      <div class="dep-card from-left"><div class="dep-top"><span class="ic">RETAIL</span><span class="dep-no">01</span></div><span class="dep-badge" data-ko>✓ 실제 레퍼런스</span><span class="dep-badge" data-en>✓ proven reference</span><h3 data-ko>리테일 · 고객 인식</h3><h3 data-en>Retail · People recognition</h3><p data-ko>기존 매장 카메라 영상에서 고객을 분석해 사람을 인식합니다 — 동선·체류·재방문·관심까지 자동으로.</p><p data-en>Analyzes store-camera video to recognize people — flow, dwell, revisits, and interest, automatically.</p></div>
+      <div class="dep-card from-right"><div class="dep-top"><span class="ic">FACTORY</span><span class="dep-no">02</span></div><span class="dep-badge" data-ko>✓ 실제 레퍼런스</span><span class="dep-badge" data-en>✓ proven reference</span><h3 data-ko>스마트팩토리 · 불량 인식</h3><h3 data-en>Factory · Defect detection</h3><p data-ko>공장 영상에서 작업자와 제품을 함께 보고 불량을 인식합니다 — 비전 불량검출로 검증된 레퍼런스.</p><p data-en>Watches workers and products in factory video to recognize defects — a proven vision-inspection reference.</p></div>
+    </div>
+    <p class="dep-note" data-ko>// 같은 코어 엔진 · 현장별 설정만 다름</p>
+    <p class="dep-note" data-en>// same core engine · only the configuration differs</p>
+  </div>
+</section>
+
+<!-- MOAT -->
+<section class="dark pad has-fx">
+  <canvas class="bgfx" data-fx="frames" aria-hidden="true"></canvas>
+  <div class="wrap reveal">
+    <p class="ey" data-ko>기술 해자</p><p class="ey" data-en>THE MOAT</p>
+    <h2 class="sec pre" style="margin-top:14px" data-ko>영상 AI가 비싼 진짜 이유 —\n영상이 무겁기 때문입니다</h2>
+    <h2 class="sec pre" style="margin-top:14px" data-en>Why video AI is expensive —\nbecause video is heavy.</h2>
+    <p class="lead pre" style="margin-top:20px;max-width:74ch" data-ko>우리는 영상을 기계 분석용으로 최대 97% 경량화합니다(8.0MB → 0.8MB). 전용 고가 장비 없이, 기존 카메라와 저사양 환경에서도 여러 대를 동시에 실시간 분석합니다.
+
+이 압축 기술(VCM)은 MPEG 국제표준에 직접 기여했고, 영상부호화 원천특허로 보호됩니다. CEO·CTO 모두 TTA 표준 전문위원입니다.</p>
+    <p class="lead pre" style="margin-top:20px;max-width:74ch" data-en>We compress machine-bound video by up to 97% (8.0MB → 0.8MB). Without expensive dedicated hardware, we analyze many streams at once in real time, even on low-spec setups.
+
+This compression (VCM) was contributed directly to the MPEG international standard and is protected by original video-coding patents. Both our CEO and CTO are TTA standards experts.</p>
+    <table class="cmp">
+      <thead><tr>
+        <th class="feat" data-ko>구분</th><th class="feat" data-en>&nbsp;</th>
+        <th class="legacy" data-ko>일반 영상 AI</th><th class="legacy" data-en>Conventional video AI</th>
+        <th class="us">Bigtablet</th>
+      </tr></thead>
+      <tbody>
+        <tr><th class="feat" data-ko>장비</th><th class="feat" data-en>Hardware</th><td class="legacy" data-ko>전용 고가 HW 필요</td><td class="legacy" data-en>Dedicated, costly</td><td class="us" data-ko>기존 카메라 그대로</td><td class="us" data-en>Your existing cameras</td></tr>
+        <tr><th class="feat" data-ko>분석 속도</th><th class="feat" data-en>Analysis</th><td class="legacy" data-ko>보통 2주</td><td class="legacy" data-en>~2 weeks</td><td class="us" data-ko>실시간</td><td class="us" data-en>Real time</td></tr>
+        <tr><th class="feat" data-ko>동시 분석</th><th class="feat" data-en>Concurrency</th><td class="legacy" data-ko>비용 부담 큼</td><td class="legacy" data-en>Cost-prohibitive</td><td class="us" data-ko>저사양에서 다중 스트림</td><td class="us" data-en>Many streams, low-spec</td></tr>
+        <tr><th class="feat" data-ko>기술 방어력</th><th class="feat" data-en>Defensibility</th><td class="legacy" data-ko>범용 모델</td><td class="legacy" data-en>Generic models</td><td class="us" data-ko>VCM 원천특허 · MPEG 표준</td><td class="us" data-en>VCM patents · MPEG standard</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- VALIDATION & MOMENTUM (seed-stage signals, not revenue) -->
+<section class="pad has-fx" style="background:var(--bg2);border-top:1px solid var(--line)">
+  <canvas class="bgfx" data-fx="signals" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <div class="center reveal">
+      <p class="ey" data-ko>검증 & 모멘텀</p><p class="ey" data-en>VALIDATION &amp; MOMENTUM</p>
+      <h2 class="sec pre" style="margin-top:14px" data-ko>현장에서 쓰이고,\n표준이 인정했습니다</h2>
+      <h2 class="sec pre" style="margin-top:14px" data-en>Proven in the field,\nrecognized by the standard.</h2>
+    </div>
+    <div class="pipe reveal">
+      <div class="step">
+        <div class="n">FIELD</div>
+        <h3 data-ko>현장 실증</h3><h3 data-en>Field deployment</h3>
+        <p data-ko>자동차부품 1차벤더의 현장 인프라를 구축·운영. 보조금이 아닌 실수요로.</p>
+        <p data-en>Built and run on-site infrastructure for a tier-1 auto-parts supplier — real demand, not grants.</p>
+      </div>
+      <div class="step key">
+        <div class="n">BACKED</div>
+        <h3 data-ko>글로벌 액셀러레이터</h3><h3 data-en>Globally backed</h3>
+        <p data-ko>Antler Cohort 8 · Plug and Play.</p>
+        <p data-en>Antler Cohort 8 · Plug and Play.</p>
+      </div>
+      <div class="step">
+        <div class="n">IP · STD</div>
+        <h3 data-ko>국제표준 · 특허</h3><h3 data-en>Standard &amp; IP</h3>
+        <p data-ko>MPEG 국제표준 직접 기여 · 등록특허 4건 · CEO·CTO TTA 표준 전문위원.</p>
+        <p data-en>MPEG standard contribution · 4 patents · CEO &amp; CTO are TTA standards experts.</p>
+      </div>
+      <div class="step">
+        <div class="n">PROGRAMS</div>
+        <h3 data-ko>글로벌 프로그램</h3><h3 data-en>Global programs</h3>
+        <p>NVIDIA Inception · Google for Startups Cloud</p>
+      </div>
+    </div>
+    <p class="dep-note" style="color:var(--t3)" data-ko>// 비희석 자금(정부 R&D · 현장 실증) 기반 — 자본 효율적으로 성장</p>
+    <p class="dep-note" style="color:var(--t3)" data-en>// non-dilutive capital (R&D + field) — capital-efficient by design</p>
+  </div>
+</section>
+
+<!-- COMPANY -->
+<section class="dark pad">
+  <div class="wrap two reveal">
+    <div>
+      <p class="ey" data-ko>회사</p><p class="ey" data-en>COMPANY</p>
+      <h2 class="sec pre" style="margin-top:14px" data-ko>표준을 만드는 사람들이,\n현장을 바꿉니다</h2>
+      <h2 class="sec pre" style="margin-top:14px" data-en>The people who write the standards\nchange the field.</h2>
+    </div>
+    <ul class="co-list reveal">
+      <li class="co-item"><span data-ko>2022년 설립 · 대구 본사</span><span data-en>Founded 2022 · HQ in Daegu</span></li>
+      <li class="co-item"><span data-ko>서울 판교 · 미국 법인 (Sunnyvale · Plug and Play)</span><span data-en>Seoul Pangyo · U.S. entity (Sunnyvale · Plug and Play)</span></li>
+      <li class="co-item"><span data-ko>영상 AI부터 운영 시스템까지 직접 구축·운영하는 풀스택 팀</span><span data-en>A full-stack team — from video AI to internal systems</span></li>
+      <li class="co-item"><span data-ko>MPEG VCM 국제표준 기여 · CEO·CTO TTA 표준 전문위원</span><span data-en>MPEG VCM standard contribution · CEO &amp; CTO, TTA experts</span></li>
+      <li class="co-item"><span data-ko>NVIDIA Inception · Google for Startups · 중기부 장관표창</span><span data-en>NVIDIA Inception · Google for Startups · Minister's Award</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="contact" class="cta-band pad has-fx">
+  <canvas class="bgfx" data-fx="capture" aria-hidden="true" style="opacity:.85"></canvas>
+  <div class="wrap reveal">
+    <h2 data-ko>기존 카메라로, 지금 시작하세요</h2>
+    <h2 data-en>Start with the cameras you already have</h2>
+    <p data-ko>현장 영상 하나로 30초 만에 무엇이 보이는지 — 데모로 확인하세요.</p>
+    <p data-en>See what one stream reveals in 30 seconds — book a demo.</p>
+    <div class="hero-cta">
+      <a class="btn btn-fill" href="mailto:biz@bigtablet.com" data-ko>데모 신청 →</a>
+      <a class="btn btn-fill" href="mailto:biz@bigtablet.com" data-en>Request a demo →</a>
+      <a class="btn btn-ghost" href="mailto:biz@bigtablet.com">biz@bigtablet.com</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <b>BIG<span>TABLET</span></b>
+      <div style="margin-top:10px" data-ko>주식회사 빅태블릿 · 대구 / 판교 / Sunnyvale</div>
+      <div style="margin-top:10px" data-en>Bigtablet, Inc. · Daegu / Pangyo / Sunnyvale, CA</div>
+      <div style="margin-top:6px;font-family:var(--mono);font-size:12px"><a href="mailto:biz@bigtablet.com">biz@bigtablet.com</a></div>
+    </div>
+    <div class="r">
+      <div data-ko>영상을 이해하는 AI · VCM 영상부호화 원천기술</div>
+      <div data-en>Video-understanding AI · VCM video-coding IP</div>
+      <div style="margin-top:10px;opacity:.6;font-family:var(--mono);font-size:12px">© 2026 Bigtablet, Inc.</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  function setLang(l){
+    document.body.classList.toggle('en', l==='en');
+    document.documentElement.lang = l;
+    document.getElementById('ko').classList.toggle('on', l==='ko');
+    document.getElementById('en').classList.toggle('on', l==='en');
+  }
+  // 리터럴 \n → <br> (히어로/섹션 제목)
+  document.querySelectorAll('h1.hero-t, h2.sec.pre').forEach(function(el){
+    el.innerHTML = el.innerHTML.replace(/\\n/g,'<br>');
+  });
+  // 스크롤 리빌
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.16});
+  document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
+  // 히어로 비전 네트워크 — 노드/연결선 + 탐지 박스(컴퓨터비전 모션그래픽)
+  (function(){
+    var c=document.getElementById('fx'); if(!c||!c.getContext) return;
+    var ctx=c.getContext('2d');
+    var mq=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)');
+    var reduce=!!(mq&&mq.matches);
+    var dpr=Math.min(window.devicePixelRatio||1,2);
+    var W=0,H=0,pts=[],boxes=[],raf=0,t=0,ACC='79,209,197';
+    function size(){var r=c.getBoundingClientRect();W=r.width;H=r.height;c.width=Math.max(1,W*dpr);c.height=Math.max(1,H*dpr);ctx.setTransform(dpr,0,0,dpr,0,0);}
+    function init(){size();var n=Math.round(Math.min(56,Math.max(22,W/28)));pts=[];for(var i=0;i<n;i++)pts.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.22,vy:(Math.random()-.5)*.22});boxes=[];}
+    function spawn(){if(!pts.length)return;boxes.push({i:(Math.random()*pts.length)|0,born:t,life:2400+Math.random()*1900,label:'ID·'+(10+((Math.random()*89)|0))});}
+    function frame(){
+      ctx.clearRect(0,0,W,H);
+      for(var i=0;i<pts.length;i++){var p=pts[i];p.x+=p.vx;p.y+=p.vy;if(p.x<0)p.x+=W;else if(p.x>W)p.x-=W;if(p.y<0)p.y+=H;else if(p.y>H)p.y-=H;}
+      for(var a=0;a<pts.length;a++)for(var b=a+1;b<pts.length;b++){var dx=pts[a].x-pts[b].x,dy=pts[a].y-pts[b].y,d2=dx*dx+dy*dy;if(d2<13500){ctx.strokeStyle='rgba(255,255,255,'+((1-d2/13500)*.16)+')';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(pts[a].x,pts[a].y);ctx.lineTo(pts[b].x,pts[b].y);ctx.stroke();}}
+      ctx.fillStyle='rgba(255,255,255,.30)';for(var i=0;i<pts.length;i++){ctx.beginPath();ctx.arc(pts[i].x,pts[i].y,1.4,0,6.283);ctx.fill();}
+      for(var i=boxes.length-1;i>=0;i--){var bx=boxes[i],prog=(t-bx.born)/bx.life;if(prog>=1){boxes.splice(i,1);continue;}var fade=prog<.12?prog/.12:(prog>.85?(1-prog)/.15:1),p=pts[bx.i],s=20,x=p.x-s,y=p.y-s,L=8;ctx.strokeStyle='rgba('+ACC+','+(.8*fade)+')';ctx.lineWidth=1.5;var cs=[[x,y,1,1],[x+2*s,y,-1,1],[x,y+2*s,1,-1],[x+2*s,y+2*s,-1,-1]];for(var ci=0;ci<4;ci++){var k=cs[ci];ctx.beginPath();ctx.moveTo(k[0],k[1]+k[3]*L);ctx.lineTo(k[0],k[1]);ctx.lineTo(k[0]+k[2]*L,k[1]);ctx.stroke();}ctx.fillStyle='rgba('+ACC+','+fade+')';ctx.beginPath();ctx.arc(p.x,p.y,2.2,0,6.283);ctx.fill();ctx.font='10px ui-monospace,Menlo,monospace';ctx.fillText(bx.label,x,y-6);}
+    }
+    function loop(ts){t=ts||0;frame();if(boxes.length<3&&Math.random()<.025)spawn();raf=requestAnimationFrame(loop);}
+    function start(){cancelAnimationFrame(raf);if(reduce){t=1;frame();spawn();spawn();frame();return;}raf=requestAnimationFrame(loop);}
+    init();start();
+    var rt;window.addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(function(){init();if(reduce){t=1;frame();spawn();spawn();frame();}},200);});
+    document.addEventListener('visibilitychange',function(){if(document.hidden)cancelAnimationFrame(raf);else if(!reduce)raf=requestAnimationFrame(loop);});
+  })();
+
+  // 섹션 배경 모션그래픽 — people / processor / frames (뷰포트 진입 시에만 구동)
+  (function(){
+    var ACC='79,209,197';
+    var reduce=!!(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+    var RENDER={
+      people:{
+        init:function(s,W,H){var n=Math.max(5,Math.min(9,(W/170)|0));s.w=[];for(var i=0;i<n;i++){s.w.push({x:Math.random()*W,y:H*(.5+Math.random()*.3),sp:.22+Math.random()*.5,dir:Math.random()<.5?1:-1,ph:Math.random()*6.28,h:46+Math.random()*30});}
+          var cn=Math.max(4,Math.min(8,(W/210)|0));s.cams=[];for(var i=0;i<cn;i++)s.cams.push({x:(i+.5)/cn*W,y:H*.14,ph:Math.random()*6.28,sp:.0006+Math.random()*.0006});},
+        draw:function(c,s,W,H,t){if(!s.w)return;
+          for(var k=0;k<s.cams.length;k++){var cam=s.cams[k],ang=Math.PI/2+Math.sin(t*cam.sp+cam.ph)*.34,len=H*.7,sp=.3,a1=ang-sp,a2=ang+sp;
+            c.fillStyle='rgba(255,255,255,.022)';c.beginPath();c.moveTo(cam.x,cam.y);c.lineTo(cam.x+Math.cos(a1)*len,cam.y+Math.sin(a1)*len);c.lineTo(cam.x+Math.cos(a2)*len,cam.y+Math.sin(a2)*len);c.closePath();c.fill();
+            c.strokeStyle='rgba('+ACC+',.1)';c.lineWidth=1;c.beginPath();c.moveTo(cam.x,cam.y);c.lineTo(cam.x+Math.cos(a1)*len,cam.y+Math.sin(a1)*len);c.moveTo(cam.x,cam.y);c.lineTo(cam.x+Math.cos(a2)*len,cam.y+Math.sin(a2)*len);c.stroke();}
+          for(var i=0;i<s.w.length;i++){var p=s.w[i];p.x+=p.sp*p.dir;if(p.x<-40)p.x=W+40;else if(p.x>W+40)p.x=-40;var h=p.h,x=p.x,gait=t*.006+p.ph,y=p.y-Math.abs(Math.sin(gait))*h*.03;
+            var col='rgba(255,255,255,.26)';c.strokeStyle=col;c.fillStyle=col;c.lineCap='round';
+            var headR=h*.12,headCY=y-h*.46,shoulderY=headCY+headR*1.5,hipY=y+h*.1,legLen=h*.36,legSw=Math.sin(gait)*h*.18,armSw=Math.sin(gait+Math.PI)*h*.12;
+            c.beginPath();c.arc(x,headCY,headR,0,6.283);c.fill();
+            c.lineWidth=h*.15;c.beginPath();c.moveTo(x,shoulderY);c.lineTo(x,hipY);c.stroke();
+            c.lineWidth=h*.055;c.beginPath();c.moveTo(x,shoulderY+h*.03);c.lineTo(x-armSw,shoulderY+h*.2);c.stroke();c.beginPath();c.moveTo(x,shoulderY+h*.03);c.lineTo(x+armSw,shoulderY+h*.2);c.stroke();
+            c.lineWidth=h*.07;c.beginPath();c.moveTo(x,hipY);c.lineTo(x-legSw,hipY+legLen);c.stroke();c.beginPath();c.moveTo(x,hipY);c.lineTo(x+legSw,hipY+legLen);c.stroke();
+            c.lineCap='butt';}
+          var rec=(Math.floor(t/640)%2)===0;
+          for(var k=0;k<s.cams.length;k++){var cam=s.cams[k],ang=Math.PI/2+Math.sin(t*cam.sp+cam.ph)*.34;
+            c.strokeStyle='rgba(255,255,255,.32)';c.lineWidth=3;c.beginPath();c.moveTo(cam.x,cam.y);c.lineTo(cam.x,Math.max(0,cam.y-26));c.stroke();
+            c.save();c.translate(cam.x,cam.y);c.rotate(ang);
+            c.fillStyle='rgba(255,255,255,.52)';c.fillRect(-13,-9,34,18);
+            c.fillStyle='rgba(255,255,255,.32)';c.fillRect(-13,-13,12,5);
+            c.fillStyle='rgba(12,16,22,.95)';c.beginPath();c.arc(23,0,6,0,6.283);c.fill();
+            c.strokeStyle='rgba('+ACC+',.7)';c.lineWidth=1.6;c.beginPath();c.arc(23,0,6,0,6.283);c.stroke();
+            c.fillStyle='rgba('+ACC+',.6)';c.beginPath();c.arc(23,0,2,0,6.283);c.fill();
+            c.restore();
+            if(rec){c.fillStyle='rgba(255,90,90,.85)';c.beginPath();c.arc(cam.x+10,cam.y-22,2.5,0,6.283);c.fill();}}
+        }
+      },
+      processor:{
+        init:function(s,W,H){var cx=W/2,cy=H/2,cs=Math.max(72,Math.min(150,Math.min(W,H)*.2));s.chip={x:cx-cs,y:cy-cs,s:cs*2};s.g=6;
+          s.lines=[];var n=6;for(var k=0;k<n;k++){var fy=cy-cs+(cs*2)*(k+.5)/n;s.lines.push({y:fy,x0:0,x1:cx-cs});s.lines.push({y:fy,x0:W,x1:cx+cs});}},
+        draw:function(c,s,W,H,t){if(!s.chip)return;var ch=s.chip,cx=ch.x+ch.s/2,g=s.g;
+          for(var i=0;i<s.lines.length;i++){var L=s.lines[i];c.strokeStyle='rgba(255,255,255,.08)';c.lineWidth=1;c.beginPath();c.moveTo(L.x0,L.y);c.lineTo(L.x1,L.y);c.stroke();
+            var pr=((t*.00022)+(i*.11))%1,px=L.x0+(L.x1-L.x0)*pr;c.fillStyle='rgba('+ACC+',.85)';c.beginPath();c.arc(px,L.y,2.2,0,6.283);c.fill();}
+          c.strokeStyle='rgba('+ACC+',.5)';c.lineWidth=2;c.strokeRect(ch.x,ch.y,ch.s,ch.s);
+          c.strokeStyle='rgba(255,255,255,.2)';c.lineWidth=1.5;var pn=10,pl=6;
+          for(var k=0;k<pn;k++){var f=(k+.5)/pn*ch.s;
+            c.beginPath();c.moveTo(ch.x+f,ch.y);c.lineTo(ch.x+f,ch.y-pl);c.stroke();
+            c.beginPath();c.moveTo(ch.x+f,ch.y+ch.s);c.lineTo(ch.x+f,ch.y+ch.s+pl);c.stroke();
+            c.beginPath();c.moveTo(ch.x,ch.y+f);c.lineTo(ch.x-pl,ch.y+f);c.stroke();
+            c.beginPath();c.moveTo(ch.x+ch.s,ch.y+f);c.lineTo(ch.x+ch.s+pl,ch.y+f);c.stroke();}
+          var pad=ch.s*.15,die=ch.s-pad*2,cw=die/g;
+          c.strokeStyle='rgba(255,255,255,.14)';c.lineWidth=1;c.strokeRect(ch.x+pad,ch.y+pad,die,die);
+          for(var gy=0;gy<g;gy++)for(var gx=0;gx<g;gx++){var wv=Math.sin(t*.004-(gx+gy)*.5)*.5+.5;c.fillStyle='rgba('+ACC+','+(.06+wv*.4)+')';c.fillRect(ch.x+pad+gx*cw+1.5,ch.y+pad+gy*cw+1.5,cw-3,cw-3);}
+          c.fillStyle='rgba(255,255,255,.4)';c.font='bold 11px ui-monospace,Menlo,monospace';c.textAlign='center';c.fillText('VCM · GPU',cx,ch.y+ch.s+pl+15);c.textAlign='start';
+        }
+      },
+      frames:{
+        init:function(s,W,H){var cs=Math.max(58,Math.min(120,Math.min(W,H)*.17));s.proc={x:W*.72,y:H*.5,s:cs};s.in=[];s.spawnT=0;s.consumeT=0;s.q=0;},
+        draw:function(c,s,W,H,t){var P=s.proc,cx=P.x,cy=P.y,cs=P.s,qx=cx-cs*.6,FW=46,FH=28;
+          if(t-s.spawnT>540){s.spawnT=t;s.in.push({x:-FW,y:cy+(Math.random()-.5)*H*.5});}
+          if(t-s.consumeT>1600){s.consumeT=t;if(s.q>0)s.q--;}
+          for(var i=s.in.length-1;i>=0;i--){var it=s.in[i];it.x+=1.5;it.y+=(cy-it.y)*.028;if(it.x>=qx-FW-2){s.in.splice(i,1);if(s.q<12)s.q++;}}
+          function hf(x,y,a){c.fillStyle='rgba(255,255,255,'+(.05*a)+')';c.fillRect(x,y,FW,FH);c.strokeStyle='rgba(255,255,255,'+(.3*a)+')';c.lineWidth=1;c.strokeRect(x,y,FW,FH);var hz=y+FH*.56;c.strokeStyle='rgba(255,255,255,'+(.12*a)+')';c.beginPath();c.moveTo(x,hz);c.lineTo(x+FW,hz);c.stroke();c.fillStyle='rgba('+ACC+','+(.45*a)+')';c.font='7px ui-monospace,Menlo,monospace';c.fillText('8.0MB',x+3,y+FH-4);}
+          for(var i=0;i<s.in.length;i++)hf(s.in[i].x,s.in[i].y-FH/2,.85);
+          var qn=Math.min(s.q,9),load=Math.min(1,s.q/9);
+          function mix(l){return Math.round(79+156*l)+','+Math.round(209-129*l)+','+Math.round(197-127*l);}
+          for(var k=qn-1;k>=0;k--){var jx=Math.sin(t*.003+k)*1.2,fx=qx-k*5+jx,fy=cy-FH/2-k*12,fl=Math.min(1,load*(.5+.7*(k/Math.max(1,qn-1)))),col=mix(fl),aa=.55+(k===0?.35:.12);
+            c.fillStyle='rgba('+col+','+(.09*aa)+')';c.fillRect(fx,fy,FW,FH);
+            c.strokeStyle='rgba('+col+','+(.62*aa)+')';c.lineWidth=1.2;c.strokeRect(fx,fy,FW,FH);
+            var hz=fy+FH*.56;c.strokeStyle='rgba(255,255,255,'+(.1*aa)+')';c.beginPath();c.moveTo(fx,hz);c.lineTo(fx+FW,hz);c.stroke();
+            c.fillStyle='rgba('+col+','+(.55*aa)+')';c.font='7px ui-monospace,Menlo,monospace';c.fillText('8.0MB',fx+3,fy+FH-4);}
+          var pcol=mix(load),pls=load>.85?(Math.sin(t*.012)*.5+.5):0;
+          c.strokeStyle='rgba('+pcol+','+(.5+.35*load)+')';c.lineWidth=2+load*1.6;c.strokeRect(cx-cs/2,cy-cs/2,cs,cs);
+          if(pls>0){c.strokeStyle='rgba('+mix(1)+','+(.5*pls)+')';c.lineWidth=4;c.strokeRect(cx-cs/2-3,cy-cs/2-3,cs+6,cs+6);}
+          var g=4,pad=cs*.16,inn=cs-pad*2,cw=inn/g;for(var gy=0;gy<g;gy++)for(var gx=0;gx<g;gx++){var a=(Math.sin(t*.0015-(gx+gy)*.5)*.5+.5)*.3;c.fillStyle='rgba('+pcol+','+(.05+a)+')';c.fillRect(cx-cs/2+pad+gx*cw+1,cy-cs/2+pad+gy*cw+1,cw-2,cw-2);}
+          var ang=(t*.0013)%(Math.PI*2);c.strokeStyle='rgba('+pcol+',.75)';c.lineWidth=2;c.beginPath();c.arc(cx,cy,cs*.32,ang,ang+Math.PI*.55);c.stroke();
+          c.textAlign='center';c.font='bold 10px ui-monospace,Menlo,monospace';c.fillStyle=load>.8?'rgba('+mix(1)+',.92)':'rgba(255,255,255,.42)';c.fillText(load>.8?'⚠ OVERLOAD':'◷ slow',cx,cy+cs/2+15);c.textAlign='start';
+          c.fillStyle='rgba('+mix(load)+','+(.6+.3*load)+')';c.font='bold 10px ui-monospace,Menlo,monospace';c.fillText('QUEUE +'+s.q,qx-74,cy-cs/2-8);
+        }
+      },
+      signals:{
+        init:function(s,W,H){s.dots=[];var n=Math.max(18,Math.min(56,(W*H/15000)|0));for(var i=0;i<n;i++)s.dots.push({x:Math.random()*W,y:Math.random()*H,vy:-(.08+Math.random()*.24),r:.5+Math.random()*1.3});s.pings=[];s.pt=0;},
+        draw:function(c,s,W,H,t){if(!s.dots)return;
+          for(var i=0;i<s.dots.length;i++){var d=s.dots[i];d.y+=d.vy;if(d.y<-4){d.y=H+4;d.x=Math.random()*W;}c.fillStyle='rgba(255,255,255,.16)';c.beginPath();c.arc(d.x,d.y,d.r,0,6.283);c.fill();}
+          if(t-s.pt>1300){s.pt=t;s.pings.push({x:W*(.12+Math.random()*.76),y:H*(.18+Math.random()*.64),t0:t});}
+          for(var i=s.pings.length-1;i>=0;i--){var p=s.pings[i],age=(t-p.t0)/1700;if(age>=1){s.pings.splice(i,1);continue;}var rr=age*Math.min(W,H)*.17,al=(1-age)*.5;c.strokeStyle='rgba('+ACC+','+al+')';c.lineWidth=1.2;c.beginPath();c.arc(p.x,p.y,rr,0,6.283);c.stroke();c.fillStyle='rgba('+ACC+','+(al*.9)+')';c.beginPath();c.arc(p.x,p.y,2,0,6.283);c.fill();}
+        }
+      },
+      capture:{
+        init:function(s,W,H){s.period=4600;s.cyc=-1;s.pool=['person','worker','forklift','helmet','pallet','cart','vehicle','box','defect','bag','ladder','spill','tray','crate'];s.dets=[];},
+        regen:function(s){var n=3+((Math.random()*4)|0);s.dets=[];for(var i=0;i<n;i++){var w=.07+Math.random()*.12,hh=.1+Math.random()*.28,x=.1+Math.random()*(.8-w),y=.16+Math.random()*(.66-hh);s.dets.push({x:x,y:y,w:w,h:hh,l:s.pool[(Math.random()*s.pool.length)|0]+' '+(.71+Math.random()*.27).toFixed(2)});}},
+        draw:function(c,s,W,H,t){var per=s.period||4600,cyc=Math.floor(t/per);if(cyc!==s.cyc){s.cyc=cyc;this.regen(s);}
+          var m=Math.min(W,H)*.06,L=Math.min(W,H)*.11,bx=m,by=m,bw=W-m*2,bh=H-m*2,cx=W/2,cy=H/2,ph=(t%per)/per;
+          function cl(v){return v<0?0:v>1?1:v;}
+          c.strokeStyle='rgba(255,255,255,.2)';c.lineWidth=2;var vc=[[bx,by,1,1],[bx+bw,by,-1,1],[bx,by+bh,1,-1],[bx+bw,by+bh,-1,-1]];
+          for(var k=0;k<4;k++){var q=vc[k];c.beginPath();c.moveTo(q[0],q[1]+q[3]*L);c.lineTo(q[0],q[1]);c.lineTo(q[0]+q[2]*L,q[1]);c.stroke();}
+          var aim=ph>.87?(ph-.87)/.13:0;
+          if(aim>0){var rs=Math.min(W,H)*(.14-.05*aim),rl=rs*.4;c.strokeStyle='rgba('+ACC+','+(.35+.5*aim)+')';c.lineWidth=1.5;var rc=[[cx-rs,cy-rs,1,1],[cx+rs,cy-rs,-1,1],[cx-rs,cy+rs,1,-1],[cx+rs,cy+rs,-1,-1]];
+            for(var k=0;k<4;k++){var q=rc[k];c.beginPath();c.moveTo(q[0],q[1]+q[3]*rl);c.lineTo(q[0],q[1]);c.lineTo(q[0]+q[2]*rl,q[1]);c.stroke();}
+            c.beginPath();c.moveTo(cx-6,cy);c.lineTo(cx+6,cy);c.moveTo(cx,cy-6);c.lineTo(cx,cy+6);c.stroke();
+            c.fillStyle='rgba('+ACC+','+(.55*aim)+')';c.font='bold 10px ui-monospace,Menlo,monospace';c.fillText('AF ●',cx+rs+8,cy-rs+4);}
+          var bs=.05,be=.84;
+          if(ph>bs&&ph<be+.02){var loc=(ph-bs)/(be-bs);c.font='bold 10px ui-monospace,Menlo,monospace';c.textAlign='start';
+            for(var i=0;i<s.dets.length;i++){var d=s.dets[i],ap=cl((loc-i*.05)/.12),fd=loc>.84?cl(1-(loc-.84)/.16):1,a=ap*fd;if(a<=0)continue;
+              var X=d.x*W,Y=d.y*H,Wd=d.w*W,Hd=d.h*H,sc=1+(1-ap)*.07,ox=X-(Wd*(sc-1))/2,oy=Y-(Hd*(sc-1))/2,ow=Wd*sc,oh=Hd*sc;
+              c.strokeStyle='rgba('+ACC+','+(.92*a)+')';c.lineWidth=1.8;c.strokeRect(ox,oy,ow,oh);
+              var tw=c.measureText(d.l).width+10;c.fillStyle='rgba('+ACC+','+(.9*a)+')';c.fillRect(ox,oy-13,tw,13);
+              c.fillStyle='rgba(7,9,13,'+a+')';c.fillText(d.l,ox+5,oy-3);}
+            c.fillStyle='rgba('+ACC+',.55)';c.font='bold 10px ui-monospace,Menlo,monospace';c.fillText('● DETECT · '+s.dets.length+' objects',bx+4,by+bh+1);
+          }
+          var fl=ph<.05?(1-ph/.05):0;if(fl>0){c.fillStyle='rgba(255,255,255,'+(fl*.62)+')';c.fillRect(0,0,W,H);}
+        }
+      }
+    };
+    function setup(cv){
+      var ctx=cv.getContext&&cv.getContext('2d'); if(!ctx) return;
+      var R=RENDER[cv.getAttribute('data-fx')]||RENDER.people;
+      var dpr=Math.min(window.devicePixelRatio||1,2),W=0,H=0,st={},raf=0,vis=false;
+      function size(){var r=cv.getBoundingClientRect();W=r.width;H=r.height;cv.width=Math.max(1,W*dpr);cv.height=Math.max(1,H*dpr);ctx.setTransform(dpr,0,0,dpr,0,0);if(R.init)R.init(st,W,H);}
+      function frame(t){ctx.clearRect(0,0,W,H);R.draw(ctx,st,W,H,t);}
+      function loop(t){frame(t||0);raf=requestAnimationFrame(loop);}
+      function start(){cancelAnimationFrame(raf);if(reduce){frame(0);return;}raf=requestAnimationFrame(loop);}
+      function stop(){cancelAnimationFrame(raf);raf=0;}
+      size();
+      new IntersectionObserver(function(es){vis=es[0].isIntersecting;if(vis)start();else stop();},{threshold:.01}).observe(cv);
+      var rt;window.addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(size,200);});
+      document.addEventListener('visibilitychange',function(){if(document.hidden)stop();else if(vis&&!reduce)start();});
+    }
+    document.querySelectorAll('canvas.bgfx[data-fx]').forEach(setup);
+  })();
+
+  // 매출 막대 (현재 미사용 — 요소 있을 때만)
+  var bars=document.getElementById('bars');
+  if(bars){
+    function fill(){bars.querySelectorAll('.bar').forEach(function(b){b.style.height=b.getAttribute('data-h');b.style.transform='scaleY(1)';});}
+    if('IntersectionObserver' in window){var bo=new IntersectionObserver(function(e){if(e[0].isIntersecting){fill();bo.disconnect();}},{threshold:.3});bo.observe(bars);}else{fill();}
+  }
+</script>
+
+
+</body>
+</html>

@@ -42,6 +42,26 @@ export function proxy(request: NextRequest) {
 		return NextResponse.redirect(to, 308);
 	}
 
+	/* 임시 정적 홈(소장님 요청, #461): / 를 정적 디자인 HTML로 대체.
+	   원복: 이 블록 + public/home-temp.html 삭제하면 기존 React 메인 복귀. */
+	if (url.pathname === "/") {
+		const res = NextResponse.rewrite(new URL("/home-temp.html", url));
+		/* 정적 파일이 인라인 script + 외부 폰트(jsdelivr/google)를 써서 이 응답만 CSP 완화.
+		   앱의 다른 경로는 아래 strict CSP 그대로 유지. */
+		res.headers.set(
+			"Content-Security-Policy",
+			[
+				"default-src 'self'",
+				"script-src 'self' 'unsafe-inline'",
+				"style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://fonts.googleapis.com",
+				"font-src 'self' data: https://fonts.gstatic.com https://cdn.jsdelivr.net",
+				"img-src 'self' data: https://storage.googleapis.com",
+				"base-uri 'self'",
+			].join("; "),
+		);
+		return res;
+	}
+
 	// CSP nonce 생성 및 정책 빌드 (요청·응답 양쪽에 동일 정책 적용)
 	// btoa 사용: Edge Runtime 표준 Web API (Node Buffer 비의존). UUID는 ASCII라 동일 결과
 	const nonce = btoa(crypto.randomUUID());
@@ -86,6 +106,6 @@ export function proxy(request: NextRequest) {
 
 export const config = {
 	matcher: [
-		"/((?!api|_next/static|_next/image|favicon.ico|images|fonts|media|monitoring|robots.txt|sitemap.xml).*)",
+		"/((?!api|_next/static|_next/image|favicon.ico|images|fonts|media|monitoring|home-temp.html|robots.txt|sitemap.xml).*)",
 	],
 };

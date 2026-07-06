@@ -1,0 +1,11 @@
+# pnpm 10+는 overrides 등 설정을 package.json "pnpm" 필드가 아니라 이 파일에서 읽는다.
+# 아래는 취약 transitive 의존성 보안 핀 (구 package.json pnpm.overrides에서 이전).
+overrides:
+  'postcss@<8.5.10': '^8.5.10'
+  'fast-uri@<3.1.2': '^3.1.2'
+  'undici@<7.28.0': '^7.28.0'
+  'form-data@<4.0.6': '^4.0.6'
+  'ws@<7.5.11': '^7.5.11'
+  'js-yaml@<4.2.0': '^4.2.0'
+  '@babel/core@<7.29.6': '^7.29.6'
+  '@opentelemetry/core@<2.8.0': '^2.8.0'

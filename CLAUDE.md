@@ -220,14 +220,14 @@ src/
 #### Release 본문 양식 (자의적 변경 금지)
 
 ```markdown
-## Bigtablet Official Homepage Web
+## Official Homepage Web of Bigtablet, Inc.
 
 #### 주요 업데이트
 - 업데이트 1
 - 업데이트 2
 ```
 
-- 첫 줄: `## Bigtablet Official Homepage Web` (저장소 이름, 절대 변경 금지)
+- 첫 줄: `## Official Homepage Web of Bigtablet, Inc.` (저장소 이름, 절대 변경 금지)
 - 두 번째: `#### 주요 업데이트` (절대 변경 금지)
 - 본문은 **한글**로 변경 사항 한 줄씩 (커밋이 영문이어도 릴리즈 노트는 한글로 작성)
 - ❌ `## Features` / `## Bug Fixes` / `## Performance` 등 카테고리 섹션 추가 금지
@@ -238,7 +238,7 @@ src/
 
 ```bash
 gh release create 1.9.0 --target main --title "1.9.0" --notes "$(cat <<'EOF'
-## Bigtablet Official Homepage Web
+## Official Homepage Web of Bigtablet, Inc.
 
 #### 주요 업데이트
 - 신규 기능 설명 추가

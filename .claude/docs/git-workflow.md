@@ -207,7 +207,7 @@ PR 제목은 브랜치명과 동일하며, 본문은 아래 양식을 사용합�
 ### 본문 템플릿
 
 ```markdown
-## Bigtablet Official Homepage Web
+## Official Homepage Web of Bigtablet, Inc.
 
 #### 주요 업데이트
 - 업데이트 1
@@ -216,7 +216,7 @@ PR 제목은 브랜치명과 동일하며, 본문은 아래 양식을 사용합�
 
 ### 규칙
 
-- 첫 줄 `## Bigtablet Official Homepage Web` (저장소 이름, 변경 금지)
+- 첫 줄 `## Official Homepage Web of Bigtablet, Inc.` (저장소 이름, 변경 금지)
 - 두 번째 `#### 주요 업데이트` (텍스트 그대로, 변경 금지)
 - bullet 한 줄 = 하나의 변경 사항. **한글로 작성** (커밋 메시지가 영문이어도 릴리즈 노트는 한글로 작성)
 - ❌ `## Features` / `## Bug Fixes` / `## Performance` / `## Security` 등 **카테고리 섹션 절대 추가 금지**
@@ -227,7 +227,7 @@ PR 제목은 브랜치명과 동일하며, 본문은 아래 양식을 사용합�
 
 ```bash
 gh release create 1.8.6 --target main --title "1.8.6" --notes "$(cat <<'EOF'
-## Bigtablet Official Homepage Web
+## Official Homepage Web of Bigtablet, Inc.
 
 #### 주요 업데이트
 - 신규 기능 설명 추가

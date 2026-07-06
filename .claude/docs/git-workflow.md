@@ -208,6 +208,7 @@ PR 제목은 브랜치명과 동일하며, 본문은 아래 양식을 사용합�
 
 ```markdown
 ## Bigtablet Official Homepage Web
+
 #### 주요 업데이트
 - 업데이트 1
 - 업데이트 2

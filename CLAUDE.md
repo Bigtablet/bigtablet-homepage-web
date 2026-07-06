@@ -221,6 +221,7 @@ src/
 
 ```markdown
 ## Bigtablet Official Homepage Web
+
 #### 주요 업데이트
 - 업데이트 1
 - 업데이트 2
@@ -238,6 +239,7 @@ src/
 ```bash
 gh release create 1.9.0 --target main --title "1.9.0" --notes "$(cat <<'EOF'
 ## Bigtablet Official Homepage Web
+
 #### 주요 업데이트
 - 신규 기능 설명 추가
 - 버그 수정

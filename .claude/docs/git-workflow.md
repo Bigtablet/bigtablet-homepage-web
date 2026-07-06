@@ -228,6 +228,7 @@ PR 제목은 브랜치명과 동일하며, 본문은 아래 양식을 사용합�
 ```bash
 gh release create 1.8.6 --target main --title "1.8.6" --notes "$(cat <<'EOF'
 ## Bigtablet Official Homepage Web
+
 #### 주요 업데이트
 - 신규 기능 설명 추가
 - 버그 수정

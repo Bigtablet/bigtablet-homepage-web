@@ -199,39 +199,38 @@ PR 제목은 브랜치명과 동일하며, 본문은 아래 양식을 사용합�
 
 > **Release 본문은 반드시 아래 양식 그대로 사용. 섹션 추가/삭제/이름 변경 모두 금지.**
 
-- **태그 형식**: `x.x.x` (v 접두사 없음, 예: `1.8.6`)
+- **태그 형식**: `x.x.x` (v 접두사 없음, 예: `1.8.6`). 버저닝은 조직 [버저닝 원칙](https://app.notion.com/p/Version-Convention-25eef4b5605c805aa8a6fc929b5ec848?pvs=21)을 따른다.
 - **제목**: 태그와 동일 (예: `1.8.6`)
 - **타겟 브랜치**: `main` (develop → main 머지 후 main 기준 생성)
+- **릴리즈 노트는 한글 작성 원칙** (커밋 메시지는 영문 유지, 릴리즈 노트 본문만 한글)
 
 ### 본문 템플릿
 
 ```markdown
-## Official Website Web of Bigtablet, Inc.
-
-#### Key Updates
-- <conventional commit-style line, 영문 소문자>
-- <conventional commit-style line, 영문 소문자>
+## Bigtablet Official Homepage Web
+#### 주요 업데이트
+- 업데이트 1
+- 업데이트 2
 ```
 
 ### 규칙
 
-- 첫 줄 `## Official Website Web of Bigtablet, Inc.` — 텍스트 그대로 (변경 금지)
-- 두 번째 `#### Key Updates` — 텍스트 그대로 (변경 금지)
-- bullet 한 줄 = 하나의 변경 사항. **영문 소문자 + conventional prefix** (`fix:`, `feat:`, `chore:`, `delete:`, `style:`, `refactor:` 등)
+- 첫 줄 `## Bigtablet Official Homepage Web` (저장소 이름, 변경 금지)
+- 두 번째 `#### 주요 업데이트` (텍스트 그대로, 변경 금지)
+- bullet 한 줄 = 하나의 변경 사항. **한글로 작성** (커밋 메시지가 영문이어도 릴리즈 노트는 한글로 작성)
 - ❌ `## Features` / `## Bug Fixes` / `## Performance` / `## Security` 등 **카테고리 섹션 절대 추가 금지**
-- ❌ 한글 본문 금지 — 한글 commit 메시지였어도 release 본문은 영문 소문자로 변환
+- ❌ 영문 본문 금지 (릴리즈 노트는 한글 작성 원칙)
 - ❌ bullet을 빈 줄로 그룹화 금지 — 모든 bullet 연속
 
 ### 생성 예시
 
 ```bash
 gh release create 1.8.6 --target main --title "1.8.6" --notes "$(cat <<'EOF'
-## Official Website Web of Bigtablet, Inc.
-
-#### Key Updates
-- feat: add new feature description
-- fix: bug description
-- chore: bump dependency from x to y
+## Bigtablet Official Homepage Web
+#### 주요 업데이트
+- 신규 기능 설명 추가
+- 버그 수정
+- 의존성 버전 업데이트
 EOF
 )"
 ```

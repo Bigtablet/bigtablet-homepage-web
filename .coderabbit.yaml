@@ -13,7 +13,7 @@ tone_instructions: >-
 early_access: false
 
 reviews:
-  profile: "chill" # Gemini 리뷰와 병행하므로 nitpick 폭주 방지. 더 깐깐히 원하면 "assertive".
+  profile: "chill" # Claude 리뷰와 병행하므로 nitpick 폭주 방지. 더 깐깐히 원하면 "assertive".
   request_changes_workflow: false # 코드래빗이 머지를 막지 않음 — CI/사람이 게이트.
   high_level_summary: true
   poem: false
